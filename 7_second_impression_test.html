@@ -1,0 +1,932 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>The 7-Second Impression Test — Scroll Media</title>
+<style>
+  :root {
+    --ink: #151516;
+    --ink-mid: #4a4a4a;
+    --ink-light: #7a7a7a;
+    --bg: #fafdff;
+    --bg-warm: #f2f3f4;
+    --azure: #0e3387;
+    --light-blue: #cbe9ff;
+    --chartreuse: #e2ed7a;
+    --accent: #0e3387;
+    --accent-light: #cbe9ff;
+    --tag-bg: rgba(14, 51, 135, 0.08);
+    --tag-alt-bg: rgba(226, 237, 122, 0.18);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ─── HERO ─── */
+  .hero {
+    background: var(--ink);
+    color: #fff;
+    padding: 72px 48px 64px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -100px; right: -60px;
+    width: 420px; height: 420px;
+    border-radius: 50%;
+    border: 2px solid rgba(14, 51, 135, 0.25);
+    pointer-events: none;
+  }
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: -80px; left: 100px;
+    width: 240px; height: 240px;
+    border-radius: 50%;
+    border: 1px solid rgba(226, 237, 122, 0.12);
+    pointer-events: none;
+  }
+  .hero-eyebrow {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--chartreuse);
+    margin-bottom: 20px;
+    position: relative;
+  }
+  .hero h1 {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: clamp(38px, 6vw, 64px);
+    font-weight: 400;
+    letter-spacing: -1.5px;
+    line-height: 1.08;
+    margin-bottom: 24px;
+    position: relative;
+    max-width: 820px;
+  }
+  .hero h1 em {
+    font-style: italic;
+    color: var(--chartreuse);
+  }
+  .hero-sub {
+    font-size: 18px;
+    line-height: 1.65;
+    color: rgba(255,255,255,0.78);
+    max-width: 640px;
+    margin-bottom: 40px;
+    position: relative;
+  }
+  .hero-meta {
+    display: flex;
+    gap: 36px;
+    flex-wrap: wrap;
+    font-size: 13px;
+    color: rgba(255,255,255,0.5);
+    position: relative;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    padding-top: 28px;
+  }
+  .hero-meta span strong {
+    color: var(--chartreuse);
+    font-weight: 600;
+    margin-right: 6px;
+  }
+
+  /* ─── CONTAINER ─── */
+  .container {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 72px 48px;
+  }
+
+  /* ─── INTRO BLOCK ─── */
+  .intro-block {
+    background: var(--ink);
+    color: #fff;
+    padding: 52px;
+    border-radius: 16px;
+    margin-bottom: 64px;
+    position: relative;
+    overflow: hidden;
+  }
+  .intro-block::before {
+    content: '';
+    position: absolute;
+    top: -50px; right: -50px;
+    width: 220px; height: 220px;
+    border-radius: 50%;
+    border: 1px solid rgba(226, 237, 122, 0.12);
+    pointer-events: none;
+  }
+  .intro-block h2 {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 28px;
+    font-weight: 400;
+    line-height: 1.3;
+    margin-bottom: 20px;
+    position: relative;
+  }
+  .intro-block h2 em {
+    font-style: italic;
+    color: var(--chartreuse);
+  }
+  .intro-block p {
+    font-size: 16px;
+    line-height: 1.8;
+    color: rgba(255,255,255,0.82);
+    margin-bottom: 16px;
+    position: relative;
+  }
+  .intro-block p:last-child { margin-bottom: 0; }
+  .three-questions {
+    display: flex;
+    gap: 16px;
+    margin: 28px 0;
+    flex-wrap: wrap;
+    position: relative;
+  }
+  .question-pill {
+    background: rgba(226, 237, 122, 0.12);
+    border: 1px solid rgba(226, 237, 122, 0.25);
+    color: var(--chartreuse);
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+    padding: 10px 18px;
+    border-radius: 100px;
+  }
+
+  /* ─── HOW TO USE ─── */
+  .how-to-use {
+    background: var(--bg-warm);
+    border-radius: 12px;
+    padding: 36px 40px;
+    margin-bottom: 64px;
+    border-left: 4px solid var(--azure);
+  }
+  .how-to-use h3 {
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--azure);
+    margin-bottom: 16px;
+  }
+  .how-to-use ol {
+    padding-left: 20px;
+  }
+  .how-to-use li {
+    font-size: 15px;
+    line-height: 1.7;
+    color: var(--ink-mid);
+    margin-bottom: 8px;
+  }
+  .how-to-use li strong { color: var(--ink); }
+
+  /* ─── SECTION HEADER ─── */
+  .section-header {
+    margin-bottom: 32px;
+    padding-bottom: 20px;
+    border-bottom: 2px solid var(--bg-warm);
+  }
+  .section-num {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--azure);
+    margin-bottom: 8px;
+  }
+  .section-header h2 {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 30px;
+    font-weight: 400;
+    line-height: 1.2;
+    color: var(--ink);
+  }
+  .section-header p {
+    font-size: 15px;
+    color: var(--ink-light);
+    margin-top: 8px;
+    line-height: 1.6;
+  }
+  .section-wrap { margin-bottom: 64px; }
+
+  /* ─── CHECKLIST ITEMS ─── */
+  .checklist {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .checklist-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    padding: 20px 0;
+    border-bottom: 1px solid rgba(0,0,0,0.06);
+  }
+  .checklist-item:last-child { border-bottom: none; }
+  .check-box {
+    width: 22px;
+    height: 22px;
+    border: 2px solid rgba(14, 51, 135, 0.3);
+    border-radius: 5px;
+    flex-shrink: 0;
+    margin-top: 2px;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    position: relative;
+    background: #fff;
+  }
+  .check-box:hover {
+    border-color: var(--azure);
+    background: var(--tag-bg);
+  }
+  .check-box.checked {
+    background: var(--azure);
+    border-color: var(--azure);
+  }
+  .check-box.checked::after {
+    content: '';
+    position: absolute;
+    top: 3px; left: 6px;
+    width: 6px; height: 10px;
+    border: 2px solid #fff;
+    border-top: none;
+    border-left: none;
+    transform: rotate(45deg);
+  }
+  .checklist-content { flex: 1; }
+  .item-num {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--azure);
+    margin-bottom: 4px;
+  }
+  .item-title {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: 4px;
+    line-height: 1.4;
+  }
+  .item-desc {
+    font-size: 13px;
+    color: var(--ink-light);
+    line-height: 1.6;
+  }
+
+  /* ─── SCORE SECTION ─── */
+  .score-section {
+    background: var(--ink);
+    color: #fff;
+    border-radius: 16px;
+    padding: 56px 52px;
+    margin-bottom: 64px;
+    position: relative;
+    overflow: hidden;
+  }
+  .score-section::before {
+    content: '';
+    position: absolute;
+    top: -60px; right: -60px;
+    width: 280px; height: 280px;
+    border-radius: 50%;
+    border: 1px solid rgba(226, 237, 122, 0.1);
+    pointer-events: none;
+  }
+  .score-section h2 {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 32px;
+    font-weight: 400;
+    margin-bottom: 12px;
+    position: relative;
+  }
+  .score-section > p {
+    font-size: 16px;
+    color: rgba(255,255,255,0.7);
+    margin-bottom: 40px;
+    position: relative;
+  }
+  .score-display {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 12px;
+    padding: 32px 36px;
+    margin-bottom: 40px;
+    position: relative;
+    text-align: center;
+  }
+  .score-number {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 72px;
+    font-weight: 400;
+    color: var(--chartreuse);
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+  .score-label {
+    font-size: 14px;
+    color: rgba(255,255,255,0.5);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+  .score-tiers {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    position: relative;
+  }
+  .tier-card {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 10px;
+    padding: 24px 20px;
+  }
+  .tier-range {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 22px;
+    font-weight: 400;
+    color: var(--chartreuse);
+    margin-bottom: 8px;
+  }
+  .tier-name {
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.9);
+    margin-bottom: 8px;
+  }
+  .tier-desc {
+    font-size: 12px;
+    line-height: 1.6;
+    color: rgba(255,255,255,0.55);
+  }
+  @media (max-width: 680px) {
+    .score-tiers { grid-template-columns: 1fr; }
+  }
+
+  /* ─── CTA SECTION ─── */
+  .cta-section {
+    margin-bottom: 64px;
+  }
+  .cta-section > .section-header { margin-bottom: 40px; }
+  .cta-cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+  @media (max-width: 680px) {
+    .cta-cards { grid-template-columns: 1fr; }
+  }
+  .cta-card {
+    background: #fff;
+    border: 1px solid rgba(0,0,0,0.07);
+    border-radius: 14px;
+    padding: 36px 32px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    display: flex;
+    flex-direction: column;
+  }
+  .cta-card-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 5px 12px;
+    border-radius: 100px;
+    margin-bottom: 20px;
+    display: inline-block;
+    width: fit-content;
+  }
+  .label-blue {
+    background: var(--tag-bg);
+    color: var(--azure);
+  }
+  .label-yellow {
+    background: var(--tag-alt-bg);
+    color: #5a6200;
+  }
+  .cta-card-price {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 40px;
+    font-weight: 400;
+    color: var(--azure);
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+  .cta-card-title {
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 12px;
+    line-height: 1.3;
+  }
+  .cta-card-desc {
+    font-size: 14px;
+    line-height: 1.75;
+    color: var(--ink-mid);
+    flex: 1;
+    margin-bottom: 28px;
+  }
+  .cta-btn {
+    display: block;
+    text-align: center;
+    padding: 14px 24px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.3px;
+    text-decoration: none;
+    transition: all 0.15s ease;
+    cursor: pointer;
+  }
+  .btn-primary {
+    background: var(--azure);
+    color: #fff;
+  }
+  .btn-primary:hover { background: #0b2a70; }
+  .btn-secondary {
+    background: var(--chartreuse);
+    color: var(--ink);
+  }
+  .btn-secondary:hover { background: #d4df60; }
+
+  /* ─── FOOTER ─── */
+  .footer {
+    background: var(--ink);
+    color: rgba(255,255,255,0.45);
+    padding: 40px 48px;
+    text-align: center;
+    font-size: 13px;
+    line-height: 1.7;
+  }
+  .footer strong {
+    color: var(--chartreuse);
+    font-weight: 600;
+  }
+  .footer a {
+    color: rgba(255,255,255,0.55);
+    text-decoration: none;
+  }
+  .footer a:hover { color: var(--chartreuse); }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 760px) {
+    .hero { padding: 48px 28px 40px; }
+    .container { padding: 48px 28px; }
+    .intro-block { padding: 36px 28px; }
+    .score-section { padding: 40px 28px; }
+    .how-to-use { padding: 28px 24px; }
+    .footer { padding: 32px 28px; }
+  }
+
+  /* ─── PROGRESS BAR ─── */
+  .progress-wrap {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--ink);
+    padding: 10px 48px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+  .progress-label {
+    font-size: 12px;
+    font-weight: 600;
+    color: rgba(255,255,255,0.5);
+    white-space: nowrap;
+    letter-spacing: 0.5px;
+  }
+  .progress-bar-track {
+    flex: 1;
+    height: 4px;
+    background: rgba(255,255,255,0.1);
+    border-radius: 100px;
+    overflow: hidden;
+  }
+  .progress-bar-fill {
+    height: 100%;
+    background: var(--chartreuse);
+    border-radius: 100px;
+    transition: width 0.3s ease;
+    width: 0%;
+  }
+  .progress-score {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--chartreuse);
+    white-space: nowrap;
+    min-width: 48px;
+    text-align: right;
+  }
+  @media (max-width: 760px) {
+    .progress-wrap { padding: 10px 20px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- STICKY PROGRESS BAR -->
+<div class="progress-wrap">
+  <span class="progress-label">Your Score</span>
+  <div class="progress-bar-track">
+    <div class="progress-bar-fill" id="progressFill"></div>
+  </div>
+  <span class="progress-score" id="progressScore">0 / 27</span>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-eyebrow">Scroll Media — Authority Scorecard</div>
+  <h1>The <em>7-Second</em><br>Impression Test</h1>
+  <p class="hero-sub">Does your Instagram profile pass the test — or is it losing you clients before they even scroll?</p>
+  <div class="hero-meta">
+    <span><strong>27</strong> Checkpoints</span>
+    <span><strong>4</strong> Sections</span>
+    <span><strong>~10 min</strong> to complete</span>
+    <span><strong>Free</strong> from Scroll Media</span>
+  </div>
+</section>
+
+<!-- MAIN CONTENT -->
+<div class="container">
+
+  <!-- INTRO -->
+  <div class="intro-block">
+    <h2>You have <em>7 seconds</em> to make a first impression.</h2>
+    <p>That's how long a new visitor spends on your Instagram profile before they decide to follow you — or leave forever.</p>
+    <p>In those 7 seconds, they are asking three questions:</p>
+    <div class="three-questions">
+      <span class="question-pill">Who are you?</span>
+      <span class="question-pill">What do you do?</span>
+      <span class="question-pill">Why should I trust you?</span>
+    </div>
+    <p>If your profile doesn't answer these questions clearly and instantly, you're losing potential clients every single day — no matter how good your content is.</p>
+    <p>This scorecard gives you an honest, objective look at your profile through the eyes of a potential client. Use it to find your highest-leverage gaps.</p>
+  </div>
+
+  <!-- HOW TO USE -->
+  <div class="how-to-use">
+    <h3>How to Use This Scorecard</h3>
+    <ol>
+      <li><strong>Be honest.</strong> The goal isn't a perfect score — it's finding your biggest opportunity.</li>
+      <li><strong>Check each box</strong> for every item your profile currently has in place.</li>
+      <li><strong>Tally your score</strong> at the end to see where you stand and what to do next.</li>
+    </ol>
+  </div>
+
+  <!-- SECTION 1 -->
+  <div class="section-wrap">
+    <div class="section-header">
+      <div class="section-num">Section 01</div>
+      <h2>Profile & First Impressions</h2>
+      <p>The core elements a new visitor sees in the first 7 seconds.</p>
+    </div>
+    <ul class="checklist" id="section1">
+      <li class="checklist-item">
+        <div class="check-box" onclick="toggleCheck(this)"></div>
+        <div class="checklist-content">
+          <div class="item-num">01</div>
+          <div class="item-title">Optimized Handle</div>
+          <div class="item-desc">Your username is simple, memorable, and easy to search — no confusing numbers or symbols.</div>
+        </div>
+      </li>
+      <li class="checklist-item">
+        <div class="check-box" onclick="toggleCheck(this)"></div>
+        <div class="checklist-content">
+          <div class="item-num">02</div>
+          <div class="item-title">High-Quality Profile Photo</div>
+          <div class="item-desc">A clear, professional headshot (for a personal brand) or a clean, legible logo (for a business brand).</div>
+        </div>
+      </li>
+      <li class="checklist-item">
+        <div class="check-box" onclick="toggleCheck(this)"></div>
+        <div class="checklist-content">
+          <div class="item-num">03</div>
+          <div class="item-title">Keyword-Optimized Name Field</div>
+          <div class="item-desc">Your "Name" field includes what you do and for whom — not just your name. (e.g., "Dr. Jane Smith | Austin Med Spa")</div>
+        </div>
+      </li>
+      <li class="checklist-item">
+        <div class="check-box" onclick="toggleCheck(this)"></div>
+        <div class="checklist-content">
+          <div class="item-num">04</div>
+          <div class="item-title">Clear & Compelling Bio</div>
+          <div class="item-desc">Your bio clearly states who you help, what problem you solve, and what makes you different — in 150 characters or less.</div>
+        </div>
+      </li>
+      <li class="checklist-item">
+        <div class="check-box" onclick="toggleCheck(this)"></div>
+        <div class="checklist-content">
+          <div class="item-num">05</div>
+          <div class="item-title">Social Proof Element</div>
+          <div class="item-desc">Your bio includes a credible form of social proof. (e.g., "100+ 5-Star Reviews," "As seen in Forbes," "Trusted by 50+ clients")</div>
+        </div>
+      </li>
+      <li class="checklist-item">
+        <div class="check-box" onclick="toggleCheck(this)"></div>
+        <div class="checklist-content">
+          <div class="item-num">06</div>
+          <div class="item-title">Singular, Clear CTA</div>
+          <div class="item-desc">Your bio has one primary call to action that is easy to understand and points to a single destination.</div>
+        </div>
+      </li>
+      <li class="checklist-item">
+        <div class="check-box" onclick="toggleCheck(this)"></div>
+        <div class="checklist-content">
+          <div class="item-num">07</div>
+          <div class="item-title">Strategic Link-in-Bio</div>
+          <div class="item-desc">Your link goes directly to a high-value destination (booking page, product, application) — not a generic Linktree.</div>
+        </div>
+      </li>
+    </ul>
+  </div>
+
+  <!-- SECTION 2 -->
+  <div class="section-wrap">
+    <div class="section-header">
+      <div class="section-num">Section 02</div>
+      <h2>Content & Storytelling</h2>
+      <p>How well your content communicates authority, value, and trust.</p>
+    </div>
+    <ul class="checklist">
+      <li class="checklist-item">
+        <div class="check-box" onclick="toggleCheck(this)"></div>
+        <div class="checklist-content">
+          <div class="item-num">08</div>
+          <div class="item-title">Defined Content Pillars</div>
+          <div class="item-desc">You have 3–5 clear themes you talk about consistently. A new visitor can identify your focus immediately.</div>
+        </div>
+      </li>
+      <li class="checklist-item">
+        <div class="check-box" onclick="toggleCheck(this)"></div>
+        <div class="checklist-content">
+          <div class="item-num">09</div>
+          <div class="item-title">Clear Ideal Viewer Profile</div>
+          <div class="item-desc">It's obvious from your content exactly who you're trying to reach. Your audience self-identifies immediately.</div>
+        </div>
+      </li>
+      <li class="checklist-item">
+        <div class="check-box" onclick="toggleCheck(this)"></div>
+        <div class="checklist-content">
+          <div class="item-num">10</div>
+          <div class="item-title">Value-Driven Content Mix</div>
+          <div class="item-desc">Your content educates, entertains, or inspires your audience — not just sells to them. At least 70% is value-first.</div>
+        </div>
+      </li>
+      <li class="checklist-item">
+        <div class="check-box" onclick="toggleCheck(this)"></div>
+        <div class="checklist-content">
+          <div class="item-num">11</div>
+          <div class="item-title">Consistent Visual Identity</div>
+          <div class="item-desc">Your posts have a cohesive, professional look and feel. Your feed is recognizable at a glance.</div>
+        </div>
+      </li>
+      <li class="checklist-item">
+        <div class="check-box" onclick="toggleCheck(this)"></div>
+        <div class="checklist-content">
+          <div class="item-num">12</div>
+          <div class="item-title">Strong, Opinionated Hooks</div>
+          <div class="item-desc">Your captions and video intros grab attention immediately. The first line makes someone stop scrolling.</div>
+        </div>
+      </li>
+      <li class="checklist-item">
+        <div class="check-box" onclick="toggleCheck(this)"></div>
+        <div class="checklist-content">
+          <div class="item-num">13</div>
+          <div class="item-title">Proof of Results</div>
+          <div class="item-desc">You regularly share case studies, testimonials, before-and-afters, or client wins. Social proof is visible on your feed.</div>
+        </div>
+      </li>
+      <li class="checklist-item">
+        <div class="check-box" onclick="toggleCheck(this)"></div>
+        <div class="checklist-content">
+          <div class="item-num">14</div>
+          <div class="item-title">Founder-Led Content</div>
+          <div class="item-desc">If you're a founder-led brand, you personally show up in your content to build trust and human connection.</div>
+        </div>
+      </li>
+    </ul>
+  </div>
+
+  <!-- SECTION 3 -->
+  <div class="section-wrap">
+    <div class="section-header">
+      <div class="section-num">Section 03</div>
+      <h2>Engagement & Community</h2>
+      <p>How actively you're building relationships with your audience.</p>
+    </div>
+    <ul class="checklist">
+      <li class="checklist-item">
+        <div class="check-box" onclick="toggleCheck(this)"></div>
+        <div class="checklist-content">
+          <div class="item-num">15</div>
+          <div class="item-title">Engaging Captions</div>
+          <div class="item-desc">Your captions are written to encourage saves, shares, and comments — not just passive scrolling.</div>
+        </div>
+      </li>
+      <li class="checklist-item">
+        <div class="check-box" onclick="toggleCheck(this)"></div>
+        <div class="checklist-content">
+          <div class="item-num">16</div>
+          <div class="item-title">Strategic Use of Stories</div>
+          <div class="item-desc">You use Stories for behind-the-scenes content, Q&As, and direct audience engagement — not just reposts.</div>
+        </div>
+      </li>
+      <li class="checklist-item">
+        <div class="check-box" onclick="toggleCheck(this)"></div>
+        <div class="checklist-content">
+          <div class="item-num">17</div>
+          <div class="item-title">Interactive Story Features</div>
+          <div class="item-desc">You regularly use polls, quizzes, and question stickers to interact with your audience and gather insights.</div>
+        </div>
+      </li>
+      <li class="checklist-item">
+        <div class="check-box" onclick="toggleCheck(this)"></div>
+        <div class="checklist-content">
+          <div class="item-num">18</div>
+          <div class="item-title">Timely DM Responses</div>
+          <div class="item-desc">You have a system for responding to DMs within 24 hours. DMs are treated as a sales channel, not an inbox.</div>
+        </div>
+      </li>
+      <li class="checklist-item">
+        <div class="check-box" onclick="toggleCheck(this)"></div>
+        <div class="checklist-content">
+          <div class="item-num">19</div>
+          <div class="item-title">Comment Replies</div>
+          <div class="item-desc">You reply to comments on your posts to foster conversation and signal to the algorithm that your content is worth showing.</div>
+        </div>
+      </li>
+    </ul>
+  </div>
+
+  <!-- SECTION 4 -->
+  <div class="section-wrap">
+    <div class="section-header">
+      <div class="section-num">Section 04</div>
+      <h2>Conversion & Business Impact</h2>
+      <p>Whether your Instagram is actually driving real business results.</p>
+    </div>
+    <ul class="checklist">
+      <li class="checklist-item">
+        <div class="check-box" onclick="toggleCheck(this)"></div>
+        <div class="checklist-content">
+          <div class="item-num">20</div>
+          <div class="item-title">Clear Calls to Action</div>
+          <div class="item-desc">Every post has a clear CTA that tells the viewer exactly what to do next. "Link in bio" alone doesn't count.</div>
+        </div>
+      </li>
+      <li class="checklist-item">
+        <div class="check-box" onclick="toggleCheck(this)"></div>
+        <div class="checklist-content">
+          <div class="item-num">21</div>
+          <div class="item-title">Funnel Stage Alignment</div>
+          <div class="item-desc">Your content mix is aligned with your audience's level of awareness — you're not just posting BOFU content to cold audiences.</div>
+        </div>
+      </li>
+      <li class="checklist-item">
+        <div class="check-box" onclick="toggleCheck(this)"></div>
+        <div class="checklist-content">
+          <div class="item-num">22</div>
+          <div class="item-title">Highlights as Sales Tools</div>
+          <div class="item-desc">Your Story Highlights are organized into strategic folders that act as a sales resource (e.g., "About," "Services," "Results," "FAQ").</div>
+        </div>
+      </li>
+      <li class="checklist-item">
+        <div class="check-box" onclick="toggleCheck(this)"></div>
+        <div class="checklist-content">
+          <div class="item-num">23</div>
+          <div class="item-title">Clear Path to Purchase</div>
+          <div class="item-desc">It's incredibly easy for a follower to understand how to buy from you or book a call. The journey is frictionless.</div>
+        </div>
+      </li>
+      <li class="checklist-item">
+        <div class="check-box" onclick="toggleCheck(this)"></div>
+        <div class="checklist-content">
+          <div class="item-num">24</div>
+          <div class="item-title">Conversion-Focused Formats</div>
+          <div class="item-desc">You use formats designed to convert — carousels that teach, Reels that demonstrate, and posts that build desire.</div>
+        </div>
+      </li>
+      <li class="checklist-item">
+        <div class="check-box" onclick="toggleCheck(this)"></div>
+        <div class="checklist-content">
+          <div class="item-num">25</div>
+          <div class="item-title">Tracking & Measurement</div>
+          <div class="item-desc">You know which posts are driving profile visits, link clicks, and leads. You make decisions based on data, not gut.</div>
+        </div>
+      </li>
+      <li class="checklist-item">
+        <div class="check-box" onclick="toggleCheck(this)"></div>
+        <div class="checklist-content">
+          <div class="item-num">26</div>
+          <div class="item-title">Offer-Aware Content</div>
+          <div class="item-desc">Your content speaks directly to the specific problems your paid offers solve. Followers know what you sell.</div>
+        </div>
+      </li>
+      <li class="checklist-item">
+        <div class="check-box" onclick="toggleCheck(this)"></div>
+        <div class="checklist-content">
+          <div class="item-num">27</div>
+          <div class="item-title">Lead Nurturing System</div>
+          <div class="item-desc">You have a system (like an email list) to nurture leads who aren't ready to buy immediately. Followers don't just disappear.</div>
+        </div>
+      </li>
+    </ul>
+  </div>
+
+  <!-- SCORE SECTION -->
+  <div class="score-section">
+    <h2>Your Score</h2>
+    <p>Check the boxes above as you go — your score updates automatically.</p>
+    <div class="score-display">
+      <div class="score-number" id="finalScore">0</div>
+      <div class="score-label">out of 27</div>
+    </div>
+    <div class="score-tiers">
+      <div class="tier-card">
+        <div class="tier-range">1–9</div>
+        <div class="tier-name">Foundation Phase</div>
+        <div class="tier-desc">Significant gaps in your foundational profile elements. Start with Section 1 — fix the basics first.</div>
+      </div>
+      <div class="tier-card">
+        <div class="tier-range">10–18</div>
+        <div class="tier-name">Momentum Phase</div>
+        <div class="tier-desc">The basics are in place, but there are gaps in your content strategy and conversion pathways. Focus on Sections 2 and 4.</div>
+      </div>
+      <div class="tier-card">
+        <div class="tier-range">19–27</div>
+        <div class="tier-name">Authority Phase</div>
+        <div class="tier-desc">A strong, well-run profile. Your focus should be on optimizing your systems and scaling what's already working.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- NEXT STEPS CTA -->
+  <div class="cta-section">
+    <div class="section-header">
+      <div class="section-num">What's Next</div>
+      <h2>Turn Your Score Into Results</h2>
+      <p>Knowing your gaps is step one. Taking action is step two. Here are two ways to move faster.</p>
+    </div>
+    <div class="cta-cards">
+      <div class="cta-card">
+        <span class="cta-card-label label-yellow">Quick Win</span>
+        <div class="cta-card-price">$47</div>
+        <div class="cta-card-title">The Audience-to-Action Playbook</div>
+        <div class="cta-card-desc">My complete system for writing calls to action that actually convert. Includes a 50+ CTA library, the full framework, and a 10-minute tutorial. The fastest way to fix your Section 4 gaps today.</div>
+        <a href="#" class="cta-btn btn-secondary">Get the $47 Playbook →</a>
+      </div>
+      <div class="cta-card">
+        <span class="cta-card-label label-blue">Strategic Investment</span>
+        <div class="cta-card-price">$1,500</div>
+        <div class="cta-card-title">The Authority Architecture</div>
+        <div class="cta-card-desc">I personally build your complete 90-day Instagram strategy. The same blueprint I build for full-service retainer clients — delivered as a standalone asset. Total clarity on what to post, when, and why.</div>
+        <a href="#" class="cta-btn btn-primary">Book Your Blueprint →</a>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /container -->
+
+<!-- FOOTER -->
+<footer class="footer">
+  <p><strong>Scroll Media</strong> — Simplifying Social Media</p>
+  <p style="margin-top:8px;"><a href="https://scrollmedia.co">scrollmedia.co</a></p>
+  <p style="margin-top:16px; font-size:11px; color:rgba(255,255,255,0.3);">© 2026 Scroll Media. All rights reserved.</p>
+</footer>
+
+<script>
+  const TOTAL = 27;
+
+  function toggleCheck(el) {
+    el.classList.toggle('checked');
+    updateScore();
+  }
+
+  function updateScore() {
+    const checked = document.querySelectorAll('.check-box.checked').length;
+    const pct = (checked / TOTAL) * 100;
+    document.getElementById('progressFill').style.width = pct + '%';
+    document.getElementById('progressScore').textContent = checked + ' / ' + TOTAL;
+    document.getElementById('finalScore').textContent = checked;
+  }
+</script>
+
+</body>
+</html>
