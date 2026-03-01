@@ -1,0 +1,1100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Instagram Maturity Quiz — Scroll Media</title>
+<style>
+  :root {
+    --ink: #151516;
+    --ink-mid: #4a4a4a;
+    --ink-light: #7a7a7a;
+    --bg: #fafdff;
+    --bg-warm: #f2f3f4;
+    --azure: #0e3387;
+    --light-blue: #cbe9ff;
+    --chartreuse: #e2ed7a;
+    --tag-bg: rgba(14, 51, 135, 0.08);
+    --tag-alt-bg: rgba(226, 237, 122, 0.18);
+    --spark: #f59e0b;
+    --lift: #3b82f6;
+    --rise: #8b5cf6;
+    --thrive: #10b981;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ─── HERO ─── */
+  .hero {
+    background: var(--ink);
+    color: #fff;
+    padding: 72px 48px 64px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -100px; right: -60px;
+    width: 420px; height: 420px;
+    border-radius: 50%;
+    border: 2px solid rgba(14, 51, 135, 0.25);
+    pointer-events: none;
+  }
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: -80px; left: 100px;
+    width: 240px; height: 240px;
+    border-radius: 50%;
+    border: 1px solid rgba(226, 237, 122, 0.12);
+    pointer-events: none;
+  }
+  .hero-eyebrow {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--chartreuse);
+    margin-bottom: 20px;
+    position: relative;
+  }
+  .hero h1 {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: clamp(36px, 5.5vw, 60px);
+    font-weight: 400;
+    letter-spacing: -1.5px;
+    line-height: 1.08;
+    margin-bottom: 24px;
+    position: relative;
+    max-width: 780px;
+  }
+  .hero h1 em { font-style: italic; color: var(--chartreuse); }
+  .hero-sub {
+    font-size: 18px;
+    line-height: 1.65;
+    color: rgba(255,255,255,0.75);
+    max-width: 600px;
+    margin-bottom: 40px;
+    position: relative;
+  }
+  .hero-meta {
+    display: flex;
+    gap: 36px;
+    flex-wrap: wrap;
+    font-size: 13px;
+    color: rgba(255,255,255,0.45);
+    position: relative;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    padding-top: 28px;
+  }
+  .hero-meta span strong { color: var(--chartreuse); font-weight: 600; margin-right: 6px; }
+
+  /* ─── PROGRESS BAR ─── */
+  .progress-wrap {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--ink);
+    padding: 10px 48px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+  .progress-label {
+    font-size: 12px;
+    font-weight: 600;
+    color: rgba(255,255,255,0.5);
+    white-space: nowrap;
+    letter-spacing: 0.5px;
+  }
+  .progress-bar-track {
+    flex: 1;
+    height: 4px;
+    background: rgba(255,255,255,0.1);
+    border-radius: 100px;
+    overflow: hidden;
+  }
+  .progress-bar-fill {
+    height: 100%;
+    background: var(--chartreuse);
+    border-radius: 100px;
+    transition: width 0.4s ease;
+    width: 0%;
+  }
+  .progress-score {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--chartreuse);
+    white-space: nowrap;
+    min-width: 52px;
+    text-align: right;
+  }
+
+  /* ─── CONTAINER ─── */
+  .container {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 64px 40px;
+  }
+
+  /* ─── QUIZ WRAPPER ─── */
+  #quiz-wrapper { display: block; }
+  #result-wrapper { display: none; }
+
+  /* ─── QUESTION CARD ─── */
+  .question-card {
+    display: none;
+    animation: fadeIn 0.3s ease;
+  }
+  .question-card.active { display: block; }
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .q-num {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--azure);
+    margin-bottom: 12px;
+  }
+  .q-text {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: clamp(22px, 3.5vw, 30px);
+    font-weight: 400;
+    line-height: 1.3;
+    color: var(--ink);
+    margin-bottom: 32px;
+  }
+  .options {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .option-btn {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 18px 22px;
+    background: #fff;
+    border: 2px solid rgba(0,0,0,0.08);
+    border-radius: 10px;
+    cursor: pointer;
+    text-align: left;
+    transition: all 0.15s ease;
+    font-size: 15px;
+    color: var(--ink-mid);
+    line-height: 1.5;
+    width: 100%;
+  }
+  .option-btn:hover {
+    border-color: var(--azure);
+    background: var(--tag-bg);
+    color: var(--ink);
+  }
+  .option-btn.selected {
+    border-color: var(--azure);
+    background: var(--azure);
+    color: #fff;
+  }
+  .option-letter {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: var(--bg-warm);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--azure);
+    flex-shrink: 0;
+    transition: all 0.15s ease;
+  }
+  .option-btn:hover .option-letter,
+  .option-btn.selected .option-letter {
+    background: rgba(255,255,255,0.2);
+    color: #fff;
+  }
+  .option-btn.selected .option-letter { color: var(--azure); background: var(--chartreuse); }
+
+  /* ─── NAV BUTTONS ─── */
+  .q-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 32px;
+  }
+  .btn-back {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--ink-light);
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 12px 0;
+    letter-spacing: 0.3px;
+    transition: color 0.15s;
+  }
+  .btn-back:hover { color: var(--ink); }
+  .btn-next {
+    background: var(--azure);
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    padding: 14px 32px;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    letter-spacing: 0.3px;
+    transition: background 0.15s;
+    opacity: 0.4;
+    pointer-events: none;
+  }
+  .btn-next.enabled {
+    opacity: 1;
+    pointer-events: all;
+  }
+  .btn-next.enabled:hover { background: #0b2a70; }
+
+  /* ─── EMAIL CAPTURE ─── */
+  #email-capture-card {
+    display: none;
+    animation: fadeIn 0.3s ease;
+  }
+  #email-capture-card.active { display: block; }
+  .capture-intro {
+    background: var(--ink);
+    color: #fff;
+    border-radius: 16px;
+    padding: 48px 44px;
+    margin-bottom: 32px;
+    position: relative;
+    overflow: hidden;
+  }
+  .capture-intro::before {
+    content: '';
+    position: absolute;
+    top: -40px; right: -40px;
+    width: 200px; height: 200px;
+    border-radius: 50%;
+    border: 1px solid rgba(226,237,122,0.12);
+    pointer-events: none;
+  }
+  .capture-intro h2 {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 28px;
+    font-weight: 400;
+    line-height: 1.3;
+    margin-bottom: 16px;
+    position: relative;
+  }
+  .capture-intro h2 em { font-style: italic; color: var(--chartreuse); }
+  .capture-intro p {
+    font-size: 16px;
+    line-height: 1.75;
+    color: rgba(255,255,255,0.78);
+    position: relative;
+  }
+  .capture-form {
+    background: #fff;
+    border: 1px solid rgba(0,0,0,0.07);
+    border-radius: 14px;
+    padding: 36px 36px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  }
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 16px;
+  }
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-bottom: 16px;
+  }
+  .form-group label {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--ink-mid);
+  }
+  .form-group input {
+    padding: 13px 16px;
+    border: 2px solid rgba(0,0,0,0.1);
+    border-radius: 8px;
+    font-size: 15px;
+    color: var(--ink);
+    background: var(--bg);
+    transition: border-color 0.15s;
+    outline: none;
+    font-family: inherit;
+  }
+  .form-group input:focus { border-color: var(--azure); }
+  .form-group input::placeholder { color: var(--ink-light); }
+  .btn-submit {
+    width: 100%;
+    background: var(--azure);
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    padding: 16px 24px;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    letter-spacing: 0.3px;
+    transition: background 0.15s;
+    margin-top: 8px;
+  }
+  .btn-submit:hover { background: #0b2a70; }
+  .form-note {
+    font-size: 12px;
+    color: var(--ink-light);
+    text-align: center;
+    margin-top: 12px;
+    line-height: 1.6;
+  }
+  @media (max-width: 560px) {
+    .form-row { grid-template-columns: 1fr; }
+  }
+
+  /* ─── RESULT PAGE ─── */
+  .result-hero {
+    border-radius: 20px;
+    padding: 56px 52px;
+    margin-bottom: 40px;
+    position: relative;
+    overflow: hidden;
+    color: #fff;
+  }
+  .result-hero.spark { background: linear-gradient(135deg, #92400e 0%, #d97706 100%); }
+  .result-hero.lift  { background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%); }
+  .result-hero.rise  { background: linear-gradient(135deg, #4c1d95 0%, #7c3aed 100%); }
+  .result-hero.thrive{ background: linear-gradient(135deg, #064e3b 0%, #059669 100%); }
+  .result-hero::before {
+    content: '';
+    position: absolute;
+    top: -60px; right: -60px;
+    width: 280px; height: 280px;
+    border-radius: 50%;
+    border: 1px solid rgba(255,255,255,0.1);
+    pointer-events: none;
+  }
+  .result-stage-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.6);
+    margin-bottom: 12px;
+    position: relative;
+  }
+  .result-stage-name {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: clamp(42px, 7vw, 72px);
+    font-weight: 400;
+    letter-spacing: -2px;
+    line-height: 1;
+    margin-bottom: 20px;
+    position: relative;
+  }
+  .result-tagline {
+    font-size: 18px;
+    font-weight: 600;
+    color: rgba(255,255,255,0.9);
+    margin-bottom: 16px;
+    position: relative;
+  }
+  .result-desc {
+    font-size: 16px;
+    line-height: 1.75;
+    color: rgba(255,255,255,0.78);
+    max-width: 580px;
+    position: relative;
+  }
+  .result-score-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255,255,255,0.12);
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 100px;
+    padding: 8px 18px;
+    font-size: 13px;
+    font-weight: 600;
+    color: rgba(255,255,255,0.85);
+    margin-bottom: 24px;
+    position: relative;
+  }
+
+  /* ─── WHAT THIS MEANS ─── */
+  .insights-section {
+    margin-bottom: 48px;
+  }
+  .insights-header {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--azure);
+    margin-bottom: 20px;
+  }
+  .insight-cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+  .insight-card {
+    background: #fff;
+    border: 1px solid rgba(0,0,0,0.07);
+    border-radius: 12px;
+    padding: 28px 24px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+  }
+  .insight-card-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    padding: 4px 10px;
+    border-radius: 100px;
+    display: inline-block;
+  }
+  .label-strength { background: rgba(16,185,129,0.1); color: #065f46; }
+  .label-opportunity { background: rgba(245,158,11,0.1); color: #92400e; }
+  .label-focus { background: var(--tag-bg); color: var(--azure); }
+  .label-next { background: var(--tag-alt-bg); color: #5a6200; }
+  .insight-card h4 {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 8px;
+    line-height: 1.3;
+  }
+  .insight-card p {
+    font-size: 13px;
+    line-height: 1.7;
+    color: var(--ink-mid);
+  }
+  @media (max-width: 600px) {
+    .insight-cards { grid-template-columns: 1fr; }
+  }
+
+  /* ─── NEXT STEPS / CTA ─── */
+  .cta-section {
+    margin-bottom: 48px;
+  }
+  .cta-header {
+    margin-bottom: 28px;
+  }
+  .cta-header h2 {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 28px;
+    font-weight: 400;
+    line-height: 1.2;
+    color: var(--ink);
+    margin-bottom: 8px;
+  }
+  .cta-header p {
+    font-size: 15px;
+    color: var(--ink-light);
+    line-height: 1.6;
+  }
+  .cta-cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+  @media (max-width: 600px) {
+    .cta-cards { grid-template-columns: 1fr; }
+  }
+  .cta-card {
+    background: #fff;
+    border: 1px solid rgba(0,0,0,0.07);
+    border-radius: 14px;
+    padding: 32px 28px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    display: flex;
+    flex-direction: column;
+  }
+  .cta-card-badge {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 5px 12px;
+    border-radius: 100px;
+    margin-bottom: 20px;
+    display: inline-block;
+    width: fit-content;
+  }
+  .badge-yellow { background: var(--tag-alt-bg); color: #5a6200; }
+  .badge-blue { background: var(--tag-bg); color: var(--azure); }
+  .cta-price {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 38px;
+    font-weight: 400;
+    color: var(--azure);
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+  .cta-title {
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 12px;
+    line-height: 1.3;
+  }
+  .cta-desc {
+    font-size: 14px;
+    line-height: 1.75;
+    color: var(--ink-mid);
+    flex: 1;
+    margin-bottom: 24px;
+  }
+  .cta-btn {
+    display: block;
+    text-align: center;
+    padding: 14px 20px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.3px;
+    text-decoration: none;
+    transition: all 0.15s ease;
+    cursor: pointer;
+    border: none;
+  }
+  .btn-primary { background: var(--azure); color: #fff; }
+  .btn-primary:hover { background: #0b2a70; }
+  .btn-secondary { background: var(--chartreuse); color: var(--ink); }
+  .btn-secondary:hover { background: #d4df60; }
+
+  /* ─── FOOTER ─── */
+  .footer {
+    background: var(--ink);
+    color: rgba(255,255,255,0.4);
+    padding: 40px 48px;
+    text-align: center;
+    font-size: 13px;
+    line-height: 1.7;
+  }
+  .footer strong { color: var(--chartreuse); font-weight: 600; }
+  .footer a { color: rgba(255,255,255,0.5); text-decoration: none; }
+  .footer a:hover { color: var(--chartreuse); }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 680px) {
+    .hero { padding: 48px 24px 40px; }
+    .container { padding: 48px 24px; }
+    .capture-intro { padding: 36px 28px; }
+    .capture-form { padding: 28px 24px; }
+    .result-hero { padding: 40px 28px; }
+    .progress-wrap { padding: 10px 20px; }
+    .footer { padding: 32px 24px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- STICKY PROGRESS -->
+<div class="progress-wrap" id="progressWrap">
+  <span class="progress-label">Progress</span>
+  <div class="progress-bar-track">
+    <div class="progress-bar-fill" id="progressFill"></div>
+  </div>
+  <span class="progress-score" id="progressScore">0 of 10</span>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-eyebrow">Scroll Media — Free Assessment</div>
+  <h1>What's Your Instagram<br><em>Maturity Stage?</em></h1>
+  <p class="hero-sub">10 questions. 3 minutes. Find out exactly where your Instagram stands — and what to do next to turn it into a client-generating machine.</p>
+  <div class="hero-meta">
+    <span><strong>10</strong> Questions</span>
+    <span><strong>~3 min</strong> to complete</span>
+    <span><strong>4</strong> Possible Stages</span>
+    <span><strong>Free</strong> from Scroll Media</span>
+  </div>
+</section>
+
+<!-- MAIN CONTENT -->
+<div class="container">
+
+  <!-- QUIZ SECTION -->
+  <div id="quiz-wrapper">
+
+    <!-- Q1 -->
+    <div class="question-card active" id="q1">
+      <div class="q-num">Question 1 of 10</div>
+      <div class="q-text">How many followers does your Instagram account currently have?</div>
+      <div class="options">
+        <button class="option-btn" onclick="selectOption(this, 1, 1)"><span class="option-letter">A</span> Under 1,000</button>
+        <button class="option-btn" onclick="selectOption(this, 1, 2)"><span class="option-letter">B</span> 1,000 – 2,500</button>
+        <button class="option-btn" onclick="selectOption(this, 1, 3)"><span class="option-letter">C</span> 2,500 – 10,000</button>
+        <button class="option-btn" onclick="selectOption(this, 1, 4)"><span class="option-letter">D</span> 10,000 – 50,000</button>
+        <button class="option-btn" onclick="selectOption(this, 1, 5)"><span class="option-letter">E</span> 50,000+</button>
+      </div>
+      <div class="q-nav">
+        <span></span>
+        <button class="btn-next" id="next1" onclick="nextQ(1)">Next →</button>
+      </div>
+    </div>
+
+    <!-- Q2 -->
+    <div class="question-card" id="q2">
+      <div class="q-num">Question 2 of 10</div>
+      <div class="q-text">How consistently are you posting on Instagram right now?</div>
+      <div class="options">
+        <button class="option-btn" onclick="selectOption(this, 2, 1)"><span class="option-letter">A</span> Rarely or inconsistently — whenever I find the time</button>
+        <button class="option-btn" onclick="selectOption(this, 2, 2)"><span class="option-letter">B</span> 1–2 times per week</button>
+        <button class="option-btn" onclick="selectOption(this, 2, 3)"><span class="option-letter">C</span> 3–4 times per week</button>
+        <button class="option-btn" onclick="selectOption(this, 2, 4)"><span class="option-letter">D</span> 5+ times per week with a planned calendar</button>
+      </div>
+      <div class="q-nav">
+        <button class="btn-back" onclick="prevQ(2)">← Back</button>
+        <button class="btn-next" id="next2" onclick="nextQ(2)">Next →</button>
+      </div>
+    </div>
+
+    <!-- Q3 -->
+    <div class="question-card" id="q3">
+      <div class="q-num">Question 3 of 10</div>
+      <div class="q-text">How would you describe your current content strategy?</div>
+      <div class="options">
+        <button class="option-btn" onclick="selectOption(this, 3, 1)"><span class="option-letter">A</span> I don't really have one — I post what feels right</button>
+        <button class="option-btn" onclick="selectOption(this, 3, 2)"><span class="option-letter">B</span> I have a general idea of what I want to post, but it's not documented</button>
+        <button class="option-btn" onclick="selectOption(this, 3, 3)"><span class="option-letter">C</span> I have defined content pillars and a rough monthly plan</button>
+        <button class="option-btn" onclick="selectOption(this, 3, 4)"><span class="option-letter">D</span> I have a documented strategy with clear goals, pillars, and a 30–90 day content calendar</button>
+      </div>
+      <div class="q-nav">
+        <button class="btn-back" onclick="prevQ(3)">← Back</button>
+        <button class="btn-next" id="next3" onclick="nextQ(3)">Next →</button>
+      </div>
+    </div>
+
+    <!-- Q4 -->
+    <div class="question-card" id="q4">
+      <div class="q-num">Question 4 of 10</div>
+      <div class="q-text">When someone visits your Instagram profile for the first time, how clear is it what you do and who you help?</div>
+      <div class="options">
+        <button class="option-btn" onclick="selectOption(this, 4, 1)"><span class="option-letter">A</span> Honestly, probably not very clear</button>
+        <button class="option-btn" onclick="selectOption(this, 4, 2)"><span class="option-letter">B</span> Somewhat clear — but my bio could be stronger</button>
+        <button class="option-btn" onclick="selectOption(this, 4, 3)"><span class="option-letter">C</span> Pretty clear — my bio and content communicate what I do</button>
+        <button class="option-btn" onclick="selectOption(this, 4, 4)"><span class="option-letter">D</span> Crystal clear — a new visitor immediately knows who I am, what I do, and how to work with me</button>
+      </div>
+      <div class="q-nav">
+        <button class="btn-back" onclick="prevQ(4)">← Back</button>
+        <button class="btn-next" id="next4" onclick="nextQ(4)">Next →</button>
+      </div>
+    </div>
+
+    <!-- Q5 -->
+    <div class="question-card" id="q5">
+      <div class="q-num">Question 5 of 10</div>
+      <div class="q-text">How well does your Instagram actually drive new business or leads?</div>
+      <div class="options">
+        <button class="option-btn" onclick="selectOption(this, 5, 1)"><span class="option-letter">A</span> It doesn't — I can't trace any business back to Instagram</button>
+        <button class="option-btn" onclick="selectOption(this, 5, 2)"><span class="option-letter">B</span> Occasionally — I've gotten a few inquiries but it's not consistent</button>
+        <button class="option-btn" onclick="selectOption(this, 5, 3)"><span class="option-letter">C</span> Regularly — Instagram is a reliable source of leads for my business</button>
+        <button class="option-btn" onclick="selectOption(this, 5, 4)"><span class="option-letter">D</span> Consistently — Instagram is one of our primary revenue drivers</button>
+      </div>
+      <div class="q-nav">
+        <button class="btn-back" onclick="prevQ(5)">← Back</button>
+        <button class="btn-next" id="next5" onclick="nextQ(5)">Next →</button>
+      </div>
+    </div>
+
+    <!-- Q6 -->
+    <div class="question-card" id="q6">
+      <div class="q-num">Question 6 of 10</div>
+      <div class="q-text">How would you describe the engagement on your posts (likes, comments, saves, shares)?</div>
+      <div class="options">
+        <button class="option-btn" onclick="selectOption(this, 6, 1)"><span class="option-letter">A</span> Minimal — mostly from friends and family</button>
+        <button class="option-btn" onclick="selectOption(this, 6, 2)"><span class="option-letter">B</span> Growing — I'm starting to see real engagement from people outside my network</button>
+        <button class="option-btn" onclick="selectOption(this, 6, 3)"><span class="option-letter">C</span> Strong — my posts regularly get saves and shares from my target audience</button>
+        <button class="option-btn" onclick="selectOption(this, 6, 4)"><span class="option-letter">D</span> High — I have a highly engaged community that actively comments and shares my content</button>
+      </div>
+      <div class="q-nav">
+        <button class="btn-back" onclick="prevQ(6)">← Back</button>
+        <button class="btn-next" id="next6" onclick="nextQ(6)">Next →</button>
+      </div>
+    </div>
+
+    <!-- Q7 -->
+    <div class="question-card" id="q7">
+      <div class="q-num">Question 7 of 10</div>
+      <div class="q-text">How do you currently handle calls to action (CTAs) in your content?</div>
+      <div class="options">
+        <button class="option-btn" onclick="selectOption(this, 7, 1)"><span class="option-letter">A</span> I don't really use CTAs</button>
+        <button class="option-btn" onclick="selectOption(this, 7, 2)"><span class="option-letter">B</span> I occasionally say "link in bio" or "DM me"</button>
+        <button class="option-btn" onclick="selectOption(this, 7, 3)"><span class="option-letter">C</span> I have consistent CTAs but they're not strategically mapped to a funnel</button>
+        <button class="option-btn" onclick="selectOption(this, 7, 4)"><span class="option-letter">D</span> Every post has a deliberate CTA aligned to a specific business goal</button>
+      </div>
+      <div class="q-nav">
+        <button class="btn-back" onclick="prevQ(7)">← Back</button>
+        <button class="btn-next" id="next7" onclick="nextQ(7)">Next →</button>
+      </div>
+    </div>
+
+    <!-- Q8 -->
+    <div class="question-card" id="q8">
+      <div class="q-num">Question 8 of 10</div>
+      <div class="q-text">How do you use Instagram Stories?</div>
+      <div class="options">
+        <button class="option-btn" onclick="selectOption(this, 8, 1)"><span class="option-letter">A</span> Rarely or never</button>
+        <button class="option-btn" onclick="selectOption(this, 8, 2)"><span class="option-letter">B</span> Occasionally — mostly reposts or casual behind-the-scenes</button>
+        <button class="option-btn" onclick="selectOption(this, 8, 3)"><span class="option-letter">C</span> Regularly — I use Stories to engage my audience and promote content</button>
+        <button class="option-btn" onclick="selectOption(this, 8, 4)"><span class="option-letter">D</span> Strategically — Stories are a key part of my content mix with polls, Q&As, and conversion-focused content</button>
+      </div>
+      <div class="q-nav">
+        <button class="btn-back" onclick="prevQ(8)">← Back</button>
+        <button class="btn-next" id="next8" onclick="nextQ(8)">Next →</button>
+      </div>
+    </div>
+
+    <!-- Q9 -->
+    <div class="question-card" id="q9">
+      <div class="q-num">Question 9 of 10</div>
+      <div class="q-text">Do you track performance metrics and use data to guide your content decisions?</div>
+      <div class="options">
+        <button class="option-btn" onclick="selectOption(this, 9, 1)"><span class="option-letter">A</span> No — I don't look at analytics</button>
+        <button class="option-btn" onclick="selectOption(this, 9, 2)"><span class="option-letter">B</span> Sometimes — I check follower count and likes occasionally</button>
+        <button class="option-btn" onclick="selectOption(this, 9, 3)"><span class="option-letter">C</span> Yes — I review reach, engagement, and profile visits monthly</button>
+        <button class="option-btn" onclick="selectOption(this, 9, 4)"><span class="option-letter">D</span> Absolutely — I track KPIs weekly and use data to optimize content in real time</button>
+      </div>
+      <div class="q-nav">
+        <button class="btn-back" onclick="prevQ(9)">← Back</button>
+        <button class="btn-next" id="next9" onclick="nextQ(9)">Next →</button>
+      </div>
+    </div>
+
+    <!-- Q10 -->
+    <div class="question-card" id="q10">
+      <div class="q-num">Question 10 of 10</div>
+      <div class="q-text">What's your biggest Instagram challenge right now?</div>
+      <div class="options">
+        <button class="option-btn" onclick="selectOption(this, 10, 1)"><span class="option-letter">A</span> Getting started — I don't know where to begin</button>
+        <button class="option-btn" onclick="selectOption(this, 10, 2)"><span class="option-letter">B</span> Growing my audience — I'm not reaching enough new people</button>
+        <button class="option-btn" onclick="selectOption(this, 10, 3)"><span class="option-letter">C</span> Converting followers — I have an audience but it's not turning into clients</button>
+        <button class="option-btn" onclick="selectOption(this, 10, 4)"><span class="option-letter">D</span> Scaling — I want to maximize what's already working</button>
+      </div>
+      <div class="q-nav">
+        <button class="btn-back" onclick="prevQ(10)">← Back</button>
+        <button class="btn-next" id="next10" onclick="showEmailCapture()">See My Results →</button>
+      </div>
+    </div>
+
+    <!-- EMAIL CAPTURE -->
+    <div id="email-capture-card">
+      <div class="capture-intro">
+        <h2>Almost there. Your results are <em>ready.</em></h2>
+        <p>Enter your details below and we'll show you your Instagram Maturity Stage — plus a personalized breakdown of exactly what it means for your business and what to do next.</p>
+      </div>
+      <div class="capture-form">
+        <div class="form-row">
+          <div class="form-group">
+            <label>First Name</label>
+            <input type="text" id="fname" placeholder="Jane" />
+          </div>
+          <div class="form-group">
+            <label>Last Name</label>
+            <input type="text" id="lname" placeholder="Smith" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Business Name</label>
+          <input type="text" id="bizname" placeholder="Your Business Name" />
+        </div>
+        <div class="form-group">
+          <label>Email Address</label>
+          <input type="email" id="email" placeholder="jane@yourbusiness.com" />
+        </div>
+        <button class="btn-submit" onclick="submitAndShowResult()">Show Me My Stage →</button>
+        <p class="form-note">No spam. No pitch. Just your results and a clear path forward.</p>
+      </div>
+    </div>
+
+  </div><!-- /quiz-wrapper -->
+
+  <!-- RESULT SECTION -->
+  <div id="result-wrapper">
+    <div id="result-hero-block" class="result-hero">
+      <div class="result-stage-label">Your Instagram Maturity Stage</div>
+      <div class="result-stage-name" id="result-stage-name"></div>
+      <div class="result-tagline" id="result-tagline"></div>
+      <div class="result-score-badge" id="result-score-badge"></div>
+      <p class="result-desc" id="result-desc"></p>
+    </div>
+
+    <div class="insights-section">
+      <div class="insights-header">What This Means For Your Business</div>
+      <div class="insight-cards" id="insight-cards"></div>
+    </div>
+
+    <div class="cta-section">
+      <div class="cta-header">
+        <h2>Your Next Move</h2>
+        <p>Here are two ways Scroll Media can help you move to the next stage — fast.</p>
+      </div>
+      <div class="cta-cards">
+        <div class="cta-card">
+          <span class="cta-card-badge badge-yellow">Quick Win</span>
+          <div class="cta-price">$47</div>
+          <div class="cta-title">The Audience-to-Action Playbook</div>
+          <div class="cta-desc">The complete CTA system that turns passive followers into paying clients. Includes a 50+ CTA library, the full framework, and a step-by-step tutorial. Instant access.</div>
+          <a href="https://chaser007.gumroad.com/l/audience-to-action" class="cta-btn btn-secondary">Get Instant Access →</a>
+        </div>
+        <div class="cta-card">
+          <span class="cta-card-badge badge-blue">Done-For-You</span>
+          <div class="cta-price">$500</div>
+          <div class="cta-title">The Social Media Strategy Session</div>
+          <div class="cta-desc">We build your complete, custom Instagram strategy — content pillars, IVP, 90-day content direction, and a clear execution roadmap. The same blueprint our full-service clients get, delivered as a one-time project.</div>
+          <a href="https://calendly.com/scrollmedia/social-media-strategy-session" class="cta-btn btn-primary">Book Your Session →</a>
+        </div>
+      </div>
+    </div>
+  </div><!-- /result-wrapper -->
+
+</div><!-- /container -->
+
+<!-- FOOTER -->
+<footer class="footer">
+  <p><strong>Scroll Media</strong> — Simplifying Social Media</p>
+  <p style="margin-top:8px;"><a href="https://scrollmedia.co">scrollmedia.co</a> &nbsp;|&nbsp; Cincinnati, OH</p>
+  <p style="margin-top:16px; font-size:11px; color:rgba(255,255,255,0.25);">© 2026 Scroll Media. All rights reserved.</p>
+</footer>
+
+<!-- FORMSPREE HIDDEN FORM (for email notification) -->
+<form id="formspree-form" action="https://formspree.io/f/xreavjlr" method="POST" style="display:none;">
+  <input type="hidden" name="first_name" id="fs-fname" />
+  <input type="hidden" name="last_name" id="fs-lname" />
+  <input type="hidden" name="business_name" id="fs-bizname" />
+  <input type="email" name="email" id="fs-email" />
+  <input type="hidden" name="stage" id="fs-stage" />
+  <input type="hidden" name="score" id="fs-score" />
+  <input type="hidden" name="q1" id="fs-q1" />
+  <input type="hidden" name="q2" id="fs-q2" />
+  <input type="hidden" name="q3" id="fs-q3" />
+  <input type="hidden" name="q4" id="fs-q4" />
+  <input type="hidden" name="q5" id="fs-q5" />
+  <input type="hidden" name="q6" id="fs-q6" />
+  <input type="hidden" name="q7" id="fs-q7" />
+  <input type="hidden" name="q8" id="fs-q8" />
+  <input type="hidden" name="q9" id="fs-q9" />
+  <input type="hidden" name="q10" id="fs-q10" />
+  <button type="submit" id="fs-submit">Submit</button>
+</form>
+
+<script>
+  const TOTAL_Q = 10;
+  const answers = {};
+  const answerLabels = {};
+
+  // ─── OPTION SELECTION ───
+  function selectOption(btn, qNum, val) {
+    const parent = btn.closest('.options');
+    parent.querySelectorAll('.option-btn').forEach(b => b.classList.remove('selected'));
+    btn.classList.add('selected');
+    answers[qNum] = val;
+    answerLabels[qNum] = btn.textContent.trim().replace(/^[A-E]\s*/, '');
+    const nextBtn = document.getElementById('next' + qNum);
+    if (nextBtn) nextBtn.classList.add('enabled');
+    updateProgress(qNum);
+  }
+
+  // ─── NAVIGATION ───
+  function nextQ(current) {
+    if (!answers[current]) return;
+    document.getElementById('q' + current).classList.remove('active');
+    const next = current + 1;
+    if (next <= TOTAL_Q) {
+      document.getElementById('q' + next).classList.add('active');
+    }
+    updateProgress(next - 1);
+  }
+
+  function prevQ(current) {
+    document.getElementById('q' + current).classList.remove('active');
+    const prev = current - 1;
+    if (prev >= 1) {
+      document.getElementById('q' + prev).classList.add('active');
+    } else {
+      // back to q1
+      document.getElementById('q1').classList.add('active');
+    }
+    updateProgress(current - 2);
+  }
+
+  function showEmailCapture() {
+    if (!answers[10]) return;
+    document.getElementById('q10').classList.remove('active');
+    document.getElementById('email-capture-card').classList.add('active');
+    updateProgress(10);
+  }
+
+  // ─── PROGRESS ───
+  function updateProgress(completed) {
+    const pct = Math.min((completed / TOTAL_Q) * 100, 100);
+    document.getElementById('progressFill').style.width = pct + '%';
+    document.getElementById('progressScore').textContent = Math.min(completed, TOTAL_Q) + ' of ' + TOTAL_Q;
+  }
+
+  // ─── SCORE CALCULATION ───
+  function calcScore() {
+    let total = 0;
+    for (let i = 1; i <= TOTAL_Q; i++) {
+      total += (answers[i] || 1);
+    }
+    return total;
+  }
+
+  function getStage(score) {
+    // Max possible: 10 questions × 5 = 50 (Q1 has 5 options, rest have 4)
+    // Adjusted max: Q1 max=5, Q2-Q10 max=4 each → 5 + 36 = 41
+    if (score <= 14) return 'spark';
+    if (score <= 23) return 'lift';
+    if (score <= 32) return 'rise';
+    return 'thrive';
+  }
+
+  // ─── STAGE DATA ───
+  const stageData = {
+    spark: {
+      name: 'SPARK',
+      tagline: 'You\'re building the foundation. The opportunity is massive.',
+      desc: 'Your Instagram is in its early stages — and that\'s actually a great place to be. The decisions you make right now about your profile, your content pillars, and your positioning will determine everything that comes after. Most businesses at this stage are posting without a strategy and wondering why it\'s not working. You\'re about to change that.',
+      color: 'spark',
+      scoreLabel: 'Foundation Stage',
+      insights: [
+        { label: 'label-strength', title: 'Your Biggest Strength', text: 'You have a blank canvas. No bad habits to undo, no audience to disappoint. You can build this the right way from day one.' },
+        { label: 'label-opportunity', title: 'Your Biggest Opportunity', text: 'Profile optimization. Most Spark-stage accounts lose potential followers before they even see a post. A strong bio and clear positioning can double your follow rate immediately.' },
+        { label: 'label-focus', title: 'Your Strategic Focus', text: 'Discovery. Your goal right now is to test content formats, find what resonates with your ideal audience, and build a consistent posting rhythm.' },
+        { label: 'label-next', title: 'Your Next Stage', text: 'LIFT (2,500–10,000 followers). You\'ll get there faster than you think with the right strategy in place.' }
+      ]
+    },
+    lift: {
+      name: 'LIFT',
+      tagline: 'You have momentum. Now it\'s time to build the system.',
+      desc: 'You\'ve proven that your content can attract an audience — now the question is how to scale what\'s working and start converting that audience into actual clients. Most businesses at this stage have the reach but not the conversion infrastructure. The gap between followers and revenue is a strategy problem, not a content problem.',
+      color: 'lift',
+      scoreLabel: 'Momentum Stage',
+      insights: [
+        { label: 'label-strength', title: 'Your Biggest Strength', text: 'You have proof of concept. Your audience is growing, which means your content is resonating. That\'s harder to build than most people think.' },
+        { label: 'label-opportunity', title: 'Your Biggest Opportunity', text: 'Conversion infrastructure. Your CTAs, your link-in-bio, your Story Highlights — these are likely underdeveloped. Fixing them can unlock revenue from your existing audience immediately.' },
+        { label: 'label-focus', title: 'Your Strategic Focus', text: 'Momentum. Double down on your 2–3 best-performing content formats and build a consistent conversion pathway from follower to inquiry.' },
+        { label: 'label-next', title: 'Your Next Stage', text: 'RISE (10,000–50,000 followers). You\'re closer than you think — the right strategy can get you there in 90 days.' }
+      ]
+    },
+    rise: {
+      name: 'RISE',
+      tagline: 'You\'re established. The focus now is conversion at scale.',
+      desc: 'You have a real audience and real credibility. The challenge at this stage isn\'t reach — it\'s optimization. You\'re likely leaving significant revenue on the table because your content-to-client pathway isn\'t as tight as it could be. Businesses at this stage need a more sophisticated content strategy that balances authority-building with conversion-driving content.',
+      color: 'rise',
+      scoreLabel: 'Authority Stage',
+      insights: [
+        { label: 'label-strength', title: 'Your Biggest Strength', text: 'You have authority. A 10,000+ follower account with consistent engagement is a significant business asset. Most of your competitors don\'t have it.' },
+        { label: 'label-opportunity', title: 'Your Biggest Opportunity', text: 'Funnel alignment. Your content mix is likely too heavy on TOFU. Shifting more content toward MOFU and BOFU — without losing reach — is the highest-leverage move at your stage.' },
+        { label: 'label-focus', title: 'Your Strategic Focus', text: 'Optimization. Every piece of content should have a clear role in your funnel. Random posting is the enemy of revenue at this stage.' },
+        { label: 'label-next', title: 'Your Next Stage', text: 'THRIVE (50,000+ followers). The gap between Rise and Thrive is almost entirely a strategy and systems problem — not a content problem.' }
+      ]
+    },
+    thrive: {
+      name: 'THRIVE',
+      tagline: 'You\'ve built something real. Now it\'s about maximizing it.',
+      desc: 'You\'re operating at a level most businesses never reach. Instagram is already a meaningful part of your business — the question now is how to maximize brand equity, build a true community, and create content systems that scale without burning you out. At this stage, strategy and systems matter more than any individual piece of content.',
+      color: 'thrive',
+      scoreLabel: 'Brand Authority Stage',
+      insights: [
+        { label: 'label-strength', title: 'Your Biggest Strength', text: 'Brand equity. You\'ve built something that compounds. Every new follower arrives with a level of pre-existing trust that most brands can only dream about.' },
+        { label: 'label-opportunity', title: 'Your Biggest Opportunity', text: 'Ecosystem building. At your stage, the highest-leverage move is creating content that generates leads, builds your email list, and drives revenue simultaneously.' },
+        { label: 'label-focus', title: 'Your Strategic Focus', text: 'Authority and retention. Your goal is to deepen the relationship with your existing audience while continuing to attract high-quality new followers.' },
+        { label: 'label-next', title: 'Your Strategic Priority', text: 'Maximize brand equity. You\'re not chasing growth anymore — you\'re building a category-defining brand.' }
+      ]
+    }
+  };
+
+  // ─── SUBMIT & SHOW RESULT ───
+  function submitAndShowResult() {
+    const fname = document.getElementById('fname').value.trim();
+    const lname = document.getElementById('lname').value.trim();
+    const bizname = document.getElementById('bizname').value.trim();
+    const email = document.getElementById('email').value.trim();
+
+    if (!fname || !email) {
+      alert('Please enter your first name and email address to see your results.');
+      return;
+    }
+
+    const score = calcScore();
+    const stage = getStage(score);
+    const data = stageData[stage];
+
+    // Populate Formspree hidden form
+    document.getElementById('fs-fname').value = fname;
+    document.getElementById('fs-lname').value = lname;
+    document.getElementById('fs-bizname').value = bizname;
+    document.getElementById('fs-email').value = email;
+    document.getElementById('fs-stage').value = data.name;
+    document.getElementById('fs-score').value = score;
+    for (let i = 1; i <= 10; i++) {
+      document.getElementById('fs-q' + i).value = answerLabels[i] || '';
+    }
+
+    // Submit to Formspree (silent)
+    const formData = new FormData(document.getElementById('formspree-form'));
+    fetch(document.getElementById('formspree-form').action, {
+      method: 'POST',
+      body: formData,
+      headers: { 'Accept': 'application/json' }
+    }).catch(() => {}); // silent fail — don't block result display
+
+    // Show result
+    showResult(data, score, fname);
+  }
+
+  function showResult(data, score, fname) {
+    // Hide quiz, show result
+    document.getElementById('quiz-wrapper').style.display = 'none';
+    document.getElementById('result-wrapper').style.display = 'block';
+    document.getElementById('progressWrap').style.display = 'none';
+
+    // Populate result hero
+    const hero = document.getElementById('result-hero-block');
+    hero.className = 'result-hero ' + data.color;
+    document.getElementById('result-stage-name').textContent = data.name;
+    document.getElementById('result-tagline').textContent = data.tagline;
+    document.getElementById('result-score-badge').textContent = data.scoreLabel + ' · Score: ' + score + '/41';
+    document.getElementById('result-desc').textContent = data.desc;
+
+    // Populate insight cards
+    const cards = document.getElementById('insight-cards');
+    cards.innerHTML = data.insights.map(ins => `
+      <div class="insight-card">
+        <span class="insight-card-label ${ins.label}">${ins.title}</span>
+        <h4>${ins.title}</h4>
+        <p>${ins.text}</p>
+      </div>
+    `).join('');
+
+    // Scroll to top
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+</script>
+
+</body>
+</html>
