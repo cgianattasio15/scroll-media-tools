@@ -393,124 +393,332 @@
   /* ─── RESULT PAGE ─── */
   .result-hero {
     border-radius: 20px;
-    padding: 56px 52px;
+    padding: 52px 52px 44px;
     margin-bottom: 40px;
     position: relative;
     overflow: hidden;
     color: #fff;
   }
-  .result-hero.spark { background: linear-gradient(135deg, #92400e 0%, #d97706 100%); }
-  .result-hero.lift  { background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%); }
-  .result-hero.rise  { background: linear-gradient(135deg, #4c1d95 0%, #7c3aed 100%); }
-  .result-hero.thrive{ background: linear-gradient(135deg, #064e3b 0%, #059669 100%); }
+  .result-hero.spark { background: linear-gradient(135deg, #78350f 0%, #b45309 60%, #d97706 100%); }
+  .result-hero.lift  { background: linear-gradient(135deg, #1e3a8a 0%, #1d4ed8 60%, #3b82f6 100%); }
+  .result-hero.rise  { background: linear-gradient(135deg, #3b0764 0%, #6d28d9 60%, #8b5cf6 100%); }
+  .result-hero.thrive{ background: linear-gradient(135deg, #022c22 0%, #047857 60%, #10b981 100%); }
   .result-hero::before {
     content: '';
     position: absolute;
-    top: -60px; right: -60px;
-    width: 280px; height: 280px;
+    top: -80px; right: -80px;
+    width: 320px; height: 320px;
     border-radius: 50%;
-    border: 1px solid rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.08);
+    pointer-events: none;
+  }
+  .result-hero::after {
+    content: '';
+    position: absolute;
+    bottom: -60px; left: -40px;
+    width: 200px; height: 200px;
+    border-radius: 50%;
+    border: 1px solid rgba(255,255,255,0.05);
     pointer-events: none;
   }
   .result-stage-label {
-    font-size: 11px;
+    font-size: 10px;
     font-weight: 700;
     letter-spacing: 3px;
     text-transform: uppercase;
-    color: rgba(255,255,255,0.6);
-    margin-bottom: 12px;
+    color: rgba(255,255,255,0.5);
+    margin-bottom: 14px;
     position: relative;
   }
   .result-stage-name {
     font-family: Georgia, 'Times New Roman', serif;
-    font-size: clamp(42px, 7vw, 72px);
+    font-size: clamp(48px, 8vw, 80px);
     font-weight: 400;
     letter-spacing: -2px;
     line-height: 1;
-    margin-bottom: 20px;
-    position: relative;
-  }
-  .result-tagline {
-    font-size: 18px;
-    font-weight: 600;
-    color: rgba(255,255,255,0.9);
     margin-bottom: 16px;
     position: relative;
   }
-  .result-desc {
-    font-size: 16px;
-    line-height: 1.75;
-    color: rgba(255,255,255,0.78);
-    max-width: 580px;
+  .result-tagline {
+    font-size: 17px;
+    font-weight: 600;
+    color: rgba(255,255,255,0.88);
+    margin-bottom: 20px;
     position: relative;
+    max-width: 520px;
+    line-height: 1.4;
   }
   .result-score-badge {
     display: inline-flex;
     align-items: center;
     gap: 8px;
     background: rgba(255,255,255,0.12);
-    border: 1px solid rgba(255,255,255,0.2);
+    border: 1px solid rgba(255,255,255,0.18);
     border-radius: 100px;
-    padding: 8px 18px;
-    font-size: 13px;
+    padding: 7px 16px;
+    font-size: 12px;
     font-weight: 600;
-    color: rgba(255,255,255,0.85);
-    margin-bottom: 24px;
+    color: rgba(255,255,255,0.8);
+    margin-bottom: 28px;
     position: relative;
   }
+  /* Stage spectrum bar */
+  .stage-spectrum {
+    position: relative;
+    margin-top: 32px;
+    padding-top: 28px;
+    border-top: 1px solid rgba(255,255,255,0.12);
+  }
+  .stage-spectrum-label {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.4);
+    margin-bottom: 12px;
+  }
+  .stage-track {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+  }
+  .stage-pip {
+    flex: 1;
+    height: 6px;
+    border-radius: 100px;
+    background: rgba(255,255,255,0.15);
+    transition: background 0.3s;
+  }
+  .stage-pip.active {
+    background: rgba(255,255,255,0.9);
+  }
+  .stage-pip.passed {
+    background: rgba(255,255,255,0.4);
+  }
+  .stage-labels {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 8px;
+  }
+  .stage-labels span {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.35);
+    flex: 1;
+    text-align: center;
+  }
+  .stage-labels span.active-label {
+    color: rgba(255,255,255,0.9);
+  }
 
-  /* ─── WHAT THIS MEANS ─── */
-  .insights-section {
+  /* ─── RESULT BODY ─── */
+  .result-body {
     margin-bottom: 48px;
   }
-  .insights-header {
-    font-size: 11px;
+
+  /* ─── SECTION DIVIDER ─── */
+  .section-divider {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 28px;
+  }
+  .section-divider-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--azure);
+    white-space: nowrap;
+  }
+  .section-divider-line {
+    flex: 1;
+    height: 1px;
+    background: rgba(0,0,0,0.08);
+  }
+
+  /* ─── SUMMARY BLOCK ─── */
+  .result-summary {
+    background: #fff;
+    border: 1px solid rgba(0,0,0,0.07);
+    border-radius: 14px;
+    padding: 32px 36px;
+    margin-bottom: 12px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+  }
+  .result-summary p {
+    font-size: 16px;
+    line-height: 1.8;
+    color: var(--ink-mid);
+  }
+  .result-summary p strong {
+    color: var(--ink);
+    font-weight: 700;
+  }
+
+  /* ─── INSIGHT ROWS ─── */
+  .insights-section {
+    margin-bottom: 12px;
+  }
+  .insight-row {
+    display: flex;
+    gap: 20px;
+    background: #fff;
+    border: 1px solid rgba(0,0,0,0.07);
+    border-radius: 14px;
+    padding: 28px 32px;
+    margin-bottom: 12px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+    align-items: flex-start;
+    transition: box-shadow 0.15s;
+  }
+  .insight-row:hover {
+    box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+  }
+  .insight-row-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .icon-strength { background: rgba(16,185,129,0.1); }
+  .icon-opportunity { background: rgba(245,158,11,0.1); }
+  .insight-row-content {
+    flex: 1;
+  }
+  .insight-row-label {
+    font-size: 10px;
     font-weight: 700;
     letter-spacing: 2px;
     text-transform: uppercase;
-    color: var(--azure);
-    margin-bottom: 20px;
+    margin-bottom: 6px;
+    display: block;
   }
-  .insight-cards {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 16px;
-  }
-  .insight-card {
-    background: #fff;
-    border: 1px solid rgba(0,0,0,0.07);
-    border-radius: 12px;
-    padding: 28px 24px;
-    box-shadow: 0 1px 4px rgba(0,0,0,0.04);
-  }
-  .insight-card-label {
-    font-size: 10px;
-    font-weight: 700;
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-    margin-bottom: 10px;
-    padding: 4px 10px;
-    border-radius: 100px;
-    display: inline-block;
-  }
-  .label-strength { background: rgba(16,185,129,0.1); color: #065f46; }
-  .label-opportunity { background: rgba(245,158,11,0.1); color: #92400e; }
-  .label-focus { background: var(--tag-bg); color: var(--azure); }
-  .label-next { background: var(--tag-alt-bg); color: #5a6200; }
-  .insight-card h4 {
-    font-size: 15px;
+  .label-strength { color: #065f46; }
+  .label-opportunity { color: #92400e; }
+  .insight-row-title {
+    font-size: 16px;
     font-weight: 700;
     color: var(--ink);
     margin-bottom: 8px;
     line-height: 1.3;
   }
-  .insight-card p {
-    font-size: 13px;
-    line-height: 1.7;
+  .insight-row-text {
+    font-size: 14px;
+    line-height: 1.75;
     color: var(--ink-mid);
   }
+
+  /* ─── ACTION CALLOUT ─── */
+  .action-callout {
+    background: var(--ink);
+    border-radius: 16px;
+    padding: 36px 40px;
+    margin-bottom: 12px;
+    position: relative;
+    overflow: hidden;
+  }
+  .action-callout::before {
+    content: '';
+    position: absolute;
+    top: -40px; right: -40px;
+    width: 180px; height: 180px;
+    border-radius: 50%;
+    border: 1px solid rgba(226,237,122,0.1);
+    pointer-events: none;
+  }
+  .action-callout-eyebrow {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--chartreuse);
+    margin-bottom: 10px;
+    position: relative;
+  }
+  .action-callout-title {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 22px;
+    font-weight: 400;
+    color: #fff;
+    margin-bottom: 14px;
+    line-height: 1.3;
+    position: relative;
+  }
+  .action-callout-text {
+    font-size: 14px;
+    line-height: 1.8;
+    color: rgba(255,255,255,0.72);
+    position: relative;
+  }
+
+  /* ─── NEXT STAGE BANNER ─── */
+  .next-stage-banner {
+    border-radius: 14px;
+    padding: 28px 32px;
+    margin-bottom: 48px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    border: 1px solid rgba(0,0,0,0.07);
+    background: #fff;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+  }
+  .next-stage-arrow {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    background: var(--tag-alt-bg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    flex-shrink: 0;
+  }
+  .next-stage-content {
+    flex: 1;
+  }
+  .next-stage-eyebrow {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #5a6200;
+    margin-bottom: 4px;
+  }
+  .next-stage-title {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 4px;
+  }
+  .next-stage-text {
+    font-size: 13px;
+    line-height: 1.65;
+    color: var(--ink-mid);
+  }
+
+  /* ─── WHAT THIS MEANS (legacy — kept for compat) ─── */
+  .insights-header { display: none; }
+  .insight-cards { display: none; }
+  .insight-card { display: none; }
+  .label-focus { background: var(--tag-bg); color: var(--azure); }
+  .label-next { background: var(--tag-alt-bg); color: #5a6200; }
+
   @media (max-width: 600px) {
-    .insight-cards { grid-template-columns: 1fr; }
+    .result-hero { padding: 36px 24px 32px; }
+    .result-summary { padding: 24px 22px; }
+    .insight-row { padding: 22px 20px; gap: 14px; }
+    .action-callout { padding: 28px 24px; }
+    .next-stage-banner { padding: 22px 20px; gap: 14px; }
+    .insight-row-icon { width: 38px; height: 38px; font-size: 17px; }
   }
 
   /* ─── NEXT STEPS / CTA ─── */
@@ -860,19 +1068,66 @@
 
   <!-- RESULT SECTION -->
   <div id="result-wrapper">
+
+    <!-- HERO -->
     <div id="result-hero-block" class="result-hero">
       <div class="result-stage-label">Your Instagram Maturity Stage</div>
       <div class="result-stage-name" id="result-stage-name"></div>
       <div class="result-tagline" id="result-tagline"></div>
       <div class="result-score-badge" id="result-score-badge"></div>
-      <p class="result-desc" id="result-desc"></p>
+      <!-- Stage spectrum -->
+      <div class="stage-spectrum">
+        <div class="stage-spectrum-label">Where you stand</div>
+        <div class="stage-track" id="stage-track">
+          <div class="stage-pip" id="pip-spark"></div>
+          <div class="stage-pip" id="pip-lift"></div>
+          <div class="stage-pip" id="pip-rise"></div>
+          <div class="stage-pip" id="pip-thrive"></div>
+        </div>
+        <div class="stage-labels">
+          <span id="slabel-spark">Spark</span>
+          <span id="slabel-lift">Lift</span>
+          <span id="slabel-rise">Rise</span>
+          <span id="slabel-thrive">Thrive</span>
+        </div>
+      </div>
     </div>
 
-    <div class="insights-section">
-      <div class="insights-header">What This Means For Your Business</div>
-      <div class="insight-cards" id="insight-cards"></div>
-    </div>
+    <!-- WHAT THIS MEANS -->
+    <div class="result-body">
 
+      <!-- Summary -->
+      <div class="section-divider">
+        <span class="section-divider-label">What This Means For Your Business</span>
+        <div class="section-divider-line"></div>
+      </div>
+      <div class="result-summary">
+        <p id="result-desc"></p>
+      </div>
+
+      <!-- Strength + Opportunity rows -->
+      <div class="insights-section" id="insights-section"></div>
+
+      <!-- Action callout -->
+      <div class="action-callout" id="action-callout">
+        <div class="action-callout-eyebrow">⚡ Your #1 Action This Week</div>
+        <div class="action-callout-title" id="action-title"></div>
+        <div class="action-callout-text" id="action-text"></div>
+      </div>
+
+      <!-- Next stage banner -->
+      <div class="next-stage-banner" id="next-stage-banner">
+        <div class="next-stage-arrow">→</div>
+        <div class="next-stage-content">
+          <div class="next-stage-eyebrow">Your Next Stage</div>
+          <div class="next-stage-title" id="next-stage-title"></div>
+          <div class="next-stage-text" id="next-stage-text"></div>
+        </div>
+      </div>
+
+    </div><!-- /result-body -->
+
+    <!-- CTA SECTION -->
     <div class="cta-section">
       <div class="cta-header">
         <h2>Your Next Move</h2>
@@ -895,6 +1150,7 @@
         </div>
       </div>
     </div>
+
   </div><!-- /result-wrapper -->
 
 </div><!-- /container -->
@@ -1008,10 +1264,10 @@
       color: 'spark',
       scoreLabel: 'Foundation Stage',
       insights: [
-        { label: 'label-strength', title: 'Your Biggest Strength', text: 'You have a blank canvas. No bad habits to undo, no audience to disappoint. You can build this the right way from day one — which means every post you create from here compounds correctly.' },
-        { label: 'label-opportunity', title: 'Your Biggest Opportunity', text: 'Your bio is likely costing you followers before they ever see your content. A strong bio follows this formula: [What you do] + [Who you help] + [What they get or feel]. Example: "Helping Cincinnati homeowners design spaces they never want to leave. DM \'DESIGN\' to get started." Fix this today — it takes 10 minutes and affects every single profile visit.' },
-        { label: 'label-focus', title: 'Your #1 Action This Week', text: 'Post one piece of educational content that answers the most common question your ideal client asks before hiring you. Use a direct hook in the first line (e.g., "The #1 mistake most people make when choosing a [your service]..."). End with a CTA: "Save this if it helped" or "DM me [word] if you want to talk through your situation." Do this consistently and your account will grow.' },
-        { label: 'label-next', title: 'Your Next Stage', text: 'LIFT — Momentum Stage. You\'ll get there faster than you think. The key is locking in a consistent content rhythm and optimizing your profile before you scale. Most accounts hit LIFT within 60–90 days of consistent, strategic posting.' }
+        { type: 'row', icon: '💪', iconClass: 'icon-strength', labelClass: 'label-strength', title: 'Biggest Strength', subtitle: 'A blank canvas — no bad habits to undo', text: 'You can build this the right way from day one. Every post you create from here compounds correctly. Most businesses wish they could start over with what they know now — you already have that advantage.' },
+        { type: 'row', icon: '🎯', iconClass: 'icon-opportunity', labelClass: 'label-opportunity', title: 'Biggest Opportunity', subtitle: 'Your bio is costing you followers before they see a single post', text: 'A strong bio follows one formula: [What you do] + [Who you help] + [What they get]. Example: "Helping Cincinnati homeowners design spaces they never want to leave. DM DESIGN to get started." This takes 10 minutes and affects every single profile visit from today forward.' },
+        { type: 'action', subtitle: 'Post one educational answer to your most common pre-hire question', text: 'Open with a direct hook: "The #1 mistake most people make when choosing a [your service]...". Close with a CTA: "Save this if it helped" or "DM me [word] to talk through your situation." Do this three times this week. That\'s your entire strategy for the next 30 days.' },
+        { type: 'next', subtitle: 'LIFT — Momentum Stage', text: 'Most accounts hit LIFT within 60–90 days of consistent, strategic posting. The key is locking in a content rhythm and optimizing your profile before you try to scale.' }
       ]
     },
     lift: {
@@ -1021,10 +1277,10 @@
       color: 'lift',
       scoreLabel: 'Momentum Stage',
       insights: [
-        { label: 'label-strength', title: 'Your Biggest Strength', text: 'You have proof of concept. Your content is resonating enough to grow an audience — that\'s the hardest part. Most businesses never get here. Now the work is converting what you\'ve built.' },
-        { label: 'label-opportunity', title: 'Your Biggest Opportunity', text: 'Your link-in-bio is likely a dead end. Replace it with a single, high-intent landing page or a Linktree with no more than 3 options — your top service, a lead magnet, and a booking link. Example: a med spa that switched from 6 bio links to 1 ("Book a Free Consult") saw a 3x increase in DM inquiries within 30 days. Simplify the path.' },
-        { label: 'label-focus', title: 'Your #1 Action This Week', text: 'Find your top 3 performing posts from the last 90 days. Identify what they have in common — topic, format, hook style. Then create 3 new posts that replicate that formula with fresh angles. Stop experimenting with formats that aren\'t working. Double down on what already is.' },
-        { label: 'label-next', title: 'Your Next Stage', text: 'RISE — Authority Stage. You\'re closer than you think. Build your conversion infrastructure now and the growth compounds. Most LIFT-stage accounts that implement a consistent CTA strategy see their first direct-from-Instagram inquiry within 2–4 weeks.' }
+        { type: 'row', icon: '💪', iconClass: 'icon-strength', labelClass: 'label-strength', title: 'Biggest Strength', subtitle: 'Proof of concept — your content is already resonating', text: 'You\'ve done the hardest part: built an audience that shows up. Most businesses never get here. The work now is converting what you\'ve built — not starting over.' },
+        { type: 'row', icon: '🎯', iconClass: 'icon-opportunity', labelClass: 'label-opportunity', title: 'Biggest Opportunity', subtitle: 'Your link-in-bio is a dead end — simplify it to one CTA', text: 'Replace multiple bio links with a single, high-intent page: your top service, a lead magnet, or a booking link. A med spa that switched from 6 bio links to 1 ("Book a Free Consult") saw 3x more DM inquiries in 30 days. Fewer choices = more action.' },
+        { type: 'action', subtitle: 'Find your top 3 posts from the last 90 days and reverse-engineer them', text: 'Look for the pattern: topic, format, hook style. Then write 3 new posts that replicate that formula with fresh angles. Stop experimenting with what isn\'t working. Double down on what already is. This is the fastest path to consistent engagement.' },
+        { type: 'next', subtitle: 'RISE — Authority Stage', text: 'Build your conversion infrastructure now and the growth compounds. Most LIFT-stage accounts that implement a consistent CTA strategy see their first direct-from-Instagram inquiry within 2–4 weeks.' }
       ]
     },
     rise: {
@@ -1034,10 +1290,10 @@
       color: 'rise',
       scoreLabel: 'Authority Stage',
       insights: [
-        { label: 'label-strength', title: 'Your Biggest Strength', text: 'You have authority that most businesses spend years trying to build. Your audience already trusts you — which means your conversion rate should be higher than most. If it isn\'t, the problem is the pathway, not the trust.' },
-        { label: 'label-opportunity', title: 'Your Biggest Opportunity', text: 'You\'re likely missing a mid-funnel content layer. Add one "proof" post per week — a client result, a before/after, a specific outcome with numbers. Example: "A client came to us with [problem]. Here\'s what we changed and what happened." This type of content converts warm followers into inquiries faster than any educational post.' },
-        { label: 'label-focus', title: 'Your #1 Action This Week', text: 'Audit your Stories. At this stage, Stories are your highest-converting real estate — but most businesses use them for random behind-the-scenes content. Create a 3-slide Story sequence: Slide 1 = problem your client has. Slide 2 = the result you get them. Slide 3 = "DM me [word] if this is you." Run this once a week and track how many DMs it generates.' },
-        { label: 'label-next', title: 'Your Next Stage', text: 'THRIVE — Brand Authority Stage. The gap between Rise and Thrive is a strategy and systems problem, not a content problem. Businesses that reach THRIVE have a documented content system, a clear funnel, and a repeatable process for turning followers into clients.' }
+        { type: 'row', icon: '💪', iconClass: 'icon-strength', labelClass: 'label-strength', title: 'Biggest Strength', subtitle: 'Your audience already trusts you — that\'s the hardest thing to earn', text: 'Most businesses spend years trying to build the authority you already have. Your conversion rate should be higher than most — if it isn\'t, the problem is the pathway, not the trust. That\'s a fixable infrastructure problem.' },
+        { type: 'row', icon: '🎯', iconClass: 'icon-opportunity', labelClass: 'label-opportunity', title: 'Biggest Opportunity', subtitle: 'You\'re missing a mid-funnel proof layer in your content mix', text: 'Add one "proof" post per week: a client result, a before/after, a specific outcome with numbers. Example: "A client came to us with [problem]. Here\'s what we changed and what happened in 30 days." This type of content converts warm followers into inquiries faster than any educational post.' },
+        { type: 'action', subtitle: 'Build a 3-slide Story sequence and run it once this week', text: 'Slide 1: Name the problem your ideal client is dealing with right now. Slide 2: Show the result you get them (specific, not vague). Slide 3: "DM me [word] if this is you." Track how many DMs it generates. Run it again next week. This is your highest-converting real estate and most businesses waste it on random behind-the-scenes content.' },
+        { type: 'next', subtitle: 'THRIVE — Brand Authority Stage', text: 'The gap between Rise and Thrive is a strategy and systems problem, not a content problem. Businesses that reach THRIVE have a documented content system, a clear funnel, and a repeatable process for turning followers into clients.' }
       ]
     },
     thrive: {
@@ -1047,10 +1303,10 @@
       color: 'thrive',
       scoreLabel: 'Brand Authority Stage',
       insights: [
-        { label: 'label-strength', title: 'Your Biggest Strength', text: 'Brand equity that compounds. Every new follower arrives with pre-existing trust because your existing audience vouches for you through engagement. This is an asset most businesses spend years trying to build — you already have it.' },
-        { label: 'label-opportunity', title: 'Your Biggest Opportunity', text: 'You\'re likely not capturing leads from your Instagram audience into an owned channel (email list). Add a lead magnet to your bio — a free checklist, guide, or tool — and promote it in your Stories once a week. Example: a dermatologist who added a "Free Skincare Routine Builder" to their bio generated 200+ email subscribers in 60 days from existing followers alone. Your audience is warm. Give them a reason to opt in.' },
-        { label: 'label-focus', title: 'Your #1 Action This Week', text: 'Identify your single highest-converting post from the last 6 months — the one that generated the most DMs, inquiries, or saves. Repurpose it into three formats: a Reel, a carousel, and a Story sequence. Then schedule all three for the next two weeks. At your stage, repurposing proven content is more valuable than creating new content.' },
-        { label: 'label-next', title: 'Your Strategic Priority', text: 'Build the ecosystem. You\'re not chasing growth anymore — you\'re building a category-defining brand. That means every piece of content should serve at least two purposes: growing your audience AND moving someone closer to a purchase, a referral, or a deeper relationship with your brand.' }
+        { type: 'row', icon: '💪', iconClass: 'icon-strength', labelClass: 'label-strength', title: 'Biggest Strength', subtitle: 'Brand equity that compounds with every new follower', text: 'Every new follower arrives with pre-existing trust because your existing audience vouches for you through engagement. This is an asset most businesses spend years trying to build. You already have it — now the question is how hard you\'re making it work.' },
+        { type: 'row', icon: '🎯', iconClass: 'icon-opportunity', labelClass: 'label-opportunity', title: 'Biggest Opportunity', subtitle: 'You\'re not capturing your Instagram audience into an owned channel', text: 'Add a lead magnet to your bio — a free checklist, guide, or tool — and promote it in Stories once a week. A dermatologist who added a "Free Skincare Routine Builder" to their bio generated 200+ email subscribers in 60 days from existing followers alone. Your audience is warm. Give them a reason to opt in.' },
+        { type: 'action', subtitle: 'Find your highest-converting post from the last 6 months and repurpose it into 3 formats', text: 'The post that generated the most DMs, inquiries, or saves. Turn it into a Reel, a carousel, and a Story sequence. Schedule all three for the next two weeks. At your stage, repurposing proven content is more valuable than creating new content — and it takes a fraction of the time.' },
+        { type: 'next', subtitle: 'Build the ecosystem — you\'re not chasing growth anymore', text: 'Every piece of content should serve at least two purposes: growing your audience AND moving someone closer to a purchase, a referral, or a deeper relationship with your brand. That\'s the difference between a social media account and a revenue engine.' }
       ]
     }
   };
@@ -1100,22 +1356,56 @@
     document.getElementById('result-wrapper').style.display = 'block';
     document.getElementById('progressWrap').style.display = 'none';
 
-    // Populate result hero
+    // ── Hero block ──
     const hero = document.getElementById('result-hero-block');
     hero.className = 'result-hero ' + data.color;
     document.getElementById('result-stage-name').textContent = data.name;
     document.getElementById('result-tagline').textContent = data.tagline;
     document.getElementById('result-score-badge').textContent = data.scoreLabel + ' · Score: ' + score + '/41';
+
+    // ── Stage spectrum pips ──
+    const stages = ['spark','lift','rise','thrive'];
+    const currentIdx = stages.indexOf(data.color);
+    stages.forEach((s, i) => {
+      const pip = document.getElementById('pip-' + s);
+      const lbl = document.getElementById('slabel-' + s);
+      if (i < currentIdx) { pip.className = 'stage-pip passed'; }
+      else if (i === currentIdx) { pip.className = 'stage-pip active'; lbl.className = 'active-label'; }
+      else { pip.className = 'stage-pip'; }
+    });
+
+    // ── Summary paragraph ──
     document.getElementById('result-desc').textContent = data.desc;
 
-    // Populate insight cards
-    const cards = document.getElementById('insight-cards');
-    cards.innerHTML = data.insights.map(ins => `
-      <div class="insight-card">
-        <span class="insight-card-label ${ins.label}">${ins.title}</span>
-        <p>${ins.text}</p>
+    // ── Strength + Opportunity rows ──
+    const insightsEl = document.getElementById('insights-section');
+    const rowInsights = data.insights.filter(i => i.type === 'row');
+    insightsEl.innerHTML = rowInsights.map(ins => `
+      <div class="insight-row">
+        <div class="insight-row-icon ${ins.iconClass}">${ins.icon}</div>
+        <div class="insight-row-content">
+          <span class="insight-row-label ${ins.labelClass}">${ins.title}</span>
+          <div class="insight-row-title">${ins.subtitle}</div>
+          <div class="insight-row-text">${ins.text}</div>
+        </div>
       </div>
     `).join('');
+
+    // ── Action callout ──
+    const action = data.insights.find(i => i.type === 'action');
+    if (action) {
+      document.getElementById('action-title').textContent = action.subtitle;
+      document.getElementById('action-text').textContent = action.text;
+    }
+
+    // ── Next stage banner ──
+    const next = data.insights.find(i => i.type === 'next');
+    if (next) {
+      document.getElementById('next-stage-title').textContent = next.subtitle;
+      document.getElementById('next-stage-text').textContent = next.text;
+    } else {
+      document.getElementById('next-stage-banner').style.display = 'none';
+    }
 
     // Scroll to top
     window.scrollTo({ top: 0, behavior: 'smooth' });
