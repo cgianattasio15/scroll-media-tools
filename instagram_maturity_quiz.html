@@ -4,6 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Instagram Maturity Quiz — Scroll Media</title>
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
 <style>
   :root {
     --ink: #151516;
@@ -28,6 +29,25 @@
     color: var(--ink);
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;
+  }
+
+  /* ─── NAV ─── */
+  .site-nav {
+    background: var(--ink);
+    padding: 16px 48px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+  .site-nav img {
+    height: 32px;
+    width: auto;
+    display: block;
+  }
+  @media (max-width: 680px) {
+    .site-nav { padding: 14px 24px; }
+    .site-nav img { height: 26px; }
   }
 
   /* ─── HERO ─── */
@@ -610,6 +630,13 @@
 </head>
 <body>
 
+<!-- NAV -->
+<nav class="site-nav">
+  <a href="https://scrollmedia.co" target="_blank" rel="noopener">
+    <img src="scroll-media-logo.svg" alt="Scroll Media" />
+  </a>
+</nav>
+
 <!-- STICKY PROGRESS -->
 <div class="progress-wrap" id="progressWrap">
   <span class="progress-label">Progress</span>
@@ -984,7 +1011,7 @@
         { label: 'label-strength', title: 'Your Biggest Strength', text: 'You have a blank canvas. No bad habits to undo, no audience to disappoint. You can build this the right way from day one.' },
         { label: 'label-opportunity', title: 'Your Biggest Opportunity', text: 'Profile optimization. Most Spark-stage accounts lose potential followers before they even see a post. A strong bio and clear positioning can double your follow rate immediately.' },
         { label: 'label-focus', title: 'Your Strategic Focus', text: 'Discovery. Your goal right now is to test content formats, find what resonates with your ideal audience, and build a consistent posting rhythm.' },
-        { label: 'label-next', title: 'Your Next Stage', text: 'LIFT (2,500–10,000 followers). You\'ll get there faster than you think with the right strategy in place.' }
+        { label: 'label-next', title: 'Your Next Stage', text: 'LIFT — Momentum Stage. You\'ll get there faster than you think. The key is locking in a consistent content rhythm and optimizing your profile before you scale.' }
       ]
     },
     lift: {
@@ -997,7 +1024,7 @@
         { label: 'label-strength', title: 'Your Biggest Strength', text: 'You have proof of concept. Your audience is growing, which means your content is resonating. That\'s harder to build than most people think.' },
         { label: 'label-opportunity', title: 'Your Biggest Opportunity', text: 'Conversion infrastructure. Your CTAs, your link-in-bio, your Story Highlights — these are likely underdeveloped. Fixing them can unlock revenue from your existing audience immediately.' },
         { label: 'label-focus', title: 'Your Strategic Focus', text: 'Momentum. Double down on your 2–3 best-performing content formats and build a consistent conversion pathway from follower to inquiry.' },
-        { label: 'label-next', title: 'Your Next Stage', text: 'RISE (10,000–50,000 followers). You\'re closer than you think — the right strategy can get you there in 90 days.' }
+        { label: 'label-next', title: 'Your Next Stage', text: 'RISE — Authority Stage. You\'re closer than you think. Build your conversion infrastructure now and the growth will follow.' }
       ]
     },
     rise: {
@@ -1010,7 +1037,7 @@
         { label: 'label-strength', title: 'Your Biggest Strength', text: 'You have authority. A 10,000+ follower account with consistent engagement is a significant business asset. Most of your competitors don\'t have it.' },
         { label: 'label-opportunity', title: 'Your Biggest Opportunity', text: 'Funnel alignment. Your content mix is likely too heavy on TOFU. Shifting more content toward MOFU and BOFU — without losing reach — is the highest-leverage move at your stage.' },
         { label: 'label-focus', title: 'Your Strategic Focus', text: 'Optimization. Every piece of content should have a clear role in your funnel. Random posting is the enemy of revenue at this stage.' },
-        { label: 'label-next', title: 'Your Next Stage', text: 'THRIVE (50,000+ followers). The gap between Rise and Thrive is almost entirely a strategy and systems problem — not a content problem.' }
+        { label: 'label-next', title: 'Your Next Stage', text: 'THRIVE — Brand Authority Stage. The gap between Rise and Thrive is a strategy and systems problem, not a content problem. Tighten your funnel and the results will compound.' }
       ]
     },
     thrive: {
@@ -1086,7 +1113,6 @@
     cards.innerHTML = data.insights.map(ins => `
       <div class="insight-card">
         <span class="insight-card-label ${ins.label}">${ins.title}</span>
-        <h4>${ins.title}</h4>
         <p>${ins.text}</p>
       </div>
     `).join('');
