@@ -23,19 +23,20 @@
      Color Tokens, Typography, Layout, Components
   ============================================================ */
   :root {
-    --navy:        #1B2B6B;
-    --navy-deep:   #0F1A45;
-    --navy-mid:    #162258;
-    --navy-light:  #243580;
-    --lime:        #C8F135;
-    --lime-dark:   #A8D020;
+    --ghost: #fafdff;
+    --navy:        #0c3387;
+    --navy-deep:   #fafdff;
+    --navy-mid:    #ffffff;
+    --navy-light:  #092a6e;
+    --lime:        #e2ed7a;
+    --lime-dark:   #cbe9ff;
     --border:      rgba(255,255,255,0.12);
     --text-primary:   #FFFFFF;
-    --text-secondary: rgba(255,255,255,0.75);
+    --text-secondary: rgba(21,21,22,0.68);
     --text-muted:     rgba(255,255,255,0.6);
     --text-label:     rgba(200,241,53,0.75);
     /* Funnel stage accent colors */
-    --tofu-color:  #C8F135;
+    --tofu-color:  #e2ed7a;
     --mofu-color:  #60A5FA;
     --bofu-color:  #A78BFA;
   }
@@ -46,7 +47,7 @@
 
   body {
     font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-    background: var(--navy-deep);
+    background-color: var(--ghost);
     color: var(--text-primary);
     font-size: 0.95rem;
     line-height: 1.7;
@@ -59,7 +60,7 @@
     top: 0; left: 0;
     height: 3px;
     width: 0%;
-    background: linear-gradient(90deg, var(--lime), var(--lime-dark));
+    background: linear-gradient(90deg, var(--azure), var(--azure-dark));
     z-index: 9999;
     transition: width 0.1s linear;
   }
@@ -109,13 +110,13 @@
   }
 
   nav .nav-links a:hover {
-    color: var(--lime);
+    color: var(--azure);
     background: rgba(200,241,53,0.08);
   }
 
   nav .nav-cta {
-    background: var(--lime);
-    color: var(--navy-deep);
+    background: var(--azure);
+    color: #ffffff;
     font-size: 0.72rem;
     font-weight: 800;
     letter-spacing: 0.5px;
@@ -128,7 +129,7 @@
   }
 
   nav .nav-cta:hover {
-    background: var(--lime-dark);
+    background: var(--azure-dark);
     transform: translateY(-1px);
   }
 
@@ -141,7 +142,7 @@
 
   /* ── Hero ── */
   .hero {
-    background: linear-gradient(160deg, var(--navy) 0%, var(--navy-deep) 60%);
+    background: linear-gradient(160deg, var(--azure) 0%, var(--shadow) 60%);
     padding: 100px 32px 80px;
     text-align: center;
     position: relative;
@@ -170,14 +171,14 @@
     font-weight: 700;
     letter-spacing: 2px;
     text-transform: uppercase;
-    color: var(--lime);
+    color: var(--azure);
     margin-bottom: 32px;
   }
 
   .hero-badge::before {
     content: '';
     width: 6px; height: 6px;
-    background: var(--lime);
+    background: var(--azure);
     border-radius: 50%;
   }
 
@@ -190,7 +191,7 @@
     color: var(--text-primary);
   }
 
-  .hero h1 .accent { color: var(--lime); }
+  .hero h1 .accent { color: var(--azure); }
 
   .hero p {
     font-size: 1.1rem;
@@ -209,8 +210,8 @@
   }
 
   .btn-primary {
-    background: var(--lime);
-    color: var(--navy-deep);
+    background: var(--azure);
+    color: #ffffff;
     font-weight: 800;
     font-size: 0.9rem;
     padding: 14px 28px;
@@ -221,7 +222,7 @@
   }
 
   .btn-primary:hover {
-    background: var(--lime-dark);
+    background: var(--azure-dark);
     transform: translateY(-2px);
     box-shadow: 0 8px 30px rgba(200,241,53,0.35);
   }
@@ -284,7 +285,7 @@
     font-weight: 700;
     letter-spacing: 2px;
     text-transform: uppercase;
-    color: var(--lime);
+    color: var(--azure);
     margin-bottom: 12px;
   }
 
@@ -322,7 +323,7 @@
 
   /* ── Cards ── */
   .card {
-    background: var(--navy-mid);
+    background: var(--porcelain);
     border: 1px solid var(--border);
     border-radius: 16px;
     padding: 28px;
@@ -342,7 +343,7 @@
     font-weight: 800;
     letter-spacing: 2px;
     text-transform: uppercase;
-    color: var(--lime);
+    color: var(--azure);
     margin-bottom: 10px;
   }
 
@@ -362,14 +363,14 @@
     line-height: 1.6;
   }
 
-  .quick-win ol li strong { color: var(--lime); }
+  .quick-win ol li strong { color: var(--azure); }
 
   .quick-win .qw-link {
     display: inline-flex;
     align-items: center;
     gap: 8px;
     margin-top: 20px;
-    color: var(--lime);
+    color: var(--azure);
     font-weight: 700;
     font-size: 0.9rem;
     text-decoration: none;
@@ -382,7 +383,7 @@
     display: flex;
     gap: 24px;
     align-items: flex-start;
-    background: var(--navy-mid);
+    background: var(--porcelain);
     border: 1px solid var(--border);
     border-radius: 16px;
     padding: 28px;
@@ -392,13 +393,13 @@
   .author-avatar {
     width: 56px; height: 56px;
     border-radius: 50%;
-    background: var(--navy-light);
+    background: var(--azure-dark);
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 1.1rem;
     font-weight: 800;
-    color: var(--lime);
+    color: var(--azure);
     flex-shrink: 0;
     border: 2px solid rgba(200,241,53,0.3);
   }
@@ -407,7 +408,7 @@
 
   .author-info .author-title {
     font-size: 0.8rem;
-    color: var(--text-label);
+    color: var(--azure);
     font-weight: 600;
     margin-bottom: 10px;
   }
@@ -428,7 +429,7 @@
   .author-stat .stat-value {
     font-size: 1.1rem;
     font-weight: 800;
-    color: var(--lime);
+    color: var(--azure);
   }
 
   .author-stat .stat-label {
@@ -441,7 +442,7 @@
 
   /* ── TOC ── */
   .toc {
-    background: var(--navy-mid);
+    background: var(--porcelain);
     border: 1px solid var(--border);
     border-radius: 16px;
     padding: 28px;
@@ -497,7 +498,7 @@
 
   .toc-list li.bonus a .toc-num {
     background: rgba(200,241,53,0.12);
-    color: var(--lime);
+    color: var(--azure);
   }
 
   /* ── Part Header ── */
@@ -519,7 +520,7 @@
     font-weight: 800;
     letter-spacing: 2px;
     text-transform: uppercase;
-    color: var(--lime);
+    color: var(--azure);
     white-space: nowrap;
   }
 
@@ -549,7 +550,7 @@
 
   .callout-result {
     background: rgba(200,241,53,0.06);
-    border-color: var(--lime);
+    border-color: var(--azure);
   }
 
   .callout-result .callout-label {
@@ -557,7 +558,7 @@
     font-weight: 800;
     letter-spacing: 2px;
     text-transform: uppercase;
-    color: var(--lime);
+    color: var(--azure);
     margin-bottom: 8px;
   }
 
@@ -600,7 +601,7 @@
   }
 
   .funnel-stage {
-    background: var(--navy-mid);
+    background: var(--porcelain);
     border: 1px solid var(--border);
     border-radius: 14px;
     padding: 24px;
@@ -687,7 +688,7 @@
   .stat-block .stat-num {
     font-size: 1.6rem;
     font-weight: 900;
-    color: var(--lime);
+    color: var(--azure);
     letter-spacing: -1px;
   }
 
@@ -714,7 +715,7 @@
   }
 
   .audit-table th {
-    background: var(--navy-light);
+    background: var(--azure-dark);
     color: var(--text-muted);
     font-size: 0.65rem;
     font-weight: 700;
@@ -750,9 +751,9 @@
   }
 
   .audit-check.checked {
-    background: var(--lime);
-    border-color: var(--lime);
-    color: var(--navy-deep);
+    background: var(--azure);
+    border-color: var(--azure);
+    color: #ffffff;
     font-size: 0.7rem;
     font-weight: 900;
   }
@@ -766,7 +767,7 @@
   }
 
   .mix-block {
-    background: var(--navy-mid);
+    background: var(--porcelain);
     border: 1px solid var(--border);
     border-radius: 12px;
     padding: 20px;
@@ -813,7 +814,7 @@
   }
 
   .formats-table th {
-    background: var(--navy-light);
+    background: var(--azure-dark);
     color: var(--text-muted);
     font-size: 0.62rem;
     font-weight: 700;
@@ -862,14 +863,14 @@
     align-items: center;
     justify-content: space-between;
     padding: 18px 22px;
-    background: var(--navy-mid);
+    background: var(--porcelain);
     cursor: pointer;
     user-select: none;
     transition: background 0.2s;
     gap: 12px;
   }
 
-  .cta-section-header:hover { background: var(--navy-light); }
+  .cta-section-header:hover { background: var(--azure-dark); }
 
   .cta-section-header .csh-left {
     display: flex;
@@ -908,7 +909,7 @@
   .cta-section-body {
     display: none;
     padding: 0 22px 22px;
-    background: var(--navy-mid);
+    background: var(--porcelain);
     border-top: 1px solid var(--border);
   }
 
@@ -926,7 +927,7 @@
     font-weight: 800;
     letter-spacing: 1.5px;
     text-transform: uppercase;
-    color: var(--text-label);
+    color: var(--azure);
     margin-bottom: 8px;
   }
 
@@ -974,7 +975,7 @@
     font-weight: 800;
     letter-spacing: 1px;
     text-transform: uppercase;
-    color: var(--text-label);
+    color: var(--azure);
     margin-bottom: 6px;
   }
 
@@ -1011,14 +1012,14 @@
   .dm-step-num {
     width: 40px; height: 40px;
     border-radius: 12px;
-    background: var(--navy-light);
+    background: var(--azure-dark);
     border: 1px solid rgba(200,241,53,0.3);
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 0.85rem;
     font-weight: 900;
-    color: var(--lime);
+    color: var(--azure);
     flex-shrink: 0;
   }
 
@@ -1038,7 +1039,7 @@
   }
 
   .dm-bubble {
-    background: var(--navy-mid);
+    background: var(--porcelain);
     border: 1px solid var(--border);
     border-radius: 12px 12px 12px 4px;
     padding: 14px 18px;
@@ -1063,7 +1064,7 @@
     margin-bottom: 6px;
   }
 
-  .dm-bubble.outgoing .bubble-label { color: var(--text-label); }
+  .dm-bubble.outgoing .bubble-label { color: var(--azure); }
   .dm-bubble:not(.outgoing) .bubble-label { color: var(--text-muted); }
 
   /* ── Challenge Grid ── */
@@ -1075,7 +1076,7 @@
   }
 
   .challenge-card {
-    background: var(--navy-mid);
+    background: var(--porcelain);
     border: 1px solid var(--border);
     border-radius: 14px;
     padding: 22px;
@@ -1099,7 +1100,7 @@
     margin-bottom: 6px;
   }
 
-  .challenge-card.done .week-label { color: var(--text-label); }
+  .challenge-card.done .week-label { color: var(--azure); }
 
   .challenge-card h4 {
     font-size: 0.95rem;
@@ -1122,9 +1123,9 @@
   }
 
   .challenge-card.done .check-icon {
-    background: var(--lime);
-    border-color: var(--lime);
-    color: var(--navy-deep);
+    background: var(--azure);
+    border-color: var(--azure);
+    color: #ffffff;
     font-weight: 900;
   }
 
@@ -1143,7 +1144,7 @@
   }
 
   .niche-card {
-    background: var(--navy-mid);
+    background: var(--porcelain);
     border: 1px solid var(--border);
     border-radius: 12px;
     padding: 20px;
@@ -1154,7 +1155,7 @@
     font-weight: 800;
     letter-spacing: 1px;
     text-transform: uppercase;
-    color: var(--lime);
+    color: var(--azure);
     margin-bottom: 12px;
   }
 
@@ -1184,7 +1185,7 @@
   }
 
   .accordion-phase {
-    background: var(--navy-mid);
+    background: var(--porcelain);
     border: 1px solid var(--border);
     border-radius: 12px;
     padding: 20px;
@@ -1195,7 +1196,7 @@
     font-weight: 800;
     letter-spacing: 2px;
     text-transform: uppercase;
-    color: var(--text-label);
+    color: var(--azure);
     margin-bottom: 6px;
   }
 
@@ -1209,9 +1210,9 @@
 
   /* ── Testimonial ── */
   .testimonial {
-    background: var(--navy-mid);
+    background: var(--porcelain);
     border: 1px solid var(--border);
-    border-left: 4px solid var(--lime);
+    border-left: 4px solid var(--azure);
     border-radius: 14px;
     padding: 28px;
     margin: 32px 0;
@@ -1225,8 +1226,8 @@
     margin-bottom: 16px;
   }
 
-  .testimonial .quote::before { content: '"'; color: var(--lime); font-size: 1.4rem; line-height: 0; vertical-align: -0.3em; margin-right: 2px; }
-  .testimonial .quote::after { content: '"'; color: var(--lime); font-size: 1.4rem; line-height: 0; vertical-align: -0.3em; margin-left: 2px; }
+  .testimonial .quote::before { content: '"'; color: var(--azure); font-size: 1.4rem; line-height: 0; vertical-align: -0.3em; margin-right: 2px; }
+  .testimonial .quote::after { content: '"'; color: var(--azure); font-size: 1.4rem; line-height: 0; vertical-align: -0.3em; margin-left: 2px; }
 
   .testimonial .attribution {
     font-size: 0.8rem;
@@ -1235,12 +1236,12 @@
   }
 
   .testimonial .attribution span {
-    color: var(--text-label);
+    color: var(--azure);
   }
 
   /* ── Upsell Banner ── */
   .upsell-banner {
-    background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 100%);
+    background: linear-gradient(135deg, var(--azure) 0%, var(--porcelain) 100%);
     border: 1px solid rgba(200,241,53,0.2);
     border-radius: 20px;
     padding: 48px;
@@ -1253,7 +1254,7 @@
     font-weight: 800;
     letter-spacing: 2px;
     text-transform: uppercase;
-    color: var(--text-label);
+    color: var(--azure);
     margin-bottom: 16px;
   }
 
@@ -1271,7 +1272,7 @@
 
   /* ── Footer ── */
   footer {
-    background: var(--navy-deep);
+    background-color: var(--ghost);
     border-top: 1px solid var(--border);
     padding: 48px 32px;
     text-align: center;
@@ -1301,7 +1302,7 @@
     transition: color 0.2s;
   }
 
-  footer .footer-links a:hover { color: var(--lime); }
+  footer .footer-links a:hover { color: var(--azure); }
 
   footer .footer-copy {
     font-size: 0.75rem;
@@ -1313,8 +1314,8 @@
     position: fixed;
     bottom: 28px; right: 28px;
     width: 44px; height: 44px;
-    background: var(--lime);
-    color: var(--navy-deep);
+    background: var(--azure);
+    color: #ffffff;
     border-radius: 12px;
     display: flex;
     align-items: center;
@@ -1334,7 +1335,7 @@
     transform: translateY(0);
   }
 
-  #back-to-top:hover { background: var(--lime-dark); }
+  #back-to-top:hover { background: var(--azure-dark); }
 
   /* ── Divider ── */
   .section-divider {
@@ -2176,7 +2177,7 @@
     <!-- UPSELL -->
     <div class="upsell-banner" style="margin-top: 64px;">
       <div class="upsell-label">Ready for the Full System?</div>
-      <h2>The <span style="color: var(--lime);">Authority Architecture</span></h2>
+      <h2>The <span style="color: var(--azure);">Authority Architecture</span></h2>
       <p>The Audience-to-Action Playbook gives you the frameworks. The Authority Architecture is the 90-day done-for-you sprint where we build the entire system for your business — strategy, content engine, Accordion Method implementation, and optimization — so you never have to guess what to post again.</p>
       <a href="https://www.scrollmedia.co/" target="_blank" class="btn-primary">Learn About The Authority Architecture →</a>
     </div>

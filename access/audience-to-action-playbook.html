@@ -23,6 +23,7 @@
      Color Tokens, Typography, Layout, Components
   ============================================================ */
   :root {
+    --ghost: #fafdff;
     /* Brand Guide Colors */
     --shadow:      #151516;
     --azure:       #0c3387;
@@ -43,7 +44,7 @@
     --lime-dark:   #c8d655;
     --border:      rgba(255,255,255,0.12);
     --text-primary:   #151516;
-    --text-secondary: rgba(255,255,255,0.75);
+    --text-secondary: rgba(21,21,22,0.68);
     --text-muted:     rgba(255,255,255,0.6);
     --text-label:     rgba(200,241,53,0.75);
     /* Funnel stage accent colors */
@@ -154,7 +155,7 @@
 
   /* ── Hero ── */
   .hero {
-    background: var(--shadow);
+    background-color: var(--ghost);
     padding: 100px 32px 80px;
     text-align: center;
     position: relative;
@@ -420,7 +421,7 @@
 
   .author-info .author-title {
     font-size: 0.8rem;
-    color: var(--text-label);
+    color: var(--azure);
     font-weight: 600;
     margin-bottom: 10px;
   }
@@ -939,7 +940,7 @@
     font-weight: 800;
     letter-spacing: 1.5px;
     text-transform: uppercase;
-    color: var(--text-label);
+    color: var(--azure);
     margin-bottom: 8px;
   }
 
@@ -987,7 +988,7 @@
     font-weight: 800;
     letter-spacing: 1px;
     text-transform: uppercase;
-    color: var(--text-label);
+    color: var(--azure);
     margin-bottom: 6px;
   }
 
@@ -1076,7 +1077,7 @@
     margin-bottom: 6px;
   }
 
-  .dm-bubble.outgoing .bubble-label { color: var(--text-label); }
+  .dm-bubble.outgoing .bubble-label { color: var(--azure); }
   .dm-bubble:not(.outgoing) .bubble-label { color: var(--text-muted); }
 
   /* ── Challenge Grid ── */
@@ -1112,7 +1113,7 @@
     margin-bottom: 6px;
   }
 
-  .challenge-card.done .week-label { color: var(--text-label); }
+  .challenge-card.done .week-label { color: var(--azure); }
 
   .challenge-card h4 {
     font-size: 0.95rem;
@@ -1208,7 +1209,7 @@
     font-weight: 800;
     letter-spacing: 2px;
     text-transform: uppercase;
-    color: var(--text-label);
+    color: var(--azure);
     margin-bottom: 6px;
   }
 
@@ -1248,12 +1249,12 @@
   }
 
   .testimonial .attribution span {
-    color: var(--text-label);
+    color: var(--azure);
   }
 
   /* ── Upsell Banner ── */
   .upsell-banner {
-    background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 100%);
+    background: linear-gradient(135deg, var(--azure) 0%, var(--porcelain) 100%);
     border: 1px solid rgba(200,241,53,0.2);
     border-radius: 20px;
     padding: 48px;
@@ -1266,7 +1267,7 @@
     font-weight: 800;
     letter-spacing: 2px;
     text-transform: uppercase;
-    color: var(--text-label);
+    color: var(--azure);
     margin-bottom: 16px;
   }
 
@@ -1284,7 +1285,7 @@
 
   /* ── Footer ── */
   footer {
-    background: var(--navy-deep);
+    background-color: var(--ghost);
     border-top: 1px solid var(--border);
     padding: 48px 32px;
     text-align: center;
