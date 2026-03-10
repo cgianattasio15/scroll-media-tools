@@ -64,6 +64,7 @@
     font-size: 0.95rem;
     line-height: 1.7;
     overflow-x: hidden;
+    padding-top: 32px; /* offset for fixed progress bar strip */
   }
 
   /* ── Section-Aware Progress Bar ── */
@@ -114,7 +115,7 @@
   /* ── Sticky Nav ── */
   nav {
     position: sticky;
-    top: 0;
+    top: 32px; /* sits below the fixed progress bar strip */
     z-index: 100;
     background: rgba(250,253,255,0.97);
     backdrop-filter: blur(12px);
@@ -949,15 +950,30 @@
     color: var(--text-muted);
     transition: transform 0.25s;
     flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    gap: 6px;
   }
 
   .cta-section.open .csh-toggle { transform: rotate(180deg); }
+
+  .csh-toggle::before {
+    content: 'Expand';
+    font-size: 0.65rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    color: var(--azure);
+    opacity: 0.7;
+  }
+  .cta-section.open .csh-toggle::before { content: 'Collapse'; }
 
   .cta-section-body {
     display: none;
     padding: 0 22px 22px;
     background: var(--white);
     border-top: 1px solid var(--border);
+    animation: fadeSlideIn 0.2s ease;
   }
 
   .cta-section.open .cta-section-body { display: block; }
@@ -1384,6 +1400,11 @@
 
   #back-to-top:hover { background: var(--azure-dark); }
 
+  /* ── Scroll Offset for Sticky Headers ── */
+  section[id] {
+    scroll-margin-top: 100px; /* progress bar (32px) + nav (60px) + 8px buffer */
+  }
+
   /* ── Divider ── */
   .section-divider {
     height: 1px;
@@ -1398,8 +1419,15 @@
     .accordion-phases { grid-template-columns: 1fr 1fr; }
   }
 
+  @keyframes fadeSlideIn {
+    from { opacity: 0; transform: translateY(-6px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
   @media (max-width: 768px) {
     nav .nav-links { display: none; }
+    nav { top: 28px; } /* adjusted for smaller progress strip on mobile */
+    body { padding-top: 28px; }
     .container { padding: 0 20px; }
     .hero { padding: 72px 20px 56px; }
     .funnel-grid { grid-template-columns: 1fr; }
@@ -1811,7 +1839,7 @@
     <p>This is your complete, plug-and-play library of 50+ high-performing Calls to Action, organized by the job you need them to do. Each section includes weak vs. strong comparisons, niche-specific examples, and guidance on when to use each type.</p>
 
     <!-- Section 1: Question CTAs -->
-    <div class="cta-section" id="cta-q">
+    <div class="cta-section open" id="cta-q">
       <div class="cta-section-header" onclick="this.parentElement.classList.toggle('open')">
         <div class="csh-left">
           <span class="csh-icon">💬</span>
@@ -2328,7 +2356,7 @@
       const el = document.getElementById(id);
       if (el) {
         const rect = el.getBoundingClientRect();
-        if (rect.top <= 120) currentSection = id;
+        if (rect.top <= 110) currentSection = id; /* accounts for 32px progress bar + 60px nav + 18px buffer */
       }
     });
 
