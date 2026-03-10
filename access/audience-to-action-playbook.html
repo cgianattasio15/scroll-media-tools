@@ -42,11 +42,11 @@
     --navy-light:  rgba(12,51,135,0.12);
     --lime:        #e2ed7a;
     --lime-dark:   #c8d655;
-    --border:      rgba(255,255,255,0.12);
+    --border:      rgba(21,21,22,0.10);  /* was near-invisible on white — fixed */
     --text-primary:   #151516;
     --text-secondary: rgba(21,21,22,0.68);
-    --text-muted:     rgba(255,255,255,0.6);
-    --text-label:     rgba(200,241,53,0.75);
+    --text-muted:     rgba(21,21,22,0.45);  /* was white-on-white — fixed to dark muted */
+    --text-label:     rgba(12,51,135,0.6);   /* was lime-on-white — fixed to azure muted */
     /* Funnel stage accent colors */
     --tofu-color:  #0c3387;
     --mofu-color:  #0c3387;
@@ -313,7 +313,7 @@
     font-weight: 700;
     letter-spacing: 1.5px;
     text-transform: uppercase;
-    color: var(--text-muted);
+    color: var(--text-secondary);
   }
 
   .hero-meta-item .value {
@@ -485,7 +485,7 @@
     font-weight: 600;
     letter-spacing: 1px;
     text-transform: uppercase;
-    color: var(--text-muted);
+    color: var(--text-secondary);
   }
 
   /* ── TOC ── */
@@ -502,7 +502,7 @@
     font-weight: 800;
     letter-spacing: 2px;
     text-transform: uppercase;
-    color: var(--text-muted);
+    color: var(--text-secondary);
     margin-bottom: 16px;
   }
 
@@ -540,7 +540,7 @@
     justify-content: center;
     font-size: 0.7rem;
     font-weight: 800;
-    color: var(--text-muted);
+    color: var(--text-secondary);
     flex-shrink: 0;
   }
 
@@ -680,7 +680,7 @@
 
   .funnel-stage p {
     font-size: 0.82rem;
-    color: var(--text-muted);
+    color: var(--text-secondary);
     margin-bottom: 14px;
   }
 
@@ -745,7 +745,7 @@
     font-weight: 600;
     letter-spacing: 0.5px;
     text-transform: uppercase;
-    color: var(--text-muted);
+    color: var(--text-secondary);
   }
 
   /* ── Audit Table ── */
@@ -776,14 +776,14 @@
 
   .audit-table td {
     padding: 12px 16px;
-    border-bottom: 1px solid rgba(255,255,255,0.05);
+    border-bottom: 1px solid rgba(21,21,22,0.07);
     color: var(--text-secondary);
     vertical-align: middle;
   }
 
   .audit-table tr:last-child td { border-bottom: none; }
 
-  .audit-table tr:hover td { background: rgba(255,255,255,0.02); }
+  .audit-table tr:hover td { background: rgba(12,51,135,0.03); }
 
   .audit-check {
     width: 22px; height: 22px;
@@ -838,13 +838,13 @@
     font-weight: 700;
     letter-spacing: 1px;
     text-transform: uppercase;
-    color: var(--text-muted);
+    color: var(--text-secondary);
     margin-bottom: 6px;
   }
 
   .mix-block .mix-desc {
     font-size: 0.78rem;
-    color: var(--text-muted);
+    color: var(--text-secondary);
   }
 
   /* ── Formats Reference Table ── */
@@ -876,13 +876,13 @@
 
   .formats-table td {
     padding: 11px 14px;
-    border-bottom: 1px solid rgba(255,255,255,0.05);
+    border-bottom: 1px solid rgba(21,21,22,0.07);
     color: var(--text-secondary);
     vertical-align: top;
   }
 
   .formats-table tr:last-child td { border-bottom: none; }
-  .formats-table tr:hover td { background: rgba(255,255,255,0.02); }
+  .formats-table tr:hover td { background: rgba(12,51,135,0.03); }
 
   .stage-pill {
     display: inline-block;
@@ -942,7 +942,7 @@
 
   .cta-section-header .csh-meta {
     font-size: 0.72rem;
-    color: var(--text-muted);
+    color: var(--text-secondary);
   }
 
   .cta-section-header .csh-toggle {
@@ -980,7 +980,7 @@
 
   .cta-item {
     padding: 18px 0;
-    border-bottom: 1px solid rgba(255,255,255,0.05);
+    border-bottom: 1px solid rgba(21,21,22,0.08);
   }
 
   .cta-item:last-child { border-bottom: none; padding-bottom: 0; }
@@ -1044,7 +1044,7 @@
 
   .cta-note {
     font-size: 0.78rem;
-    color: var(--text-muted);
+    color: var(--text-secondary);
     font-style: italic;
   }
 
@@ -1056,8 +1056,8 @@
   }
 
   .cta-example-pill {
-    background: rgba(255,255,255,0.04);
-    border: 1px solid var(--border);
+    background: rgba(12,51,135,0.04);
+    border: 1px solid rgba(21,21,22,0.10);
     border-radius: 8px;
     padding: 8px 12px;
     font-size: 0.82rem;
@@ -1096,7 +1096,7 @@
 
   .dm-step-content .dm-trigger {
     font-size: 0.75rem;
-    color: var(--text-muted);
+    color: var(--text-secondary);
     margin-bottom: 12px;
     font-style: italic;
   }
@@ -1128,7 +1128,7 @@
   }
 
   .dm-bubble.outgoing .bubble-label { color: var(--azure); }
-  .dm-bubble:not(.outgoing) .bubble-label { color: var(--text-muted); }
+  .dm-bubble:not(.outgoing) .bubble-label { color: var(--text-secondary); }
 
   /* ── Challenge Grid ── */
   .challenge-grid {
@@ -1159,7 +1159,7 @@
     font-weight: 800;
     letter-spacing: 2px;
     text-transform: uppercase;
-    color: var(--text-muted);
+    color: var(--text-secondary);
     margin-bottom: 6px;
   }
 
@@ -1194,7 +1194,7 @@
 
   .challenge-card p {
     font-size: 0.82rem;
-    color: var(--text-muted);
+    color: var(--text-secondary);
     margin: 0;
   }
 
@@ -1233,9 +1233,9 @@
     font-size: 0.8rem;
     color: var(--text-secondary);
     padding: 8px 10px;
-    background: rgba(255,255,255,0.03);
+    background: rgba(12,51,135,0.03);
     border-radius: 7px;
-    border: 1px solid rgba(255,255,255,0.05);
+    border: 1px solid rgba(21,21,22,0.08);
     line-height: 1.45;
   }
 
@@ -1267,7 +1267,7 @@
 
   .accordion-phase p {
     font-size: 0.8rem;
-    color: var(--text-muted);
+    color: var(--text-secondary);
     margin: 0;
   }
 
@@ -1304,8 +1304,8 @@
 
   /* ── Upsell Banner ── */
   .upsell-banner {
-    background: linear-gradient(135deg, var(--azure) 0%, var(--porcelain) 100%);
-    border: 1px solid rgba(200,241,53,0.2);
+    background: linear-gradient(135deg, #0c3387 0%, #092a6e 100%);
+    border: 1px solid rgba(200,241,53,0.25);
     border-radius: 20px;
     padding: 48px;
     text-align: center;
@@ -1317,20 +1317,21 @@
     font-weight: 800;
     letter-spacing: 2px;
     text-transform: uppercase;
-    color: var(--azure);
+    color: rgba(200,241,53,0.85);
     margin-bottom: 16px;
   }
 
   .upsell-banner h2 {
     font-size: clamp(1.6rem, 3.5vw, 2.2rem);
     margin-bottom: 16px;
+    color: #ffffff;
   }
 
   .upsell-banner p {
     max-width: 520px;
     margin: 0 auto 32px;
     font-size: 0.95rem;
-    color: var(--text-secondary);
+    color: rgba(255,255,255,0.78);
   }
 
   /* ── Footer ── */
@@ -1345,9 +1346,9 @@
     height: 32px;
     margin: 0 auto 20px;
     display: block;
-    opacity: 0.9;
+    opacity: 0.85;
     background: transparent;
-    filter: brightness(0) invert(1);
+    /* no invert — logo renders correctly on light background */
   }
 
   footer .footer-links {
@@ -1369,7 +1370,7 @@
 
   footer .footer-copy {
     font-size: 0.75rem;
-    color: rgba(255,255,255,0.3);
+    color: rgba(21,21,22,0.35);
   }
 
   /* ── Back to Top ── */
@@ -1452,6 +1453,7 @@
     <span class="ps" data-section="framework">Framework</span>
     <span class="ps" data-section="arsenal">Arsenal</span>
     <span class="ps" data-section="dm-script">DM Script</span>
+    <span class="ps" data-section="cta-stack">CTA Stack</span>
     <span class="ps" data-section="challenge">Challenge</span>
     <span class="ps" data-section="bonus">Bonus</span>
   </div>
@@ -1471,6 +1473,7 @@
     <a href="#framework">Framework</a>
     <a href="#arsenal">Arsenal</a>
     <a href="#dm-script">DM Script</a>
+    <a href="#cta-stack">CTA Stack</a>
     <a href="#challenge">Challenge</a>
     <a href="#bonus">Bonus</a>
   </div>
@@ -1489,11 +1492,7 @@
     </div>
     <div class="hero-meta">
       <div class="hero-meta-item">
-        <span class="label">Author</span>
-        <span class="value">Chase Gianattasio</span>
-      </div>
-      <div class="hero-meta-item">
-        <span class="label">Agency</span>
+        <span class="label">Published By</span>
         <span class="value">Scroll Media</span>
       </div>
       <div class="hero-meta-item">
@@ -1502,7 +1501,7 @@
       </div>
       <div class="hero-meta-item">
         <span class="label">Frameworks</span>
-        <span class="value">5 Core Systems</span>
+        <span class="value">6 Core Systems</span>
       </div>
     </div>
   </div>
@@ -1535,11 +1534,11 @@
 
     <!-- AUTHOR -->
     <div class="author-card">
-      <div class="author-avatar">CG</div>
+      <div class="author-avatar">SM</div>
       <div class="author-info">
-        <h4>Chase Gianattasio</h4>
-        <div class="author-title">Co-Founder &amp; Managing Partner, Scroll Media</div>
-        <p style="font-size: 0.85rem; margin: 0;">After 9+ years in the industry and building Scroll Media from the ground up, Chase has developed one clear conviction: most service businesses are leaving serious money on the table because they treat Instagram like a portfolio instead of a pipeline. This playbook is the exact system Scroll Media uses with every client — distilled into a single, actionable guide.</p>
+        <h4>Scroll Media</h4>
+        <div class="author-title">Strategy-First Social Media Agency</div>
+        <p style="font-size: 0.85rem; margin: 0;">Scroll Media is a strategy-first social media agency built on the philosophy of simplifying social media for service businesses. After working with 30+ boutique brands across industries including med spas, fitness studios, coaching services, and professional services, we distilled our most-used client framework into this playbook — the exact system we deploy on day one with every new client.</p>
         <div class="author-stats">
           <div class="author-stat">
             <span class="stat-value">30+</span>
@@ -1565,11 +1564,26 @@
         <li><a href="#framework"><span class="toc-num">1</span>The Funnel-Aware CTA Framework — Why Format Determines Outcome</a></li>
         <li><a href="#arsenal"><span class="toc-num">2</span>The CTA Arsenal — 50+ Plug-and-Play Scripts by Goal</a></li>
         <li><a href="#dm-script"><span class="toc-num">3</span>The DM-to-Booking System — The 3-Message Script</a></li>
-        <li><a href="#challenge"><span class="toc-num">4</span>The 30-Day Implementation Challenge</a></li>
+        <li><a href="#cta-stack"><span class="toc-num">4</span>The 3-Layer CTA Stack — Lead Magnet, Dream Offer &amp; Pulse CTA</a></li>
+        <li><a href="#challenge"><span class="toc-num">5</span>The 30-Day Implementation Challenge</a></li>
         <li class="bonus"><a href="#bonus"><span class="toc-num">★</span>Bonus — Niche Cheatsheet &amp; The Accordion Method Intro</a></li>
       </ul>
     </div>
   </section>
+
+  <!-- PRODUCT INTRO -->
+  <section id="intro" style="padding-top: 0; padding-bottom: 0;">
+    <div class="callout callout-tip" style="margin: 0 0 0 0;">
+      <div class="callout-label">Before You Dive In — Read This First</div>
+      <h4>What This Playbook Is, What Problem It Solves, and How to Use It</h4>
+      <p><strong>What this is:</strong> A complete, action-ready system for turning your Instagram content into a consistent source of qualified leads and booked clients. It covers the strategy, the scripts, and the daily implementation framework — in one place.</p>
+      <p style="margin-top: 10px;"><strong>What problem it solves:</strong> The #1 reason service businesses don't see ROI from social media isn't content quality — it's the absence of a clear, intentional CTA strategy. Most accounts post without a defined action they want the viewer to take. This playbook fixes that. Every section is built around one outcome: making it easier for your audience to take the next step toward becoming a client.</p>
+      <p style="margin-top: 10px;"><strong>How to use it:</strong> Read it in order the first time. Then use it as a reference — the CTA Arsenal (Part 2) and the DM Script (Part 3) are designed to be revisited weekly. The 30-Day Challenge (Part 5) is your implementation roadmap. The Bonus Niche Cheatsheet is your quick-reference guide for client-specific execution.</p>
+      <p style="margin-top: 10px;"><strong>Who it's for:</strong> Service-based business owners and their teams who are already active on Instagram but not seeing consistent leads, DMs, or booked calls from their content. This is not a beginner's guide to Instagram — it's a conversion architecture system for businesses that are ready to treat social media as a revenue channel.</p>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
 
   <!-- PART 0: MINDSET -->
   <section id="mindset">
@@ -2142,9 +2156,9 @@
 
     <div class="callout callout-tip">
       <div class="callout-label">Pro Tip — Instagram Saved Replies</div>
-      <h4>Automate Message 1 in 2 Minutes</h4>
-      <p>You can save Message 1 as a template in Instagram's native "Saved Replies" feature so you can send it with two taps instead of retyping it every time.</p>
-      <p style="margin-top: 10px;"><strong>How to set it up:</strong> Go to your Instagram profile → Settings → Business → Saved Replies → tap the "+" icon → paste your Message 1 template → assign a shortcut keyword (e.g., "guide1"). Next time someone DMs you, type your shortcut and the full message auto-fills.</p>
+      <h4>Send Message 1 in 2 Taps (No Tools Required)</h4>
+      <p>Instagram has a built-in "Saved Replies" feature that lets you pre-write message templates and send them with a shortcut keyword. This is not a third-party automation tool — it's a native Instagram feature available to all business and creator accounts. It means you can respond to every DM inquiry in seconds, without copy-pasting or retyping.</p>
+      <p style="margin-top: 10px;"><strong>How to set it up:</strong> Go to your Instagram profile → Settings → Business → Saved Replies → tap the "+" icon → paste your Message 1 template → assign a shortcut keyword (e.g., "guide1"). Next time someone DMs you, type your shortcut and the full message auto-fills. No third-party apps, no automation risk, no policy violations.</p>
     </div>
 
     <!-- INLINE UPGRADE MOMENT 2 -->
@@ -2160,10 +2174,161 @@
 
   <div class="section-divider"></div>
 
-  <!-- PART 4: CHALLENGE -->
-  <section id="challenge">
+  <!-- PART 4: CTA STACK -->
+  <section id="cta-stack">
     <div class="part-header">
       <div class="part-badge">Part 4</div>
+      <div class="part-header-line"></div>
+    </div>
+    <div class="section-label">The Conversion Architecture</div>
+    <h2>The 3-Layer CTA Stack</h2>
+    <p>Your Instagram bio is the most valuable piece of conversion real estate on your entire profile. Every person who visits your profile sees it. Yet most service businesses waste it on a single generic link or a Linktree with five random options and no hierarchy.</p>
+    <p>The 3-Layer CTA Stack is the system Scroll Media uses to structure every client's bio link strategy. It's built on one principle: <strong>your bio should have a clear job at every stage of the buyer journey.</strong> Not one job. Three. Each layer serves a different audience, a different intent level, and a different outcome.</p>
+
+    <div class="callout callout-principle">
+      <div class="callout-label">The Core Principle</div>
+      <h4>Your Bio Is a Funnel, Not a Menu</h4>
+      <p>Most businesses treat their bio link like a menu — a list of options with no priority. The 3-Layer CTA Stack treats it like a funnel: a deliberate sequence designed to move people from cold to warm to converted. The entry point is always the lead magnet. The destination is always the dream offer. The pulse CTA handles everything else.</p>
+    </div>
+
+    <div class="funnel-grid">
+      <div class="funnel-stage tofu">
+        <div class="fs-label">Layer 1 — Always On</div>
+        <h4>The Hook (Lead Magnet)</h4>
+        <p>A free, high-value resource that solves a specific problem your ideal client is already thinking about. It qualifies the prospect, builds trust, and creates a natural bridge to your paid offer.</p>
+        <ul>
+          <li>Free quiz, checklist, or guide</li>
+          <li>Answers a top objection or question</li>
+          <li>Delivers immediate, tangible value</li>
+          <li>Ends with a path to your dream offer</li>
+        </ul>
+        <div class="fs-cta-goal">Primary Bio Link</div>
+      </div>
+      <div class="funnel-stage mofu">
+        <div class="fs-label">Layer 2 — Always On</div>
+        <h4>The Offer (Dream Outcome)</h4>
+        <p>A dedicated landing page or inquiry form for your primary service offer. This is the destination your lead magnet feeds into. It should be clear, specific, and frictionless to engage with.</p>
+        <ul>
+          <li>Service inquiry or booking page</li>
+          <li>Clearly states the offer and outcome</li>
+          <li>Low-friction next step (form, call, DM)</li>
+          <li>Positioned as the natural next step</li>
+        </ul>
+        <div class="fs-cta-goal">Secondary Bio Link</div>
+      </div>
+      <div class="funnel-stage bofu">
+        <div class="fs-label">Layer 3 — Rotates Monthly</div>
+        <h4>The Pulse (Seasonal CTA)</h4>
+        <p>A time-sensitive, rotating CTA tied to current events, promotions, or campaigns. This layer keeps your bio fresh and creates urgency without disrupting the always-on foundation.</p>
+        <ul>
+          <li>Event registrations</li>
+          <li>Limited-time promotions</li>
+          <li>Seasonal campaigns</li>
+          <li>New content or launches</li>
+        </ul>
+        <div class="fs-cta-goal">Tertiary Bio Link (Optional)</div>
+      </div>
+    </div>
+
+    <h3 style="margin-top: 48px; margin-bottom: 20px;">Layer 1 Deep Dive — Building Your Lead Magnet</h3>
+    <p>The lead magnet is the most important CTA in your stack because it's the entry point for every cold prospect. It needs to do three things simultaneously: deliver real value, qualify the reader as a potential client, and create a natural bridge to your paid offer.</p>
+    <p>The best lead magnets are built around the top objections or questions you hear most often from prospects. If you can answer the question they're already asking — for free — you've demonstrated your expertise before they've spent a dollar.</p>
+
+    <div class="callout callout-result">
+      <div class="callout-label">Scroll Media Example</div>
+      <h4>The Instagram Maturity Quiz</h4>
+      <p>Scroll Media's primary lead magnet is the <strong>Instagram Maturity Quiz</strong> — a 10-question assessment that identifies where a business is in their social media development, what stage they're at, and what actions they need to take to improve. It addresses the #1 objection we hear from prospects: "I don't know where to start." The quiz gives them a clear answer, then naturally bridges to our Signature Package as the solution.</p>
+      <p style="margin-top: 10px;">This is the model: lead magnet answers the objection → positions your expertise → bridges to the paid offer. Every niche has a version of this.</p>
+    </div>
+
+    <h3 style="margin-top: 40px; margin-bottom: 20px;">Lead Magnet Examples by Niche</h3>
+    <p>The format of your lead magnet should match the way your ideal client naturally seeks information. Below are proven lead magnet formats for each of the core service niches, built around their most common objections and questions.</p>
+
+    <div class="niche-grid" style="grid-template-columns: repeat(2, 1fr);">
+      <div class="niche-card">
+        <div class="niche-name">Med Spa &amp; Dermatology</div>
+        <ul>
+          <li><strong>Skin Assessment Quiz:</strong> "What's Your Skin Type? Find Out Which Treatment Is Right for You" — qualifies by treatment interest, bridges to consultation booking.</li>
+          <li><strong>Treatment Guide:</strong> "The 5 Questions to Ask Before Your First Botox Appointment" — addresses the fear of the unknown, positions the practice as trustworthy.</li>
+          <li><strong>Seasonal Checklist:</strong> "Your Summer Skin Prep Checklist" — timely, practical, bridges to a seasonal promotion or package.</li>
+        </ul>
+      </div>
+      <div class="niche-card">
+        <div class="niche-name">Coaching &amp; Consulting</div>
+        <ul>
+          <li><strong>Readiness Quiz:</strong> "Are You Ready to Scale? The 10-Question Business Audit" — qualifies by growth stage, bridges to a strategy call or program enrollment.</li>
+          <li><strong>Framework PDF:</strong> "The 3-Step System I Use to Help Clients Add $10K/Month" — demonstrates methodology, positions the coach as the guide.</li>
+          <li><strong>Video Training:</strong> "The #1 Mistake Holding Your Business Back (Free 20-Min Training)" — high perceived value, bridges to a discovery call.</li>
+        </ul>
+      </div>
+      <div class="niche-card">
+        <div class="niche-name">Fitness Studio &amp; Personal Training</div>
+        <ul>
+          <li><strong>Goal Assessment:</strong> "What's Your Fitness Personality? Find Your Perfect Training Style" — fun, shareable, bridges to a free trial class or intro session.</li>
+          <li><strong>Starter Guide:</strong> "The 4-Week Beginner's Workout Plan (No Equipment Needed)" — removes the barrier to starting, builds trust before asking for a commitment.</li>
+          <li><strong>Nutrition Checklist:</strong> "The 7 Foods Sabotaging Your Results" — addresses a universal pain point, bridges to a nutrition coaching upsell.</li>
+        </ul>
+      </div>
+      <div class="niche-card">
+        <div class="niche-name">Real Estate</div>
+        <ul>
+          <li><strong>Buyer Readiness Quiz:</strong> "Are You Ready to Buy? The 8-Question First-Time Buyer Assessment" — qualifies by timeline and readiness, bridges to a buyer consultation.</li>
+          <li><strong>Neighborhood Guide:</strong> "The Insider's Guide to [City/Neighborhood]: What the Listings Don't Tell You" — hyperlocal, high-value, positions as the local expert.</li>
+          <li><strong>Market Report:</strong> "What's Actually Happening in [City] Real Estate Right Now" — timely, authority-building, bridges to a listing or buyer consultation.</li>
+        </ul>
+      </div>
+      <div class="niche-card">
+        <div class="niche-name">Interior Design</div>
+        <ul>
+          <li><strong>Style Quiz:</strong> "What's Your Interior Design Style? Take the 5-Minute Quiz" — highly shareable, bridges to a design consultation or mood board service.</li>
+          <li><strong>Room Checklist:</strong> "The 10-Item Living Room Checklist Every Designer Uses" — practical, save-worthy, bridges to a full-room design package.</li>
+          <li><strong>Budget Guide:</strong> "How to Design a Beautiful Space on Any Budget" — addresses the #1 objection (cost), positions the designer as accessible and strategic.</li>
+        </ul>
+      </div>
+      <div class="niche-card">
+        <div class="niche-name">Therapists &amp; Physical Therapists</div>
+        <ul>
+          <li><strong>Symptom Assessment:</strong> "Is Your Pain Muscular or Structural? The 5-Question Self-Assessment" — directly addresses the diagnostic question prospects are already asking, bridges to a consultation.</li>
+          <li><strong>Mental Health Checklist:</strong> "5 Signs It Might Be Time to Talk to Someone" — reduces stigma, normalizes seeking help, bridges to a free intro session.</li>
+          <li><strong>Recovery Guide:</strong> "The 3 Exercises That Prevent 80% of Lower Back Pain" — demonstrates expertise, builds trust, bridges to a full assessment or treatment plan.</li>
+        </ul>
+      </div>
+      <div class="niche-card">
+        <div class="niche-name">Home Builders &amp; Contractors</div>
+        <ul>
+          <li><strong>Project Readiness Quiz:</strong> "Is Your Home Ready for a Renovation? The 7-Question Pre-Project Assessment" — qualifies by project stage and budget readiness, bridges to a free estimate.</li>
+          <li><strong>Cost Guide:</strong> "What Does a Kitchen Remodel Actually Cost in [City]? The Honest Breakdown" — addresses the #1 question before any project conversation, builds trust through transparency.</li>
+          <li><strong>Planning Checklist:</strong> "The 10 Things to Decide Before You Call a Contractor" — positions the builder as an educator, bridges to a consultation.</li>
+        </ul>
+      </div>
+      <div class="niche-card">
+        <div class="niche-name">Custom Home Builders</div>
+        <ul>
+          <li><strong>Lot Assessment Guide:</strong> "5 Questions to Ask Before You Buy a Lot for a Custom Build" — highly specific, qualifies serious buyers, bridges to a design consultation.</li>
+          <li><strong>Process Guide:</strong> "The Custom Home Building Process: A Step-by-Step Timeline" — removes the fear of the unknown, positions the builder as a trusted guide.</li>
+          <li><strong>Budget Calculator:</strong> "How Much Does a Custom Home Cost in [City]? Use Our Estimate Tool" — interactive, high-value, bridges to a full project consultation.</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3 style="margin-top: 48px; margin-bottom: 16px;">Your Action Item</h3>
+    <div class="callout callout-warning">
+      <div class="callout-label">Implementation Step</div>
+      <h4>Build Your CTA Stack in 3 Steps</h4>
+      <ol style="padding-left: 20px; color: var(--text-secondary); display: flex; flex-direction: column; gap: 10px; margin-top: 10px;">
+        <li><strong>Identify your lead magnet:</strong> Choose one format from the examples above that matches your niche and addresses your most common prospect objection. If you already have one, evaluate whether it clearly bridges to your paid offer.</li>
+        <li><strong>Build or update your offer page:</strong> Your dream offer needs a dedicated landing page or inquiry form with a clear headline, a description of the outcome you deliver, and a single call to action. This is where your lead magnet sends people.</li>
+        <li><strong>Set your Pulse CTA:</strong> Identify one time-sensitive campaign or event in the next 30 days. Create a link for it. Add it as your third bio link. Update it monthly.</li>
+      </ol>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- PART 5: CHALLENGE -->
+  <section id="challenge">
+    <div class="part-header">
+      <div class="part-badge">Part 5</div>
       <div class="part-header-line"></div>
     </div>
     <div class="section-label">Implementation</div>
@@ -2342,7 +2507,7 @@
 
 <script>
   // Section-aware reading progress bar
-  const sections = ['mindset','framework','arsenal','dm-script','challenge','bonus'];
+  const sections = ['mindset','framework','arsenal','dm-script','cta-stack','challenge','bonus'];
 
   window.addEventListener('scroll', () => {
     const scrollTop = window.scrollY;
