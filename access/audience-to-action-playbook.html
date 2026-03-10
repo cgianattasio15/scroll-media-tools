@@ -6,7 +6,7 @@
 <title>The Audience-to-Action Playbook | Scroll Media</title>
 <meta name="description" content="The complete system for turning passive Instagram followers into qualified leads and booked clients — without paid ads or posting more content. 50+ plug-and-play CTAs, the 3-Message DM Script, and the Scroll Media Formats Library.">
 <meta property="og:title" content="The Audience-to-Action Playbook | Scroll Media">
-<meta property="og:description" content="Turn passive followers into booked clients. 50+ CTA scripts, the Format-Funnel Framework, and the 3-Message DM Script — all in one $47 playbook.">
+<meta property="og:description" content="Turn passive followers into booked clients. 50+ CTA scripts, the Format-Funnel Framework, and the 3-Message DM Script — all in one $87 playbook.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://tools.scrollmedia.co/audience-to-action-playbook.html">
 <meta property="og:image" content="https://www.scrollmedia.co/og-image.jpg">
@@ -1600,9 +1600,109 @@ section[id] {
     .hero-meta { gap: 24px; }
     .upsell-banner { padding: 32px 24px; }
   }
+
+  /* ─── TOKEN GATE ─────────────────────────────────────────────────────── */
+  #token-gate {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 99999;
+    background: #0c1a3a;
+    overflow-y: auto;
+    font-family: Inter, sans-serif;
+  }
+  #token-gate.active { display: flex; align-items: center; justify-content: center; min-height: 100vh; }
+  .gate-card {
+    background: #ffffff;
+    border-radius: 16px;
+    padding: 48px 40px;
+    max-width: 480px;
+    width: 90%;
+    text-align: center;
+    box-shadow: 0 24px 80px rgba(0,0,0,0.4);
+    margin: 32px auto;
+  }
+  .gate-logo {
+    display: inline-block;
+    background: #0c3387;
+    color: #c8f135;
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 6px 14px;
+    border-radius: 6px;
+    margin-bottom: 28px;
+  }
+  .gate-title {
+    font-size: 1.6rem;
+    font-weight: 800;
+    color: #0c1a3a;
+    margin: 0 0 12px;
+    line-height: 1.2;
+  }
+  .gate-subtitle {
+    font-size: 0.95rem;
+    color: #555;
+    margin: 0 0 32px;
+    line-height: 1.6;
+  }
+  .gate-cta {
+    display: inline-block;
+    background: #c8f135;
+    color: #0c3387;
+    font-size: 1rem;
+    font-weight: 800;
+    padding: 16px 32px;
+    border-radius: 10px;
+    text-decoration: none;
+    transition: transform 0.15s, box-shadow 0.15s;
+    box-shadow: 0 4px 20px rgba(200,241,53,0.4);
+  }
+  .gate-cta:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(200,241,53,0.5); }
+  .gate-note {
+    margin-top: 20px;
+    font-size: 0.8rem;
+    color: #999;
+    line-height: 1.5;
+  }
+  .gate-divider {
+    border: none;
+    border-top: 1px solid #eee;
+    margin: 28px 0;
+  }
+  .gate-already {
+    font-size: 0.85rem;
+    color: #555;
+  }
+  .gate-already a {
+    color: #0c3387;
+    font-weight: 600;
+    text-decoration: none;
+  }
+  .gate-already a:hover { text-decoration: underline; }
+  #page-content { display: none; }
+  body.token-valid #page-content { display: block; }
+  /* ─────────────────────────────────────────────────────────────────────── */
 </style>
 </head>
 <body>
+
+<!-- ─── TOKEN GATE OVERLAY ─────────────────────────────────────────────── -->
+<div id="token-gate">
+  <div class="gate-card">
+    <span class="gate-logo">Scroll Media</span>
+    <h1 class="gate-title">This content is for purchasers only.</h1>
+    <p class="gate-subtitle">The Audience-to-Action Playbook is a paid resource. Get instant access for a one-time payment of $87.</p>
+    <a href="https://buy.stripe.com/00wdR94mQgnsc4k6x9b7y01" class="gate-cta">Get Instant Access — $87 →</a>
+    <p class="gate-note">After purchase, you'll receive a unique access link by email within 60 seconds. Check your spam folder if it doesn't arrive.</p>
+    <hr class="gate-divider">
+    <p class="gate-already">Already purchased? <a href="mailto:hello@scrollmedia.co?subject=Playbook Access Help">Contact us</a> and we'll resend your link.</p>
+  </div>
+</div>
+<!-- ─────────────────────────────────────────────────────────────────────── -->
+
+<div id="page-content">
 
 <!-- SECTION-AWARE PROGRESS BAR -->
 <div id="progress-bar-wrap">
@@ -1799,7 +1899,7 @@ section[id] {
 
     <div style="background: rgba(200,241,53,0.08); border-left: 3px solid rgba(200,241,53,0.6); border-radius: 0 8px 8px 0; padding: 14px 18px; margin: 0 0 28px; display: flex; align-items: center; gap: 14px;">
       <span style="font-size: 1.4rem;">💡</span>
-      <p style="font-size: 0.85rem; color: var(--text-secondary); margin: 0;">You paid $47 for a system our clients pay $997/month to have us implement. The difference between reading this and getting results is one thing: execution. The Challenge in Part 5 is your roadmap.</p>
+      <p style="font-size: 0.85rem; color: var(--text-secondary); margin: 0;">You paid $87 for a system our clients pay $997/month to have us implement. The difference between reading this and getting results is one thing: execution. The Challenge in Part 5 is your roadmap.</p>
     </div>
 
     <p>Your Instagram is not a portfolio. It's a pipeline. Right now, it's probably leaking.</p>
@@ -3085,7 +3185,47 @@ section[id] {
 <!-- BACK TO TOP -->
 <a href="#top" id="back-to-top">↑</a>
 
+</div><!-- /#page-content -->
+
 <script>
+  // ─── TOKEN GATE VALIDATION ──────────────────────────────────────────────
+  (function() {
+    const params = new URLSearchParams(window.location.search);
+    const token = params.get('token');
+    const gate = document.getElementById('token-gate');
+    const content = document.getElementById('page-content');
+
+    if (!token) {
+      // No token — show gate immediately
+      gate.classList.add('active');
+      return;
+    }
+
+    // Validate token against serverless function
+    fetch('/api/validate-token?token=' + encodeURIComponent(token))
+      .then(function(res) { return res.json(); })
+      .then(function(data) {
+        if (data.valid) {
+          // Valid token — show content
+          document.body.classList.add('token-valid');
+          content.style.display = 'block';
+          gate.style.display = 'none';
+        } else {
+          // Invalid token — show gate
+          gate.classList.add('active');
+        }
+      })
+      .catch(function() {
+        // Network error — fail open (show content) to avoid blocking real buyers
+        // This is a deliberate trade-off: uptime > perfect security
+        document.body.classList.add('token-valid');
+        content.style.display = 'block';
+        gate.style.display = 'none';
+        console.warn('Token validation unavailable — failing open.');
+      });
+  })();
+  // ─────────────────────────────────────────────────────────────────────────
+
   // Section-aware reading progress bar
   const sections = ['mindset','framework','arsenal','dm-script','cta-stack','challenge','bonus'];
 

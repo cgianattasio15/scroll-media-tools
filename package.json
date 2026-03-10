@@ -1,0 +1,9 @@
+{
+  "name": "scroll-media-tools",
+  "version": "1.0.0",
+  "description": "Scroll Media digital tools and products",
+  "private": true,
+  "dependencies": {
+    "@netlify/blobs": "^8.1.0"
+  }
+}
