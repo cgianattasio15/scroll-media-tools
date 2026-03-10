@@ -470,17 +470,16 @@ strong { color: var(--text-primary); font-weight: 700; }
   }
 
 .author-avatar {
-    width: 56px; height: 56px;
+    width: 64px; height: 64px;
     border-radius: 50%;
-    background: rgba(12,51,135,0.06);
+    background: var(--azure);
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1.1rem;
-    font-weight: 800;
-    color: var(--azure);
     flex-shrink: 0;
-    border: 2px solid rgba(200,241,53,0.3);
+    border: 2px solid rgba(200,241,53,0.4);
+    overflow: hidden;
+    padding: 10px;
   }
 
 .author-info h4 { margin-bottom: 2px; }
@@ -999,17 +998,13 @@ strong { color: var(--text-primary); font-weight: 700; }
 .cta-section-header .csh-toggle {
     font-size: 0.75rem;
     color: var(--text-secondary);
-    transition: transform 0.25s;
     flex-shrink: 0;
     display: flex;
     align-items: center;
     gap: 6px;
   }
 
-.cta-section.open .csh-toggle { transform: rotate(180deg); }
-
-.csh-toggle::before {
-    content: 'Expand';
+.csh-toggle-label {
     font-size: 0.65rem;
     font-weight: 600;
     letter-spacing: 0.5px;
@@ -1018,7 +1013,13 @@ strong { color: var(--text-primary); font-weight: 700; }
     opacity: 0.7;
   }
 
-.cta-section.open .csh-toggle::before { content: 'Collapse'; }
+.csh-toggle-arrow {
+    display: inline-block;
+    transition: transform 0.25s;
+    font-size: 0.75rem;
+  }
+
+.cta-section.open .csh-toggle-arrow { transform: rotate(180deg); }
 
 .cta-section-body {
     display: none;
@@ -1472,9 +1473,7 @@ section[id] {
 /* ── Divider ── */
 
 .section-divider {
-    height: 1px;
-    background: var(--border);
-    margin: 0;
+    display: none;
   }
 
 /* ── Responsive ── */
@@ -1693,7 +1692,7 @@ section[id] {
 
     <!-- AUTHOR -->
     <div class="author-card" style="margin-top: 20px;">
-      <div class="author-avatar">SM</div>
+      <div class="author-avatar"><img src="https://www.scrollmedia.co/wp-content/uploads/2024/01/Scroll-Media-Logo-White.png" alt="Scroll Media" style="width:100%; height:100%; object-fit:contain; filter:brightness(0) invert(1);"></div>
       <div class="author-info">
         <h4>Scroll Media</h4>
         <div class="author-title">Strategy-First Social Media Agency</div>
@@ -2102,7 +2101,7 @@ section[id] {
 
     <!-- Section 1: Question CTAs -->
     <div class="cta-section open" id="cta-q">
-      <div class="cta-section-header" onclick="this.parentElement.classList.toggle('open')">
+      <div class="cta-section-header" onclick="var p=this.parentElement;p.classList.toggle('open');var lbl=this.querySelector('.csh-toggle-label');if(lbl)lbl.textContent=p.classList.contains('open')?'Collapse':'Expand'">
         <div class="csh-left">
           <span class="csh-icon">💬</span>
           <div>
@@ -2110,7 +2109,7 @@ section[id] {
             <div class="csh-meta">15+ examples · TOFU &amp; MOFU · Primary KPI: Comments</div>
           </div>
         </div>
-        <span class="csh-toggle">▼</span>
+        <span class="csh-toggle"><span class="csh-toggle-label">Collapse</span><span class="csh-toggle-arrow">▼</span></span>
       </div>
       <div class="cta-section-body">
         <div class="cta-item">
@@ -2170,7 +2169,7 @@ section[id] {
 
     <!-- Section 2: Save & Share CTAs -->
     <div class="cta-section" id="cta-s">
-      <div class="cta-section-header" onclick="this.parentElement.classList.toggle('open')">
+      <div class="cta-section-header" onclick="var p=this.parentElement;p.classList.toggle('open');var lbl=this.querySelector('.csh-toggle-label');if(lbl)lbl.textContent=p.classList.contains('open')?'Collapse':'Expand'">
         <div class="csh-left">
           <span class="csh-icon">🔖</span>
           <div>
@@ -2178,7 +2177,7 @@ section[id] {
             <div class="csh-meta">12+ examples · MOFU · Primary KPI: Saves (highest-value Instagram signal)</div>
           </div>
         </div>
-        <span class="csh-toggle">▼</span>
+        <span class="csh-toggle"><span class="csh-toggle-label">Expand</span><span class="csh-toggle-arrow">▼</span></span>
       </div>
       <div class="cta-section-body">
         <div class="callout callout-tip" style="margin-top: 16px; margin-bottom: 20px;">
@@ -2224,7 +2223,7 @@ section[id] {
 
     <!-- Section 3: Follow CTAs -->
     <div class="cta-section" id="cta-f">
-      <div class="cta-section-header" onclick="this.parentElement.classList.toggle('open')">
+      <div class="cta-section-header" onclick="var p=this.parentElement;p.classList.toggle('open');var lbl=this.querySelector('.csh-toggle-label');if(lbl)lbl.textContent=p.classList.contains('open')?'Collapse':'Expand'">
         <div class="csh-left">
           <span class="csh-icon">👤</span>
           <div>
@@ -2232,7 +2231,7 @@ section[id] {
             <div class="csh-meta">8+ examples · TOFU · Primary KPI: New Followers</div>
           </div>
         </div>
-        <span class="csh-toggle">▼</span>
+        <span class="csh-toggle"><span class="csh-toggle-label">Expand</span><span class="csh-toggle-arrow">▼</span></span>
       </div>
       <div class="cta-section-body">
         <div class="callout callout-warning" style="margin-top: 16px; margin-bottom: 20px;">
@@ -2260,7 +2259,7 @@ section[id] {
 
     <!-- Section 4: Conversion CTAs -->
     <div class="cta-section" id="cta-c">
-      <div class="cta-section-header" onclick="this.parentElement.classList.toggle('open')">
+      <div class="cta-section-header" onclick="var p=this.parentElement;p.classList.toggle('open');var lbl=this.querySelector('.csh-toggle-label');if(lbl)lbl.textContent=p.classList.contains('open')?'Collapse':'Expand'">
         <div class="csh-left">
           <span class="csh-icon">⚡</span>
           <div>
@@ -2268,7 +2267,7 @@ section[id] {
             <div class="csh-meta">20+ examples · BOFU only · Primary KPI: Link Taps, DMs, Form Submissions</div>
           </div>
         </div>
-        <span class="csh-toggle">▼</span>
+        <span class="csh-toggle"><span class="csh-toggle-label">Expand</span><span class="csh-toggle-arrow">▼</span></span>
       </div>
       <div class="cta-section-body">
         <div class="callout callout-principle" style="margin-top: 16px; margin-bottom: 20px;">
@@ -2336,7 +2335,7 @@ section[id] {
 
     <!-- Section 5: Stories / Engagement CTAs -->
     <div class="cta-section" id="cta-stories">
-      <div class="cta-section-header" onclick="this.parentElement.classList.toggle('open')">
+      <div class="cta-section-header" onclick="var p=this.parentElement;p.classList.toggle('open');var lbl=this.querySelector('.csh-toggle-label');if(lbl)lbl.textContent=p.classList.contains('open')?'Collapse':'Expand'">
         <div class="csh-left">
           <span class="csh-icon">📱</span>
           <div>
@@ -2344,7 +2343,7 @@ section[id] {
             <div class="csh-meta">10+ examples · MOFU · Primary KPI: Story Interactions (Polls, Replies, Taps)</div>
           </div>
         </div>
-        <span class="csh-toggle">▼</span>
+        <span class="csh-toggle"><span class="csh-toggle-label">Expand</span><span class="csh-toggle-arrow">▼</span></span>
       </div>
       <div class="cta-section-body">
         <div class="cta-items">
@@ -2441,7 +2440,7 @@ section[id] {
 
     <!-- DM Step 1 Accordion -->
     <div class="cta-section open" id="dm-step-1">
-      <div class="cta-section-header" onclick="this.parentElement.classList.toggle('open')">
+      <div class="cta-section-header" onclick="var p=this.parentElement;p.classList.toggle('open');var lbl=this.querySelector('.csh-toggle-label');if(lbl)lbl.textContent=p.classList.contains('open')?'Collapse':'Expand'">
         <div class="csh-left">
           <span class="csh-icon">💬</span>
           <div>
@@ -2449,7 +2448,7 @@ section[id] {
             <div class="csh-meta">Trigger: They comment your keyword or send an unprompted inquiry DM</div>
           </div>
         </div>
-        <span class="csh-toggle">▼</span>
+        <span class="csh-toggle"><span class="csh-toggle-label">Collapse</span><span class="csh-toggle-arrow">▼</span></span>
       </div>
       <div class="cta-section-body">
         <div class="dm-bubble outgoing" style="margin-top: 16px;">
@@ -2466,7 +2465,7 @@ section[id] {
 
     <!-- DM Step 2 Accordion -->
     <div class="cta-section" id="dm-step-2">
-      <div class="cta-section-header" onclick="this.parentElement.classList.toggle('open')">
+      <div class="cta-section-header" onclick="var p=this.parentElement;p.classList.toggle('open');var lbl=this.querySelector('.csh-toggle-label');if(lbl)lbl.textContent=p.classList.contains('open')?'Collapse':'Expand'">
         <div class="csh-left">
           <span class="csh-icon">🔍</span>
           <div>
@@ -2474,7 +2473,7 @@ section[id] {
             <div class="csh-meta">Timing: Send 24–48 hours after Message 1, only if they haven't replied</div>
           </div>
         </div>
-        <span class="csh-toggle">▼</span>
+        <span class="csh-toggle"><span class="csh-toggle-label">Expand</span><span class="csh-toggle-arrow">▼</span></span>
       </div>
       <div class="cta-section-body">
         <div class="dm-bubble outgoing" style="margin-top: 16px;">
@@ -2487,7 +2486,7 @@ section[id] {
 
     <!-- DM Step 3 Accordion -->
     <div class="cta-section" id="dm-step-3">
-      <div class="cta-section-header" onclick="this.parentElement.classList.toggle('open')">
+      <div class="cta-section-header" onclick="var p=this.parentElement;p.classList.toggle('open');var lbl=this.querySelector('.csh-toggle-label');if(lbl)lbl.textContent=p.classList.contains('open')?'Collapse':'Expand'">
         <div class="csh-left">
           <span class="csh-icon">🎯</span>
           <div>
@@ -2495,7 +2494,7 @@ section[id] {
             <div class="csh-meta">Trigger: They reply to Message 2 with a specific problem or challenge</div>
           </div>
         </div>
-        <span class="csh-toggle">▼</span>
+        <span class="csh-toggle"><span class="csh-toggle-label">Expand</span><span class="csh-toggle-arrow">▼</span></span>
       </div>
       <div class="cta-section-body">
         <div class="dm-bubble" style="margin-top: 16px; margin-bottom: 10px;">
@@ -2559,7 +2558,7 @@ section[id] {
 
     <!-- LAYER 1 ACCORDION -->
     <div class="cta-section open" id="layer-1-accordion" style="margin-top: 32px;">
-      <div class="cta-section-header" onclick="this.parentElement.classList.toggle('open')">
+      <div class="cta-section-header" onclick="var p=this.parentElement;p.classList.toggle('open');var lbl=this.querySelector('.csh-toggle-label');if(lbl)lbl.textContent=p.classList.contains('open')?'Collapse':'Expand'">
         <div class="csh-left">
           <span class="csh-icon">🎣</span>
           <div>
@@ -2567,7 +2566,7 @@ section[id] {
             <div class="csh-meta">Always On · Primary Bio Link · TOFU Entry Point</div>
           </div>
         </div>
-        <span class="csh-toggle">▼</span>
+        <span class="csh-toggle"><span class="csh-toggle-label">Collapse</span><span class="csh-toggle-arrow">▼</span></span>
       </div>
       <div class="cta-section-body">
         <p style="margin-top: 16px;">A free, high-value resource that solves a specific problem your ideal client is already thinking about. It qualifies the prospect, builds trust, and creates a natural bridge to your paid offer. The lead magnet is the most important CTA in your stack — it's the entry point for every cold prospect.</p>
@@ -2656,7 +2655,7 @@ section[id] {
 
     <!-- LAYER 2 ACCORDION -->
     <div class="cta-section" id="layer-2-accordion">
-      <div class="cta-section-header" onclick="this.parentElement.classList.toggle('open')">
+      <div class="cta-section-header" onclick="var p=this.parentElement;p.classList.toggle('open');var lbl=this.querySelector('.csh-toggle-label');if(lbl)lbl.textContent=p.classList.contains('open')?'Collapse':'Expand'">
         <div class="csh-left">
           <span class="csh-icon">🎯</span>
           <div>
@@ -2664,7 +2663,7 @@ section[id] {
             <div class="csh-meta">Always On · Secondary Bio Link · The Destination Your Lead Magnet Feeds Into</div>
           </div>
         </div>
-        <span class="csh-toggle">▼</span>
+        <span class="csh-toggle"><span class="csh-toggle-label">Expand</span><span class="csh-toggle-arrow">▼</span></span>
       </div>
       <div class="cta-section-body">
         <p style="margin-top: 16px;">Layer 1 (the lead magnet) is the entry point. Layer 2 is the destination. This is your primary paid offer — the thing you actually sell. Every lead magnet you build should have one job: bridge a qualified prospect to this offer.</p>
@@ -2690,7 +2689,7 @@ section[id] {
 
     <!-- LAYER 3 ACCORDION -->
     <div class="cta-section" id="layer-3-accordion">
-      <div class="cta-section-header" onclick="this.parentElement.classList.toggle('open')">
+      <div class="cta-section-header" onclick="var p=this.parentElement;p.classList.toggle('open');var lbl=this.querySelector('.csh-toggle-label');if(lbl)lbl.textContent=p.classList.contains('open')?'Collapse':'Expand'">
         <div class="csh-left">
           <span class="csh-icon">⚡</span>
           <div>
@@ -2698,7 +2697,7 @@ section[id] {
             <div class="csh-meta">Rotates Monthly · Tertiary Bio Link (Optional) · Real Urgency Only</div>
           </div>
         </div>
-        <span class="csh-toggle">▼</span>
+        <span class="csh-toggle"><span class="csh-toggle-label">Expand</span><span class="csh-toggle-arrow">▼</span></span>
       </div>
       <div class="cta-section-body">
         <p style="margin-top: 16px;">Layer 3 is your most flexible layer. It rotates monthly or quarterly based on what's happening in your business right now. It's not always active — but when it is, it's the most time-sensitive and highest-urgency CTA in your stack. This is where scarcity and urgency live.</p>
@@ -2746,34 +2745,188 @@ section[id] {
     </div>
     <div class="section-label">Implementation</div>
     <h2>The 30-Day Challenge</h2>
-    <p>Information without implementation is just entertainment. This challenge gives you a simple, week-by-week framework to get a tangible result from this playbook in the next 30 days. Click each card when you complete it.</p>
+    <p>Information without implementation is just entertainment. This is your step-by-step execution roadmap for the next 30 days. Follow it in order. Each step builds on the last.</p>
 
-    <div class="challenge-grid">
-      <div class="challenge-card" onclick="this.classList.toggle('done');this.querySelector('.check-icon').textContent=this.classList.contains('done')?'✓':''">
-        <div class="week-label">Week 1</div>
-        <h4><span class="check-icon"></span>Audit</h4>
-        <p>Use the Format-Funnel Audit worksheet from Part 1 on your last 5 posts. Identify every mismatch between your format and your CTA. Write down the fix for each one.</p>
+    <!-- BEFORE YOU START -->
+    <div style="background: rgba(12,51,135,0.05); border: 1.5px solid rgba(12,51,135,0.15); border-radius: 14px; padding: 24px 28px; margin-bottom: 32px;">
+      <div style="font-size: 0.62rem; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; color: var(--azure); margin-bottom: 10px;">Before You Start</div>
+      <p style="font-size: 0.9rem; color: var(--text-secondary); margin: 0 0 12px;">Have these three things ready before Day 1:</p>
+      <ol style="padding-left: 20px; color: var(--text-secondary); font-size: 0.88rem; line-height: 1.7; margin: 0;">
+        <li><strong style="color: var(--text-primary);">The CTA Weekly Tracker</strong> — open it now and bookmark it. You'll log every post here.</li>
+        <li><strong style="color: var(--text-primary);">Your last 10 posts</strong> — pull them up in Instagram Insights. You need the save count and comment count for each.</li>
+        <li><strong style="color: var(--text-primary);">Your bio link</strong> — know where it goes right now. If it goes to your homepage, that's the first thing we're fixing.</li>
+      </ol>
+    </div>
+
+    <!-- WEEK 1 -->
+    <div style="margin-bottom: 28px;">
+      <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 16px;">
+        <div style="background: var(--azure); color: white; font-size: 0.65rem; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; padding: 6px 14px; border-radius: 20px; white-space: nowrap;">Week 1 — Audit &amp; Setup</div>
+        <div style="flex: 1; height: 1px; background: var(--border);"></div>
       </div>
-      <div class="challenge-card" onclick="this.classList.toggle('done');this.querySelector('.check-icon').textContent=this.classList.contains('done')?'✓':''">
-        <div class="week-label">Week 2</div>
-        <h4><span class="check-icon"></span>Engage</h4>
-        <p>Choose ONE Question CTA and ONE Save CTA from the Arsenal. Use them on all your TOFU and MOFU posts this week. Track comment and save counts for each post.</p>
-      </div>
-      <div class="challenge-card" onclick="this.classList.toggle('done');this.querySelector('.check-icon').textContent=this.classList.contains('done')?'✓':''">
-        <div class="week-label">Week 3</div>
-        <h4><span class="check-icon"></span>Convert</h4>
-        <p>Choose ONE Conversion CTA from the Arsenal and use it on your BOFU post. Practice the 3-Message DM Script on every person who engages with that post.</p>
-      </div>
-      <div class="challenge-card" onclick="this.classList.toggle('done');this.querySelector('.check-icon').textContent=this.classList.contains('done')?'✓':''">
-        <div class="week-label">Week 4</div>
-        <h4><span class="check-icon"></span>Review &amp; Iterate</h4>
-        <p>Which CTA generated the most comments? The most saves? Did you book any calls from the DM script? You now have your first real data point. Double down on what worked.</p>
+      <div style="display: grid; gap: 12px;">
+        <div class="challenge-card" onclick="this.classList.toggle('done');this.querySelector('.check-icon').textContent=this.classList.contains('done')?'✓':''" style="cursor: pointer;">
+          <div style="display: flex; align-items: flex-start; gap: 12px;">
+            <div style="font-size: 1.1rem; font-weight: 800; color: var(--azure); min-width: 28px;"><span class="check-icon"></span>D1</div>
+            <div>
+              <h4 style="margin-bottom: 6px;">Run the Format-Funnel Audit</h4>
+              <p style="margin: 0; font-size: 0.88rem;">Open the CTA Weekly Tracker. Pull up your last 10 posts. For each one, log: the format (Reel, Carousel, Static), the funnel stage (TOFU/MOFU/BOFU), the CTA you used, and the save + comment count. Flag every post where the CTA doesn't match the funnel stage. That mismatch is your first fix.</p>
+            </div>
+          </div>
+        </div>
+        <div class="challenge-card" onclick="this.classList.toggle('done');this.querySelector('.check-icon').textContent=this.classList.contains('done')?'✓':''" style="cursor: pointer;">
+          <div style="display: flex; align-items: flex-start; gap: 12px;">
+            <div style="font-size: 1.1rem; font-weight: 800; color: var(--azure); min-width: 28px;"><span class="check-icon"></span>D2</div>
+            <div>
+              <h4 style="margin-bottom: 6px;">Audit Your Profile (3-Point Check)</h4>
+              <p style="margin: 0; font-size: 0.88rem;">Check your bio link — does it go to a dedicated offer or booking page? If not, fix it today. Check Pinned Post 1 — is it a clear Business Overview (what you do, who it's for, how to book)? Check Pinned Post 2 — is it a Founder Story? If either is missing, add it to your content plan this week.</p>
+            </div>
+          </div>
+        </div>
+        <div class="challenge-card" onclick="this.classList.toggle('done');this.querySelector('.check-icon').textContent=this.classList.contains('done')?'✓':''" style="cursor: pointer;">
+          <div style="display: flex; align-items: flex-start; gap: 12px;">
+            <div style="font-size: 1.1rem; font-weight: 800; color: var(--azure); min-width: 28px;"><span class="check-icon"></span>D3</div>
+            <div>
+              <h4 style="margin-bottom: 6px;">Build Your CTA Stack</h4>
+              <p style="margin: 0; font-size: 0.88rem;">Open the Monthly CTA Planner. Define your Layer 1 (lead magnet — what free resource will you drive people to?), Layer 2 (your primary offer — where does the lead magnet send them?), and Layer 3 (any seasonal or time-sensitive offer this month). Write all three down. This is your CTA architecture for the next 30 days.</p>
+            </div>
+          </div>
+        </div>
+        <div class="challenge-card" onclick="this.classList.toggle('done');this.querySelector('.check-icon').textContent=this.classList.contains('done')?'✓':''" style="cursor: pointer;">
+          <div style="display: flex; align-items: flex-start; gap: 12px;">
+            <div style="font-size: 1.1rem; font-weight: 800; color: var(--azure); min-width: 28px;"><span class="check-icon"></span>D4</div>
+            <div>
+              <h4 style="margin-bottom: 6px;">Set Up Your DM Response Templates</h4>
+              <p style="margin: 0; font-size: 0.88rem;">Go to Instagram Settings → Creator Tools → Saved Replies. Create all 3 messages from the DM-to-Booking System (Acknowledge &amp; Deliver, The Gentle Probe, The Pivot to Call). Name them DM1, DM2, DM3. You now have a 2-tap response system ready for every inbound inquiry.</p>
+            </div>
+          </div>
+        </div>
+        <div class="challenge-card" onclick="this.classList.toggle('done');this.querySelector('.check-icon').textContent=this.classList.contains('done')?'✓':''" style="cursor: pointer;">
+          <div style="display: flex; align-items: flex-start; gap: 12px;">
+            <div style="font-size: 1.1rem; font-weight: 800; color: var(--azure); min-width: 28px;"><span class="check-icon"></span>D5–7</div>
+            <div>
+              <h4 style="margin-bottom: 6px;">Plan Your Week 2 Content</h4>
+              <p style="margin: 0; font-size: 0.88rem;">Using the Monthly CTA Planner, map out your next 7 days of posts. Assign a funnel stage (TOFU/MOFU/BOFU) and a CTA type to each post before you create it. Rule: at least 40% TOFU, 35% MOFU, 25% BOFU. One CTA per post. No exceptions.</p>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
 
-    <div class="callout callout-tip" style="margin-top: 8px;">
-      <div class="callout-label">What to Do After Week 4</div>
-      <p>You now have a baseline. You know which CTA type resonates most with your audience, and you have your first real data from the DM script. This is the foundation of <strong>The Compound Method</strong> — the systematic testing framework we use with every Scroll Media client to build a content engine that compounds over time. See the Bonus section for the full introduction.</p>
+    <!-- WEEK 2 -->
+    <div style="margin-bottom: 28px;">
+      <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 16px;">
+        <div style="background: rgba(12,51,135,0.08); color: var(--azure); font-size: 0.65rem; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; padding: 6px 14px; border-radius: 20px; white-space: nowrap; border: 1px solid rgba(12,51,135,0.2);">Week 2 — Engage</div>
+        <div style="flex: 1; height: 1px; background: var(--border);"></div>
+      </div>
+      <div style="display: grid; gap: 12px;">
+        <div class="challenge-card" onclick="this.classList.toggle('done');this.querySelector('.check-icon').textContent=this.classList.contains('done')?'✓':''" style="cursor: pointer;">
+          <div style="display: flex; align-items: flex-start; gap: 12px;">
+            <div style="font-size: 1.1rem; font-weight: 800; color: var(--azure); min-width: 28px;"><span class="check-icon"></span>D8</div>
+            <div>
+              <h4 style="margin-bottom: 6px;">Post Your First Planned CTA</h4>
+              <p style="margin: 0; font-size: 0.88rem;">Publish your first post using a CTA from the Arsenal. It should be a TOFU or MOFU post with either a Question CTA or a Save CTA — not a Conversion CTA yet. Log it in the CTA Weekly Tracker immediately after posting.</p>
+            </div>
+          </div>
+        </div>
+        <div class="challenge-card" onclick="this.classList.toggle('done');this.querySelector('.check-icon').textContent=this.classList.contains('done')?'✓':''" style="cursor: pointer;">
+          <div style="display: flex; align-items: flex-start; gap: 12px;">
+            <div style="font-size: 1.1rem; font-weight: 800; color: var(--azure); min-width: 28px;"><span class="check-icon"></span>D9–13</div>
+            <div>
+              <h4 style="margin-bottom: 6px;">Post Consistently — Log Every CTA</h4>
+              <p style="margin: 0; font-size: 0.88rem;">Post every day or on your planned schedule. After each post, log the CTA type, format, and funnel stage in the Tracker. At 48 hours, log the save count and comment count. You're building your first real data set.</p>
+            </div>
+          </div>
+        </div>
+        <div class="challenge-card" onclick="this.classList.toggle('done');this.querySelector('.check-icon').textContent=this.classList.contains('done')?'✓':''" style="cursor: pointer;">
+          <div style="display: flex; align-items: flex-start; gap: 12px;">
+            <div style="font-size: 1.1rem; font-weight: 800; color: var(--azure); min-width: 28px;"><span class="check-icon"></span>D14</div>
+            <div>
+              <h4 style="margin-bottom: 6px;">Week 2 Check-In</h4>
+              <p style="margin: 0; font-size: 0.88rem;">Review your Tracker. Which CTA type got the most comments? Which got the most saves? Is your TOFU/MOFU/BOFU ratio on track? Adjust Week 3 plan based on what you see. One question to answer: which single CTA performed best this week?</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- WEEK 3 -->
+    <div style="margin-bottom: 28px;">
+      <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 16px;">
+        <div style="background: rgba(12,51,135,0.08); color: var(--azure); font-size: 0.65rem; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; padding: 6px 14px; border-radius: 20px; white-space: nowrap; border: 1px solid rgba(12,51,135,0.2);">Week 3 — Convert</div>
+        <div style="flex: 1; height: 1px; background: var(--border);"></div>
+      </div>
+      <div style="display: grid; gap: 12px;">
+        <div class="challenge-card" onclick="this.classList.toggle('done');this.querySelector('.check-icon').textContent=this.classList.contains('done')?'✓':''" style="cursor: pointer;">
+          <div style="display: flex; align-items: flex-start; gap: 12px;">
+            <div style="font-size: 1.1rem; font-weight: 800; color: var(--azure); min-width: 28px;"><span class="check-icon"></span>D15</div>
+            <div>
+              <h4 style="margin-bottom: 6px;">Post Your First BOFU Conversion CTA</h4>
+              <p style="margin: 0; font-size: 0.88rem;">Choose one Conversion CTA from the Arsenal that fits your niche. Use it on a BOFU post — a case study, a result, a before/after, or a direct offer. Make sure your bio link goes to the right destination. Log it in the Tracker.</p>
+            </div>
+          </div>
+        </div>
+        <div class="challenge-card" onclick="this.classList.toggle('done');this.querySelector('.check-icon').textContent=this.classList.contains('done')?'✓':''" style="cursor: pointer;">
+          <div style="display: flex; align-items: flex-start; gap: 12px;">
+            <div style="font-size: 1.1rem; font-weight: 800; color: var(--azure); min-width: 28px;"><span class="check-icon"></span>D16–20</div>
+            <div>
+              <h4 style="margin-bottom: 6px;">Activate the DM System</h4>
+              <p style="margin: 0; font-size: 0.88rem;">Every time someone comments, DMs, or clicks your link this week, respond using your Saved Reply templates. Work through the 3-step sequence: Acknowledge &amp; Deliver → Gentle Probe → Pivot to Call. Log every conversation. Note who moved to a call and who didn't.</p>
+            </div>
+          </div>
+        </div>
+        <div class="challenge-card" onclick="this.classList.toggle('done');this.querySelector('.check-icon').textContent=this.classList.contains('done')?'✓':''" style="cursor: pointer;">
+          <div style="display: flex; align-items: flex-start; gap: 12px;">
+            <div style="font-size: 1.1rem; font-weight: 800; color: var(--azure); min-width: 28px;"><span class="check-icon"></span>D21</div>
+            <div>
+              <h4 style="margin-bottom: 6px;">Week 3 Check-In</h4>
+              <p style="margin: 0; font-size: 0.88rem;">Review your Tracker again. Did your BOFU post drive any DMs or link clicks? Did any DM conversations convert to a call? If yes — what made the difference? If no — was the CTA clear enough, or was the offer not compelling? Write down one specific thing to change in Week 4.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- WEEK 4 -->
+    <div style="margin-bottom: 32px;">
+      <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 16px;">
+        <div style="background: rgba(200,241,53,0.15); color: var(--azure); font-size: 0.65rem; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; padding: 6px 14px; border-radius: 20px; white-space: nowrap; border: 1px solid rgba(200,241,53,0.4);">Week 4 — Review &amp; Compound</div>
+        <div style="flex: 1; height: 1px; background: var(--border);"></div>
+      </div>
+      <div style="display: grid; gap: 12px;">
+        <div class="challenge-card" onclick="this.classList.toggle('done');this.querySelector('.check-icon').textContent=this.classList.contains('done')?'✓':''" style="cursor: pointer;">
+          <div style="display: flex; align-items: flex-start; gap: 12px;">
+            <div style="font-size: 1.1rem; font-weight: 800; color: var(--azure); min-width: 28px;"><span class="check-icon"></span>D22–27</div>
+            <div>
+              <h4 style="margin-bottom: 6px;">Double Down on What Worked</h4>
+              <p style="margin: 0; font-size: 0.88rem;">Look at your Tracker data. Which CTA type got the most engagement? Use that type at least twice more this week. Which post drove the most DMs or link clicks? Create a variation of it. You're not guessing anymore — you're iterating on real data.</p>
+            </div>
+          </div>
+        </div>
+        <div class="challenge-card" onclick="this.classList.toggle('done');this.querySelector('.check-icon').textContent=this.classList.contains('done')?'✓':''" style="cursor: pointer;">
+          <div style="display: flex; align-items: flex-start; gap: 12px;">
+            <div style="font-size: 1.1rem; font-weight: 800; color: var(--azure); min-width: 28px;"><span class="check-icon"></span>D28–29</div>
+            <div>
+              <h4 style="margin-bottom: 6px;">Run Your 30-Day Review</h4>
+              <p style="margin: 0; font-size: 0.88rem;">Answer these 5 questions in your Tracker: (1) Which CTA type drove the most comments? (2) Which drove the most saves? (3) Which drove the most DMs or link clicks? (4) Did any DM conversations convert to a call or booking? (5) What's the one CTA you'll keep using every week going forward?</p>
+            </div>
+          </div>
+        </div>
+        <div class="challenge-card" onclick="this.classList.toggle('done');this.querySelector('.check-icon').textContent=this.classList.contains('done')?'✓':''" style="cursor: pointer;">
+          <div style="display: flex; align-items: flex-start; gap: 12px;">
+            <div style="font-size: 1.1rem; font-weight: 800; color: var(--azure); min-width: 28px;"><span class="check-icon"></span>D30</div>
+            <div>
+              <h4 style="margin-bottom: 6px;">Set Up Month 2</h4>
+              <p style="margin: 0; font-size: 0.88rem;">Open the Monthly CTA Planner. Fill in Month 2 using your 30-day data. Keep the CTAs that worked. Replace the ones that didn't. Update your Layer 3 (Pulse CTA) if there's a new seasonal offer. This is The Compound Method in action — every month builds on the last.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="callout callout-tip">
+      <div class="callout-label">What Happens After Day 30</div>
+      <p>You now have a baseline. You know which CTA type resonates most with your audience. You have your first real conversion data. This is the foundation of <strong>The Compound Method</strong> — the systematic testing framework we use with every Scroll Media client to build a content engine that compounds over time. See the Bonus section for the full introduction.</p>
     </div>
   </section>
 
@@ -2911,7 +3064,7 @@ section[id] {
         <div style="font-size: 0.62rem; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; color: rgba(200,241,53,0.9); margin-bottom: 6px;">The Zero-Risk Upgrade</div>
         <p style="font-size: 0.9rem; font-weight: 700; color: #ffffff; margin: 0;">The $997 Blueprint fee is <u>fully credited</u> toward your first month's retainer. If you become a client, the Blueprint cost you nothing.</p>
       </div>
-      <a href="https://tools.scrollmedia.co/instagram-growth-blueprint.html" target="_blank" class="btn-primary" style="margin-top: 24px; display: inline-block;">Learn About the Blueprint →</a>
+      <a href="https://tools.scrollmedia.co/instagram-growth-blueprint.html" target="_blank" style="display: inline-block; margin-top: 24px; background: rgba(200,241,53,0.95); color: #0c3387; font-size: 0.9rem; font-weight: 800; padding: 14px 28px; border-radius: 10px; text-decoration: none; transition: background 0.2s, transform 0.15s; box-shadow: 0 4px 20px rgba(200,241,53,0.3);">Learn About the Blueprint →</a>
     </div>
   </section>
 
