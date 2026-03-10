@@ -66,49 +66,15 @@
     overflow-x: hidden;
   }
 
-  /* ── Section-Aware Progress Bar ── */
-  #progress-bar-wrap {
-    position: fixed;
-    top: 0; left: 0; right: 0;
-    z-index: 9999;
-    pointer-events: none;
-  }
-
+  /* ── Reading Progress Bar ── */
   #progress-bar {
+    position: fixed;
+    top: 0; left: 0;
     height: 3px;
     width: 0%;
-    background: linear-gradient(90deg, var(--azure), #1a4fd4);
+    background: linear-gradient(90deg, var(--azure), var(--azure-dark));
+    z-index: 9999;
     transition: width 0.1s linear;
-  }
-
-  #progress-sections {
-    display: flex;
-    justify-content: center;
-    gap: 6px;
-    padding: 4px 16px;
-    background: rgba(250,253,255,0.92);
-    backdrop-filter: blur(8px);
-    border-bottom: 1px solid rgba(21,21,22,0.06);
-  }
-
-  .ps {
-    font-size: 0.58rem;
-    font-weight: 700;
-    letter-spacing: 1.2px;
-    text-transform: uppercase;
-    color: rgba(21,21,22,0.3);
-    padding: 2px 8px;
-    border-radius: 4px;
-    transition: color 0.3s, background 0.3s;
-  }
-
-  .ps.active {
-    color: var(--azure);
-    background: rgba(12,51,135,0.08);
-  }
-
-  .ps.done {
-    color: rgba(12,51,135,0.5);
   }
 
   /* ── Sticky Nav ── */
@@ -1416,18 +1382,7 @@
 </head>
 <body>
 
-<!-- SECTION-AWARE PROGRESS BAR -->
-<div id="progress-bar-wrap">
-  <div id="progress-bar"></div>
-  <div id="progress-sections">
-    <span class="ps" data-section="mindset">Mindset</span>
-    <span class="ps" data-section="framework">Framework</span>
-    <span class="ps" data-section="arsenal">Arsenal</span>
-    <span class="ps" data-section="dm-script">DM Script</span>
-    <span class="ps" data-section="challenge">Challenge</span>
-    <span class="ps" data-section="bonus">Bonus</span>
-  </div>
-</div>
+<div id="progress-bar"></div>
 <!-- PURCHASE CONFIRMATION BANNER -->
 <div style="background: linear-gradient(135deg, #0c3387 0%, #092a6e 100%); color: #ffffff; text-align: center; padding: 12px 24px; font-family: Inter, sans-serif; font-size: 13px; font-weight: 600; letter-spacing: 0.3px;">
   ✓ You're in — this is your private copy of the Audience-to-Action Playbook. Bookmark this page.
@@ -1446,7 +1401,7 @@
     <a href="#challenge">Challenge</a>
     <a href="#bonus">Bonus</a>
   </div>
-  <a href="https://tools.scrollmedia.co/instagram-growth-blueprint.html" target="_blank" class="nav-cta">Upgrade to the Blueprint →</a>
+  <a href="https://chaser007.gumroad.com/l/audience-to-action" target="_blank" class="nav-cta">Get Access — $47</a>
 </nav>
 
 <!-- HERO -->
@@ -1456,8 +1411,8 @@
     <h1>The <span class="accent">Audience-to-Action</span><br>Playbook</h1>
     <p>The complete system for turning passive Instagram followers into qualified leads and booked clients — without paid ads or posting more content.</p>
     <div class="hero-actions">
-      <a href="#mindset" class="btn-primary">Start Reading ↓</a>
-      <a href="https://tools.scrollmedia.co/instagram-growth-blueprint.html" target="_blank" class="btn-secondary">Upgrade to the Blueprint →</a>
+      <a href="https://chaser007.gumroad.com/l/audience-to-action" target="_blank" class="btn-primary">Get Instant Access — $47 →</a>
+      <a href="#mindset" class="btn-secondary">Start Reading ↓</a>
     </div>
     <div class="hero-meta">
       <div class="hero-meta-item">
@@ -1497,12 +1452,6 @@
       </ol>
       <p style="margin-top: 14px; color: var(--text-muted); font-size: 0.85rem;">This script alone has generated booked calls for our clients within 24 hours of implementation. Come back to the full system when you're ready to build the engine around it.</p>
       <a href="#dm-script" class="qw-link">Jump to the DM Script ↓</a>
-    </div>
-
-    <!-- SOCIAL PROOF STRIP -->
-    <div class="testimonial" style="margin-top: 32px; margin-bottom: 0;">
-      <div class="quote">The way Scroll Media restructured our CTAs completely changed how our audience interacts with us. We went from getting likes to getting DMs. Within 60 days, we had booked 3 new clients directly from Instagram — something that had never happened before.</div>
-      <div class="attribution">— <span>Define Oakley</span> · Fitness &amp; Wellness Brand · 105% Engagement Increase, 35% Reach Increase</div>
     </div>
 
     <!-- AUTHOR -->
@@ -1789,13 +1738,6 @@
       <p style="margin-top: 8px;">Strong: <em>"If your Instagram hasn't generated a single qualified lead this month, something is broken. I have 2 strategy sessions open this week. Tap the link in bio if you're ready to fix it."</em></p>
       <p style="margin-top: 8px;">The second version works because it names the pain, creates urgency with scarcity, and makes the action feel like a solution — not a sales pitch.</p>
     </div>
-    <!-- INLINE UPGRADE MOMENT 1 -->
-    <div class="callout callout-result" style="margin-top: 48px; border-left-color: var(--azure);">
-      <div class="callout-label">Ready to Skip the DIY?</div>
-      <h4>Get the Full System Built For You</h4>
-      <p>The Framework you just read is the foundation. The Instagram Growth Blueprint takes it further — I personally build your complete 90-day content system, including your format mix, CTA strategy, and content calendar. And the $997 fee is <strong>fully credited toward your first month’s retainer</strong> if you decide to work with us. That means the Blueprint is effectively free if you become a client.</p>
-      <a href="https://tools.scrollmedia.co/instagram-growth-blueprint.html" target="_blank" style="display:inline-block; margin-top:14px; background:var(--azure); color:#fff; font-size:0.78rem; font-weight:800; padding:10px 20px; border-radius:8px; text-decoration:none; letter-spacing:0.3px;">Learn About the Blueprint →</a>
-    </div>
   </section>
 
   <div class="section-divider"></div>
@@ -2029,22 +1971,13 @@
             <div class="cta-example-pill"><strong>Home Builder:</strong> "We have 1 lot remaining in [Development]. If you've been watching this build, now is the time to reach out. Link in bio."</div>
           </div>
         </div>
-        <div class="cta-item">
-          <div class="cta-type">The Expanded Niche Pack — Coaches, Designers &amp; Builders</div>
-          <div class="cta-examples">
-            <div class="cta-example-pill"><strong>Coach / Consultant:</strong> "I'm opening 2 spots for 1:1 coaching next month. If you've been stuck at the same revenue ceiling for more than 6 months, that's the problem I solve. DM me 'READY' and let's talk."</div>
-            <div class="cta-example-pill"><strong>Coach / Consultant:</strong> "I just opened a free 20-minute strategy call for [niche] founders. No pitch — just clarity on your next move. Link in bio to grab a spot before they're gone."</div>
-            <div class="cta-example-pill"><strong>Interior Designer:</strong> "I have one full-room design project available this quarter. If you've been putting off your [room type] renovation because you don't know where to start, that's exactly what I fix. Link in bio."</div>
-            <div class="cta-example-pill"><strong>Home Builder:</strong> "We're breaking ground on our next custom build in [Month]. If you've been thinking about building your forever home, now is the time to get on the list. Link in bio to schedule a discovery call."</div>
-            <div class="cta-example-pill"><strong>Physical Therapist:</strong> "If you've been managing [injury/pain] with rest and hoping it gets better — it won't. I have 3 new patient evaluation slots this week. Link in bio to book before they fill."</div>
-            <div class="cta-example-pill"><strong>Therapist (Mental Health):</strong> "I have 2 new client openings this month for [specialty, e.g., anxiety / burnout / life transitions]. If you've been putting off getting support, this is your sign. Link in bio to request a free 15-minute consult."</div>
-          </div>
-          <div class="cta-note" style="margin-top: 10px;">These templates are built around the same core principle: name the specific pain, create real scarcity, and make the action feel like relief — not a sales pitch. Swap in your exact niche language and they’re ready to post.</div>
-        </div>
       </div>
     </div>
 
-    <!-- Testimonial moved to top of page for higher-impact placement -->
+    <div class="testimonial">
+      <div class="quote">The way Scroll Media restructured our CTAs completely changed how our audience interacts with us. We went from getting likes to getting DMs. Within 60 days, we had booked 3 new clients directly from Instagram — something that had never happened before.</div>
+      <div class="attribution">— <span>Define Oakley</span> · Fitness &amp; Wellness Brand · 105% Engagement Increase, 35% Reach Increase</div>
+    </div>
   </section>
 
   <div class="section-divider"></div>
@@ -2072,13 +2005,9 @@
         <div class="dm-trigger">Trigger: They comment "GUIDE" on your post, or send an unprompted inquiry DM.</div>
         <div class="dm-bubble outgoing">
           <div class="bubble-label">Your Message</div>
-          Hey [Name]! Thanks so much for reaching out — really appreciate it. Here’s the [resource name] I mentioned: <strong>[your free resource link]</strong>. [One sentence describing what they’ll find in it.] Let me know if you have any questions after you check it out!
+          Hey [Name]! Thanks so much for reaching out — really appreciate it. Here's the playbook I mentioned: <strong>https://tools.scrollmedia.co/audience-to-action-playbook.html</strong>. It covers the CTA Framework, 50+ plug-and-play scripts, and the DM-to-Booking system. Let me know if you have any questions after you check it out!
         </div>
         <div class="cta-note">Keep this message warm, short, and resource-focused. No pitch. No ask. Just deliver the value you promised.</div>
-        <div class="callout callout-tip" style="margin-top: 14px;">
-          <div class="callout-label">How to Customize This Template</div>
-          <p>Replace <strong>[resource name]</strong> with whatever you’re delivering — a free guide, a checklist, a video, a PDF. Replace <strong>[your free resource link]</strong> with the actual URL. The bracketed sentence should describe what they’ll get in 1 sentence. If you’re using this playbook as your lead magnet, your sales page URL goes here — not this private delivery page.</p>
-        </div>
       </div>
     </div>
 
@@ -2117,16 +2046,6 @@
       <h4>Automate Message 1 in 2 Minutes</h4>
       <p>You can save Message 1 as a template in Instagram's native "Saved Replies" feature so you can send it with two taps instead of retyping it every time.</p>
       <p style="margin-top: 10px;"><strong>How to set it up:</strong> Go to your Instagram profile → Settings → Business → Saved Replies → tap the "+" icon → paste your Message 1 template → assign a shortcut keyword (e.g., "guide1"). Next time someone DMs you, type your shortcut and the full message auto-fills.</p>
-    </div>
-
-    <!-- INLINE UPGRADE MOMENT 2 -->
-    <div style="margin-top: 48px; background: linear-gradient(135deg, rgba(12,51,135,0.06) 0%, rgba(12,51,135,0.02) 100%); border: 1px solid rgba(12,51,135,0.15); border-radius: 16px; padding: 28px 32px; display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap;">
-      <div style="flex: 1; min-width: 200px;">
-        <div style="font-size: 0.62rem; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; color: var(--azure); margin-bottom: 8px;">The Next Level</div>
-        <h4 style="font-size: 1.05rem; margin-bottom: 8px;">Want me to build this entire system for your account?</h4>
-        <p style="font-size: 0.85rem; color: var(--text-secondary); margin: 0;">The Instagram Growth Blueprint is a 3-week deep-dive where I personally design your complete content system. <strong style="color: var(--shadow);">The $997 is fully credited to your first month's retainer</strong> — making it effectively free if you become a client.</p>
-      </div>
-      <a href="https://tools.scrollmedia.co/instagram-growth-blueprint.html" target="_blank" style="background: var(--azure); color: #fff; font-size: 0.78rem; font-weight: 800; padding: 12px 22px; border-radius: 10px; text-decoration: none; letter-spacing: 0.3px; white-space: nowrap; flex-shrink: 0;">Learn About the Blueprint →</a>
     </div>
   </section>
 
@@ -2272,26 +2191,12 @@
       <p style="margin-top: 8px;"><strong>Week 4:</strong> Compare the results. Did the new CTA type outperform the old one? If yes, it becomes your new CORE. If no, you've confirmed your original approach was right. Either way, you win.</p>
     </div>
 
-    <!-- YOUR NEXT 10 MINUTES -->
-    <div class="callout callout-principle" style="margin-top: 56px;">
-      <div class="callout-label">Your Next 10 Minutes</div>
-      <h4>Don't Close This Tab Without Doing This First</h4>
-      <p>Information without implementation is just entertainment. Here’s your one immediate action before you do anything else:</p>
-      <p style="margin-top: 12px;"><strong>Open Instagram right now.</strong> Look at your last 3 posts. For each one, ask: What funnel stage is this? (TOFU, MOFU, or BOFU?) Does the CTA match that stage? Write down the mismatch. That’s your Week 1 audit — done.</p>
-      <p style="margin-top: 12px;">Then <strong>bookmark this page</strong> — you’ll want to come back to the CTA Arsenal every time you write a new post. And when you’re ready to start the full 30-day implementation, <a href="#challenge" style="color: var(--azure); font-weight: 700;">jump to the Challenge ↑</a>.</p>
-    </div>
-
     <!-- UPSELL -->
     <div class="upsell-banner" style="margin-top: 64px;">
       <div class="upsell-label">Want the Full Strategy Built For You?</div>
       <h2>The <span style="color: var(--azure);">Instagram Growth Blueprint</span></h2>
-      <p>This playbook gives you the tools. If you want an expert to build your complete 90-day growth plan, The Instagram Growth Blueprint is your next step. It's a 3-week deep-dive where I personally design your entire content system, CTA architecture, and content calendar from scratch.</p>
-      <div style="background: rgba(226,237,122,0.18); border: 1.5px solid rgba(200,241,53,0.4); border-radius: 12px; padding: 16px 20px; margin: 20px 0; display: inline-block; text-align: left;">
-        <div style="font-size: 0.62rem; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; color: var(--azure); margin-bottom: 6px;">The Zero-Risk Upgrade</div>
-        <p style="font-size: 0.9rem; font-weight: 700; color: var(--shadow); margin: 0;">The $997 Blueprint fee is <u>fully credited</u> toward your first month’s retainer. If you become a client, the Blueprint cost you nothing.</p>
-      </div>
-      <br>
-      <a href="https://tools.scrollmedia.co/instagram-growth-blueprint.html" target="_blank" class="btn-primary">Learn About the Blueprint →</a>
+      <p>This playbook gives you the tools. If you want an expert to build your complete 90-day growth plan, The Instagram Growth Blueprint is your next step. It's a 3-week deep-dive where I personally design your entire content system. The best part? The $997 is fully credited to your first month's retainer if you decide to partner with us for execution.</p>
+      <a href="mailto:chase@scrollmedia.co?subject=Instagram Growth Blueprint Inquiry" target="_blank" class="btn-primary">Learn About the Blueprint →</a>
     </div>
   </section>
 
@@ -2304,7 +2209,7 @@
     <a href="https://www.scrollmedia.co/" target="_blank">Website</a>
     <a href="https://www.instagram.com/scrollmedia.co" target="_blank">Instagram</a>
     <a href="mailto:hello@scrollmedia.co">hello@scrollmedia.co</a>
-    <a href="https://tools.scrollmedia.co/instagram-growth-blueprint.html" target="_blank">Upgrade to the Blueprint →</a>
+    <a href="https://chaser007.gumroad.com/l/audience-to-action" target="_blank">Get the Playbook — $47</a>
   </div>
   <div class="footer-copy">&copy; 2026 Scroll Media. All rights reserved.</div>
 </footer>
@@ -2313,33 +2218,12 @@
 <a href="#top" id="back-to-top">↑</a>
 
 <script>
-  // Section-aware reading progress bar
-  const sections = ['mindset','framework','arsenal','dm-script','challenge','bonus'];
-
+  // Reading progress bar
   window.addEventListener('scroll', () => {
     const scrollTop = window.scrollY;
     const docHeight = document.documentElement.scrollHeight - window.innerHeight;
     const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
     document.getElementById('progress-bar').style.width = progress + '%';
-
-    // Section highlighting
-    let currentSection = null;
-    sections.forEach(id => {
-      const el = document.getElementById(id);
-      if (el) {
-        const rect = el.getBoundingClientRect();
-        if (rect.top <= 120) currentSection = id;
-      }
-    });
-
-    document.querySelectorAll('.ps').forEach(span => {
-      const sec = span.dataset.section;
-      const idx = sections.indexOf(sec);
-      const curIdx = sections.indexOf(currentSection);
-      span.classList.remove('active','done');
-      if (sec === currentSection) span.classList.add('active');
-      else if (currentSection && idx < curIdx) span.classList.add('done');
-    });
 
     // Back to top visibility
     const btn = document.getElementById('back-to-top');
