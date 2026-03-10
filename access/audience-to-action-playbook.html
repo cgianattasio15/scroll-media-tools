@@ -196,7 +196,6 @@ nav .nav-cta:hover {
 
 .hero {
     background-color: var(--ghost);
-    padding: 100px 32px 80px;
     text-align: center;
     position: relative;
     overflow: hidden;
@@ -330,7 +329,11 @@ nav .nav-cta:hover {
 /* ── Section Styles ── */
 
 section {
-    padding: 80px 0;
+    padding: 56px 0;
+  }
+
+section.hero {
+    padding: 100px 32px 80px;
   }
 
 .section-label {
@@ -1471,7 +1474,7 @@ section[id] {
 .section-divider {
     height: 1px;
     background: var(--border);
-    margin: 64px 0;
+    margin: 0;
   }
 
 /* ── Responsive ── */
@@ -1668,7 +1671,7 @@ section[id] {
 <div class="container">
 
     <!-- QUICK WIN -->
-  <section style="padding-top: 64px; padding-bottom: 0;">
+  <section style="padding-top: 40px; padding-bottom: 0;">
     <div class="quick-win">
       <div class="qw-label">10-Minute Quick Win</div>
       <h3>The 3-Point Profile Audit</h3>
@@ -1689,7 +1692,7 @@ section[id] {
     </div>
 
     <!-- AUTHOR -->
-    <div class="author-card">
+    <div class="author-card" style="margin-top: 20px;">
       <div class="author-avatar">SM</div>
       <div class="author-info">
         <h4>Scroll Media</h4>
@@ -2352,7 +2355,7 @@ section[id] {
             <p style="margin-top: 8px;"><strong>When NOT to use:</strong> Don't use Poll or Quiz stickers on feed posts — they don't exist there. For feed engagement, use Question CTAs instead.</p>
           </div>
 
-          <div class="cta-type">The Poll — This or That</div>
+          <h5 style="font-size: 0.95rem; font-weight: 700; color: var(--text-primary); margin: 24px 0 10px; padding-bottom: 8px; border-bottom: 2px solid rgba(12,51,135,0.1);">The Poll — This or That</h5>
           <div class="cta-examples">
             <div class="cta-weak">"Which do you prefer?" (no context, no stakes, no reason to care)</div>
             <div class="cta-strong">"Med Spa: Hydrafacial vs. Chemical Peel — which one are you more curious about? Vote below."</div>
@@ -2363,7 +2366,7 @@ section[id] {
             <div class="cta-example-pill"><strong>Coach / Consultant:</strong> "Biggest business bottleneck right now — time or money? Vote below. I'll address the winner in my next post."</div>
           </div>
 
-          <div class="cta-type">The Quiz — Test Their Knowledge</div>
+          <h5 style="font-size: 0.95rem; font-weight: 700; color: var(--text-primary); margin: 32px 0 10px; padding-bottom: 8px; border-bottom: 2px solid rgba(12,51,135,0.1);">The Quiz — Test Their Knowledge</h5>
           <div class="cta-examples">
             <div class="cta-weak">"Quiz time! Do you know the answer?" (vague, no stakes)</div>
             <div class="cta-strong">"Quick quiz: What's the #1 mistake most [niche] businesses make on Instagram? Tap to see if you're right."</div>
@@ -2373,7 +2376,7 @@ section[id] {
             <div class="cta-example-pill"><strong>Fitness Studio:</strong> "Quiz: How many days per week do you actually need to train to see results? Most people overestimate. Tap to find out."</div>
           </div>
 
-          <div class="cta-type">The Question Sticker — Open the Conversation</div>
+          <h5 style="font-size: 0.95rem; font-weight: 700; color: var(--text-primary); margin: 32px 0 10px; padding-bottom: 8px; border-bottom: 2px solid rgba(12,51,135,0.1);">The Question Sticker — Open the Conversation</h5>
           <div class="cta-examples">
             <div class="cta-weak">"Any questions? Drop them below!" (generic, no direction)</div>
             <div class="cta-strong">"What's the one question about [specific topic] you've been too embarrassed to ask? Drop it in the box — I'll answer every single one."</div>
@@ -2384,7 +2387,7 @@ section[id] {
             <div class="cta-example-pill"><strong>Interior Designer:</strong> "Drop a photo of the room you're most stuck on. I'll give you one specific fix in my reply."</div>
           </div>
 
-          <div class="cta-type">The Countdown — Build Anticipation</div>
+          <h5 style="font-size: 0.95rem; font-weight: 700; color: var(--text-primary); margin: 32px 0 10px; padding-bottom: 8px; border-bottom: 2px solid rgba(12,51,135,0.1);">The Countdown — Build Anticipation</h5>
           <div class="cta-examples">
             <div class="cta-example-pill"><strong>Any Niche — Launch:</strong> Use the Countdown sticker on a Story announcing a new offer, event, or limited availability window. The sticker sends a notification to anyone who taps it when the countdown hits zero — free re-engagement.</div>
             <div class="cta-example-pill"><strong>Med Spa:</strong> "Summer Skin Prep Package drops [Date]. Tap the countdown to get notified the second it goes live."</div>
@@ -2431,47 +2434,71 @@ section[id] {
     <p>This is the section most playbooks skip. You've got a comment. You've got a DM. Now what? Most people either ignore it, reply with a generic "Thanks!" or immediately pitch their service and kill the conversation.</p>
     <p>The 3-Message DM Script is a simple, non-salesy system for turning any comment or inquiry into a booked call. It works because it follows the natural psychology of a buying conversation: <strong>Acknowledge → Probe → Pivot.</strong></p>
 
-    <div class="callout callout-tip" style="margin-bottom: 32px;">
+    <div class="callout callout-tip" style="margin-bottom: 28px;">
       <div class="callout-label">Why This Works</div>
       <p>The script is built on a core principle from <em>Cashvertising</em>: people don't want to be sold to — they want to be understood. The first two messages are entirely about them. You're not pitching anything. You're listening. By the time Message 3 arrives, the pivot to a call feels like a natural next step, not a sales move.</p>
     </div>
 
-    <div class="dm-step">
-      <div class="dm-step-num">1</div>
-      <div class="dm-step-content">
-        <h4>Acknowledge &amp; Deliver</h4>
-        <div class="dm-trigger">Trigger: They comment "GUIDE" on your post, or send an unprompted inquiry DM.</div>
-        <div class="dm-bubble outgoing">
-          <div class="bubble-label">Your Message</div>
-          Hey [Name]! Thanks so much for reaching out — really appreciate it. Here’s the [resource name] I mentioned: <strong>[your free resource link]</strong>. [One sentence describing what they’ll find in it.] Let me know if you have any questions after you check it out!
+    <!-- DM Step 1 Accordion -->
+    <div class="cta-section open" id="dm-step-1">
+      <div class="cta-section-header" onclick="this.parentElement.classList.toggle('open')">
+        <div class="csh-left">
+          <span class="csh-icon">💬</span>
+          <div>
+            <h4>Step 1 — Acknowledge &amp; Deliver</h4>
+            <div class="csh-meta">Trigger: They comment your keyword or send an unprompted inquiry DM</div>
+          </div>
         </div>
-        <div class="cta-note">Keep this message warm, short, and resource-focused. No pitch. No ask. Just deliver the value you promised.</div>
-        <div class="callout callout-tip" style="margin-top: 14px;">
+        <span class="csh-toggle">▼</span>
+      </div>
+      <div class="cta-section-body">
+        <div class="dm-bubble outgoing" style="margin-top: 16px;">
+          <div class="bubble-label">Your Message</div>
+          Hey [Name]! Thanks so much for reaching out — really appreciate it. Here's the [resource name] I mentioned: <strong>[your free resource link]</strong>. [One sentence describing what they'll find in it.] Let me know if you have any questions after you check it out!
+        </div>
+        <div class="cta-note" style="margin-top: 10px;">Keep this message warm, short, and resource-focused. No pitch. No ask. Just deliver the value you promised.</div>
+        <div class="callout callout-tip" style="margin-top: 16px;">
           <div class="callout-label">How to Customize This Template</div>
-          <p>Replace <strong>[resource name]</strong> with whatever you’re delivering — a free guide, a checklist, a video, a PDF. Replace <strong>[your free resource link]</strong> with the actual URL. The bracketed sentence should describe what they’ll get in 1 sentence. If you’re using this playbook as your lead magnet, your sales page URL goes here — not this private delivery page.</p>
+          <p>Replace <strong>[resource name]</strong> with whatever you're delivering — a free guide, a checklist, a video, a PDF. Replace <strong>[your free resource link]</strong> with the actual URL. The bracketed sentence should describe what they'll get in 1 sentence. If you're using this playbook as your lead magnet, your sales page URL goes here — not this private delivery page.</p>
         </div>
       </div>
     </div>
 
-    <div class="dm-step">
-      <div class="dm-step-num">2</div>
-      <div class="dm-step-content">
-        <h4>The Gentle Probe</h4>
-        <div class="dm-trigger">Timing: Send 24–48 hours after Message 1, only if they haven't replied.</div>
-        <div class="dm-bubble outgoing">
+    <!-- DM Step 2 Accordion -->
+    <div class="cta-section" id="dm-step-2">
+      <div class="cta-section-header" onclick="this.parentElement.classList.toggle('open')">
+        <div class="csh-left">
+          <span class="csh-icon">🔍</span>
+          <div>
+            <h4>Step 2 — The Gentle Probe</h4>
+            <div class="csh-meta">Timing: Send 24–48 hours after Message 1, only if they haven't replied</div>
+          </div>
+        </div>
+        <span class="csh-toggle">▼</span>
+      </div>
+      <div class="cta-section-body">
+        <div class="dm-bubble outgoing" style="margin-top: 16px;">
           <div class="bubble-label">Your Message</div>
           Hey [Name], just wanted to follow up — did you get a chance to look through the guide? Was there a specific challenge you were hoping it would help with?
         </div>
-        <div class="cta-note">This message does two things: it re-opens the conversation, and it surfaces the specific pain point you can solve. The answer to "what were you hoping it would help with?" is your sales brief.</div>
+        <div class="cta-note" style="margin-top: 10px;">This message does two things: it re-opens the conversation, and it surfaces the specific pain point you can solve. The answer to "what were you hoping it would help with?" is your sales brief.</div>
       </div>
     </div>
 
-    <div class="dm-step">
-      <div class="dm-step-num">3</div>
-      <div class="dm-step-content">
-        <h4>The Pivot to Call</h4>
-        <div class="dm-trigger">Trigger: They reply to Message 2 with a specific problem or challenge.</div>
-        <div class="dm-bubble" style="margin-bottom: 10px;">
+    <!-- DM Step 3 Accordion -->
+    <div class="cta-section" id="dm-step-3">
+      <div class="cta-section-header" onclick="this.parentElement.classList.toggle('open')">
+        <div class="csh-left">
+          <span class="csh-icon">🎯</span>
+          <div>
+            <h4>Step 3 — The Pivot to Call</h4>
+            <div class="csh-meta">Trigger: They reply to Message 2 with a specific problem or challenge</div>
+          </div>
+        </div>
+        <span class="csh-toggle">▼</span>
+      </div>
+      <div class="cta-section-body">
+        <div class="dm-bubble" style="margin-top: 16px; margin-bottom: 10px;">
           <div class="bubble-label">Their Reply</div>
           Yeah, I've been struggling with getting consistent engagement. I post regularly but nothing seems to stick.
         </div>
@@ -2479,15 +2506,13 @@ section[id] {
           <div class="bubble-label">Your Message</div>
           That makes total sense — and honestly, it's the most common thing I hear. Consistency is only half the equation; the other half is making sure each post has the right job for the right audience. I help my clients solve exactly this. If you're open to it, I'd love to hop on a quick 15-minute call to look at your account and point you in the right direction — no pitch, no pressure. Would that be useful?
         </div>
-        <div class="cta-note">The pivot works because you've named their exact problem, demonstrated you understand it, and offered a low-commitment next step. "15 minutes" and "no pitch, no pressure" remove every objection before they can raise it.</div>
+        <div class="cta-note" style="margin-top: 10px;">The pivot works because you've named their exact problem, demonstrated you understand it, and offered a low-commitment next step. "15 minutes" and "no pitch, no pressure" remove every objection before they can raise it.</div>
+        <div class="callout callout-tip" style="margin-top: 16px;">
+          <div class="callout-label">Pro Tip — Instagram Saved Replies</div>
+          <h4>Send Any Message in 2 Taps (No Tools Required)</h4>
+          <p>Instagram has a built-in "Saved Replies" feature that lets you pre-write message templates and send them with a shortcut keyword. This is a native Instagram feature — no third-party tools, no automation risk, no policy violations. Go to Settings → Business → Saved Replies → tap "+" → paste your template → assign a shortcut keyword (e.g., "guide1"). The full message auto-fills in 2 taps.</p>
+        </div>
       </div>
-    </div>
-
-    <div class="callout callout-tip">
-      <div class="callout-label">Pro Tip — Instagram Saved Replies</div>
-      <h4>Send Message 1 in 2 Taps (No Tools Required)</h4>
-      <p>Instagram has a built-in "Saved Replies" feature that lets you pre-write message templates and send them with a shortcut keyword. This is not a third-party automation tool — it's a native Instagram feature available to all business and creator accounts. It means you can respond to every DM inquiry in seconds, without copy-pasting or retyping.</p>
-      <p style="margin-top: 10px;"><strong>How to set it up:</strong> Go to your Instagram profile → Settings → Business → Saved Replies → tap the "+" icon → paste your Message 1 template → assign a shortcut keyword (e.g., "guide1"). Next time someone DMs you, type your shortcut and the full message auto-fills. No third-party apps, no automation risk, no policy violations.</p>
     </div>
 
     <!-- ACTION ITEM: DM SCRIPT -->
@@ -2532,173 +2557,171 @@ section[id] {
       <p>Most businesses treat their bio link like a menu — a list of options with no priority. The 3-Layer CTA Stack treats it like a funnel: a deliberate sequence designed to move people from cold to warm to converted. The entry point is always the lead magnet. The destination is always the dream offer. The pulse CTA handles everything else.</p>
     </div>
 
-    <div class="funnel-grid">
-      <div class="funnel-stage tofu">
-        <div class="fs-label">Layer 1 — Always On</div>
-        <h4>The Hook (Lead Magnet)</h4>
-        <p>A free, high-value resource that solves a specific problem your ideal client is already thinking about. It qualifies the prospect, builds trust, and creates a natural bridge to your paid offer.</p>
-        <ul>
-          <li>Free quiz, checklist, or guide</li>
-          <li>Answers a top objection or question</li>
-          <li>Delivers immediate, tangible value</li>
-          <li>Ends with a path to your dream offer</li>
-        </ul>
-        <div class="fs-cta-goal">Primary Bio Link</div>
+    <!-- LAYER 1 ACCORDION -->
+    <div class="cta-section open" id="layer-1-accordion" style="margin-top: 32px;">
+      <div class="cta-section-header" onclick="this.parentElement.classList.toggle('open')">
+        <div class="csh-left">
+          <span class="csh-icon">🎣</span>
+          <div>
+            <h4>Layer 1 — The Hook (Lead Magnet)</h4>
+            <div class="csh-meta">Always On · Primary Bio Link · TOFU Entry Point</div>
+          </div>
+        </div>
+        <span class="csh-toggle">▼</span>
       </div>
-      <div class="funnel-stage mofu">
-        <div class="fs-label">Layer 2 — Always On</div>
-        <h4>The Offer (Dream Outcome)</h4>
-        <p>A dedicated landing page or inquiry form for your primary service offer. This is the destination your lead magnet feeds into. It should be clear, specific, and frictionless to engage with.</p>
-        <ul>
-          <li>Service inquiry or booking page</li>
-          <li>Clearly states the offer and outcome</li>
-          <li>Low-friction next step (form, call, DM)</li>
-          <li>Positioned as the natural next step</li>
-        </ul>
-        <div class="fs-cta-goal">Secondary Bio Link</div>
-      </div>
-      <div class="funnel-stage bofu">
-        <div class="fs-label">Layer 3 — Rotates Monthly</div>
-        <h4>The Pulse (Seasonal CTA)</h4>
-        <p>A time-sensitive, rotating CTA tied to current events, promotions, or campaigns. This layer keeps your bio fresh and creates urgency without disrupting the always-on foundation.</p>
-        <ul>
-          <li>Event registrations</li>
-          <li>Limited-time promotions</li>
-          <li>Seasonal campaigns</li>
-          <li>New content or launches</li>
-        </ul>
-        <div class="fs-cta-goal">Tertiary Bio Link (Optional)</div>
-      </div>
-    </div>
-
-    <h3 style="margin-top: 48px; margin-bottom: 20px;">Layer 1 Deep Dive — Building Your Lead Magnet</h3>
-    <p>The lead magnet is the most important CTA in your stack because it's the entry point for every cold prospect. It needs to do three things simultaneously: deliver real value, qualify the reader as a potential client, and create a natural bridge to your paid offer.</p>
-    <p>The best lead magnets are built around the top objections or questions you hear most often from prospects. If you can answer the question they're already asking — for free — you've demonstrated your expertise before they've spent a dollar.</p>
-
-    <div class="callout callout-result">
-      <div class="callout-label">Scroll Media Example</div>
-      <h4>The Instagram Maturity Quiz</h4>
-      <p>Scroll Media's primary lead magnet is the <strong>Instagram Maturity Quiz</strong> — a 10-question assessment that identifies where a business is in their social media development, what stage they're at, and what actions they need to take to improve. It addresses the #1 objection we hear from prospects: "I don't know where to start." The quiz gives them a clear answer, then naturally bridges to our Signature Package as the solution.</p>
-      <p style="margin-top: 10px;">This is the model: lead magnet answers the objection → positions your expertise → bridges to the paid offer. Every niche has a version of this.</p>
-    </div>
-
-    <h3 style="margin-top: 40px; margin-bottom: 20px;">Lead Magnet Examples by Niche</h3>
-    <p>The format of your lead magnet should match the way your ideal client naturally seeks information. Below are proven lead magnet formats for each of the core service niches, built around their most common objections and questions.</p>
-
-    <div class="niche-grid" style="grid-template-columns: repeat(2, 1fr);">
-      <div class="niche-card">
-        <div class="niche-name">Med Spa &amp; Dermatology</div>
-        <ul>
-          <li><strong>Skin Assessment Quiz:</strong> "What's Your Skin Type? Find Out Which Treatment Is Right for You" — qualifies by treatment interest, bridges to consultation booking.</li>
-          <li><strong>Treatment Guide:</strong> "The 5 Questions to Ask Before Your First Botox Appointment" — addresses the fear of the unknown, positions the practice as trustworthy.</li>
-          <li><strong>Seasonal Checklist:</strong> "Your Summer Skin Prep Checklist" — timely, practical, bridges to a seasonal promotion or package.</li>
-        </ul>
-      </div>
-      <div class="niche-card">
-        <div class="niche-name">Coaching &amp; Consulting</div>
-        <ul>
-          <li><strong>Readiness Quiz:</strong> "Are You Ready to Scale? The 10-Question Business Audit" — qualifies by growth stage, bridges to a strategy call or program enrollment.</li>
-          <li><strong>Framework PDF:</strong> "The 3-Step System I Use to Help Clients Add $10K/Month" — demonstrates methodology, positions the coach as the guide.</li>
-          <li><strong>Video Training:</strong> "The #1 Mistake Holding Your Business Back (Free 20-Min Training)" — high perceived value, bridges to a discovery call.</li>
-        </ul>
-      </div>
-      <div class="niche-card">
-        <div class="niche-name">Fitness Studio &amp; Personal Training</div>
-        <ul>
-          <li><strong>Goal Assessment:</strong> "What's Your Fitness Personality? Find Your Perfect Training Style" — fun, shareable, bridges to a free trial class or intro session.</li>
-          <li><strong>Starter Guide:</strong> "The 4-Week Beginner's Workout Plan (No Equipment Needed)" — removes the barrier to starting, builds trust before asking for a commitment.</li>
-          <li><strong>Nutrition Checklist:</strong> "The 7 Foods Sabotaging Your Results" — addresses a universal pain point, bridges to a nutrition coaching upsell.</li>
-        </ul>
-      </div>
-      <div class="niche-card">
-        <div class="niche-name">Real Estate</div>
-        <ul>
-          <li><strong>Buyer Readiness Quiz:</strong> "Are You Ready to Buy? The 8-Question First-Time Buyer Assessment" — qualifies by timeline and readiness, bridges to a buyer consultation.</li>
-          <li><strong>Neighborhood Guide:</strong> "The Insider's Guide to [City/Neighborhood]: What the Listings Don't Tell You" — hyperlocal, high-value, positions as the local expert.</li>
-          <li><strong>Market Report:</strong> "What's Actually Happening in [City] Real Estate Right Now" — timely, authority-building, bridges to a listing or buyer consultation.</li>
-        </ul>
-      </div>
-      <div class="niche-card">
-        <div class="niche-name">Interior Design</div>
-        <ul>
-          <li><strong>Style Quiz:</strong> "What's Your Interior Design Style? Take the 5-Minute Quiz" — highly shareable, bridges to a design consultation or mood board service.</li>
-          <li><strong>Room Checklist:</strong> "The 10-Item Living Room Checklist Every Designer Uses" — practical, save-worthy, bridges to a full-room design package.</li>
-          <li><strong>Budget Guide:</strong> "How to Design a Beautiful Space on Any Budget" — addresses the #1 objection (cost), positions the designer as accessible and strategic.</li>
-        </ul>
-      </div>
-      <div class="niche-card">
-        <div class="niche-name">Therapists &amp; Physical Therapists</div>
-        <ul>
-          <li><strong>Symptom Assessment:</strong> "Is Your Pain Muscular or Structural? The 5-Question Self-Assessment" — directly addresses the diagnostic question prospects are already asking, bridges to a consultation.</li>
-          <li><strong>Mental Health Checklist:</strong> "5 Signs It Might Be Time to Talk to Someone" — reduces stigma, normalizes seeking help, bridges to a free intro session.</li>
-          <li><strong>Recovery Guide:</strong> "The 3 Exercises That Prevent 80% of Lower Back Pain" — demonstrates expertise, builds trust, bridges to a full assessment or treatment plan.</li>
-        </ul>
-      </div>
-      <div class="niche-card">
-        <div class="niche-name">Home Builders &amp; Contractors</div>
-        <ul>
-          <li><strong>Project Readiness Quiz:</strong> "Is Your Home Ready for a Renovation? The 7-Question Pre-Project Assessment" — qualifies by project stage and budget readiness, bridges to a free estimate.</li>
-          <li><strong>Cost Guide:</strong> "What Does a Kitchen Remodel Actually Cost in [City]? The Honest Breakdown" — addresses the #1 question before any project conversation, builds trust through transparency.</li>
-          <li><strong>Planning Checklist:</strong> "The 10 Things to Decide Before You Call a Contractor" — positions the builder as an educator, bridges to a consultation.</li>
-        </ul>
-      </div>
-      <div class="niche-card">
-        <div class="niche-name">Custom Home Builders</div>
-        <ul>
-          <li><strong>Lot Assessment Guide:</strong> "5 Questions to Ask Before You Buy a Lot for a Custom Build" — highly specific, qualifies serious buyers, bridges to a design consultation.</li>
-          <li><strong>Process Guide:</strong> "The Custom Home Building Process: A Step-by-Step Timeline" — removes the fear of the unknown, positions the builder as a trusted guide.</li>
-          <li><strong>Budget Calculator:</strong> "How Much Does a Custom Home Cost in [City]? Use Our Estimate Tool" — interactive, high-value, bridges to a full project consultation.</li>
-        </ul>
+      <div class="cta-section-body">
+        <p style="margin-top: 16px;">A free, high-value resource that solves a specific problem your ideal client is already thinking about. It qualifies the prospect, builds trust, and creates a natural bridge to your paid offer. The lead magnet is the most important CTA in your stack — it's the entry point for every cold prospect.</p>
+        <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin: 16px 0;">
+          <div style="background: rgba(12,51,135,0.04); border-radius: 8px; padding: 12px; font-size: 0.8rem; color: var(--text-secondary); text-align: center;">Free quiz, checklist, or guide</div>
+          <div style="background: rgba(12,51,135,0.04); border-radius: 8px; padding: 12px; font-size: 0.8rem; color: var(--text-secondary); text-align: center;">Answers a top objection or question</div>
+          <div style="background: rgba(12,51,135,0.04); border-radius: 8px; padding: 12px; font-size: 0.8rem; color: var(--text-secondary); text-align: center;">Delivers immediate, tangible value</div>
+          <div style="background: rgba(12,51,135,0.04); border-radius: 8px; padding: 12px; font-size: 0.8rem; color: var(--text-secondary); text-align: center;">Ends with a path to your dream offer</div>
+        </div>
+        <div class="callout callout-result" style="margin: 16px 0;">
+          <div class="callout-label">Scroll Media Example</div>
+          <h4>The Instagram Maturity Quiz</h4>
+          <p>Scroll Media's primary lead magnet is the <strong>Instagram Maturity Quiz</strong> — a 10-question assessment that identifies where a business is in their social media development, what stage they're at, and what actions they need to take to improve. It addresses the #1 objection we hear from prospects: "I don't know where to start." The quiz gives them a clear answer, then naturally bridges to our Signature Package as the solution.</p>
+          <p style="margin-top: 10px;">This is the model: lead magnet answers the objection → positions your expertise → bridges to the paid offer. Every niche has a version of this.</p>
+        </div>
+        <h5 style="font-size: 0.95rem; font-weight: 700; color: var(--text-primary); margin: 24px 0 12px; padding-bottom: 8px; border-bottom: 2px solid rgba(12,51,135,0.1);">Lead Magnet Examples by Niche</h5>
+        <p style="font-size: 0.88rem; color: var(--text-secondary); margin-bottom: 16px;">The format of your lead magnet should match the way your ideal client naturally seeks information. Below are proven lead magnet formats for each of the core service niches, built around their most common objections and questions.</p>
+        <div class="niche-grid" style="grid-template-columns: repeat(2, 1fr);">
+          <div class="niche-card">
+            <div class="niche-name">Med Spa &amp; Dermatology</div>
+            <ul>
+              <li><strong>Skin Assessment Quiz:</strong> "What's Your Skin Type? Find Out Which Treatment Is Right for You" — qualifies by treatment interest, bridges to consultation booking.</li>
+              <li><strong>Treatment Guide:</strong> "The 5 Questions to Ask Before Your First Botox Appointment" — addresses the fear of the unknown, positions the practice as trustworthy.</li>
+              <li><strong>Seasonal Checklist:</strong> "Your Summer Skin Prep Checklist" — timely, practical, bridges to a seasonal promotion or package.</li>
+            </ul>
+          </div>
+          <div class="niche-card">
+            <div class="niche-name">Coaching &amp; Consulting</div>
+            <ul>
+              <li><strong>Readiness Quiz:</strong> "Are You Ready to Scale? The 10-Question Business Audit" — qualifies by growth stage, bridges to a strategy call or program enrollment.</li>
+              <li><strong>Framework PDF:</strong> "The 3-Step System I Use to Help Clients Add $10K/Month" — demonstrates methodology, positions the coach as the guide.</li>
+              <li><strong>Video Training:</strong> "The #1 Mistake Holding Your Business Back (Free 20-Min Training)" — high perceived value, bridges to a discovery call.</li>
+            </ul>
+          </div>
+          <div class="niche-card">
+            <div class="niche-name">Fitness Studio &amp; Personal Training</div>
+            <ul>
+              <li><strong>Goal Assessment:</strong> "What's Your Fitness Personality? Find Your Perfect Training Style" — fun, shareable, bridges to a free trial class or intro session.</li>
+              <li><strong>Starter Guide:</strong> "The 4-Week Beginner's Workout Plan (No Equipment Needed)" — removes the barrier to starting, builds trust before asking for a commitment.</li>
+              <li><strong>Nutrition Checklist:</strong> "The 7 Foods Sabotaging Your Results" — addresses a universal pain point, bridges to a nutrition coaching upsell.</li>
+            </ul>
+          </div>
+          <div class="niche-card">
+            <div class="niche-name">Real Estate</div>
+            <ul>
+              <li><strong>Buyer Readiness Quiz:</strong> "Are You Ready to Buy? The 8-Question First-Time Buyer Assessment" — qualifies by timeline and readiness, bridges to a buyer consultation.</li>
+              <li><strong>Neighborhood Guide:</strong> "The Insider's Guide to [City/Neighborhood]: What the Listings Don't Tell You" — hyperlocal, high-value, positions as the local expert.</li>
+              <li><strong>Market Report:</strong> "What's Actually Happening in [City] Real Estate Right Now" — timely, authority-building, bridges to a listing or buyer consultation.</li>
+            </ul>
+          </div>
+          <div class="niche-card">
+            <div class="niche-name">Interior Design</div>
+            <ul>
+              <li><strong>Style Quiz:</strong> "What's Your Interior Design Style? Take the 5-Minute Quiz" — highly shareable, bridges to a design consultation or mood board service.</li>
+              <li><strong>Room Checklist:</strong> "The 10-Item Living Room Checklist Every Designer Uses" — practical, save-worthy, bridges to a full-room design package.</li>
+              <li><strong>Budget Guide:</strong> "How to Design a Beautiful Space on Any Budget" — addresses the #1 objection (cost), positions the designer as accessible and strategic.</li>
+            </ul>
+          </div>
+          <div class="niche-card">
+            <div class="niche-name">Therapists &amp; Physical Therapists</div>
+            <ul>
+              <li><strong>Symptom Assessment:</strong> "Is Your Pain Muscular or Structural? The 5-Question Self-Assessment" — directly addresses the diagnostic question prospects are already asking, bridges to a consultation.</li>
+              <li><strong>Mental Health Checklist:</strong> "5 Signs It Might Be Time to Talk to Someone" — reduces stigma, normalizes seeking help, bridges to a free intro session.</li>
+              <li><strong>Recovery Guide:</strong> "The 3 Exercises That Prevent 80% of Lower Back Pain" — demonstrates expertise, builds trust, bridges to a full assessment or treatment plan.</li>
+            </ul>
+          </div>
+          <div class="niche-card">
+            <div class="niche-name">Home Builders &amp; Contractors</div>
+            <ul>
+              <li><strong>Project Readiness Quiz:</strong> "Is Your Home Ready for a Renovation? The 7-Question Pre-Project Assessment" — qualifies by project stage and budget readiness, bridges to a free estimate.</li>
+              <li><strong>Cost Guide:</strong> "What Does a Kitchen Remodel Actually Cost in [City]? The Honest Breakdown" — addresses the #1 question before any project conversation, builds trust through transparency.</li>
+              <li><strong>Planning Checklist:</strong> "The 10 Things to Decide Before You Call a Contractor" — positions the builder as an educator, bridges to a consultation.</li>
+            </ul>
+          </div>
+          <div class="niche-card">
+            <div class="niche-name">Custom Home Builders</div>
+            <ul>
+              <li><strong>Lot Assessment Guide:</strong> "5 Questions to Ask Before You Buy a Lot for a Custom Build" — highly specific, qualifies serious buyers, bridges to a design consultation.</li>
+              <li><strong>Process Guide:</strong> "The Custom Home Building Process: A Step-by-Step Timeline" — removes the fear of the unknown, positions the builder as a trusted guide.</li>
+              <li><strong>Budget Calculator:</strong> "How Much Does a Custom Home Cost in [City]? Use Our Estimate Tool" — interactive, high-value, bridges to a full project consultation.</li>
+            </ul>
+          </div>
+        </div>
       </div>
     </div>
 
-    <!-- LAYER 2 DEEP DIVE -->
-    <h3 style="margin-top: 56px;">Layer 2 — The Offer (Your Dream Outcome)</h3>
-    <p>Layer 1 (the lead magnet) is the entry point. Layer 2 is the destination. This is your primary paid offer — the thing you actually sell. Every lead magnet you build should have one job: bridge a qualified prospect to this offer.</p>
-    <p>Most service businesses have a Layer 2 offer. What they're missing is a dedicated page for it. If your dream offer doesn't have its own landing page with a clear headline, a description of the outcome you deliver, and a single call to action — it doesn't exist on Instagram. Your bio link can't send people somewhere that doesn't exist.</p>
-
-    <div class="mistake-fix">
-      <div class="mistake-box">Bio link goes to homepage. Prospect lands on a page with 8 navigation options, a hero image, and no clear next step. They leave.</div>
-      <div class="fix-box">Bio link goes to a dedicated offer page. Headline names the outcome. One button. One action. Prospect either books or they don't — no confusion.</div>
-    </div>
-
-    <div class="callout callout-tip" style="margin-top: 24px;">
-      <div class="callout-label">Layer 2 by Niche</div>
-      <p>The format of your Layer 2 page depends on your offer type. Here's what it looks like across Scroll Media's core niches:</p>
-      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 14px;">
-        <div style="background: rgba(12,51,135,0.04); border-radius: 8px; padding: 12px 14px; font-size: 0.82rem; color: var(--text-secondary);"><strong style="color: var(--text-primary);">Med Spa / Derm:</strong> A booking page for a complimentary consultation or a specific treatment. One headline, one button, one outcome.</div>
-        <div style="background: rgba(12,51,135,0.04); border-radius: 8px; padding: 12px 14px; font-size: 0.82rem; color: var(--text-secondary);"><strong style="color: var(--text-primary);">Coach / Consultant:</strong> A discovery call booking page. Headline names the transformation. Subheadline names who it's for. One calendar embed.</div>
-        <div style="background: rgba(12,51,135,0.04); border-radius: 8px; padding: 12px 14px; font-size: 0.82rem; color: var(--text-secondary);"><strong style="color: var(--text-primary);">Fitness Studio:</strong> A free trial class sign-up page. Low commitment, high conversion. Removes every barrier to the first visit.</div>
-        <div style="background: rgba(12,51,135,0.04); border-radius: 8px; padding: 12px 14px; font-size: 0.82rem; color: var(--text-secondary);"><strong style="color: var(--text-primary);">Real Estate:</strong> A buyer or seller consultation request form. Headline names the market and the outcome. One form, one submit button.</div>
-        <div style="background: rgba(12,51,135,0.04); border-radius: 8px; padding: 12px 14px; font-size: 0.82rem; color: var(--text-secondary);"><strong style="color: var(--text-primary);">Interior Designer:</strong> A project inquiry form. Asks 3-4 qualifying questions (budget, timeline, scope). Filters serious prospects from browsers.</div>
-        <div style="background: rgba(12,51,135,0.04); border-radius: 8px; padding: 12px 14px; font-size: 0.82rem; color: var(--text-secondary);"><strong style="color: var(--text-primary);">Therapist / PT:</strong> A new patient intake form or a free 15-minute consult booking page. Reduces the friction of the first step.</div>
+    <!-- LAYER 2 ACCORDION -->
+    <div class="cta-section" id="layer-2-accordion">
+      <div class="cta-section-header" onclick="this.parentElement.classList.toggle('open')">
+        <div class="csh-left">
+          <span class="csh-icon">🎯</span>
+          <div>
+            <h4>Layer 2 — The Offer (Dream Outcome)</h4>
+            <div class="csh-meta">Always On · Secondary Bio Link · The Destination Your Lead Magnet Feeds Into</div>
+          </div>
+        </div>
+        <span class="csh-toggle">▼</span>
+      </div>
+      <div class="cta-section-body">
+        <p style="margin-top: 16px;">Layer 1 (the lead magnet) is the entry point. Layer 2 is the destination. This is your primary paid offer — the thing you actually sell. Every lead magnet you build should have one job: bridge a qualified prospect to this offer.</p>
+        <p style="margin-top: 10px;">Most service businesses have a Layer 2 offer. What they're missing is a dedicated page for it. If your dream offer doesn't have its own landing page with a clear headline, a description of the outcome you deliver, and a single call to action — it doesn't exist on Instagram. Your bio link can't send people somewhere that doesn't exist.</p>
+        <div class="mistake-fix" style="margin: 20px 0;">
+          <div class="mistake-box">Bio link goes to homepage. Prospect lands on a page with 8 navigation options, a hero image, and no clear next step. They leave.</div>
+          <div class="fix-box">Bio link goes to a dedicated offer page. Headline names the outcome. One button. One action. Prospect either books or they don't — no confusion.</div>
+        </div>
+        <div class="callout callout-tip">
+          <div class="callout-label">Layer 2 by Niche</div>
+          <p>The format of your Layer 2 page depends on your offer type. Here's what it looks like across Scroll Media's core niches:</p>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 14px;">
+            <div style="background: rgba(12,51,135,0.04); border-radius: 8px; padding: 12px 14px; font-size: 0.82rem; color: var(--text-secondary);"><strong style="color: var(--text-primary);">Med Spa / Derm:</strong> A booking page for a complimentary consultation or a specific treatment. One headline, one button, one outcome.</div>
+            <div style="background: rgba(12,51,135,0.04); border-radius: 8px; padding: 12px 14px; font-size: 0.82rem; color: var(--text-secondary);"><strong style="color: var(--text-primary);">Coach / Consultant:</strong> A discovery call booking page. Headline names the transformation. Subheadline names who it's for. One calendar embed.</div>
+            <div style="background: rgba(12,51,135,0.04); border-radius: 8px; padding: 12px 14px; font-size: 0.82rem; color: var(--text-secondary);"><strong style="color: var(--text-primary);">Fitness Studio:</strong> A free trial class sign-up page. Low commitment, high conversion. Removes every barrier to the first visit.</div>
+            <div style="background: rgba(12,51,135,0.04); border-radius: 8px; padding: 12px 14px; font-size: 0.82rem; color: var(--text-secondary);"><strong style="color: var(--text-primary);">Real Estate:</strong> A buyer or seller consultation request form. Headline names the market and the outcome. One form, one submit button.</div>
+            <div style="background: rgba(12,51,135,0.04); border-radius: 8px; padding: 12px 14px; font-size: 0.82rem; color: var(--text-secondary);"><strong style="color: var(--text-primary);">Interior Designer:</strong> A project inquiry form. Asks 3-4 qualifying questions (budget, timeline, scope). Filters serious prospects from browsers.</div>
+            <div style="background: rgba(12,51,135,0.04); border-radius: 8px; padding: 12px 14px; font-size: 0.82rem; color: var(--text-secondary);"><strong style="color: var(--text-primary);">Therapist / PT:</strong> A new patient intake form or a free 15-minute consult booking page. Reduces the friction of the first step.</div>
+          </div>
+        </div>
       </div>
     </div>
 
-    <!-- LAYER 3 DEEP DIVE -->
-    <h3 style="margin-top: 56px;">Layer 3 — The Pulse (Seasonal / Rotating CTA)</h3>
-    <p>Layer 3 is your most flexible layer. It rotates monthly or quarterly based on what's happening in your business right now. It's not always active — but when it is, it's the most time-sensitive and highest-urgency CTA in your stack.</p>
-    <p>The Pulse CTA is where scarcity and urgency live. Limited spots, seasonal promotions, upcoming events, new offers. It's the layer that creates the "right now" energy that drives immediate action from your warmest audience.</p>
-
-    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: 24px 0;">
-      <div style="background: var(--white); border: 1px solid var(--border); border-top: 3px solid var(--bofu-color); border-radius: 12px; padding: 18px;">
-        <div style="font-size: 0.62rem; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase; color: var(--bofu-color); margin-bottom: 8px;">Seasonal Promotion</div>
-        <p style="font-size: 0.82rem; color: var(--text-secondary); margin: 0;">A time-limited offer tied to a season, holiday, or event. Example: “Summer Skin Prep Package — 3 treatments, 1 price, available through June 30.”</p>
+    <!-- LAYER 3 ACCORDION -->
+    <div class="cta-section" id="layer-3-accordion">
+      <div class="cta-section-header" onclick="this.parentElement.classList.toggle('open')">
+        <div class="csh-left">
+          <span class="csh-icon">⚡</span>
+          <div>
+            <h4>Layer 3 — The Pulse (Seasonal / Rotating CTA)</h4>
+            <div class="csh-meta">Rotates Monthly · Tertiary Bio Link (Optional) · Real Urgency Only</div>
+          </div>
+        </div>
+        <span class="csh-toggle">▼</span>
       </div>
-      <div style="background: var(--white); border: 1px solid var(--border); border-top: 3px solid var(--bofu-color); border-radius: 12px; padding: 18px;">
-        <div style="font-size: 0.62rem; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase; color: var(--bofu-color); margin-bottom: 8px;">Limited Availability</div>
-        <p style="font-size: 0.82rem; color: var(--text-secondary); margin: 0;">A scarcity-based CTA tied to real capacity. Example: “I’m taking on 2 new clients in April. DM me ‘READY’ if you want to talk.” Only use this when it’s true.</p>
+      <div class="cta-section-body">
+        <p style="margin-top: 16px;">Layer 3 is your most flexible layer. It rotates monthly or quarterly based on what's happening in your business right now. It's not always active — but when it is, it's the most time-sensitive and highest-urgency CTA in your stack. This is where scarcity and urgency live.</p>
+        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: 20px 0;">
+          <div style="background: var(--white); border: 1px solid var(--border); border-top: 3px solid var(--bofu-color); border-radius: 12px; padding: 18px;">
+            <div style="font-size: 0.62rem; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase; color: var(--bofu-color); margin-bottom: 8px;">Seasonal Promotion</div>
+            <p style="font-size: 0.82rem; color: var(--text-secondary); margin: 0;">A time-limited offer tied to a season, holiday, or event. Example: "Summer Skin Prep Package — 3 treatments, 1 price, available through June 30."</p>
+          </div>
+          <div style="background: var(--white); border: 1px solid var(--border); border-top: 3px solid var(--bofu-color); border-radius: 12px; padding: 18px;">
+            <div style="font-size: 0.62rem; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase; color: var(--bofu-color); margin-bottom: 8px;">Limited Availability</div>
+            <p style="font-size: 0.82rem; color: var(--text-secondary); margin: 0;">A scarcity-based CTA tied to real capacity. Example: "I'm taking on 2 new clients in April. DM me 'READY' if you want to talk." Only use this when it's true.</p>
+          </div>
+          <div style="background: var(--white); border: 1px solid var(--border); border-top: 3px solid var(--bofu-color); border-radius: 12px; padding: 18px;">
+            <div style="font-size: 0.62rem; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase; color: var(--bofu-color); margin-bottom: 8px;">Event or Launch</div>
+            <p style="font-size: 0.82rem; color: var(--text-secondary); margin: 0;">A registration or waitlist link for a workshop, webinar, open house, or new service launch. High-intent audience, specific deadline.</p>
+          </div>
+        </div>
+        <div class="callout callout-principle">
+          <div class="callout-label">The Pulse Rule</div>
+          <h4>Only Run a Pulse CTA When You Have Real Urgency</h4>
+          <p>Fake scarcity destroys trust. If you say "Only 2 spots left" every month, your audience stops believing it. The Pulse CTA only works when it's true. Real deadlines. Real capacity limits. Real events. When you don't have a genuine Pulse CTA to run, leave Layer 3 empty and let Layers 1 and 2 do the work.</p>
+        </div>
       </div>
-      <div style="background: var(--white); border: 1px solid var(--border); border-top: 3px solid var(--bofu-color); border-radius: 12px; padding: 18px;">
-        <div style="font-size: 0.62rem; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase; color: var(--bofu-color); margin-bottom: 8px;">Event or Launch</div>
-        <p style="font-size: 0.82rem; color: var(--text-secondary); margin: 0;">A registration or waitlist link for a workshop, webinar, open house, or new service launch. High-intent audience, specific deadline.</p>
-      </div>
-    </div>
-
-    <div class="callout callout-principle">
-      <div class="callout-label">The Pulse Rule</div>
-      <h4>Only Run a Pulse CTA When You Have Real Urgency</h4>
-      <p>Fake scarcity destroys trust. If you say “Only 2 spots left” every month, your audience stops believing it. The Pulse CTA only works when it’s true. Real deadlines. Real capacity limits. Real events. When you don’t have a genuine Pulse CTA to run, leave Layer 3 empty and let Layers 1 and 2 do the work.</p>
     </div>
 
     <h3 style="margin-top: 48px; margin-bottom: 16px;">Your Action Item</h3>
@@ -2888,8 +2911,7 @@ section[id] {
         <div style="font-size: 0.62rem; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; color: rgba(200,241,53,0.9); margin-bottom: 6px;">The Zero-Risk Upgrade</div>
         <p style="font-size: 0.9rem; font-weight: 700; color: #ffffff; margin: 0;">The $997 Blueprint fee is <u>fully credited</u> toward your first month's retainer. If you become a client, the Blueprint cost you nothing.</p>
       </div>
-      <br>
-      <a href="https://tools.scrollmedia.co/instagram-growth-blueprint.html" target="_blank" class="btn-primary">Learn About the Blueprint →</a>
+      <a href="https://tools.scrollmedia.co/instagram-growth-blueprint.html" target="_blank" class="btn-primary" style="margin-top: 24px; display: inline-block;">Learn About the Blueprint →</a>
     </div>
   </section>
 
