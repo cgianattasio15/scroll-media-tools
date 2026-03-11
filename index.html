@@ -200,6 +200,116 @@
   footer a { color: rgba(255,255,255,0.4); text-decoration: none; }
   footer a:hover { color: rgba(255,255,255,0.65); }
 
+  /* ── PRODUCT ACCORDION ── */
+  .product-accordion {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    overflow: hidden;
+    margin-bottom: 12px;
+    transition: box-shadow 0.2s;
+  }
+  .product-accordion:hover {
+    box-shadow: 0 4px 20px rgba(12,51,135,0.07);
+  }
+  .product-accordion.open {
+    border-color: rgba(12,51,135,0.2);
+    box-shadow: 0 4px 20px rgba(12,51,135,0.08);
+  }
+  .product-accordion-header {
+    display: flex; align-items: center; gap: 16px;
+    padding: 20px 24px;
+    cursor: pointer;
+    user-select: none;
+    transition: background 0.15s;
+  }
+  .product-accordion-header:hover { background: rgba(12,51,135,0.02); }
+  .product-accordion.open .product-accordion-header { background: rgba(12,51,135,0.02); }
+  .product-accordion-icon {
+    width: 40px; height: 40px; border-radius: 10px;
+    background: rgba(12,51,135,0.08);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.2rem; flex-shrink: 0;
+  }
+  .product-accordion-info { flex: 1; min-width: 0; }
+  .product-accordion-name {
+    font-size: 1rem; font-weight: 700; letter-spacing: -0.2px;
+    color: var(--shadow); margin-bottom: 3px;
+  }
+  .product-accordion-meta {
+    font-size: 0.8rem; color: var(--text-muted);
+  }
+  .product-accordion-right {
+    display: flex; align-items: center; gap: 12px; flex-shrink: 0;
+  }
+  .product-accordion-chevron {
+    color: var(--text-muted); font-size: 0.75rem;
+    transition: transform 0.25s ease;
+    line-height: 1;
+  }
+  .product-accordion.open .product-accordion-chevron {
+    transform: rotate(180deg);
+  }
+  .product-accordion-body {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+  }
+  .product-accordion.open .product-accordion-body {
+    max-height: 600px;
+  }
+  .product-accordion-divider {
+    height: 1px; background: var(--border); margin: 0 24px;
+  }
+  .product-pages {
+    padding: 16px 24px 20px;
+    display: flex; flex-direction: column; gap: 8px;
+  }
+  .product-pages-label {
+    font-size: 0.68rem; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase;
+    color: var(--text-muted); margin-bottom: 4px;
+  }
+  .page-link {
+    display: flex; align-items: center; gap: 12px;
+    padding: 10px 14px; border-radius: 8px;
+    text-decoration: none; color: inherit;
+    border: 1px solid var(--border);
+    background: var(--ghost);
+    transition: border-color 0.15s, background 0.15s;
+  }
+  .page-link:hover {
+    border-color: rgba(12,51,135,0.2);
+    background: rgba(12,51,135,0.03);
+  }
+  .page-link.internal {
+    background: var(--porcelain);
+    border-style: dashed;
+  }
+  .page-link-icon {
+    font-size: 1rem; flex-shrink: 0; width: 24px; text-align: center;
+  }
+  .page-link-info { flex: 1; min-width: 0; }
+  .page-link-name {
+    font-size: 0.88rem; font-weight: 600; color: var(--shadow);
+    margin-bottom: 1px;
+  }
+  .page-link-desc {
+    font-size: 0.75rem; color: var(--text-muted);
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  }
+  .page-link-badge {
+    font-size: 0.62rem; font-weight: 700; letter-spacing: 0.8px; text-transform: uppercase;
+    padding: 3px 8px; border-radius: 100px; flex-shrink: 0;
+  }
+  .page-link-badge.public { background: rgba(12,51,135,0.08); color: var(--azure); }
+  .page-link-badge.internal { background: rgba(21,21,22,0.06); color: var(--text-muted); }
+  .page-link-badge.paid { background: rgba(226,237,122,0.25); color: #4a4a00; border: 1px solid rgba(226,237,122,0.5); }
+  .page-link-arrow {
+    color: var(--azure); font-size: 0.85rem; font-weight: 700; flex-shrink: 0;
+    transition: transform 0.15s;
+  }
+  .page-link:hover .page-link-arrow { transform: translateX(3px); }
+
   /* ── RESPONSIVE ── */
   @media (max-width: 640px) {
     nav { padding: 0 20px; }
@@ -286,35 +396,69 @@
       </div>
       <div class="category-count">1 product</div>
     </div>
-    <div class="tools-grid">
 
-      <a href="audience-to-action.html" class="tool-card">
-        <div class="tool-card-top">
-          <div class="tool-icon">📖</div>
+    <!-- Audience-to-Action Playbook Accordion -->
+    <div class="product-accordion" id="accordion-playbook">
+      <div class="product-accordion-header" onclick="toggleAccordion('accordion-playbook')">
+        <div class="product-accordion-icon">📖</div>
+        <div class="product-accordion-info">
+          <div class="product-accordion-name">Audience-to-Action Playbook</div>
+          <div class="product-accordion-meta">$87 one-time · 5 parts · Token-gated access</div>
+        </div>
+        <div class="product-accordion-right">
           <span class="tool-badge badge-paid">$87</span>
+          <span class="product-accordion-chevron">▼</span>
         </div>
-        <div class="tool-name">Audience-to-Action Playbook</div>
-        <p class="tool-desc">The CTA framework Scroll Media uses to turn Instagram followers into booked clients. 4 frameworks, 50+ plug-and-play CTAs, and a 3-message DM script.</p>
-        <div class="tool-card-footer">
-          <span class="tool-url">tools.scrollmedia.co/audience-to-action</span>
-          <span class="tool-arrow">→</span>
-        </div>
-      </a>
+      </div>
+      <div class="product-accordion-body">
+        <div class="product-accordion-divider"></div>
+        <div class="product-pages">
+          <div class="product-pages-label">All Pages — Click to Test</div>
 
-      <a href="access/audience-to-action-playbook.html?preview=sm-internal-2026" class="tool-card internal">
-        <div class="tool-card-top">
-          <div class="tool-icon">🔒</div>
-          <span class="tool-badge" style="background:rgba(21,21,22,0.07);color:rgba(21,21,22,0.5);font-size:0.65rem;padding:3px 8px;border-radius:20px;font-weight:600;letter-spacing:0.5px;">INTERNAL</span>
-        </div>
-        <div class="tool-name">Playbook — Internal Preview</div>
-        <p class="tool-desc">Full product page with token gate bypassed. Internal review only — not linked publicly. Customers access via unique token link.</p>
-        <div class="tool-card-footer">
-          <span class="tool-url">...?preview=sm-internal-2026</span>
-          <span class="tool-arrow">→</span>
-        </div>
-      </a>
+          <a href="audience-to-action.html" class="page-link" target="_blank">
+            <div class="page-link-icon">🛒</div>
+            <div class="page-link-info">
+              <div class="page-link-name">Sales Page</div>
+              <div class="page-link-desc">tools.scrollmedia.co/audience-to-action.html</div>
+            </div>
+            <span class="page-link-badge public">Public</span>
+            <span class="page-link-arrow">→</span>
+          </a>
 
+          <a href="access/audience-to-action-playbook.html" class="page-link" target="_blank">
+            <div class="page-link-icon">🔒</div>
+            <div class="page-link-info">
+              <div class="page-link-name">Purchase Gate (Token Required)</div>
+              <div class="page-link-desc">What customers see without a valid token</div>
+            </div>
+            <span class="page-link-badge public">Public</span>
+            <span class="page-link-arrow">→</span>
+          </a>
+
+          <a href="access/audience-to-action-playbook.html?preview=sm-internal-2026" class="page-link internal" target="_blank">
+            <div class="page-link-icon">👁️</div>
+            <div class="page-link-info">
+              <div class="page-link-name">Product Page (Gate Bypassed)</div>
+              <div class="page-link-desc">Full content view — internal testing only</div>
+            </div>
+            <span class="page-link-badge internal">Internal</span>
+            <span class="page-link-arrow">→</span>
+          </a>
+
+          <a href="purchase-success.html" class="page-link" target="_blank">
+            <div class="page-link-icon">✅</div>
+            <div class="page-link-info">
+              <div class="page-link-name">Purchase Success Page</div>
+              <div class="page-link-desc">Stripe redirects here after payment</div>
+            </div>
+            <span class="page-link-badge public">Public</span>
+            <span class="page-link-arrow">→</span>
+          </a>
+
+        </div>
+      </div>
     </div>
+
   </div>
 
   <!-- CATEGORY 3: WORK WITH US -->
@@ -401,5 +545,16 @@
   </p>
 </footer>
 
+<script>
+  function toggleAccordion(id) {
+    const el = document.getElementById(id);
+    if (el) el.classList.toggle('open');
+  }
+  // Auto-open the playbook accordion on load for convenience
+  document.addEventListener('DOMContentLoaded', function() {
+    const playbook = document.getElementById('accordion-playbook');
+    if (playbook) playbook.classList.add('open');
+  });
+</script>
 </body>
 </html>
