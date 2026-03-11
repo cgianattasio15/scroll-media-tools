@@ -38,6 +38,7 @@
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  img { max-width: 100%; height: auto; }
 html { scroll-behavior: smooth; }
 body {
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
@@ -677,7 +678,7 @@ footer {
   background: linear-gradient(90deg, var(--highlight), rgba(226,237,122,0.4));
 }
 .playbook-decision-tag {
-  display: inline-block; font-size: 10px; font-weight: 700;
+  display: inline-block; font-size: 11px; font-weight: 700;
   letter-spacing: 0.1em; text-transform: uppercase;
   padding: 4px 12px; border-radius: 100px; margin-bottom: 14px;
   width: fit-content;
@@ -716,7 +717,7 @@ footer {
 }
 .playbook-decision-features li:last-child { border-bottom: none; }
 .playbook-decision-features li::before {
-  content: '✓'; font-size: 10px; font-weight: 700;
+  content: '✓'; font-size: 11px; font-weight: 700;
   flex-shrink: 0; margin-top: 2px;
 }
 .blueprint-card .playbook-decision-features li::before { color: #cbe9ff; }
@@ -795,6 +796,84 @@ section[id] { scroll-margin-top: 80px; }
   footer { padding: 28px 16px; }
   .footer-links { flex-direction: column; gap: 10px; align-items: center; }
 }
+
+  /* ── Mobile Hamburger Menu ── */
+  .hamburger {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    background: none;
+    border: none;
+    padding: 4px;
+    border-radius: 8px;
+    transition: background 0.2s;
+    flex-shrink: 0;
+  }
+  .hamburger:hover { background: rgba(0,0,0,0.05); }
+  .hamburger span {
+    display: block;
+    width: 22px;
+    height: 2px;
+    background: var(--shadow, #0c1a3a);
+    border-radius: 2px;
+    transition: transform 0.25s, opacity 0.25s;
+  }
+  .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .hamburger.open span:nth-child(2) { opacity: 0; }
+  .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+  .mobile-nav {
+    display: none;
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(12,26,58,0.97);
+    z-index: 200;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 80px 32px 40px;
+  }
+  .mobile-nav.open { display: flex; }
+  .mobile-nav a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 1.1rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    padding: 14px 32px;
+    border-radius: 10px;
+    width: 100%;
+    max-width: 320px;
+    text-align: center;
+    transition: background 0.2s;
+  }
+  .mobile-nav a:hover { background: rgba(255,255,255,0.1); }
+  .mobile-nav .mobile-nav-close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: rgba(255,255,255,0.1);
+    border: none;
+    color: #fff;
+    font-size: 1.4rem;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s;
+  }
+  .mobile-nav .mobile-nav-close:hover { background: rgba(255,255,255,0.2); }
+  @media (max-width: 768px) {
+    .hamburger { display: flex; }
+  }
 </style>
 </head>
 <body>
@@ -816,6 +895,7 @@ section[id] { scroll-margin-top: 80px; }
     <a href="#pricing">Pricing</a>
     <a href="#faq">FAQ</a>
   </div>
+  <button class="hamburger" id="hamburger-btn" aria-label="Open menu"><span></span><span></span><span></span></button>
   <a href="https://buy.stripe.com/9B65kD2eI2wC2tK2gTb7y02" class="nav-cta">Get Access — $87 →</a>
 </nav>
 
@@ -1386,6 +1466,32 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
     }
   });
 });
+
+// ── Mobile Hamburger Menu ──
+const hamburger = document.getElementById('hamburger-btn');
+const mobileNav = document.getElementById('mobile-nav');
+const mobileNavClose = document.getElementById('mobile-nav-close');
+if (hamburger && mobileNav) {
+  hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('open');
+    mobileNav.classList.toggle('open');
+    document.body.style.overflow = mobileNav.classList.contains('open') ? 'hidden' : '';
+  });
+  if (mobileNavClose) {
+    mobileNavClose.addEventListener('click', () => {
+      hamburger.classList.remove('open');
+      mobileNav.classList.remove('open');
+      document.body.style.overflow = '';
+    });
+  }
+  mobileNav.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => {
+      hamburger.classList.remove('open');
+      mobileNav.classList.remove('open');
+      document.body.style.overflow = '';
+    });
+  });
+}
 </script>
 </body>
 </html>

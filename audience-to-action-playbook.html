@@ -6,7 +6,7 @@
 <title>The Audience-to-Action Playbook | Scroll Media</title>
 <meta name="description" content="The complete system for turning passive Instagram followers into qualified leads and booked clients — without paid ads or posting more content. 50+ plug-and-play CTAs, the 3-Message DM Script, and the Scroll Media Formats Library.">
 <meta property="og:title" content="The Audience-to-Action Playbook | Scroll Media">
-<meta property="og:description" content="Turn passive followers into booked clients. 50+ CTA scripts, the Format-Funnel Framework, and the 3-Message DM Script — all in one $47 playbook.">
+<meta property="og:description" content="Turn passive followers into booked clients. 71 CTA scripts, the Format-Funnel Framework, and the 3-Message DM Script — all in one $87 playbook.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://tools.scrollmedia.co/audience-to-action-playbook.html">
 <meta property="og:image" content="https://www.scrollmedia.co/og-image.jpg">
@@ -42,6 +42,7 @@
   }
 
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  img { max-width: 100%; height: auto; }
 
   html { scroll-behavior: smooth; }
 
@@ -1365,9 +1366,104 @@
     .hero-meta { gap: 24px; }
     .upsell-banner { padding: 32px 24px; }
   }
+
+  /* ── Mobile Hamburger Menu ── */
+  .hamburger {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    background: none;
+    border: none;
+    padding: 4px;
+    border-radius: 8px;
+    transition: background 0.2s;
+    flex-shrink: 0;
+  }
+  .hamburger:hover { background: rgba(0,0,0,0.05); }
+  .hamburger span {
+    display: block;
+    width: 22px;
+    height: 2px;
+    background: var(--shadow, #0c1a3a);
+    border-radius: 2px;
+    transition: transform 0.25s, opacity 0.25s;
+  }
+  .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .hamburger.open span:nth-child(2) { opacity: 0; }
+  .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+  .mobile-nav {
+    display: none;
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(12,26,58,0.97);
+    z-index: 200;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 80px 32px 40px;
+  }
+  .mobile-nav.open { display: flex; }
+  .mobile-nav a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 1.1rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    padding: 14px 32px;
+    border-radius: 10px;
+    width: 100%;
+    max-width: 320px;
+    text-align: center;
+    transition: background 0.2s;
+  }
+  .mobile-nav a:hover { background: rgba(255,255,255,0.1); }
+  .mobile-nav .mobile-nav-close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: rgba(255,255,255,0.1);
+    border: none;
+    color: #fff;
+    font-size: 1.4rem;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s;
+  }
+  .mobile-nav .mobile-nav-close:hover { background: rgba(255,255,255,0.2); }
+  @media (max-width: 768px) {
+    .hamburger { display: flex; }
+  }
+  @media (max-width: 480px) {
+    .hero h1 { font-size: 1.8rem; }
+    .hero-meta { flex-direction: column; gap: 16px; }
+    .nav-cta { padding: 8px 14px; font-size: 13px; }
+    .cta-card { padding: 28px 20px; }
+    .accordion-header { font-size: 0.95rem; padding: 16px 18px; }
+  }
 </style>
 </head>
 <body>
+<div class="mobile-nav" id="mobile-nav">
+  <button class="mobile-nav-close" id="mobile-nav-close" aria-label="Close menu">&#x2715;</button>
+  <a href="#mindset">Mindset</a>
+  <a href="#framework">Framework</a>
+  <a href="#arsenal">Arsenal</a>
+  <a href="#dm-script">DM Script</a>
+  <a href="#challenge">Challenge</a>
+  <a href="#bonus">Bonus</a>
+  <a href="https://buy.stripe.com/9B65kD2eI2wC2tK2gTb7y02" target="_blank" style="background: var(--accent, #c8f135); color: #0c1a3a; margin-top: 16px; font-weight: 800;">Get Access — $87 →</a>
+</div>
 
 <div id="progress-bar"></div>
 
@@ -1384,7 +1480,8 @@
     <a href="#challenge">Challenge</a>
     <a href="#bonus">Bonus</a>
   </div>
-  <a href="https://chaser007.gumroad.com/l/audience-to-action" target="_blank" class="nav-cta">Get Access — $47</a>
+  <button class="hamburger" id="hamburger-btn" aria-label="Open menu"><span></span><span></span><span></span></button>
+  <a href="https://buy.stripe.com/9B65kD2eI2wC2tK2gTb7y02" target="_blank" class="nav-cta">Get Access — $87</a>
 </nav>
 
 <!-- HERO -->
@@ -1394,7 +1491,7 @@
     <h1>The <span class="accent">Audience-to-Action</span><br>Playbook</h1>
     <p>The complete system for turning passive Instagram followers into qualified leads and booked clients — without paid ads or posting more content.</p>
     <div class="hero-actions">
-      <a href="https://chaser007.gumroad.com/l/audience-to-action" target="_blank" class="btn-primary">Get Instant Access — $47 →</a>
+      <a href="https://buy.stripe.com/9B65kD2eI2wC2tK2gTb7y02" target="_blank" class="btn-primary">Get Instant Access — $87 →</a>
       <a href="#mindset" class="btn-secondary">Start Reading ↓</a>
     </div>
     <div class="hero-meta">
@@ -2192,7 +2289,7 @@
     <a href="https://www.scrollmedia.co/" target="_blank">Website</a>
     <a href="https://www.instagram.com/scrollmedia.co" target="_blank">Instagram</a>
     <a href="mailto:hello@scrollmedia.co">hello@scrollmedia.co</a>
-    <a href="https://chaser007.gumroad.com/l/audience-to-action" target="_blank">Get the Playbook — $47</a>
+    <a href="https://buy.stripe.com/9B65kD2eI2wC2tK2gTb7y02" target="_blank">Get the Playbook — $87</a>
   </div>
   <div class="footer-copy">&copy; 2026 Scroll Media. All rights reserved.</div>
 </footer>
@@ -2213,6 +2310,32 @@
     if (scrollTop > 400) btn.classList.add('visible');
     else btn.classList.remove('visible');
   });
+
+// ── Mobile Hamburger Menu ──
+const hamburger = document.getElementById('hamburger-btn');
+const mobileNav = document.getElementById('mobile-nav');
+const mobileNavClose = document.getElementById('mobile-nav-close');
+if (hamburger && mobileNav) {
+  hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('open');
+    mobileNav.classList.toggle('open');
+    document.body.style.overflow = mobileNav.classList.contains('open') ? 'hidden' : '';
+  });
+  if (mobileNavClose) {
+    mobileNavClose.addEventListener('click', () => {
+      hamburger.classList.remove('open');
+      mobileNav.classList.remove('open');
+      document.body.style.overflow = '';
+    });
+  }
+  mobileNav.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => {
+      hamburger.classList.remove('open');
+      mobileNav.classList.remove('open');
+      document.body.style.overflow = '';
+    });
+  });
+}
 </script>
 
 </body>
