@@ -1585,20 +1585,138 @@ section[id] {
   }
 
 @media (max-width: 768px) {
+    /* Nav */
     nav .nav-links { display: none; }
-    nav { top: 28px; } /* adjusted for smaller progress strip on mobile */
+    nav { top: 28px; padding: 0 16px; height: 54px; }
+    nav .nav-cta { font-size: 0.68rem; padding: 7px 14px; }
+
+    /* Body + Container */
     body { padding-top: 28px; }
-    .container { padding: 0 20px; }
-    .hero { padding: 72px 20px 56px; }
+    .container { padding: 0 18px; }
+
+    /* Progress sections */
+    #progress-sections { gap: 2px; padding: 3px 8px; }
+    .ps { font-size: 0.52rem; letter-spacing: 0.8px; padding: 2px 5px; }
+
+    /* Hero */
+    section.hero { padding: 64px 18px 52px; }
+    .hero h1 { font-size: clamp(2rem, 8vw, 2.8rem); letter-spacing: -1px; margin-bottom: 18px; }
+    .hero p { font-size: 0.97rem; margin-bottom: 28px; }
+    .hero-actions { flex-direction: column; align-items: center; gap: 10px; margin-bottom: 40px; }
+    .hero-actions .btn-primary,
+    .hero-actions .btn-secondary { width: 100%; max-width: 320px; text-align: center; padding: 14px 20px; }
+    .hero-meta { gap: 20px; padding-top: 28px; }
+    .hero-meta-item .value { font-size: 0.85rem; }
+
+    /* Sections */
+    section { padding: 44px 0; }
+    h2 { font-size: clamp(1.55rem, 5.5vw, 2rem); }
+    h3 { font-size: 1.1rem; }
+
+    /* Part header */
+    .part-header { gap: 12px; margin-bottom: 24px; padding-bottom: 18px; }
+    .part-badge { padding: 6px 12px; font-size: 0.6rem; }
+
+    /* Quick win */
+    .quick-win { padding: 24px 18px; }
+
+    /* Author card */
+    .author-card { flex-direction: column; gap: 16px; padding: 22px 18px; }
+    .author-stats { gap: 16px; }
+
+    /* TOC */
+    .toc { padding: 22px 18px; }
+    .toc-list li a { font-size: 0.85rem; padding: 9px 10px; gap: 10px; }
+
+    /* Funnel grid */
     .funnel-grid { grid-template-columns: 1fr; }
     .mix-rule { grid-template-columns: 1fr; }
     .cta-compare { grid-template-columns: 1fr; }
+
+    /* CTA section headers */
+    .cta-section-header { padding: 16px 18px; font-size: 0.88rem; }
+
+    /* Challenge grid */
     .challenge-grid { grid-template-columns: 1fr; }
-    .niche-grid { grid-template-columns: 1fr; }
+
+    /* Niche grid */
+    .niche-grid { grid-template-columns: repeat(2, 1fr); }
+
+    /* Compound method */
     .accordion-phases { grid-template-columns: 1fr; }
-    .author-card { flex-direction: column; }
-    .hero-meta { gap: 24px; }
-    .upsell-banner { padding: 32px 24px; }
+
+    /* Upsell banner */
+    .upsell-banner { padding: 32px 20px; }
+    .upsell-banner h2 { font-size: clamp(1.5rem, 5vw, 1.9rem); }
+    .upsell-banner p { font-size: 0.9rem; }
+
+    /* Footer */
+    footer { padding: 36px 20px; }
+    footer .footer-links { gap: 14px; }
+    footer .footer-links a { font-size: 0.78rem; }
+
+    /* Back to top */
+    #back-to-top { bottom: 20px; right: 16px; width: 40px; height: 40px; font-size: 0.9rem; }
+
+    /* Card padding */
+    .card { padding: 20px 18px; }
+  }
+
+  @media (max-width: 480px) {
+    /* Nav */
+    nav { padding: 0 14px; height: 50px; }
+    nav .nav-cta { font-size: 0.64rem; padding: 6px 12px; }
+
+    /* Progress bar — hide labels on very small screens */
+    #progress-sections { display: none; }
+    body { padding-top: 3px; } /* just the 3px progress bar */
+    nav { top: 3px; }
+
+    /* Hero */
+    section.hero { padding: 56px 16px 44px; }
+    .hero h1 { font-size: clamp(1.75rem, 9vw, 2.4rem); }
+    .hero p { font-size: 0.92rem; }
+    .hero-meta { flex-direction: column; gap: 12px; align-items: center; }
+    .hero-meta-item { flex-direction: row; gap: 8px; align-items: center; }
+    .hero-meta-item .label { font-size: 0.6rem; }
+
+    /* Container */
+    .container { padding: 0 14px; }
+
+    /* Sections */
+    section { padding: 36px 0; }
+
+    /* Challenge day items — reduce min-width so D5-7 etc don't break */
+    .challenge-day-num { min-width: 36px !important; font-size: 0.95rem !important; }
+
+    /* Niche grid — single col on very small */
+    .niche-grid { grid-template-columns: 1fr; }
+
+    /* Upsell banner */
+    .upsell-banner { padding: 24px 16px; border-radius: 16px; }
+    .upsell-banner h2 { font-size: 1.4rem; }
+
+    /* Token gate card */
+    .gate-card { padding: 36px 24px; width: 94%; }
+    .gate-logo img { height: 36px !important; }
+    .gate-title { font-size: 1.4rem !important; }
+    .gate-btn { font-size: 0.9rem !important; padding: 14px 20px !important; }
+
+    /* Footer */
+    footer { padding: 28px 16px; }
+    footer .footer-links { flex-direction: column; gap: 10px; align-items: center; }
+
+    /* TOC */
+    .toc-list li a { font-size: 0.82rem; }
+
+    /* Quick win */
+    .quick-win { padding: 20px 14px; }
+
+    /* Card */
+    .card { padding: 18px 14px; border-radius: 12px; }
+
+    /* Part badge */
+    .part-header { flex-direction: column; align-items: flex-start; gap: 8px; }
   }
 
   /* ─── TOKEN GATE ─────────────────────────────────────────────────────── */
@@ -2877,7 +2995,7 @@ section[id] {
         <div style="display: grid; gap: 12px; padding-top: 16px;">
           <div class="challenge-card" onclick="this.classList.toggle('done');this.querySelector('.check-icon').textContent=this.classList.contains('done')?'✓':''">
             <div style="display: flex; align-items: flex-start; gap: 12px;">
-              <div style="font-size: 1.1rem; font-weight: 800; color: var(--azure); min-width: 44px; white-space: nowrap; flex-shrink: 0;"><span class="check-icon"></span>D1</div>
+              <div class="challenge-day-num" style="font-size: 1.1rem; font-weight: 800; color: var(--azure); min-width: 44px; white-space: nowrap; flex-shrink: 0;"><span class="check-icon"></span>D1</div>
               <div>
                 <h4 style="margin-bottom: 6px;">Run the Format-Funnel Audit</h4>
                 <p style="margin: 0; font-size: 0.88rem;">Open the CTA Weekly Tracker. Pull up your last 10 posts. For each one, log: the format (Reel, Carousel, Static, Story), the CTA type (if any), and the funnel stage it belongs to. If you can't identify the funnel stage, that's your first insight.</p>
@@ -2886,7 +3004,7 @@ section[id] {
           </div>
           <div class="challenge-card" onclick="this.classList.toggle('done');this.querySelector('.check-icon').textContent=this.classList.contains('done')?'✓':''">
             <div style="display: flex; align-items: flex-start; gap: 12px;">
-              <div style="font-size: 1.1rem; font-weight: 800; color: var(--azure); min-width: 44px; white-space: nowrap; flex-shrink: 0;"><span class="check-icon"></span>D2</div>
+              <div class="challenge-day-num" style="font-size: 1.1rem; font-weight: 800; color: var(--azure); min-width: 44px; white-space: nowrap; flex-shrink: 0;"><span class="check-icon"></span>D2</div>
               <div>
                 <h4 style="margin-bottom: 6px;">Audit Your Profile (3-Point Check)</h4>
                 <p style="margin: 0; font-size: 0.88rem;">Check your bio link — does it go to a dedicated offer or booking page? If not, fix it today. Check Pinned Posts — do you have 3 pinned? Are they TOFU, MOFU, and BOFU? Check your highlights — do they tell a clear story about who you help and what you do?</p>
@@ -2895,7 +3013,7 @@ section[id] {
           </div>
           <div class="challenge-card" onclick="this.classList.toggle('done');this.querySelector('.check-icon').textContent=this.classList.contains('done')?'✓':''">
             <div style="display: flex; align-items: flex-start; gap: 12px;">
-              <div style="font-size: 1.1rem; font-weight: 800; color: var(--azure); min-width: 44px; white-space: nowrap; flex-shrink: 0;"><span class="check-icon"></span>D3</div>
+              <div class="challenge-day-num" style="font-size: 1.1rem; font-weight: 800; color: var(--azure); min-width: 44px; white-space: nowrap; flex-shrink: 0;"><span class="check-icon"></span>D3</div>
               <div>
                 <h4 style="margin-bottom: 6px;">Build Your CTA Stack</h4>
                 <p style="margin: 0; font-size: 0.88rem;">Open the Monthly CTA Planner. Define your Layer 1 (lead magnet — what free resource will you drive people to?), Layer 2 (your core offer — what's the main thing you want people to book or buy?), and Layer 3 (your pulse CTA — what's time-sensitive right now?).</p>
@@ -2904,7 +3022,7 @@ section[id] {
           </div>
           <div class="challenge-card" onclick="this.classList.toggle('done');this.querySelector('.check-icon').textContent=this.classList.contains('done')?'✓':''">
             <div style="display: flex; align-items: flex-start; gap: 12px;">
-              <div style="font-size: 1.1rem; font-weight: 800; color: var(--azure); min-width: 44px; white-space: nowrap; flex-shrink: 0;"><span class="check-icon"></span>D4</div>
+              <div class="challenge-day-num" style="font-size: 1.1rem; font-weight: 800; color: var(--azure); min-width: 44px; white-space: nowrap; flex-shrink: 0;"><span class="check-icon"></span>D4</div>
               <div>
                 <h4 style="margin-bottom: 6px;">Set Up Your DM Response Templates</h4>
                 <p style="margin: 0; font-size: 0.88rem;">Go to Instagram Settings → Creator Tools → Saved Replies. Create all 3 messages from the DM-to-Booking Script in Part 4. Name them: 'DM Reply 1', 'DM Reply 2', 'DM Reply 3'. You'll use these every time someone engages this month.</p>
@@ -2913,7 +3031,7 @@ section[id] {
           </div>
           <div class="challenge-card" onclick="this.classList.toggle('done');this.querySelector('.check-icon').textContent=this.classList.contains('done')?'✓':''">
             <div style="display: flex; align-items: flex-start; gap: 12px;">
-              <div style="font-size: 1.1rem; font-weight: 800; color: var(--azure); min-width: 44px; white-space: nowrap; flex-shrink: 0;"><span class="check-icon"></span>D5–7</div>
+              <div class="challenge-day-num" style="font-size: 1.1rem; font-weight: 800; color: var(--azure); min-width: 44px; white-space: nowrap; flex-shrink: 0;"><span class="check-icon"></span>D5–7</div>
               <div>
                 <h4 style="margin-bottom: 6px;">Plan Your Week 2 Content</h4>
                 <p style="margin: 0; font-size: 0.88rem;">Using the Monthly CTA Planner, map out your next 7 days of posts. Assign a funnel stage (TOFU/MOFU/BOFU) and a CTA type to each post before you create it. This is the most important habit shift in the entire playbook.</p>
@@ -2943,7 +3061,7 @@ section[id] {
         <div style="display: grid; gap: 12px; padding-top: 16px;">
           <div class="challenge-card" onclick="this.classList.toggle('done');this.querySelector('.check-icon').textContent=this.classList.contains('done')?'✓':''">
             <div style="display: flex; align-items: flex-start; gap: 12px;">
-              <div style="font-size: 1.1rem; font-weight: 800; color: var(--azure); min-width: 44px; white-space: nowrap; flex-shrink: 0;"><span class="check-icon"></span>D8</div>
+              <div class="challenge-day-num" style="font-size: 1.1rem; font-weight: 800; color: var(--azure); min-width: 44px; white-space: nowrap; flex-shrink: 0;"><span class="check-icon"></span>D8</div>
               <div>
                 <h4 style="margin-bottom: 6px;">Post Your First Planned CTA</h4>
                 <p style="margin: 0; font-size: 0.88rem;">Publish your first post using a CTA from the Arsenal. It should be a TOFU or MOFU post with either a Question CTA or a Save CTA. Log it in your Tracker immediately after posting.</p>
@@ -2952,7 +3070,7 @@ section[id] {
           </div>
           <div class="challenge-card" onclick="this.classList.toggle('done');this.querySelector('.check-icon').textContent=this.classList.contains('done')?'✓':''">
             <div style="display: flex; align-items: flex-start; gap: 12px;">
-              <div style="font-size: 1.1rem; font-weight: 800; color: var(--azure); min-width: 44px; white-space: nowrap; flex-shrink: 0;"><span class="check-icon"></span>D9–13</div>
+              <div class="challenge-day-num" style="font-size: 1.1rem; font-weight: 800; color: var(--azure); min-width: 44px; white-space: nowrap; flex-shrink: 0;"><span class="check-icon"></span>D9–13</div>
               <div>
                 <h4 style="margin-bottom: 6px;">Post Consistently — Log Every CTA</h4>
                 <p style="margin: 0; font-size: 0.88rem;">Post every day or on your planned schedule. After each post, log the CTA type, format, and funnel stage in your Tracker. You're building your first real dataset.</p>
@@ -2961,7 +3079,7 @@ section[id] {
           </div>
           <div class="challenge-card" onclick="this.classList.toggle('done');this.querySelector('.check-icon').textContent=this.classList.contains('done')?'✓':''">
             <div style="display: flex; align-items: flex-start; gap: 12px;">
-              <div style="font-size: 1.1rem; font-weight: 800; color: var(--azure); min-width: 44px; white-space: nowrap; flex-shrink: 0;"><span class="check-icon"></span>D14</div>
+              <div class="challenge-day-num" style="font-size: 1.1rem; font-weight: 800; color: var(--azure); min-width: 44px; white-space: nowrap; flex-shrink: 0;"><span class="check-icon"></span>D14</div>
               <div>
                 <h4 style="margin-bottom: 6px;">Week 2 Check-In</h4>
                 <p style="margin: 0; font-size: 0.88rem;">Review your Tracker. Which CTA type got the most comments? Which got the most saves? Is your TOFU/MOFU/BOFU ratio balanced? Adjust your Week 3 plan based on what you see.</p>
@@ -2991,7 +3109,7 @@ section[id] {
         <div style="display: grid; gap: 12px; padding-top: 16px;">
           <div class="challenge-card" onclick="this.classList.toggle('done');this.querySelector('.check-icon').textContent=this.classList.contains('done')?'✓':''">
             <div style="display: flex; align-items: flex-start; gap: 12px;">
-              <div style="font-size: 1.1rem; font-weight: 800; color: var(--azure); min-width: 44px; white-space: nowrap; flex-shrink: 0;"><span class="check-icon"></span>D15</div>
+              <div class="challenge-day-num" style="font-size: 1.1rem; font-weight: 800; color: var(--azure); min-width: 44px; white-space: nowrap; flex-shrink: 0;"><span class="check-icon"></span>D15</div>
               <div>
                 <h4 style="margin-bottom: 6px;">Post Your First BOFU Conversion CTA</h4>
                 <p style="margin: 0; font-size: 0.88rem;">Choose one Conversion CTA from the Arsenal that fits your niche. Use it on a BOFU post — a case study, a transformation, a result. Track every DM and link click it generates.</p>
@@ -3000,7 +3118,7 @@ section[id] {
           </div>
           <div class="challenge-card" onclick="this.classList.toggle('done');this.querySelector('.check-icon').textContent=this.classList.contains('done')?'✓':''">
             <div style="display: flex; align-items: flex-start; gap: 12px;">
-              <div style="font-size: 1.1rem; font-weight: 800; color: var(--azure); min-width: 44px; white-space: nowrap; flex-shrink: 0;"><span class="check-icon"></span>D16–20</div>
+              <div class="challenge-day-num" style="font-size: 1.1rem; font-weight: 800; color: var(--azure); min-width: 44px; white-space: nowrap; flex-shrink: 0;"><span class="check-icon"></span>D16–20</div>
               <div>
                 <h4 style="margin-bottom: 6px;">Activate the DM System</h4>
                 <p style="margin: 0; font-size: 0.88rem;">Every time someone comments, DMs, or clicks your link this week, respond using your Saved Reply templates. Log every conversation. Note which ones progress to a booking inquiry.</p>
@@ -3009,7 +3127,7 @@ section[id] {
           </div>
           <div class="challenge-card" onclick="this.classList.toggle('done');this.querySelector('.check-icon').textContent=this.classList.contains('done')?'✓':''">
             <div style="display: flex; align-items: flex-start; gap: 12px;">
-              <div style="font-size: 1.1rem; font-weight: 800; color: var(--azure); min-width: 44px; white-space: nowrap; flex-shrink: 0;"><span class="check-icon"></span>D21</div>
+              <div class="challenge-day-num" style="font-size: 1.1rem; font-weight: 800; color: var(--azure); min-width: 44px; white-space: nowrap; flex-shrink: 0;"><span class="check-icon"></span>D21</div>
               <div>
                 <h4 style="margin-bottom: 6px;">Week 3 Check-In</h4>
                 <p style="margin: 0; font-size: 0.88rem;">Review your Tracker again. Did your BOFU post drive any DMs or link clicks? Did any DM conversations convert to consultations? This data tells you whether your offer positioning is working.</p>
@@ -3039,7 +3157,7 @@ section[id] {
         <div style="display: grid; gap: 12px; padding-top: 16px;">
           <div class="challenge-card" onclick="this.classList.toggle('done');this.querySelector('.check-icon').textContent=this.classList.contains('done')?'✓':''">
             <div style="display: flex; align-items: flex-start; gap: 12px;">
-              <div style="font-size: 1.1rem; font-weight: 800; color: var(--azure); min-width: 44px; white-space: nowrap; flex-shrink: 0;"><span class="check-icon"></span>D22–27</div>
+              <div class="challenge-day-num" style="font-size: 1.1rem; font-weight: 800; color: var(--azure); min-width: 44px; white-space: nowrap; flex-shrink: 0;"><span class="check-icon"></span>D22–27</div>
               <div>
                 <h4 style="margin-bottom: 6px;">Double Down on What Worked</h4>
                 <p style="margin: 0; font-size: 0.88rem;">Look at your Tracker data. Which CTA type got the most engagement? Use that type at least twice more this week. Which post drove the most DMs? Create a variation of it.</p>
@@ -3048,7 +3166,7 @@ section[id] {
           </div>
           <div class="challenge-card" onclick="this.classList.toggle('done');this.querySelector('.check-icon').textContent=this.classList.contains('done')?'✓':''">
             <div style="display: flex; align-items: flex-start; gap: 12px;">
-              <div style="font-size: 1.1rem; font-weight: 800; color: var(--azure); min-width: 44px; white-space: nowrap; flex-shrink: 0;"><span class="check-icon"></span>D28–29</div>
+              <div class="challenge-day-num" style="font-size: 1.1rem; font-weight: 800; color: var(--azure); min-width: 44px; white-space: nowrap; flex-shrink: 0;"><span class="check-icon"></span>D28–29</div>
               <div>
                 <h4 style="margin-bottom: 6px;">Run Your 30-Day Review</h4>
                 <p style="margin: 0; font-size: 0.88rem;">Answer these 5 questions in your Tracker: (1) Which CTA type drove the most comments? (2) Which drove the most saves? (3) Which drove the most DMs? (4) Which drove the most link clicks? (5) Did any content directly contribute to a booked call or inquiry?</p>
@@ -3057,7 +3175,7 @@ section[id] {
           </div>
           <div class="challenge-card" onclick="this.classList.toggle('done');this.querySelector('.check-icon').textContent=this.classList.contains('done')?'✓':''">
             <div style="display: flex; align-items: flex-start; gap: 12px;">
-              <div style="font-size: 1.1rem; font-weight: 800; color: var(--azure); min-width: 44px; white-space: nowrap; flex-shrink: 0;"><span class="check-icon"></span>D30</div>
+              <div class="challenge-day-num" style="font-size: 1.1rem; font-weight: 800; color: var(--azure); min-width: 44px; white-space: nowrap; flex-shrink: 0;"><span class="check-icon"></span>D30</div>
               <div>
                 <h4 style="margin-bottom: 6px;">Set Up Month 2</h4>
                 <p style="margin: 0; font-size: 0.88rem;">Open the Monthly CTA Planner. Fill in Month 2 using your 30-day data. Keep the CTAs that worked. Replace the ones that didn't. You now have a data-driven content system — not a guess.</p>

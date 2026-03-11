@@ -94,7 +94,7 @@
     max-width: 600px; margin: 0 auto 40px;
     line-height: 1.6;
   }
-  .hero-cta-group {
+  .hero-cta-group { flex-wrap: wrap;
     display: flex; flex-direction: column; align-items: center; gap: 12px;
   }
   .btn-primary {
@@ -515,12 +515,88 @@
   .footer-links a:hover { color: var(--white); }
   .footer-copy { font-size: 12px; }
 
-  @media (max-width: 640px) {
-    .who-grid { grid-template-columns: 1fr; }
-    .proof-bar { gap: 20px; }
+  @media (max-width: 768px) {
+    /* Nav */
+    nav { padding: 0 16px; height: 56px; }
+    .nav-logo img { height: 28px; }
+    .nav-cta { font-size: 12px; padding: 8px 14px; }
+
+    /* Hero */
+    .hero { padding: 60px 18px 52px; }
+    .hero h1 { font-size: clamp(28px, 8vw, 44px); }
+    .hero-sub { font-size: 15px; margin-bottom: 32px; }
+    .hero-cta-group { flex-wrap: wrap; flex-direction: column; align-items: center; gap: 10px; }
+    .btn-primary, .btn-secondary { width: 100%; max-width: 320px; text-align: center; }
+
+    /* Proof bar */
+    .proof-bar { gap: 20px; padding: 20px 16px; flex-wrap: wrap; justify-content: center; }
     .proof-divider { display: none; }
-    .pricing-card { padding: 40px 24px; }
-    .pricing-price { font-size: 52px; }
+
+    /* Sections */
+    section { padding: 52px 0; }
+    .container { padding: 0 18px; }
+    h2 { font-size: clamp(22px, 5.5vw, 32px); }
+
+    /* Who grid */
+    .who-grid { grid-template-columns: 1fr; }
+
+    /* What's inside */
+    .inside-grid { grid-template-columns: 1fr; }
+    .inside-item { padding: 20px 18px; }
+
+    /* Pricing card */
+    .pricing-card { padding: 40px 22px; }
+    .pricing-price { font-size: 56px; }
+    .pricing-features { text-align: left; }
+    .pricing-cta { font-size: 16px; padding: 16px 24px; }
+
+    /* FAQ */
+    .faq-item { padding: 18px 16px; }
+    .faq-q { font-size: 15px; }
+
+    /* Upsell / CTA section */
+    .final-cta { padding: 52px 18px; }
+    .final-cta h2 { font-size: clamp(22px, 5.5vw, 32px); }
+
+    /* Footer */
+    footer { padding: 36px 18px; }
+    .footer-links { gap: 12px; flex-wrap: wrap; justify-content: center; }
+    .footer-links a { font-size: 12px; }
+  }
+
+  @media (max-width: 480px) {
+    /* Nav */
+    nav { padding: 0 14px; height: 52px; }
+    .nav-cta { font-size: 11px; padding: 7px 12px; }
+
+    /* Hero */
+    .hero { padding: 48px 14px 44px; }
+    .hero h1 { font-size: clamp(24px, 9vw, 36px); }
+    .hero-sub { font-size: 14px; }
+    .hero-badge { font-size: 10px; padding: 5px 12px; }
+    .hero-note { font-size: 12px; }
+
+    /* Proof bar */
+    .proof-bar { gap: 14px; padding: 16px 14px; }
+    .proof-stat-num { font-size: 22px; }
+    .proof-stat-label { font-size: 11px; }
+
+    /* Container */
+    .container { padding: 0 14px; }
+
+    /* Pricing */
+    .pricing-card { padding: 32px 18px; border-radius: 16px; }
+    .pricing-price { font-size: 48px; }
+    .pricing-cta { font-size: 15px; padding: 14px 20px; width: 100%; }
+
+    /* FAQ */
+    .faq-item { padding: 16px 14px; }
+    .faq-q { font-size: 14px; }
+    .faq-a { font-size: 13px; }
+
+    /* Footer */
+    footer { padding: 28px 14px; }
+    .footer-links { flex-direction: column; align-items: center; gap: 8px; }
   }
 </style>
 </head>
