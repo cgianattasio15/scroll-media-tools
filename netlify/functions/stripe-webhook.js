@@ -9,7 +9,8 @@ const crypto = require('crypto');
 // ─── Environment Variables ────────────────────────────────────────────────────
 const STRIPE_WEBHOOK_SECRET = process.env.STRIPE_WEBHOOK_SECRET;
 const RESEND_API_KEY         = process.env.RESEND_API_KEY;
-const KIT_API_KEY            = process.env.KIT_API_KEY;
+const KIT_API_SECRET         = process.env.KIT_API_KEY; // stored as KIT_API_KEY in Netlify env vars
+const KIT_PLAYBOOK_TAG_ID    = '17400944'; // playbook-buyer tag ID
 const TOKEN_STORE_SECRET     = process.env.TOKEN_STORE_SECRET;
 const SITE_URL               = process.env.SITE_URL || 'https://tools.scrollmedia.co';
 const FROM_EMAIL             = 'Chase @ Scroll Media <hello@scrollmedia.co>';
@@ -132,27 +133,24 @@ async function sendAccessEmail(email, customerName, token) {
 // Tags the buyer as 'playbook-buyer' which triggers the post-purchase sequence
 async function addToKit(email, customerName) {
   const firstName = customerName ? customerName.split(' ')[0] : '';
-  const lastName  = customerName ? customerName.split(' ').slice(1).join(' ') : '';
 
-  // 1. Subscribe / upsert the contact
-  const subRes = await fetch('https://api.convertkit.com/v3/subscribers', {
+  // 1. Subscribe / upsert the contact via tag endpoint (creates subscriber + applies tag)
+  const tagRes = await fetch(`https://api.convertkit.com/v3/tags/${KIT_PLAYBOOK_TAG_ID}/subscribe`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
-      api_key:    KIT_API_KEY,
+      api_secret: KIT_API_SECRET,
       email,
       first_name: firstName,
-      last_name:  lastName,
-      tags:       ['playbook-buyer'],
     }),
   });
 
-  if (!subRes.ok) {
-    const err = await subRes.text();
-    throw new Error(`Kit subscribe error ${subRes.status}: ${err}`);
+  if (!tagRes.ok) {
+    const err = await tagRes.text();
+    throw new Error(`Kit tag error ${tagRes.status}: ${err}`);
   }
 
-  return subRes.json();
+  return tagRes.json();
 }
 
 // ─── Main Handler ─────────────────────────────────────────────────────────────
