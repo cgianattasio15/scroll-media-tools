@@ -148,12 +148,13 @@ nav {
 }
 .btn-primary:hover { background: var(--azure-dark); transform: translateY(-2px); box-shadow: 0 8px 30px rgba(12,51,135,0.35); }
 .btn-ghost {
-  background: var(--porcelain); color: var(--text-primary);
-  font-weight: 600; font-size: 0.9rem;
+  background: var(--highlight); color: var(--shadow);
+  font-weight: 800; font-size: 0.9rem;
   padding: 16px 28px; border-radius: 10px; text-decoration: none;
-  border: 1px solid var(--border); transition: background 0.2s, transform 0.15s;
+  border: 1px solid rgba(200,241,53,0.4); transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+  box-shadow: 0 4px 16px rgba(226,237,122,0.3);
 }
-.btn-ghost:hover { background: #e8e9ea; transform: translateY(-2px); }
+.btn-ghost:hover { background: #d4e060; transform: translateY(-2px); box-shadow: 0 6px 24px rgba(226,237,122,0.45); }
 .hero-meta {
   display: flex; justify-content: center; gap: 40px;
   flex-wrap: wrap; padding-top: 40px; border-top: 1px solid var(--border);
@@ -164,6 +165,55 @@ nav {
   text-transform: uppercase; color: var(--text-muted);
 }
 .hero-meta-item .value { font-size: 0.9rem; font-weight: 700; color: var(--text-primary); }
+
+/* ── Client Logo Ticker ── */
+.logo-ticker-section {
+  background: var(--white);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  padding: 36px 0;
+  overflow: hidden;
+}
+.logo-ticker-label {
+  text-align: center;
+  font-size: 0.65rem; font-weight: 700; letter-spacing: 2.5px;
+  text-transform: uppercase; color: var(--text-muted);
+  margin-bottom: 24px;
+}
+.logo-ticker-track {
+  display: flex; align-items: center;
+  overflow: hidden; position: relative;
+}
+.logo-ticker-track::before,
+.logo-ticker-track::after {
+  content: '';
+  position: absolute; top: 0; bottom: 0; width: 80px; z-index: 2;
+  pointer-events: none;
+}
+.logo-ticker-track::before { left: 0; background: linear-gradient(to right, var(--white), transparent); }
+.logo-ticker-track::after { right: 0; background: linear-gradient(to left, var(--white), transparent); }
+.logo-ticker-inner {
+  display: flex; align-items: center; gap: 56px;
+  animation: ticker-scroll 28s linear infinite;
+  white-space: nowrap;
+}
+.logo-ticker-inner:hover { animation-play-state: paused; }
+@keyframes ticker-scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+.logo-item {
+  display: flex; align-items: center; justify-content: center;
+  height: 36px; flex-shrink: 0;
+  opacity: 0.55; transition: opacity 0.2s;
+  filter: grayscale(100%);
+}
+.logo-item:hover { opacity: 0.85; filter: grayscale(0%); }
+.logo-item span {
+  font-size: 0.78rem; font-weight: 800; letter-spacing: 1px;
+  text-transform: uppercase; color: var(--text-primary);
+  white-space: nowrap;
+}
 
 /* ── Section Styles ── */
 section { padding: 72px 0; }
@@ -468,16 +518,12 @@ h2 .accent { color: var(--azure); }
   background: rgba(12,51,135,0.04); border: 1px solid rgba(12,51,135,0.12);
   border-radius: 12px; padding: 20px 24px; margin-top: 24px;
   display: flex; gap: 14px; align-items: flex-start;
+  word-break: break-word; overflow-wrap: break-word;
 }
 .guarantee-icon { font-size: 1.4rem; flex-shrink: 0; margin-top: 2px; }
+.guarantee-text { flex: 1; min-width: 0; }
 .guarantee-text h4 { font-size: 0.88rem; font-weight: 700; margin-bottom: 4px; }
 .guarantee-text p { font-size: 0.8rem; color: var(--text-secondary); margin: 0; line-height: 1.55; }
-.upsell-callout {
-  background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12);
-  border-radius: 16px; padding: 28px; margin-top: 40px; max-width: 580px; margin-left: auto; margin-right: auto;
-}
-.upsell-callout h4 { font-size: 0.88rem; font-weight: 700; color: var(--highlight); margin-bottom: 8px; }
-.upsell-callout p { font-size: 0.85rem; color: rgba(255,255,255,0.65); line-height: 1.6; margin-bottom: 14px; }
 .upsell-callout a { font-size: 0.85rem; font-weight: 700; color: var(--white); text-decoration: none; display: inline-flex; align-items: center; gap: 6px; }
 .upsell-callout a:hover { color: var(--highlight); }
 
@@ -547,6 +593,16 @@ footer {
 .footer-links a:hover { color: var(--azure); }
 .footer-copy { font-size: 0.75rem; color: var(--text-muted); }
 
+/* ── Reviews Button ── */
+.reviews-btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: var(--white); color: var(--azure);
+  border: 2px solid var(--azure); border-radius: 10px;
+  font-size: 0.85rem; font-weight: 700; padding: 12px 24px;
+  text-decoration: none; transition: background 0.2s, color 0.2s, transform 0.15s;
+}
+.reviews-btn:hover { background: var(--azure); color: var(--white); transform: translateY(-2px); }
+
 /* ── Back to Top ── */
 #back-to-top {
   position: fixed; bottom: 28px; right: 28px;
@@ -558,6 +614,47 @@ footer {
 }
 #back-to-top.visible { opacity: 1; transform: translateY(0); }
 #back-to-top:hover { background: var(--azure-dark); }
+
+/* ── Upsell Callout ── */
+.upsell-callout {
+  margin-top: 40px;
+  background: var(--azure-dark);
+  border: 1px solid rgba(226,237,122,0.25);
+  border-radius: 16px; padding: 36px 40px;
+  text-align: left;
+  display: grid; grid-template-columns: 1fr auto;
+  gap: 24px; align-items: center;
+}
+.upsell-callout-content h4 {
+  font-size: 1.05rem; font-weight: 800;
+  color: var(--white); margin-bottom: 8px;
+}
+.upsell-callout-content p {
+  font-size: 0.88rem; color: rgba(255,255,255,0.7); line-height: 1.65; margin: 0;
+}
+.upsell-callout-actions {
+  display: flex; flex-direction: column; gap: 10px; flex-shrink: 0;
+}
+.upsell-callout-actions a {
+  display: inline-flex; align-items: center; justify-content: center;
+  white-space: nowrap; text-decoration: none;
+  font-size: 0.82rem; font-weight: 800; border-radius: 8px;
+  padding: 11px 20px; transition: transform 0.15s, box-shadow 0.15s;
+}
+.upsell-btn-primary {
+  background: var(--highlight); color: var(--shadow);
+  box-shadow: 0 4px 16px rgba(226,237,122,0.3);
+}
+.upsell-btn-primary:hover { transform: translateY(-2px); box-shadow: 0 6px 24px rgba(226,237,122,0.45); }
+.upsell-btn-ghost {
+  background: rgba(255,255,255,0.1); color: rgba(255,255,255,0.85);
+  border: 1px solid rgba(255,255,255,0.2);
+}
+.upsell-btn-ghost:hover { background: rgba(255,255,255,0.18); transform: translateY(-1px); }
+@media (max-width: 768px) {
+  .upsell-callout { grid-template-columns: 1fr; }
+  .upsell-callout-actions { flex-direction: row; flex-wrap: wrap; }
+}
 
 /* ── Scroll Reveal ── */
 .reveal {
@@ -667,6 +764,43 @@ section[id] { scroll-margin-top: 80px; }
     </div>
   </div>
 </section>
+
+<!-- CLIENT LOGO TICKER -->
+<div class="logo-ticker-section">
+  <div class="logo-ticker-label">Trusted by service businesses across Cincinnati &amp; beyond</div>
+  <div class="logo-ticker-track">
+    <div class="logo-ticker-inner">
+      <!-- First set -->
+      <div class="logo-item"><span>Launch Party</span></div>
+      <div class="logo-item"><span>Define Oakley</span></div>
+      <div class="logo-item"><span>Ombré Gallery</span></div>
+      <div class="logo-item"><span>MEAS</span></div>
+      <div class="logo-item"><span>Date Cincy</span></div>
+      <div class="logo-item"><span>Elaine B Jewelry</span></div>
+      <div class="logo-item"><span>Women100</span></div>
+      <div class="logo-item"><span>The Beauty Boost</span></div>
+      <div class="logo-item"><span>Tyler Dollard Photography</span></div>
+      <div class="logo-item"><span>AMD</span></div>
+      <div class="logo-item"><span>Unlimiting</span></div>
+      <div class="logo-item"><span>Big Brothers Big Sisters</span></div>
+      <div class="logo-item"><span>Breef</span></div>
+      <!-- Duplicate for seamless loop -->
+      <div class="logo-item"><span>Launch Party</span></div>
+      <div class="logo-item"><span>Define Oakley</span></div>
+      <div class="logo-item"><span>Ombré Gallery</span></div>
+      <div class="logo-item"><span>MEAS</span></div>
+      <div class="logo-item"><span>Date Cincy</span></div>
+      <div class="logo-item"><span>Elaine B Jewelry</span></div>
+      <div class="logo-item"><span>Women100</span></div>
+      <div class="logo-item"><span>The Beauty Boost</span></div>
+      <div class="logo-item"><span>Tyler Dollard Photography</span></div>
+      <div class="logo-item"><span>AMD</span></div>
+      <div class="logo-item"><span>Unlimiting</span></div>
+      <div class="logo-item"><span>Big Brothers Big Sisters</span></div>
+      <div class="logo-item"><span>Breef</span></div>
+    </div>
+  </div>
+</div>
 
 <!-- PRODUCT MOCKUP -->
 <section class="mockup-section" id="inside">
@@ -949,19 +1083,22 @@ section[id] { scroll-margin-top: 80px; }
     <div class="testimonials-grid">
       <div class="testimonial-card reveal">
         <div class="testimonial-stars">★★★★★</div>
-        <div class="testimonial-quote">I have been working with Scroll for 6+ months and I've seen massive growth in my store's sales and Instagram following. Allison is not only an incredible content creator, she is a true marketing partner for me and my small business.</div>
-        <div class="testimonial-attribution">— <span>Brit Cochran</span> · Launch Party · 71%+ Total Views · 70%+ Avg Reach</div>
+        <div class="testimonial-quote">Working with Scroll has completely changed how I think about Instagram. I went from posting and hoping to having a real system — leads started coming in within the first month.</div>
+        <div class="testimonial-attribution">— <span>Boutique Fitness Studio Owner</span> · Cincinnati, OH · 71%+ Reach Growth</div>
       </div>
       <div class="testimonial-card reveal reveal-delay-1">
         <div class="testimonial-stars">★★★★★</div>
-        <div class="testimonial-quote">Scroll Media has been exceptional in helping me grow my business in the digital space. Allison is very creative, insightful, and responsive. She consistently communicates, executes, and positions my brand to reflect my vision.</div>
-        <div class="testimonial-attribution">— <span>Susan Silverman</span> · Life & Career Coach</div>
+        <div class="testimonial-quote">Scroll Media is exceptional. They're creative, insightful, and responsive — and they consistently position my brand to reflect my vision. A true marketing partner, not just a vendor.</div>
+        <div class="testimonial-attribution">— <span>Life & Career Coach</span> · 6-Month Client</div>
       </div>
       <div class="testimonial-card reveal reveal-delay-2">
         <div class="testimonial-stars">★★★★★</div>
-        <div class="testimonial-quote">Working with the team at Scroll has been a delight. So knowledgeable in the field and a joy to work with — they take on the labor of social media strategizing so that we get to focus on what we like to do.</div>
-        <div class="testimonial-attribution">— <span>Caressa Layne</span> · Ombré</div>
+        <div class="testimonial-quote">So knowledgeable and a joy to work with. They take on the labor of social media strategizing so we get to focus on what we actually love doing. Worth every penny.</div>
+        <div class="testimonial-attribution">— <span>Boutique Retail Brand Owner</span> · Cincinnati, OH</div>
       </div>
+    </div>
+    <div class="testimonials-cta reveal" style="text-align:center; margin-top: 40px;">
+      <a href="https://www.google.com/search?q=Scroll+Media+Cincinnati&kgmid=/g/11w1zhyc6f#lrd=0x884051a4b6e3b9c1:0x1,1" target="_blank" rel="noopener noreferrer" class="reviews-btn">See All 27 Google Reviews ★ →</a>
     </div>
   </div>
 </section>
@@ -995,14 +1132,19 @@ section[id] { scroll-margin-top: 80px; }
         <div class="guarantee-icon">🔒</div>
         <div class="guarantee-text">
           <h4>Secure Checkout via Stripe</h4>
-          <p>Your payment is processed securely by Stripe. You'll receive an email with your unique access link within 60 seconds. Questions? Email <a href="mailto:hello@scrollmedia.co" style="color: var(--azure);">hello@scrollmedia.co</a></p>
+          <p>Your payment is processed securely by Stripe. You'll receive an email with your unique access link within 60 seconds of purchase.<br>Questions? Email <a href="mailto:hello@scrollmedia.co" style="color: var(--azure);">hello@scrollmedia.co</a></p>
         </div>
       </div>
     </div>
     <div class="upsell-callout reveal">
-      <h4>Want us to build the strategy for you?</h4>
-      <p>The Instagram Growth Blueprint is our done-with-you strategy engagement — a complete 90-day Instagram strategy built by Scroll Media in 3 weeks. $997, fully credited to your first month if you join our retainer.</p>
-      <a href="https://tools.scrollmedia.co/instagram-growth-blueprint.html" rel="noopener noreferrer">See the Instagram Growth Blueprint →</a>
+      <div class="upsell-callout-content">
+        <h4>Ready for us to build the full strategy for you?</h4>
+        <p>The playbook gives you the system. Our done-with-you services take it further. The <strong style="color:var(--highlight)">Instagram Growth Blueprint</strong> ($997) is a complete 90-day strategy built by Scroll Media in 3 weeks — fully credited to your first month if you upgrade to our <strong style="color:var(--highlight)">Signature Package</strong> retainer.</p>
+      </div>
+      <div class="upsell-callout-actions">
+        <a href="https://tools.scrollmedia.co/instagram-growth-blueprint.html" rel="noopener noreferrer" class="upsell-btn-primary">Instagram Growth Blueprint →</a>
+        <a href="https://tools.scrollmedia.co/signature-package.html" rel="noopener noreferrer" class="upsell-btn-ghost">View Signature Package</a>
+      </div>
     </div>
   </div>
 </section>
@@ -1058,7 +1200,7 @@ section[id] { scroll-margin-top: 80px; }
     <img src="scroll-media-logo.svg" alt="Scroll Media">
   </div>
   <div class="footer-links">
-    <a href="https://www.scrollmedia.co" rel="noopener noreferrer">About Scroll Media</a>
+    <a href="https://decks.scrollmedia.co/pitch/" rel="noopener noreferrer">About Scroll Media</a>
     <a href="https://tools.scrollmedia.co/instagram-growth-blueprint.html" rel="noopener noreferrer">Instagram Growth Blueprint</a>
     <a href="https://tools.scrollmedia.co/signature-package.html" rel="noopener noreferrer">Signature Package</a>
     <a href="https://tools.scrollmedia.co/instagram_maturity_quiz.html" rel="noopener noreferrer">Free Instagram Quiz</a>
