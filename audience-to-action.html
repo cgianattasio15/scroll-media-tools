@@ -204,16 +204,37 @@ nav {
 }
 .logo-item {
   display: flex; align-items: center; justify-content: center;
-  height: 36px; flex-shrink: 0;
-  opacity: 0.55; transition: opacity 0.2s;
+  height: 44px; flex-shrink: 0;
+  opacity: 0.5; transition: opacity 0.2s, filter 0.2s;
   filter: grayscale(100%);
 }
-.logo-item:hover { opacity: 0.85; filter: grayscale(0%); }
-.logo-item span {
-  font-size: 0.78rem; font-weight: 800; letter-spacing: 1px;
-  text-transform: uppercase; color: var(--text-primary);
-  white-space: nowrap;
+.logo-item:hover { opacity: 0.9; filter: grayscale(0%); }
+.logo-item img { height: 44px; width: auto; max-width: 120px; object-fit: contain; display: block; }
+
+/* ── Recognition Section ── */
+.recognition-section {
+  background: var(--porcelain);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  padding: 36px 0;
+  text-align: center;
 }
+.recognition-label {
+  font-size: 0.65rem; font-weight: 700; letter-spacing: 2.5px;
+  text-transform: uppercase; color: var(--text-muted);
+  margin-bottom: 24px;
+}
+.recognition-logos {
+  display: flex; align-items: center; justify-content: center;
+  gap: 40px; flex-wrap: wrap; padding: 0 32px;
+}
+.recog-item {
+  display: flex; align-items: center; justify-content: center;
+  height: 52px; opacity: 0.5; transition: opacity 0.2s, filter 0.2s;
+  filter: grayscale(100%);
+}
+.recog-item:hover { opacity: 0.9; filter: grayscale(0%); }
+.recog-item img { height: 52px; width: auto; max-width: 130px; object-fit: contain; display: block; }
 
 /* ── Section Styles ── */
 section { padding: 72px 0; }
@@ -466,14 +487,15 @@ h2 .accent { color: var(--azure); }
 .pricing-section .section-sub { color: rgba(255,255,255,0.65); }
 .pricing-card {
   background: var(--white); color: var(--shadow);
-  border-radius: 24px; padding: 52px 44px;
+  border-radius: 24px; padding: 64px 44px 52px;
   max-width: 580px; margin: 0 auto;
-  position: relative; overflow: hidden;
+  position: relative; overflow: visible;
   box-shadow: 0 24px 80px rgba(0,0,0,0.3);
 }
 .pricing-card::before {
   content: '';
   position: absolute; top: 0; left: 0; right: 0; height: 4px;
+  border-radius: 24px 24px 0 0;
   background: linear-gradient(90deg, var(--azure), #1a4fd4);
 }
 .pricing-badge {
@@ -524,8 +546,7 @@ h2 .accent { color: var(--azure); }
 .guarantee-text { flex: 1; min-width: 0; }
 .guarantee-text h4 { font-size: 0.88rem; font-weight: 700; margin-bottom: 4px; }
 .guarantee-text p { font-size: 0.8rem; color: var(--text-secondary); margin: 0; line-height: 1.55; }
-.upsell-callout a { font-size: 0.85rem; font-weight: 700; color: var(--white); text-decoration: none; display: inline-flex; align-items: center; gap: 6px; }
-.upsell-callout a:hover { color: var(--highlight); }
+/* upsell link base — do not override button colors here */
 
 /* ── FAQ ── */
 .faq-section { background: var(--ghost); }
@@ -771,34 +792,39 @@ section[id] { scroll-margin-top: 80px; }
   <div class="logo-ticker-track">
     <div class="logo-ticker-inner">
       <!-- First set -->
-      <div class="logo-item"><span>Launch Party</span></div>
-      <div class="logo-item"><span>Define Oakley</span></div>
-      <div class="logo-item"><span>Ombré Gallery</span></div>
-      <div class="logo-item"><span>MEAS</span></div>
-      <div class="logo-item"><span>Date Cincy</span></div>
-      <div class="logo-item"><span>Elaine B Jewelry</span></div>
-      <div class="logo-item"><span>Women100</span></div>
-      <div class="logo-item"><span>The Beauty Boost</span></div>
-      <div class="logo-item"><span>Tyler Dollard Photography</span></div>
-      <div class="logo-item"><span>AMD</span></div>
-      <div class="logo-item"><span>Unlimiting</span></div>
-      <div class="logo-item"><span>Big Brothers Big Sisters</span></div>
-      <div class="logo-item"><span>Breef</span></div>
+      <div class="logo-item"><img src="logos/cl-lane-kate.png" alt="Lane &amp; Kate" loading="lazy"></div>
+      <div class="logo-item"><img src="logos/cl-launch-party.png" alt="Launch Party" loading="lazy"></div>
+      <div class="logo-item"><img src="logos/cl-define.png" alt="Define" loading="lazy"></div>
+      <div class="logo-item"><img src="logos/cl-meas.png" alt="MEAS Active" loading="lazy"></div>
+      <div class="logo-item"><img src="logos/cl-beauty-boost.png" alt="The Beauty Boost" loading="lazy"></div>
+      <div class="logo-item"><img src="logos/cl-ombre-gallery.png" alt="Ombré Gallery" loading="lazy"></div>
+      <div class="logo-item"><img src="logos/cl-date-cincy.png" alt="Date Cincy" loading="lazy"></div>
+      <div class="logo-item"><img src="logos/cl-elaine-b.png" alt="Elaine B. Jewelry" loading="lazy"></div>
+      <div class="logo-item"><img src="logos/cl-women100.png" alt="Women100" loading="lazy"></div>
       <!-- Duplicate for seamless loop -->
-      <div class="logo-item"><span>Launch Party</span></div>
-      <div class="logo-item"><span>Define Oakley</span></div>
-      <div class="logo-item"><span>Ombré Gallery</span></div>
-      <div class="logo-item"><span>MEAS</span></div>
-      <div class="logo-item"><span>Date Cincy</span></div>
-      <div class="logo-item"><span>Elaine B Jewelry</span></div>
-      <div class="logo-item"><span>Women100</span></div>
-      <div class="logo-item"><span>The Beauty Boost</span></div>
-      <div class="logo-item"><span>Tyler Dollard Photography</span></div>
-      <div class="logo-item"><span>AMD</span></div>
-      <div class="logo-item"><span>Unlimiting</span></div>
-      <div class="logo-item"><span>Big Brothers Big Sisters</span></div>
-      <div class="logo-item"><span>Breef</span></div>
+      <div class="logo-item"><img src="logos/cl-lane-kate.png" alt="Lane &amp; Kate" loading="lazy"></div>
+      <div class="logo-item"><img src="logos/cl-launch-party.png" alt="Launch Party" loading="lazy"></div>
+      <div class="logo-item"><img src="logos/cl-define.png" alt="Define" loading="lazy"></div>
+      <div class="logo-item"><img src="logos/cl-meas.png" alt="MEAS Active" loading="lazy"></div>
+      <div class="logo-item"><img src="logos/cl-beauty-boost.png" alt="The Beauty Boost" loading="lazy"></div>
+      <div class="logo-item"><img src="logos/cl-ombre-gallery.png" alt="Ombré Gallery" loading="lazy"></div>
+      <div class="logo-item"><img src="logos/cl-date-cincy.png" alt="Date Cincy" loading="lazy"></div>
+      <div class="logo-item"><img src="logos/cl-elaine-b.png" alt="Elaine B. Jewelry" loading="lazy"></div>
+      <div class="logo-item"><img src="logos/cl-women100.png" alt="Women100" loading="lazy"></div>
     </div>
+  </div>
+</div>
+<!-- RECOGNITION SECTION -->
+<div class="recognition-section">
+  <div class="recognition-label">As Seen In &amp; Notable Recognition</div>
+  <div class="recognition-logos">
+    <div class="recog-item"><img src="logos/rg-clutch-realestate.png" alt="Clutch Top Social Media Marketing Company" loading="lazy"></div>
+    <div class="recog-item"><img src="logos/rg-clutch-instagram.png" alt="Clutch Top Instagram Influencer Marketing" loading="lazy"></div>
+    <div class="recog-item"><img src="logos/rg-otr-chamber.png" alt="OTR Chamber of Commerce" loading="lazy"></div>
+    <div class="recog-item"><img src="logos/rg-now-in-nati.png" alt="Now in the Nati" loading="lazy"></div>
+    <div class="recog-item"><img src="logos/rg-breef.png" alt="Breef" loading="lazy"></div>
+    <div class="recog-item"><img src="logos/rg-big-brothers.png" alt="Big Brothers Big Sisters Cincinnati" loading="lazy"></div>
+    <div class="recog-item"><img src="logos/rg-kiss-1071.png" alt="KISS 107.1" loading="lazy"></div>
   </div>
 </div>
 
@@ -1084,7 +1110,7 @@ section[id] { scroll-margin-top: 80px; }
       <div class="testimonial-card reveal">
         <div class="testimonial-stars">★★★★★</div>
         <div class="testimonial-quote">Working with Scroll has completely changed how I think about Instagram. I went from posting and hoping to having a real system — leads started coming in within the first month.</div>
-        <div class="testimonial-attribution">— <span>Boutique Fitness Studio Owner</span> · Cincinnati, OH · 71%+ Reach Growth</div>
+        <div class="testimonial-attribution">— <span>Boutique Fitness Studio Owner</span> · 71%+ Reach Growth</div>
       </div>
       <div class="testimonial-card reveal reveal-delay-1">
         <div class="testimonial-stars">★★★★★</div>
@@ -1098,7 +1124,7 @@ section[id] { scroll-margin-top: 80px; }
       </div>
     </div>
     <div class="testimonials-cta reveal" style="text-align:center; margin-top: 40px;">
-      <a href="https://www.google.com/search?q=Scroll+Media+Cincinnati&kgmid=/g/11w1zhyc6f#lrd=0x884051a4b6e3b9c1:0x1,1" target="_blank" rel="noopener noreferrer" class="reviews-btn">See All 27 Google Reviews ★ →</a>
+      <a href="https://www.google.com/search?q=Scroll+Media+Cincinnati&kgmid=/g/11w1zhyc6f#lrd=0x884051a4b6e3b9c1:0x1,1" target="_blank" rel="noopener noreferrer" class="reviews-btn">See All Reviews →</a>
     </div>
   </div>
 </section>

@@ -37,16 +37,14 @@
     font-size: 32px;
   }
   .brand {
-    display: inline-block;
-    background: #0c3387;
-    color: #c8f135;
-    font-size: 11px;
-    font-weight: 800;
-    letter-spacing: 2.5px;
-    text-transform: uppercase;
-    padding: 5px 12px;
-    border-radius: 5px;
-    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 24px;
+  }
+  .brand img {
+    height: 52px;
+    width: auto;
   }
   h1 {
     font-size: 2rem;
@@ -131,7 +129,9 @@
 <body>
 <div class="card">
   <div class="check-icon">✓</div>
-  <span class="brand">Scroll Media</span>
+  <div class="brand">
+    <img src="../ScrollLogo-WebDesign(1).svg" alt="Scroll Media" />
+  </div>
   <h1>You're in. Check your email.</h1>
   <p class="subtitle">Your purchase is confirmed. We're generating your unique access link right now — it'll hit your inbox within 60 seconds.</p>
 
