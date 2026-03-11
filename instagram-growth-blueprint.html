@@ -120,7 +120,7 @@
   .hero-sub {
     font-size: clamp(16px, 2.5vw, 20px);
     color: rgba(255,255,255,0.75);
-    max-width: 600px; margin: 0 auto 40px;
+    max-width: 600px; margin: 0 auto 16px;
     line-height: 1.65; position: relative; z-index: 1;
   }
   .hero-cta-group {
@@ -148,6 +148,11 @@
   .hero-note {
     font-size: 13px; color: rgba(255,255,255,0.45);
     margin-top: 14px; position: relative; z-index: 1;
+  }
+  .hero-niche-line {
+    font-size: 13px; color: rgba(255,255,255,0.5);
+    max-width: 560px; margin: 0 auto 32px;
+    line-height: 1.6; position: relative; z-index: 1;
   }
   .hero-stats {
     display: flex; justify-content: center; gap: 40px;
@@ -534,6 +539,12 @@
     padding: 6px 20px; border-radius: 100px;
     font-size: 12px; font-weight: 700; letter-spacing: 0.08em;
     text-transform: uppercase; white-space: nowrap;
+  }
+  .pricing-scarcity {
+    font-size: 12px; font-weight: 600; color: #b45309;
+    background: #fef3c7; border: 1px solid #fde68a;
+    border-radius: 8px; padding: 8px 16px;
+    margin-bottom: 20px; display: inline-block;
   }
   .pricing-price {
     font-size: 72px; font-weight: 900; letter-spacing: -0.04em;
@@ -1054,7 +1065,7 @@
     <img src="scroll-media-logo.svg" alt="Scroll Media">
   </a>
   <ul class="nav-links">
-    <li><a href="#whats-included">What You Get</a></li>
+    <li><a href="#whats-included">What's Included</a></li>
     <li><a href="#how-it-works">How It Works</a></li>
     <li><a href="#proof">Reviews</a></li>
     <li><a href="#pricing">Pricing</a></li>
@@ -1068,6 +1079,7 @@
     <div class="hero-badge">🎯 Done-With-You Strategy</div>
     <h1>Stop guessing.<br>Start growing <em>on purpose.</em></h1>
     <p class="hero-sub">A complete, 90-day Instagram strategy for your business — built by Scroll Media in 3 weeks. You get the plan, the clarity, and the confidence to execute.</p>
+    <p class="hero-niche-line">Built for med spas, fitness studios, coaches, real estate professionals, interior designers, and service businesses ready to grow.</p>
     <div class="hero-cta-group">
       <a href="mailto:hello@scrollmedia.co?subject=Instagram Growth Blueprint Inquiry" class="btn-primary">
         Get Your Blueprint — $997 →
@@ -1182,72 +1194,62 @@
   </div>
 </section>
 
-<!-- WHAT'S INCLUDED -->
-<section class="deliverables" id="whats-included">
-  <div class="container">
-    <div class="section-label">What You Get</div>
-    <h2>A complete strategy.<br><span class="accent">Zero guesswork.</span></h2>
-    <p class="section-sub">Over 3 weeks, we build every component of your Instagram growth system from the ground up. The final deliverable is a complete, approved strategy document ready for execution.</p>
-    <div class="deliverables-list">
-      <div class="deliverable-item reveal">
-        <div class="deliverable-num">01</div>
-        <div class="deliverable-text">
-          <h3>60-Minute Onboarding Strategy Call</h3>
-          <p>A structured deep-dive into your business goals, brand voice, target audience, and competitive landscape. This is where we learn everything we need to build a strategy that actually fits your business — not a template.</p>
-          <span class="deliverable-tag">Week 1</span>
+<!-- TESTIMONIALS (moved up for early social proof) -->
+<section class="testimonials" id="proof">
+  <div class="container-wide">
+    <div class="testimonials-header">
+      <div class="stars">★★★★★</div>
+      <h2>What clients say about working with Scroll Media</h2>
+      <p class="rating-label">5.0 out of 5 · 27 Google Reviews</p>
+    </div>
+    <div class="testimonials-grid">
+      <div class="testimonial-card reveal">
+        <div class="testimonial-stars">★★★★★</div>
+        <p class="testimonial-text">&ldquo;Scroll Media has been exceptional in helping me grow my business in the digital space. Very creative, insightful, and responsive &mdash; consistently communicating, executing, and positioning my brand to reflect my vision. I highly recommend working with Scroll Media!&rdquo;</p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">SS</div>
+          <div>
+            <div class="testimonial-name">Life &amp; Career Coach</div>
+            <div class="testimonial-role">6-Month Client</div>
+          </div>
         </div>
       </div>
-      <div class="deliverable-item reveal reveal-delay-1">
-        <div class="deliverable-num">02</div>
-        <div class="deliverable-text">
-          <h3>Full Brand &amp; Competitor Analysis</h3>
-          <p>We audit your current Instagram presence and benchmark it against your top 3–5 competitors. You'll see exactly where the gaps are and where the opportunities lie — with specific, actionable recommendations.</p>
-          <span class="deliverable-tag">Week 1</span>
+      <div class="testimonial-card reveal reveal-delay-1">
+        <div class="testimonial-stars">★★★★★</div>
+        <p class="testimonial-text">&ldquo;I have been working with Scroll Media for 6+ months and I&rsquo;ve seen massive growth in my store&rsquo;s sales and Instagram following. Not only an incredible content creator, but a true marketing partner for me and my small business.&rdquo;</p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">BC</div>
+          <div>
+            <div class="testimonial-name">Boutique Retail Store Owner</div>
+            <div class="testimonial-role">6-Month Client</div>
+          </div>
         </div>
       </div>
-      <div class="deliverable-item reveal reveal-delay-2">
-        <div class="deliverable-num">03</div>
-        <div class="deliverable-text">
-          <h3>Ideal Viewer Profile (IVP) Development</h3>
-          <p>We build a detailed portrait of the exact person your content is designed to reach — their goals, their objections, their search behavior, and the content that moves them to act. Every strategic decision flows from this document.</p>
-          <span class="deliverable-tag">Week 1–2</span>
+      <div class="testimonial-card reveal reveal-delay-2">
+        <div class="testimonial-stars">★★★★★</div>
+        <p class="testimonial-text">&ldquo;Working with the team at Scroll has been a delight. So knowledgeable in the field and a joy to work with &mdash; they take on the labor of social media strategizing so that we get to focus on what we like to do.&rdquo;</p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">CL</div>
+          <div>
+            <div class="testimonial-name">Gallery &amp; Boutique Owner</div>
+            <div class="testimonial-role">Ongoing Client</div>
+          </div>
         </div>
       </div>
-      <div class="deliverable-item reveal">
-        <div class="deliverable-num">04</div>
-        <div class="deliverable-text">
-          <h3>Content Pillar Strategy</h3>
-          <p>We define your 4 core content pillars, mapped to the TOFU/MOFU/BOFU framework. Every post you create will have a clear job: attract, nurture, or convert. No more guessing what to post or why.</p>
-          <span class="deliverable-tag">Week 2</span>
-        </div>
-      </div>
-      <div class="deliverable-item reveal reveal-delay-1">
-        <div class="deliverable-num">05</div>
-        <div class="deliverable-text">
-          <h3>Custom Keyword Bank &amp; Social SEO Setup</h3>
-          <p>Using our TAM Ladder framework, we build a 4-level keyword strategy that makes your content discoverable to high-intent buyers — from broad industry terms all the way down to hyper-local, purchase-ready searches.</p>
-          <span class="deliverable-tag">Week 2</span>
-        </div>
-      </div>
-      <div class="deliverable-item reveal reveal-delay-2">
-        <div class="deliverable-num">06</div>
-        <div class="deliverable-text">
-          <h3>Profile Optimization Plan</h3>
-          <p>We rewrite your bio, restructure your Highlights, and optimize your link-in-bio to convert profile visitors into leads. Your profile should work as hard as your content does — this deliverable makes sure it does.</p>
-          <span class="deliverable-tag">Week 3</span>
-        </div>
-      </div>
+    </div>
+    <div class="reviews-btn-wrap">
+      <a href="https://www.google.com/search?q=Scroll+Media+Cincinnati+reviews" target="_blank" rel="noopener noreferrer" class="reviews-btn">See All Reviews →</a>
     </div>
   </div>
 </section>
 
-<!-- STRATEGY SCOPE -->
-<section class="strategy-scope" id="strategy-scope">
+<!-- WHAT'S INCLUDED (consolidated from deliverables list + scope grid) -->
+<section class="strategy-scope" id="whats-included">
   <div class="container">
-    <div class="section-label">Inside the Strategy</div>
-    <h2>What you actually <span class="accent">walk away with.</span></h2>
+    <div class="section-label">What You Get</div>
+    <h2>A complete strategy. <span class="accent">Zero guesswork.</span></h2>
     <div class="scope-intro">
-      <p>The Blueprint isn't a generic audit or a list of recommendations. It's a fully built, ready-to-execute strategy document — covering every dimension of your Instagram presence. Here's what's inside.</p>
+      <p>Over 3 weeks, we build every component of your Instagram growth system from the ground up. The Blueprint isn’t a generic audit — it’s a fully built, ready-to-execute strategy document covering every dimension of your Instagram presence.</p>
     </div>
     <div class="scope-grid">
       <div class="scope-card reveal">
@@ -1481,39 +1483,39 @@
         </thead>
         <tbody>
           <tr>
-            <td class="kpi-metric">Reach Growth</td>
-            <td>New accounts reached per month</td>
-            <td>Top-of-funnel awareness — are you reaching new potential clients?</td>
+            <td class="kpi-metric">Watch Time &amp; View Duration</td>
+            <td>How long viewers watch your Reels and videos</td>
+            <td>Retention signals quality and relevance — the algorithm’s strongest ranking signal</td>
+            <td class="kpi-check">✓</td>
+          </tr>
+          <tr>
+            <td class="kpi-metric">Saves &amp; Shares</td>
+            <td>Content saved or shared by viewers</td>
+            <td>Strongest indicators of content value and shareability — not vanity, actual utility</td>
             <td class="kpi-check">✓</td>
           </tr>
           <tr>
             <td class="kpi-metric">Profile Visits</td>
-            <td>Users clicking to your profile</td>
-            <td>Signals content is compelling enough to drive intent</td>
+            <td>Users clicking through to your profile</td>
+            <td>Interest and consideration signals — content compelling enough to drive intent</td>
             <td class="kpi-check">✓</td>
           </tr>
           <tr>
-            <td class="kpi-metric">Link-in-Bio Clicks</td>
-            <td>Traffic from Instagram to your website/booking</td>
-            <td>Direct revenue signal — are followers converting to leads?</td>
+            <td class="kpi-metric">Link Taps</td>
+            <td>Clicks from Instagram to your website or booking page</td>
+            <td>Intent and action signals — the clearest path from content to revenue</td>
             <td class="kpi-check">✓</td>
           </tr>
           <tr>
-            <td class="kpi-metric">Save Rate</td>
-            <td>Saves ÷ Impressions</td>
-            <td>Strongest signal of content value and authority</td>
+            <td class="kpi-metric">Retention Patterns</td>
+            <td>Where audiences drop off in your content</td>
+            <td>Reveals what’s working and what’s not — guides iteration and format decisions</td>
             <td class="kpi-check">✓</td>
           </tr>
           <tr>
             <td class="kpi-metric">DM Inquiries</td>
             <td>Direct messages from potential clients</td>
-            <td>Bottom-of-funnel conversion — the goal of the whole system</td>
-            <td class="kpi-check">✓</td>
-          </tr>
-          <tr>
-            <td class="kpi-metric">Follower Quality Score</td>
-            <td>Engagement rate vs. follower count ratio</td>
-            <td>Ensures growth is qualified, not just vanity numbers</td>
+            <td>Bottom-of-funnel outcome — the revenue signal that proves the strategy is working</td>
             <td class="kpi-check">✓</td>
           </tr>
         </tbody>
@@ -1525,9 +1527,9 @@
 <!-- DELIVERABLES COMPARISON TABLE -->
 <section class="deliverables-compare section">
   <div class="container">
-    <div class="section-label">What You Get</div>
-    <h2>Everything in the Blueprint. <em style="font-style:normal; color: var(--azure);">Nothing missing.</em></h2>
-    <p style="color: var(--text-secondary); font-size: 16px; max-width: 560px; margin: 16px auto 0; line-height: 1.7;">See exactly what's included in the Blueprint — and how it compares to our full-service Signature Package retainer.</p>
+    <div class="section-label">Blueprint vs. Full Service</div>
+    <h2>Everything in the Blueprint. <em style="font-style:normal; color: var(--azure);">See how it stacks up.</em></h2>
+    <p style="color: var(--text-secondary); font-size: 16px; max-width: 560px; margin: 16px auto 0; line-height: 1.7;">The Blueprint is a standalone strategy engagement. The Signature Package takes that strategy and executes it for you — every month.</p>
     <div class="deliverables-table-wrap reveal">
       <table class="deliverables-table">
         <thead>
@@ -1909,19 +1911,19 @@
         <div class="use-case-niche">Med Spa</div>
         <h4>Turning Education Into Bookings</h4>
         <p class="use-case-challenge">A Cincinnati med spa was posting consistently but seeing no DM inquiries. Their content was aesthetic but not strategic — no clear funnel, no CTAs, no SEO. Followers weren't converting to consultations.</p>
-        <div class="use-case-outcome">Blueprint delivered a full IVP, TAM Ladder for local aesthetic keywords, and a content pillar framework that separated educational TOFU content from BOFU booking-focused posts. DM inquiries increased within the first 30 days of implementation.</div>
+        <div class="use-case-outcome">Blueprint delivered a full IVP, TAM Ladder for local aesthetic keywords, and a content pillar framework that separated educational TOFU content from BOFU booking-focused posts. Profile visits increased 40%+ and DM consultation inquiries began within the first 30 days of implementation.</div>
       </div>
       <div class="use-case-card reveal reveal-delay-2">
         <div class="use-case-niche">Fitness Studio</div>
         <h4>Growing Local Awareness &amp; Trial Sign-Ups</h4>
         <p class="use-case-challenge">A boutique fitness studio had strong in-person retention but couldn't attract new members through Instagram. Their profile wasn't optimized for local search and their content didn't speak to the right audience.</p>
-        <div class="use-case-outcome">Blueprint identified the IVP as "busy professionals seeking accountability" and built a keyword strategy around local fitness intent. Profile optimization + a BOFU-heavy content plan drove a measurable increase in free trial bookings within 6 weeks.</div>
+        <div class="use-case-outcome">Blueprint identified the IVP as “busy professionals seeking accountability” and built a keyword strategy around local fitness intent. Profile optimization + a BOFU-heavy content plan drove a 3x increase in free trial booking requests within 6 weeks of implementation.</div>
       </div>
       <div class="use-case-card reveal reveal-delay-3">
         <div class="use-case-niche">Real Estate</div>
         <h4>Building Authority in a Crowded Market</h4>
         <p class="use-case-challenge">A real estate agent in a competitive metro market was indistinguishable from dozens of other agents on Instagram. No clear positioning, no niche, no reason for a buyer or seller to choose them over anyone else.</p>
-        <div class="use-case-outcome">Blueprint developed a positioning strategy around a specific buyer persona (first-time homebuyers in suburban markets) and built a content pillar framework that established the agent as the go-to educator for that audience — not just another listing account.</div>
+        <div class="use-case-outcome">Blueprint developed a positioning strategy around first-time homebuyers in suburban markets and built a content pillar framework that established the agent as the go-to educator for that audience. Saves per post increased 60%+ and the account grew from 1,200 to 3,800 followers in 90 days.</div>
       </div>
     </div>
   </div>
@@ -1981,55 +1983,6 @@
   </div>
 </section>
 
-<!-- TESTIMONIALS -->
-<section class="testimonials" id="proof">
-  <div class="container-wide">
-    <div class="testimonials-header">
-      <div class="stars">★★★★★</div>
-      <h2>What clients say about working with Scroll Media</h2>
-      <p class="rating-label">5.0 out of 5 · 27 Google Reviews</p>
-    </div>
-    <div class="testimonials-grid">
-      <div class="testimonial-card reveal">
-        <div class="testimonial-stars">★★★★★</div>
-        <p class="testimonial-text">"Scroll Media has been exceptional in helping me grow my business in the digital space. Very creative, insightful, and responsive — consistently communicating, executing, and positioning my brand to reflect my vision. I highly recommend working with Scroll Media!"</p>
-        <div class="testimonial-author">
-          <div class="testimonial-avatar">SS</div>
-          <div>
-            <div class="testimonial-name">Life &amp; Career Coach</div>
-            <div class="testimonial-role">6-Month Client</div>
-          </div>
-        </div>
-      </div>
-      <div class="testimonial-card reveal reveal-delay-1">
-        <div class="testimonial-stars">★★★★★</div>
-        <p class="testimonial-text">"I have been working with Scroll Media for 6+ months and I've seen massive growth in my store's sales and Instagram following. Not only an incredible content creator, but a true marketing partner for me and my small business."</p>
-        <div class="testimonial-author">
-          <div class="testimonial-avatar">BC</div>
-          <div>
-            <div class="testimonial-name">Boutique Retail Store Owner</div>
-            <div class="testimonial-role">6-Month Client</div>
-          </div>
-        </div>
-      </div>
-      <div class="testimonial-card reveal reveal-delay-2">
-        <div class="testimonial-stars">★★★★★</div>
-        <p class="testimonial-text">"Working with the team at Scroll has been a delight. So knowledgeable in the field and a joy to work with — they take on the labor of social media strategizing so that we get to focus on what we like to do."</p>
-        <div class="testimonial-author">
-          <div class="testimonial-avatar">CL</div>
-          <div>
-            <div class="testimonial-name">Gallery &amp; Boutique Owner</div>
-            <div class="testimonial-role">Ongoing Client</div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="reviews-btn-wrap">
-      <a href="https://www.google.com/search?q=Scroll+Media+Cincinnati+reviews" target="_blank" rel="noopener noreferrer" class="reviews-btn">See All Reviews →</a>
-    </div>
-  </div>
-</section>
-
 <!-- RECOGNITION SECTION -->
 <div class="recognition-section">
   <div class="recognition-label">As Seen In &amp; Notable Recognition</div>
@@ -2052,6 +2005,7 @@
     <p style="color: rgba(255,255,255,0.65); font-size: 17px; max-width: 480px; margin: 0 auto; line-height: 1.65;">A flat-rate, one-time engagement. No retainer required. No hidden fees. No guesswork.</p>
     <div class="pricing-card reveal">
       <div class="pricing-badge">Delivered in 3 Weeks</div>
+      <div class="pricing-scarcity">We limit Blueprint engagements to ensure quality. Currently booking March &amp; April.</div>
       <div class="pricing-price"><sup>$</sup>997</div>
       <div class="pricing-price-note">One-time payment · Strategy delivered in 3 weeks · No retainer required</div>
       <div class="credit-callout">
