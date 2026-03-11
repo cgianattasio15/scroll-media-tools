@@ -1691,13 +1691,13 @@ section[id] {
 <!-- ─── TOKEN GATE OVERLAY ─────────────────────────────────────────────── -->
 <div id="token-gate">
   <div class="gate-card">
-    <span class="gate-logo">Scroll Media</span>
+    <a href="https://tools.scrollmedia.co" style="display:inline-block;margin-bottom:28px;"><img src="../scroll-logo-wordmark.svg" alt="Scroll Media" style="height:44px;width:auto;display:block;"></a>
     <h1 class="gate-title">This content is for purchasers only.</h1>
     <p class="gate-subtitle">The Audience-to-Action Playbook is a paid resource. Get instant access for a one-time payment of $87.</p>
     <a href="https://buy.stripe.com/9B65kD2eI2wC2tK2gTb7y02" class="gate-cta">Get Instant Access — $87 →</a>
     <p class="gate-note">After purchase, you'll receive a unique access link by email within 60 seconds. Check your spam folder if it doesn't arrive.</p>
     <hr class="gate-divider">
-    <p class="gate-already">Already purchased? <a href="mailto:hello@scrollmedia.co?subject=Playbook Access Help">Contact us</a> and we'll resend your link.</p>
+    <p class="gate-already">Already purchased? <a href="mailto:chase@getscrollmedia.com?subject=Playbook Access Help">Contact us</a> and we'll resend your link.</p>
   </div>
 </div>
 <!-- ─────────────────────────────────────────────────────────────────────── -->
@@ -3252,8 +3252,19 @@ section[id] {
   (function() {
     const params = new URLSearchParams(window.location.search);
     const token = params.get('token');
+    const preview = params.get('preview');
     const gate = document.getElementById('token-gate');
     const content = document.getElementById('page-content');
+
+    // ─── INTERNAL ADMIN BYPASS ────────────────────────────────────────────
+    // Bookmark: ?preview=sm-internal-2026  (for internal review only)
+    if (preview === 'sm-internal-2026') {
+      document.body.classList.add('token-valid');
+      content.style.display = 'block';
+      gate.style.display = 'none';
+      return;
+    }
+    // ─────────────────────────────────────────────────────────────────────
 
     if (!token) {
       // No token — show gate immediately
