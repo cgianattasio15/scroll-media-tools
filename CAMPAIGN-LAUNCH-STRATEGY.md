@@ -1,7 +1,7 @@
 # Scroll Media — Biz Dev Campaign Launch Strategy
 **Goal:** 1–2 new clients signed within 30 days  
 **Target Launch Date:** End of week of March 11, 2026  
-**Primary Funnel:** Audience-to-Action Playbook ($87) → Instagram Growth Blueprint ($997) → Signature Package ($3K+/mo)  
+**Primary Funnel:** Audience-to-Action Playbook ($87) → Instagram Growth Blueprint ($997) → Signature Package ($2,750+/mo)  
 **Last Updated:** March 11, 2026
 
 ---
@@ -45,7 +45,7 @@
 ## The Funnel Logic
 
 ```
-$87 Playbook → $997 Blueprint → Signature Package ($3K+/mo)
+$87 Playbook → $997 Blueprint → Signature Package ($2,750+/mo)
 ```
 
 The Playbook is the trust mechanism — it filters for people serious enough to pay for strategy at $87, making them dramatically higher-quality leads for the Blueprint and retainer. The real goal of the $87 product isn't revenue. **It's lead qualification.**
