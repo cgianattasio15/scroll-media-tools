@@ -25,27 +25,30 @@ This document is the single source of truth for the Scroll Media business develo
 
 ---
 
-## SECTION 1 — Cold Outreach Email
+## SECTION 1 — Cold Outreach Email (Touchpoint #1) ✅ LOCKED
 
 This is the email that goes out to your cold ICP prospect list. It has one goal: get them to click the link and take the quiz.
 
-**Subject:** Your Instagram, in 3 minutes
+**Subject:** something we built for Cincinnati businesses
 
 **Body:**
 
-Hi {{firstName}},
+Hey {{firstName}},
 
-Most social media advice is generic. It doesn’t account for your industry, your audience size, or how much time you *actually* have.
+I run Scroll Media, a social media agency based in Cincinnati. We work with local businesses on Instagram strategy and content.
 
-I built a 10-question, 3-minute quiz that tells you exactly which of the 4 stages of Instagram maturity your business is in — and what the single most important thing you should do next is.
+We put together a free quiz that helps businesses figure out where they actually stand on Instagram. It takes about 3 minutes and tells you what the most important thing to work on is.
 
-It’s free, it’s fast, and it’s the same framework we use to build strategies for our $2,750/mo clients.
+It came out of a conversation we keep having with business owners — most people know they should be doing more with social media but either don't know where to start or are posting and not seeing results.
 
-[Take the Instagram Maturity Quiz →](https://tools.scrollmedia.co/instagram_maturity_quiz.html)
+Think of it like one of those personality quizzes from back in the day — except useful. :)
 
-Best,
+[Take the quiz here →](https://tools.scrollmedia.co/instagram_maturity_quiz.html)
 
+Cheers,
 Chase
+
+Founder, Scroll Media
 
 ---
 
