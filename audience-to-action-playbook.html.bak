@@ -1518,20 +1518,6 @@
 <!-- MAIN CONTENT -->
 <div class="container">
 
-    <!-- TOC -->
-    <div class="toc">
-      <div class="toc-title">What's Inside</div>
-      <ul class="toc-list">
-        <li><a href="#mindset"><span class="toc-num">0</span>The 3-Minute Mindset Shift — From Portfolio to Pipeline</a></li>
-        <li><a href="#framework"><span class="toc-num">1</span>The Funnel-Aware CTA Framework — Why Format Determines Outcome</a></li>
-        <li><a href="#arsenal"><span class="toc-num">2</span>The CTA Arsenal — 50+ Plug-and-Play Scripts by Goal</a></li>
-        <li><a href="#dm-script"><span class="toc-num">3</span>The DM-to-Booking System — The 3-Message Script</a></li>
-        <li><a href="#challenge"><span class="toc-num">4</span>The 30-Day Implementation Challenge</a></li>
-        <li class="bonus"><a href="#bonus"><span class="toc-num">★</span>Bonus — Niche Cheatsheet &amp; The Accordion Method Intro</a></li>
-      </ul>
-    </div>
-  </section>
-
   <!-- QUICK WIN -->
   <section style="padding-top: 64px; padding-bottom: 0;">
     <div class="quick-win">
@@ -1571,6 +1557,20 @@
         </div>
       </div>
     </div>
+
+    <!-- TOC -->
+    <div class="toc">
+      <div class="toc-title">What's Inside</div>
+      <ul class="toc-list">
+        <li><a href="#mindset"><span class="toc-num">0</span>The 3-Minute Mindset Shift — From Portfolio to Pipeline</a></li>
+        <li><a href="#framework"><span class="toc-num">1</span>The Funnel-Aware CTA Framework — Why Format Determines Outcome</a></li>
+        <li><a href="#arsenal"><span class="toc-num">2</span>The CTA Arsenal — 50+ Plug-and-Play Scripts by Goal</a></li>
+        <li><a href="#dm-script"><span class="toc-num">3</span>The DM-to-Booking System — The 3-Message Script</a></li>
+        <li><a href="#challenge"><span class="toc-num">4</span>The 30-Day Implementation Challenge</a></li>
+        <li class="bonus"><a href="#bonus"><span class="toc-num">★</span>Bonus — Niche Cheatsheet &amp; The Accordion Method Intro</a></li>
+      </ul>
+    </div>
+  </section>
 
   <!-- PART 0: MINDSET -->
   <section id="mindset">

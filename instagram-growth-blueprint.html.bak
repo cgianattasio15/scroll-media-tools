@@ -42,20 +42,7 @@
     -webkit-font-smoothing: antialiased;
   }
 
-  
-/* ── Mid-Page CTA ── */
-.mid-page-cta { background: var(--navy); padding: 28px 0; }
-.mid-cta-inner { display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
-.mid-cta-text { display: flex; flex-direction: column; gap: 4px; }
-.mid-cta-text strong { color: var(--white); font-size: 1.05rem; font-weight: 700; }
-.mid-cta-text span { color: rgba(255,255,255,0.65); font-size: 0.88rem; }
-.mid-cta-btn { white-space: nowrap; padding: 12px 24px; font-size: 0.9rem; }
-@media (max-width: 600px) {
-  .mid-cta-inner { flex-direction: column; align-items: flex-start; }
-  .mid-cta-btn { width: 100%; text-align: center; }
-}
-
-/* ── Progress Bar ── */
+  /* ── Progress Bar ── */
   #progress-bar-wrap {
     position: fixed; top: 0; left: 0; right: 0;
     height: 3px; z-index: 9999; background: transparent;
@@ -1153,7 +1140,7 @@
   <button class="mobile-nav-close" id="mobile-nav-close" aria-label="Close menu">&#x2715;</button>
   <a href="#whats-included">What's Included</a>
   <a href="#how-it-works">How It Works</a>
-  <a href="#use-cases">Who It's For</a>
+  <a href="#who">Who It's For</a>
   <a href="#approach">Our Approach</a>
   <a href="#pricing">Pricing</a>
   <a href="#faq">FAQ</a>
@@ -1437,20 +1424,6 @@
 </section>
 
 <!-- HOW IT WORKS -->
-
-<!-- MID-PAGE CTA -->
-<div class="mid-page-cta reveal">
-  <div class="container">
-    <div class="mid-cta-inner">
-      <div class="mid-cta-text">
-        <strong>Ready to stop guessing?</strong>
-        <span>Your complete 90-day Instagram strategy — built in 3 weeks. $997, pay after delivery.</span>
-      </div>
-      <a href="mailto:hello@scrollmedia.co" class="btn-primary mid-cta-btn">Get Started →</a>
-    </div>
-  </div>
-</div>
-
 <section class="timeline-section" id="how-it-works">
   <div class="container">
     <div class="section-label">How It Works</div>
@@ -1532,6 +1505,36 @@
           <li>Final document approved &amp; delivered</li>
         </ul>
         <div class="phase-outcome">📋 Output: Complete strategy document, ready to execute</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHO IT'S FOR -->
+<section class="who" id="who">
+  <div class="container">
+    <div class="section-label">Is This For You?</div>
+    <h2>Built for businesses <span class="accent">ready to get serious.</span></h2>
+    <div class="who-grid">
+      <div class="who-card reveal">
+        <h3>✅ This is for you if...</h3>
+        <ul>
+          <li><span class="who-check">✓</span>You're an established service business with a real offer</li>
+          <li><span class="who-check">✓</span>You've been posting but not seeing consistent leads</li>
+          <li><span class="who-check">✓</span>You want a professional strategy, not a DIY template</li>
+          <li><span class="who-check">✓</span>You're open to executing the plan yourself or hiring us</li>
+          <li><span class="who-check">✓</span>You're ready to invest in a system, not just content</li>
+        </ul>
+      </div>
+      <div class="who-card reveal reveal-delay-1">
+        <h3>❌ This is NOT for you if...</h3>
+        <ul>
+          <li><span class="who-x">✕</span>You're a brand-new business with no validated offer</li>
+          <li><span class="who-x">✕</span>You're looking for a quick-fix or viral content hack</li>
+          <li><span class="who-x">✕</span>You're not willing to implement the strategy</li>
+          <li><span class="who-x">✕</span>You want someone to post for you from day one</li>
+          <li><span class="who-x">✕</span>You're not ready to invest in professional strategy</li>
+        </ul>
       </div>
     </div>
   </div>
@@ -1770,6 +1773,112 @@
         </div>
       </div>
 
+      <!-- TAM Ladder Example -->
+      <div class="example-item reveal">
+        <button class="example-trigger" onclick="toggleExample(this)">
+          <div class="example-trigger-left">
+            <div class="example-trigger-icon">🔑</div>
+            <div>
+              <div class="example-trigger-title">TAM Ladder Keyword Bank</div>
+              <div class="example-trigger-sub">4-tier social SEO keyword architecture — from broad to high-intent</div>
+            </div>
+          </div>
+          <div class="example-arrow">▾</div>
+        </button>
+        <div class="example-body">
+          <div class="example-label">Example TAM Ladder</div>
+          <div class="example-niche-tag">Med Spa — Cincinnati, OH</div>
+          <div class="tam-example">
+            <div class="tam-level-ex">
+              <div class="tam-level-ex-header">
+                <div class="tam-badge-ex">Tier 1 — Broad</div>
+                <div>
+                  <div class="tam-level-name-ex">Mass Awareness</div>
+                  <div class="tam-level-desc-ex">High volume, low intent — top of funnel reach</div>
+                </div>
+              </div>
+              <div class="tam-keywords-ex">
+                <span class="kw-tag">#medspa</span><span class="kw-tag">#skincare</span><span class="kw-tag">#botox</span><span class="kw-tag">#aesthetics</span><span class="kw-tag">#selfcare</span><span class="kw-tag">#glowup</span><span class="kw-tag">#skincareroutine</span>
+              </div>
+            </div>
+            <div class="tam-level-ex">
+              <div class="tam-level-ex-header">
+                <div class="tam-badge-ex">Tier 2 — Qualified</div>
+                <div>
+                  <div class="tam-level-name-ex">Category Aware</div>
+                  <div class="tam-level-desc-ex">Interested in the category — building consideration</div>
+                </div>
+              </div>
+              <div class="tam-keywords-ex">
+                <span class="kw-tag">#medspaskincare</span><span class="kw-tag">#botoxresults</span><span class="kw-tag">#fillerresults</span><span class="kw-tag">#aesthetictreatments</span><span class="kw-tag">#skinrejuvenation</span><span class="kw-tag">#naturalresults</span>
+              </div>
+            </div>
+            <div class="tam-level-ex">
+              <div class="tam-level-ex-header">
+                <div class="tam-badge-ex">Tier 3 — Local Intent</div>
+                <div>
+                  <div class="tam-level-name-ex">Geo-Qualified</div>
+                  <div class="tam-level-desc-ex">Searching locally — high purchase intent</div>
+                </div>
+              </div>
+              <div class="tam-keywords-ex">
+                <span class="kw-tag">#cincinnatiMedspa</span><span class="kw-tag">#cincinnatiSkincare</span><span class="kw-tag">#ohiomedspa</span><span class="kw-tag">#cincinnatibeauty</span><span class="kw-tag">#medspanearme</span>
+              </div>
+            </div>
+            <div class="tam-level-ex">
+              <div class="tam-level-ex-header">
+                <div class="tam-badge-ex">Tier 4 — High Intent</div>
+                <div>
+                  <div class="tam-level-name-ex">Decision-Ready</div>
+                  <div class="tam-level-desc-ex">Actively searching for a provider — bottom of funnel</div>
+                </div>
+              </div>
+              <div class="tam-keywords-ex">
+                <span class="kw-tag">#cincinnatiMedspaBotox</span><span class="kw-tag">#bestMedspaCincinnati</span><span class="kw-tag">#botoxcincinnati</span><span class="kw-tag">#lipfillerCincinnati</span><span class="kw-tag">#skincareclinicOhio</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Profile Audit Example -->
+      <div class="example-item reveal">
+        <button class="example-trigger" onclick="toggleExample(this)">
+          <div class="example-trigger-left">
+            <div class="example-trigger-icon">📱</div>
+            <div>
+              <div class="example-trigger-title">Instagram Profile Audit &amp; Optimization Plan</div>
+              <div class="example-trigger-sub">What's working, what's broken, and exactly how to fix it</div>
+            </div>
+          </div>
+          <div class="example-arrow">▾</div>
+        </button>
+        <div class="example-body">
+          <div class="example-label">Example Profile Audit</div>
+          <div class="example-niche-tag">Fitness Studio — Columbus, OH</div>
+          <div class="audit-grid">
+            <div class="audit-card audit-current">
+              <div class="audit-card-label">Current State — Issues Found</div>
+              <div class="audit-item"><span class="audit-item-icon">⚠️</span>Bio doesn't communicate what the studio offers or who it's for — reads as a tagline, not a value proposition</div>
+              <div class="audit-item"><span class="audit-item-icon">⚠️</span>No keyword in username or bio — invisible to local search on Instagram</div>
+              <div class="audit-item"><span class="audit-item-icon">⚠️</span>Link-in-bio goes to homepage — no dedicated booking or offer page</div>
+              <div class="audit-item"><span class="audit-item-icon">⚠️</span>Highlights are outdated (2022) and don't reflect current services</div>
+              <div class="audit-item"><span class="audit-item-icon">⚠️</span>Grid has no visual consistency — mix of phone photos and designed graphics with no cohesion</div>
+              <div class="audit-item"><span class="audit-item-icon">⚠️</span>No CTA in captions — posts end without directing the viewer to any next step</div>
+            </div>
+            <div class="audit-card audit-optimized">
+              <div class="audit-card-label">Optimized State — Recommendations</div>
+              <div class="audit-item"><span class="audit-item-icon">✅</span>Rewrite bio with IVP-aligned hook, clear offer, and CTA: "Strength training for busy professionals in Columbus. 6am–7pm classes. Book your free trial →"</div>
+              <div class="audit-item"><span class="audit-item-icon">✅</span>Add "Columbus Fitness Studio" as name field to capture local search intent</div>
+              <div class="audit-item"><span class="audit-item-icon">✅</span>Replace homepage link with dedicated free trial landing page or Linktree with 3 clear options</div>
+              <div class="audit-item"><span class="audit-item-icon">✅</span>Rebuild 5 Highlight covers: Classes, Results, Trainers, Schedule, Free Trial</div>
+              <div class="audit-item"><span class="audit-item-icon">✅</span>Establish 2-color grid system: alternating content types with consistent brand palette</div>
+              <div class="audit-item"><span class="audit-item-icon">✅</span>Add funnel-stage CTA to every caption using the 3-layer CTA stack framework</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <!-- Content Calendar Example -->
       <div class="example-item reveal">
         <button class="example-trigger" onclick="toggleExample(this)">
@@ -1814,12 +1923,77 @@
         </div>
       </div>
 
+      <!-- Content Ideation Example -->
+      <div class="example-item reveal">
+        <button class="example-trigger" onclick="toggleExample(this)">
+          <div class="example-trigger-left">
+            <div class="example-trigger-icon">💡</div>
+            <div>
+              <div class="example-trigger-title">Content Ideation Bank</div>
+              <div class="example-trigger-sub">30+ content ideas mapped to funnel stage, format, and hook strategy</div>
+            </div>
+          </div>
+          <div class="example-arrow">▾</div>
+        </button>
+        <div class="example-body">
+          <div class="example-label">Example Content Ideas — Sample</div>
+          <div class="example-niche-tag">Physical Therapist — Chicago, IL</div>
+          <div class="ideation-grid">
+            <div class="ideation-card">
+              <div class="ideation-pillar tofu">TOFU — Awareness</div>
+              <div class="ideation-hook">"3 reasons your lower back pain isn't going away (and what to do instead)"</div>
+              <div class="ideation-format">Format: Reel · Hook: Problem-first · CTA: Save this</div>
+            </div>
+            <div class="ideation-card">
+              <div class="ideation-pillar tofu">TOFU — Awareness</div>
+              <div class="ideation-hook">"What a physical therapist actually does in a first session"</div>
+              <div class="ideation-format">Format: Behind-the-scenes Reel · Hook: Curiosity · CTA: Comment your question</div>
+            </div>
+            <div class="ideation-card">
+              <div class="ideation-pillar tofu">TOFU — Awareness</div>
+              <div class="ideation-hook">"The #1 mistake runners make that leads to injury"</div>
+              <div class="ideation-format">Format: Carousel · Hook: Mistake-based · CTA: Share with a runner</div>
+            </div>
+            <div class="ideation-card">
+              <div class="ideation-pillar mofu">MOFU — Consideration</div>
+              <div class="ideation-hook">"PT vs. chiropractor vs. orthopedic surgeon — which do you actually need?"</div>
+              <div class="ideation-format">Format: Carousel · Hook: Decision education · CTA: Save for reference</div>
+            </div>
+            <div class="ideation-card">
+              <div class="ideation-pillar mofu">MOFU — Consideration</div>
+              <div class="ideation-hook">"Our 4-phase recovery framework for post-surgery patients"</div>
+              <div class="ideation-format">Format: Carousel · Hook: Process reveal · CTA: DM 'RECOVERY' for more info</div>
+            </div>
+            <div class="ideation-card">
+              <div class="ideation-pillar mofu">MOFU — Consideration</div>
+              <div class="ideation-hook">"Patient story: from chronic knee pain to running a 5K in 12 weeks"</div>
+              <div class="ideation-format">Format: Static + Story series · Hook: Transformation · CTA: Link in bio to book</div>
+            </div>
+            <div class="ideation-card">
+              <div class="ideation-pillar bofu">BOFU — Conversion</div>
+              <div class="ideation-hook">"We have 3 new patient slots open this week — here's how to book"</div>
+              <div class="ideation-format">Format: Story · Hook: Scarcity · CTA: DM 'BOOK' or link in bio</div>
+            </div>
+            <div class="ideation-card">
+              <div class="ideation-pillar bofu">BOFU — Conversion</div>
+              <div class="ideation-hook">"Free 15-min phone consultation — is PT right for you?"</div>
+              <div class="ideation-format">Format: Static · Hook: Low-barrier offer · CTA: Link in bio</div>
+            </div>
+            <div class="ideation-card">
+              <div class="ideation-pillar bofu">BOFU — Conversion</div>
+              <div class="ideation-hook">"Most insurance plans cover PT — here's how to check yours in 2 minutes"</div>
+              <div class="ideation-format">Format: Carousel · Hook: Objection removal · CTA: DM 'INSURANCE' for help</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
     </div>
   </div>
 </section>
 
 <!-- USE CASES -->
-<section class="use-cases section" id="use-cases">
+<section class="use-cases section">
   <div class="container">
     <div class="section-label">Client Use Cases</div>
     <h2>Built for <em style="font-style:normal; color: var(--azure);">service businesses.</em></h2>
@@ -1846,20 +2020,6 @@
     </div>
   </div>
 </section>
-
-<!-- RECOGNITION SECTION -->
-<div class="recognition-section">
-  <div class="recognition-label">As Seen In &amp; Notable Recognition</div>
-  <div class="recog-grid">
-    <div class="recog-item"><img src="logos/rg-clutch-realestate.png" alt="Clutch Top Social Media Marketing Company" loading="lazy"></div>
-    <div class="recog-item"><img src="logos/rg-clutch-instagram.png" alt="Clutch Top Instagram Influencer Marketing" loading="lazy"></div>
-    <div class="recog-item"><img src="logos/rg-otr-chamber.png" alt="OTR Chamber of Commerce" loading="lazy"></div>
-    <div class="recog-item"><img src="logos/rg-now-in-nati.png" alt="Now in the Nati" loading="lazy"></div>
-    <div class="recog-item"><img src="logos/rg-breef.png" alt="Breef" loading="lazy"></div>
-    <div class="recog-item"><img src="logos/rg-big-brothers.png" alt="Big Brothers Big Sisters Cincinnati" loading="lazy"></div>
-    <div class="recog-item"><img src="logos/rg-kiss-1071.png" alt="KISS 107.1" loading="lazy"></div>
-  </div>
-</div>
 
 <!-- WHAT WE NEED / WHAT HAPPENS AFTER -->
 <section class="needs-section section">
@@ -1914,6 +2074,20 @@
     </div>
   </div>
 </section>
+
+<!-- RECOGNITION SECTION -->
+<div class="recognition-section">
+  <div class="recognition-label">As Seen In &amp; Notable Recognition</div>
+  <div class="recog-grid">
+    <div class="recog-item"><img src="logos/rg-clutch-realestate.png" alt="Clutch Top Social Media Marketing Company" loading="lazy"></div>
+    <div class="recog-item"><img src="logos/rg-clutch-instagram.png" alt="Clutch Top Instagram Influencer Marketing" loading="lazy"></div>
+    <div class="recog-item"><img src="logos/rg-otr-chamber.png" alt="OTR Chamber of Commerce" loading="lazy"></div>
+    <div class="recog-item"><img src="logos/rg-now-in-nati.png" alt="Now in the Nati" loading="lazy"></div>
+    <div class="recog-item"><img src="logos/rg-breef.png" alt="Breef" loading="lazy"></div>
+    <div class="recog-item"><img src="logos/rg-big-brothers.png" alt="Big Brothers Big Sisters Cincinnati" loading="lazy"></div>
+    <div class="recog-item"><img src="logos/rg-kiss-1071.png" alt="KISS 107.1" loading="lazy"></div>
+  </div>
+</div>
 
 <!-- PRICING -->
 <section class="pricing" id="pricing">

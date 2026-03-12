@@ -50,7 +50,6 @@ body {
   padding-top: 3px; /* progress bar */
 }
 
-.hero-proof-signal { font-size: 0.78rem; color: var(--text-muted); margin-top: 12px; letter-spacing: 0.2px; }
 /* ── Progress Bar ── */
 #progress-bar-wrap {
   position: fixed; top: 0; left: 0; right: 0;
@@ -908,7 +907,6 @@ section[id] { scroll-margin-top: 80px; }
     <p class="hero-sub">The complete system for converting passive Instagram followers into qualified leads — without paid ads, without posting more, and without guessing what your CTAs should say.</p>
     <div class="hero-actions">
       <a href="https://buy.stripe.com/9B65kD2eI2wC2tK2gTb7y02" class="btn-primary">Get Instant Access — $87 →</a>
-    <p class="hero-proof-signal">⭐⭐⭐⭐⭐ 5.0 · 27 Google Reviews · 30+ clients served</p>
       <a href="#inside" class="btn-ghost">See what's inside ↓</a>
     </div>
     <div class="hero-meta">
@@ -1056,6 +1054,95 @@ section[id] { scroll-margin-top: 80px; }
   </div>
 </section>
 
+<!-- WHAT'S INSIDE — DETAILED -->
+<section class="inside-section">
+  <div class="container">
+    <div class="section-label">What's Inside</div>
+    <h2>Five parts. One <span class="accent">complete system.</span></h2>
+    <p class="section-sub">Every section builds on the last. By the end, you have a fully operational conversion system running on your Instagram — not just a list of tactics.</p>
+    <div class="inside-list">
+      <div class="inside-item reveal">
+        <div class="inside-num">0</div>
+        <div class="inside-content">
+          <div class="part-tag">Part 0 · Foundation</div>
+          <h3>The 3-Minute Mindset Shift</h3>
+          <p>Most businesses treat Instagram like a portfolio. They post beautiful content, accumulate followers, and wonder why no one books. This section reframes your account as a pipeline — and shows you exactly where your conversion is leaking right now with the 3-Point Profile Audit.</p>
+          <div class="inside-pills">
+            <span class="inside-pill">Pipeline Thinking</span>
+            <span class="inside-pill">3-Point Profile Audit</span>
+            <span class="inside-pill">Bio Link Strategy</span>
+          </div>
+        </div>
+      </div>
+      <div class="inside-item reveal">
+        <div class="inside-num">1</div>
+        <div class="inside-content">
+          <div class="part-tag">Part 1 · Framework</div>
+          <h3>The Funnel-Aware CTA Framework</h3>
+          <p>The TOFU/MOFU/BOFU system that matches every post format to the right CTA. You'll learn why a Reel that reaches 10,000 cold viewers needs a completely different CTA than a carousel seen by your warmest followers — and how to write both.</p>
+          <div class="inside-pills">
+            <span class="inside-pill">TOFU / MOFU / BOFU</span>
+            <span class="inside-pill">Format-to-CTA Mapping</span>
+            <span class="inside-pill">Funnel Stage Logic</span>
+          </div>
+        </div>
+      </div>
+      <div class="inside-item reveal">
+        <div class="inside-num">2</div>
+        <div class="inside-content">
+          <div class="part-tag">Part 2 · Arsenal</div>
+          <h3>The CTA Arsenal — 71 Plug-and-Play Scripts</h3>
+          <p>71 ready-to-use CTA scripts across 5 categories: Save-Worthy, DM-Trigger, Profile-Visit, Link-in-Bio, and Story-Tap. Every script includes a weak/strong comparison and niche-specific examples for med spas, coaches, fitness studios, and more.</p>
+          <div class="inside-pills">
+            <span class="inside-pill">71 CTA Scripts</span>
+            <span class="inside-pill">5 CTA Categories</span>
+            <span class="inside-pill">Weak/Strong Comparisons</span>
+            <span class="inside-pill">Niche Examples</span>
+          </div>
+        </div>
+      </div>
+      <div class="inside-item reveal">
+        <div class="inside-num">3</div>
+        <div class="inside-content">
+          <div class="part-tag">Part 3 · Conversion</div>
+          <h3>The 3-Message DM-to-Booking System</h3>
+          <p>The exact 3-message framework for converting inbound DMs into booked calls — without sounding salesy or scripted. Includes the opening message, the qualifying question, and the booking bridge, with real examples for every service niche.</p>
+          <div class="inside-pills">
+            <span class="inside-pill">3-Message Script</span>
+            <span class="inside-pill">DM Qualifying Framework</span>
+            <span class="inside-pill">Booking Bridge</span>
+          </div>
+        </div>
+      </div>
+      <div class="inside-item reveal">
+        <div class="inside-num">4</div>
+        <div class="inside-content">
+          <div class="part-tag">Part 4 · Infrastructure</div>
+          <h3>The 3-Layer CTA Stack</h3>
+          <p>How to build a bio link strategy that works as a funnel — with three layers: the primary CTA (what you want them to do now), the secondary CTA (what they do if they're not ready), and the trust layer (what makes them believe you). Includes niche-specific lead magnet examples.</p>
+          <div class="inside-pills">
+            <span class="inside-pill">Bio Link Funnel</span>
+            <span class="inside-pill">Lead Magnet Strategy</span>
+            <span class="inside-pill">Trust Layer Design</span>
+          </div>
+        </div>
+      </div>
+      <div class="inside-item reveal">
+        <div class="inside-num bonus">★</div>
+        <div class="inside-content">
+          <div class="part-tag">Part 5 + Bonus · Execution</div>
+          <h3>30-Day Challenge + Niche Cheatsheet</h3>
+          <p>A week-by-week execution roadmap that turns everything in this playbook into a live, working system on your account. Plus a quick-reference niche cheatsheet with pre-written CTA scripts for 9 service business categories: med spas, coaches, fitness studios, therapists, real estate, and more.</p>
+          <div class="inside-pills">
+            <span class="inside-pill">30-Day Roadmap</span>
+            <span class="inside-pill">9 Niche Cheatsheets</span>
+            <span class="inside-pill">Week-by-Week Plan</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
 <!-- FUNNEL FRAMEWORK PREVIEW -->
 <section class="funnel-section" id="framework">
@@ -1221,8 +1308,8 @@ section[id] { scroll-margin-top: 80px; }
     </div>
     <!-- 2-OPTION DECISION SECTION -->
     <div class="playbook-decision-section reveal">
-      <div class="playbook-decision-label">What's your next move?</div>
-      <div class="playbook-decision-heading">Pick the path that fits where you are right now.</div>
+      <div class="playbook-decision-label">Ready to take it further?</div>
+      <div class="playbook-decision-heading">We have an option for every stage.</div>
       <div class="playbook-decision-grid">
 
         <!-- Option 1: Blueprint -->

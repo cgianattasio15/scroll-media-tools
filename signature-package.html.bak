@@ -360,9 +360,9 @@
 <div class="mobile-nav" id="mobile-nav">
   <button class="mobile-nav-close" id="mobile-nav-close" aria-label="Close menu">&#x2715;</button>
   <a href="#whats-included">What's Included</a>
-  <a href="#proof">Results</a>
+  <a href="#results">Results</a>
   <a href="#how-it-works">How It Works</a>
-  <a href="#examples">Who It's For</a>
+  <a href="#who">Who It's For</a>
   <a href="#pricing">Pricing</a>
   <a href="#faq">FAQ</a>
   <a href="mailto:hello@scrollmedia.co?subject=Signature Package Inquiry" style="background: #c8f135; color: #0c1a3a; margin-top: 16px; font-weight: 800;">Book a Discovery Call →</a>
@@ -372,7 +372,7 @@
   <a href="https://tools.scrollmedia.co" class="nav-logo"><img src="scroll-media-logo.svg" alt="Scroll Media"></a>
   <ul class="nav-links">
     <li><a href="#whats-included">What's Included</a></li>
-    <li><a href="#proof">Results</a></li>
+    <li><a href="#results">Results</a></li>
     <li><a href="#how-it-works">How It Works</a></li>
     <li><a href="#pricing">Pricing</a></li>
     <li><a href="#faq">FAQ</a></li>
@@ -471,16 +471,6 @@
     <div class="reviews-btn-wrap"><a href="https://www.google.com/search?q=Scroll+Media+Cincinnati+reviews" target="_blank" rel="noopener noreferrer" class="reviews-btn">See All Google Reviews &#8594;</a></div>
   </div>
 </section>
-  <!-- Results Stats Row -->
-  <div class="container" style="padding-top: 0; padding-bottom: 40px;">
-    <div class="proof-stats-row">
-      <div class="proof-stat-item"><span class="proof-stat-num">40%+</span><span class="proof-stat-label">Profile Visit Increase</span></div>
-      <div class="proof-stat-item"><span class="proof-stat-num">3x</span><span class="proof-stat-label">Trial Booking Requests</span></div>
-      <div class="proof-stat-item"><span class="proof-stat-num">60%+</span><span class="proof-stat-label">Save Rate Improvement</span></div>
-      <div class="proof-stat-item"><span class="proof-stat-num">90 days</span><span class="proof-stat-label">To Measurable Results</span></div>
-    </div>
-  </div>
-
 <section class="scope-section" id="whats-included">
   <div class="container">
     <div class="section-label" style="text-align:center;">What's Included</div>
@@ -508,10 +498,67 @@
     </div>
   </div>
 </section>
-
-
-
-
+<section class="who" id="who">
+  <div class="container">
+    <div class="section-label" style="text-align:center;">Is This Right For You?</div>
+    <h2 style="text-align:center;">Built for <span class="accent">founder-led service businesses</span><br>that are ready to grow.</h2>
+    <div class="who-grid">
+      <div class="who-card reveal"><h3>&#10003; This IS for you if...</h3><ul>
+        <li><span class="who-check">&#10003;</span>You're a service-based business (med spa, coach, fitness studio, real estate, interior design, etc.)</li>
+        <li><span class="who-check">&#10003;</span>You're already generating revenue and want to scale through social</li>
+        <li><span class="who-check">&#10003;</span>You're tired of social media being a time drain with no clear ROI</li>
+        <li><span class="who-check">&#10003;</span>You want a real partner, not just a vendor who posts content</li>
+        <li><span class="who-check">&#10003;</span>You're ready to invest in a system that compounds over time</li>
+        <li><span class="who-check">&#10003;</span>You want strategy, execution, and accountability in one package</li>
+      </ul></div>
+      <div class="who-card reveal reveal-delay-1"><h3>&#10007; This is NOT for you if...</h3><ul>
+        <li><span class="who-x">&#10007;</span>You're a brand-new business with no validated offer or revenue</li>
+        <li><span class="who-x">&#10007;</span>You want to go viral &mdash; not build a sustainable growth system</li>
+        <li><span class="who-x">&#10007;</span>You're not willing to collaborate on brand direction and approvals</li>
+        <li><span class="who-x">&#10007;</span>You expect overnight results from a 30-day engagement</li>
+        <li><span class="who-x">&#10007;</span>You're looking for the cheapest option, not the best one</li>
+        <li><span class="who-x">&#10007;</span>You want to micromanage every caption and post</li>
+      </ul></div>
+    </div>
+  </div>
+</section>
+<section class="results-section" id="results">
+  <div class="container">
+    <div class="section-label" style="text-align:center;">What to Expect</div>
+    <h2 style="text-align:center;">Real outcomes for<br><span class="accent">real service businesses.</span></h2>
+    <p style="color: var(--text-secondary); font-size: 17px; max-width: 560px; margin: 16px auto 0; text-align: center; line-height: 1.75;">These are the kinds of results our clients see within the first 90 days of a fully executed Signature Package engagement.</p>
+    <div class="results-grid">
+      <div class="result-card reveal"><div class="result-card-niche">Med Spa / Aesthetics</div><div class="result-metric">3x</div><div class="result-metric-label">Increase in consultation bookings via DM</div><p>By building a clear BOFU content strategy and DM routing system, aesthetics clients see a significant lift in qualified consultation requests within 60&ndash;90 days.</p></div>
+      <div class="result-card reveal reveal-delay-1"><div class="result-card-niche">Fitness Studio</div><div class="result-metric">60%+</div><div class="result-metric-label">Increase in saves &amp; shares on educational content</div><p>Fitness studios that shift from promotional posting to education-first content see dramatic improvements in content reach, saves, and new follower quality.</p></div>
+      <div class="result-card reveal reveal-delay-2"><div class="result-card-niche">Coaching / Professional Services</div><div class="result-metric">40%+</div><div class="result-metric-label">Increase in profile visits from Reels</div><p>Coaches and consultants who commit to a consistent Reels strategy with strong hooks see compounding profile visit growth &mdash; the clearest signal of growing authority.</p></div>
+    </div>
+  </div>
+</section>
+<section class="approach-section section" id="approach">
+  <div class="container">
+    <div class="section-label">Our Approach</div>
+    <h2>We don't guess. <em style="font-style:normal; color: var(--azure);">We measure.</em></h2>
+    <p style="color: var(--text-secondary); font-size: 16px; max-width: 560px; margin: 16px auto 0; line-height: 1.7;">Every Signature Package engagement is built on a measurement framework from day one. We define what success looks like before we create a single piece of content.</p>
+    <div class="approach-grid">
+      <div class="approach-card reveal reveal-delay-1"><div class="approach-num">01 &mdash; Foundation</div><div class="approach-title">Strategy Before Content</div><div class="approach-body">We never start with content. We start with goals, audience research, and competitive positioning. Your content strategy is built on a foundation of data &mdash; not assumptions or trends.</div></div>
+      <div class="approach-card reveal reveal-delay-2"><div class="approach-num">02 &mdash; Execution</div><div class="approach-title">Consistent, Intentional Output</div><div class="approach-body">Every piece of content has a job. TOFU content builds reach. MOFU content builds trust. BOFU content drives action. We manage the ratio and cadence so your funnel stays full.</div></div>
+      <div class="approach-card reveal reveal-delay-3"><div class="approach-num">03 &mdash; Iteration</div><div class="approach-title">Monthly Optimization Loop</div><div class="approach-body">Every month, we review performance data, identify what's working, and adjust the strategy accordingly. Your account gets smarter over time &mdash; not just more active.</div></div>
+    </div>
+    <div class="kpi-table-wrap reveal">
+      <table class="kpi-table">
+        <thead><tr><th>KPI</th><th>What It Measures</th><th>Why It Matters</th><th>Tracked Monthly</th></tr></thead>
+        <tbody>
+          <tr><td class="kpi-metric">Watch Time &amp; View Duration</td><td>How long viewers watch your Reels and videos</td><td>Retention signals quality and relevance &mdash; the algorithm's strongest ranking signal</td><td class="kpi-check">&#10003;</td></tr>
+          <tr><td class="kpi-metric">Saves &amp; Shares</td><td>Content saved or shared by viewers</td><td>Strongest indicators of content value and shareability &mdash; not vanity, actual utility</td><td class="kpi-check">&#10003;</td></tr>
+          <tr><td class="kpi-metric">Profile Visits</td><td>Users clicking through to your profile</td><td>Interest and consideration signals &mdash; content compelling enough to drive intent</td><td class="kpi-check">&#10003;</td></tr>
+          <tr><td class="kpi-metric">Link Taps</td><td>Clicks from Instagram to your website or booking page</td><td>Intent and action signals &mdash; the clearest path from content to revenue</td><td class="kpi-check">&#10003;</td></tr>
+          <tr><td class="kpi-metric">Retention Patterns</td><td>Where audiences drop off in your content</td><td>Reveals what's working and what's not &mdash; guides iteration and format decisions</td><td class="kpi-check">&#10003;</td></tr>
+          <tr><td class="kpi-metric">DM Inquiries</td><td>Direct messages from potential clients</td><td>Bottom-of-funnel outcome &mdash; the revenue signal that proves the strategy is working</td><td class="kpi-check">&#10003;</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
 <section class="deliverables-compare section">
   <div class="container">
     <div class="section-label">Blueprint vs. Signature Package</div>
@@ -535,32 +582,6 @@
           <tr><td>Monthly Performance Report</td><td><span class="check-no">&mdash;</span></td><td class="sig-col"><span class="check-yes">&#10003;</span></td></tr>
           <tr><td>Monthly Strategy Call</td><td><span class="check-no">&mdash;</span></td><td class="sig-col"><span class="check-yes">&#10003;</span></td></tr>
           <tr><td>Dedicated Account Strategist</td><td><span class="check-no">&mdash;</span></td><td class="sig-col"><span class="check-yes">&#10003;</span></td></tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-</section>
-
-<section class="approach-section section" id="approach">
-  <div class="container">
-    <div class="section-label">Our Approach</div>
-    <h2>We don't guess. <em style="font-style:normal; color: var(--azure);">We measure.</em></h2>
-    <p style="color: var(--text-secondary); font-size: 16px; max-width: 560px; margin: 16px auto 0; line-height: 1.7;">Every Signature Package engagement is built on a measurement framework from day one. We define what success looks like before we create a single piece of content.</p>
-    <div class="approach-grid">
-      <div class="approach-card reveal reveal-delay-1"><div class="approach-num">01 &mdash; Foundation</div><div class="approach-title">Strategy Before Content</div><div class="approach-body">We never start with content. We start with goals, audience research, and competitive positioning. Your content strategy is built on a foundation of data &mdash; not assumptions or trends.</div></div>
-      <div class="approach-card reveal reveal-delay-2"><div class="approach-num">02 &mdash; Execution</div><div class="approach-title">Consistent, Intentional Output</div><div class="approach-body">Every piece of content has a job. TOFU content builds reach. MOFU content builds trust. BOFU content drives action. We manage the ratio and cadence so your funnel stays full.</div></div>
-      <div class="approach-card reveal reveal-delay-3"><div class="approach-num">03 &mdash; Iteration</div><div class="approach-title">Monthly Optimization Loop</div><div class="approach-body">Every month, we review performance data, identify what's working, and adjust the strategy accordingly. Your account gets smarter over time &mdash; not just more active.</div></div>
-    </div>
-    <div class="kpi-table-wrap reveal">
-      <table class="kpi-table">
-        <thead><tr><th>KPI</th><th>What It Measures</th><th>Why It Matters</th><th>Tracked Monthly</th></tr></thead>
-        <tbody>
-          <tr><td class="kpi-metric">Watch Time &amp; View Duration</td><td>How long viewers watch your Reels and videos</td><td>Retention signals quality and relevance &mdash; the algorithm's strongest ranking signal</td><td class="kpi-check">&#10003;</td></tr>
-          <tr><td class="kpi-metric">Saves &amp; Shares</td><td>Content saved or shared by viewers</td><td>Strongest indicators of content value and shareability &mdash; not vanity, actual utility</td><td class="kpi-check">&#10003;</td></tr>
-          <tr><td class="kpi-metric">Profile Visits</td><td>Users clicking through to your profile</td><td>Interest and consideration signals &mdash; content compelling enough to drive intent</td><td class="kpi-check">&#10003;</td></tr>
-          <tr><td class="kpi-metric">Link Taps</td><td>Clicks from Instagram to your website or booking page</td><td>Intent and action signals &mdash; the clearest path from content to revenue</td><td class="kpi-check">&#10003;</td></tr>
-          <tr><td class="kpi-metric">Retention Patterns</td><td>Where audiences drop off in your content</td><td>Reveals what's working and what's not &mdash; guides iteration and format decisions</td><td class="kpi-check">&#10003;</td></tr>
-          <tr><td class="kpi-metric">DM Inquiries</td><td>Direct messages from potential clients</td><td>Bottom-of-funnel outcome &mdash; the revenue signal that proves the strategy is working</td><td class="kpi-check">&#10003;</td></tr>
         </tbody>
       </table>
     </div>
