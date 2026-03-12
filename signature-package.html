@@ -354,6 +354,7 @@
   .pricing-addons { max-width: 680px; margin: 32px auto 0; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 20px 28px; text-align: left; position: relative; z-index: 1; }
   .pricing-addons p { font-size: 13px; color: rgba(255,255,255,0.6); margin: 0; line-height: 1.7; }
   .pricing-addons strong { color: rgba(255,255,255,0.85); }
+  .pricing-value-gap { font-size: 12px; font-weight: 700; color: var(--highlight); background: rgba(226,237,122,0.1); border: 1px solid rgba(226,237,122,0.25); border-radius: 6px; padding: 8px 12px; text-align: center; margin-bottom: 16px; letter-spacing: 0.01em; }
 
   /* ── Decision Section ── */
   .decision-section { background: var(--azure-dark); border-radius: var(--radius-lg); padding: 48px 40px; margin-top: 56px; position: relative; z-index: 1; border: 1px solid rgba(226,237,122,0.2); }
@@ -410,14 +411,25 @@
   .final-cta h2 { color: var(--white); position: relative; z-index: 1; margin-bottom: 20px; }
   .final-cta p { font-size: 18px; color: rgba(255,255,255,0.75); max-width: 520px; margin: 0 auto 40px; line-height: 1.65; position: relative; z-index: 1; }
 
+  /* ── A2A Promo ── */
+  .a2a-promo { background: var(--azure-light); border-top: 1px solid var(--border); padding: 64px 24px; }
+  .a2a-promo-inner { max-width: 860px; margin: 0 auto; display: grid; grid-template-columns: 1fr auto; gap: 40px; align-items: center; }
+  .a2a-promo-label { font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--azure); margin-bottom: 10px; }
+  .a2a-promo h3 { font-size: clamp(20px, 3vw, 28px); font-weight: 800; color: var(--shadow); letter-spacing: -0.02em; line-height: 1.2; margin-bottom: 10px; }
+  .a2a-promo p { font-size: 15px; color: var(--text-secondary); line-height: 1.65; max-width: 520px; }
+  .a2a-promo-price { font-size: 13px; font-weight: 700; color: var(--azure); margin-top: 8px; }
+  .a2a-btn { display: inline-block; background: var(--azure); color: var(--white); padding: 14px 28px; border-radius: 8px; font-size: 15px; font-weight: 700; text-decoration: none; white-space: nowrap; transition: background 0.2s, transform 0.15s; flex-shrink: 0; }
+  .a2a-btn:hover { background: var(--azure-dark); transform: translateY(-1px); }
+  @media (max-width: 640px) { .a2a-promo-inner { grid-template-columns: 1fr; gap: 24px; } .a2a-btn { width: 100%; text-align: center; } }
+
   /* ── Footer ── */
-  footer { background: var(--shadow); color: rgba(255,255,255,0.55); padding: 48px 32px; text-align: center; }
+  footer { background: var(--white); color: var(--text-secondary); padding: 48px 32px; text-align: center; border-top: 1px solid var(--border); }
   .footer-logo { margin-bottom: 20px; }
-  .footer-logo img { height: 24px; width: auto; opacity: 0.7; }
+  .footer-logo img { height: 24px; width: auto; opacity: 1; }
   .footer-links { display: flex; justify-content: center; gap: 24px; flex-wrap: wrap; margin-bottom: 20px; }
-  .footer-links a { font-size: 13px; color: rgba(255,255,255,0.5); text-decoration: none; transition: color 0.2s; }
-  .footer-links a:hover { color: var(--highlight); }
-  .footer-copy { font-size: 12px; color: rgba(255,255,255,0.3); }
+  .footer-links a { font-size: 13px; color: var(--text-secondary); text-decoration: none; transition: color 0.2s; }
+  .footer-links a:hover { color: var(--azure); }
+  .footer-copy { font-size: 12px; color: var(--text-muted); }
 
   /* ── Back to Top ── */
   #back-to-top { position: fixed; bottom: 28px; right: 28px; width: 44px; height: 44px; border-radius: 50%; background: var(--azure); color: var(--white); font-size: 18px; font-weight: 700; text-decoration: none; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 16px rgba(12,51,135,0.3); opacity: 0; pointer-events: none; transition: opacity 0.3s, transform 0.3s; z-index: 200; }
@@ -1032,9 +1044,9 @@
     <p style="color: var(--text-secondary); font-size: 17px; max-width: 560px; margin: 16px auto 0; line-height: 1.65; text-align: center;">Every engagement starts with understanding your business — then building a system around it.</p>
     <div class="use-cases-grid">
       <div class="use-case-card reveal">
-        <div class="use-case-brand">Lane &amp; Kate</div>
-        <div class="use-case-niche">Boutique Jewelry</div>
-        <div class="use-case-row"><span class="uc-label">Challenge</span><span class="uc-val">No defined social strategy. Inconsistent posting.</span></div>
+        <div class="use-case-brand">Boutique Jewelry Client</div>
+        <div class="use-case-niche">Boutique Jewelry · Cincinnati, OH</div>
+        <div class="use-case-row"><span class="uc-label">Challenge</span><span class="uc-val">No defined social strategy. Inconsistent posting with no clear content direction.</span></div>
         <div class="use-case-row"><span class="uc-label">Goals</span><span class="uc-val">Local discoverability, community participation, purchasing actions</span></div>
         <div class="use-case-row use-case-results">
           <span class="uc-label">Results</span>
@@ -1046,8 +1058,8 @@
         </div>
       </div>
       <div class="use-case-card reveal reveal-delay-1">
-        <div class="use-case-brand">Launch Party</div>
-        <div class="use-case-niche">Boutique Wellness Products</div>
+        <div class="use-case-brand">Boutique Wellness Client</div>
+        <div class="use-case-niche">Wellness Products · Cincinnati, OH</div>
         <div class="use-case-row"><span class="uc-label">Challenge</span><span class="uc-val">Lack of content creation skills. No defined strategy.</span></div>
         <div class="use-case-row"><span class="uc-label">Goals</span><span class="uc-val">Brand presence, audience interaction, qualified leads</span></div>
         <div class="use-case-row use-case-results">
@@ -1060,8 +1072,8 @@
         </div>
       </div>
       <div class="use-case-card reveal reveal-delay-2">
-        <div class="use-case-brand">MEAS Active</div>
-        <div class="use-case-niche">Boutique Fitness Apparel</div>
+        <div class="use-case-brand">Fitness Apparel Client</div>
+        <div class="use-case-niche">Boutique Fitness Apparel · Regional</div>
         <div class="use-case-row"><span class="uc-label">Challenge</span><span class="uc-val">Minimal ICP engagement. No defined social strategy.</span></div>
         <div class="use-case-row"><span class="uc-label">Goals</span><span class="uc-val">Improve social brand, grow email subscribers, wholesale leads</span></div>
         <div class="use-case-row use-case-results">
@@ -1074,8 +1086,8 @@
         </div>
       </div>
       <div class="use-case-card reveal reveal-delay-3">
-        <div class="use-case-brand">Up and Running</div>
-        <div class="use-case-niche">Specialty Running &amp; Footwear</div>
+        <div class="use-case-brand">Specialty Retail Client</div>
+        <div class="use-case-niche">Running &amp; Footwear · Cincinnati, OH</div>
         <div class="use-case-row"><span class="uc-label">Challenge</span><span class="uc-val">No capacity for social media. No defined strategy.</span></div>
         <div class="use-case-row"><span class="uc-label">Goals</span><span class="uc-val">Wellness partnerships, customer retention, e-commerce growth</span></div>
         <div class="use-case-row use-case-results">
@@ -1302,14 +1314,14 @@
     <div class="section-label" style="color: rgba(226,237,122,0.7);">Investment</div>
     <div class="scarcity-badge">Currently accepting 2–3 new clients — 8 of 11 spots filled this quarter</div>
     <h2 style="color: var(--white);">Two options.<br/><span style="color: var(--highlight);">Both built to perform.</span></h2>
-    <p style="color: rgba(255,255,255,0.65); font-size: 17px; max-width: 560px; margin: 16px auto 0; line-height: 1.65; position: relative; z-index: 1;">Every Signature Package is scoped around your business goals. Pricing is based on content volume and posting cadence. Both options include full strategy, content creation, and execution — the difference is volume.</p>
+    <p style="color: rgba(255,255,255,0.65); font-size: 17px; max-width: 560px; margin: 16px auto 0; line-height: 1.65; position: relative; z-index: 1;">Both tiers include the full strategy, content creation, and execution system. The difference is volume, cadence, and the level of strategic partnership — and the gap in price is smaller than you might expect.</p>
     <div class="pricing-tiers">
       <div class="pricing-card reveal">
         <div class="pricing-tier-name">Essential</div>
-        <div class="pricing-price"><sup>$</sup>2,500</div>
+        <div class="pricing-price"><sup>$</sup>2,750</div>
         <div class="pricing-price-note">per month · 3-month minimum</div>
         <h3>2 Feed Posts Per Week</h3>
-        <p class="pricing-card-desc">Consistent, high-quality content with a sustainable cadence. Ideal for businesses building their presence and establishing a strong content foundation.</p>
+        <p class="pricing-card-desc">A strong starting point for businesses building their social presence. Consistent, high-quality content at a sustainable cadence — with the full strategy and execution system behind it.</p>
         <ul class="pricing-features">
           <li>2 feed posts per week (Reels + carousels)</li>
           <li>3 story days per week (Mon / Wed / Fri)</li>
@@ -1329,10 +1341,10 @@
         <div class="pricing-price"><sup>$</sup>3,000</div>
         <div class="pricing-price-note">per month · 3-month minimum</div>
         <h3>3 Feed Posts Per Week</h3>
-        <p class="pricing-card-desc">Our recommended option. Higher volume means faster compounding — more touchpoints, stronger algorithm signals, and faster authority-building in your niche.</p>
+        <p class="pricing-card-desc">Our recommended option. More content means faster compounding — more algorithm touchpoints, stronger authority signals, and a deeper content library that works for you around the clock.</p>
         <ul class="pricing-features">
           <li>3 feed posts per week (Reels + carousels)</li>
-          <li>2 story days per week (Tue / Thu)</li>
+          <li>5 story days per week (Mon–Fri)</li>
           <li>Stories also posted on feed post days to promote content</li>
           <li>2–2.5 hr content shoot every 2–3 weeks</li>
           <li>90-Day Strategy Foundation</li>
@@ -1340,8 +1352,11 @@
           <li>Full scheduling &amp; posting management</li>
           <li>Community management &amp; DM routing</li>
           <li>Monthly performance report &amp; strategy call</li>
+          <li><strong style="color:var(--highlight)">Quarterly Business Review (QBR)</strong> — macro performance &amp; strategy deep-dive</li>
+          <li><strong style="color:var(--highlight)">Priority 24-hr response time</strong> — direct access, faster turnaround</li>
           <li>Facebook auto-posting (always included)</li>
         </ul>
+        <div class="pricing-value-gap">Only $250/mo more for 50% more content + QBR + priority access</div>
         <a class="pricing-cta" href="mailto:hello@scrollmedia.co?subject=Signature Package - Growth Inquiry">Book a Discovery Call →</a>
       </div>
     </div>
@@ -1379,7 +1394,7 @@
           <span class="decision-card-tag">Full Service</span>
           <div class="decision-card-scenario">"I'm ready to hand it off and have a team execute everything."</div>
           <h4>Signature Package</h4>
-          <div class="decision-card-price">$2,500<span class="decision-card-price-note">/mo</span></div>
+          <div class="decision-card-price">$2,750<span class="decision-card-price-note">/mo</span></div>
           <p>Strategy + content creation + execution + reporting. Everything done for you, every month. This is the right choice if you're ready to invest in consistent, professional social media management.</p>
           <ul class="decision-card-features">
             <li>Everything in the Blueprint, plus</li>
@@ -1480,12 +1495,25 @@
   </div>
 </section>
 
+<!-- A2A Playbook Promo -->
+<section class="a2a-promo" id="playbook">
+  <div class="a2a-promo-inner">
+    <div>
+      <div class="a2a-promo-label">Not Ready for Full Management?</div>
+      <h3>Turn your existing audience<br/>into real business results.</h3>
+      <p>The Audience to Action Playbook is our $87 self-guided system for converting social media followers into leads, bookings, and buyers — without a full agency retainer. Perfect if you're not ready to hand it off yet.</p>
+      <div class="a2a-promo-price">$87 one-time · Instant access · 100% self-guided</div>
+    </div>
+    <a class="a2a-btn" href="https://tools.scrollmedia.co/audience-to-action" rel="noopener noreferrer" target="_blank">Get the Playbook →</a>
+  </div>
+</section>
+
 <!-- Footer -->
 <footer>
   <div class="footer-logo"><img alt="Scroll Media" src="scroll-media-logo.svg"/></div>
   <div class="footer-links">
     <a href="https://decks.scrollmedia.co/pitch/">About Scroll Media</a>
-    <a href="https://tools.scrollmedia.co/audience-to-action">$87 Playbook</a>
+    <a href="https://tools.scrollmedia.co/audience-to-action">Audience to Action Playbook</a>
     <a href="https://tools.scrollmedia.co/instagram-growth-blueprint">Instagram Growth Blueprint</a>
     <a href="https://tools.scrollmedia.co/instagram_maturity_quiz.html">Free Instagram Quiz</a>
   </div>
