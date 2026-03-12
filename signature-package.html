@@ -422,6 +422,66 @@
   .a2a-btn:hover { background: var(--azure-dark); transform: translateY(-1px); }
   @media (max-width: 640px) { .a2a-promo-inner { grid-template-columns: 1fr; gap: 24px; } .a2a-btn { width: 100%; text-align: center; } }
 
+  /* ── ROI Section ── */
+  .roi-section { background: var(--shadow); padding: 96px 24px; position: relative; overflow: hidden; }
+  .roi-section::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 80% 50% at 50% 0%, rgba(226,237,122,0.06) 0%, transparent 70%); pointer-events: none; }
+  .roi-section .section-label { color: rgba(226,237,122,0.7); }
+  .roi-section h2 { color: var(--white); }
+  .roi-intro { font-size: 17px; color: rgba(255,255,255,0.65); max-width: 620px; margin: 16px auto 56px; line-height: 1.7; text-align: center; }
+  .roi-math-row { display: grid; grid-template-columns: 1fr auto 1fr auto 1fr; gap: 0; max-width: 900px; margin: 0 auto 56px; align-items: center; }
+  .roi-math-card { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: var(--radius); padding: 28px 24px; text-align: center; }
+  .roi-math-card .roi-num { font-size: clamp(28px, 4vw, 40px); font-weight: 900; color: var(--highlight); letter-spacing: -0.02em; line-height: 1; margin-bottom: 8px; }
+  .roi-math-card .roi-label { font-size: 13px; font-weight: 600; color: rgba(255,255,255,0.55); text-transform: uppercase; letter-spacing: 0.08em; line-height: 1.4; }
+  .roi-math-card .roi-sub { font-size: 12px; color: rgba(255,255,255,0.35); margin-top: 6px; line-height: 1.4; }
+  .roi-operator { font-size: 28px; font-weight: 900; color: rgba(226,237,122,0.5); text-align: center; padding: 0 16px; }
+  .roi-scenarios { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; max-width: 900px; margin: 0 auto 48px; }
+  .roi-scenario { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: var(--radius); padding: 24px; }
+  .roi-scenario-niche { font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--highlight); margin-bottom: 10px; }
+  .roi-scenario h4 { font-size: 15px; font-weight: 700; color: var(--white); margin-bottom: 12px; line-height: 1.4; }
+  .roi-scenario-math { font-size: 13px; color: rgba(255,255,255,0.5); line-height: 1.9; }
+  .roi-scenario-math strong { color: rgba(255,255,255,0.85); }
+  .roi-scenario-result { margin-top: 14px; padding-top: 14px; border-top: 1px solid rgba(255,255,255,0.08); font-size: 13px; font-weight: 700; color: var(--highlight); }
+  .roi-disclaimer { font-size: 12px; color: rgba(255,255,255,0.3); text-align: center; max-width: 560px; margin: 0 auto; line-height: 1.6; }
+  /* ── Budget Comparison Section ── */
+  .budget-section { background: var(--white); padding: 96px 24px; border-top: 1px solid var(--border); }
+  .budget-compare-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; max-width: 860px; margin: 48px auto 0; }
+  .budget-card { border-radius: var(--radius-lg); padding: 36px 32px; }
+  .budget-card.inhouse { background: var(--porcelain); border: 2px solid var(--border); }
+  .budget-card.scroll { background: var(--azure); border: 2px solid var(--azure); color: var(--white); }
+  .budget-card-label { font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 14px; }
+  .budget-card.inhouse .budget-card-label { color: var(--text-muted); }
+  .budget-card.scroll .budget-card-label { color: rgba(226,237,122,0.8); }
+  .budget-card h4 { font-size: 20px; font-weight: 800; margin-bottom: 20px; letter-spacing: -0.02em; }
+  .budget-card.inhouse h4 { color: var(--shadow); }
+  .budget-card.scroll h4 { color: var(--white); }
+  .budget-line { display: flex; justify-content: space-between; align-items: baseline; padding: 10px 0; border-bottom: 1px solid; font-size: 14px; }
+  .budget-card.inhouse .budget-line { border-color: var(--border); color: var(--text-secondary); }
+  .budget-card.scroll .budget-line { border-color: rgba(255,255,255,0.15); color: rgba(255,255,255,0.7); }
+  .budget-line:last-of-type { border-bottom: none; }
+  .budget-line-label { font-weight: 500; }
+  .budget-line-cost { font-weight: 700; }
+  .budget-card.inhouse .budget-line-cost { color: var(--shadow); }
+  .budget-card.scroll .budget-line-cost { color: var(--highlight); }
+  .budget-total { display: flex; justify-content: space-between; align-items: baseline; padding: 16px 0 0; margin-top: 8px; border-top: 2px solid; }
+  .budget-card.inhouse .budget-total { border-color: rgba(21,21,22,0.3); }
+  .budget-card.scroll .budget-total { border-color: rgba(226,237,122,0.5); }
+  .budget-total-label { font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; }
+  .budget-card.inhouse .budget-total-label { color: var(--shadow); }
+  .budget-card.scroll .budget-total-label { color: rgba(255,255,255,0.7); }
+  .budget-total-cost { font-size: 28px; font-weight: 900; letter-spacing: -0.03em; }
+  .budget-card.inhouse .budget-total-cost { color: var(--shadow); }
+  .budget-card.scroll .budget-total-cost { color: var(--highlight); }
+  .budget-card-note { font-size: 12px; margin-top: 14px; line-height: 1.6; }
+  .budget-card.inhouse .budget-card-note { color: var(--text-muted); }
+  .budget-card.scroll .budget-card-note { color: rgba(255,255,255,0.45); }
+  .budget-verdict { max-width: 640px; margin: 40px auto 0; text-align: center; font-size: 16px; color: var(--text-secondary); line-height: 1.7; }
+  .budget-verdict strong { color: var(--shadow); }
+  @media (max-width: 768px) {
+    .roi-math-row { grid-template-columns: 1fr; gap: 12px; }
+    .roi-operator { display: none; }
+    .roi-scenarios { grid-template-columns: 1fr; }
+    .budget-compare-grid { grid-template-columns: 1fr; }
+  }
   /* ── Footer ── */
   footer { background: var(--white); color: var(--text-secondary); padding: 48px 32px; text-align: center; border-top: 1px solid var(--border); }
   .footer-logo { margin-bottom: 20px; }
@@ -492,6 +552,7 @@
   <a href="#whats-included">What's Included</a>
   <a href="#process">The Process</a>
   <a href="#results">Results</a>
+  <a href="#roi">The Business Case</a>
   <a href="#pricing">Pricing</a>
   <a href="#faq">FAQ</a>
   <a href="https://calendly.com/scrollmedia/scroll-media-signature-discovery" target="_blank" rel="noopener noreferrer" style="background: var(--highlight); color: var(--shadow); margin-top: 16px; font-weight: 800;">Book a Discovery Call →</a>
@@ -506,6 +567,7 @@
     <li><a href="#whats-included">What's Included</a></li>
     <li><a href="#process">The Process</a></li>
     <li><a href="#results">Results</a></li>
+    <li><a href="#roi">ROI</a></li>
     <li><a href="#pricing">Pricing</a></li>
     <li><a href="#faq">FAQ</a></li>
   </ul>
@@ -1305,6 +1367,101 @@
         </div>
       </div>
     </div>
+  </div>
+</section>
+
+<!-- ROI Section -->
+<section class="roi-section" id="roi">
+  <div class="container" style="text-align: center; position: relative; z-index: 1;">
+    <div class="section-label">The Business Case</div>
+    <h2>What does $2,750/mo actually get you?</h2>
+    <p class="roi-intro">Social media isn't a cost center. For service businesses, it's the highest-leverage trust-building channel you have. Here's how the math works when it's done right.</p>
+    <div class="roi-math-row">
+      <div class="roi-math-card reveal">
+        <div class="roi-num">1</div>
+        <div class="roi-label">New Client<br/>Per Month</div>
+        <div class="roi-sub">The minimum threshold to cover your investment</div>
+      </div>
+      <div class="roi-operator">=</div>
+      <div class="roi-math-card reveal reveal-delay-1">
+        <div class="roi-num">$2,750</div>
+        <div class="roi-label">Monthly<br/>Investment</div>
+        <div class="roi-sub">Full-service retainer, everything included</div>
+      </div>
+      <div class="roi-operator">&lt;</div>
+      <div class="roi-math-card reveal reveal-delay-2">
+        <div class="roi-num">1 Client</div>
+        <div class="roi-label">Average Service<br/>Business Value</div>
+        <div class="roi-sub">Most service clients are worth $3K–$15K+ in lifetime value</div>
+      </div>
+    </div>
+    <div class="roi-scenarios">
+      <div class="roi-scenario reveal">
+        <div class="roi-scenario-niche">Med Spa / Aesthetics</div>
+        <h4>One new Botox patient becomes a recurring client</h4>
+        <div class="roi-scenario-math">
+          <strong>Avg. first visit:</strong> $400–$600<br/>
+          <strong>Annual value:</strong> $2,400–$4,800<br/>
+          <strong>Lifetime value:</strong> $8,000–$20,000+
+        </div>
+        <div class="roi-scenario-result">1–2 new patients/mo covers the full retainer</div>
+      </div>
+      <div class="roi-scenario reveal reveal-delay-1">
+        <div class="roi-scenario-niche">Coaching / Consulting</div>
+        <h4>One new client from Instagram books a discovery call</h4>
+        <div class="roi-scenario-math">
+          <strong>Program value:</strong> $2,500–$10,000<br/>
+          <strong>Referral rate:</strong> 30–40% of happy clients<br/>
+          <strong>Lifetime value:</strong> $5,000–$25,000+
+        </div>
+        <div class="roi-scenario-result">A single close pays for 3–6 months of retainer</div>
+      </div>
+      <div class="roi-scenario reveal reveal-delay-2">
+        <div class="roi-scenario-niche">Fitness Studio / PT</div>
+        <h4>Two new memberships from Instagram content</h4>
+        <div class="roi-scenario-math">
+          <strong>Monthly membership:</strong> $150–$300<br/>
+          <strong>Annual value:</strong> $1,800–$3,600 each<br/>
+          <strong>Retention rate:</strong> 12–18 months avg.
+        </div>
+        <div class="roi-scenario-result">2–3 new members/mo creates a net-positive channel</div>
+      </div>
+    </div>
+    <p class="roi-disclaimer">These are illustrative scenarios based on industry averages. Actual results vary by niche, offer, and market. We don't promise specific revenue outcomes — we build the system that makes them possible.</p>
+  </div>
+</section>
+
+<!-- Budget Comparison -->
+<section class="budget-section" id="budget">
+  <div class="container" style="text-align: center;">
+    <div class="section-label">The Real Cost Comparison</div>
+    <h2>Hiring in-house vs. <span class="accent">working with Scroll Media</span></h2>
+    <p style="font-size: 17px; color: var(--text-secondary); max-width: 580px; margin: 16px auto 0; line-height: 1.65;">Most business owners think hiring someone is cheaper. Here's what it actually costs to build the same capability in-house.</p>
+    <div class="budget-compare-grid">
+      <div class="budget-card inhouse reveal">
+        <div class="budget-card-label">DIY / In-House</div>
+        <h4>Building it yourself</h4>
+        <div class="budget-line"><span class="budget-line-label">Part-time social media coordinator</span><span class="budget-line-cost">$2,500–$3,500/mo</span></div>
+        <div class="budget-line"><span class="budget-line-label">Freelance photographer (2x/mo)</span><span class="budget-line-cost">$600–$1,200/mo</span></div>
+        <div class="budget-line"><span class="budget-line-label">Strategy consultant (ad hoc)</span><span class="budget-line-cost">$500–$1,500/mo</span></div>
+        <div class="budget-line"><span class="budget-line-label">Scheduling &amp; analytics tools</span><span class="budget-line-cost">$100–$300/mo</span></div>
+        <div class="budget-line"><span class="budget-line-label">Your time managing it all</span><span class="budget-line-cost">Priceless</span></div>
+        <div class="budget-total"><span class="budget-total-label">Monthly Total</span><span class="budget-total-cost">$3,700–$6,500+</span></div>
+        <p class="budget-card-note">And you're still responsible for strategy, quality control, direction, and making sure it all works together. Most businesses end up with inconsistent output and high turnover.</p>
+      </div>
+      <div class="budget-card scroll reveal reveal-delay-1">
+        <div class="budget-card-label">Scroll Media Signature Package</div>
+        <h4>The full team, fully managed</h4>
+        <div class="budget-line"><span class="budget-line-label">Strategy &amp; content architecture</span><span class="budget-line-cost">Included</span></div>
+        <div class="budget-line"><span class="budget-line-label">Professional content shoots</span><span class="budget-line-cost">Included</span></div>
+        <div class="budget-line"><span class="budget-line-label">Content creation &amp; copywriting</span><span class="budget-line-cost">Included</span></div>
+        <div class="budget-line"><span class="budget-line-label">Scheduling, posting &amp; community</span><span class="budget-line-cost">Included</span></div>
+        <div class="budget-line"><span class="budget-line-label">Monthly reporting &amp; strategy call</span><span class="budget-line-cost">Included</span></div>
+        <div class="budget-total"><span class="budget-total-label">Monthly Total</span><span class="budget-total-cost">$2,750–$3,000</span></div>
+        <p class="budget-card-note">One point of contact. No managing freelancers. No strategy gaps. No inconsistency. Just a team that shows up every month and does the work.</p>
+      </div>
+    </div>
+    <p class="budget-verdict"><strong>The question isn't whether you can afford Scroll Media.</strong> It's whether you can afford to keep piecing it together yourself — and getting half the results at twice the cost.</p>
   </div>
 </section>
 
