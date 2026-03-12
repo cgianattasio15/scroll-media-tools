@@ -355,7 +355,49 @@
   @media (max-width: 768px) {
     .hamburger { display: flex; }
   }
-</style>
+
+  /* Results stats row */
+  .proof-stats-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    border-top: 1px solid rgba(255,255,255,0.08);
+    margin-top: 40px;
+    padding-top: 40px;
+  }
+  .proof-stat-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 24px 16px;
+    border-right: 1px solid rgba(255,255,255,0.08);
+  }
+  .proof-stat-item:last-child { border-right: none; }
+  .proof-stat-num {
+    font-size: clamp(2rem, 4vw, 2.8rem);
+    font-weight: 800;
+    color: var(--highlight, #c8f135);
+    line-height: 1;
+    margin-bottom: 8px;
+    letter-spacing: -0.02em;
+  }
+  .proof-stat-label {
+    font-size: 0.8rem;
+    color: var(--text-secondary, rgba(255,255,255,0.6));
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    line-height: 1.4;
+  }
+  @media (max-width: 600px) {
+    .proof-stats-row { grid-template-columns: repeat(2, 1fr); }
+    .proof-stat-item:nth-child(2) { border-right: none; }
+    .proof-stat-item:nth-child(3) { border-top: 1px solid rgba(255,255,255,0.08); }
+    .proof-stat-item:nth-child(4) { border-top: 1px solid rgba(255,255,255,0.08); }
+  }
+
+  </style>
 </head>
 <body id="top">
 <div class="mobile-nav" id="mobile-nav">
@@ -465,7 +507,7 @@
 </div>
 <div class="reviews-btn-wrap"><a class="reviews-btn" href="https://www.google.com/search?q=Scroll+Media+Cincinnati+reviews" rel="noopener noreferrer" target="_blank">See All Google Reviews →</a></div>
 </div>
-</section>
+
 <!-- Results Stats Row -->
 <div class="container" style="padding-top: 0; padding-bottom: 40px;">
 <div class="proof-stats-row">
@@ -475,6 +517,7 @@
 <div class="proof-stat-item"><span class="proof-stat-num">90 days</span><span class="proof-stat-label">To Measurable Results</span></div>
 </div>
 </div>
+</section>
 <section class="scope-section" id="whats-included">
 <div class="container">
 <div class="section-label" style="text-align:center;">What's Included</div>
