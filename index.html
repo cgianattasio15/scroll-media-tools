@@ -259,7 +259,7 @@
     transition: max-height 0.3s ease;
   }
   .product-accordion.open .product-accordion-body {
-    max-height: 600px;
+    max-height: 900px;
   }
   .product-accordion-divider {
     height: 1px; background: var(--border); margin: 0 24px;
@@ -656,80 +656,107 @@ function checkPassword() {
     </div>
   </div>
 
-  <<!-- CATEGORY 4: INTERNAL RESOURCES -->
+  <!-- CATEGORY 4: INTERNAL RESOURCES -->
   <div class="category">
     <div class="category-header">
       <div class="category-icon internal">🔒</div>
       <div>
         <div class="category-title">Internal Resources</div>
-        <div class="category-desc">Team-only guides and operating documents</div>
+        <div class="category-desc">Team-only guides, SOPs, and operating documents</div>
       </div>
       <div class="category-count">8 resources</div>
     </div>
-    <div class="tools-grid">
-      <a href="testimonial-standard.html" class="tool-card internal">
-        <div class="tool-card-top">
-          <div class="tool-icon">🎬</div>
-          <span class="tool-badge badge-internal">Master Standard</span>
+
+    <!-- Accordion: Client Testimonial Program -->
+    <div class="product-accordion open" id="accordion-testimonials">
+      <div class="product-accordion-header" onclick="toggleAccordion('accordion-testimonials')">
+        <div class="product-accordion-icon">🎬</div>
+        <div class="product-accordion-info">
+          <div class="product-accordion-name">Client Testimonial Program</div>
+          <div class="product-accordion-meta">Master standard + 3 client shoot packets — Batch 1 (March 2026)</div>
         </div>
-        <div class="tool-name">Testimonial Content Standard</div>
-        <p class="tool-desc">Master production framework for all client testimonial content — format, Sammy Jones arc, editing rules, Stories promotion, and CTA protocol. Read before using any Shoot Packet.</p>
-        <div class="tool-card-footer">
-          <span class="tool-url">tools.scrollmedia.co/testimonial-standard</span>
-          <span class="tool-arrow">→</span>
+        <div class="product-accordion-right">
+          <span class="tool-badge badge-internal">4 Docs</span>
+          <span class="product-accordion-chevron">▼</span>
         </div>
-      </a>
-      <a href="testimonial-launch-party.html" class="tool-card internal">
-        <div class="tool-card-top">
-          <div class="tool-icon">🛍</div>
-          <span class="tool-badge badge-internal">Shoot Packet</span>
+      </div>
+      <div class="product-accordion-body">
+        <div class="product-accordion-divider"></div>
+        <div class="product-pages">
+          <div class="product-pages-label">Read First</div>
+          <a href="testimonial-standard.html" class="page-link internal" target="_blank">
+            <div class="page-link-icon">📋</div>
+            <div class="page-link-info">
+              <div class="page-link-name">Testimonial Content Standard — Master Framework</div>
+              <div class="page-link-desc">Format, Sammy Jones arc, editing rules, Stories promo, CTA protocol. Read before any Shoot Packet.</div>
+            </div>
+            <span class="page-link-badge internal">Master Standard</span>
+            <span class="page-link-arrow">→</span>
+          </a>
+          <div class="product-pages-label" style="margin-top:12px;">Client Shoot Packets</div>
+          <a href="testimonial-launch-party.html" class="page-link internal" target="_blank">
+            <div class="page-link-icon">🛍️</div>
+            <div class="page-link-info">
+              <div class="page-link-name">Shoot Packet — Launch Party</div>
+              <div class="page-link-desc">@shoplaunchparty · Coachability &amp; full-funnel success · 52K→91K views</div>
+            </div>
+            <span class="page-link-badge internal">Shoot Packet</span>
+            <span class="page-link-arrow">→</span>
+          </a>
+          <a href="testimonial-define-oakley.html" class="page-link internal" target="_blank">
+            <div class="page-link-icon">🏋️</div>
+            <div class="page-link-info">
+              <div class="page-link-name">Shoot Packet — Define Oakley</div>
+              <div class="page-link-desc">@defineoakley · Trending content without losing brand credibility · 75% views increase</div>
+            </div>
+            <span class="page-link-badge internal">Shoot Packet</span>
+            <span class="page-link-arrow">→</span>
+          </a>
+          <a href="testimonial-meas-active.html" class="page-link internal" target="_blank">
+            <div class="page-link-icon">👟</div>
+            <div class="page-link-info">
+              <div class="page-link-name">Shoot Packet — MEAS Active</div>
+              <div class="page-link-desc">@meas_active · Foundation-to-amplification story · 118% interaction increase</div>
+            </div>
+            <span class="page-link-badge internal">Shoot Packet</span>
+            <span class="page-link-arrow">→</span>
+          </a>
         </div>
-        <div class="tool-name">Shoot Packet: Launch Party</div>
-        <p class="tool-desc">Client-specific testimonial shoot packet for @shoplaunchparty — interview prompts, B-roll shot list, edit arc, and ready-to-use caption.</p>
-        <div class="tool-card-footer">
-          <span class="tool-url">tools.scrollmedia.co/testimonial-launch-party</span>
-          <span class="tool-arrow">→</span>
-        </div>
-      </a>
-      <a href="testimonial-define-oakley.html" class="tool-card internal">
-        <div class="tool-card-top">
-          <div class="tool-icon">🏋</div>
-          <span class="tool-badge badge-internal">Shoot Packet</span>
-        </div>
-        <div class="tool-name">Shoot Packet: Define Oakley</div>
-        <p class="tool-desc">Client-specific testimonial shoot packet for @defineoakley — interview prompts, B-roll shot list, edit arc, and ready-to-use caption.</p>
-        <div class="tool-card-footer">
-          <span class="tool-url">tools.scrollmedia.co/testimonial-define-oakley</span>
-          <span class="tool-arrow">→</span>
-        </div>
-      </a>
-      <a href="testimonial-meas-active.html" class="tool-card internal">
-        <div class="tool-card-top">
-          <div class="tool-icon">👟</div>
-          <span class="tool-badge badge-internal">Shoot Packet</span>
-        </div>
-        <div class="tool-name">Shoot Packet: MEAS Active</div>
-        <p class="tool-desc">Client-specific testimonial shoot packet for @meas_active — interview prompts, B-roll shot list, edit arc, and ready-to-use caption.</p>
-        <div class="tool-card-footer">
-          <span class="tool-url">tools.scrollmedia.co/testimonial-meas-active</span>
-          <span class="tool-arrow">→</span>
-        </div>
-      </a>
-      <a href="ig-grid-guide.html" class="tool-card internal">
-        <div class="tool-card-top">
-          <div class="tool-icon">📐</div>
-          <span class="tool-badge badge-internal">Team Guide</span>
-        </div>
-        <div class="tool-name">Instagram Grid Management Guide</div>
-        <p class="tool-desc">Internal SOP for managing client Instagram grids — spacing, visual flow, content sequencing, and grid planning best practices.</p>
-        <div class="tool-card-footer">
-          <span class="tool-url">tools.scrollmedia.co/ig-grid-guide</span>
-          <span class="tool-arrow">→</span>
-        </div>
-      </a>
+      </div>
     </div>
-    <!-- Campaign Assets Accordion -->
-    <div class="product-accordion" id="accordion-campaign" style="margin-top: 16px;">
+
+    <!-- Accordion: SOPs & Team Guides -->
+    <div class="product-accordion" id="accordion-sops">
+      <div class="product-accordion-header" onclick="toggleAccordion('accordion-sops')">
+        <div class="product-accordion-icon">📐</div>
+        <div class="product-accordion-info">
+          <div class="product-accordion-name">SOPs &amp; Team Guides</div>
+          <div class="product-accordion-meta">Delivery team operating standards and execution guides</div>
+        </div>
+        <div class="product-accordion-right">
+          <span class="tool-badge badge-internal">1 Doc</span>
+          <span class="product-accordion-chevron">▼</span>
+        </div>
+      </div>
+      <div class="product-accordion-body">
+        <div class="product-accordion-divider"></div>
+        <div class="product-pages">
+          <div class="product-pages-label">Team Guides</div>
+          <a href="ig-grid-guide.html" class="page-link internal" target="_blank">
+            <div class="page-link-icon">📐</div>
+            <div class="page-link-info">
+              <div class="page-link-name">Instagram Grid Management Guide</div>
+              <div class="page-link-desc">SOP for managing client grids — spacing, visual flow, content sequencing, grid planning</div>
+            </div>
+            <span class="page-link-badge internal">Team Guide</span>
+            <span class="page-link-arrow">→</span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Accordion: Biz Dev Campaign Assets -->
+    <div class="product-accordion" id="accordion-campaign">
       <div class="product-accordion-header" onclick="toggleAccordion('accordion-campaign')">
         <div class="product-accordion-icon">📋</div>
         <div class="product-accordion-info">
@@ -737,7 +764,7 @@ function checkPassword() {
           <div class="product-accordion-meta">Strategy docs, email copy, visual briefs — internal use only</div>
         </div>
         <div class="product-accordion-right">
-          <span class="tool-badge badge-internal">Internal</span>
+          <span class="tool-badge badge-internal">3 Docs</span>
           <span class="product-accordion-chevron">▼</span>
         </div>
       </div>
@@ -775,7 +802,8 @@ function checkPassword() {
         </div>
       </div>
     </div>
-  </div>>
+  </div>
+
 
 </main>
 
