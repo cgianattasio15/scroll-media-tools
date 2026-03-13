@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Testimonial Content Standard — Scroll Media</title>
+  <link rel="icon" type="image/svg+xml" href="scroll-favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --navy:       #1B2B6B;
+      --navy-deep:  #0F1A45;
+      --navy-mid:   #162258;
+      --navy-light: #243580;
+      --lime:       #C8F135;
+      --lime-dark:  #A8D020;
+      --border:     rgba(255,255,255,0.12);
+      --text-primary:   #FFFFFF;
+      --text-secondary: rgba(255,255,255,0.75);
+      --text-muted:     rgba(255,255,255,0.5);
+      --text-label:     rgba(200,241,53,0.75);
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; overflow-x: hidden; }
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--navy-deep);
+      color: var(--text-primary);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* NAV */
+    nav {
+      background: rgba(15,26,69,0.95);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 32px;
+      height: 64px;
+      display: flex; align-items: center; justify-content: space-between;
+      position: sticky; top: 0; z-index: 100;
+    }
+    .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+    .nav-logo img { height: 26px; width: auto; }
+    .nav-links { display: flex; align-items: center; gap: 8px; }
+    .nav-link {
+      font-size: 13px; font-weight: 500; color: var(--text-muted);
+      text-decoration: none; padding: 6px 12px; border-radius: 6px;
+      transition: color 0.2s, background 0.2s;
+    }
+    .nav-link:hover { color: var(--text-primary); background: rgba(255,255,255,0.06); }
+    .nav-badge {
+      background: rgba(200,241,53,0.12); color: var(--lime);
+      border: 1px solid rgba(200,241,53,0.25);
+      font-size: 11px; font-weight: 700; letter-spacing: 0.08em;
+      text-transform: uppercase; padding: 4px 10px; border-radius: 100px;
+    }
+
+    /* HERO */
+    .hero {
+      background: linear-gradient(135deg, var(--navy-deep) 0%, var(--navy) 100%);
+      padding: 72px 32px 64px;
+      border-bottom: 1px solid var(--border);
+      position: relative; overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute; top: -40%; right: -10%;
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(200,241,53,0.06) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero-inner { max-width: 900px; margin: 0 auto; position: relative; z-index: 1; }
+    .hero-eyebrow {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: rgba(200,241,53,0.1); border: 1px solid rgba(200,241,53,0.25);
+      color: var(--lime); font-size: 11px; font-weight: 700;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      padding: 5px 14px; border-radius: 100px; margin-bottom: 20px;
+    }
+    .hero h1 {
+      font-size: clamp(28px, 5vw, 48px); font-weight: 900;
+      letter-spacing: -0.03em; line-height: 1.1; margin-bottom: 16px;
+    }
+    .hero h1 span { color: var(--lime); }
+    .hero-sub {
+      font-size: 16px; color: var(--text-secondary);
+      max-width: 600px; line-height: 1.7; margin-bottom: 32px;
+    }
+    .hero-meta {
+      display: flex; align-items: center; gap: 24px; flex-wrap: wrap;
+      padding-top: 24px; border-top: 1px solid var(--border);
+    }
+    .hero-meta-item { font-size: 12px; color: var(--text-muted); }
+    .hero-meta-item strong { color: var(--text-secondary); font-weight: 600; }
+    .client-links { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 8px; }
+    .client-pill {
+      background: rgba(255,255,255,0.07); border: 1px solid var(--border);
+      color: var(--text-secondary); font-size: 12px; font-weight: 600;
+      padding: 5px 12px; border-radius: 100px; text-decoration: none;
+      transition: background 0.2s, border-color 0.2s;
+    }
+    .client-pill:hover { background: rgba(200,241,53,0.1); border-color: rgba(200,241,53,0.3); color: var(--lime); }
+
+    /* MAIN */
+    .main { max-width: 900px; margin: 0 auto; padding: 56px 32px 96px; }
+
+    /* SECTION */
+    .section { margin-bottom: 56px; }
+    .section-label {
+      font-size: 10px; font-weight: 700; letter-spacing: 0.15em;
+      text-transform: uppercase; color: var(--lime);
+      margin-bottom: 8px;
+    }
+    .section-title {
+      font-size: clamp(20px, 3vw, 26px); font-weight: 800;
+      letter-spacing: -0.03em; margin-bottom: 12px;
+    }
+    .section-desc {
+      font-size: 15px; color: var(--text-secondary); line-height: 1.7;
+      max-width: 720px; margin-bottom: 28px;
+    }
+
+    /* CARDS */
+    .card {
+      background: var(--navy-mid); border: 1px solid var(--border);
+      border-radius: 14px; padding: 24px 28px; margin-bottom: 16px;
+    }
+    .card-header {
+      display: flex; align-items: flex-start; gap: 16px; margin-bottom: 16px;
+    }
+    .card-icon {
+      width: 40px; height: 40px; border-radius: 10px;
+      background: rgba(200,241,53,0.1); border: 1px solid rgba(200,241,53,0.2);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 18px; flex-shrink: 0;
+    }
+    .card-title { font-size: 16px; font-weight: 700; margin-bottom: 4px; }
+    .card-subtitle { font-size: 12px; color: var(--text-label); font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; }
+    .card-body { font-size: 14px; color: var(--text-secondary); line-height: 1.7; }
+
+    /* TABLE */
+    .table-wrap { overflow-x: auto; margin-bottom: 24px; border-radius: 12px; border: 1px solid var(--border); }
+    table { width: 100%; border-collapse: collapse; }
+    thead { background: rgba(200,241,53,0.08); }
+    th {
+      font-size: 11px; font-weight: 700; letter-spacing: 0.08em;
+      text-transform: uppercase; color: var(--text-label);
+      padding: 12px 16px; text-align: left; white-space: nowrap;
+    }
+    td {
+      font-size: 13px; color: var(--text-secondary);
+      padding: 14px 16px; border-top: 1px solid var(--border);
+      vertical-align: top; line-height: 1.6;
+    }
+    td strong { color: var(--text-primary); }
+    tr:last-child td { border-bottom: none; }
+
+    /* RULE GRID */
+    .rule-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 14px; }
+    .rule-card {
+      background: var(--navy-mid); border: 1px solid var(--border);
+      border-radius: 12px; padding: 20px;
+    }
+    .rule-card-top { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+    .rule-num {
+      width: 28px; height: 28px; border-radius: 8px;
+      background: rgba(200,241,53,0.12); color: var(--lime);
+      font-size: 13px; font-weight: 800;
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    }
+    .rule-title { font-size: 14px; font-weight: 700; }
+    .rule-body { font-size: 13px; color: var(--text-secondary); line-height: 1.6; }
+
+    /* ARC STEPS */
+    .arc-steps { display: flex; flex-direction: column; gap: 0; }
+    .arc-step {
+      display: flex; gap: 20px; align-items: flex-start;
+      padding: 20px 24px;
+      background: var(--navy-mid); border: 1px solid var(--border);
+      border-radius: 0; position: relative;
+    }
+    .arc-step:first-child { border-radius: 12px 12px 0 0; }
+    .arc-step:last-child { border-radius: 0 0 12px 12px; }
+    .arc-step + .arc-step { border-top: none; }
+    .arc-step-num {
+      width: 32px; height: 32px; border-radius: 50%;
+      background: var(--lime); color: var(--navy-deep);
+      font-size: 14px; font-weight: 900;
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+      margin-top: 2px;
+    }
+    .arc-step-content {}
+    .arc-step-label {
+      font-size: 11px; font-weight: 700; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--lime); margin-bottom: 4px;
+    }
+    .arc-step-title { font-size: 15px; font-weight: 700; margin-bottom: 6px; }
+    .arc-step-desc { font-size: 13px; color: var(--text-secondary); line-height: 1.6; }
+    .arc-step-prompt {
+      margin-top: 10px; padding: 10px 14px;
+      background: rgba(200,241,53,0.06); border-left: 3px solid var(--lime);
+      border-radius: 0 6px 6px 0;
+      font-size: 13px; color: var(--text-secondary); font-style: italic; line-height: 1.6;
+    }
+
+    /* CHECKLIST */
+    .checklist { display: flex; flex-direction: column; gap: 10px; }
+    .check-item {
+      display: flex; align-items: flex-start; gap: 12px;
+      padding: 14px 18px;
+      background: var(--navy-mid); border: 1px solid var(--border); border-radius: 10px;
+    }
+    .check-box {
+      width: 20px; height: 20px; border-radius: 5px;
+      border: 2px solid rgba(200,241,53,0.4);
+      flex-shrink: 0; margin-top: 1px;
+    }
+    .check-text { font-size: 14px; color: var(--text-secondary); line-height: 1.5; }
+    .check-text strong { color: var(--text-primary); }
+
+    /* HIGHLIGHT BOX */
+    .highlight-box {
+      background: rgba(200,241,53,0.07); border: 1px solid rgba(200,241,53,0.2);
+      border-radius: 12px; padding: 20px 24px; margin-bottom: 24px;
+    }
+    .highlight-box p { font-size: 14px; color: var(--text-secondary); line-height: 1.7; }
+    .highlight-box strong { color: var(--lime); }
+
+    /* WARNING BOX */
+    .warning-box {
+      background: rgba(255,100,100,0.07); border: 1px solid rgba(255,100,100,0.2);
+      border-radius: 12px; padding: 16px 20px; margin-bottom: 20px;
+    }
+    .warning-box p { font-size: 13px; color: rgba(255,180,180,0.9); line-height: 1.6; }
+
+    /* DIVIDER */
+    .divider { border: none; border-top: 1px solid var(--border); margin: 48px 0; }
+
+    /* FOOTER */
+    footer {
+      background: var(--navy-deep); border-top: 1px solid var(--border);
+      padding: 32px; text-align: center;
+    }
+    footer p { font-size: 12px; color: var(--text-muted); }
+
+    @media (max-width: 768px) {
+      nav { padding: 0 16px; }
+      .hero { padding: 48px 16px 40px; }
+      .main { padding: 40px 16px 64px; }
+      .rule-grid { grid-template-columns: 1fr; }
+      .arc-step { padding: 16px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="nav-logo">
+    <img src="scroll-logo-wordmark.svg" alt="Scroll Media" />
+  </a>
+  <div class="nav-links">
+    <span class="nav-badge">Internal</span>
+    <a href="index.html" class="nav-link">← Dashboard</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-inner">
+    <div class="hero-eyebrow">📋 Internal Resource · Delivery Team</div>
+    <h1>Testimonial Content <span>Standard</span></h1>
+    <p class="hero-sub">The master production framework for all Scroll Media client testimonial content. Read this once before using any Client Shoot Packet. It establishes the format, editing rules, and storytelling arc that every testimonial must follow.</p>
+    <div class="hero-meta">
+      <div class="hero-meta-item"><strong>Version:</strong> 3.0 — March 2026</div>
+      <div class="hero-meta-item"><strong>Format:</strong> Customer Testimonial (Feed Reel) + Stories Promotion</div>
+      <div class="hero-meta-item"><strong>Funnel Stage:</strong> Bottom of Funnel (Conversion)</div>
+    </div>
+    <div style="margin-top: 20px;">
+      <p style="font-size: 12px; color: var(--text-muted); margin-bottom: 8px;">Client Shoot Packets:</p>
+      <div class="client-links">
+        <a href="testimonial-launch-party.html" class="client-pill">🛍 Launch Party</a>
+        <a href="testimonial-define-oakley.html" class="client-pill">🏋 Define Oakley</a>
+        <a href="testimonial-meas-active.html" class="client-pill">👟 MEAS Active</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- MAIN -->
+<div class="main">
+
+  <!-- SECTION 1: FORMAT -->
+  <div class="section">
+    <p class="section-label">Section 01 — Format</p>
+    <h2 class="section-title">The Format: Customer Testimonial Reel</h2>
+    <p class="section-desc">This is a 🟢 CORE format in the Scroll Media Formats Library. It sits at the Bottom of Funnel and is designed to drive conversion through social proof. The primary metrics we are optimizing for are CTR, Link Taps, and PCR.</p>
+
+    <div class="highlight-box">
+      <p>We are executing this in the <strong>"Accordion" Documentary Style</strong> — A-roll interview footage of the founder speaking, cut with fast-paced B-roll clips (1–2 seconds each), driven by aggressive on-screen text hooks. This is not a corporate case study. It is a native Instagram Reel that feels authentic, moves fast, and earns the stop.</p>
+    </div>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Attribute</th>
+            <th>Specification</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>Format Name</strong></td><td>Customer Testimonial</td></tr>
+          <tr><td><strong>Placement</strong></td><td>Instagram Feed (Reel)</td></tr>
+          <tr><td><strong>Funnel Stage</strong></td><td>Bottom of Funnel — Conversion</td></tr>
+          <tr><td><strong>Status</strong></td><td>🟢 CORE — use consistently</td></tr>
+          <tr><td><strong>Target Length</strong></td><td>60–90 seconds</td></tr>
+          <tr><td><strong>Primary Metrics</strong></td><td>CTR, Link Taps, PCR (Profile Conversion Rate)</td></tr>
+          <tr><td><strong>Best For</strong></td><td>All service businesses — this is Scroll Media's own authority content</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <hr class="divider" />
+
+  <!-- SECTION 2: SAMMY JONES ARC -->
+  <div class="section">
+    <p class="section-label">Section 02 — The Storytelling Framework</p>
+    <h2 class="section-title">The Sammy Jones 5-Part Story Arc</h2>
+    <p class="section-desc">Every testimonial follows this exact arc. The arc is not just a structural template — it is the emotional journey the viewer takes. Each section must create a specific feeling. The interview prompts in each Client Shoot Packet are mapped directly to these five sections.</p>
+
+    <div class="warning-box">
+      <p>⚠️ <strong>Critical Rule:</strong> The Hook (Step 1) is captured LAST during the interview (as a rapid-fire question), but placed FIRST in the edit. Do not open with the founder introducing themselves. Open with the most compelling, surprising, or emotionally resonant statement from the entire interview.</p>
+    </div>
+
+    <div class="arc-steps">
+      <div class="arc-step">
+        <div class="arc-step-num">1</div>
+        <div class="arc-step-content">
+          <p class="arc-step-label">Hook — 0:00 to 0:03</p>
+          <p class="arc-step-title">The Attention Grabber</p>
+          <p class="arc-step-desc">The most compelling, surprising, or emotionally resonant statement from the entire interview. It must work before the viewer turns on sound — the on-screen text carries the hook. The first spoken word hits on frame one. Zero dead air.</p>
+          <p class="arc-step-prompt">Captured via rapid-fire prompt at the end of the interview: "Finish this sentence for me: [client-specific setup]..."</p>
+        </div>
+      </div>
+      <div class="arc-step">
+        <div class="arc-step-num">2</div>
+        <div class="arc-step-content">
+          <p class="arc-step-label">Context — 0:03 to 0:15</p>
+          <p class="arc-step-title">Who Is This Person & What Were the Stakes?</p>
+          <p class="arc-step-desc">Establish the founder's world before Scroll Media. Not a bio — a stakes-setter. The viewer needs to understand what this person had built, what they were trying to do, and why it mattered. This is where B-roll of the business, product, or space runs heavy.</p>
+          <p class="arc-step-prompt">Prompt targets: "Take me back to before we started working together. You already had [specific asset]. What was the world you were operating in?"</p>
+        </div>
+      </div>
+      <div class="arc-step">
+        <div class="arc-step-num">3</div>
+        <div class="arc-step-content">
+          <p class="arc-step-label">Conflict — 0:15 to 0:30</p>
+          <p class="arc-step-title">The Specific Moment of Friction</p>
+          <p class="arc-step-desc">Not "what was hard" — but "what was the specific moment or feeling that made you realize something had to change?" The conflict must be emotionally specific, not generic. "I felt like I was posting into the void" is better than "social media was challenging." Counter-positioning lives here.</p>
+          <p class="arc-step-prompt">Prompt targets: "Was there a specific moment — a post that flopped, a month where nothing moved — where you thought, 'This isn't working'?"</p>
+        </div>
+      </div>
+      <div class="arc-step">
+        <div class="arc-step-num">4</div>
+        <div class="arc-step-content">
+          <p class="arc-step-label">Turning Point — 0:30 to 0:45</p>
+          <p class="arc-step-title">The Specific Moment of Change</p>
+          <p class="arc-step-desc">The moment the strategy clicked. Must be a specific memory — a specific post, a specific conversation, a specific number they saw for the first time. "I remember when..." is the target response. This is where B-roll of the founder in action, filming content, or engaging with the Scroll team runs.</p>
+          <p class="arc-step-prompt">Prompt targets: "Was there a specific piece of content, or a specific moment with our team, where you thought, 'Okay — this is actually working'?"</p>
+        </div>
+      </div>
+      <div class="arc-step">
+        <div class="arc-step-num">5</div>
+        <div class="arc-step-content">
+          <p class="arc-step-label">Resolution — 0:45 to 1:05</p>
+          <p class="arc-step-title">The Tangible Outcome + Emotional Transformation</p>
+          <p class="arc-step-desc">Two layers: the hard metric (what the numbers show) and the emotional shift (how the founder feels about their business now vs. before). The metric goes on screen as a text overlay. The emotional shift is the final spoken line before the CTA. End on a forward-looking statement, not a backward-looking one.</p>
+          <p class="arc-step-prompt">Prompt targets: "What does your business look like now compared to when we started? And how has having a real social strategy changed the way you think about the future?"</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider" />
+
+  <!-- SECTION 3: EDITING RULES -->
+  <div class="section">
+    <p class="section-label">Section 03 — Editing Rules</p>
+    <h2 class="section-title">On-Screen Text, B-Roll & Audio Standards</h2>
+    <p class="section-desc">These are non-negotiable production rules derived from Briar Cochran and Caleb Ralston's content frameworks. Apply them to every testimonial edit without exception.</p>
+
+    <div class="rule-grid">
+      <div class="rule-card">
+        <div class="rule-card-top">
+          <div class="rule-num">T</div>
+          <p class="rule-title">On-Screen Text Rules</p>
+        </div>
+        <p class="rule-body">Use Instagram native fonts via the "Edits" app — this helps the algorithm categorize the content. Hook text: large, bold, high-contrast, on screen for the first 2–3 seconds. Clarifying pop-ups: appear exactly when the spoken word hits. Keep lines to 3–5 words. Never use "but" in overlays — use declarative statements. Cut every filler word ("um," "like," "you know," "kind of") from the A-roll before adding any text.</p>
+      </div>
+      <div class="rule-card">
+        <div class="rule-card-top">
+          <div class="rule-num">B</div>
+          <p class="rule-title">B-Roll Rules</p>
+        </div>
+        <p class="rule-body">B-roll is visual evidence, not filler. One B-roll shot per sentence. Maximum clip length: 1–2 seconds. Each shot must visually prove or reinforce the spoken word — not just fill time. The Client Shoot Packet provides a numbered shot list. Capture every shot on the list before wrapping.</p>
+      </div>
+      <div class="rule-card">
+        <div class="rule-card-top">
+          <div class="rule-num">A</div>
+          <p class="rule-title">Audio Rules</p>
+        </div>
+        <p class="rule-body">Use a trending instrumental track (no vocals). Implement volume ducking: music lowers when the founder speaks, swells during B-roll transitions. Cut all dead air between sentences. Think in rhythmic beats, not paragraphs. The music should feel like a pulse underneath the story, not a competing element.</p>
+      </div>
+      <div class="rule-card">
+        <div class="rule-card-top">
+          <div class="rule-num">C</div>
+          <p class="rule-title">Caption Rules</p>
+        </div>
+        <p class="rule-body">Use dynamic auto-generated captions (not static). 3–5 words per line. Position captions in the center of the frame, just below the speaker's eyes. Never place captions in the bottom 20% of the frame — they will be covered by the Instagram UI.</p>
+      </div>
+      <div class="rule-card">
+        <div class="rule-card-top">
+          <div class="rule-num">Z</div>
+          <p class="rule-title">Safe Zone Rule</p>
+        </div>
+        <p class="rule-body">Frame the subject in the center 60% of the frame. Hook text: upper-center zone. Captions: lower-center zone, below the speaker's eyes. Never place text or critical visuals in the bottom 20% or top 15% of the frame. Confirm framing before the first take.</p>
+      </div>
+      <div class="rule-card">
+        <div class="rule-card-top">
+          <div class="rule-num">M</div>
+          <p class="rule-title">Metric Overlay Rule</p>
+        </div>
+        <p class="rule-body">Every testimonial must include at least one hard metric displayed as a bold text overlay at the Resolution phase. This is the scroll-stopper. The number must be specific (e.g., "118% Increase in Interactions" — not "huge growth"). Place it as a pop-up graphic timed to the exact moment the founder mentions the result.</p>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider" />
+
+  <!-- SECTION 4: STORIES PROMOTION -->
+  <div class="section">
+    <p class="section-label">Section 04 — Stories Promotion</p>
+    <h2 class="section-title">How to Promote the Post via Stories</h2>
+    <p class="section-desc">Once the Reel is live, execute a two-frame Stories sequence the same day. This drives the post's initial engagement velocity and creates a direct conversion path to the Growth Blueprint page.</p>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Frame</th>
+            <th>Format</th>
+            <th>Content</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Frame 1</strong></td>
+            <td>Customer Spotlight / UGC Repost</td>
+            <td>Repost the Reel to Stories. Add a brief text overlay: "This is what working with Scroll Media looks like 👇" Tag the client.</td>
+            <td>Drives views to the Reel, signals social proof to the Stories audience</td>
+          </tr>
+          <tr>
+            <td><strong>Frame 2</strong></td>
+            <td>Direct Response / Link Story</td>
+            <td>Single frame. Copy: "Want results like this for your brand? We break down the exact framework in our Instagram Growth Blueprint." Add a prominent link sticker in the center of the frame pointing to the Growth Blueprint page.</td>
+            <td>Link sticker → <a href="https://tools.scrollmedia.co/instagram-growth-blueprint" target="_blank" style="color: var(--lime);">tools.scrollmedia.co/instagram-growth-blueprint</a></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="highlight-box">
+      <p><strong>CTA Strategy:</strong> The caption on the Reel uses a soft DM trigger — "DM us 'BLUEPRINT' to see the exact strategy we used." This creates an inbound signal Riley can respond to manually, or that can be automated via ManyChat later. The Stories link sticker provides the direct conversion path for viewers who are ready to act immediately.</p>
+    </div>
+  </div>
+
+  <hr class="divider" />
+
+  <!-- SECTION 5: POST-PRODUCTION CHECKLIST -->
+  <div class="section">
+    <p class="section-label">Section 05 — Quality Control</p>
+    <h2 class="section-title">Post-Production Checklist</h2>
+    <p class="section-desc">Before submitting any edit for approval, verify every item on this list. Do not submit an edit that fails any check.</p>
+
+    <div class="checklist">
+      <div class="check-item"><div class="check-box"></div><p class="check-text"><strong>Hook:</strong> Does the first line earn the stop? Is text on screen within the first 3 seconds? Does the first spoken word hit on frame one?</p></div>
+      <div class="check-item"><div class="check-box"></div><p class="check-text"><strong>Filler Words:</strong> Have all "um," "like," "you know," and "kind of" instances been removed from the A-roll?</p></div>
+      <div class="check-item"><div class="check-box"></div><p class="check-text"><strong>B-Roll Pacing:</strong> Are all B-roll clips 1–2 seconds or less? Is there one B-roll shot per sentence?</p></div>
+      <div class="check-item"><div class="check-box"></div><p class="check-text"><strong>On-Screen Text:</strong> Is the hook text large, bold, and contrasting? Are clarifying pop-ups timed to the exact spoken moment? Are lines 3–5 words max?</p></div>
+      <div class="check-item"><div class="check-box"></div><p class="check-text"><strong>Captions:</strong> Are captions dynamic, 3–5 words per line, and positioned within the safe zone (below the speaker's eyes, above the bottom 20%)?</p></div>
+      <div class="check-item"><div class="check-box"></div><p class="check-text"><strong>Audio:</strong> Is volume ducking applied? Is the music subtle enough to not overpower the founder's voice?</p></div>
+      <div class="check-item"><div class="check-box"></div><p class="check-text"><strong>Metric Overlay:</strong> Is at least one specific, tangible metric displayed as a bold text overlay at the Resolution phase?</p></div>
+      <div class="check-item"><div class="check-box"></div><p class="check-text"><strong>CTA:</strong> Is the CTA clear, specific, and on screen at the end? Does it reference "DM us 'BLUEPRINT'"?</p></div>
+      <div class="check-item"><div class="check-box"></div><p class="check-text"><strong>Safe Zone:</strong> Is the subject framed in the center 60%? Is no critical text placed in the bottom 20% or top 15% of the frame?</p></div>
+      <div class="check-item"><div class="check-box"></div><p class="check-text"><strong>Stories:</strong> Are both Stories frames (Repost + Link Story) scheduled for the same day as the Reel goes live?</p></div>
+    </div>
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <p>Scroll Media · Internal Resource · Delivery Team Use Only · v3.0 March 2026</p>
+</footer>
+
+</body>
+</html>
