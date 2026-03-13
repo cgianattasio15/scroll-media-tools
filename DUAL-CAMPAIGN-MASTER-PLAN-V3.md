@@ -60,7 +60,7 @@ The existing "Authority Engine" sequence (Emails 1–3) is strong — keep it as
 > If you're ready to stop guessing and want an expert to build that engine for you, I have two ways I can help:
 >
 > - **The $87 Audience-to-Action Playbook:** 50+ conversion-focused CTAs and the DM-to-booking system, ready to use today. [Get the Playbook →](https://tools.scrollmedia.co/audience-to-action.html)
-> - **The $997 Instagram Growth Blueprint:** A 3-week deep-dive where we build your entire Instagram strategy from the ground up. [Book a free Blueprint call →](YOUR_CALENDLY_BLUEPRINT_LINK)
+> - **The $997 Instagram Growth Blueprint:** A 3-week deep-dive where we build your entire Instagram strategy from the ground up. [Book a free Blueprint call →](https://calendly.com/scrollmedia/scrollmedia-blueprint-discovery)
 >
 > Either way, I'm glad you took the quiz.
 >
