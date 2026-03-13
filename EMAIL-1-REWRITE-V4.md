@@ -41,6 +41,10 @@ Does it look like a premium brand? If not, that's what people are seeing first.
 
 Fix these five things before posting another piece of content.
 
+I put together a free guide that walks through each of these in detail — with examples, templates, and a full checklist:
+
+👉 **[Instagram Profile Optimization Guide →](https://tools.scrollmedia.co/ig-profile-guide.html)**
+
 In two days, I'll show you why your best content might be getting engagement but still failing to book clients — and it has nothing to do with the content itself.
 
 — Chase
