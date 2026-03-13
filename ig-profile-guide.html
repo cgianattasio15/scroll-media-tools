@@ -553,11 +553,13 @@
     .container { padding: 0 20px; }
     .section { padding: 56px 0; }
     .dos-donts { grid-template-columns: 1fr; }
-    .footer { padding: 32px 24px; }
+    .footer { padding: 32px 24px; flex-direction: column; align-items: flex-start; }
+    .footer-links { gap: 16px; }
     .cta-section { padding: 64px 24px; }
     .hero-stats { gap: 32px; }
     .funnel-step-2 { margin: 0 16px; }
     .funnel-step-3 { margin: 0 32px; }
+    .checklist-grid { grid-template-columns: 1fr !important; }
   }
 </style>
 </head>
@@ -569,7 +571,7 @@
 <!-- Sticky Nav -->
 <nav class="nav">
   <div class="nav-logo">
-    <a href="https://scrollmedia.co"><img src="scroll-media-logo.svg" alt="Scroll Media"></a>
+    <a href="https://decks.scrollmedia.co/pitch/"><img src="scroll-media-logo.svg" alt="Scroll Media"></a>
   </div>
   <a href="#bio">Bio</a>
   <a href="#link-in-bio">Link in Bio</a>
@@ -1072,21 +1074,34 @@
 
 <!-- CTA Section -->
 <section class="cta-section">
-  <h2>Want Us to Do This <span>For You?</span></h2>
-  <p>We audit, optimize, and manage Instagram profiles for service businesses. If you'd rather have an expert handle this — and build the full content system behind it — let's talk.</p>
-  <div class="cta-buttons">
-    <a href="https://tools.scrollmedia.co/instagram_maturity_quiz.html" class="btn-primary">Take the Instagram Maturity Quiz</a>
-    <a href="https://calendly.com/scrollmedia/scrollmedia-blueprint-discovery" class="btn-secondary">Book a Free Strategy Call</a>
+  <div style="position: relative; z-index: 1; max-width: 900px; margin: 0 auto;">
+    <p style="font-size: 11px; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase; color: rgba(226,237,122,0.7); margin-bottom: 16px;">Ready to Take the Next Step?</p>
+    <h2>Two Ways We Can <span>Help You Right Now</span></h2>
+    <p>Whether you want a quick win or a complete system — we have you covered.</p>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; margin-top: 48px; text-align: left;">
+      <div style="background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12); border-radius: 16px; padding: 32px;">
+        <div style="font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: rgba(226,237,122,0.7); margin-bottom: 12px;">Free &mdash; 2 Minutes</div>
+        <h3 style="font-size: 22px; font-weight: 800; letter-spacing: -0.5px; color: #fff; margin-bottom: 12px;">Instagram Maturity Quiz</h3>
+        <p style="font-size: 14px; color: rgba(255,255,255,0.7); line-height: 1.7; margin-bottom: 24px;">Find out exactly where your Instagram strategy stands. Answer 10 questions and get a personalized score with a stage-specific action plan &mdash; in under 2 minutes.</p>
+        <a href="https://tools.scrollmedia.co/instagram_maturity_quiz.html" style="display: inline-block; background: #0c3387; color: #fff; padding: 14px 28px; border-radius: 8px; font-size: 14px; font-weight: 700; text-decoration: none; border: 2px solid #1a4aaa;">Take the Quiz &rarr;</a>
+      </div>
+      <div style="background: rgba(226,237,122,0.06); border: 1px solid rgba(226,237,122,0.25); border-radius: 16px; padding: 32px;">
+        <div style="font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: rgba(226,237,122,0.7); margin-bottom: 12px;">$87 &mdash; Instant Access</div>
+        <h3 style="font-size: 22px; font-weight: 800; letter-spacing: -0.5px; color: #fff; margin-bottom: 12px;">Audience-to-Action Playbook</h3>
+        <p style="font-size: 14px; color: rgba(255,255,255,0.7); line-height: 1.7; margin-bottom: 24px;">50+ conversion-focused CTAs and a complete DM-to-booking system built for service businesses. Stop guessing what to say. Start converting followers into clients.</p>
+        <a href="https://tools.scrollmedia.co/audience-to-action.html" style="display: inline-block; background: #e2ed7a; color: #151516; padding: 14px 28px; border-radius: 8px; font-size: 14px; font-weight: 700; text-decoration: none;">Get the Playbook &rarr;</a>
+      </div>
+    </div>
   </div>
 </section>
 
 <!-- Footer -->
 <footer class="footer">
   <div class="footer-logo">
-    <a href="https://scrollmedia.co"><img src="scroll-media-logo.svg" alt="Scroll Media"></a>
+    <a href="https://decks.scrollmedia.co/pitch/"><img src="scroll-media-logo.svg" alt="Scroll Media"></a>
   </div>
   <div class="footer-links">
-    <a href="https://scrollmedia.co">scrollmedia.co</a>
+    <a href="https://decks.scrollmedia.co/pitch/">scrollmedia.co</a>
     <a href="https://tools.scrollmedia.co">Tools Dashboard</a>
     <a href="https://tools.scrollmedia.co/instagram_maturity_quiz.html">Instagram Quiz</a>
     <a href="https://tools.scrollmedia.co/instagram-growth-blueprint.html">Blueprint</a>
