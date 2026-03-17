@@ -7,195 +7,346 @@
 <link rel="icon" href="scroll-favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
 <style>
   :root {
-    --shadow:       #151516;
-    --azure:        #0c3387;
-    --azure-light:  #1a4aaa;
-    --lucid:        #cbe9ff;
-    --highlighter:  #e2ed7a;
-    --porcelain:    #f2f3f4;
-    --ghost:        #fafdff;
-    --border:       rgba(255,255,255,0.08);
-    --border-focus: rgba(12,51,135,0.6);
-    --text-muted:   rgba(255,255,255,0.45);
-    --text-secondary: rgba(255,255,255,0.7);
-    --card-bg:      rgba(255,255,255,0.04);
-    --card-border:  rgba(255,255,255,0.07);
-    --input-bg:     rgba(255,255,255,0.05);
-    --input-border: rgba(255,255,255,0.12);
+    --shadow:         #151516;
+    --azure:          #0c3387;
+    --azure-mid:      #1a4aaa;
+    --azure-light:    #2a5fd4;
+    --lucid:          #cbe9ff;
+    --highlighter:    #e2ed7a;
+    --porcelain:      #f2f3f4;
+    --ghost:          #fafdff;
+
+    /* Dark form surface */
+    --surface-1:      #1a1b1e;
+    --surface-2:      #212226;
+    --surface-3:      #2a2b30;
+    --border-subtle:  rgba(255,255,255,0.07);
+    --border-mid:     rgba(255,255,255,0.12);
+    --border-focus:   rgba(12,51,135,0.65);
+
+    --text-white:     #ffffff;
+    --text-secondary: rgba(255,255,255,0.72);
+    --text-muted:     rgba(255,255,255,0.42);
+    --text-dim:       rgba(255,255,255,0.28);
+
+    --input-bg:       rgba(255,255,255,0.055);
+    --input-bg-hover: rgba(255,255,255,0.08);
+    --input-border:   rgba(255,255,255,0.13);
+
+    --radius-sm:      8px;
+    --radius-md:      12px;
+    --radius-lg:      18px;
+    --radius-xl:      24px;
   }
 
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-  html { scroll-behavior: smooth; }
+  html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
 
   body {
     background: var(--shadow);
-    color: #fff;
+    color: var(--text-white);
     font-family: 'Source Sans 3', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
     font-size: 16px;
     line-height: 1.6;
     min-height: 100vh;
   }
 
-  /* ── PROGRESS BAR ── */
+  /* ── SCROLL PROGRESS ── */
   #progress-bar {
     position: fixed;
     top: 0; left: 0;
     height: 3px;
     width: 0%;
-    background: linear-gradient(90deg, var(--azure), var(--lucid));
+    background: linear-gradient(90deg, var(--azure) 0%, var(--lucid) 100%);
     z-index: 1000;
-    transition: width 0.1s ease;
+    transition: width 0.1s linear;
+    pointer-events: none;
   }
 
-  /* ── NAV ── */
+  /* ── NAV — WHITE ── */
   nav {
     position: sticky;
     top: 0;
-    z-index: 100;
+    z-index: 200;
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 0 48px;
-    height: 64px;
-    background: rgba(21,21,22,0.85);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border-bottom: 1px solid var(--border);
+    height: 68px;
+    background: #ffffff;
+    border-bottom: 1px solid rgba(21,21,22,0.1);
+    box-shadow: 0 1px 12px rgba(21,21,22,0.06);
+  }
+
+  .nav-logo {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    flex-shrink: 0;
   }
 
   .nav-logo img {
-    height: 28px;
+    height: 30px;
     width: auto;
     display: block;
   }
 
-  .nav-badge {
+  .nav-right {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .nav-tag {
     font-size: 0.72rem;
     font-weight: 700;
-    letter-spacing: 1.2px;
+    letter-spacing: 1.4px;
     text-transform: uppercase;
-    color: var(--text-muted);
+    color: rgba(21,21,22,0.4);
+    padding: 5px 12px;
+    border: 1px solid rgba(21,21,22,0.12);
+    border-radius: 100px;
   }
 
   /* ── HERO ── */
   .hero {
-    padding: 80px 48px 64px;
-    max-width: 720px;
-    margin: 0 auto;
+    padding: 72px 24px 56px;
     text-align: center;
+    position: relative;
+    overflow: hidden;
   }
 
-  .hero-badge {
-    display: inline-block;
-    background: rgba(226,237,122,0.12);
-    border: 1px solid rgba(226,237,122,0.25);
+  /* Subtle radial glow behind hero */
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -60px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 700px;
+    height: 400px;
+    background: radial-gradient(ellipse at center, rgba(12,51,135,0.18) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .hero > * { position: relative; z-index: 1; }
+
+  .hero-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(226,237,122,0.1);
+    border: 1px solid rgba(226,237,122,0.22);
     color: var(--highlighter);
     font-size: 0.72rem;
     font-weight: 700;
-    letter-spacing: 1.5px;
+    letter-spacing: 1.6px;
     text-transform: uppercase;
-    padding: 6px 16px;
+    padding: 7px 16px;
     border-radius: 100px;
     margin-bottom: 28px;
   }
 
+  .hero-eyebrow-dot {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--highlighter);
+    flex-shrink: 0;
+  }
+
   .hero h1 {
-    font-size: clamp(2.2rem, 5vw, 3.2rem);
+    font-size: clamp(2.4rem, 6vw, 3.6rem);
     font-weight: 800;
-    line-height: 1.1;
-    letter-spacing: -1.5px;
-    background: linear-gradient(135deg, #fff 0%, rgba(203,233,255,0.85) 100%);
+    line-height: 1.08;
+    letter-spacing: -2px;
+    background: linear-gradient(160deg, #ffffff 0%, rgba(203,233,255,0.9) 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
     margin-bottom: 20px;
+    max-width: 640px;
+    margin-left: auto;
+    margin-right: auto;
   }
 
-  .hero p {
+  .hero-sub {
     font-size: 1.05rem;
     color: var(--text-secondary);
     line-height: 1.65;
-    max-width: 560px;
-    margin: 0 auto;
+    max-width: 520px;
+    margin: 0 auto 36px;
   }
 
-  .hero-meta {
+  .hero-pills {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 24px;
-    margin-top: 32px;
+    gap: 8px;
     flex-wrap: wrap;
   }
 
-  .hero-meta-item {
-    display: flex;
+  .hero-pill {
+    display: inline-flex;
     align-items: center;
-    gap: 8px;
-    font-size: 0.82rem;
-    color: var(--text-muted);
+    gap: 7px;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 100px;
+    padding: 6px 14px;
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    font-weight: 500;
   }
 
-  .hero-meta-dot {
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: var(--azure-light);
-    flex-shrink: 0;
+  .hero-pill-icon {
+    font-size: 0.85rem;
   }
 
-  /* ── FORM CONTAINER ── */
-  .form-container {
-    max-width: 680px;
+  /* ── FORM WRAPPER ── */
+  .form-wrap {
+    max-width: 700px;
     margin: 0 auto;
-    padding: 0 24px 100px;
+    padding: 0 20px 100px;
   }
 
   /* ── FORM CARD ── */
   .form-card {
-    background: var(--card-bg);
-    border: 1px solid var(--card-border);
-    border-radius: 20px;
-    padding: 48px;
-    backdrop-filter: blur(8px);
+    background: var(--surface-1);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-xl);
+    overflow: hidden;
+    box-shadow: 0 24px 80px rgba(0,0,0,0.35);
+  }
+
+  /* ── FORM PROGRESS STRIP ── */
+  .form-progress {
+    height: 3px;
+    background: var(--surface-3);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .form-progress-fill {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, var(--azure) 0%, var(--lucid) 100%);
+    transition: width 0.4s ease;
+  }
+
+  /* ── FORM INNER ── */
+  .form-inner {
+    padding: 48px 48px 52px;
+  }
+
+  /* ── SECTION BLOCK ── */
+  .form-section {
+    margin-bottom: 44px;
+  }
+
+  .form-section:last-of-type {
+    margin-bottom: 0;
+  }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 28px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--border-subtle);
+  }
+
+  .section-icon {
+    width: 34px;
+    height: 34px;
+    border-radius: var(--radius-sm);
+    background: rgba(12,51,135,0.18);
+    border: 1px solid rgba(12,51,135,0.25);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.95rem;
+    flex-shrink: 0;
+  }
+
+  .section-title {
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 1.8px;
+    text-transform: uppercase;
+    color: rgba(12,51,135,0.9);
+    background: linear-gradient(90deg, var(--azure-mid), var(--lucid));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .section-step {
+    margin-left: auto;
+    font-size: 0.68rem;
+    font-weight: 600;
+    color: var(--text-dim);
+    letter-spacing: 0.5px;
   }
 
   /* ── FIELD GROUP ── */
   .field-group {
-    margin-bottom: 32px;
+    margin-bottom: 24px;
   }
 
-  .field-group:last-of-type {
+  .field-group:last-child {
     margin-bottom: 0;
   }
 
-  .field-label {
-    display: block;
-    font-size: 0.78rem;
-    font-weight: 700;
-    letter-spacing: 1.2px;
-    text-transform: uppercase;
-    color: var(--text-muted);
+  .field-header {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
     margin-bottom: 10px;
   }
 
+  .field-num {
+    font-size: 0.62rem;
+    font-weight: 800;
+    letter-spacing: 1px;
+    color: var(--text-dim);
+    font-variant-numeric: tabular-nums;
+    flex-shrink: 0;
+    padding-top: 2px;
+  }
+
   .field-question {
-    font-size: 1.05rem;
+    font-size: 0.97rem;
     font-weight: 600;
-    color: #fff;
-    margin-bottom: 14px;
-    line-height: 1.4;
+    color: var(--text-white);
+    line-height: 1.35;
+  }
+
+  .field-required {
+    color: rgba(226,237,122,0.7);
+    font-size: 0.75rem;
+    margin-left: 2px;
   }
 
   .field-hint {
-    font-size: 0.82rem;
+    font-size: 0.8rem;
     color: var(--text-muted);
-    margin-bottom: 12px;
-    margin-top: -8px;
+    margin-bottom: 10px;
+    margin-top: -4px;
+    padding-left: 26px;
+    line-height: 1.5;
+  }
+
+  /* ── TWO-COL ROW ── */
+  .field-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
   }
 
   /* ── INPUTS ── */
@@ -207,14 +358,14 @@
     width: 100%;
     background: var(--input-bg);
     border: 1px solid var(--input-border);
-    border-radius: 10px;
-    padding: 14px 18px;
-    color: #fff;
+    border-radius: var(--radius-md);
+    padding: 13px 16px;
+    color: var(--text-white);
     font-family: inherit;
-    font-size: 0.95rem;
+    font-size: 0.93rem;
     line-height: 1.5;
     outline: none;
-    transition: border-color 0.2s, background 0.2s, box-shadow 0.2s;
+    transition: border-color 0.18s, background 0.18s, box-shadow 0.18s;
     -webkit-appearance: none;
     appearance: none;
   }
@@ -223,7 +374,16 @@
   input[type="email"]::placeholder,
   input[type="url"]::placeholder,
   textarea::placeholder {
-    color: rgba(255,255,255,0.25);
+    color: var(--text-dim);
+  }
+
+  input[type="text"]:hover,
+  input[type="email"]:hover,
+  input[type="url"]:hover,
+  textarea:hover,
+  select:hover {
+    background: var(--input-bg-hover);
+    border-color: rgba(255,255,255,0.18);
   }
 
   input[type="text"]:focus,
@@ -231,21 +391,21 @@
   input[type="url"]:focus,
   textarea:focus,
   select:focus {
-    border-color: rgba(12,51,135,0.7);
-    background: rgba(12,51,135,0.08);
-    box-shadow: 0 0 0 3px rgba(12,51,135,0.15);
+    border-color: var(--border-focus);
+    background: rgba(12,51,135,0.1);
+    box-shadow: 0 0 0 3px rgba(12,51,135,0.14);
   }
 
   textarea {
     resize: vertical;
-    min-height: 100px;
+    min-height: 96px;
   }
 
   select {
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='rgba(255,255,255,0.4)' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='7' viewBox='0 0 12 7'%3E%3Cpath d='M1 1l5 5 5-5' stroke='rgba(255,255,255,0.35)' stroke-width='1.6' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
     background-repeat: no-repeat;
-    background-position: right 16px center;
-    padding-right: 44px;
+    background-position: right 14px center;
+    padding-right: 40px;
     cursor: pointer;
   }
 
@@ -254,384 +414,586 @@
     color: #fff;
   }
 
-  /* ── TWO-COL ROW ── */
-  .field-row {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 20px;
-  }
-
-  @media (max-width: 560px) {
-    .field-row { grid-template-columns: 1fr; }
-  }
-
-  /* ── RADIO / CHECKBOX PILLS ── */
+  /* ── PILL SELECT ── */
   .pill-group {
     display: flex;
     flex-wrap: wrap;
-    gap: 10px;
+    gap: 8px;
   }
 
-  .pill-option {
+  .pill-opt {
     position: relative;
   }
 
-  .pill-option input[type="radio"],
-  .pill-option input[type="checkbox"] {
+  .pill-opt input[type="radio"],
+  .pill-opt input[type="checkbox"] {
     position: absolute;
     opacity: 0;
     width: 0;
     height: 0;
+    pointer-events: none;
   }
 
-  .pill-option label {
+  .pill-opt label {
     display: inline-flex;
     align-items: center;
-    gap: 8px;
-    padding: 10px 18px;
+    gap: 6px;
+    padding: 9px 16px;
     border: 1px solid var(--input-border);
     border-radius: 100px;
-    font-size: 0.88rem;
+    font-size: 0.86rem;
     font-weight: 500;
     color: var(--text-secondary);
     cursor: pointer;
-    transition: all 0.15s;
+    transition: all 0.15s ease;
     user-select: none;
-    white-space: nowrap;
+    line-height: 1.2;
   }
 
-  .pill-option label:hover {
-    border-color: rgba(12,51,135,0.5);
-    background: rgba(12,51,135,0.06);
-    color: #fff;
+  .pill-opt label:hover {
+    border-color: rgba(12,51,135,0.55);
+    background: rgba(12,51,135,0.08);
+    color: var(--text-white);
   }
 
-  .pill-option input:checked + label {
-    background: rgba(12,51,135,0.2);
-    border-color: rgba(12,51,135,0.7);
-    color: #fff;
-    box-shadow: 0 0 0 1px rgba(12,51,135,0.3);
+  .pill-opt input:checked + label {
+    background: rgba(12,51,135,0.22);
+    border-color: rgba(12,51,135,0.75);
+    color: var(--text-white);
+    box-shadow: 0 0 0 1px rgba(12,51,135,0.25);
+  }
+
+  /* ── INLINE FIELD ROW (label left, input right) ── */
+  .inline-field {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 16px;
+    background: var(--input-bg);
+    border: 1px solid var(--input-border);
+    border-radius: var(--radius-md);
+    transition: border-color 0.18s, background 0.18s;
+    cursor: pointer;
+  }
+
+  .inline-field:hover {
+    background: var(--input-bg-hover);
+    border-color: rgba(255,255,255,0.18);
+  }
+
+  .inline-field input[type="radio"] {
+    width: 16px;
+    height: 16px;
+    accent-color: var(--azure-mid);
+    flex-shrink: 0;
+    cursor: pointer;
+  }
+
+  .inline-field-label {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    font-weight: 500;
+    flex: 1;
+    cursor: pointer;
+    line-height: 1.3;
+  }
+
+  .inline-field-sub {
+    font-size: 0.76rem;
+    color: var(--text-muted);
+    margin-top: 1px;
+  }
+
+  .inline-fields-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
   }
 
   /* ── DIVIDER ── */
   .form-divider {
     height: 1px;
-    background: var(--card-border);
-    margin: 36px 0;
+    background: var(--border-subtle);
+    margin: 40px 0;
   }
 
-  /* ── SECTION LABEL ── */
-  .section-label {
-    font-size: 0.68rem;
-    font-weight: 700;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: rgba(12,51,135,0.9);
-    margin-bottom: 24px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
-
-  .section-label::after {
-    content: '';
-    flex: 1;
-    height: 1px;
-    background: rgba(12,51,135,0.2);
+  /* ── CHAR COUNTER ── */
+  .char-counter {
+    font-size: 0.72rem;
+    color: var(--text-dim);
+    text-align: right;
+    margin-top: 5px;
   }
 
   /* ── SUBMIT SECTION ── */
   .submit-section {
-    margin-top: 40px;
-    text-align: center;
+    padding: 36px 48px 48px;
+    background: var(--surface-2);
+    border-top: 1px solid var(--border-subtle);
   }
 
   .submit-btn {
-    display: inline-flex;
+    display: flex;
     align-items: center;
     justify-content: center;
     gap: 10px;
+    width: 100%;
     background: var(--azure);
     color: #fff;
     border: none;
-    border-radius: 12px;
-    padding: 18px 48px;
+    border-radius: var(--radius-md);
+    padding: 17px 32px;
     font-family: inherit;
     font-size: 1rem;
     font-weight: 700;
     letter-spacing: -0.2px;
     cursor: pointer;
     transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
-    width: 100%;
-    max-width: 400px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .submit-btn::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(255,255,255,0.06) 0%, transparent 60%);
+    pointer-events: none;
   }
 
   .submit-btn:hover {
-    background: var(--azure-light);
+    background: var(--azure-mid);
     transform: translateY(-1px);
-    box-shadow: 0 8px 24px rgba(12,51,135,0.35);
+    box-shadow: 0 10px 32px rgba(12,51,135,0.4);
   }
 
   .submit-btn:active {
     transform: translateY(0);
+    box-shadow: none;
   }
 
   .submit-btn svg {
     width: 18px;
     height: 18px;
     flex-shrink: 0;
+    transition: transform 0.2s;
   }
 
-  .submit-note {
-    font-size: 0.78rem;
+  .submit-btn:hover svg {
+    transform: translateX(3px);
+  }
+
+  .submit-meta {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    margin-top: 16px;
+    flex-wrap: wrap;
+  }
+
+  .submit-meta-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.76rem;
     color: var(--text-muted);
-    margin-top: 14px;
+  }
+
+  .submit-meta-item svg {
+    width: 12px;
+    height: 12px;
+    opacity: 0.6;
   }
 
   /* ── SUCCESS STATE ── */
   #success-state {
     display: none;
     text-align: center;
-    padding: 64px 24px;
+    padding: 80px 48px;
   }
 
-  .success-icon {
-    width: 64px;
-    height: 64px;
+  .success-check {
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
     background: rgba(12,51,135,0.15);
     border: 1px solid rgba(12,51,135,0.3);
-    border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: 0 auto 24px;
-    font-size: 1.8rem;
+    margin: 0 auto 28px;
+    font-size: 2rem;
   }
 
   #success-state h2 {
-    font-size: 1.8rem;
+    font-size: 2rem;
     font-weight: 800;
-    letter-spacing: -0.8px;
-    margin-bottom: 12px;
+    letter-spacing: -1px;
+    margin-bottom: 14px;
+    background: linear-gradient(135deg, #fff 0%, var(--lucid) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
   }
 
   #success-state p {
     color: var(--text-secondary);
     font-size: 1rem;
-    max-width: 400px;
+    max-width: 380px;
     margin: 0 auto;
     line-height: 1.65;
   }
 
-  /* ── FOOTER ── */
-  footer {
-    background: #fff;
-    padding: 32px 48px;
-    text-align: center;
-    border-top: 1px solid rgba(0,0,0,0.06);
-  }
-
-  footer img {
-    height: 22px;
-    width: auto;
-    display: block;
-    margin: 0 auto 10px;
-    opacity: 0.6;
-  }
-
-  footer p {
-    font-size: 0.78rem;
-    color: rgba(21,21,22,0.4);
-  }
-
-  /* ── RESPONSIVE ── */
-  @media (max-width: 640px) {
-    nav { padding: 0 20px; }
-    .hero { padding: 56px 20px 48px; }
-    .form-container { padding: 0 16px 80px; }
-    .form-card { padding: 32px 24px; }
-  }
-
-  /* ── VALIDATION STATES ── */
+  /* ── VALIDATION ── */
   .field-error {
-    font-size: 0.78rem;
-    color: #ff6b6b;
+    font-size: 0.76rem;
+    color: #ff7070;
     margin-top: 6px;
+    padding-left: 26px;
     display: none;
   }
 
   .field-group.has-error input,
   .field-group.has-error textarea,
   .field-group.has-error select {
-    border-color: rgba(255,107,107,0.5);
+    border-color: rgba(255,112,112,0.5);
+    box-shadow: 0 0 0 3px rgba(255,112,112,0.08);
   }
 
   .field-group.has-error .field-error {
     display: block;
   }
+
+  /* ── FOOTER ── */
+  footer {
+    background: #ffffff;
+    padding: 28px 48px;
+    text-align: center;
+    border-top: 1px solid rgba(21,21,22,0.08);
+  }
+
+  .footer-inner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  footer img {
+    height: 20px;
+    width: auto;
+    display: block;
+    opacity: 0.55;
+  }
+
+  footer p {
+    font-size: 0.75rem;
+    color: rgba(21,21,22,0.35);
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 640px) {
+    nav { padding: 0 20px; }
+    .hero { padding: 52px 20px 44px; }
+    .form-wrap { padding: 0 12px 80px; }
+    .form-inner { padding: 32px 24px 36px; }
+    .submit-section { padding: 28px 24px 36px; }
+    .field-row { grid-template-columns: 1fr; }
+    #success-state { padding: 60px 24px; }
+    footer { padding: 24px 20px; }
+  }
+
+  @media (max-width: 420px) {
+    .hero h1 { letter-spacing: -1.2px; }
+    .nav-tag { display: none; }
+  }
 </style>
 </head>
 <body>
 
-<!-- PROGRESS BAR -->
+<!-- SCROLL PROGRESS -->
 <div id="progress-bar"></div>
 
-<!-- NAV -->
+<!-- NAV — WHITE BACKGROUND -->
 <nav>
   <a href="https://tools.scrollmedia.co" class="nav-logo">
-    <img src="scroll-media-logo.svg" alt="Scroll Media">
+    <img src="scroll-media-logo-navy.png" alt="Scroll Media">
   </a>
-  <span class="nav-badge">Discovery Prep</span>
+  <div class="nav-right">
+    <span class="nav-tag">Discovery Prep</span>
+  </div>
 </nav>
 
 <!-- HERO -->
 <section class="hero">
-  <div class="hero-badge">Before We Meet</div>
+  <div class="hero-eyebrow">
+    <span class="hero-eyebrow-dot"></span>
+    Before We Meet
+  </div>
   <h1>Let's Get Right To It.</h1>
-  <p>We want to make our discovery call as useful as possible. Eight quick questions — takes about 60 seconds — so we show up with the right context, not generic questions.</p>
-  <div class="hero-meta">
-    <div class="hero-meta-item">
-      <div class="hero-meta-dot"></div>
-      <span>8 questions</span>
-    </div>
-    <div class="hero-meta-item">
-      <div class="hero-meta-dot"></div>
-      <span>~60 seconds</span>
-    </div>
-    <div class="hero-meta-item">
-      <div class="hero-meta-dot"></div>
-      <span>Sent directly to Chase</span>
-    </div>
+  <p class="hero-sub">Takes 90 seconds. Helps us skip the surface-level questions and show up to your discovery call with a real strategy — not a pitch deck.</p>
+  <div class="hero-pills">
+    <div class="hero-pill"><span class="hero-pill-icon">📋</span> 10 questions</div>
+    <div class="hero-pill"><span class="hero-pill-icon">⏱</span> ~90 seconds</div>
+    <div class="hero-pill"><span class="hero-pill-icon">🔒</span> Sent directly to Chase</div>
   </div>
 </section>
 
 <!-- FORM -->
-<div class="form-container">
+<div class="form-wrap">
   <div class="form-card">
 
-    <!-- SUCCESS STATE (hidden by default) -->
+    <!-- FORM PROGRESS BAR -->
+    <div class="form-progress">
+      <div class="form-progress-fill" id="form-progress-fill"></div>
+    </div>
+
+    <!-- SUCCESS STATE -->
     <div id="success-state">
-      <div class="success-icon">✓</div>
+      <div class="success-check">✓</div>
       <h2>Got it. See you on the call.</h2>
-      <p>We'll review everything before we meet and come prepared with a real strategy — not a pitch deck.</p>
+      <p>We'll review everything before we meet and come prepared with a real strategy, not a pitch.</p>
     </div>
 
     <!-- FORM -->
     <form id="intake-form" novalidate>
+      <div class="form-inner">
 
-      <!-- SECTION: About You -->
-      <div class="section-label">About You</div>
-
-      <div class="field-row">
-        <div class="field-group" id="fg-name">
-          <label class="field-label" for="name">01</label>
-          <div class="field-question">Your name</div>
-          <input type="text" id="name" name="name" placeholder="First Last" autocomplete="name" required>
-          <div class="field-error">Required.</div>
-        </div>
-        <div class="field-group" id="fg-business">
-          <label class="field-label" for="business">02</label>
-          <div class="field-question">Business name</div>
-          <input type="text" id="business" name="business" placeholder="Your Business" required>
-          <div class="field-error">Required.</div>
-        </div>
-      </div>
-
-      <div class="field-row" style="margin-top:28px;">
-        <div class="field-group" id="fg-instagram">
-          <label class="field-label" for="instagram">03</label>
-          <div class="field-question">Instagram handle</div>
-          <input type="text" id="instagram" name="instagram" placeholder="@yourbusiness">
-        </div>
-        <div class="field-group" id="fg-location">
-          <label class="field-label" for="location">04</label>
-          <div class="field-question">City &amp; state</div>
-          <input type="text" id="location" name="location" placeholder="Columbus, OH">
-        </div>
-      </div>
-
-      <div class="form-divider"></div>
-
-      <!-- SECTION: Your Business -->
-      <div class="section-label">Your Business</div>
-
-      <div class="field-group" id="fg-niche">
-        <label class="field-label" for="niche">05</label>
-        <div class="field-question">What type of business are you?</div>
-        <select id="niche" name="niche" required>
-          <option value="" disabled selected>Select your category</option>
-          <option value="med-spa">Med Spa / Aesthetics</option>
-          <option value="dermatologist">Dermatologist / Skincare Clinic</option>
-          <option value="doctor-surgeon">Doctor / Surgeon</option>
-          <option value="therapist-pt">Therapist / Physical Therapist</option>
-          <option value="coaching">Coaching / Consulting</option>
-          <option value="fitness">Fitness Studio / Personal Training</option>
-          <option value="home-builder">Home Builder / Contractor</option>
-          <option value="real-estate">Real Estate</option>
-          <option value="interior-design">Interior Design</option>
-          <option value="restaurant-cafe">Restaurant / Café</option>
-          <option value="retail">Retail / E-Commerce</option>
-          <option value="other">Other</option>
-        </select>
-        <div class="field-error">Required.</div>
-      </div>
-
-      <div class="field-group" style="margin-top:28px;" id="fg-goal">
-        <label class="field-label">06</label>
-        <div class="field-question">What's your primary goal for the next 6–12 months?</div>
-        <div class="pill-group">
-          <div class="pill-option">
-            <input type="radio" name="goal" id="goal-leads" value="Generate more leads">
-            <label for="goal-leads">Generate more leads</label>
+        <!-- ── SECTION 1: ABOUT YOU ── -->
+        <div class="form-section">
+          <div class="section-header">
+            <div class="section-icon">👤</div>
+            <span class="section-title">About You</span>
+            <span class="section-step">1 of 3</span>
           </div>
-          <div class="pill-option">
-            <input type="radio" name="goal" id="goal-authority" value="Build brand authority">
-            <label for="goal-authority">Build brand authority</label>
+
+          <div class="field-row">
+            <div class="field-group" id="fg-name">
+              <div class="field-header">
+                <span class="field-num">01</span>
+                <span class="field-question">Your name <span class="field-required">*</span></span>
+              </div>
+              <input type="text" id="name" name="name" placeholder="First Last" autocomplete="name" required>
+              <div class="field-error">This field is required.</div>
+            </div>
+            <div class="field-group" id="fg-business">
+              <div class="field-header">
+                <span class="field-num">02</span>
+                <span class="field-question">Business name <span class="field-required">*</span></span>
+              </div>
+              <input type="text" id="business" name="business" placeholder="Your Business" required>
+              <div class="field-error">This field is required.</div>
+            </div>
           </div>
-          <div class="pill-option">
-            <input type="radio" name="goal" id="goal-d2c" value="Grow D2C revenue">
-            <label for="goal-d2c">Grow D2C revenue</label>
+
+          <div class="field-row" style="margin-top:16px;">
+            <div class="field-group" id="fg-instagram">
+              <div class="field-header">
+                <span class="field-num">03</span>
+                <span class="field-question">Instagram handle</span>
+              </div>
+              <input type="text" id="instagram" name="instagram" placeholder="@yourbusiness">
+            </div>
+            <div class="field-group" id="fg-website">
+              <div class="field-header">
+                <span class="field-num">04</span>
+                <span class="field-question">Website URL</span>
+              </div>
+              <input type="url" id="website" name="website" placeholder="https://yourbusiness.com">
+            </div>
           </div>
-          <div class="pill-option">
-            <input type="radio" name="goal" id="goal-awareness" value="Increase local awareness">
-            <label for="goal-awareness">Increase local awareness</label>
-          </div>
-          <div class="pill-option">
-            <input type="radio" name="goal" id="goal-retention" value="Retain and upsell clients">
-            <label for="goal-retention">Retain &amp; upsell clients</label>
-          </div>
-          <div class="pill-option">
-            <input type="radio" name="goal" id="goal-other" value="Other">
-            <label for="goal-other">Other</label>
+
+          <div class="field-row" style="margin-top:16px;">
+            <div class="field-group" id="fg-location">
+              <div class="field-header">
+                <span class="field-num">05</span>
+                <span class="field-question">City &amp; state <span class="field-required">*</span></span>
+              </div>
+              <input type="text" id="location" name="location" placeholder="Columbus, OH" required>
+              <div class="field-error">This field is required.</div>
+            </div>
+            <div class="field-group" id="fg-years">
+              <div class="field-header">
+                <span class="field-num">06</span>
+                <span class="field-question">Years in business</span>
+              </div>
+              <select id="years" name="years">
+                <option value="" disabled selected>Select range</option>
+                <option value="Less than 1 year">Less than 1 year</option>
+                <option value="1–2 years">1–2 years</option>
+                <option value="3–5 years">3–5 years</option>
+                <option value="6–10 years">6–10 years</option>
+                <option value="10+ years">10+ years</option>
+              </select>
+            </div>
           </div>
         </div>
-      </div>
 
-      <div class="form-divider"></div>
+        <div class="form-divider"></div>
 
-      <!-- SECTION: Social Media -->
-      <div class="section-label">Social Media</div>
+        <!-- ── SECTION 2: YOUR BUSINESS ── -->
+        <div class="form-section">
+          <div class="section-header">
+            <div class="section-icon">🏢</div>
+            <span class="section-title">Your Business</span>
+            <span class="section-step">2 of 3</span>
+          </div>
 
-      <div class="field-group" id="fg-current-state">
-        <label class="field-label" for="current-state">07</label>
-        <div class="field-question">How would you describe your current social media situation?</div>
-        <div class="field-hint">Be honest — this helps us skip the basics on the call.</div>
-        <select id="current-state" name="current-state">
-          <option value="" disabled selected>Select the best fit</option>
-          <option value="not-posting">Not posting consistently — no real strategy</option>
-          <option value="posting-no-results">Posting regularly but not seeing results</option>
-          <option value="some-traction">Getting some traction but need to scale it</option>
-          <option value="strong-presence">Strong presence — need to convert it into revenue</option>
-          <option value="starting-fresh">Starting from scratch — brand new account</option>
-        </select>
-      </div>
+          <div class="field-group" id="fg-niche">
+            <div class="field-header">
+              <span class="field-num">07</span>
+              <span class="field-question">What type of business are you? <span class="field-required">*</span></span>
+            </div>
+            <select id="niche" name="niche" required>
+              <option value="" disabled selected>Select your category</option>
+              <option value="Med Spa / Aesthetics">Med Spa / Aesthetics</option>
+              <option value="Dermatologist / Skincare Clinic">Dermatologist / Skincare Clinic</option>
+              <option value="Doctor / Surgeon">Doctor / Surgeon</option>
+              <option value="Therapist / Physical Therapist">Therapist / Physical Therapist</option>
+              <option value="Coaching / Consulting">Coaching / Consulting</option>
+              <option value="Fitness Studio / Personal Training">Fitness Studio / Personal Training</option>
+              <option value="Home Builder / Contractor">Home Builder / Contractor</option>
+              <option value="Real Estate">Real Estate</option>
+              <option value="Interior Design">Interior Design</option>
+              <option value="Restaurant / Café">Restaurant / Café</option>
+              <option value="Retail / E-Commerce">Retail / E-Commerce</option>
+              <option value="Other">Other</option>
+            </select>
+            <div class="field-error">This field is required.</div>
+          </div>
 
-      <div class="field-group" style="margin-top:28px;" id="fg-bottleneck">
-        <label class="field-label" for="bottleneck">08</label>
-        <div class="field-question">What's the biggest thing holding you back right now?</div>
-        <div class="field-hint">Content creation, strategy, time, knowing what to post, results — anything goes.</div>
-        <textarea id="bottleneck" name="bottleneck" placeholder="Be specific. The more context you give us, the more useful our call will be." rows="4"></textarea>
-      </div>
+          <div class="field-group" style="margin-top:20px;" id="fg-revenue">
+            <div class="field-header">
+              <span class="field-num">08</span>
+              <span class="field-question">How does your business primarily generate revenue? <span class="field-required">*</span></span>
+            </div>
+            <p class="field-hint">This shapes the entire strategy — be honest.</p>
+            <div class="inline-fields-stack" id="revenue-group">
+              <label class="inline-field">
+                <input type="radio" name="revenue" value="Primarily B2C — direct to consumer (online or in-person)">
+                <span class="inline-field-label">
+                  Primarily B2C — direct to consumer (online or in-person)
+                </span>
+              </label>
+              <label class="inline-field">
+                <input type="radio" name="revenue" value="Primarily B2B — selling to other businesses or referral-based">
+                <span class="inline-field-label">
+                  Primarily B2B — selling to other businesses or referral-based
+                </span>
+              </label>
+              <label class="inline-field">
+                <input type="radio" name="revenue" value="Mix of both B2B and B2C">
+                <span class="inline-field-label">
+                  Mix of both B2B and B2C
+                </span>
+              </label>
+              <label class="inline-field">
+                <input type="radio" name="revenue" value="Service-based — clients book or inquire directly">
+                <span class="inline-field-label">
+                  Service-based — clients book or inquire directly
+                </span>
+              </label>
+            </div>
+          </div>
+
+          <div class="field-group" style="margin-top:20px;" id="fg-goal">
+            <div class="field-header">
+              <span class="field-num">09</span>
+              <span class="field-question">What's your #1 goal for social media in the next 6–12 months? <span class="field-required">*</span></span>
+            </div>
+            <div class="pill-group">
+              <div class="pill-opt">
+                <input type="radio" name="goal" id="goal-leads" value="Generate more leads / inquiries">
+                <label for="goal-leads">Generate more leads / inquiries</label>
+              </div>
+              <div class="pill-opt">
+                <input type="radio" name="goal" id="goal-authority" value="Build brand authority &amp; credibility">
+                <label for="goal-authority">Build brand authority &amp; credibility</label>
+              </div>
+              <div class="pill-opt">
+                <input type="radio" name="goal" id="goal-d2c" value="Grow direct-to-consumer (D2C) revenue">
+                <label for="goal-d2c">Grow D2C revenue</label>
+              </div>
+              <div class="pill-opt">
+                <input type="radio" name="goal" id="goal-awareness" value="Increase local brand awareness">
+                <label for="goal-awareness">Increase local awareness</label>
+              </div>
+              <div class="pill-opt">
+                <input type="radio" name="goal" id="goal-retention" value="Retain &amp; upsell existing clients">
+                <label for="goal-retention">Retain &amp; upsell clients</label>
+              </div>
+              <div class="pill-opt">
+                <input type="radio" name="goal" id="goal-launch" value="Launch or promote a new product / service">
+                <label for="goal-launch">Launch something new</label>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-divider"></div>
+
+        <!-- ── SECTION 3: SOCIAL MEDIA ── -->
+        <div class="form-section">
+          <div class="section-header">
+            <div class="section-icon">📱</div>
+            <span class="section-title">Social Media</span>
+            <span class="section-step">3 of 3</span>
+          </div>
+
+          <div class="field-group" id="fg-current-state">
+            <div class="field-header">
+              <span class="field-num">10</span>
+              <span class="field-question">Where are you at with social media right now? <span class="field-required">*</span></span>
+            </div>
+            <p class="field-hint">Be honest — this helps us skip the basics on the call.</p>
+            <div class="inline-fields-stack" id="state-group">
+              <label class="inline-field">
+                <input type="radio" name="current-state" value="Not posting consistently — no real strategy in place">
+                <span class="inline-field-label">Not posting consistently — no real strategy in place</span>
+              </label>
+              <label class="inline-field">
+                <input type="radio" name="current-state" value="Posting regularly but not seeing meaningful results">
+                <span class="inline-field-label">Posting regularly but not seeing meaningful results</span>
+              </label>
+              <label class="inline-field">
+                <input type="radio" name="current-state" value="Getting some traction — need to scale and systematize it">
+                <span class="inline-field-label">Getting some traction — need to scale and systematize it</span>
+              </label>
+              <label class="inline-field">
+                <input type="radio" name="current-state" value="Strong presence — need to convert it into actual revenue">
+                <span class="inline-field-label">Strong presence — need to convert it into actual revenue</span>
+              </label>
+              <label class="inline-field">
+                <input type="radio" name="current-state" value="Starting from scratch — brand new or dormant account">
+                <span class="inline-field-label">Starting from scratch — brand new or dormant account</span>
+              </label>
+            </div>
+            <div class="field-error" id="state-error">Please select an option.</div>
+          </div>
+
+          <div class="field-group" style="margin-top:20px;" id="fg-inspiration">
+            <div class="field-header">
+              <span class="field-num">11</span>
+              <span class="field-question">Name 1–2 brands whose social presence you admire</span>
+            </div>
+            <p class="field-hint">Can be in your industry or completely outside it. We use this to understand your aesthetic and content direction.</p>
+            <input type="text" id="inspiration" name="inspiration" placeholder="e.g. Glossier, Peloton, a local competitor...">
+          </div>
+
+          <div class="field-group" style="margin-top:20px;" id="fg-bottleneck">
+            <div class="field-header">
+              <span class="field-num">12</span>
+              <span class="field-question">What's the biggest thing holding you back right now?</span>
+            </div>
+            <p class="field-hint">Content creation, strategy, time, knowing what to post, not seeing results — anything goes. The more specific, the better.</p>
+            <textarea id="bottleneck" name="bottleneck" placeholder="Be specific. The more context you give us, the more useful our call will be." rows="4" maxlength="600" oninput="updateCharCount(this)"></textarea>
+            <div class="char-counter"><span id="char-count">0</span> / 600</div>
+          </div>
+        </div>
+
+      </div><!-- /form-inner -->
 
       <!-- SUBMIT -->
       <div class="submit-section">
@@ -641,98 +1003,67 @@
             <path d="M3 9h12M9 3l6 6-6 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
         </button>
-        <p class="submit-note">Responses go directly to Chase at Scroll Media.</p>
+        <div class="submit-meta">
+          <div class="submit-meta-item">
+            <svg viewBox="0 0 12 12" fill="none"><path d="M6 1a5 5 0 100 10A5 5 0 006 1zm0 9A4 4 0 116 2a4 4 0 010 8zm.5-6.5h-1v3l2.5 1.5.5-.8-2-1.2V3.5z" fill="currentColor"/></svg>
+            Takes ~90 seconds
+          </div>
+          <div class="submit-meta-item">
+            <svg viewBox="0 0 12 12" fill="none"><path d="M9.5 1.5h-7A1 1 0 001.5 2.5v7a1 1 0 001 1h7a1 1 0 001-1v-7a1 1 0 00-1-1zm-3.5 7L2.5 5l.7-.7L6 7.1l3.8-3.8.7.7L6 8.5z" fill="currentColor"/></svg>
+            Responses go directly to Chase
+          </div>
+          <div class="submit-meta-item">
+            <svg viewBox="0 0 12 12" fill="none"><path d="M6 1a5 5 0 100 10A5 5 0 006 1zM5 8.5l-2-2 .7-.7L5 7.1l3.3-3.3.7.7L5 8.5z" fill="currentColor"/></svg>
+            No spam, ever
+          </div>
+        </div>
       </div>
 
     </form>
-  </div>
-</div>
+  </div><!-- /form-card -->
+</div><!-- /form-wrap -->
 
 <!-- FOOTER -->
 <footer>
-  <img src="scroll-media-logo-navy.png" alt="Scroll Media">
-  <p>&copy; 2026 Scroll Media. All rights reserved.</p>
+  <div class="footer-inner">
+    <img src="scroll-media-logo-navy.png" alt="Scroll Media">
+    <p>&copy; 2026 Scroll Media. All rights reserved.</p>
+  </div>
 </footer>
 
 <script>
-  // ── PROGRESS BAR ──
+  // ── SCROLL PROGRESS BAR ──
   window.addEventListener('scroll', () => {
     const scrollTop = window.scrollY;
     const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-    const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
-    document.getElementById('progress-bar').style.width = progress + '%';
+    const pct = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+    document.getElementById('progress-bar').style.width = pct + '%';
   });
 
-  // ── FORM SUBMISSION ──
-  document.getElementById('intake-form').addEventListener('submit', function(e) {
-    e.preventDefault();
+  // ── FORM PROGRESS FILL (based on answered required fields) ──
+  const TOTAL_REQUIRED = 6; // name, business, location, niche, revenue, current-state
 
-    // Basic validation
-    let valid = true;
+  function updateFormProgress() {
+    let filled = 0;
+    if (document.getElementById('name').value.trim()) filled++;
+    if (document.getElementById('business').value.trim()) filled++;
+    if (document.getElementById('location').value.trim()) filled++;
+    if (document.getElementById('niche').value) filled++;
+    if (document.querySelector('input[name="revenue"]:checked')) filled++;
+    if (document.querySelector('input[name="current-state"]:checked')) filled++;
+    const pct = Math.round((filled / TOTAL_REQUIRED) * 100);
+    document.getElementById('form-progress-fill').style.width = pct + '%';
+  }
 
-    const requiredFields = [
-      { id: 'fg-name', inputId: 'name' },
-      { id: 'fg-business', inputId: 'business' },
-      { id: 'fg-niche', inputId: 'niche' },
-    ];
-
-    requiredFields.forEach(f => {
-      const group = document.getElementById(f.id);
-      const input = document.getElementById(f.inputId);
-      if (!input.value.trim()) {
-        group.classList.add('has-error');
-        valid = false;
-      } else {
-        group.classList.remove('has-error');
-      }
-    });
-
-    if (!valid) {
-      // Scroll to first error
-      const firstError = document.querySelector('.has-error');
-      if (firstError) firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
-      return;
-    }
-
-    // Collect form data
-    const data = {
-      name: document.getElementById('name').value.trim(),
-      business: document.getElementById('business').value.trim(),
-      instagram: document.getElementById('instagram').value.trim(),
-      location: document.getElementById('location').value.trim(),
-      niche: document.getElementById('niche').value,
-      goal: (document.querySelector('input[name="goal"]:checked') || {}).value || '',
-      currentState: document.getElementById('current-state').value,
-      bottleneck: document.getElementById('bottleneck').value.trim(),
-      submittedAt: new Date().toISOString(),
-    };
-
-    // Build mailto string (fallback for static hosting)
-    const subject = encodeURIComponent(`Discovery Prep — ${data.business}`);
-    const body = encodeURIComponent(
-      `DISCOVERY PREP FORM SUBMISSION\n` +
-      `Submitted: ${new Date().toLocaleString()}\n\n` +
-      `━━━━━━━━━━━━━━━━━━━━━━\n` +
-      `NAME:        ${data.name}\n` +
-      `BUSINESS:    ${data.business}\n` +
-      `INSTAGRAM:   ${data.instagram || '—'}\n` +
-      `LOCATION:    ${data.location || '—'}\n\n` +
-      `NICHE:       ${data.niche}\n` +
-      `GOAL:        ${data.goal || '—'}\n\n` +
-      `CURRENT STATE:\n${data.currentState || '—'}\n\n` +
-      `BIGGEST BOTTLENECK:\n${data.bottleneck || '—'}\n`
-    );
-
-    // Open mailto
-    window.location.href = `mailto:chase@getscrollmedia.com?subject=${subject}&body=${body}`;
-
-    // Show success state
-    setTimeout(() => {
-      document.getElementById('intake-form').style.display = 'none';
-      document.getElementById('success-state').style.display = 'block';
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }, 400);
+  document.querySelectorAll('input, select, textarea').forEach(el => {
+    el.addEventListener('input', updateFormProgress);
+    el.addEventListener('change', updateFormProgress);
   });
+
+  // ── CHAR COUNTER ──
+  function updateCharCount(el) {
+    document.getElementById('char-count').textContent = el.value.length;
+  }
 
   // ── CLEAR VALIDATION ON INPUT ──
   document.querySelectorAll('input, textarea, select').forEach(el => {
@@ -740,6 +1071,138 @@
       const group = el.closest('.field-group');
       if (group) group.classList.remove('has-error');
     });
+    el.addEventListener('change', () => {
+      const group = el.closest('.field-group');
+      if (group) group.classList.remove('has-error');
+    });
+  });
+
+  // ── INLINE FIELD ACTIVE STATE ──
+  document.querySelectorAll('.inline-field input[type="radio"]').forEach(radio => {
+    radio.addEventListener('change', () => {
+      const stack = radio.closest('.inline-fields-stack');
+      if (stack) {
+        stack.querySelectorAll('.inline-field').forEach(f => f.style.borderColor = '');
+        const parent = radio.closest('.inline-field');
+        if (parent) {
+          parent.style.borderColor = 'rgba(12,51,135,0.65)';
+          parent.style.background = 'rgba(12,51,135,0.1)';
+        }
+        stack.querySelectorAll('.inline-field').forEach(f => {
+          if (!f.querySelector('input:checked')) {
+            f.style.borderColor = '';
+            f.style.background = '';
+          }
+        });
+      }
+      updateFormProgress();
+    });
+  });
+
+  // ── FORM SUBMISSION ──
+  document.getElementById('intake-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    let valid = true;
+
+    // Required text/select fields
+    const textRequired = [
+      { groupId: 'fg-name', inputId: 'name' },
+      { groupId: 'fg-business', inputId: 'business' },
+      { groupId: 'fg-location', inputId: 'location' },
+      { groupId: 'fg-niche', inputId: 'niche' },
+    ];
+
+    textRequired.forEach(f => {
+      const group = document.getElementById(f.groupId);
+      const input = document.getElementById(f.inputId);
+      if (!input || !input.value.trim()) {
+        if (group) group.classList.add('has-error');
+        valid = false;
+      } else {
+        if (group) group.classList.remove('has-error');
+      }
+    });
+
+    // Radio group: revenue model
+    if (!document.querySelector('input[name="revenue"]:checked')) {
+      document.getElementById('fg-revenue').classList.add('has-error');
+      valid = false;
+    }
+
+    // Radio group: current state
+    if (!document.querySelector('input[name="current-state"]:checked')) {
+      document.getElementById('fg-current-state').classList.add('has-error');
+      document.getElementById('state-error').style.display = 'block';
+      valid = false;
+    } else {
+      document.getElementById('state-error').style.display = 'none';
+    }
+
+    if (!valid) {
+      const firstError = document.querySelector('.has-error');
+      if (firstError) firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      return;
+    }
+
+    // ── COLLECT DATA ──
+    const data = {
+      name:         document.getElementById('name').value.trim(),
+      business:     document.getElementById('business').value.trim(),
+      instagram:    document.getElementById('instagram').value.trim(),
+      website:      document.getElementById('website').value.trim(),
+      location:     document.getElementById('location').value.trim(),
+      years:        document.getElementById('years').value,
+      niche:        document.getElementById('niche').value,
+      revenue:      (document.querySelector('input[name="revenue"]:checked') || {}).value || '',
+      goal:         (document.querySelector('input[name="goal"]:checked') || {}).value || '',
+      currentState: (document.querySelector('input[name="current-state"]:checked') || {}).value || '',
+      inspiration:  document.getElementById('inspiration').value.trim(),
+      bottleneck:   document.getElementById('bottleneck').value.trim(),
+      submittedAt:  new Date().toLocaleString(),
+    };
+
+    // ── BUILD EMAIL ──
+    const subject = encodeURIComponent(`Discovery Prep — ${data.business}`);
+    const body = encodeURIComponent(
+`DISCOVERY PREP FORM
+Submitted: ${data.submittedAt}
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+ABOUT YOU
+Name:           ${data.name}
+Business:       ${data.business}
+Instagram:      ${data.instagram || '—'}
+Website:        ${data.website || '—'}
+Location:       ${data.location}
+Years in Biz:   ${data.years || '—'}
+
+YOUR BUSINESS
+Niche:          ${data.niche}
+Revenue Model:  ${data.revenue || '—'}
+Primary Goal:   ${data.goal || '—'}
+
+SOCIAL MEDIA
+Current State:  ${data.currentState || '—'}
+Brand Inspo:    ${data.inspiration || '—'}
+
+Biggest Bottleneck:
+${data.bottleneck || '—'}
+`
+    );
+
+    // Set progress to 100%
+    document.getElementById('form-progress-fill').style.width = '100%';
+
+    // Open mailto
+    window.location.href = `mailto:chase@getscrollmedia.com?subject=${subject}&body=${body}`;
+
+    // Show success
+    setTimeout(() => {
+      document.getElementById('intake-form').style.display = 'none';
+      document.getElementById('success-state').style.display = 'block';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }, 500);
   });
 </script>
 
