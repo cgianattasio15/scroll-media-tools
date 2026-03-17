@@ -544,17 +544,18 @@
 
     /* ── FOOTER ── */
     footer {
-      background: var(--shadow);
-      color: rgba(255,255,255,0.5);
+      background: var(--ghost);
+      color: var(--shadow);
+      border-top: 1px solid rgba(12,51,135,0.1);
       text-align: center;
       padding: 40px 5%;
       font-size: 13px;
     }
 
-    footer img { height: 24px; margin-bottom: 16px; filter: brightness(0) invert(1); opacity: 0.6; }
+    footer img { height: 24px; margin-bottom: 16px; }
 
-    footer a { color: rgba(255,255,255,0.5); text-decoration: none; }
-    footer a:hover { color: #fff; }
+    footer a { color: rgba(21,21,22,0.55); text-decoration: none; }
+    footer a:hover { color: var(--azure); }
 
     footer .footer-links {
       display: flex;
@@ -563,6 +564,27 @@
       margin-bottom: 16px;
       flex-wrap: wrap;
     }
+
+    /* ── DUAL CTA ── */
+    .card-cta-group {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 24px;
+    }
+    .card-cta-secondary {
+      display: block;
+      text-align: center;
+      padding: 12px 20px;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 600;
+      text-decoration: none;
+      border: 1.5px solid rgba(12,51,135,0.2);
+      color: var(--azure);
+      transition: background 0.2s, border-color 0.2s;
+    }
+    .card-cta-secondary:hover { background: var(--azure-light, #e8eef8); border-color: var(--azure); }
 
     /* ── RESPONSIVE ── */
     @media (max-width: 768px) {
@@ -588,7 +610,7 @@
       <li><a href="#compare">Compare</a></li>
       <li><a href="#faq">FAQ</a></li>
     </ul>
-    <a href="https://tools.scrollmedia.co/signature-package" class="nav-cta">Book a Discovery Call →</a>
+    <a href="https://calendly.com/scrollmedia/discovery" target="_blank" rel="noopener noreferrer" class="nav-cta">Book a Discovery Call →</a>
   </nav>
 
   <!-- HERO -->
@@ -598,7 +620,7 @@
     <p>Three ways to work with Scroll Media — from a single content day to a full-service retainer. Each one built to move the needle.</p>
     <div class="hero-cta-group">
       <a href="#offerings" class="btn-primary">View Services ↓</a>
-      <a href="https://tools.scrollmedia.co/signature-package" class="btn-secondary">Book a Discovery Call</a>
+      <a href="https://calendly.com/scrollmedia/discovery" target="_blank" rel="noopener noreferrer" class="btn-secondary">Book a Discovery Call</a>
     </div>
   </section>
 
@@ -617,8 +639,8 @@
           <h2>Content Day</h2>
           <p class="tagline">A focused shoot to capture high-quality photo and video assets in a single session.</p>
           <div class="price-block">
-            <span class="price-amount" style="color: var(--shadow);">$1,000</span>
-            <span class="price-note" style="color: #666;">– $1,500 · One-time fee</span>
+            <span class="price-amount" style="color: var(--shadow);">$975</span>
+            <span class="price-note" style="color: #666;">· One-time fee</span>
           </div>
         </div>
         <div class="card-body">
@@ -646,10 +668,13 @@
             </div>
             <div class="commitment-item">
               <span class="label">Investment</span>
-              <span class="value">$1,000–$1,500</span>
+              <span class="value">$975</span>
             </div>
           </div>
-          <a href="mailto:hello@scrollmedia.co?subject=Content Day Inquiry" class="card-cta outline">Inquire About a Content Day →</a>
+          <div class="card-cta-group">
+            <a href="https://tools.scrollmedia.co/content-shoot" target="_blank" rel="noopener noreferrer" class="card-cta outline">Learn More →</a>
+            <a href="https://calendly.com/scrollmedia/content-shoot" target="_blank" rel="noopener noreferrer" class="card-cta-secondary">Book a Discovery Call →</a>
+          </div>
         </div>
       </div>
 
@@ -694,7 +719,10 @@
               <span class="value">$997</span>
             </div>
           </div>
-          <a href="https://tools.scrollmedia.co/instagram-growth-blueprint" class="card-cta primary">Get Your Blueprint — $997 →</a>
+          <div class="card-cta-group">
+            <a href="https://tools.scrollmedia.co/instagram-growth-blueprint" target="_blank" rel="noopener noreferrer" class="card-cta primary">Learn More →</a>
+            <a href="https://calendly.com/scrollmedia/scrollmedia-blueprint-discovery" target="_blank" rel="noopener noreferrer" class="card-cta-secondary" style="border-color: rgba(255,255,255,0.25); color: rgba(255,255,255,0.85);">Book a Discovery Call →</a>
+          </div>
         </div>
       </div>
 
@@ -758,7 +786,10 @@
               <span class="value">$997 Applied</span>
             </div>
           </div>
-          <a href="https://tools.scrollmedia.co/signature-package" class="card-cta primary">Book a Discovery Call →</a>
+          <div class="card-cta-group">
+            <a href="https://tools.scrollmedia.co/signature-package" target="_blank" rel="noopener noreferrer" class="card-cta primary">Learn More →</a>
+            <a href="https://calendly.com/scrollmedia/scroll-media-signature-discovery" target="_blank" rel="noopener noreferrer" class="card-cta-secondary" style="border-color: rgba(255,255,255,0.25); color: rgba(255,255,255,0.85);">Book a Discovery Call →</a>
+          </div>
         </div>
       </div>
 
@@ -832,7 +863,7 @@
           </tr>
           <tr>
             <td>Investment</td>
-            <td>$1,000–$1,500</td>
+            <td>$975</td>
             <td>$997</td>
             <td>$2,750–$3,000/mo</td>
           </tr>
@@ -896,19 +927,20 @@
   <section class="final-cta">
     <h2>Not sure where to start?</h2>
     <p>Book a free 30-minute discovery call. We'll figure out the right path together.</p>
-    <a href="https://tools.scrollmedia.co/signature-package" class="btn-white">Book a Free Discovery Call →</a>
+    <a href="https://calendly.com/scrollmedia/discovery" target="_blank" rel="noopener noreferrer" class="btn-white">Book a Free Discovery Call →</a>
   </section>
 
   <!-- FOOTER -->
   <footer>
     <img src="scroll-media-logo.svg" alt="Scroll Media" />
     <div class="footer-links">
-      <a href="https://tools.scrollmedia.co/instagram-growth-blueprint">Blueprint</a>
+      <a href="https://tools.scrollmedia.co/content-shoot">Content Day</a>
+      <a href="https://tools.scrollmedia.co/instagram-growth-blueprint">Strategy Blueprint</a>
       <a href="https://tools.scrollmedia.co/signature-package">Signature Package</a>
       <a href="https://tools.scrollmedia.co/instagram_maturity_quiz.html">Free Instagram Quiz</a>
       <a href="mailto:hello@scrollmedia.co">hello@scrollmedia.co</a>
     </div>
-    <p>© 2026 Scroll Media. All rights reserved.</p>
+    <p class="footer-copy">© 2026 Scroll Media · Cincinnati, OH · Simplifying Social Media</p>
   </footer>
 
   <script>
