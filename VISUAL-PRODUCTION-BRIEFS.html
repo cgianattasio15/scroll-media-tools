@@ -4,52 +4,412 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Visual Production Briefs — Scroll Media</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="icon" type="image/svg+xml" href="scroll-favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  body { font-family: Inter, sans-serif; background: #0f1117; color: #e8eaf0; line-height: 1.7; padding: 48px 24px; }
-  .container { max-width: 860px; margin: 0 auto; }
-  .back { display: inline-block; color: #e2ed7a; text-decoration: none; font-size: 13px; font-weight: 600; margin-bottom: 32px; letter-spacing: 0.05em; }
-  .back:hover { opacity: 0.8; }
-  h1 { font-size: 28px; font-weight: 800; color: #ffffff; margin-bottom: 8px; line-height: 1.3; }
-  h2 { font-size: 20px; font-weight: 700; color: #ffffff; margin: 40px 0 12px; }
-  h3 { font-size: 16px; font-weight: 700; color: #e2ed7a; margin: 28px 0 8px; }
-  p { margin-bottom: 16px; color: rgba(232,234,240,0.85); }
-  ul, ol { margin: 0 0 16px 24px; color: rgba(232,234,240,0.85); }
-  li { margin-bottom: 6px; }
-  strong { color: #ffffff; font-weight: 700; }
-  hr { border: none; border-top: 1px solid rgba(255,255,255,0.1); margin: 40px 0; }
-  table { width: 100%; border-collapse: collapse; margin-bottom: 24px; font-size: 14px; }
-  th { background: rgba(226,237,122,0.15); color: #e2ed7a; font-weight: 700; padding: 10px 14px; text-align: left; border: 1px solid rgba(255,255,255,0.1); }
-  td { padding: 10px 14px; border: 1px solid rgba(255,255,255,0.08); color: rgba(232,234,240,0.85); }
-  tr:nth-child(even) td { background: rgba(255,255,255,0.03); }
-  code { background: rgba(255,255,255,0.08); padding: 2px 6px; border-radius: 4px; font-size: 13px; font-family: monospace; }
-  pre { background: rgba(255,255,255,0.05); padding: 20px; border-radius: 8px; overflow-x: auto; margin-bottom: 20px; }
-  blockquote { border-left: 3px solid #e2ed7a; padding-left: 16px; margin: 20px 0; color: rgba(232,234,240,0.7); font-style: italic; }
-  .badge { display: inline-block; background: rgba(226,237,122,0.15); color: #e2ed7a; font-size: 11px; font-weight: 700; padding: 3px 10px; border-radius: 20px; letter-spacing: 0.08em; margin-bottom: 24px; text-transform: uppercase; }
+
+  :root {
+    --shadow:       #151516;
+    --ghost:        #fafdff;
+    --porcelain:    #f2f3f4;
+    --lucid:        #cbe9ff;
+    --azure:        #0c3387;
+    --azure-dark:   #092a6e;
+    --azure-mid:    #1a4db3;
+    --azure-light:  #e8eef8;
+    --highlight:    #e2ed7a;
+    --white:        #ffffff;
+    --text-secondary: rgba(21,21,22,0.65);
+    --border:       rgba(21,21,22,0.1);
+    --radius:       12px;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; overflow-x: hidden; }
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--shadow);
+    color: var(--ghost);
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+  img { max-width: 100%; height: auto; }
+
+  /* Progress Bar */
+  #progress-bar-wrap {
+    position: fixed; top: 0; left: 0; right: 0;
+    height: 3px; z-index: 9999; background: transparent;
+  }
+  #progress-bar {
+    height: 100%; width: 0%;
+    background: linear-gradient(90deg, var(--azure) 0%, var(--highlight) 100%);
+    transition: width 0.1s linear;
+  }
+
+  /* Nav */
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(21,21,22,0.95);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    padding: 0 32px;
+    height: 64px;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .nav-logo img { height: 28px; display: block; width: auto; }
+  .nav-links {
+    display: flex; align-items: center; gap: 4px;
+    list-style: none;
+  }
+  .nav-links a {
+    font-size: 13px; font-weight: 600; color: rgba(255,255,255,0.75);
+    text-decoration: none; padding: 6px 12px; border-radius: 8px;
+    transition: color 0.2s, background 0.2s;
+  }
+  .nav-links a:hover { color: var(--highlight); background: rgba(255,255,255,0.06); }
+  .nav-cta {
+    background: var(--azure); color: var(--white);
+    padding: 10px 20px; border-radius: 8px;
+    font-size: 14px; font-weight: 700;
+    text-decoration: none; white-space: nowrap;
+    transition: background 0.2s, transform 0.15s;
+  }
+  .nav-cta:hover { background: var(--azure-dark); transform: translateY(-1px); }
+
+  /* Page Hero */
+  .doc-hero {
+    background: var(--shadow);
+    padding: 64px 24px 48px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+  .doc-hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse 70% 50% at 50% 0%, rgba(12,51,135,0.45) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .doc-hero-badge {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: var(--highlight); color: var(--shadow);
+    padding: 5px 14px; border-radius: 100px;
+    font-size: 11px; font-weight: 700; letter-spacing: 0.08em;
+    text-transform: uppercase; margin-bottom: 20px;
+    position: relative; z-index: 1;
+  }
+  .doc-hero h1 {
+    font-size: clamp(1.6rem, 4vw, 2.4rem);
+    font-weight: 800;
+    color: var(--white);
+    line-height: 1.2;
+    margin-bottom: 12px;
+    position: relative; z-index: 1;
+  }
+  .doc-hero p {
+    font-size: 1rem;
+    color: rgba(255,255,255,0.6);
+    max-width: 560px;
+    margin: 0 auto;
+    position: relative; z-index: 1;
+  }
+  .doc-hero-meta {
+    display: flex; align-items: center; justify-content: center; gap: 24px;
+    margin-top: 20px; flex-wrap: wrap;
+    position: relative; z-index: 1;
+  }
+  .doc-hero-meta span {
+    font-size: 12px; font-weight: 600;
+    color: rgba(255,255,255,0.45);
+    letter-spacing: 0.05em;
+  }
+  .doc-hero-meta span strong { color: var(--highlight); }
+
+  /* Content Container */
+  .doc-container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 48px 24px 80px;
+  }
+
+  /* Back link */
+  .back-link {
+    display: inline-flex; align-items: center; gap: 6px;
+    color: var(--highlight); text-decoration: none;
+    font-size: 13px; font-weight: 600;
+    margin-bottom: 40px;
+    letter-spacing: 0.04em;
+    transition: opacity 0.2s;
+  }
+  .back-link:hover { opacity: 0.75; }
+
+  /* Typography */
+  .doc-body h1 {
+    font-size: 1.8rem; font-weight: 800; color: var(--white);
+    margin: 48px 0 16px; line-height: 1.25;
+    padding-bottom: 12px;
+    border-bottom: 2px solid rgba(12,51,135,0.5);
+  }
+  .doc-body h2 {
+    font-size: 1.3rem; font-weight: 700; color: var(--white);
+    margin: 40px 0 12px; line-height: 1.3;
+    padding-left: 12px;
+    border-left: 3px solid var(--azure);
+  }
+  .doc-body h3 {
+    font-size: 1.05rem; font-weight: 700; color: var(--highlight);
+    margin: 28px 0 8px;
+  }
+  .doc-body h4 {
+    font-size: 0.95rem; font-weight: 700; color: rgba(255,255,255,0.8);
+    margin: 20px 0 6px; text-transform: uppercase; letter-spacing: 0.06em;
+  }
+  .doc-body p {
+    margin-bottom: 16px;
+    color: rgba(250,253,255,0.8);
+    font-size: 0.97rem;
+  }
+  .doc-body ul, .doc-body ol {
+    margin: 0 0 20px 24px;
+    color: rgba(250,253,255,0.8);
+  }
+  .doc-body li { margin-bottom: 8px; font-size: 0.97rem; }
+  .doc-body strong { color: var(--white); font-weight: 700; }
+  .doc-body em { color: var(--highlight); font-style: normal; font-weight: 600; }
+  .doc-body hr {
+    border: none;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    margin: 40px 0;
+  }
+  .doc-body a {
+    color: var(--highlight);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+  .doc-body a:hover { opacity: 0.8; }
+
+  /* Tables */
+  .doc-body table {
+    width: 100%; border-collapse: collapse;
+    margin: 24px 0; font-size: 0.9rem;
+    border-radius: var(--radius); overflow: hidden;
+  }
+  .table-wrap { overflow-x: auto; margin: 24px 0; border-radius: var(--radius); }
+  .doc-body table { margin: 0; }
+  .doc-body th {
+    background: rgba(12,51,135,0.6);
+    color: var(--highlight);
+    font-weight: 700; padding: 12px 16px;
+    text-align: left;
+    font-size: 0.82rem; letter-spacing: 0.05em; text-transform: uppercase;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+  }
+  .doc-body td {
+    padding: 11px 16px;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    color: rgba(250,253,255,0.8);
+    vertical-align: top;
+  }
+  .doc-body tr:nth-child(even) td { background: rgba(255,255,255,0.03); }
+  .doc-body tr:last-child td { border-bottom: none; }
+
+  /* Code */
+  .doc-body code {
+    background: rgba(255,255,255,0.08);
+    padding: 2px 7px; border-radius: 5px;
+    font-size: 0.88em; font-family: 'Courier New', monospace;
+    color: var(--highlight);
+  }
+  .doc-body pre {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.08);
+    padding: 20px; border-radius: var(--radius);
+    overflow-x: auto; margin-bottom: 20px;
+  }
+  .doc-body pre code {
+    background: none; padding: 0; font-size: 0.9rem;
+    color: rgba(250,253,255,0.85);
+  }
+
+  /* Blockquote */
+  .doc-body blockquote {
+    border-left: 3px solid var(--azure);
+    padding: 12px 20px;
+    margin: 20px 0;
+    background: rgba(12,51,135,0.15);
+    border-radius: 0 var(--radius) var(--radius) 0;
+    color: rgba(250,253,255,0.75);
+    font-style: italic;
+  }
+
+  /* Section divider label */
+  .section-label {
+    display: inline-block;
+    background: rgba(226,237,122,0.12);
+    color: var(--highlight);
+    font-size: 11px; font-weight: 700;
+    padding: 4px 12px; border-radius: 20px;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+
+  /* Footer */
+  footer {
+    background: var(--white);
+    color: var(--text-secondary);
+    padding: 40px 24px;
+    text-align: center;
+    border-top: 1px solid var(--border);
+  }
+  .footer-logo { margin-bottom: 16px; }
+  .footer-logo img { height: 28px; opacity: 0.85; }
+  .footer-links {
+    display: flex; justify-content: center; gap: 24px;
+    margin-bottom: 20px; flex-wrap: wrap;
+  }
+  .footer-links a {
+    font-size: 13px; color: var(--text-secondary);
+    text-decoration: none; transition: color 0.2s;
+  }
+  .footer-links a:hover { color: var(--azure); }
+  .footer-copy { font-size: 12px; color: var(--text-secondary); }
+
+  /* Hamburger */
+  .hamburger {
+    display: none; flex-direction: column; justify-content: center;
+    align-items: center; gap: 5px;
+    width: 40px; height: 40px; cursor: pointer;
+    background: none; border: none; padding: 8px; border-radius: 8px;
+    transition: background 0.2s;
+  }
+  .hamburger:hover { background: rgba(255,255,255,0.08); }
+  .hamburger span {
+    display: block; width: 20px; height: 2px;
+    background: var(--white); border-radius: 2px;
+    transition: transform 0.3s, opacity 0.3s;
+  }
+  .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .hamburger.open span:nth-child(2) { opacity: 0; }
+  .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+  .mobile-nav {
+    display: none; flex-direction: column;
+    position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+    background: var(--shadow); z-index: 200;
+    padding: 24px; gap: 8px;
+    overflow-y: auto;
+  }
+  .mobile-nav.open { display: flex; }
+  .mobile-nav a {
+    font-size: 16px; font-weight: 600; color: rgba(255,255,255,0.85);
+    text-decoration: none; padding: 14px 16px; border-radius: var(--radius);
+    transition: background 0.2s;
+  }
+  .mobile-nav a:hover { background: rgba(255,255,255,0.07); }
+  .mobile-nav .mobile-nav-close {
+    align-self: flex-end; background: none; border: none;
+    color: rgba(255,255,255,0.6); font-size: 20px; cursor: pointer;
+    padding: 8px; border-radius: 8px; margin-bottom: 8px;
+    transition: background 0.2s;
+  }
+  .mobile-nav .mobile-nav-close:hover { background: rgba(255,255,255,0.1); }
+
+  /* Back to top */
+  #back-to-top {
+    position: fixed; bottom: 28px; right: 28px;
+    width: 44px; height: 44px; background: var(--azure); color: var(--white);
+    border: none; border-radius: 50%; cursor: pointer;
+    font-size: 18px; display: none; align-items: center; justify-content: center;
+    box-shadow: 0 4px 16px rgba(12,51,135,0.4);
+    transition: background 0.2s, transform 0.2s;
+    z-index: 500;
+  }
+  #back-to-top:hover { background: var(--azure-dark); transform: translateY(-2px); }
+  #back-to-top.visible { display: flex; }
+
+  /* Mobile */
+  @media (max-width: 768px) {
+    .hamburger { display: flex; }
+    .nav-links { display: none; }
+    nav { padding: 0 16px; }
+    .doc-hero { padding: 48px 16px 36px; }
+    .doc-container { padding: 32px 16px 60px; }
+    .doc-body h1 { font-size: 1.4rem; }
+    .doc-body h2 { font-size: 1.15rem; }
+    .doc-hero-meta { gap: 12px; }
+    footer { padding: 32px 16px; }
+    .footer-links { gap: 12px; }
+  }
+  @media (max-width: 480px) {
+    .footer-links { flex-direction: column; align-items: center; gap: 8px; }
+    .doc-body table { font-size: 0.82rem; }
+  }
+
 </style>
 </head>
-<body>
-<div class="container">
-  <a href="/" class="back">← Back to Dashboard</a>
-  <div class="badge">Internal — Scroll Media</div>
-  <h1>Pre-Launch Content — Visual Production Briefs</h1>
-<p><strong>To:</strong> Scroll Media Design Team (Allison)
-<strong>From:</strong> Manus (Chief Strategist)
-<strong>Date:</strong> March 12, 2026
+<body id="top">
+
+<!-- Mobile Nav -->
+<div class="mobile-nav" id="mobile-nav">
+  <button class="mobile-nav-close" id="mobile-nav-close" aria-label="Close menu">&#x2715;</button>
+  <a href="#overview">Overview</a>
+  <a href="#content-briefs">Briefs</a>
+  <a href="#production-guidelines">Guidelines</a>
+  <a href="https://calendly.com/scrollmedia/discovery" target="_blank" rel="noopener noreferrer" style="background: var(--azure); color: #fff; margin-top: 16px;">Book a Call →</a>
+</div>
+
+<!-- Progress Bar -->
+<div id="progress-bar-wrap"><div id="progress-bar"></div></div>
+
+<!-- Nav -->
+<nav>
+  <a href="https://tools.scrollmedia.co" class="nav-logo">
+    <img src="scroll-media-logo.svg" alt="Scroll Media">
+  </a>
+  <ul class="nav-links">
+    <li><a href="#overview">Overview</a></li>
+    <li><a href="#content-briefs">Briefs</a></li>
+    <li><a href="#production-guidelines">Guidelines</a></li>
+  </ul>
+  <button class="hamburger" id="hamburger-btn" aria-label="Open menu"><span></span><span></span><span></span></button>
+  <a href="https://calendly.com/scrollmedia/discovery" target="_blank" rel="noopener noreferrer" class="nav-cta">Book a Call →</a>
+</nav>
+
+<!-- Hero -->
+<section class="doc-hero">
+  <div class="doc-hero-badge">🔒 Internal — Scroll Media</div>
+  <h1>Visual Production Briefs</h1>
+  <p>Detailed creative specs for all pre-launch content pieces supporting the Scroll Media biz dev campaign.</p>
+  <div class="doc-hero-meta">
+    <span><strong>Content Pieces:</strong> 7 Briefs</span>
+    <span><strong>Status:</strong> Ready for Production</span>
+    <span><strong>Campaign:</strong> Biz Dev Launch</span>
+  </div>
+</section>
+
+<!-- Content -->
+<div class="doc-container">
+  <a href="https://tools.scrollmedia.co" class="back-link">← Back to Dashboard</a>
+  <div class="doc-body">
+    <h1>Pre-Launch Content — Visual Production Briefs</h1>
+<p><strong>To:</strong> Scroll Media Design Team (Allison)<br />
+<strong>From:</strong> Manus (Chief Strategist)<br />
+<strong>Date:</strong> March 12, 2026<br />
 <strong>Project:</strong> Biz Dev Campaign Pre-Launch</p>
 <hr />
 <h2>Overview</h2>
 <p>This document contains the visual production briefs for all 7 content pieces in the pre-launch sequence. The copy for each piece is finalized in <code>PRE-LAUNCH-CONTENT-PLAN.md</code>. These briefs provide the visual direction, format specs, and brand guidelines for each asset.</p>
-<p><strong>Brand Guidelines to Follow:</strong>
-- <strong>Fonts:</strong> Inter (for all body copy and headlines)
-- <strong>Colors:</strong>
-  - <code>--navy</code>: #0A1628 (primary text, dark backgrounds)
-  - <code>--azure</code>: #0C3387 (accent, links, buttons)
-  - <code>--highlight</code>: #E2ED7A (lime green for callouts, accents)
-  - <code>--ghost</code>: #F6F8FA (light grey backgrounds)
-  - <code>--white</code>: #FFFFFF
-- <strong>Logo:</strong> Use the primary Scroll Media wordmark logo where applicable.
+<p><strong>Brand Guidelines to Follow:</strong><br />
+- <strong>Fonts:</strong> Inter (for all body copy and headlines)<br />
+- <strong>Colors:</strong><br />
+  - <code>--navy</code>: #0A1628 (primary text, dark backgrounds)<br />
+  - <code>--azure</code>: #0C3387 (accent, links, buttons)<br />
+  - <code>--highlight</code>: #E2ED7A (lime green for callouts, accents)<br />
+  - <code>--ghost</code>: #F6F8FA (light grey backgrounds)<br />
+  - <code>--white</code>: #FFFFFF<br />
+- <strong>Logo:</strong> Use the primary Scroll Media wordmark logo where applicable.<br />
 - <strong>Style:</strong> Clean, minimalist, text-focused, with strong typographic hierarchy.</p>
 <hr />
 <h2>Brief 1: The Inconsistency Trap (Instagram Carousel)</h2>
@@ -141,16 +501,16 @@
 <li><strong>Format:</strong> Instagram Reel Cover + On-Screen Text Graphics</li>
 <li><strong>Output:</strong> 1 cover image (1080x1920px), plus text graphics as transparent PNGs to be overlaid in video editing.</li>
 </ul>
-<p><strong>Reel Cover (<code>reel_cover_metrics.png</code>):</strong>
-- <strong>Headline:</strong> The Only 3 Metrics That Matter
-- <strong>Sub-headline:</strong> (for service businesses on Instagram)
-- <strong>Visual:</strong> A striking, high-contrast photo of Chase.
+<p><strong>Reel Cover (<code>reel_cover_metrics.png</code>):</strong><br />
+- <strong>Headline:</strong> The Only 3 Metrics That Matter<br />
+- <strong>Sub-headline:</strong> (for service businesses on Instagram)<br />
+- <strong>Visual:</strong> A striking, high-contrast photo of Chase.<br />
 - <strong>Branding:</strong> Scroll Media logo in a corner.</p>
-<p><strong>On-Screen Text Graphics (Transparent PNGs):</strong>
-- <code>text_graphic_1.png</code>: <strong>1. Inbound DMs</strong>
-- <code>text_graphic_2.png</code>: <strong>2. Profile Visits</strong>
-- <code>text_graphic_3.png</code>: <strong>3. Link in Bio Clicks</strong>
-- <code>text_graphic_4.png</code>: <strong>Everything else is noise.</strong>
+<p><strong>On-Screen Text Graphics (Transparent PNGs):</strong><br />
+- <code>text_graphic_1.png</code>: <strong>1. Inbound DMs</strong><br />
+- <code>text_graphic_2.png</code>: <strong>2. Profile Visits</strong><br />
+- <code>text_graphic_3.png</code>: <strong>3. Link in Bio Clicks</strong><br />
+- <code>text_graphic_4.png</code>: <strong>Everything else is noise.</strong><br />
 - <code>text_graphic_5.png</code>: <strong>You don’t have a content problem. You have a CTA problem.</strong></p>
 <p><strong>Direction:</strong> The text graphics should be clean, bold, and easy to read. Use Inter Black. They will be overlaid on the video, so they need to have high contrast (e.g., white text with a subtle dark outer glow or background). The editing will be fast-paced, so the text needs to be instantly legible.</p>
 <hr />
@@ -196,19 +556,19 @@
 <li><strong>Format:</strong> Image for the first tweet in the thread.</li>
 <li><strong>Output:</strong> 1 PNG file, <code>twitter_cost_comparison.png</code> (1600x900px).</li>
 </ul>
-<p><strong>Visual Direction:</strong>
-- Create a simple, clean table comparing the costs.
-- <strong>Column 1:</strong> In-House Team
-  - Social Media Coordinator: $3,000
-  - Photographer: $1,000
-  - Strategy: $1,000
-  - Tools: $200
-  - <strong>Total: $5,200/mo</strong>
-- <strong>Column 2:</strong> Scroll Media
-  - Signature Package: $2,750/mo
-  - <strong>Total: $2,750/mo</strong>
-- <strong>Headline:</strong> The Real Cost of Social Media
-- <strong>Branding:</strong> Use Scroll Media colors and logo.
+<p><strong>Visual Direction:</strong><br />
+- Create a simple, clean table comparing the costs.<br />
+- <strong>Column 1:</strong> In-House Team<br />
+  - Social Media Coordinator: $3,000<br />
+  - Photographer: $1,000<br />
+  - Strategy: $1,000<br />
+  - Tools: $200<br />
+  - <strong>Total: $5,200/mo</strong><br />
+- <strong>Column 2:</strong> Scroll Media<br />
+  - Signature Package: $2,750/mo<br />
+  - <strong>Total: $2,750/mo</strong><br />
+- <strong>Headline:</strong> The Real Cost of Social Media<br />
+- <strong>Branding:</strong> Use Scroll Media colors and logo.<br />
 - <strong>Style:</strong> Make it look like a slide from a professional presentation. Clean, credible, and instantly understandable.</p>
 <hr />
 <h2>Brief 6: Announce the Blueprint (Email Header)</h2>
@@ -216,11 +576,11 @@
 <li><strong>Format:</strong> Email Header Image</li>
 <li><strong>Output:</strong> 1 PNG file, <code>email_header_blueprint.png</code> (1200x400px).</li>
 </ul>
-<p><strong>Visual Direction:</strong>
-- <strong>Headline:</strong> The Instagram Growth Blueprint
-- <strong>Sub-headline:</strong> Your complete 90-day strategy, built with you.
-- <strong>Visual:</strong> Use abstract geometric shapes or a blueprint-style grid in the background. Keep it clean and professional.
-- <strong>Branding:</strong> Scroll Media logo.
+<p><strong>Visual Direction:</strong><br />
+- <strong>Headline:</strong> The Instagram Growth Blueprint<br />
+- <strong>Sub-headline:</strong> Your complete 90-day strategy, built with you.<br />
+- <strong>Visual:</strong> Use abstract geometric shapes or a blueprint-style grid in the background. Keep it clean and professional.<br />
+- <strong>Branding:</strong> Scroll Media logo.<br />
 - <strong>Colors:</strong> Use the core brand palette (<code>--navy</code>, <code>--azure</code>, <code>--highlight</code>, <code>--white</code>).</p>
 <hr />
 <h2>Brief 7: The Official Launch (All Channels)</h2>
@@ -228,15 +588,76 @@
 <li><strong>Format:</strong> General-purpose announcement graphic.</li>
 <li><strong>Output:</strong> 1 PNG file, <code>launch_announcement.png</code> (1080x1080px).</li>
 </ul>
-<p><strong>Visual Direction:</strong>
-- <strong>Headline:</strong> It’s Live.
-- <strong>Sub-headline:</strong> The new Scroll Media experience.
-- <strong>Body:</strong> List the three core offers with short descriptions:
-  - The Instagram Growth Blueprint
-  - The Signature Package
-  - The Audience-to-Action Playbook
-- <strong>CTA:</strong> Link in Bio
+<p><strong>Visual Direction:</strong><br />
+- <strong>Headline:</strong> It’s Live.<br />
+- <strong>Sub-headline:</strong> The new Scroll Media experience.<br />
+- <strong>Body:</strong> List the three core offers with short descriptions:<br />
+  - The Instagram Growth Blueprint<br />
+  - The Signature Package<br />
+  - The Audience-to-Action Playbook<br />
+- <strong>CTA:</strong> Link in Bio<br />
 - <strong>Style:</strong> Bold, confident, and minimalist. This is a statement. Use strong typography and a clean layout. Background: <code>--navy</code>. Text: <code>--white</code>. Use <code>--highlight</code> for the offer names.</p>
+  </div>
 </div>
+
+<!-- Footer -->
+<footer>
+  <div class="footer-logo">
+    <img src="scroll-media-logo.svg" alt="Scroll Media">
+  </div>
+  <div class="footer-links">
+    <a href="https://tools.scrollmedia.co">Dashboard</a>
+    <a href="https://tools.scrollmedia.co/services-catalog.html">Services Catalog</a>
+    <a href="https://tools.scrollmedia.co/instagram_maturity_quiz.html">Free Instagram Quiz</a>
+    <a href="https://decks.scrollmedia.co/pitch/">About Scroll Media</a>
+  </div>
+  <p class="footer-copy">© 2026 Scroll Media · Cincinnati, OH · Simplifying Social Media</p>
+</footer>
+
+<!-- Back to Top -->
+<button id="back-to-top" aria-label="Back to top">↑</button>
+
+<script>
+
+  // Progress bar
+  window.addEventListener('scroll', () => {
+    const el = document.getElementById('progress-bar');
+    const btt = document.getElementById('back-to-top');
+    if (!el) return;
+    const scrollTop = window.scrollY;
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    el.style.width = (docHeight > 0 ? (scrollTop / docHeight) * 100 : 0) + '%';
+    if (btt) btt.classList.toggle('visible', scrollTop > 400);
+  });
+  // Hamburger
+  const hamburger = document.getElementById('hamburger-btn');
+  const mobileNav = document.getElementById('mobile-nav');
+  const mobileNavClose = document.getElementById('mobile-nav-close');
+  if (hamburger && mobileNav) {
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('open');
+      mobileNav.classList.toggle('open');
+      document.body.style.overflow = mobileNav.classList.contains('open') ? 'hidden' : '';
+    });
+  }
+  if (mobileNavClose && mobileNav) {
+    mobileNavClose.addEventListener('click', () => {
+      mobileNav.classList.remove('open');
+      if (hamburger) hamburger.classList.remove('open');
+      document.body.style.overflow = '';
+    });
+  }
+  // Back to top
+  const bttBtn = document.getElementById('back-to-top');
+  if (bttBtn) bttBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+  // Wrap all tables for horizontal scroll
+  document.querySelectorAll('.doc-body table').forEach(t => {
+    const wrap = document.createElement('div');
+    wrap.className = 'table-wrap';
+    t.parentNode.insertBefore(wrap, t);
+    wrap.appendChild(t);
+  });
+
+</script>
 </body>
 </html>
