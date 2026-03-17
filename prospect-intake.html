@@ -1162,47 +1162,53 @@
       submittedAt:  new Date().toLocaleString(),
     };
 
-    // ── BUILD EMAIL ──
-    const subject = encodeURIComponent(`Discovery Prep — ${data.business}`);
-    const body = encodeURIComponent(
-`DISCOVERY PREP FORM
-Submitted: ${data.submittedAt}
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-
-ABOUT YOU
-Name:           ${data.name}
-Business:       ${data.business}
-Instagram:      ${data.instagram || '—'}
-Website:        ${data.website || '—'}
-Location:       ${data.location}
-Years in Biz:   ${data.years || '—'}
-
-YOUR BUSINESS
-Niche:          ${data.niche}
-Revenue Model:  ${data.revenue || '—'}
-Primary Goal:   ${data.goal || '—'}
-
-SOCIAL MEDIA
-Current State:  ${data.currentState || '—'}
-Brand Inspo:    ${data.inspiration || '—'}
-
-Biggest Bottleneck:
-${data.bottleneck || '—'}
-`
-    );
-
-    // Set progress to 100%
+    // ── SET PROGRESS TO 100% ──
     document.getElementById('form-progress-fill').style.width = '100%';
 
-    // Open mailto
-    window.location.href = `mailto:chase@getscrollmedia.com?subject=${subject}&body=${body}`;
+    // ── DISABLE SUBMIT BUTTON ──
+    const submitBtn = document.querySelector('.submit-btn');
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Sending...';
 
-    // Show success
-    setTimeout(() => {
-      document.getElementById('intake-form').style.display = 'none';
-      document.getElementById('success-state').style.display = 'block';
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }, 500);
+    // ── POST TO FORMSPREE ──
+    const payload = {
+      _subject:       `Discovery Prep — ${data.business}`,
+      Name:           data.name,
+      Business:       data.business,
+      Instagram:      data.instagram || '—',
+      Website:        data.website || '—',
+      Location:       data.location,
+      'Years in Business': data.years || '—',
+      Niche:          data.niche,
+      'Revenue Model':  data.revenue || '—',
+      'Primary Goal':   data.goal || '—',
+      'Current Social State': data.currentState || '—',
+      'Brand Inspiration': data.inspiration || '—',
+      'Biggest Bottleneck': data.bottleneck || '—',
+      'Submitted At':  data.submittedAt,
+    };
+
+    fetch('https://formspree.io/f/xwvrwanz', {
+      method: 'POST',
+      headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload),
+    })
+    .then(function(response) {
+      if (response.ok) {
+        document.getElementById('intake-form').style.display = 'none';
+        document.getElementById('success-state').style.display = 'block';
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      } else {
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = 'Submit &amp; See You on the Call <svg viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 9h12M9 3l6 6-6 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+        alert('Something went wrong. Please try again or email chase@getscrollmedia.com directly.');
+      }
+    })
+    .catch(function() {
+      submitBtn.disabled = false;
+      submitBtn.innerHTML = 'Submit &amp; See You on the Call <svg viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 9h12M9 3l6 6-6 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+      alert('Something went wrong. Please try again or email chase@getscrollmedia.com directly.');
+    });
   });
 </script>
 
