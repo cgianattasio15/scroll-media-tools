@@ -1,7 +1,7 @@
-# Scroll Media Biz Dev — 3-Campaign Master Plan (v3)
+# Scroll Media Biz Dev — 3-Campaign Master Plan (v4)
 
-**Last Updated:** March 12, 2026
-**Status:** Final Plan for March 13 Launch
+**Last Updated:** March 13, 2026
+**Status:** Infrastructure Complete — Pending Operational Launch
 **Author:** Manus AI (Chief Strategist)
 
 ---
@@ -17,95 +17,167 @@ This document is the single source of truth for the March 2026 business developm
 
 | Campaign | Audience | Entry Point | Goal |
 |---|---|---|---|
-| **#1 — Cold Outreach** | Cold ICP prospects (prospect list) | Cold email → Quiz | 1-2 new discovery calls |
+| **#1 — Cold Outreach** | Cold ICP prospects (205-prospect list) | Cold email → Quiz | 1-2 new discovery calls |
 | **#2 — IG Content + DM Automation** | Instagram followers + organic traffic | Content/ManyChat → Quiz | Ongoing lead flow from existing audience |
 | **#3 — Client Referral** | Current retainer clients | Direct email ask | 1-2 warm referrals |
 
 ---
 
-## 2. Email & Subscriber Management (Deduplication)
+## 2. Current Status (as of March 13, 2026)
+
+### Infrastructure — COMPLETE ✅
+
+| Asset | Status | URL |
+|---|---|---|
+| Instagram Maturity Quiz | Live | tools.scrollmedia.co/instagram_maturity_quiz.html |
+| Profile Optimization Guide (Email 1 gift) | Live | tools.scrollmedia.co/ig-profile-guide.html |
+| Formats Library Google Sheet (Email 2 gift) | Live | docs.google.com/spreadsheets/d/1qZD1bTtNk5Lsy_QrUZ6clKQgCAlu-tRh4eA6BSW-oCo |
+| A2A Playbook sales page (Email 3 CTA) | Live | tools.scrollmedia.co/audience-to-action |
+| A2A Playbook product (token-gated) | Live | tools.scrollmedia.co/access/audience-to-action-playbook.html |
+| Blueprint sales page (Email 4 CTA) | Live | tools.scrollmedia.co/instagram-growth-blueprint |
+| Signature Package sales page (Email 4 CTA) | Live | tools.scrollmedia.co/signature-package |
+| Blueprint Calendly link | Live + embedded | calendly.com/scrollmedia/scrollmedia-blueprint-discovery |
+| Signature Calendly link | Live + embedded | calendly.com/scrollmedia/scroll-media-signature-discovery |
+| Stripe payment + webhook system | Live | — |
+| 4-email nurture sequence copy | Locked + loaded in Kit | See Section 4 |
+
+### Open Items — MUST COMPLETE BEFORE LAUNCH 🔴
+
+| # | Item | Owner | Est. Time |
+|---|---|---|---|
+| 1 | Kit: Set up deduplication tags (`[System] In Sequence`) | Chase (guided) | 30 min |
+| 2 | Referral email: Send to current clients | Chase | 15 min |
+| 3 | Warm/Hot prospects: Send personal outreach emails | Chase | 30 min |
+| 4 | Cold email: Send quiz CTA to 131 ICP prospects with emails | Chase | 1 hr |
+| 5 | ManyChat: Set up 2 automations (comment + story reply triggers) | Chase (guided) | 45 min |
+| 6 | Instagram: Update link in bio to quiz URL | Chase | 5 min |
+
+---
+
+## 3. Prospect List Summary
+
+**File:** `ScrollMediaProspectList-CG-12.16.25-CGList.csv`
+**Total prospects:** 205
+
+| Segment | Count | Priority |
+|---|---|---|
+| ICP-aligned service niches | 141 | HIGH — primary outreach targets |
+| Non-ICP (product/food/F&B) | 64 | LOW — deprioritize |
+| Has direct email | 131 | Ready for cold email campaign |
+| IG DM or contact form only | 74 | Secondary — DM outreach |
+| Warm or Hot status | 8 | URGENT — personal email today |
+| Cold | 196 | Sequence outreach |
+
+**Top ICP niches in list:** Real Estate (27), Fitness Studio (26), Med Spa (19), Interior Design (17), Home Builders (15), Coaching Services (14), Physical Therapist (11)
+
+**Warm/Hot prospects (personal outreach first, NOT the cold sequence):**
+- Sloane Boutique (Warm/High) — shop@sloaneboutique.com — AG knows her
+- Vinology (Hot/High) — michelle@vinology.club — AG knows her, prev prospect
+- Carls Deli (Warm/High) — sydneymturnbull@gmail.com — prev prospect, budget concern
+- Amy Brenner MD (Warm/High) — contact form — EK referral
+- Hyde Park Wellness (Cold/High) — aarnett1984@gmail.com — prev prospect
+- 12th St Pilates (Cold/High) — 12thstreetpilates@gmail.com — prev prospect
+- Inner Vision Pilates (Cold/High) — taylorberling@gmail.com — prev prospect
+
+---
+
+## 4. Email & Subscriber Management (Deduplication)
 
 Campaigns #1 and #2 both feed into the same email sequence. The system below ensures no prospect ever receives the same sequence twice.
 
-### 2.1. The Unified Nurture Sequence
+### 4.1. The Unified Nurture Sequence
 
 A single 4-email sequence fires for anyone who takes the quiz, regardless of whether they came from a cold email, an Instagram post, or a ManyChat DM.
 
-- **Sequence Name in Kit:** Unified Quiz Nurture (v2)
+- **Sequence Name in Kit:** Unified Quiz Nurture
 - **Trigger:** Subscriber is tagged `quiz-taker`
 
-### 2.2. Deduplication Logic
+### 4.2. Deduplication Logic (MUST SET UP IN KIT BEFORE LAUNCH)
 
 1. **Create a tag:** `[System] In Sequence`
 2. **Automation entry condition:** Tag added = `quiz-taker` **AND** subscriber does NOT have tag `[System] In Sequence`
 3. **First action in automation:** Add tag `[System] In Sequence` (blocks re-entry)
 4. **Last action in automation:** Remove tag `[System] In Sequence` (resets for future campaigns)
 
-This is the simplest, most reliable deduplication approach in Kit. A subscriber can only be in one sequence at a time, and the system self-resets after completion.
+**Step-by-step Kit setup:**
+1. Go to Kit → Subscribers → Tags → Create tag: `[System] In Sequence`
+2. Go to Automations → Find the "Unified Quiz Nurture" automation
+3. Edit the entry trigger: change from "Tag added: quiz-taker" to "Tag added: quiz-taker AND does NOT have tag: [System] In Sequence"
+4. Add first step in automation: "Add tag: [System] In Sequence"
+5. Add final step in automation: "Remove tag: [System] In Sequence"
 
-### 2.3. Source Tracking Tags
+### 4.3. Source Tracking Tags
 
 Apply these tags at the point of quiz submission to track which campaign is driving conversions:
-
 - Cold outreach → `source-cold-outreach`
 - Instagram content/ManyChat → `source-ig-content`
 - Referral (if the referred prospect takes the quiz) → `source-referral`
 
-### 2.4. Revised Email 4 (Updated Offers)
+---
 
-The existing "Authority Engine" sequence (Emails 1–3) is strong — keep it as-is. Only Email 4 needs updating to reflect current pricing and offers.
+## 5. Locked Nurture Sequence (v5)
 
-**Email 4 — Revised closing section:**
+All 4 emails are loaded in Kit. For full copy, see `DUAL-CAMPAIGN-MASTER-PLAN-V3.md` (this file) or the email-copywriter skill's `references/email_examples.md`.
 
-> If you're ready to stop guessing and want an expert to build that engine for you, I have two ways I can help:
->
-> - **The $87 Audience-to-Action Playbook:** 50+ conversion-focused CTAs and the DM-to-booking system, ready to use today. [Get the Playbook →](https://tools.scrollmedia.co/audience-to-action.html)
-> - **The $997 Instagram Growth Blueprint:** A 3-week deep-dive where we build your entire Instagram strategy from the ground up. [Book a free Blueprint call →](https://calendly.com/scrollmedia/scrollmedia-blueprint-discovery)
->
-> Either way, I'm glad you took the quiz.
->
-> Cheers,
-> Chase
+| Email | Subject | Pain Point | Offer | Send |
+|---|---|---|---|---|
+| 1 | Your profile is losing you clients | #5 — Profile trust | Profile Guide (free) | Immediately |
+| 2 | why your best content isn't converting | #3 — Content positioning | Formats Library (free) | Day 3 |
+| 3 | the line that turns followers into clients | #1 — No clients from posting | A2A Playbook ($87) | Day 5 |
+| 4 | stop guessing what content works | #2 — No measurement system | Blueprint ($997) + Signature ($2,750+) | Day 7 |
+
+**Proprietary frameworks used in sequence:**
+- **The Signal Method** (Email 4): Scroll Media's content testing framework. "Find the signal in the noise — identify what's actually working — and build your entire strategy around it." Do NOT use the name "Accordion Method" — that is a third-party term.
 
 ---
 
-## 3. Campaign #1: Cold Outreach
+## 6. Campaign #1: Cold Outreach
 
 **Objective:** Get high-ICP cold prospects to take the quiz and enter the nurture sequence.
 
-**Audience:** `CG-ScrollPropsectingList.xlsx`
+**Audience:** `ScrollMediaProspectList-CG-12.16.25-CGList.csv` — 131 prospects with direct emails, ICP-aligned niches only.
 
-**Email Copy:** Locked. See `FINAL-CAMPAIGN-PLAN-AND-EMAIL-COPY-V2.md`, Section 1.
+**Cold Email Copy (LOCKED):**
+
+**Subject:** Your Instagram, in 3 minutes
+
+Hi {{firstName}},
+
+Most social media advice is generic. It doesn't account for your industry, your audience size, or how much time you actually have.
+
+I built a 10-question, 3-minute quiz that tells you exactly which of the 4 stages of Instagram maturity your business is in — and what the single most important thing you should do next is.
+
+It's free, it's fast, and it's the same framework we use to build strategies for our $2,750/mo clients.
+
+[Take the Instagram Maturity Quiz →](https://tools.scrollmedia.co/instagram_maturity_quiz.html)
+
+Best,
+Chase
 
 **Flow:**
 1. Send cold email → single CTA to quiz
 2. Prospect takes quiz → submits email
 3. Kit fires: adds `quiz-taker` + `source-cold-outreach` → Unified Quiz Nurture begins
 
-**Instagram Bio Update (supports both Campaign #1 and #2):**
-
-Update the link in bio to a simple 2-link page (Linktree or a custom `/link-in-bio.html` on Netlify):
-- **Take the Free Instagram Quiz** → `https://tools.scrollmedia.co/instagram_maturity_quiz.html`
-- **About Scroll Media** → `https://decks.scrollmedia.co/pitch/`
-
 ---
 
-## 4. Campaign #2: Instagram Content + ManyChat DM Automation
+## 7. Campaign #2: Instagram Content + ManyChat DM Automation
 
 **Objective:** Convert existing followers and organic traffic into quiz leads using content and automated DMs.
 
-### 4.1. Weekly Content Rhythm
+**Status:** ManyChat account exists. Automations NOT yet set up.
+
+### 7.1. Weekly Content Rhythm
 
 Every piece of content in this campaign has one job: get people to take the quiz.
 
-- **1x Value Reel or Carousel:** Diagnoses a pain point the quiz addresses (e.g., "3 reasons your content isn't converting," "Fix your bio in 60 seconds"). CTA: `"Comment 'QUIZ' and I'll send you the link."`
-- **2-3x Story Sequences:** Polls, question stickers, and engagement prompts tied to quiz themes. CTA: `"Reply 'QUIZ' to get the link."`
+- **1x Value Reel or Carousel:** Diagnoses a pain point the quiz addresses. CTA: `"Comment 'QUIZ' and I'll send you the link."`
+- **2-3x Story Sequences:** Polls, question stickers, engagement prompts tied to quiz themes. CTA: `"Reply 'QUIZ' to get the link."`
 - **1x Founder POV Post:** Chase's perspective on the journey from stuck to scaling. CTA: `"Link in bio if you want to know where you stand."`
 
-### 4.2. ManyChat Automation Setup
+### 7.2. ManyChat Automation Setup (PENDING)
 
 **Automation #1 — Post/Reel Comment Trigger**
-
 - Trigger: User comments keyword `QUIZ` on a designated post or Reel
 - Public reply: `"Just sent it to your DMs! 👇"`
 - Private DM:
@@ -116,35 +188,30 @@ Every piece of content in this campaign has one job: get people to take the quiz
   > Lmk what you get!
 
 **Automation #2 — Story Reply Trigger**
-
 - Trigger: User replies to any active campaign story with keyword `QUIZ`
 - Private DM: Same as above
 
-**Note on ManyChat setup:** ManyChat connects to your Instagram business account via Meta. You'll need a free ManyChat account at manychat.com. The keyword trigger automations are available on the free plan. Setup takes about 20 minutes.
-
-### 4.3. Lead Capture Flow
-
-1. User gets quiz link via ManyChat DM
-2. Takes quiz → submits email
-3. Kit fires: adds `quiz-taker` + `source-ig-content` → Unified Quiz Nurture begins
+**ManyChat setup steps:**
+1. Log into manychat.com → connect Instagram business account (if not already done)
+2. Go to Automation → New Flow → name it "QUIZ Comment Trigger"
+3. Set trigger: Instagram Comments → keyword = "QUIZ"
+4. Add action: Send Public Reply → "Just sent it to your DMs! 👇"
+5. Add action: Send Private DM → paste the DM copy above
+6. Repeat for Story Reply trigger (Automation #2)
+7. Activate both automations
 
 ---
 
-## 5. Campaign #3: Client Referral Program
+## 8. Campaign #3: Client Referral Program
 
-**Objective:** Activate current retainer clients as a referral channel. One email, one ask, one clear incentive.
+**Objective:** Activate current retainer clients as a referral channel.
+**Status:** Email copy locked. Not yet sent.
 
-**Audience:** All current Scroll Media retainer clients.
+**Incentive:** $250 off their next invoice for a successful referral conversion.
 
-**Incentive:** A one-time discount on their next invoice if a referred contact converts to a paying retainer client. Suggested discount: **$250 off their next month's invoice.**
-
-**This campaign does NOT feed into the quiz funnel.** Referred contacts are warm and should be handled directly by Chase (a personal intro call or email), not dropped into a cold nurture sequence.
-
-### 5.1. Referral Email Copy
+**Referral Email Copy (LOCKED):**
 
 **Subject:** a quick favor (and something in it for you)
-
----
 
 Hey {{firstName}},
 
@@ -157,7 +224,6 @@ If you know a business owner who's been frustrated with their Instagram — post
 If they end up signing on as a client, I'll take **$250 off your next invoice**. No strings, no weird referral program to sign up for. Just a thank you.
 
 The kind of businesses we work best with:
-
 - Service-based (med spas, home builders, coaches, real estate, fitness studios, etc.)
 - Owner-operated or founder-led
 - Ready to invest in their marketing, not just dabble
@@ -168,65 +234,38 @@ Either way, I appreciate you. Thanks for being a great client.
 
 Cheers,
 Chase
-
 Founder, Scroll Media
 
----
+**Referral tracking:** Log in a simple spreadsheet: `Referrer | Referred Contact | Date | Status | Invoice Credit Applied`
 
-### 5.2. Referral Tracking
-
-Keep it simple — no software needed at this stage.
-
-- When a client replies with a referral name, log it in a simple spreadsheet: `Referrer | Referred Contact | Date | Status | Invoice Credit Applied`
-- When the referred contact converts, manually apply the $250 credit on their next Stripe invoice
-- Send the referring client a quick "thank you" email confirming the credit has been applied
-
-### 5.3. What Happens to the Referred Contact
-
-The referred contact should **not** be added to the quiz drip sequence. They came in warm, through a trusted relationship. The right move is a personal touch:
-
-1. Chase sends a brief personal email or DM intro (mention the client who referred them)
-2. Direct them to the Signature Package page or the Blueprint page depending on their stage
-3. Book a discovery call directly
-
-If they want to take the quiz first, that's fine — but don't automate them into a cold sequence. Treat them like a warm lead.
+**Note:** Referred contacts should NOT be dropped into the cold nurture sequence. Treat them as warm leads — personal email or DM intro, direct to Blueprint or Signature page, book a discovery call directly.
 
 ---
 
-## 6. Full Launch Checklist for March 13
+## 9. Full Launch Checklist
 
-### System Setup (Do First)
-
+### System Setup (MUST DO FIRST)
 - [ ] Kit: Create tag `[System] In Sequence`
-- [ ] Kit: Update the "Authority Engine" sequence automation to include the deduplication tag logic
-- [ ] Kit: Update Email 4 with revised offer copy (correct pricing + Calendly links)
-- [ ] Calendly: Create Blueprint Discovery Call (30 min)
-- [ ] Calendly: Create Signature Discovery Call (30 min)
-- [ ] HTML: Update `instagram-growth-blueprint.html` with Blueprint Calendly link
-- [ ] HTML: Update `signature-package.html` with Signature Calendly link
-- [ ] Instagram: Update link in bio (quiz URL + pitch page)
+- [ ] Kit: Update automation with deduplication tag logic (see Section 4.2)
+- [ ] Instagram: Update link in bio to quiz URL
 
 ### Campaign #1 — Cold Outreach
-
-- [ ] Finalize prospect list (`CG-ScrollPropsectingList.xlsx`)
-- [ ] Send cold email to full list
+- [ ] Send cold email to 131 ICP-aligned prospects with direct emails
+- [ ] Send personal outreach to 8 warm/hot prospects (NOT the cold sequence)
 
 ### Campaign #2 — IG Content + ManyChat
-
-- [ ] ManyChat: Create account at manychat.com, connect Instagram business account
 - [ ] ManyChat: Set up Automation #1 (Post/Reel comment trigger, keyword: QUIZ)
 - [ ] ManyChat: Set up Automation #2 (Story reply trigger, keyword: QUIZ)
 - [ ] Instagram: Publish first campaign Reel or Carousel with "Comment QUIZ" CTA
 
 ### Campaign #3 — Client Referral
-
 - [ ] Build client email list (all current retainer clients)
 - [ ] Send referral email
 - [ ] Create referral tracking spreadsheet
 
 ---
 
-## 7. Success Metrics (30-Day View)
+## 10. Success Metrics (30-Day View)
 
 | Campaign | Key Metric | Target |
 |---|---|---|

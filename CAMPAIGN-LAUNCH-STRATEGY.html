@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Campaign Launch Strategy — Scroll Media</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: Inter, sans-serif; background: #0f1117; color: #e8eaf0; line-height: 1.7; padding: 48px 24px; }
+  .container { max-width: 860px; margin: 0 auto; }
+  .back { display: inline-block; color: #e2ed7a; text-decoration: none; font-size: 13px; font-weight: 600; margin-bottom: 32px; letter-spacing: 0.05em; }
+  .back:hover { opacity: 0.8; }
+  h1 { font-size: 28px; font-weight: 800; color: #ffffff; margin-bottom: 8px; line-height: 1.3; }
+  h2 { font-size: 20px; font-weight: 700; color: #ffffff; margin: 40px 0 12px; }
+  h3 { font-size: 16px; font-weight: 700; color: #e2ed7a; margin: 28px 0 8px; }
+  p { margin-bottom: 16px; color: rgba(232,234,240,0.85); }
+  ul, ol { margin: 0 0 16px 24px; color: rgba(232,234,240,0.85); }
+  li { margin-bottom: 6px; }
+  strong { color: #ffffff; font-weight: 700; }
+  hr { border: none; border-top: 1px solid rgba(255,255,255,0.1); margin: 40px 0; }
+  table { width: 100%; border-collapse: collapse; margin-bottom: 24px; font-size: 14px; }
+  th { background: rgba(226,237,122,0.15); color: #e2ed7a; font-weight: 700; padding: 10px 14px; text-align: left; border: 1px solid rgba(255,255,255,0.1); }
+  td { padding: 10px 14px; border: 1px solid rgba(255,255,255,0.08); color: rgba(232,234,240,0.85); }
+  tr:nth-child(even) td { background: rgba(255,255,255,0.03); }
+  code { background: rgba(255,255,255,0.08); padding: 2px 6px; border-radius: 4px; font-size: 13px; font-family: monospace; }
+  pre { background: rgba(255,255,255,0.05); padding: 20px; border-radius: 8px; overflow-x: auto; margin-bottom: 20px; }
+  blockquote { border-left: 3px solid #e2ed7a; padding-left: 16px; margin: 20px 0; color: rgba(232,234,240,0.7); font-style: italic; }
+  .badge { display: inline-block; background: rgba(226,237,122,0.15); color: #e2ed7a; font-size: 11px; font-weight: 700; padding: 3px 10px; border-radius: 20px; letter-spacing: 0.08em; margin-bottom: 24px; text-transform: uppercase; }
+</style>
+</head>
+<body>
+<div class="container">
+  <a href="/" class="back">← Back to Dashboard</a>
+  <div class="badge">Internal — Scroll Media</div>
+  <h1>Scroll Media — Biz Dev Campaign Launch Strategy</h1>
+<p><strong>Goal:</strong> 1–2 new clients signed within 30 days<br />
+<strong>Target Launch Date:</strong> End of week of March 11, 2026<br />
+<strong>Primary Funnel:</strong> Audience-to-Action Playbook ($87) → Instagram Growth Blueprint ($997) → Signature Package ($2,750+/mo)<br />
+<strong>Last Updated:</strong> March 11, 2026</p>
+<hr />
+<h2>Campaign Status Dashboard</h2>
+<table>
+<thead>
+<tr>
+<th>Item</th>
+<th>Status</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Playbook Sales Page (<code>audience-to-action.html</code>)</td>
+<td><strong>LIVE — FINAL</strong></td>
+<td>Two-card decision CTA, wordmark logo</td>
+</tr>
+<tr>
+<td>Playbook Product Page (<code>audience-to-action-playbook.html</code>)</td>
+<td><strong>LIVE — FINAL</strong></td>
+<td>SM avatar, token-gated</td>
+</tr>
+<tr>
+<td>Purchase Success Page (<code>purchase-success.html</code>)</td>
+<td><strong>LIVE — FINAL</strong></td>
+<td>Logo fixed, favicon added</td>
+</tr>
+<tr>
+<td>Blueprint Sales Page (<code>instagram-growth-blueprint.html</code>)</td>
+<td><strong>LIVE — PENDING</strong></td>
+<td>CTA structure not yet finalized (see below)</td>
+</tr>
+<tr>
+<td>Signature Package Sales Page (<code>signature-package.html</code>)</td>
+<td><strong>LIVE — REVIEW</strong></td>
+<td>Full rebuild complete, deployed</td>
+</tr>
+<tr>
+<td>Stripe Payment Link (Playbook)</td>
+<td><strong>CONFIGURED</strong></td>
+<td>Test with <code>4242 4242 4242 4242</code></td>
+</tr>
+<tr>
+<td>Stripe Webhook (Netlify Function)</td>
+<td><strong>CONFIGURED</strong></td>
+<td><code>stripe-webhook.js</code> deployed</td>
+</tr>
+<tr>
+<td>Resend Access Email</td>
+<td><strong>CONFIGURED</strong></td>
+<td>Token delivery on purchase</td>
+</tr>
+<tr>
+<td>Kit Email Sequence (3 emails)</td>
+<td><strong>DRAFTED</strong></td>
+<td>See <code>KIT-EMAIL-SEQUENCE.md</code> — needs activation</td>
+</tr>
+<tr>
+<td>Prospect List</td>
+<td><strong>PENDING</strong></td>
+<td>Score and prioritize before launch</td>
+</tr>
+<tr>
+<td>Instagram Launch Content</td>
+<td><strong>PENDING</strong></td>
+<td>4 posts + daily Stories needed</td>
+</tr>
+<tr>
+<td>Bio Link Update</td>
+<td><strong>PENDING</strong></td>
+<td>Point to <code>tools.scrollmedia.co/audience-to-action</code></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>Open Item: Blueprint CTA Structure</h2>
+<p><strong>Decision needed before Blueprint page is locked as FINAL.</strong></p>
+<p><strong>Recommended approach:</strong> Calendly intake link (15–20 min) as primary CTA.<br />
+<strong>Agreed flow:</strong>
+1. Prospect clicks CTA → Calendly intake (15–20 min slot)
+2. Intake form captures: business type, Instagram handle, primary goal, biggest challenge
+3. Contract auto-sends on intake submission (HoneyBook / Dubsado / DocuSign)
+4. Signature triggers master onboarding form
+5. Onboarding form submission → Kickoff call scheduled
+6. Work begins; invoice sent on delivery ($997)</p>
+<p><strong>Action required:</strong> Drop your Calendly link → CTA gets wired in → Blueprint page locked.</p>
+<hr />
+<h2>The Funnel Logic</h2>
+<pre><code>$87 Playbook → $997 Blueprint → Signature Package ($2,750+/mo)
+</code></pre>
+<p>The Playbook is the trust mechanism — it filters for people serious enough to pay for strategy at $87, making them dramatically higher-quality leads for the Blueprint and retainer. The real goal of the $87 product isn't revenue. <strong>It's lead qualification.</strong></p>
+<hr />
+<h2>Pre-Launch Checklist (Complete Before Going Live)</h2>
+<h3>Technical</h3>
+<ul>
+<li>[ ] Run end-to-end test purchase with Stripe test card <code>4242 4242 4242 4242</code></li>
+<li>[ ] Confirm access email arrives with working token link</li>
+<li>[ ] Confirm Kit tags buyer as <code>playbook-buyer</code></li>
+<li>[ ] Confirm Kit email sequence activates on tag</li>
+<li>[ ] Wire Blueprint CTA to Calendly link (pending Chase's link)</li>
+<li>[ ] Update Blueprint page status to FINAL</li>
+</ul>
+<h3>Content</h3>
+<ul>
+<li>[ ] Write and schedule Instagram launch announcement post</li>
+<li>[ ] Write and schedule 3 follow-up posts (see content plan below)</li>
+<li>[ ] Prepare 14 days of Story content</li>
+<li>[ ] Update Instagram bio link to <code>tools.scrollmedia.co/audience-to-action</code></li>
+</ul>
+<h3>Outreach</h3>
+<ul>
+<li>[ ] Build and score prospect list (use prioritization framework below)</li>
+<li>[ ] Draft 15–20 personalized outreach messages</li>
+<li>[ ] Identify 2–3 former clients for direct Blueprint pitch</li>
+</ul>
+<hr />
+<h2>Phase 1: Direct Outreach (Days 1–7)</h2>
+<p><strong>Goal:</strong> 1 signed client from warm network</p>
+<h3>Who to Contact First</h3>
+<p>Prioritize in this order:
+1. <strong>Former clients</strong> not currently on retainer — they trust you, know your work, have a reason to come back
+2. <strong>Warm prospects</strong> who've engaged with content, been referred, or had a previous conversation that didn't close
+3. <strong>Local Cincinnati businesses</strong> in core niches (med spas, fitness studios, real estate, coaches, interior designers) active on Instagram but clearly not strategic</p>
+<h3>Outreach Messages</h3>
+<p><strong>Version A — Warm prospects who know you:</strong></p>
+<blockquote>
+<p>Hey [Name] — I just launched something I think would be genuinely useful for you. It's an $87 playbook that covers the exact CTA system and DM-to-booking script we use with every client. I built it because I kept seeing the same conversion problems across accounts. If you want the link, happy to send it over — or if you're at the point where you'd rather just have us build the whole system for you, I have 2 Blueprint spots open this month.</p>
+</blockquote>
+<p><strong>Version B — Former clients:</strong></p>
+<blockquote>
+<p>Hey [Name] — hope things are going well. I've been building out some new strategy resources and wanted to reach out directly before I push them publicly. I have an $87 playbook that covers the CTA framework and DM system we used when we worked together — and I'm also taking on 2 Blueprint engagements this month where we build the full 90-day strategy. Wanted to give you first access before I open it up. Interested?</p>
+</blockquote>
+<p><strong>Version C — Cold-ish local business (Instagram DM):</strong></p>
+<blockquote>
+<p>Hey [Name] — I've been following [Business] for a while. Your content is solid but I noticed your CTAs aren't doing the conversion work they could be. I run a social media strategy agency in Cincinnati and just launched an $87 playbook specifically for service businesses like yours — it covers the exact CTA system and DM script that books consultations from Instagram. Happy to send you the link if you want to check it out.</p>
+</blockquote>
+<h3>Volume Target</h3>
+<p>Send <strong>15–20 personalized outreach messages</strong> in the first 3 days. Not blasted — actually personalized. Reference something specific about their business or your prior relationship.</p>
+<hr />
+<h2>Phase 2: Content-Driven Awareness (Days 1–14)</h2>
+<p><strong>Goal:</strong> Drive organic traffic to the sales page and build authority</p>
+<h3>Instagram Content Plan (2 posts/week for 2 weeks)</h3>
+<p><strong>Post 1 — Launch Announcement (Day 1)</strong><br />
+Hook: "I just packaged the exact CTA system we use with every client into an $87 playbook."<br />
+Format: Carousel or talking-head Reel<br />
+CTA: "Link in bio to get instant access"</p>
+<p><strong>Post 2 — Problem/Pain Post (Day 3)</strong><br />
+Hook: "Your Instagram isn't a reach problem. It's a conversion problem."<br />
+Format: Carousel — walk through the 3 signs your CTAs aren't working<br />
+CTA: "Save this. And if you want the fix, the playbook is linked in bio."</p>
+<p><strong>Post 3 — Social Proof / Results (Day 7)</strong><br />
+Hook: "What happens when you stop posting for engagement and start posting for conversion"<br />
+Format: Before/after or client result story<br />
+CTA: "DM me 'SYSTEM' and I'll send you the playbook link directly"</p>
+<p><strong>Post 4 — Education Post (Day 10)</strong><br />
+Hook: "The 3-message DM script that books consultations from Instagram comments"<br />
+Format: Carousel — tease Part 3 of the playbook (the DM-to-Booking System)<br />
+CTA: "The full script + 50+ CTAs are inside the playbook — link in bio"</p>
+<h3>Story Strategy (Daily)</h3>
+<ul>
+<li>Day 1: "Just launched something — link in bio"</li>
+<li>Day 2–3: Poll — "Do you have a system for converting Instagram followers into clients?" Yes/No</li>
+<li>Day 4: Share the No responses — "If you voted no, this is for you"</li>
+<li>Day 5–7: Behind-the-scenes of the playbook content (screenshot of Part 2 or Part 3)</li>
+<li>Day 8–10: Testimonials or client results</li>
+<li>Day 11–14: "2 Blueprint spots open this month" — direct pitch</li>
+</ul>
+<hr />
+<h2>Phase 3: Blueprint Conversion (Days 7–30)</h2>
+<p><strong>Goal:</strong> Convert 1–2 Playbook buyers or warm leads into Blueprint clients</p>
+<h3>The Conversion Path</h3>
+<p><strong>Playbook buyers</strong> → receive the 3-email Kit sequence (Days 2, 5, 10) → Email 3 pitches the Blueprint<br />
+<strong>Warm leads who didn't buy the Playbook</strong> → direct Blueprint pitch via DM or email</p>
+<h3>Blueprint Pitch (Direct Outreach — Day 7+)</h3>
+<blockquote>
+<p>Hey [Name] — I'm taking on 2 Blueprint clients this month. It's a 3-week engagement where I build your complete Instagram strategy — content pillars, CTA architecture, offer positioning, and a 90-day execution roadmap. $997, and if you decide to continue with us as a retainer client, the full amount is credited to Month 1. I have 2 spots. Want to talk about whether it's the right fit?</p>
+</blockquote>
+<hr />
+<h2>Phase 4: Prospect List Activation (Days 3–14)</h2>
+<p><strong>Goal:</strong> Systematically work through the prospect list</p>
+<h3>Prioritization Framework</h3>
+<p>Score each prospect on 3 criteria (1–3 scale):
+- <strong>Budget signal</strong> — Do they have an active business with revenue? (1 = unclear, 3 = obvious)
+- <strong>Pain signal</strong> — Are they posting inconsistently or without a clear strategy? (1 = unclear, 3 = obvious)
+- <strong>Relationship</strong> — How warm is the connection? (1 = cold, 3 = prior relationship)</p>
+<p><strong>Total score 7–9:</strong> Reach out with Blueprint pitch directly<br />
+<strong>Total score 4–6:</strong> Reach out with Playbook offer, nurture toward Blueprint<br />
+<strong>Total score 1–3:</strong> Follow on Instagram, engage with content for 1–2 weeks before outreach</p>
+<h3>Daily Outreach Cadence</h3>
+<ul>
+<li><strong>Days 1–3:</strong> 5–7 outreach messages/day (warm network first)</li>
+<li><strong>Days 4–7:</strong> 3–5 messages/day (second tier prospects)</li>
+<li><strong>Days 8–14:</strong> Follow-up messages to anyone who didn't respond</li>
+<li><strong>Days 15–30:</strong> Ongoing follow-up + new prospects from inbound</li>
+</ul>
+<hr />
+<h2>Tracking &amp; Metrics</h2>
+<p>Track these weekly:</p>
+<table>
+<thead>
+<tr>
+<th>Metric</th>
+<th>Week 1 Target</th>
+<th>Week 2 Target</th>
+<th>Week 3–4 Target</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Outreach messages sent</td>
+<td>20</td>
+<td>15</td>
+<td>10</td>
+</tr>
+<tr>
+<td>Responses received</td>
+<td>5+</td>
+<td>4+</td>
+<td>3+</td>
+</tr>
+<tr>
+<td>Playbook sales</td>
+<td>3–5</td>
+<td>3–5</td>
+<td>2–3</td>
+</tr>
+<tr>
+<td>Blueprint inquiries</td>
+<td>1–2</td>
+<td>1–2</td>
+<td>1–2</td>
+</tr>
+<tr>
+<td>Blueprint closes</td>
+<td>0–1</td>
+<td>1</td>
+<td>0–1</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Revenue target:</strong> 2 Blueprint closes = $1,994 + Playbook sales = ~$2,500–$3,000 total</p>
+<hr />
+<h2>The Non-Negotiables</h2>
+<ol>
+<li><strong>Personalize every outreach message.</strong> Reference something specific. Generic DMs get ignored.</li>
+<li><strong>Follow up once.</strong> If someone doesn't respond to your first message, send one follow-up 3–5 days later. Then move on.</li>
+<li><strong>Don't pitch the retainer first.</strong> The funnel exists for a reason. Playbook → Blueprint → Signature Package. Let the product do the qualification work.</li>
+<li><strong>Reply to every Story response and comment within 2 hours.</strong> This is where the real conversations happen.</li>
+<li><strong>Build the Kit sequence before you launch.</strong> The post-purchase nurture is where Blueprint conversions will come from. Don't skip it.</li>
+</ol>
+<hr />
+<h2>Launch Day Checklist</h2>
+<ul>
+<li>[ ] Post launch announcement on Instagram (feed + Stories)</li>
+<li>[ ] Send first wave of outreach messages (10–15)</li>
+<li>[ ] Confirm bio link is live: <code>tools.scrollmedia.co/audience-to-action</code></li>
+<li>[ ] Monitor Stripe for purchases</li>
+<li>[ ] Monitor Resend for email delivery</li>
+<li>[ ] Respond to all DMs and comments within 2 hours</li>
+</ul>
+<hr />
+<h2>Onboarding Flow (Post-Blueprint Conversion)</h2>
+<p>Once a Blueprint client is signed, the process is:</p>
+<ol>
+<li><strong>Intake form submitted</strong> (Calendly booking captures initial info)</li>
+<li><strong>Contract auto-sends</strong> (HoneyBook / Dubsado / DocuSign) — fixed scope, no negotiation needed</li>
+<li><strong>Signature triggers master onboarding form</strong> — one form serves both Blueprint and Signature Package clients</li>
+<li><strong>Onboarding form submitted</strong> → Kickoff call scheduled</li>
+<li><strong>Work begins</strong> — 90-day strategy document delivered in 3 weeks</li>
+<li><strong>Invoice sent on delivery</strong> — $997 due within 7 days of receiving strategy document</li>
+</ol>
+<p><strong>Master Onboarding Form Structure:</strong>
+- Section 1: Business Fundamentals (both offers)
+- Section 2: Audience &amp; Positioning (both offers)
+- Section 3: Current State (both offers)
+- Section 4: Goals &amp; KPIs (both offers)
+- Section 5: Brand Voice &amp; Content (both offers)
+- Section 6: Execution Preferences (Signature Package only — conditional logic)</p>
+<p>Recommended tool: <strong>Typeform</strong> (conditional logic native) or HoneyBook/Dubsado built-in questionnaire.</p>
+<hr />
+<p><em>This strategy is designed to generate 1–2 Blueprint clients within 30 days. The Playbook is the trust mechanism. The outreach is the accelerant. The Kit sequence is the conversion engine. The Signature Package is the destination.</em></p>
+</div>
+</body>
+</html>
