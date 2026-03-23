@@ -234,15 +234,32 @@ exports.handler = async (event) => {
     return { statusCode: 200, headers: corsHeaders, body: '' };
   }
 
-  // Auth check — require dashboard token
+  // Auth check — validate session token from Netlify Blobs
   const authHeader = event.headers?.authorization || '';
-  const dashToken = process.env.DASHBOARD_TOKEN;
-  if (dashToken && authHeader !== `Bearer ${dashToken}`) {
+  const sessionToken = authHeader.replace('Bearer ', '').trim();
+  let sessionAM = null;
+  let sessionRole = null;
+
+  if (sessionToken && sessionToken.length >= 32) {
+    try {
+      const { getStore } = await import('@netlify/blobs');
+      const store = getStore('dashboard-sessions');
+      const session = await store.get(`session-${sessionToken}`, { type: 'json' });
+      if (!session || new Date(session.expires) < new Date()) {
+        return { statusCode: 401, headers: corsHeaders, body: JSON.stringify({ error: 'Session expired or invalid' }) };
+      }
+      sessionAM = session.am;
+      sessionRole = session.role;
+    } catch (blobErr) {
+      console.warn('Blob store unavailable, skipping session check:', blobErr.message);
+    }
+  } else {
     return { statusCode: 401, headers: corsHeaders, body: JSON.stringify({ error: 'Unauthorized' }) };
   }
 
-  // Optional: filter by AM
-  const amFilter = event.queryStringParameters?.am || null;
+  // AM users can only see their own accounts; exec sees all
+  const queryAM = event.queryStringParameters?.am || null;
+  const amFilter = sessionRole === 'am' ? sessionAM : queryAM;
   const clients = amFilter
     ? CLIENTS.filter(c => c.am.toLowerCase() === amFilter.toLowerCase())
     : CLIENTS;
