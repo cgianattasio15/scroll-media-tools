@@ -16,6 +16,21 @@
   to = "/.netlify/functions/validate-token"
   status = 200
 
+[[redirects]]
+  from = "/api/dashboard-auth"
+  to = "/.netlify/functions/dashboard-auth"
+  status = 200
+
+[[redirects]]
+  from = "/api/dashboard-session"
+  to = "/.netlify/functions/dashboard-session"
+  status = 200
+
+[[redirects]]
+  from = "/api/metricool-data"
+  to = "/.netlify/functions/metricool-data"
+  status = 200
+
 # Security headers
 [[headers]]
   for = "/access/*"
