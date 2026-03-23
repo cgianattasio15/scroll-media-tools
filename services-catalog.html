@@ -22,6 +22,8 @@
       --font-main: 'Source Sans 3', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 
       /* Per-offer accent colors */
+      --a2a-accent: #6b21a8;          /* Purple — digital, accessible, entry-level */
+      --a2a-accent-light: #f3e8ff;
       --content-accent: #0d7a5f;      /* Teal — fresh, one-time, approachable */
       --content-accent-light: #e6f5f1;
       --blueprint-accent: #0c3387;    /* Azure — strategic, brand-core */
@@ -309,6 +311,7 @@
     }
 
     /* Per-offer border accents */
+    .offering-card.card-a2a { border-color: var(--a2a-accent); }
     .offering-card.card-content { border-color: var(--content-accent); }
     .offering-card.card-blueprint { border-color: var(--blueprint-accent); }
     .offering-card.card-signature { border-color: var(--signature-accent); box-shadow: 0 4px 24px rgba(124,77,0,0.12); }
@@ -506,6 +509,30 @@
       text-decoration: none;
       transition: background 0.2s, transform 0.15s, color 0.2s;
     }
+
+    /* A2A CTAs */
+    .card-a2a .card-body h3 { color: var(--a2a-accent); }
+    .card-a2a .deliverables-list li::before { color: var(--a2a-accent); }
+    .card-a2a .best-for { background: var(--a2a-accent-light); }
+    .card-a2a .best-for h4 { color: var(--a2a-accent); }
+    .card-a2a .commitment-item .label { color: var(--a2a-accent); }
+    .card-a2a .card-header { background: linear-gradient(135deg, #6b21a8, #4c1d95); }
+    .card-a2a .card-badge { background: rgba(255,255,255,0.2); color: #fff; }
+    .card-a2a .card-header h2 { color: #fff; }
+    .card-a2a .card-header .tagline { color: rgba(255,255,255,0.85); }
+    .card-a2a .price-block .price-amount { color: #fff; }
+    .card-a2a .price-block .price-note { color: rgba(255,255,255,0.7); }
+    .card-a2a .card-cta.cta-primary {
+      background: var(--a2a-accent);
+      color: #fff;
+    }
+    .card-a2a .card-cta.cta-primary:hover { background: #4c1d95; transform: translateY(-2px); }
+    .card-a2a .card-cta.cta-outline {
+      background: transparent;
+      color: var(--a2a-accent);
+      border: 2px solid var(--a2a-accent);
+    }
+    .card-a2a .card-cta.cta-outline:hover { background: var(--a2a-accent); color: #fff; transform: translateY(-2px); }
 
     /* Content Day CTAs */
     .card-content .card-cta.cta-primary {
@@ -860,7 +887,7 @@
   <section class="hero">
     <div class="hero-badge">🌀 Scroll Media Services</div>
     <h1>Everything we offer.<br /><span>Nothing you don't need.</span></h1>
-    <p>Three ways to work with Scroll Media — from a single content day to a full-service retainer. Each one built to move the needle.</p>
+    <p>Four ways to work with Scroll Media — from a $87 digital playbook to a full-service retainer. Each one built to move the needle.</p>
     <div class="hero-cta-group">
       <a href="#offerings" class="btn-primary">View Services ↓</a>
       <a href="https://calendly.com/scrollmedia/discovery" target="_blank" rel="noopener noreferrer" class="btn-secondary">Book a Discovery Call</a>
@@ -875,7 +902,7 @@
         <div class="stat-label">Brands Served</div>
       </div>
       <div class="proof-stat">
-        <div class="stat-num">3</div>
+        <div class="stat-num">4</div>
         <div class="stat-label">Ways to Work Together</div>
       </div>
       <div class="proof-stat">
@@ -892,53 +919,55 @@
   <!-- OFFERINGS -->
   <div id="offerings" class="section" style="padding-top: 80px;">
     <p class="section-label">Our Offerings</p>
-    <h2 class="section-title">Three ways to grow<br />on Instagram.</h2>
-    <p class="section-subtitle">Whether you need a one-time content day, a custom strategy, or a full-service team — we have a path for you.</p>
+    <h2 class="section-title">Four ways to grow<br />on Instagram.</h2>
+    <p class="section-subtitle">Whether you need a digital playbook, a one-time content day, a custom strategy, or a full-service team — we have a path for you.</p>
 
     <div class="offerings-grid">
 
-      <!-- CARD 1: CONTENT DAY -->
-      <div class="offering-card card-content">
-        <div class="card-header header-content">
-          <span class="card-badge badge-content">One-Time</span>
-          <h2>Content Day</h2>
-          <p class="tagline">A focused, strategy-led shoot that captures high-quality photo and video assets in a single session. Delivered in 2–3 weeks.</p>
+      <!-- CARD 1: A2A DIGITAL PLAYBOOK -->
+      <div class="offering-card card-a2a">
+        <div class="card-header card-a2a">
+          <span class="card-badge">Digital Playbook</span>
+          <h2>Audience-to-Action Playbook</h2>
+          <p class="tagline">The complete system for converting passive Instagram followers into qualified leads — without paid ads, without posting more.</p>
           <div class="price-block">
-            <span class="price-amount">$975</span>
-            <span class="price-note">· Flat one-time fee</span>
+            <span class="price-amount">$87</span>
+            <span class="price-note">· One-time · Instant digital access</span>
           </div>
         </div>
         <div class="card-body">
           <h3>What's Included</h3>
           <ul class="deliverables-list">
-            <li>Creative planning & shot list</li>
-            <li>On-site content shoot (photo + video)</li>
-            <li>2–3 fully edited creative pieces</li>
-            <li>Raw photo & video assets (b-roll)</li>
-            <li>Brand-aligned visual direction</li>
-            <li>Full asset delivery within 2–3 weeks</li>
+            <li>5-Part Interactive Playbook — structured, not a PDF</li>
+            <li>71 Plug-and-Play CTA Scripts across 5 categories</li>
+            <li>The 3-Message DM-to-Booking Script</li>
+            <li>Funnel-Aware CTA Framework (TOFU/MOFU/BOFU)</li>
+            <li>3-Layer CTA Stack — bio link funnel system</li>
+            <li>30-Day Implementation Challenge</li>
+            <li>Niche Cheatsheet — 9 service business categories</li>
+            <li>Scroll Media Formats Library (bonus)</li>
           </ul>
           <div class="best-for">
             <h4>Best For</h4>
-            <p>Brands launching a product, promoting an event, or needing a fresh batch of on-brand content without a long-term commitment.</p>
+            <p>Service business owners who want a proven CTA and conversion system they can implement immediately — without hiring an agency.</p>
           </div>
           <div class="commitment-row">
             <div class="commitment-item">
-              <span class="label">Commitment</span>
-              <span class="value">One-Time</span>
+              <span class="label">Format</span>
+              <span class="value">Interactive Web Playbook</span>
             </div>
             <div class="commitment-item">
-              <span class="label">Turnaround</span>
-              <span class="value">2–3 Weeks</span>
+              <span class="label">Access</span>
+              <span class="value">Instant via Email</span>
             </div>
             <div class="commitment-item">
               <span class="label">Investment</span>
-              <span class="value">$975</span>
+              <span class="value">$87</span>
             </div>
           </div>
           <div class="card-cta-group">
-            <a href="https://tools.scrollmedia.co/content-shoot" target="_blank" rel="noopener noreferrer" class="card-cta cta-primary">Learn More →</a>
-            <a href="https://calendly.com/scrollmedia/content-shoot" target="_blank" rel="noopener noreferrer" class="card-cta cta-outline">Book a Discovery Call →</a>
+            <a href="https://tools.scrollmedia.co/audience-to-action" target="_blank" rel="noopener noreferrer" class="card-cta cta-primary">Get Instant Access →</a>
+            <a href="https://tools.scrollmedia.co/audience-to-action" target="_blank" rel="noopener noreferrer" class="card-cta cta-outline">Learn More →</a>
           </div>
         </div>
       </div>
@@ -950,7 +979,7 @@
           <h2>Instagram Growth Blueprint</h2>
           <p class="tagline">A complete, 90-day Instagram strategy built for your business in 3 weeks. You get the plan. You execute it.</p>
           <div class="price-block">
-            <span class="price-amount">$997</span>
+            <span class="price-amount">$975</span>
             <span class="price-note">· One-time · Credited toward Signature</span>
           </div>
         </div>
@@ -981,12 +1010,58 @@
             </div>
             <div class="commitment-item">
               <span class="label">Investment</span>
-              <span class="value">$997</span>
+              <span class="value">$975</span>
             </div>
           </div>
           <div class="card-cta-group">
             <a href="https://tools.scrollmedia.co/instagram-growth-blueprint" target="_blank" rel="noopener noreferrer" class="card-cta cta-primary">Learn More →</a>
             <a href="https://calendly.com/scrollmedia/scrollmedia-blueprint-discovery" target="_blank" rel="noopener noreferrer" class="card-cta cta-outline">Book a Discovery Call →</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- CARD 3: CONTENT DAY -->
+      <div class="offering-card card-content">
+        <div class="card-header header-content">
+          <span class="card-badge badge-content">One-Time</span>
+          <h2>Content Day</h2>
+          <p class="tagline">A focused, strategy-led shoot that captures high-quality photo and video assets in a single session. Delivered in 2–3 weeks.</p>
+          <div class="price-block">
+            <span class="price-amount">$1,450</span>
+            <span class="price-note">· Flat one-time fee</span>
+          </div>
+        </div>
+        <div class="card-body">
+          <h3>What's Included</h3>
+          <ul class="deliverables-list">
+            <li>Creative planning & shot list</li>
+            <li>On-site content shoot (photo + video)</li>
+            <li>2–3 fully edited creative pieces</li>
+            <li>Raw photo & video assets (b-roll)</li>
+            <li>Brand-aligned visual direction</li>
+            <li>Full asset delivery within 2–3 weeks</li>
+          </ul>
+          <div class="best-for">
+            <h4>Best For</h4>
+            <p>Brands launching a product, promoting an event, or needing a fresh batch of on-brand content without a long-term commitment.</p>
+          </div>
+          <div class="commitment-row">
+            <div class="commitment-item">
+              <span class="label">Commitment</span>
+              <span class="value">One-Time</span>
+            </div>
+            <div class="commitment-item">
+              <span class="label">Turnaround</span>
+              <span class="value">2–3 Weeks</span>
+            </div>
+            <div class="commitment-item">
+              <span class="label">Investment</span>
+              <span class="value">$1,450</span>
+            </div>
+          </div>
+          <div class="card-cta-group">
+            <a href="https://tools.scrollmedia.co/content-shoot" target="_blank" rel="noopener noreferrer" class="card-cta cta-primary">Learn More →</a>
+            <a href="https://calendly.com/scrollmedia/content-shoot" target="_blank" rel="noopener noreferrer" class="card-cta cta-outline">Book a Discovery Call →</a>
           </div>
         </div>
       </div>
@@ -1073,32 +1148,44 @@
           <thead>
             <tr>
               <th>Feature</th>
-              <th>Content Day</th>
+              <th>A2A Playbook</th>
               <th>Blueprint</th>
+              <th>Content Day</th>
               <th>Signature</th>
             </tr>
           </thead>
           <tbody>
             <tr>
+              <td>CTA & conversion system</td>
+              <td style="color: #c084fc; font-weight: 700;">✓</td>
+              <td class="dash">—</td>
+              <td class="dash">—</td>
+              <td class="check-signature">✓</td>
+            </tr>
+            <tr>
               <td>Strategy development</td>
               <td class="dash">—</td>
               <td class="check-blueprint">✓</td>
+              <td class="dash">—</td>
               <td class="check-signature">✓</td>
             </tr>
             <tr>
               <td>Content creation</td>
-              <td class="check-content">✓</td>
               <td class="dash">—</td>
+              <td class="dash">—</td>
+              <td class="check-content">✓</td>
               <td class="check-signature">✓</td>
             </tr>
             <tr>
               <td>Monthly content shoots</td>
-              <td style="color: rgba(255,255,255,0.5); font-style: italic;">One-time</td>
               <td class="dash">—</td>
+              <td class="dash">—</td>
+              <td style="color: rgba(0,0,0,0.4); font-style: italic;">One-time</td>
               <td class="check-signature">✓ Ongoing</td>
             </tr>
             <tr>
               <td>Posting & execution</td>
+              <td class="dash">—</td>
               <td class="dash">—</td>
               <td class="dash">—</td>
               <td class="check-signature">✓</td>
@@ -1107,10 +1194,12 @@
               <td>Community management</td>
               <td class="dash">—</td>
               <td class="dash">—</td>
+              <td class="dash">—</td>
               <td class="check-signature">✓</td>
             </tr>
             <tr>
               <td>Monthly reporting</td>
+              <td class="dash">—</td>
               <td class="dash">—</td>
               <td class="dash">—</td>
               <td class="check-signature">✓</td>
@@ -1119,18 +1208,21 @@
               <td>90-day content calendar</td>
               <td class="dash">—</td>
               <td class="check-blueprint">✓</td>
+              <td class="dash">—</td>
               <td class="check-signature">✓</td>
             </tr>
             <tr>
               <td>Commitment</td>
               <td>One-time</td>
               <td>One-time</td>
+              <td>One-time</td>
               <td>Monthly retainer</td>
             </tr>
             <tr>
               <td>Investment</td>
-              <td style="color: #7ecfb8; font-weight: 700;">$975</td>
-              <td style="color: var(--lucid); font-weight: 700;">$997</td>
+              <td style="color: #6b21a8; font-weight: 700;">$87</td>
+              <td style="color: var(--blueprint-accent); font-weight: 700;">$975</td>
+              <td style="color: var(--content-accent); font-weight: 700;">$1,450</td>
               <td style="color: var(--highlight); font-weight: 700;">$2,750–$3,000/mo</td>
             </tr>
           </tbody>
@@ -1151,7 +1243,7 @@
             Can I start with the Blueprint and upgrade to Signature later?
             <span class="icon">+</span>
           </button>
-          <div class="faq-answer">Yes — and it's designed that way. The $997 Blueprint fee is fully credited toward your first month of the Signature Package if you decide to move to full-service.</div>
+          <div class="faq-answer">Yes — and it's designed that way. The $975 Blueprint fee is fully credited toward your first month of the Signature Package if you decide to move to full-service.</div>
         </div>
 
         <div class="faq-item">
@@ -1159,7 +1251,7 @@
             Can the Content Day credit toward the Signature Package?
             <span class="icon">+</span>
           </button>
-          <div class="faq-answer">Yes — your $975 Content Day fee is credited toward your first month of the Signature Package. It's designed as a low-risk entry point into working with Scroll Media.</div>
+          <div class="faq-answer">Yes — your $1,450 Content Day fee is credited toward your first month of the Signature Package. It's designed as a low-risk entry point into working with Scroll Media.</div>
         </div>
 
         <div class="faq-item">
@@ -1209,8 +1301,9 @@
   <footer>
     <img src="scroll-media-logo.svg" alt="Scroll Media" />
     <div class="footer-links">
-      <a href="https://tools.scrollmedia.co/content-shoot">Content Day</a>
+      <a href="https://tools.scrollmedia.co/audience-to-action">A2A Playbook</a>
       <a href="https://tools.scrollmedia.co/instagram-growth-blueprint">Strategy Blueprint</a>
+      <a href="https://tools.scrollmedia.co/content-shoot">Content Day</a>
       <a href="https://tools.scrollmedia.co/signature-package">Signature Package</a>
       <a href="https://tools.scrollmedia.co/instagram_maturity_quiz.html">Free Instagram Quiz</a>
       <a href="mailto:hello@scrollmedia.co">hello@scrollmedia.co</a>
