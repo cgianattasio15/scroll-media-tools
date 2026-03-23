@@ -1429,66 +1429,157 @@
           </div>
         </div>
 
-        <div class="perf-table-wrap">
-          <table class="perf-table">
+        <!-- Scrollable full-metric table -->
+        <div class="perf-table-wrap" style="overflow-x:auto;">
+          <table class="perf-table" style="min-width:1100px;">
             <thead>
+              <!-- Group headers -->
+              <tr style="background:#060f26;">
+                <th rowspan="2" style="min-width:90px;">Month</th>
+                <th colspan="1" style="text-align:center;color:rgba(255,255,255,0.35);font-size:8.5px;letter-spacing:1px;border-right:1px solid rgba(255,255,255,0.1);">BASELINE</th>
+                <th colspan="4" style="text-align:center;color:#93c5fd;font-size:8.5px;letter-spacing:1px;border-right:1px solid rgba(255,255,255,0.1);">TOP OF FUNNEL — AWARENESS</th>
+                <th colspan="5" style="text-align:center;color:#86efac;font-size:8.5px;letter-spacing:1px;border-right:1px solid rgba(255,255,255,0.1);">MIDDLE OF FUNNEL — ENGAGEMENT</th>
+                <th colspan="3" style="text-align:center;color:#d8b4fe;font-size:8.5px;letter-spacing:1px;border-right:1px solid rgba(255,255,255,0.1);">BOTTOM OF FUNNEL — CONVERSION</th>
+                <th rowspan="2" style="text-align:center;">Score</th>
+              </tr>
               <tr>
-                <th>Month</th>
-                <th>Followers</th>
+                <th style="border-right:1px solid rgba(255,255,255,0.1);">Followers</th>
                 <th>Reach/Day</th>
                 <th>New Followers</th>
-                <th>Views</th>
+                <th>Shares</th>
+                <th style="border-right:1px solid rgba(255,255,255,0.1);">Views</th>
+                <th>Profile Visits</th>
+                <th>Avg Watch Time</th>
+                <th>Retention %</th>
                 <th>Saves</th>
+                <th style="border-right:1px solid rgba(255,255,255,0.1);">Comments</th>
                 <th>CTR</th>
                 <th>Link Taps</th>
-                <th>PCR</th>
-                <th>Score</th>
+                <th style="border-right:1px solid rgba(255,255,255,0.1);">PCR</th>
+              </tr>
+              <!-- Target ranges row -->
+              <tr style="background:#f0f4ff;">
+                <td style="font-size:9px;font-weight:700;color:#6b7280;padding:6px 14px;">Lift Target</td>
+                <td style="font-size:9px;color:#6b7280;padding:6px 10px;border-right:1px solid #e4e7ec;">2,500–10,000</td>
+                <td style="font-size:9px;color:#6b7280;padding:6px 10px;">1,500–5,000</td>
+                <td style="font-size:9px;color:#6b7280;padding:6px 10px;">100–270</td>
+                <td style="font-size:9px;color:#6b7280;padding:6px 10px;">60–300</td>
+                <td style="font-size:9px;color:#6b7280;padding:6px 10px;border-right:1px solid #e4e7ec;">40K–150K</td>
+                <td style="font-size:9px;color:#6b7280;padding:6px 10px;">300–2,000</td>
+                <td style="font-size:9px;color:#6b7280;padding:6px 10px;">6s–10s</td>
+                <td style="font-size:9px;color:#6b7280;padding:6px 10px;">50%–65%</td>
+                <td style="font-size:9px;color:#6b7280;padding:6px 10px;">80–400</td>
+                <td style="font-size:9px;color:#6b7280;padding:6px 10px;border-right:1px solid #e4e7ec;">75–250</td>
+                <td style="font-size:9px;color:#6b7280;padding:6px 10px;">3%–6%</td>
+                <td style="font-size:9px;color:#6b7280;padding:6px 10px;">30–180</td>
+                <td style="font-size:9px;color:#6b7280;padding:6px 10px;border-right:1px solid #e4e7ec;">10%–16%</td>
+                <td style="font-size:9px;color:#6b7280;padding:6px 10px;"></td>
               </tr>
             </thead>
             <tbody>
+              <!-- Oct 2025 -->
+              <tr>
+                <td>Oct 2025</td>
+                <td style="border-right:1px solid #e4e7ec;">3,614</td>
+                <td><span class="metric-status ms-watch">408 ↓</span></td>
+                <td><span class="metric-status ms-watch">27 ↓</span></td>
+                <td><span class="metric-status ms-watch">28 ↓</span></td>
+                <td style="border-right:1px solid #e4e7ec;"><span class="metric-status ms-ok">52,314 ✓</span></td>
+                <td><span class="metric-status ms-ok">512 ✓</span></td>
+                <td><span class="metric-status ms-watch">4.3s ↓</span></td>
+                <td>N/A</td>
+                <td><span class="metric-status ms-watch">5 ↓</span></td>
+                <td style="border-right:1px solid #e4e7ec;"><span class="metric-status ms-watch">20 ↓</span></td>
+                <td><span class="metric-status ms-ok">6.3% ✓</span></td>
+                <td><span class="metric-status ms-ok">32 ✓</span></td>
+                <td style="border-right:1px solid #e4e7ec;"><span class="metric-status ms-ok">5.3% ↓</span></td>
+                <td><span class="score-badge sb-solid">7.5</span></td>
+              </tr>
+              <!-- Nov 2025 -->
+              <tr>
+                <td>Nov 2025</td>
+                <td style="border-right:1px solid #e4e7ec;">3,640</td>
+                <td><span class="metric-status ms-watch">434 ↓</span></td>
+                <td><span class="metric-status ms-watch">48 ↓</span></td>
+                <td><span class="metric-status ms-watch">16 ↓</span></td>
+                <td style="border-right:1px solid #e4e7ec;"><span class="metric-status ms-ok">52,526 ✓</span></td>
+                <td><span class="metric-status ms-ok">681 ✓</span></td>
+                <td><span class="metric-status ms-watch">4.8s ↓</span></td>
+                <td>N/A</td>
+                <td><span class="metric-status ms-watch">6 ↓</span></td>
+                <td style="border-right:1px solid #e4e7ec;"><span class="metric-status ms-watch">26 ↓</span></td>
+                <td><span class="metric-status ms-strong">12.3% ↑</span></td>
+                <td><span class="metric-status ms-ok">84 ✓</span></td>
+                <td style="border-right:1px solid #e4e7ec;"><span class="metric-status ms-ok">7.0% ↓</span></td>
+                <td><span class="score-badge sb-solid">8.0</span></td>
+              </tr>
+              <!-- Dec 2025 -->
               <tr>
                 <td>Dec 2025</td>
-                <td>3,643</td>
-                <td><span class="metric-status ms-ok">897 ✓</span></td>
+                <td style="border-right:1px solid #e4e7ec;">3,643</td>
+                <td><span class="metric-status ms-watch">897 ✓</span></td>
                 <td><span class="metric-status ms-watch">27 ↓</span></td>
-                <td><span class="metric-status ms-ok">91,774 ✓</span></td>
+                <td><span class="metric-status ms-watch">25 ↓</span></td>
+                <td style="border-right:1px solid #e4e7ec;"><span class="metric-status ms-ok">91,774 ✓</span></td>
+                <td><span class="metric-status ms-ok">801 ✓</span></td>
+                <td><span class="metric-status ms-watch">4.8s ↓</span></td>
+                <td>N/A</td>
                 <td><span class="metric-status ms-watch">4 ↓</span></td>
+                <td style="border-right:1px solid #e4e7ec;"><span class="metric-status ms-ok">36 ↓</span></td>
                 <td><span class="metric-status ms-ok">6.0% ✓</span></td>
-                <td>48</td>
-                <td><span class="metric-status ms-ok">3.4% ✓</span></td>
+                <td><span class="metric-status ms-ok">48 ✓</span></td>
+                <td style="border-right:1px solid #e4e7ec;"><span class="metric-status ms-watch">3.4% ↓</span></td>
                 <td><span class="score-badge sb-building">7.4</span></td>
               </tr>
+              <!-- Jan 2026 -->
               <tr>
                 <td>Jan 2026</td>
-                <td>3,652</td>
+                <td style="border-right:1px solid #e4e7ec;">3,652</td>
                 <td><span class="metric-status ms-watch">543 ↓</span></td>
                 <td><span class="metric-status ms-watch">42 ↓</span></td>
-                <td><span class="metric-status ms-watch">48,730 ↓</span></td>
-                <td><span class="metric-status ms-ok">36 ✓</span></td>
+                <td><span class="metric-status ms-ok">103 ✓</span></td>
+                <td style="border-right:1px solid #e4e7ec;"><span class="metric-status ms-watch">48,730 ✓</span></td>
+                <td><span class="metric-status ms-ok">767 ✓</span></td>
+                <td><span class="metric-status ms-watch">4.3s ↓</span></td>
+                <td><span class="metric-status ms-ok">61.3% ✓</span></td>
+                <td><span class="metric-status ms-ok">36 ↓</span></td>
+                <td style="border-right:1px solid #e4e7ec;"><span class="metric-status ms-watch">19 ↓</span></td>
                 <td><span class="metric-status ms-watch">2.7% ↓</span></td>
-                <td>21</td>
-                <td><span class="metric-status ms-ok">5.5% ✓</span></td>
+                <td><span class="metric-status ms-watch">21 ↓</span></td>
+                <td style="border-right:1px solid #e4e7ec;"><span class="metric-status ms-ok">5.5% ↓</span></td>
                 <td><span class="score-badge sb-building">7.3</span></td>
               </tr>
+              <!-- Feb 2026 -->
               <tr>
                 <td>Feb 2026</td>
-                <td>3,655</td>
+                <td style="border-right:1px solid #e4e7ec;">3,655</td>
                 <td><span class="metric-status ms-watch">514 ↓</span></td>
                 <td><span class="metric-status ms-watch">31 ↓</span></td>
-                <td><span class="metric-status ms-ok">53,247 ✓</span></td>
+                <td><span class="metric-status ms-watch">25 ↓</span></td>
+                <td style="border-right:1px solid #e4e7ec;"><span class="metric-status ms-ok">53,247 ✓</span></td>
+                <td><span class="metric-status ms-ok">584 ✓</span></td>
+                <td><span class="metric-status ms-watch">4.3s ↓</span></td>
+                <td><span class="metric-status ms-watch">47.8% ↓</span></td>
                 <td><span class="metric-status ms-watch">3 ↓</span></td>
+                <td style="border-right:1px solid #e4e7ec;"><span class="metric-status ms-ok">24 ↓</span></td>
                 <td><span class="metric-status ms-ok">4.1% ✓</span></td>
-                <td>24</td>
-                <td><span class="metric-status ms-ok">5.3% ✓</span></td>
+                <td><span class="metric-status ms-watch">24 ↓</span></td>
+                <td style="border-right:1px solid #e4e7ec;"><span class="metric-status ms-ok">5.3% ↓</span></td>
                 <td><span class="score-badge sb-building">7.2</span></td>
               </tr>
             </tbody>
           </table>
+          <!-- Legend -->
+          <div style="display:flex;gap:16px;padding:10px 18px;border-top:1px solid var(--border);background:#fafbfc;flex-wrap:wrap;">
+            <span style="font-size:10px;color:var(--text-muted);display:flex;align-items:center;gap:5px;"><span class="metric-status ms-strong" style="font-size:9px;">↑ Strong</span> Exceeds target range</span>
+            <span style="font-size:10px;color:var(--text-muted);display:flex;align-items:center;gap:5px;"><span class="metric-status ms-ok" style="font-size:9px;">✓ On Track</span> Within target range</span>
+            <span style="font-size:10px;color:var(--text-muted);display:flex;align-items:center;gap:5px;"><span class="metric-status ms-watch" style="font-size:9px;">↓ Watch</span> Below target range</span>
+          </div>
           <div class="perf-callout">
             <div class="perf-callout-icon">
               <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
             </div>
-            <div><strong>Strategic note:</strong> Saves are critically below floor (target: 80–400). Follower growth is flat across all 3 months — TOFU content volume and reach need to increase. CTR and PCR are consistently healthy. <strong>Priority action:</strong> Increase saveable MOFU content + push TOFU reach with higher-volume B-roll and format education reels. Full data in Google Sheets.</div>
+            <div><strong>Strategic note:</strong> Saves are critically below floor (target: 80–400) across all 5 months. New followers and shares are consistently under target — TOFU content volume and reach need to increase. Watch time is below the 6s floor every month. CTR and PCR are consistently healthy. <strong>Priority actions:</strong> (1) Increase saveable MOFU content, (2) Push TOFU reach with higher-volume B-roll and format education reels, (3) Optimize reel hooks to extend watch time past 6s. Full data in Google Sheets.</div>
           </div>
         </div>
       </div>
