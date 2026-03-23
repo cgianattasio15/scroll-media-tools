@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Up and Running — Account Homebase | Scroll Media</title>
+  <link rel="icon" type="image/svg+xml" href="../../scroll-favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root { --shadow:#151516; --azure:#0c3387; --lucid:#cbe9ff; --highlight:#e2ed7a; --porcelain:#f2f3f4; --ghost:#fafdff; --sidebar-w:240px; --header-h:64px; }
+    html { scroll-behavior: smooth; }
+    body { font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif; background:var(--ghost); color:var(--shadow); font-size:15px; line-height:1.6; }
+    #pw-gate { position:fixed;inset:0;background:var(--shadow);display:flex;align-items:center;justify-content:center;z-index:9999;flex-direction:column;gap:16px; }
+    #pw-gate img { width:140px;margin-bottom:8px; }
+    #pw-gate h2 { color:#fff;font-size:18px;font-weight:700; }
+    #pw-gate p { color:rgba(255,255,255,0.5);font-size:13px; }
+    #pw-gate input { width:280px;padding:12px 16px;border-radius:8px;border:1.5px solid rgba(255,255,255,0.15);background:rgba(255,255,255,0.07);color:#fff;font-size:15px;outline:none;text-align:center; }
+    #pw-gate input:focus { border-color:var(--azure); }
+    #pw-gate button { width:280px;padding:12px;background:var(--azure);color:#fff;border:none;border-radius:8px;font-size:15px;font-weight:700;cursor:pointer; }
+    #pw-error { color:#ff6b6b;font-size:13px;display:none; }
+    .pw-hidden { display:none !important; }
+    .top-header { position:fixed;top:0;left:0;right:0;height:var(--header-h);background:var(--shadow);display:flex;align-items:center;justify-content:space-between;padding:0 24px;z-index:100;border-bottom:1px solid rgba(255,255,255,0.08); }
+    .top-header-left { display:flex;align-items:center;gap:16px; }
+    .top-header-left img { height:28px; }
+    .top-header-divider { width:1px;height:20px;background:rgba(255,255,255,0.2); }
+    .top-header-client { color:rgba(255,255,255,0.7);font-size:13px;font-weight:500; }
+    .top-header-right { display:flex;align-items:center;gap:12px; }
+    .header-badge { padding:4px 10px;border-radius:20px;font-size:11px;font-weight:700;letter-spacing:0.5px;text-transform:uppercase; }
+    .badge-stage { background:rgba(203,233,255,0.15);color:var(--lucid); }
+    .badge-active { background:rgba(226,237,122,0.15);color:var(--highlight); }
+    .header-link { color:rgba(255,255,255,0.5);font-size:12px;text-decoration:none; }
+    .header-link:hover { color:#fff; }
+    .layout { display:flex;padding-top:var(--header-h);min-height:100vh; }
+    .sidebar { width:var(--sidebar-w);position:fixed;top:var(--header-h);left:0;bottom:0;overflow-y:auto;background:#fff;border-right:1px solid #e8eaed;padding:24px 0;z-index:50; }
+    .sidebar-section-label { padding:0 20px 8px;font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#9aa0a6; }
+    .sidebar-nav { list-style:none;margin-bottom:24px; }
+    .sidebar-nav li a { display:flex;align-items:center;gap:10px;padding:9px 20px;text-decoration:none;color:#5f6368;font-size:13px;font-weight:500;border-left:3px solid transparent;transition:all 0.15s; }
+    .sidebar-nav li a:hover,.sidebar-nav li a.active { color:var(--azure);background:rgba(12,51,135,0.05);border-left-color:var(--azure); }
+    .sidebar-nav li a .nav-icon { width:16px;height:16px;opacity:0.6;flex-shrink:0; }
+    .main { margin-left:var(--sidebar-w);flex:1;padding:40px 48px;max-width:960px; }
+    .section { margin-bottom:56px; }
+    .section-header { display:flex;align-items:center;gap:12px;margin-bottom:20px;padding-bottom:16px;border-bottom:2px solid var(--porcelain); }
+    .section-icon { width:36px;height:36px;background:var(--azure);border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0; }
+    .section-icon svg { width:18px;height:18px;fill:#fff; }
+    .section-title { font-size:18px;font-weight:800;color:var(--shadow);letter-spacing:-0.3px; }
+    .section-subtitle { font-size:13px;color:#9aa0a6;margin-top:2px; }
+    .client-hero { background:var(--shadow);border-radius:16px;padding:32px 36px;margin-bottom:40px;display:flex;align-items:center;gap:28px;position:relative;overflow:hidden; }
+    .client-hero::before { content:'';position:absolute;top:0;right:0;width:300px;height:100%;background:linear-gradient(135deg,transparent,rgba(12,51,135,0.3));pointer-events:none; }
+    .client-logo-wrap { width:80px;height:80px;background:rgba(255,255,255,0.08);border-radius:12px;display:flex;align-items:center;justify-content:center;flex-shrink:0; }
+    .client-hero-info { flex:1; }
+    .client-hero-name { font-size:26px;font-weight:900;color:#fff;letter-spacing:-0.5px;margin-bottom:4px; }
+    .client-hero-sub { font-size:13px;color:rgba(255,255,255,0.55);margin-bottom:14px; }
+    .client-hero-tags { display:flex;flex-wrap:wrap;gap:8px; }
+    .hero-tag { padding:4px 12px;border-radius:20px;font-size:11px;font-weight:600; }
+    .hero-tag-blue { background:rgba(203,233,255,0.15);color:var(--lucid); }
+    .hero-tag-lime { background:rgba(226,237,122,0.15);color:var(--highlight); }
+    .hero-tag-white { background:rgba(255,255,255,0.1);color:rgba(255,255,255,0.7); }
+    .client-hero-links { display:flex;flex-direction:column;gap:8px;align-items:flex-end; }
+    .hero-link-btn { display:inline-flex;align-items:center;gap:6px;padding:7px 14px;background:rgba(255,255,255,0.1);border-radius:8px;color:rgba(255,255,255,0.8);text-decoration:none;font-size:12px;font-weight:600;white-space:nowrap; }
+    .hero-link-btn:hover { background:rgba(255,255,255,0.18); }
+    .info-grid { display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:20px; }
+    .info-card { background:#fff;border:1px solid #e8eaed;border-radius:10px;padding:16px 18px; }
+    .info-card-label { font-size:10px;font-weight:700;letter-spacing:0.8px;text-transform:uppercase;color:#9aa0a6;margin-bottom:4px; }
+    .info-card-value { font-size:14px;font-weight:700;color:var(--shadow); }
+    .strategy-block { background:#fff;border:1px solid #e8eaed;border-radius:12px;padding:24px 28px; }
+    .strategy-block p { font-size:14px;line-height:1.75;color:#3c4043; }
+    .strategy-block p+p { margin-top:14px; }
+    .funnel-grid { display:grid;grid-template-columns:repeat(3,1fr);gap:16px; }
+    .funnel-card { border-radius:12px;overflow:hidden;border:1px solid #e8eaed;background:#fff; }
+    .funnel-card-header { padding:14px 18px;display:flex;align-items:center;gap:10px; }
+    .funnel-card-header.tofu { background:linear-gradient(135deg,#e8f4fd,#d0e8f8); }
+    .funnel-card-header.mofu { background:linear-gradient(135deg,#e8f0fe,#d2e3fc); }
+    .funnel-card-header.bofu { background:linear-gradient(135deg,#e6f4ea,#ceead6); }
+    .funnel-stage-dot { width:10px;height:10px;border-radius:50%;flex-shrink:0; }
+    .tofu .funnel-stage-dot { background:#1a73e8; }
+    .mofu .funnel-stage-dot { background:#4285f4; }
+    .bofu .funnel-stage-dot { background:#34a853; }
+    .funnel-stage-label { font-size:10px;font-weight:800;letter-spacing:1px;text-transform:uppercase; }
+    .tofu .funnel-stage-label { color:#1a73e8; }
+    .mofu .funnel-stage-label { color:#4285f4; }
+    .bofu .funnel-stage-label { color:#34a853; }
+    .funnel-mix-badge { margin-left:auto;padding:2px 8px;border-radius:10px;font-size:11px;font-weight:700; }
+    .tofu .funnel-mix-badge { background:rgba(26,115,232,0.1);color:#1a73e8; }
+    .mofu .funnel-mix-badge { background:rgba(66,133,244,0.1);color:#4285f4; }
+    .bofu .funnel-mix-badge { background:rgba(52,168,83,0.1);color:#34a853; }
+    .funnel-card-body { padding:18px; }
+    .funnel-goal-title { font-size:14px;font-weight:800;color:var(--shadow);margin-bottom:8px;line-height:1.3; }
+    .funnel-goal-desc { font-size:12.5px;color:#5f6368;line-height:1.65; }
+    .funnel-meta-label { font-size:10px;font-weight:700;letter-spacing:0.7px;text-transform:uppercase;color:#9aa0a6;margin-bottom:6px;margin-top:12px; }
+    .kpi-tags { display:flex;flex-wrap:wrap;gap:5px; }
+    .kpi-tag { padding:3px 8px;background:var(--porcelain);border-radius:6px;font-size:11px;font-weight:600;color:#5f6368; }
+    .format-list { font-size:12px;color:#5f6368;line-height:1.7; }
+    .ivp-grid { display:grid;grid-template-columns:1fr 1fr;gap:16px; }
+    .ivp-card { background:#fff;border:1px solid #e8eaed;border-radius:12px;padding:20px 22px; }
+    .ivp-card.full-width { grid-column:1/-1; }
+    .ivp-card-title { font-size:12px;font-weight:800;letter-spacing:0.5px;text-transform:uppercase;color:var(--azure);margin-bottom:10px; }
+    .ivp-card p,.ivp-card li { font-size:13px;color:#3c4043;line-height:1.7; }
+    .ivp-card ul { padding-left:16px; }
+    .ivp-card ul li { margin-bottom:4px; }
+    .counter-pos-grid { display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:4px; }
+    .counter-card { background:var(--porcelain);border-radius:8px;padding:14px 16px; }
+    .counter-card-label { font-size:10px;font-weight:800;letter-spacing:0.5px;text-transform:uppercase;color:#9aa0a6;margin-bottom:8px; }
+    .counter-card p { font-size:12px;color:#3c4043;line-height:1.6; }
+    .pillars-grid { display:grid;grid-template-columns:repeat(2,1fr);gap:14px; }
+    .pillar-card { background:#fff;border:1px solid #e8eaed;border-radius:12px;padding:20px 22px;border-top:3px solid var(--azure); }
+    .pillar-number { font-size:10px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:#9aa0a6;margin-bottom:4px; }
+    .pillar-name { font-size:15px;font-weight:800;color:var(--shadow);margin-bottom:4px; }
+    .pillar-intent { font-size:11px;font-weight:600;color:var(--azure);margin-bottom:10px; }
+    .pillar-desc { font-size:13px;color:#5f6368;line-height:1.65;margin-bottom:12px; }
+    .pillar-goal-tag { display:inline-block;padding:4px 10px;background:rgba(12,51,135,0.07);border-radius:6px;font-size:11px;font-weight:600;color:var(--azure); }
+    .schedule-grid { display:grid;grid-template-columns:1fr 1fr;gap:16px; }
+    .schedule-card { background:#fff;border:1px solid #e8eaed;border-radius:12px;overflow:hidden; }
+    .schedule-card-header { background:var(--shadow);padding:12px 18px;display:flex;align-items:center;justify-content:space-between; }
+    .schedule-card-title { font-size:12px;font-weight:800;letter-spacing:0.5px;text-transform:uppercase;color:rgba(255,255,255,0.7); }
+    .schedule-day-row { display:flex;align-items:flex-start;gap:14px;padding:14px 18px;border-bottom:1px solid #f1f3f4; }
+    .schedule-day-row:last-child { border-bottom:none; }
+    .schedule-day-label { font-size:12px;font-weight:800;color:var(--azure);min-width:72px;flex-shrink:0;padding-top:1px; }
+    .schedule-day-content { flex:1; }
+    .schedule-formats { font-size:12px;font-weight:600;color:var(--shadow);margin-bottom:4px; }
+    .schedule-ideas { font-size:12px;color:#9aa0a6;line-height:1.5; }
+    .perf-table-wrap { background:#fff;border:1px solid #e8eaed;border-radius:12px;overflow:hidden; }
+    .perf-table { width:100%;border-collapse:collapse;font-size:13px; }
+    .perf-table thead tr { background:var(--shadow); }
+    .perf-table thead th { padding:11px 14px;text-align:left;font-size:10px;font-weight:700;letter-spacing:0.7px;text-transform:uppercase;color:rgba(255,255,255,0.6); }
+    .perf-table tbody tr { border-bottom:1px solid #f1f3f4; }
+    .perf-table tbody tr:last-child { border-bottom:none; }
+    .perf-table tbody tr:hover { background:#fafbfc; }
+    .perf-table tbody td { padding:11px 14px;color:#3c4043; }
+    .perf-table tbody td:first-child { font-weight:700;color:var(--shadow); }
+    .score-badge { display:inline-block;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700; }
+    .score-building { background:#fef7e0;color:#b06000; }
+    .score-solid { background:#e6f4ea;color:#137333; }
+    .score-strong { background:#e8f0fe;color:#1a73e8; }
+    .perf-note { padding:12px 18px;background:rgba(12,51,135,0.04);border-top:1px solid #e8eaed;font-size:12px;color:#5f6368; }
+    .perf-note strong { color:var(--azure); }
+    .links-grid { display:grid;grid-template-columns:repeat(3,1fr);gap:12px; }
+    .link-card { background:#fff;border:1px solid #e8eaed;border-radius:10px;padding:16px 18px;text-decoration:none;transition:border-color 0.2s,box-shadow 0.2s;display:block; }
+    .link-card:hover { border-color:var(--azure);box-shadow:0 2px 8px rgba(12,51,135,0.1); }
+    .link-card-label { font-size:10px;font-weight:700;letter-spacing:0.8px;text-transform:uppercase;color:#9aa0a6;margin-bottom:4px; }
+    .link-card-value { font-size:13px;font-weight:700;color:var(--azure); }
+    .link-card-sub { font-size:11px;color:#9aa0a6;margin-top:2px; }
+    .last-updated { text-align:center;font-size:12px;color:#bdc1c6;padding:24px 0 40px; }
+    ::-webkit-scrollbar { width:6px; } ::-webkit-scrollbar-thumb { background:#dadce0;border-radius:3px; }
+    @media (max-width:900px) { .sidebar{display:none;} .main{margin-left:0;padding:24px 20px;} .funnel-grid,.ivp-grid,.pillars-grid,.schedule-grid,.links-grid,.info-grid,.counter-pos-grid{grid-template-columns:1fr;} .client-hero{flex-direction:column;} }
+  </style>
+</head>
+<body>
+<div id="pw-gate">
+  <img src="../../scroll-media-logo.svg" alt="Scroll Media" />
+  <h2>Account Homebase</h2>
+  <p>Scroll Media internal access only.</p>
+  <input type="password" id="pwInput" placeholder="Enter password" autocomplete="off" />
+  <button onclick="checkPassword()">Access Homebase</button>
+  <span id="pw-error">Incorrect password. Try again.</span>
+</div>
+<div id="app" class="pw-hidden">
+  <header class="top-header">
+    <div class="top-header-left">
+      <a href="../../index.html"><img src="../../scroll-media-logo.svg" alt="Scroll Media" /></a>
+      <div class="top-header-divider"></div>
+      <span class="top-header-client">Up and Running — Account Homebase</span>
+    </div>
+    <div class="top-header-right">
+      <span class="header-badge badge-stage">Spark Stage</span>
+      <span class="header-badge badge-active">Active</span>
+      <a href="../../index.html" class="header-link">← Dashboard</a>
+    </div>
+  </header>
+  <div class="layout">
+    <nav class="sidebar">
+      <p class="sidebar-section-label">Account</p>
+      <ul class="sidebar-nav">
+        <li><a href="#overview" class="active"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>Overview</a></li>
+        <li><a href="#strategy"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>Strategic Direction</a></li>
+        <li><a href="#funnel"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/></svg>Content Strategy Map</a></li>
+        <li><a href="#ivp"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>IVP Profile</a></li>
+        <li><a href="#pillars"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="6" height="18"/><rect x="9" y="3" width="6" height="18"/><rect x="16" y="3" width="6" height="18"/></svg>Content Pillars</a></li>
+        <li><a href="#schedule"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>Posting Schedule</a></li>
+        <li><a href="#performance"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>Performance Snapshot</a></li>
+        <li><a href="#links"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>Key Links</a></li>
+      </ul>
+    </nav>
+    <main class="main">
+      <div class="client-hero" id="overview">
+        <div class="client-logo-wrap"><span style="font-size:28px;">👟</span></div>
+        <div class="client-hero-info">
+          <div class="client-hero-name">Up and Running</div>
+          <div class="client-hero-sub">Specialty Running Retail · Performance Running Gear & Expert Shoe Fittings · Dayton, OH</div>
+          <div class="client-hero-tags">
+            <span class="hero-tag hero-tag-blue">Spark Stage</span>
+            <span class="hero-tag hero-tag-lime">Active Client</span>
+            <span class="hero-tag hero-tag-white">Since Oct 2025</span>
+            <span class="hero-tag hero-tag-white">~2,307 Followers</span>
+            <span class="hero-tag hero-tag-white">AM: Rachel</span>
+          </div>
+        </div>
+        <div class="client-hero-links">
+          <a href="https://www.instagram.com/upandrunningoh/" target="_blank" class="hero-link-btn"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>@upandrunningoh</a>
+          <a href="https://shop.upandrunningindayton.com/" target="_blank" class="hero-link-btn"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>shop.upandrunningindayton.com</a>
+        </div>
+      </div>
+      <div class="info-grid" style="margin-bottom:48px;">
+        <div class="info-card"><div class="info-card-label">Niche</div><div class="info-card-value">Specialty Running Retail</div></div>
+        <div class="info-card"><div class="info-card-label">Subniche</div><div class="info-card-value">Performance Running Gear & Expert Shoe Fittings</div></div>
+        <div class="info-card"><div class="info-card-label">Maturity Stage</div><div class="info-card-value">Spark</div></div>
+        <div class="info-card"><div class="info-card-label">Start Date</div><div class="info-card-value">October 2025</div></div>
+        <div class="info-card"><div class="info-card-label">Current Phase</div><div class="info-card-value">No Accordion</div></div>
+        <div class="info-card"><div class="info-card-label">Primary CTA</div><div class="info-card-value">Shop E-Comm + In-Store Fit Booking</div></div>
+      </div>
+      <div class="section" id="strategy">
+        <div class="section-header"><div class="section-icon"><svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg></div><div><div class="section-title">Strategic Direction</div><div class="section-subtitle">Account narrative and Instagram's role for this client</div></div></div>
+        <div class="strategy-block">
+          <p>Up and Running is a Dayton, Ohio-based specialty running and fitness retail store with two locations (Dayton + Troy). The brand's core differentiator is the expert shoe fitting process — staff trained in gait mechanics, arch type, and foot biomechanics who recommend the right shoe regardless of brand. This is the opposite of the self-service shoe wall at Dick's or the guesswork of buying online.</p>
+          <p>The business serves a wide mover audience — competitive runners, casual walkers, on-your-feet workers, and returning movers — but the unifying thread is that every customer benefits from expert guidance. The fitting process is the product. The store's community programming (run groups, walk groups, events) creates a loyalty layer that no big-box retailer can replicate.</p>
+          <p>Instagram's three-part job: <strong>(1)</strong> build brand awareness and grow new audience among every type of mover in the Dayton/Ohio market — position Up and Running as the go-to movement resource, not just a shoe store; <strong>(2)</strong> build trust through expertise — demonstrate the fitting process, share gear guides, injury prevention content, and community moments that make the brand feel like a trusted local partner; <strong>(3)</strong> drive e-commerce shop traffic and in-store fit booking appointments through specific product CTAs and direct booking links.</p>
+          <p>At <strong>Spark stage with ~2,307 followers</strong>, this is an early-stage account focused on establishing brand identity and building the content engine. Feb 2026 showed strong momentum (1,772 avg reach/day, 32 shares, 8.3 score). The strategic priority is growing the local audience while establishing the expert fitting process as the primary brand differentiator through consistent educational content.</p>
+        </div>
+      </div>
+      <div class="section" id="funnel">
+        <div class="section-header"><div class="section-icon"><svg viewBox="0 0 24 24"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/></svg></div><div><div class="section-title">Content Strategy Map</div><div class="section-subtitle">The Customer Journey — TOFU / MOFU / BOFU goals, KPIs, and content mix</div></div></div>
+        <div class="funnel-grid">
+          <div class="funnel-card">
+            <div class="funnel-card-header tofu"><span class="funnel-stage-dot"></span><span class="funnel-stage-label">Top of Funnel</span><span class="funnel-mix-badge">50%</span></div>
+            <div class="funnel-card-body">
+              <div class="funnel-goal-title">Build Regional Brand Presence & Grow Wellness Partnership Visibility</div>
+              <div class="funnel-goal-desc">Position Up and Running as the go-to movement resource for every mover in the Dayton/Ohio market — not just runners. Reach new followers through community events, run group content, wellness partnerships, and local movement culture. Every TOFU post should make someone in Dayton think "I need to check this place out." Grow brand presence beyond the existing customer base into the broader active community.</div>
+              <div class="funnel-meta-label">KPIs</div>
+              <div class="kpi-tags"><span class="kpi-tag">Views</span><span class="kpi-tag">Reach</span><span class="kpi-tag">New Followers</span><span class="kpi-tag">Shares</span></div>
+              <div class="funnel-meta-label">Top Story Formats</div>
+              <div class="format-list">Event Recap · Run Group BTS · Wellness Partner Spotlight · Poll (movement type check)</div>
+              <div class="funnel-meta-label">Top Feed Formats</div>
+              <div class="format-list">Event Recap Reel · Community Spotlight · Trending Hook + Running Pivot · Run Group Feature · Local Wellness Partnership Reel</div>
+            </div>
+          </div>
+          <div class="funnel-card">
+            <div class="funnel-card-header mofu"><span class="funnel-stage-dot"></span><span class="funnel-stage-label">Middle of Funnel</span><span class="funnel-mix-badge">30%</span></div>
+            <div class="funnel-card-body">
+              <div class="funnel-goal-title">Build Trust Through Expertise & Improve Customer Retention</div>
+              <div class="funnel-goal-desc">Nurture followers who've discovered Up and Running but haven't visited or purchased yet. Demonstrate the fitting process expertise — what happens in a fitting, why it matters, what the difference is between a fitted shoe and a guessed shoe. Share gear guides, injury prevention content, and customer stories that make the brand feel like a trusted local partner. Deepen loyalty with current customers through value-led content that keeps them coming back.</div>
+              <div class="funnel-meta-label">KPIs</div>
+              <div class="kpi-tags"><span class="kpi-tag">Saves</span><span class="kpi-tag">Comments</span><span class="kpi-tag">Profile Visits</span><span class="kpi-tag">Avg Watch Time</span></div>
+              <div class="funnel-meta-label">Top Story Formats</div>
+              <div class="format-list">Shoe Fitting Tip · Gear Spotlight · Customer Story · Q&A / AMA · Educational Sequence</div>
+              <div class="funnel-meta-label">Top Feed Formats</div>
+              <div class="format-list">Shoe Fitting Process Reel · How-To Carousel · Myth-Busting Reel · Staff POV · Injury Prevention Guide · Customer Testimonial</div>
+            </div>
+          </div>
+          <div class="funnel-card">
+            <div class="funnel-card-header bofu"><span class="funnel-stage-dot"></span><span class="funnel-stage-label">Bottom of Funnel</span><span class="funnel-mix-badge">20%</span></div>
+            <div class="funnel-card-body">
+              <div class="funnel-goal-title">Drive E-Comm Shop Traffic & In-Store Fit Bookings</div>
+              <div class="funnel-goal-desc">Convert warm followers into online customers or in-store fitting appointments. Content should make the next step feel obvious and frictionless — whether that's clicking to shop a specific product or booking a fitting. Always value-led, never a hard sell. Feature specific products with direct shop links, seasonal picks, gift guides, and direct booking CTAs. Every BOFU post names a specific product or action and links to a specific destination.</div>
+              <div class="funnel-meta-label">KPIs</div>
+              <div class="kpi-tags"><span class="kpi-tag">Link Taps</span><span class="kpi-tag">CTR</span><span class="kpi-tag">PCR</span></div>
+              <div class="funnel-meta-label">Top Story Formats</div>
+              <div class="format-list">Shop Now CTA · Product Feature · Fit Booking Link Story · Seasonal Pick</div>
+              <div class="funnel-meta-label">Top Feed Formats</div>
+              <div class="format-list">Product Spotlight Reel · Seasonal Gear Guide · Gift Guide Carousel · "Book Your Fitting" CTA · Best Sellers Feature</div>
+            </div>
+          </div>
+        </div>
+        <div style="margin-top:14px;padding:12px 16px;background:rgba(12,51,135,0.05);border-radius:8px;font-size:12px;color:#5f6368;border-left:3px solid var(--azure);"><strong style="color:var(--azure);">Current Priority (March 2026):</strong> Spark stage — 2,307 followers. Feb 2026 was a strong month (1,772 avg reach/day, 32 shares, 8.3 score). Jan 2026 was a dip (166 reach/day, 7.4 score) — investigate what drove the Feb rebound. Primary focus: grow local audience through community + event content while establishing the fitting process as the brand's primary differentiator. Saves remain low — educational content must be a consistent weekly format.</div>
+      </div>
+      <div class="section" id="ivp">
+        <div class="section-header"><div class="section-icon"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg></div><div><div class="section-title">IVP Profile</div><div class="section-subtitle">Ideal Viewer / Prospect — who we're talking to and what they need</div></div></div>
+        <div class="ivp-grid">
+          <div class="ivp-card"><div class="ivp-card-title">Demographics</div><ul><li>Women 28–55, Dayton/Troy/Ohio market (primary)</li><li>Active lifestyle — running, walking, fitness, or on-your-feet work</li><li>Household income $50K–$120K</li><li>Community-oriented — values local businesses over big-box retail</li><li>Follows local fitness, wellness, and community content on Instagram</li></ul></div>
+          <div class="ivp-card"><div class="ivp-card-title">Psychographics</div><ul><li>Wants to feel supported in her movement journey — not just sold a shoe</li><li>Values expert guidance over self-service — overwhelmed by options without help</li><li>Loyal to local businesses that invest in the community</li><li>Motivated by community events, run groups, and shared experiences</li><li>Trusts word-of-mouth and staff expertise over brand marketing</li></ul></div>
+          <div class="ivp-card"><div class="ivp-card-title">Core Pain Points</div><ul><li><strong>Wrong shoe purchases</strong> — has bought shoes online or at big-box that didn't work, causing discomfort or injury</li><li><strong>Overwhelmed by options</strong> — too many brands, too many models, no trusted guide</li><li><strong>Doesn't know the fitting process exists</strong> — awareness gap is the #1 TOFU challenge</li><li><strong>Price justification</strong> — specialty running shoes cost more; needs to understand why the fitting is worth it</li></ul></div>
+          <div class="ivp-card"><div class="ivp-card-title">Dream Outcome</div><p><strong>Tangible:</strong> A shoe that fits perfectly, recommended by someone who actually understands her foot, gait, and activity level. Shoes she wears confidently without pain, blisters, or second-guessing. A go-to store she recommends to every person in her running group.</p><p style="margin-top:8px;"><strong>Emotional:</strong> Feels like she has a trusted expert in her corner. Part of a local movement community that supports and celebrates every level of mover. Proud to support a local business that genuinely cares about her experience.</p></div>
+          <div class="ivp-card full-width"><div class="ivp-card-title">Counter-Positioning</div><div class="counter-pos-grid"><div class="counter-card"><div class="counter-card-label">vs. Big-Box Retail (Dick's, Academy)</div><p>Expert fitting process vs. self-service shoe walls with no guidance. Staff trained in gait mechanics, arch type, and foot biomechanics. Brand-agnostic recommendations — the right shoe for you, not the shoe on sale.</p></div><div class="counter-card"><div class="counter-card-label">vs. DTC Brands (Hoka, Brooks, On Running online)</div><p>In-person fitting eliminates sizing guesswork and return cycles. Curates across all brands — not locked into one brand's catalog. Local community layer no DTC brand can replicate.</p></div><div class="counter-card"><div class="counter-card-label">vs. Amazon / Online Shopping</div><p>Eliminates the costly order-return-reorder cycle. Expert guidance available both in-store and through content. Community programming creates ongoing relationship, not a one-time transaction.</p></div><div class="counter-card"><div class="counter-card-label">Up and Running Advantage</div><p>Two Dayton-area locations + community-first operating model + expert fitting as the core product + active programming (run groups, walk groups, events) + staff who are movers themselves.</p></div></div></div>
+        </div>
+      </div>
+      <div class="section" id="pillars">
+        <div class="section-header"><div class="section-icon"><svg viewBox="0 0 24 24"><rect x="2" y="3" width="6" height="18"/><rect x="9" y="3" width="6" height="18"/><rect x="16" y="3" width="6" height="18"/></svg></div><div><div class="section-title">Content Pillars</div><div class="section-subtitle">The 4 core themes that every piece of content should align to</div></div></div>
+        <div class="pillars-grid">
+          <div class="pillar-card"><div class="pillar-number">Pillar 01</div><div class="pillar-name">Community & Movement</div><div class="pillar-intent">Awareness · Entertainment · Local Connection</div><div class="pillar-desc">Showcases the real people, events, run groups, and culture that make Up and Running more than a store. BTS footage, event recaps, run group highlights, wellness partnership spotlights, and community moments. The "this is what we're about" content that earns follows from local movers who've never heard of the brand. <strong>50% of content mix.</strong></div><span class="pillar-goal-tag">Build Regional Brand Presence & Grow Wellness Partnership Visibility</span></div>
+          <div class="pillar-card"><div class="pillar-number">Pillar 02</div><div class="pillar-name">Expert Education</div><div class="pillar-intent">Authority · Trust · Save-Worthy</div><div class="pillar-desc">Demonstrates Up and Running's expertise through valuable, actionable content — shoe fitting tips, gear guides, injury prevention, gait mechanics explained simply, and "what to look for in a running shoe" content. This is the save-driver and the primary trust-building pillar. Makes the IVP feel like she has an expert in her corner before she ever walks in the door. <strong>30% of content mix.</strong></div><span class="pillar-goal-tag">Build Trust Through Expertise & Improve Customer Retention</span></div>
+          <div class="pillar-card"><div class="pillar-number">Pillar 03</div><div class="pillar-name">Proof & Community Trust</div><div class="pillar-intent">Social Proof · Engagement · Retention</div><div class="pillar-desc">Real customer stories, fitting experience recaps, before/after comfort outcomes, and staff spotlights. Shows what it actually looks and feels like to be an Up and Running customer. Builds social proof for the fitting process — the #1 objection is "I don't need a fitting, I just need shoes." This pillar dismantles that objection through real stories. Supports both MOFU trust-building and BOFU conversion.</div><span class="pillar-goal-tag">Build Trust Through Expertise & Improve Customer Retention</span></div>
+          <div class="pillar-card"><div class="pillar-number">Pillar 04</div><div class="pillar-name">Product & Shop</div><div class="pillar-intent">Conversion · Promotion · E-Comm Traffic</div><div class="pillar-desc">Showcases specific products, seasonal picks, gift guides, best sellers, and shop CTAs. Always value-led — never a hard sell. Features specific product names with direct links to the online shop. Seasonal relevance is key: spring running gear, winter traction, holiday gift guides. Every post in this pillar should include a specific product and a direct link to shop or book a fitting. <strong>20% of content mix.</strong></div><span class="pillar-goal-tag">Drive E-Comm Shop Traffic & In-Store Fit Bookings</span></div>
+        </div>
+      </div>
+      <div class="section" id="schedule">
+        <div class="section-header"><div class="section-icon"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></div><div><div class="section-title">Posting Schedule</div><div class="section-subtitle">Feed post days, story days, and recommended formats per day</div></div></div>
+        <div class="schedule-grid">
+          <div class="schedule-card">
+            <div class="schedule-card-header"><span class="schedule-card-title">Feed Posts</span><span style="font-size:11px;color:rgba(255,255,255,0.4);">Tue · Thu</span></div>
+            <div class="schedule-card-body">
+              <div class="schedule-day-row"><span class="schedule-day-label">Tuesday</span><div class="schedule-day-content"><div class="schedule-formats">Trending Reel · Event Recap · UGC Feature · Community Spotlight</div><div class="schedule-ideas">Community & Movement pillar — local events, run groups, wellness partnerships</div></div></div>
+              <div class="schedule-day-row"><span class="schedule-day-label">Thursday</span><div class="schedule-day-content"><div class="schedule-formats">Shoe Fitting Process Reel · How-To Carousel · Product Spotlight · Myth-Busting</div><div class="schedule-ideas">Expert Education or Product & Shop pillar — fitting expertise, gear guides, shop CTAs</div></div></div>
+            </div>
+          </div>
+          <div class="schedule-card">
+            <div class="schedule-card-header"><span class="schedule-card-title">Stories</span><span style="font-size:11px;color:rgba(255,255,255,0.4);">Mon · Wed · Fri</span></div>
+            <div class="schedule-card-body">
+              <div class="schedule-day-row"><span class="schedule-day-label">Monday</span><div class="schedule-day-content"><div class="schedule-formats">Inspo + Upcoming Events · Movement Poll</div><div class="schedule-ideas">Week preview, upcoming run group, engagement poll</div></div></div>
+              <div class="schedule-day-row"><span class="schedule-day-label">Wednesday</span><div class="schedule-day-content"><div class="schedule-formats">Product Promo · Gear Spotlight · Reshares</div><div class="schedule-ideas">Mid-week product push, customer reshares, fitting CTA</div></div></div>
+              <div class="schedule-day-row"><span class="schedule-day-label">Friday</span><div class="schedule-day-content"><div class="schedule-formats">Movement Tips · Swipe-Up to Shop</div><div class="schedule-ideas">Educational tip, weekend shop push, fitting booking link</div></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="section" id="performance">
+        <div class="section-header"><div class="section-icon"><svg viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></div><div><div class="section-title">Performance Snapshot</div><div class="section-subtitle">Last 4 months of key metrics — full data in Google Sheets</div></div></div>
+        <div class="perf-table-wrap">
+          <table class="perf-table">
+            <thead><tr><th>Month</th><th>Followers</th><th>Avg Reach/Day</th><th>New Followers</th><th>Views</th><th>Saves</th><th>Comments</th><th>Link Taps</th><th>CTR</th><th>PCR</th><th>Score</th></tr></thead>
+            <tbody>
+              <tr><td>Nov 2025</td><td>2,268</td><td>344</td><td>25</td><td>31,866</td><td>5</td><td>4</td><td>8</td><td>3.6%</td><td>11.4%</td><td><span class="score-badge score-building">7.7 ✔ Building</span></td></tr>
+              <tr><td>Dec 2025</td><td>2,281</td><td>890</td><td>26</td><td>56,942</td><td>1</td><td>10</td><td>15</td><td>5.3%</td><td>9.1%</td><td><span class="score-badge score-solid">8.3 ✔ Solid</span></td></tr>
+              <tr><td>Jan 2026</td><td>2,304</td><td>166</td><td>24</td><td>15,715</td><td>1</td><td>7</td><td>10</td><td>5.0%</td><td>12.0%</td><td><span class="score-badge score-building">7.4 ~ Progressing</span></td></tr>
+              <tr><td>Feb 2026</td><td>2,307</td><td>1,772</td><td>27</td><td>35,614</td><td>2</td><td>12</td><td>6</td><td>2.4%</td><td>10.8%</td><td><span class="score-badge score-solid">8.3 ✔ Solid</span></td></tr>
+            </tbody>
+          </table>
+          <div class="perf-note"><strong>Pattern to watch:</strong> Reach is volatile (166 → 1,772 Jan → Feb). Investigate what drove the Feb rebound — replicate that content type consistently. <strong>Primary gap:</strong> Saves are critically low (1–5/month) — educational content must be a non-negotiable weekly format. CTR and PCR are acceptable for Spark stage but need to grow as audience scales. Link taps dropped in Feb despite reach spike — BOFU content must stay sharp even in high-reach months.</div>
+        </div>
+      </div>
+      <div class="section" id="links">
+        <div class="section-header"><div class="section-icon"><svg viewBox="0 0 24 24"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg></div><div><div class="section-title">Key Links & Assets</div><div class="section-subtitle">Quick access to all client-facing and internal resources</div></div></div>
+        <div class="links-grid">
+          <a href="https://www.instagram.com/upandrunningoh/" target="_blank" class="link-card"><div class="link-card-label">Instagram Profile</div><div class="link-card-value">@upandrunningoh</div><div class="link-card-sub">instagram.com/upandrunningoh</div></a>
+          <a href="https://shop.upandrunningindayton.com/" target="_blank" class="link-card"><div class="link-card-label">Website / Shop</div><div class="link-card-value">shop.upandrunningindayton.com</div><div class="link-card-sub">E-comm + fitting booking destination</div></a>
+          <div class="link-card" style="cursor:default;"><div class="link-card-label">Primary CTA</div><div class="link-card-value" style="color:var(--shadow);">Shop E-Comm + Fit Booking</div><div class="link-card-sub">Both tracked as BOFU conversions</div></div>
+          <div class="link-card" style="cursor:default;"><div class="link-card-label">Link in Bio</div><div class="link-card-value" style="color:var(--shadow);">Linktree</div><div class="link-card-sub">Update as needed</div></div>
+          <div class="link-card" style="cursor:default;"><div class="link-card-label">Google Drive</div><div class="link-card-value" style="color:#9aa0a6;">Add link</div><div class="link-card-sub">Client asset folder</div></div>
+          <div class="link-card" style="cursor:default;"><div class="link-card-label">Account Manager</div><div class="link-card-value" style="color:var(--shadow);">Rachel</div><div class="link-card-sub">Update as needed</div></div>
+        </div>
+      </div>
+      <div class="last-updated">Last updated: March 2026 · Scroll Media Internal Use Only</div>
+    </main>
+  </div>
+</div>
+<script>
+  document.getElementById('pwInput').addEventListener('keydown', function(e) { if (e.key === 'Enter') checkPassword(); });
+  function checkPassword() {
+    if (document.getElementById('pwInput').value.trim() === 'scrollies') {
+      document.getElementById('pw-gate').style.display = 'none';
+      document.getElementById('app').classList.remove('pw-hidden');
+      localStorage.setItem('sm_homebase_auth', '1');
+    } else { document.getElementById('pw-error').style.display = 'block'; }
+  }
+  if (localStorage.getItem('sm_homebase_auth') === '1') { document.getElementById('pw-gate').style.display = 'none'; document.getElementById('app').classList.remove('pw-hidden'); }
+  const sectionIds = ['overview','strategy','funnel','ivp','pillars','schedule','performance','links'];
+  const navLinks = document.querySelectorAll('.sidebar-nav a');
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sectionIds.forEach(id => { const el = document.getElementById(id); if (el && window.scrollY >= el.offsetTop - 100) current = id; });
+    navLinks.forEach(link => { link.classList.remove('active'); if (link.getAttribute('href') === '#' + current) link.classList.add('active'); });
+  });
+</script>
+</body>
+</html>

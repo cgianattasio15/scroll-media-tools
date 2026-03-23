@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lane & Kate — Account Homebase | Scroll Media</title>
+  <link rel="icon" type="image/svg+xml" href="../../scroll-favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root { --shadow:#151516; --azure:#0c3387; --lucid:#cbe9ff; --highlight:#e2ed7a; --porcelain:#f2f3f4; --ghost:#fafdff; --sidebar-w:240px; --header-h:64px; }
+    html { scroll-behavior: smooth; }
+    body { font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif; background:var(--ghost); color:var(--shadow); font-size:15px; line-height:1.6; }
+    #pw-gate { position:fixed;inset:0;background:var(--shadow);display:flex;align-items:center;justify-content:center;z-index:9999;flex-direction:column;gap:16px; }
+    #pw-gate img { width:140px;margin-bottom:8px; }
+    #pw-gate h2 { color:#fff;font-size:18px;font-weight:700;letter-spacing:-0.3px; }
+    #pw-gate p { color:rgba(255,255,255,0.5);font-size:13px; }
+    #pw-gate input { width:280px;padding:12px 16px;border-radius:8px;border:1.5px solid rgba(255,255,255,0.15);background:rgba(255,255,255,0.07);color:#fff;font-size:15px;outline:none;text-align:center; }
+    #pw-gate input:focus { border-color:var(--azure); }
+    #pw-gate button { width:280px;padding:12px;background:var(--azure);color:#fff;border:none;border-radius:8px;font-size:15px;font-weight:700;cursor:pointer;transition:opacity 0.2s; }
+    #pw-gate button:hover { opacity:0.85; }
+    #pw-error { color:#ff6b6b;font-size:13px;display:none; }
+    .pw-hidden { display:none !important; }
+    .top-header { position:fixed;top:0;left:0;right:0;height:var(--header-h);background:var(--shadow);display:flex;align-items:center;justify-content:space-between;padding:0 24px;z-index:100;border-bottom:1px solid rgba(255,255,255,0.08); }
+    .top-header-left { display:flex;align-items:center;gap:16px; }
+    .top-header-left img { height:28px; }
+    .top-header-divider { width:1px;height:20px;background:rgba(255,255,255,0.2); }
+    .top-header-client { color:rgba(255,255,255,0.7);font-size:13px;font-weight:500; }
+    .top-header-right { display:flex;align-items:center;gap:12px; }
+    .header-badge { padding:4px 10px;border-radius:20px;font-size:11px;font-weight:700;letter-spacing:0.5px;text-transform:uppercase; }
+    .badge-stage { background:rgba(203,233,255,0.15);color:var(--lucid); }
+    .badge-active { background:rgba(226,237,122,0.15);color:var(--highlight); }
+    .header-link { color:rgba(255,255,255,0.5);font-size:12px;text-decoration:none;transition:color 0.2s; }
+    .header-link:hover { color:#fff; }
+    .layout { display:flex;padding-top:var(--header-h);min-height:100vh; }
+    .sidebar { width:var(--sidebar-w);position:fixed;top:var(--header-h);left:0;bottom:0;overflow-y:auto;background:#fff;border-right:1px solid #e8eaed;padding:24px 0;z-index:50; }
+    .sidebar-section-label { padding:0 20px 8px;font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#9aa0a6; }
+    .sidebar-nav { list-style:none;margin-bottom:24px; }
+    .sidebar-nav li a { display:flex;align-items:center;gap:10px;padding:9px 20px;text-decoration:none;color:#5f6368;font-size:13px;font-weight:500;border-left:3px solid transparent;transition:all 0.15s; }
+    .sidebar-nav li a:hover,.sidebar-nav li a.active { color:var(--azure);background:rgba(12,51,135,0.05);border-left-color:var(--azure); }
+    .sidebar-nav li a .nav-icon { width:16px;height:16px;opacity:0.6;flex-shrink:0; }
+    .sidebar-nav li a:hover .nav-icon,.sidebar-nav li a.active .nav-icon { opacity:1; }
+    .main { margin-left:var(--sidebar-w);flex:1;padding:40px 48px;max-width:960px; }
+    .section { margin-bottom:56px; }
+    .section-header { display:flex;align-items:center;gap:12px;margin-bottom:20px;padding-bottom:16px;border-bottom:2px solid var(--porcelain); }
+    .section-icon { width:36px;height:36px;background:var(--azure);border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0; }
+    .section-icon svg { width:18px;height:18px;fill:#fff; }
+    .section-title { font-size:18px;font-weight:800;color:var(--shadow);letter-spacing:-0.3px; }
+    .section-subtitle { font-size:13px;color:#9aa0a6;margin-top:2px; }
+    .client-hero { background:var(--shadow);border-radius:16px;padding:32px 36px;margin-bottom:40px;display:flex;align-items:center;gap:28px;position:relative;overflow:hidden; }
+    .client-hero::before { content:'';position:absolute;top:0;right:0;width:300px;height:100%;background:linear-gradient(135deg,transparent,rgba(12,51,135,0.3));pointer-events:none; }
+    .client-logo-wrap { width:80px;height:80px;background:rgba(255,255,255,0.08);border-radius:12px;display:flex;align-items:center;justify-content:center;flex-shrink:0;overflow:hidden; }
+    .client-logo-wrap img { width:60px;height:60px;object-fit:contain; }
+    .client-hero-info { flex:1; }
+    .client-hero-name { font-size:26px;font-weight:900;color:#fff;letter-spacing:-0.5px;margin-bottom:4px; }
+    .client-hero-sub { font-size:13px;color:rgba(255,255,255,0.55);margin-bottom:14px; }
+    .client-hero-tags { display:flex;flex-wrap:wrap;gap:8px; }
+    .hero-tag { padding:4px 12px;border-radius:20px;font-size:11px;font-weight:600;letter-spacing:0.3px; }
+    .hero-tag-blue { background:rgba(203,233,255,0.15);color:var(--lucid); }
+    .hero-tag-lime { background:rgba(226,237,122,0.15);color:var(--highlight); }
+    .hero-tag-white { background:rgba(255,255,255,0.1);color:rgba(255,255,255,0.7); }
+    .client-hero-links { display:flex;flex-direction:column;gap:8px;align-items:flex-end; }
+    .hero-link-btn { display:inline-flex;align-items:center;gap:6px;padding:7px 14px;background:rgba(255,255,255,0.1);border-radius:8px;color:rgba(255,255,255,0.8);text-decoration:none;font-size:12px;font-weight:600;transition:background 0.2s;white-space:nowrap; }
+    .hero-link-btn:hover { background:rgba(255,255,255,0.18); }
+    .info-grid { display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:20px; }
+    .info-card { background:#fff;border:1px solid #e8eaed;border-radius:10px;padding:16px 18px; }
+    .info-card-label { font-size:10px;font-weight:700;letter-spacing:0.8px;text-transform:uppercase;color:#9aa0a6;margin-bottom:4px; }
+    .info-card-value { font-size:14px;font-weight:700;color:var(--shadow); }
+    .strategy-block { background:#fff;border:1px solid #e8eaed;border-radius:12px;padding:24px 28px; }
+    .strategy-block p { font-size:14px;line-height:1.75;color:#3c4043; }
+    .strategy-block p+p { margin-top:14px; }
+    .funnel-grid { display:grid;grid-template-columns:repeat(3,1fr);gap:16px; }
+    .funnel-card { border-radius:12px;overflow:hidden;border:1px solid #e8eaed;background:#fff; }
+    .funnel-card-header { padding:14px 18px;display:flex;align-items:center;gap:10px; }
+    .funnel-card-header.tofu { background:linear-gradient(135deg,#e8f4fd,#d0e8f8); }
+    .funnel-card-header.mofu { background:linear-gradient(135deg,#e8f0fe,#d2e3fc); }
+    .funnel-card-header.bofu { background:linear-gradient(135deg,#e6f4ea,#ceead6); }
+    .funnel-stage-dot { width:10px;height:10px;border-radius:50%;flex-shrink:0; }
+    .tofu .funnel-stage-dot { background:#1a73e8; }
+    .mofu .funnel-stage-dot { background:#4285f4; }
+    .bofu .funnel-stage-dot { background:#34a853; }
+    .funnel-stage-label { font-size:10px;font-weight:800;letter-spacing:1px;text-transform:uppercase; }
+    .tofu .funnel-stage-label { color:#1a73e8; }
+    .mofu .funnel-stage-label { color:#4285f4; }
+    .bofu .funnel-stage-label { color:#34a853; }
+    .funnel-mix-badge { margin-left:auto;padding:2px 8px;border-radius:10px;font-size:11px;font-weight:700; }
+    .tofu .funnel-mix-badge { background:rgba(26,115,232,0.1);color:#1a73e8; }
+    .mofu .funnel-mix-badge { background:rgba(66,133,244,0.1);color:#4285f4; }
+    .bofu .funnel-mix-badge { background:rgba(52,168,83,0.1);color:#34a853; }
+    .funnel-card-body { padding:18px; }
+    .funnel-goal-title { font-size:14px;font-weight:800;color:var(--shadow);margin-bottom:8px;line-height:1.3; }
+    .funnel-goal-desc { font-size:12.5px;color:#5f6368;line-height:1.65;margin-bottom:14px; }
+    .funnel-meta-label { font-size:10px;font-weight:700;letter-spacing:0.7px;text-transform:uppercase;color:#9aa0a6;margin-bottom:6px;margin-top:12px; }
+    .kpi-tags { display:flex;flex-wrap:wrap;gap:5px; }
+    .kpi-tag { padding:3px 8px;background:var(--porcelain);border-radius:6px;font-size:11px;font-weight:600;color:#5f6368; }
+    .format-list { font-size:12px;color:#5f6368;line-height:1.7; }
+    .ivp-grid { display:grid;grid-template-columns:1fr 1fr;gap:16px; }
+    .ivp-card { background:#fff;border:1px solid #e8eaed;border-radius:12px;padding:20px 22px; }
+    .ivp-card.full-width { grid-column:1/-1; }
+    .ivp-card-title { font-size:12px;font-weight:800;letter-spacing:0.5px;text-transform:uppercase;color:var(--azure);margin-bottom:10px; }
+    .ivp-card p,.ivp-card li { font-size:13px;color:#3c4043;line-height:1.7; }
+    .ivp-card ul { padding-left:16px; }
+    .ivp-card ul li { margin-bottom:4px; }
+    .counter-pos-grid { display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:4px; }
+    .counter-card { background:var(--porcelain);border-radius:8px;padding:14px 16px; }
+    .counter-card-label { font-size:10px;font-weight:800;letter-spacing:0.5px;text-transform:uppercase;color:#9aa0a6;margin-bottom:8px; }
+    .counter-card p { font-size:12px;color:#3c4043;line-height:1.6; }
+    .pillars-grid { display:grid;grid-template-columns:repeat(2,1fr);gap:14px; }
+    .pillar-card { background:#fff;border:1px solid #e8eaed;border-radius:12px;padding:20px 22px;border-top:3px solid var(--azure); }
+    .pillar-number { font-size:10px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:#9aa0a6;margin-bottom:4px; }
+    .pillar-name { font-size:15px;font-weight:800;color:var(--shadow);margin-bottom:4px; }
+    .pillar-intent { font-size:11px;font-weight:600;color:var(--azure);margin-bottom:10px; }
+    .pillar-desc { font-size:13px;color:#5f6368;line-height:1.65;margin-bottom:12px; }
+    .pillar-goal-tag { display:inline-block;padding:4px 10px;background:rgba(12,51,135,0.07);border-radius:6px;font-size:11px;font-weight:600;color:var(--azure); }
+    .schedule-grid { display:grid;grid-template-columns:1fr 1fr;gap:16px; }
+    .schedule-card { background:#fff;border:1px solid #e8eaed;border-radius:12px;overflow:hidden; }
+    .schedule-card-header { background:var(--shadow);padding:12px 18px;display:flex;align-items:center;justify-content:space-between; }
+    .schedule-card-title { font-size:12px;font-weight:800;letter-spacing:0.5px;text-transform:uppercase;color:rgba(255,255,255,0.7); }
+    .schedule-day-row { display:flex;align-items:flex-start;gap:14px;padding:14px 18px;border-bottom:1px solid #f1f3f4; }
+    .schedule-day-row:last-child { border-bottom:none; }
+    .schedule-day-label { font-size:12px;font-weight:800;color:var(--azure);min-width:72px;flex-shrink:0;padding-top:1px; }
+    .schedule-day-content { flex:1; }
+    .schedule-formats { font-size:12px;font-weight:600;color:var(--shadow);margin-bottom:4px; }
+    .schedule-ideas { font-size:12px;color:#9aa0a6;line-height:1.5; }
+    .perf-table-wrap { background:#fff;border:1px solid #e8eaed;border-radius:12px;overflow:hidden; }
+    .perf-table { width:100%;border-collapse:collapse;font-size:13px; }
+    .perf-table thead tr { background:var(--shadow); }
+    .perf-table thead th { padding:11px 14px;text-align:left;font-size:10px;font-weight:700;letter-spacing:0.7px;text-transform:uppercase;color:rgba(255,255,255,0.6); }
+    .perf-table tbody tr { border-bottom:1px solid #f1f3f4; }
+    .perf-table tbody tr:last-child { border-bottom:none; }
+    .perf-table tbody tr:hover { background:#fafbfc; }
+    .perf-table tbody td { padding:11px 14px;color:#3c4043; }
+    .perf-table tbody td:first-child { font-weight:700;color:var(--shadow); }
+    .score-badge { display:inline-block;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700; }
+    .score-building { background:#fef7e0;color:#b06000; }
+    .score-solid { background:#e6f4ea;color:#137333; }
+    .score-strong { background:#e8f0fe;color:#1a73e8; }
+    .perf-note { padding:12px 18px;background:rgba(12,51,135,0.04);border-top:1px solid #e8eaed;font-size:12px;color:#5f6368; }
+    .perf-note strong { color:var(--azure); }
+    .links-grid { display:grid;grid-template-columns:repeat(3,1fr);gap:12px; }
+    .link-card { background:#fff;border:1px solid #e8eaed;border-radius:10px;padding:16px 18px;text-decoration:none;transition:border-color 0.2s,box-shadow 0.2s;display:block; }
+    .link-card:hover { border-color:var(--azure);box-shadow:0 2px 8px rgba(12,51,135,0.1); }
+    .link-card-label { font-size:10px;font-weight:700;letter-spacing:0.8px;text-transform:uppercase;color:#9aa0a6;margin-bottom:4px; }
+    .link-card-value { font-size:13px;font-weight:700;color:var(--azure); }
+    .link-card-sub { font-size:11px;color:#9aa0a6;margin-top:2px; }
+    .last-updated { text-align:center;font-size:12px;color:#bdc1c6;padding:24px 0 40px; }
+    ::-webkit-scrollbar { width:6px; }
+    ::-webkit-scrollbar-track { background:transparent; }
+    ::-webkit-scrollbar-thumb { background:#dadce0;border-radius:3px; }
+    @media (max-width:900px) { .sidebar{display:none;} .main{margin-left:0;padding:24px 20px;} .funnel-grid,.ivp-grid,.pillars-grid,.schedule-grid,.links-grid,.info-grid{grid-template-columns:1fr;} .counter-pos-grid{grid-template-columns:1fr;} .client-hero{flex-direction:column;align-items:flex-start;} }
+  </style>
+</head>
+<body>
+<div id="pw-gate">
+  <img src="../../scroll-media-logo.svg" alt="Scroll Media" />
+  <h2>Account Homebase</h2>
+  <p>Scroll Media internal access only.</p>
+  <input type="password" id="pwInput" placeholder="Enter password" autocomplete="off" />
+  <button onclick="checkPassword()">Access Homebase</button>
+  <span id="pw-error">Incorrect password. Try again.</span>
+</div>
+<div id="app" class="pw-hidden">
+  <header class="top-header">
+    <div class="top-header-left">
+      <a href="../../index.html"><img src="../../scroll-media-logo.svg" alt="Scroll Media" /></a>
+      <div class="top-header-divider"></div>
+      <span class="top-header-client">Lane & Kate — Account Homebase</span>
+    </div>
+    <div class="top-header-right">
+      <span class="header-badge badge-stage">Lift Stage</span>
+      <span class="header-badge badge-active">Active</span>
+      <a href="../../index.html" class="header-link">← Dashboard</a>
+    </div>
+  </header>
+  <div class="layout">
+    <nav class="sidebar">
+      <p class="sidebar-section-label">Account</p>
+      <ul class="sidebar-nav">
+        <li><a href="#overview" class="active"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>Overview</a></li>
+        <li><a href="#strategy"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>Strategic Direction</a></li>
+        <li><a href="#funnel"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/></svg>Content Strategy Map</a></li>
+        <li><a href="#ivp"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>IVP Profile</a></li>
+        <li><a href="#pillars"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="6" height="18"/><rect x="9" y="3" width="6" height="18"/><rect x="16" y="3" width="6" height="18"/></svg>Content Pillars</a></li>
+        <li><a href="#schedule"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>Posting Schedule</a></li>
+        <li><a href="#performance"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>Performance Snapshot</a></li>
+        <li><a href="#links"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>Key Links</a></li>
+      </ul>
+    </nav>
+    <main class="main">
+      <div class="client-hero" id="overview">
+        <div class="client-logo-wrap"><img src="../../logos/cl-lane-kate.png" alt="Lane & Kate" onerror="this.style.display='none'" /></div>
+        <div class="client-hero-info">
+          <div class="client-hero-name">Lane & Kate</div>
+          <div class="client-hero-sub">Jewelry / Retail · Fine Jewelry & Engagement Rings · Cincinnati, OH</div>
+          <div class="client-hero-tags">
+            <span class="hero-tag hero-tag-blue">Lift Stage</span>
+            <span class="hero-tag hero-tag-lime">Active Client</span>
+            <span class="hero-tag hero-tag-white">Since Oct 2025</span>
+            <span class="hero-tag hero-tag-white">7,143 Followers</span>
+            <span class="hero-tag hero-tag-white">No Accordion Phase</span>
+          </div>
+        </div>
+        <div class="client-hero-links">
+          <a href="https://www.instagram.com/laneandkate/" target="_blank" class="hero-link-btn"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>@laneandkate</a>
+          <a href="https://www.laneandkate.com/" target="_blank" class="hero-link-btn"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>laneandkate.com</a>
+        </div>
+      </div>
+      <div class="info-grid" style="margin-bottom:48px;">
+        <div class="info-card"><div class="info-card-label">Niche</div><div class="info-card-value">Jewelry / Retail</div></div>
+        <div class="info-card"><div class="info-card-label">Subniche</div><div class="info-card-value">Fine Jewelry & Engagement Rings</div></div>
+        <div class="info-card"><div class="info-card-label">Maturity Stage</div><div class="info-card-value">Lift</div></div>
+        <div class="info-card"><div class="info-card-label">Start Date</div><div class="info-card-value">October 2025</div></div>
+        <div class="info-card"><div class="info-card-label">Current Phase</div><div class="info-card-value">No Accordion</div></div>
+        <div class="info-card"><div class="info-card-label">Primary CTA</div><div class="info-card-value">Book Consultation</div></div>
+      </div>
+      <div class="section" id="strategy">
+        <div class="section-header"><div class="section-icon"><svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg></div><div><div class="section-title">Strategic Direction</div><div class="section-subtitle">Account narrative and Instagram's role for this client</div></div></div>
+        <div class="strategy-block">
+          <p>Lane & Kate is a Cincinnati fine jewelry boutique specializing in engagement rings, custom designs, and elevated everyday jewelry. Their core differentiator is an education-first, pressure-free consultation experience — the antithesis of the big-box jewelry store model (Jared, Kay, Zales) where commission-driven sales staff push inventory over fit.</p>
+          <p>The engagement ring category is one of the highest-consideration purchases a consumer makes. The buyer researches extensively online before ever walking into a store. Instagram's role for Lane & Kate is to intercept that research phase — building familiarity, educating on the 4Cs and custom design process, and positioning L&K as the trusted local expert before the consultation is even booked.</p>
+          <p>Instagram's three-part job: <strong>(1)</strong> boost local discoverability among Cincinnati couples beginning their engagement ring search; <strong>(2)</strong> build purchase confidence through education — diamond guides, metal comparisons, custom process explainers — that makes the IVP feel informed and less overwhelmed; <strong>(3)</strong> drive qualified consultation bookings from followers who already trust L&K's expertise before they walk in the door.</p>
+          <p>At <strong>Lift stage with 7,143 followers</strong>, the account has strong CTR and PCR signals — the conversion intent is there. The strategic priority is building a larger warm audience through consistent educational and aspirational content while maintaining the BOFU engine that drives consultation bookings.</p>
+        </div>
+      </div>
+      <div class="section" id="funnel">
+        <div class="section-header"><div class="section-icon"><svg viewBox="0 0 24 24"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/></svg></div><div><div class="section-title">Content Strategy Map</div><div class="section-subtitle">The Customer Journey — TOFU / MOFU / BOFU goals, KPIs, and content mix</div></div></div>
+        <div class="funnel-grid">
+          <div class="funnel-card">
+            <div class="funnel-card-header tofu"><span class="funnel-stage-dot"></span><span class="funnel-stage-label">Top of Funnel</span><span class="funnel-mix-badge">40%</span></div>
+            <div class="funnel-card-body">
+              <div class="funnel-goal-title">Boost Local Discoverability & Establish Engagement Ring Authority</div>
+              <div class="funnel-goal-desc">Grow reach among Cincinnati couples beginning their engagement ring research. Introduce Lane & Kate as the local boutique alternative to big-box jewelry chains. Surface in local discovery through location-tagged content, Cincinnati-specific hooks, and high-reach aspirational content that earns a follow from someone who didn't know L&K existed.</div>
+              <div class="funnel-meta-label">KPIs</div>
+              <div class="kpi-tags"><span class="kpi-tag">Views</span><span class="kpi-tag">Reach</span><span class="kpi-tag">New Followers</span><span class="kpi-tag">Shares</span></div>
+              <div class="funnel-meta-label">Top Story Formats</div>
+              <div class="format-list">Ring Reveal Tease · Behind-the-Scenes Boutique · Poll (ring style preference) · New Arrival</div>
+              <div class="funnel-meta-label">Top Feed Formats</div>
+              <div class="format-list">Ring Showcase Reel · Trending Bridal Reel · Proposal Story · Style Comparison Reel · Brand Intro</div>
+            </div>
+          </div>
+          <div class="funnel-card">
+            <div class="funnel-card-header mofu"><span class="funnel-stage-dot"></span><span class="funnel-stage-label">Middle of Funnel</span><span class="funnel-mix-badge">35%</span></div>
+            <div class="funnel-card-body">
+              <div class="funnel-goal-title">Increase Community Participation & Build Purchase Confidence</div>
+              <div class="funnel-goal-desc">Nurture the audience actively researching engagement rings. Educate on the 4Cs, metal types, setting styles, lab-grown vs. natural diamonds, and the custom design process. Address the core objections — overwhelm, fear of the wrong choice, budget anxiety — through content that makes the IVP feel guided and confident before booking a consultation.</div>
+              <div class="funnel-meta-label">KPIs</div>
+              <div class="kpi-tags"><span class="kpi-tag">Saves</span><span class="kpi-tag">Comments</span><span class="kpi-tag">Profile Visits</span><span class="kpi-tag">Avg Watch Time</span><span class="kpi-tag">Retention %</span></div>
+              <div class="funnel-meta-label">Top Story Formats</div>
+              <div class="format-list">Educational Tip Card · Q&A / AMA · Diamond Guide Swipe · Process Walkthrough</div>
+              <div class="funnel-meta-label">Top Feed Formats</div>
+              <div class="format-list">Diamond Education Carousel · Do This Not That · Myth-Busting Reel · Custom Design Process · Budget Breakdown</div>
+            </div>
+          </div>
+          <div class="funnel-card">
+            <div class="funnel-card-header bofu"><span class="funnel-stage-dot"></span><span class="funnel-stage-label">Bottom of Funnel</span><span class="funnel-mix-badge">25%</span></div>
+            <div class="funnel-card-body">
+              <div class="funnel-goal-title">Drive Qualified Consultation Bookings</div>
+              <div class="funnel-goal-desc">Convert warm, educated followers into booked consultations. Content should make the consultation feel low-pressure, accessible, and like the obvious next step for someone who has done their research. Use social proof (real client rings, testimonials, proposal reveals) and direct CTAs that link to the booking page. The goal is a qualified lead who already trusts L&K before they walk in.</div>
+              <div class="funnel-meta-label">KPIs</div>
+              <div class="kpi-tags"><span class="kpi-tag">Link Taps</span><span class="kpi-tag">CTR</span><span class="kpi-tag">PCR</span></div>
+              <div class="funnel-meta-label">Top Story Formats</div>
+              <div class="format-list">Client Ring Reveal · Testimonial Story · Direct CTA / Book Now · Consultation Process Preview</div>
+              <div class="funnel-meta-label">Top Feed Formats</div>
+              <div class="format-list">Client Testimonial Reel · Custom Ring Reveal · Proposal Story · "What to Expect" Consultation Reel · Social Proof Carousel</div>
+            </div>
+          </div>
+        </div>
+        <div style="margin-top:14px;padding:12px 16px;background:rgba(12,51,135,0.05);border-radius:8px;font-size:12px;color:#5f6368;border-left:3px solid var(--azure);"><strong style="color:var(--azure);">Current Priority (March 2026):</strong> Lift stage — 7,143 followers. CTR (18.1%) and PCR (10.4%) are strong — conversion intent exists. Primary focus: grow TOFU reach to build a larger warm audience while maintaining BOFU consultation booking content. Primary CTA: Book a consultation via laneandkate.com.</div>
+      </div>
+      <div class="section" id="ivp">
+        <div class="section-header"><div class="section-icon"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg></div><div><div class="section-title">IVP Profile</div><div class="section-subtitle">Ideal Viewer / Prospect — who we're talking to and what they need</div></div></div>
+        <div class="ivp-grid">
+          <div class="ivp-card"><div class="ivp-card-title">Demographics</div><ul><li>Women & men, ages 25–38, Cincinnati metro area</li><li>Household income $75K–$200K+</li><li>Engaged or pre-engagement research phase</li><li>College-educated, career-focused, values-driven</li><li>Active Instagram users; follows bridal, jewelry, lifestyle content</li></ul></div>
+          <div class="ivp-card"><div class="ivp-card-title">Psychographics</div><ul><li>Wants a ring that tells their unique love story — not a generic box-store option</li><li>Values expert guidance without sales pressure</li><li>Researches extensively before making high-stakes purchases</li><li>Appreciates craftsmanship and wants to understand what they're paying for</li><li>Prefers local boutique experience over impersonal e-commerce</li></ul></div>
+          <div class="ivp-card"><div class="ivp-card-title">Core Pain Points</div><ul><li><strong>Overwhelm</strong> — 4Cs, settings, metals, lab vs. natural — too many decisions</li><li><strong>Fear of wrong choice</strong> — once-in-a-lifetime purchase, high emotional stakes</li><li><strong>Budget anxiety</strong> — unsure how much to spend or where the money goes</li><li><strong>Time constraints</strong> — wants to research online before committing to in-person visits</li></ul></div>
+          <div class="ivp-card"><div class="ivp-card-title">Dream Outcome</div><p><strong>Tangible:</strong> An engagement ring she absolutely loves and feels confident in. Understands what she paid for and why it was worth it. Guided through the process by a trusted expert — not pressured.</p><p style="margin-top:8px;"><strong>Emotional:</strong> Confident in the choice (no regrets). The purchase feels intentional and personal. The boutique experience felt special — not transactional. Trusts the jeweler they worked with long after the sale.</p></div>
+          <div class="ivp-card full-width"><div class="ivp-card-title">Counter-Positioning</div><div class="counter-pos-grid"><div class="counter-card"><div class="counter-card-label">vs. Jared / Kay / Zales</div><p>Personalized service vs. commission-driven pressure. Curated selection vs. overwhelming inventory. Expert guidance vs. upselling. Local boutique vs. corporate chain.</p></div><div class="counter-card"><div class="counter-card-label">vs. Blue Nile / James Allen</div><p>Personal guidance vs. faceless e-commerce. Local boutique experience vs. algorithm-driven browsing. Custom design support vs. DIY overwhelm. You can touch and try before you buy.</p></div><div class="counter-card"><div class="counter-card-label">L&K Advantage</div><p>Education-first approach + curated selection + personalized service + local Cincinnati boutique. The ring tells your love story — not a catalog number.</p></div></div></div>
+        </div>
+      </div>
+      <div class="section" id="pillars">
+        <div class="section-header"><div class="section-icon"><svg viewBox="0 0 24 24"><rect x="2" y="3" width="6" height="18"/><rect x="9" y="3" width="6" height="18"/><rect x="16" y="3" width="6" height="18"/></svg></div><div><div class="section-title">Content Pillars</div><div class="section-subtitle">The 4 core themes that every piece of content should align to</div></div></div>
+        <div class="pillars-grid">
+          <div class="pillar-card"><div class="pillar-number">Pillar 01</div><div class="pillar-name">Authority & Expertise</div><div class="pillar-intent">Authority · Credibility · Discovery</div><div class="pillar-desc">Diamond expertise, craftsmanship knowledge, engagement ring trends. Educate on the 4Cs, metal comparisons, setting styles, lab-grown vs. natural diamonds. Position L&K as the expert resource buyers can trust before they ever book a consultation. This is the primary TOFU engine that earns a follow from someone in research mode.</div><span class="pillar-goal-tag">Boost Local Discoverability & Establish Authority</span></div>
+          <div class="pillar-card"><div class="pillar-number">Pillar 02</div><div class="pillar-name">Education & Guidance</div><div class="pillar-intent">Education · Trust · Save-Worthy</div><div class="pillar-desc">Engagement ring buying guides that help buyers navigate a high-consideration purchase. First-time buyer guides, budget breakdowns, diamond shape selection, custom design process explained. Build confidence in purchase decisions. Primary save-driver — content people bookmark and return to before their consultation.</div><span class="pillar-goal-tag">Increase Community Participation & Build Purchase Confidence</span></div>
+          <div class="pillar-card"><div class="pillar-number">Pillar 03</div><div class="pillar-name">Aspiration & Celebration</div><div class="pillar-intent">Entertainment · Reach · Emotional Connection</div><div class="pillar-desc">Bridal inspiration, real proposal stories, engagement announcements (with permission), custom ring reveals. Show the emotional, celebratory side of engagement rings to inspire and connect. This is the high-reach, high-share pillar — content that earns new followers from people who aren't yet in research mode but will be.</div><span class="pillar-goal-tag">Boost Local Discoverability & Establish Authority</span></div>
+          <div class="pillar-card"><div class="pillar-number">Pillar 04</div><div class="pillar-name">Trust & Proof</div><div class="pillar-intent">Conversion · Social Proof · Action</div><div class="pillar-desc">Client testimonials, featured rings, process transparency, consultation experience previews. Show real results, transparent pricing, and what working with L&K is actually like. This is the BOFU engine — content that converts warm, educated followers into booked consultations by removing the last objections and making the next step obvious.</div><span class="pillar-goal-tag">Drive Qualified Consultation Bookings</span></div>
+        </div>
+      </div>
+      <div class="section" id="schedule">
+        <div class="section-header"><div class="section-icon"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></div><div><div class="section-title">Posting Schedule</div><div class="section-subtitle">Feed post days, story days, and recommended formats per day</div></div></div>
+        <div class="schedule-grid">
+          <div class="schedule-card">
+            <div class="schedule-card-header"><span class="schedule-card-title">Feed Posts</span><span style="font-size:11px;color:rgba(255,255,255,0.4);">Tue · Thu</span></div>
+            <div class="schedule-card-body">
+              <div class="schedule-day-row"><span class="schedule-day-label">Tuesday</span><div class="schedule-day-content"><div class="schedule-formats">Ring Showcase Reel · Educational Carousel · Trending Bridal</div><div class="schedule-ideas">Diamond education, ring style comparisons, local discoverability content</div></div></div>
+              <div class="schedule-day-row"><span class="schedule-day-label">Thursday</span><div class="schedule-day-content"><div class="schedule-formats">Client Ring Reveal · Testimonial Reel · Custom Design Process</div><div class="schedule-ideas">Social proof, consultation CTAs, proposal stories, trust-building content</div></div></div>
+            </div>
+          </div>
+          <div class="schedule-card">
+            <div class="schedule-card-header"><span class="schedule-card-title">Stories</span><span style="font-size:11px;color:rgba(255,255,255,0.4);">Mon · Wed · Fri</span></div>
+            <div class="schedule-card-body">
+              <div class="schedule-day-row"><span class="schedule-day-label">Monday</span><div class="schedule-day-content"><div class="schedule-formats">Ring Style Poll · Behind-the-Scenes Boutique</div><div class="schedule-ideas">IVP data gathering, new arrivals, boutique atmosphere content</div></div></div>
+              <div class="schedule-day-row"><span class="schedule-day-label">Wednesday</span><div class="schedule-day-content"><div class="schedule-formats">Educational Tip Card · Q&A / AMA</div><div class="schedule-ideas">Diamond tips, engagement ring Q&A, objection handling</div></div></div>
+              <div class="schedule-day-row"><span class="schedule-day-label">Friday</span><div class="schedule-day-content"><div class="schedule-formats">Direct CTA / Book Now · Client Spotlight</div><div class="schedule-ideas">Weekend consultation push, client ring reveals, booking link</div></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="section" id="performance">
+        <div class="section-header"><div class="section-icon"><svg viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></div><div><div class="section-title">Performance Snapshot</div><div class="section-subtitle">Last 3 months of key metrics — full data in Google Sheets</div></div></div>
+        <div class="perf-table-wrap">
+          <table class="perf-table">
+            <thead><tr><th>Month</th><th>Followers</th><th>Avg Reach/Day</th><th>New Followers</th><th>Views</th><th>Saves</th><th>CTR</th><th>Link Taps</th><th>PCR</th><th>Score</th></tr></thead>
+            <tbody>
+              <tr><td>Dec 2025</td><td>7,091</td><td>747</td><td>139</td><td>90,396</td><td>17</td><td>15.8%</td><td>179</td><td>12.3%</td><td><span class="score-badge score-solid">8.2 ✔ Solid</span></td></tr>
+              <tr><td>Jan 2026</td><td>7,111</td><td>446</td><td>78</td><td>39,612</td><td>87</td><td>21.5%</td><td>149</td><td>11.2%</td><td><span class="score-badge score-building">7.6 ✔ Building</span></td></tr>
+              <tr><td>Feb 2026</td><td>7,143</td><td>600</td><td>79</td><td>57,910</td><td>56</td><td>18.1%</td><td>138</td><td>10.4%</td><td><span class="score-badge score-building">7.4 ✔ Building</span></td></tr>
+            </tbody>
+          </table>
+          <div class="perf-note"><strong>Signal:</strong> CTR consistently above 15% — strong conversion intent from the existing audience. <strong>Gap:</strong> Views dropped significantly Jan–Feb (90K → 40K → 58K) — TOFU reach content needs to be prioritized to rebuild discovery momentum. Saves are inconsistent — educational carousel content should be a consistent weekly format.</div>
+        </div>
+      </div>
+      <div class="section" id="links">
+        <div class="section-header"><div class="section-icon"><svg viewBox="0 0 24 24"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg></div><div><div class="section-title">Key Links & Assets</div><div class="section-subtitle">Quick access to all client-facing and internal resources</div></div></div>
+        <div class="links-grid">
+          <a href="https://www.instagram.com/laneandkate/" target="_blank" class="link-card"><div class="link-card-label">Instagram Profile</div><div class="link-card-value">@laneandkate</div><div class="link-card-sub">instagram.com/laneandkate</div></a>
+          <a href="https://www.laneandkate.com/" target="_blank" class="link-card"><div class="link-card-label">Website</div><div class="link-card-value">laneandkate.com</div><div class="link-card-sub">Primary consultation destination</div></a>
+          <div class="link-card" style="cursor:default;"><div class="link-card-label">Primary CTA</div><div class="link-card-value" style="color:var(--shadow);">Book Consultation</div><div class="link-card-sub">All BOFU content drives here</div></div>
+          <div class="link-card" style="cursor:default;"><div class="link-card-label">Google Drive</div><div class="link-card-value" style="color:#9aa0a6;">Add link</div><div class="link-card-sub">Client asset folder</div></div>
+          <div class="link-card" style="cursor:default;"><div class="link-card-label">Strategy Deck</div><div class="link-card-value" style="color:#9aa0a6;">Add link</div><div class="link-card-sub">When available</div></div>
+          <div class="link-card" style="cursor:default;"><div class="link-card-label">Account Manager</div><div class="link-card-value" style="color:var(--shadow);">Add AM name</div><div class="link-card-sub">Update as needed</div></div>
+        </div>
+      </div>
+      <div class="last-updated">Last updated: March 2026 · Scroll Media Internal Use Only</div>
+    </main>
+  </div>
+</div>
+<script>
+  document.getElementById('pwInput').addEventListener('keydown', function(e) { if (e.key === 'Enter') checkPassword(); });
+  function checkPassword() {
+    if (document.getElementById('pwInput').value.trim() === 'scrollies') {
+      document.getElementById('pw-gate').style.display = 'none';
+      document.getElementById('app').classList.remove('pw-hidden');
+      localStorage.setItem('sm_homebase_auth', '1');
+    } else { document.getElementById('pw-error').style.display = 'block'; }
+  }
+  if (localStorage.getItem('sm_homebase_auth') === '1') { document.getElementById('pw-gate').style.display = 'none'; document.getElementById('app').classList.remove('pw-hidden'); }
+  const sectionIds = ['overview','strategy','funnel','ivp','pillars','schedule','performance','links'];
+  const navLinks = document.querySelectorAll('.sidebar-nav a');
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sectionIds.forEach(id => { const el = document.getElementById(id); if (el && window.scrollY >= el.offsetTop - 100) current = id; });
+    navLinks.forEach(link => { link.classList.remove('active'); if (link.getAttribute('href') === '#' + current) link.classList.add('active'); });
+  });
+</script>
+</body>
+</html>
