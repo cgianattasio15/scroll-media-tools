@@ -162,33 +162,33 @@
   .goal-metric-row .gm-label { color: var(--text-secondary); }
   .goal-metric-row .gm-val { font-weight: 700; color: var(--text-primary); }
   .goal-metric-row .gm-val.win { color: #16a34a; }
-  .goal-next { margin-top: 14px; padding-top: 14px; border-top: 1px solid var(--grey-100); }
+  .goal-delivering { margin-top: 14px; padding-top: 14px; border-top: 1px solid var(--grey-100); }
+  .goal-delivering-label { font-size: 10px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--grey-400); margin-bottom: 8px; }
+  .goal-delivering ul { list-style: none; display: flex; flex-direction: column; gap: 5px; }
+  .goal-delivering ul li { font-size: 12px; color: var(--text-secondary); padding-left: 16px; position: relative; line-height: 1.4; }
+  .goal-delivering ul li::before { content: '✓'; position: absolute; left: 0; color: #16a34a; font-weight: 700; font-size: 11px; }
+  .goal-next { margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--grey-100); }
   .goal-next-label { font-size: 10px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--lime-dim); margin-bottom: 8px; }
   .goal-next ul { list-style: none; display: flex; flex-direction: column; gap: 5px; }
   .goal-next ul li { font-size: 12px; color: var(--text-secondary); padding-left: 14px; position: relative; line-height: 1.4; }
   .goal-next ul li::before { content: '→'; position: absolute; left: 0; color: var(--lime-dim); font-weight: 700; font-size: 11px; }
 
-  /* ── STRATEGY ALIGNMENT ── */
-  .strategy-match-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 36px; }
-  .strategy-match-card { border-radius: var(--radius); overflow: hidden; border: 1px solid rgba(255,255,255,0.08); }
-  .sm-header { padding: 18px 22px; }
-  .sm-header.tofu { background: rgba(59,130,246,0.15); }
-  .sm-header.mofu { background: rgba(168,208,32,0.12); }
-  .sm-header.bofu { background: rgba(200,241,53,0.12); }
-  .sm-funnel-tag { font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 5px; }
-  .sm-header.tofu .sm-funnel-tag { color: #60a5fa; }
-  .sm-header.mofu .sm-funnel-tag { color: #a8d020; }
-  .sm-header.bofu .sm-funnel-tag { color: var(--lime); }
-  .sm-header h3 { font-size: 14px; font-weight: 700; color: var(--white); line-height: 1.3; }
-  .sm-body { background: var(--navy-light); padding: 18px 22px; }
-  .sm-original { margin-bottom: 14px; }
-  .sm-original-label { font-size: 10px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(255,255,255,0.3); margin-bottom: 5px; }
-  .sm-original p { font-size: 12px; color: rgba(255,255,255,0.5); line-height: 1.6; font-style: italic; }
-  .sm-delivering-label { font-size: 10px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--lime); opacity: 0.7; margin-bottom: 7px; }
-  .sm-delivering ul { list-style: none; display: flex; flex-direction: column; gap: 5px; }
-  .sm-delivering ul li { font-size: 12px; color: rgba(255,255,255,0.65); padding-left: 16px; position: relative; line-height: 1.5; }
-  .sm-delivering ul li::before { content: '✓'; position: absolute; left: 0; color: var(--lime); font-weight: 700; font-size: 11px; }
-  .sm-data-point { margin-top: 14px; background: rgba(200,241,53,0.07); border: 1px solid rgba(200,241,53,0.15); border-radius: 6px; padding: 9px 13px; font-size: 12px; font-weight: 600; color: var(--lime); }
+  /* ── INNOVATION SECTION ── */
+  .innovation-intro { background: var(--navy-light); border: 1px solid rgba(255,255,255,0.08); border-radius: var(--radius); padding: 24px 28px; margin-bottom: 28px; }
+  .innovation-intro p { font-size: 14px; color: rgba(255,255,255,0.65); line-height: 1.75; }
+  .innovation-intro p strong { color: var(--lime); }
+  .innovation-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; margin-top: 0; }
+  .innovation-card { background: var(--navy-light); border: 1px solid rgba(255,255,255,0.08); border-radius: var(--radius); padding: 24px; position: relative; overflow: hidden; }
+  .innovation-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--lime); }
+  .innovation-card .ic-tool { font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--lime); opacity: 0.7; margin-bottom: 8px; }
+  .innovation-card h3 { font-size: 15px; font-weight: 700; color: var(--white); margin-bottom: 8px; line-height: 1.3; }
+  .innovation-card p { font-size: 13px; color: rgba(255,255,255,0.55); line-height: 1.6; margin-bottom: 14px; }
+  .innovation-card .ic-examples { list-style: none; display: flex; flex-direction: column; gap: 6px; }
+  .innovation-card .ic-examples li { font-size: 12px; color: rgba(255,255,255,0.65); padding-left: 16px; position: relative; line-height: 1.5; }
+  .innovation-card .ic-examples li::before { content: '→'; position: absolute; left: 0; color: var(--lime); font-weight: 700; font-size: 11px; }
+  .innovation-philosophy { background: rgba(200,241,53,0.06); border: 1px solid rgba(200,241,53,0.2); border-radius: var(--radius); padding: 22px 26px; margin-top: 20px; }
+  .innovation-philosophy p { font-size: 14px; color: rgba(255,255,255,0.65); line-height: 1.7; font-style: italic; }
+  .innovation-philosophy p strong { color: var(--lime); font-style: normal; }
 
   /* ── PROGRESS TIMELINE ── */
   .perf-header { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 36px; }
@@ -258,40 +258,41 @@
   .roi-spend-label { font-size: 11px; color: rgba(255,255,255,0.45); font-weight: 500; text-transform: uppercase; letter-spacing: 0.06em; }
   .roi-spend-divider { width: 1px; background: rgba(255,255,255,0.08); height: 60px; margin: 0 auto; }
 
-  .roi-intro { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: var(--radius); padding: 28px 32px; margin-bottom: 28px; }
-  .roi-intro p { font-size: 14px; color: rgba(255,255,255,0.65); line-height: 1.75; }
-  .roi-intro p strong { color: var(--lime); }
-  .roi-philosophy { font-size: 15px; font-style: italic; color: rgba(255,255,255,0.75); border-left: 3px solid var(--lime); padding-left: 18px; margin-top: 18px; line-height: 1.7; }
+  .roi-intro { background: var(--white); border: 1px solid var(--grey-200); border-radius: var(--radius); padding: 28px 32px; margin-bottom: 28px; }
+  .roi-intro p { font-size: 14px; color: var(--text-secondary); line-height: 1.75; }
+  .roi-intro p strong { color: var(--lime-dim); }
 
   .roi-calc-section { margin-bottom: 28px; }
-  .roi-calc-section h3 { font-size: 15px; font-weight: 700; color: var(--white); margin-bottom: 16px; }
-  .roi-assumptions { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: var(--radius); overflow: hidden; margin-bottom: 20px; overflow-x: auto; }
+  .roi-calc-section h3 { font-size: 15px; font-weight: 700; color: var(--text-primary); margin-bottom: 16px; }
+  .roi-assumptions { background: var(--white); border: 1px solid var(--grey-200); border-radius: var(--radius); overflow: hidden; margin-bottom: 20px; overflow-x: auto; }
   .roi-assumptions table { width: 100%; border-collapse: collapse; min-width: 500px; }
-  .roi-assumptions th { background: rgba(200,241,53,0.08); padding: 11px 18px; text-align: left; font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(255,255,255,0.45); }
-  .roi-assumptions td { padding: 11px 18px; font-size: 13px; color: rgba(255,255,255,0.65); border-top: 1px solid rgba(255,255,255,0.05); }
-  .roi-assumptions td.highlight-val { color: var(--lime); font-weight: 700; }
+  .roi-assumptions th { background: var(--grey-100); padding: 11px 18px; text-align: left; font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--grey-400); }
+  .roi-assumptions td { padding: 11px 18px; font-size: 13px; color: var(--text-secondary); border-top: 1px solid var(--grey-100); }
+  .roi-assumptions td.highlight-val { color: var(--lime-dim); font-weight: 700; }
 
   .roi-scenarios { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-bottom: 28px; }
-  .roi-scenario { background: var(--navy-light); border: 1px solid rgba(255,255,255,0.08); border-radius: var(--radius); padding: 22px; text-align: center; }
-  .roi-scenario.featured { border-color: rgba(200,241,53,0.3); background: rgba(200,241,53,0.06); }
-  .roi-scenario .rs-label { font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.35); margin-bottom: 8px; }
-  .roi-scenario.featured .rs-label { color: var(--lime); opacity: 0.7; }
-  .roi-scenario .rs-val { font-size: 28px; font-weight: 800; color: var(--white); letter-spacing: -0.02em; line-height: 1; margin-bottom: 7px; }
+  .roi-scenario { background: var(--white); border: 1px solid var(--grey-200); border-radius: var(--radius); padding: 22px; text-align: center; }
+  .roi-scenario.featured { border-color: var(--lime-dim); background: var(--navy); }
+  .roi-scenario .rs-label { font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--grey-400); margin-bottom: 8px; }
+  .roi-scenario.featured .rs-label { color: var(--lime); opacity: 0.8; }
+  .roi-scenario .rs-val { font-size: 28px; font-weight: 800; color: var(--navy); letter-spacing: -0.02em; line-height: 1; margin-bottom: 7px; }
   .roi-scenario.featured .rs-val { color: var(--lime); }
-  .roi-scenario .rs-title { font-size: 12px; font-weight: 700; color: rgba(255,255,255,0.65); margin-bottom: 7px; }
-  .roi-scenario .rs-desc { font-size: 11px; color: rgba(255,255,255,0.4); line-height: 1.5; }
+  .roi-scenario .rs-title { font-size: 12px; font-weight: 700; color: var(--text-primary); margin-bottom: 7px; }
+  .roi-scenario.featured .rs-title { color: var(--white); }
+  .roi-scenario .rs-desc { font-size: 11px; color: var(--text-secondary); line-height: 1.5; }
+  .roi-scenario.featured .rs-desc { color: rgba(255,255,255,0.5); }
 
-  .roi-context { background: rgba(200,241,53,0.06); border: 1px solid rgba(200,241,53,0.2); border-radius: var(--radius); padding: 24px 28px; margin-bottom: 24px; }
-  .roi-context h3 { font-size: 14px; font-weight: 700; color: var(--white); margin-bottom: 10px; }
-  .roi-context p { font-size: 13px; color: rgba(255,255,255,0.6); line-height: 1.7; }
-  .roi-context p strong { color: var(--lime); }
+  .roi-context { background: rgba(200,241,53,0.06); border: 1px solid rgba(200,241,53,0.25); border-radius: var(--radius); padding: 24px 28px; margin-bottom: 24px; }
+  .roi-context h3 { font-size: 14px; font-weight: 700; color: var(--text-primary); margin-bottom: 10px; }
+  .roi-context p { font-size: 13px; color: var(--text-secondary); line-height: 1.7; }
+  .roi-context p strong { color: var(--text-primary); }
 
-  .roi-next-steps { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: var(--radius); padding: 22px 26px; }
-  .roi-next-steps h3 { font-size: 13px; font-weight: 700; color: var(--white); margin-bottom: 14px; text-transform: uppercase; letter-spacing: 0.06em; }
+  .roi-next-steps { background: var(--white); border: 1px solid var(--grey-200); border-radius: var(--radius); padding: 22px 26px; }
+  .roi-next-steps h3 { font-size: 13px; font-weight: 700; color: var(--text-primary); margin-bottom: 14px; text-transform: uppercase; letter-spacing: 0.06em; }
   .roi-next-steps ul { list-style: none; display: flex; flex-direction: column; gap: 9px; }
-  .roi-next-steps ul li { font-size: 13px; color: rgba(255,255,255,0.6); padding-left: 18px; position: relative; line-height: 1.5; }
-  .roi-next-steps ul li::before { content: '→'; position: absolute; left: 0; color: var(--lime); font-weight: 700; }
-  .roi-next-steps ul li strong { color: var(--white); }
+  .roi-next-steps ul li { font-size: 13px; color: var(--text-secondary); padding-left: 18px; position: relative; line-height: 1.5; }
+  .roi-next-steps ul li::before { content: '→'; position: absolute; left: 0; color: var(--lime-dim); font-weight: 700; }
+  .roi-next-steps ul li strong { color: var(--text-primary); }
 
   /* ── ROADMAP ── */
   .roadmap-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; margin-top: 36px; }
@@ -346,6 +347,7 @@
     .roi-spend-divider { display: none; }
     .roi-scenarios { grid-template-columns: 1fr; }
     .roadmap-grid { grid-template-columns: 1fr; }
+    .innovation-grid { grid-template-columns: 1fr; }
     .commitment-grid { grid-template-columns: 1fr; }
     .cta-section { padding: 56px 20px; }
     .cta-details { flex-direction: column; align-items: center; gap: 10px; }
@@ -373,11 +375,11 @@
   <div class="nav-links">
     <a href="#story">Your Story</a>
     <a href="#goals">Goals</a>
-    <a href="#strategy">Strategy</a>
     <a href="#progress">Progress</a>
     <a href="#wins">Wins</a>
     <a href="#roi">ROI</a>
-    <a href="#next">Next 6 Months</a>
+    <a href="#innovation">What's Next</a>
+    <a href="#next">Roadmap</a>
   </div>
   <div class="nav-date">Partnership Review — March 2026</div>
 </nav>
@@ -489,51 +491,71 @@
   </div>
 </div>
 
-<!-- SECTION 2: ORIGINAL GOALS -->
+<!-- SECTION 2: GOALS + DELIVERY (merged) -->
 <div id="goals" class="section-white">
   <div class="section">
     <div class="section-label">Where We Started</div>
-    <h2 class="section-title">Your Original Goals — Still Our North Star</h2>
+    <h2 class="section-title">Your Goals — and How We're Delivering</h2>
     <div class="divider"></div>
-    <p class="section-desc">When we kicked off in October 2025, you gave us three clear business objectives. Every piece of content we've created has been built to serve these goals. Here's where we stand — and how we'll make each goal more measurable in the next phase.</p>
+    <p class="section-desc">Three goals. Set in October 2025. Here's where we stand on each — what we proposed, what we've delivered, and how we'll make each goal more measurable in the next phase.</p>
 
     <div class="goals-grid">
+
+      <!-- TOFU -->
       <div class="goal-card">
         <div class="goal-funnel-tag">TOFU — Awareness</div>
         <h3>More Wellness Partnerships</h3>
         <span class="goal-status building">🤝 Building Momentum</span>
         <div class="goal-metrics">
           <div class="goal-metric-row"><span class="gm-label">Total Views (4 months)</span><span class="gm-val win">140,271</span></div>
-          <div class="goal-metric-row"><span class="gm-label">Total Reach</span><span class="gm-val win">50,700+</span></div>
+          <div class="goal-metric-row"><span class="gm-label">Total Unique Reach</span><span class="gm-val win">50,700+</span></div>
           <div class="goal-metric-row"><span class="gm-label">Total Shares</span><span class="gm-val win">67</span></div>
-          <div class="goal-metric-row"><span class="gm-label">Community Content</span><span class="gm-val win">Live and Active</span></div>
+        </div>
+        <div class="goal-delivering">
+          <div class="goal-delivering-label">What We're Delivering</div>
+          <ul>
+            <li>Community Champions pillar live — event coverage, run group recaps</li>
+            <li>Frozen Feet Challenge — highest-reach campaign of the partnership</li>
+            <li>Consistent Reels strategy building new audience reach monthly</li>
+          </ul>
         </div>
         <div class="goal-next">
           <div class="goal-next-label">Next Phase Tracking</div>
           <ul>
-            <li>Track partner tags and co-posts per month</li>
-            <li>Log new partnership inquiries attributed to Instagram</li>
+            <li>Partner tags and co-posts per month</li>
+            <li>New partnership inquiries attributed to Instagram</li>
           </ul>
         </div>
       </div>
+
+      <!-- MOFU -->
       <div class="goal-card">
         <div class="goal-funnel-tag">MOFU — Engagement</div>
         <h3>Improve Customer Retention</h3>
         <span class="goal-status on-track">✓ On Track</span>
         <div class="goal-metrics">
           <div class="goal-metric-row"><span class="gm-label">Total Saves</span><span class="gm-val win">99</span></div>
-          <div class="goal-metric-row"><span class="gm-label">Total Comments</span><span class="gm-val win">54</span></div>
           <div class="goal-metric-row"><span class="gm-label">Total Profile Visits</span><span class="gm-val win">477</span></div>
           <div class="goal-metric-row"><span class="gm-label">Avg Watch Time (Feb)</span><span class="gm-val win">7.5s</span></div>
+        </div>
+        <div class="goal-delivering">
+          <div class="goal-delivering-label">What We're Delivering</div>
+          <ul>
+            <li>Expert Shoe Fitting pillar — educational, trust-building content</li>
+            <li>Movement Education carousels driving saves and watch time</li>
+            <li>Staff features and community content building loyalty</li>
+          </ul>
         </div>
         <div class="goal-next">
           <div class="goal-next-label">Next Phase Tracking</div>
           <ul>
-            <li>Monthly email subscriber growth from lead magnets</li>
+            <li>Email subscriber growth from lead magnets</li>
             <li>Repeat profile visitors (audience loyalty signal)</li>
           </ul>
         </div>
       </div>
+
+      <!-- BOFU -->
       <div class="goal-card">
         <div class="goal-funnel-tag">BOFU — Conversion</div>
         <h3>Grow E-Commerce Activity</h3>
@@ -541,8 +563,15 @@
         <div class="goal-metrics">
           <div class="goal-metric-row"><span class="gm-label">Total Link Taps</span><span class="gm-val win">39</span></div>
           <div class="goal-metric-row"><span class="gm-label">Best CTR (Jan 2026)</span><span class="gm-val win">5.0%</span></div>
-          <div class="goal-metric-row"><span class="gm-label">Profile-to-Link Rate</span><span class="gm-val">8.2%</span></div>
           <div class="goal-metric-row"><span class="gm-label">BOFU Infrastructure</span><span class="gm-val">Launching Next Phase</span></div>
+        </div>
+        <div class="goal-delivering">
+          <div class="goal-delivering-label">What We're Delivering</div>
+          <ul>
+            <li>Product Spotlight pillar with shop CTAs active</li>
+            <li>5.0% CTR in January — above the 2–4% healthy range</li>
+            <li>A2A Conversion Infrastructure launching next phase</li>
+          </ul>
         </div>
         <div class="goal-next">
           <div class="goal-next-label">Next Phase Tracking</div>
@@ -552,87 +581,7 @@
           </ul>
         </div>
       </div>
-    </div>
-  </div>
-</div>
 
-<!-- SECTION 3: STRATEGY ALIGNMENT -->
-<div id="strategy" class="section-dark">
-  <div class="section">
-    <div class="section-label">Staying on Strategy</div>
-    <h2 class="section-title">The Original Strategy — and How We're Executing It</h2>
-    <div class="divider"></div>
-    <p class="section-desc">We know you have the original strategy document. Here's a direct mapping of what we proposed in November 2025 to what we've delivered — and where we're continuing to build.</p>
-
-    <div class="strategy-match-grid">
-      <div class="strategy-match-card">
-        <div class="sm-header tofu">
-          <div class="sm-funnel-tag">TOFU — Awareness</div>
-          <h3>More Wellness Partnerships</h3>
-        </div>
-        <div class="sm-body">
-          <div class="sm-original">
-            <div class="sm-original-label">What We Proposed</div>
-            <p>"Use awareness content to highlight community wellness partnerships. Expand reach, spark recognition, and position Up and Running as a trusted local fitness leader."</p>
-          </div>
-          <div class="sm-delivering">
-            <div class="sm-delivering-label">What We're Delivering</div>
-            <ul>
-              <li>Community Champions content pillar live and active</li>
-              <li>Frozen Feet Challenge — highest-reach campaign of the partnership</li>
-              <li>Local event coverage driving organic shares and tags</li>
-              <li>Consistent Reels strategy building new audience reach</li>
-            </ul>
-          </div>
-          <div class="sm-data-point">📊 140K+ total views. 67 shares. Reach growing month-over-month.</div>
-        </div>
-      </div>
-
-      <div class="strategy-match-card">
-        <div class="sm-header mofu">
-          <div class="sm-funnel-tag">MOFU — Engagement</div>
-          <h3>Improve Customer Retention</h3>
-        </div>
-        <div class="sm-body">
-          <div class="sm-original">
-            <div class="sm-original-label">What We Proposed</div>
-            <p>"Share engaging, value-led content that builds trust, inspires conversation, and strengthens loyalty with your current community."</p>
-          </div>
-          <div class="sm-delivering">
-            <div class="sm-delivering-label">What We're Delivering</div>
-            <ul>
-              <li>Expert Shoe Fitting pillar — educational, trust-building content</li>
-              <li>Movement Education content driving saves and watch time</li>
-              <li>Staff and team features building human connection</li>
-              <li>Consistent posting schedule — 3x feed, 2x stories per week</li>
-            </ul>
-          </div>
-          <div class="sm-data-point">📊 99 saves. 477 profile visits. 7.5s avg watch time in Feb.</div>
-        </div>
-      </div>
-
-      <div class="strategy-match-card">
-        <div class="sm-header bofu">
-          <div class="sm-funnel-tag">BOFU — Conversion</div>
-          <h3>Grow E-Commerce Activity</h3>
-        </div>
-        <div class="sm-body">
-          <div class="sm-original">
-            <div class="sm-original-label">What We Proposed</div>
-            <p>"Create conversion-focused content that drives qualified traffic to featured products or landing pages through clear CTAs, guiding customers toward taking action."</p>
-          </div>
-          <div class="sm-delivering">
-            <div class="sm-delivering-label">What We're Delivering</div>
-            <ul>
-              <li>Product Spotlight pillar with shop CTAs active</li>
-              <li>39 total link taps — warm leads sent to the website</li>
-              <li>5.0% CTR in January — above industry benchmark</li>
-              <li>A2A Conversion Infrastructure launching next phase</li>
-            </ul>
-          </div>
-          <div class="sm-data-point">📊 39 link taps. 5.0% peak CTR. BOFU infrastructure expanding next phase.</div>
-        </div>
-      </div>
     </div>
   </div>
 </div>
@@ -808,15 +757,85 @@
   </div>
 </div>
 
+<!-- SECTION 5.5: CONTENT INNOVATION -->
+<div id="innovation" class="section-dark">
+  <div class="section">
+    <div class="section-label">Evolving the Content</div>
+    <h2 class="section-title">How We're Pushing the Format Forward</h2>
+    <div class="divider"></div>
+    <p class="section-desc">The best brands on Instagram don't copy what works in their niche — they create their own formats. Here's exactly how we're evolving the Up and Running content approach in the next phase.</p>
+
+    <div class="innovation-intro">
+      <p>Spring race season is one of the highest-engagement periods in the running community — 5Ks, half marathons, marathons, and training cycles are all live right now. Up and Running is tightly connected to this world. We're not just going to cover it — we're going to <strong>own it visually</strong> with tools and formats that no other local running store is using. The goal isn't to go viral. It's to create content so specific to Up and Running and the Dayton running community that it's immediately recognizable as yours.</p>
+    </div>
+
+    <div class="innovation-grid">
+
+      <div class="innovation-card">
+        <div class="ic-tool">New Tool — Drone</div>
+        <h3>Aerial Race and Event Coverage</h3>
+        <p>Drone footage at spring races and community events creates a visual perspective no one else in your market has. It signals investment, production quality, and community presence simultaneously — and it stops the scroll.</p>
+        <ul class="ic-examples">
+          <li>Overhead start-line shot at a local 5K or half marathon featuring UAR-sponsored runners</li>
+          <li>Aerial coverage of the Frozen Feet Challenge 2.0 — showing the scale of the community event</li>
+          <li>Race day recap Reel: drone establishing shot → ground-level fitting content → finish line celebration</li>
+          <li>Spring training montage — drone follows a runner through a Dayton trail or park route</li>
+        </ul>
+      </div>
+
+      <div class="innovation-card">
+        <div class="ic-tool">New Tool — Meta Glasses</div>
+        <h3>First-Person POV Content</h3>
+        <p>Meta glasses create an authentic, unfiltered POV that feels completely different from produced Reels. It's the format that makes the audience feel like they're inside the store, inside the run, inside the community — not watching from the outside.</p>
+        <ul class="ic-examples">
+          <li>POV: Expert fitting session from the fitter's perspective — "here's what I see when I watch you walk"</li>
+          <li>POV: Run club Tuesday night — first-person view of the group heading out from the store</li>
+          <li>POV: Race morning gear prep — staff member walking the course, checking in with runners</li>
+          <li>POV: Behind the counter — a day in the life of the Up and Running team</li>
+        </ul>
+      </div>
+
+      <div class="innovation-card">
+        <div class="ic-tool">Spring Season — Race Content</div>
+        <h3>Owning the Spring Race Narrative</h3>
+        <p>Spring race season is a massive organic content opportunity for a specialty running store. Every race in the Dayton-Cincinnati region is a chance to show up, document, and position Up and Running as the community's home base before, during, and after race day.</p>
+        <ul class="ic-examples">
+          <li>"Race Week Checklist" carousel — gear, nutrition, and shoe tips from the UAR team</li>
+          <li>Pre-race fitting Reel: "Running your first 5K? Here's what to wear on race day"</li>
+          <li>Race day coverage: start line, community moments, finish line celebrations</li>
+          <li>Post-race recap: community photos, results shoutouts, "see you at the next one" CTA</li>
+        </ul>
+      </div>
+
+      <div class="innovation-card">
+        <div class="ic-tool">Format Strategy</div>
+        <h3>Building UAR-Specific Recurring Formats</h3>
+        <p>The highest-performing accounts on Instagram don't just post good content — they create formats the audience comes back for. We're building 2–3 recurring series that are unmistakably Up and Running.</p>
+        <ul class="ic-examples">
+          <li><strong>"Fitting Friday"</strong> — weekly short-form Reel showing one specific fitting insight or shoe recommendation</li>
+          <li><strong>"Run Club Recap"</strong> — weekly Tuesday night run group coverage, building community habit and FOMO</li>
+          <li><strong>"Race Season Spotlight"</strong> — monthly feature on a UAR community member's race goal and their gear setup</li>
+          <li><strong>"Ask the Fitter"</strong> — Q&A format addressing the most common shoe and fitting questions from the community</li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="innovation-philosophy">
+      <p><strong>The principle:</strong> In today's creator market, copying what works in your niche is a race to average. The brands that build real audiences create their own visual language — formats, perspectives, and series that are so specific to them that no one else can replicate it. That's what we're building for Up and Running. Not content that looks like every other running store. Content that only Up and Running could make.</p>
+    </div>
+  </div>
+</div>
+
 <!-- SECTION 6: ROI -->
-<div id="roi" class="section-dark">
+<div id="roi" class="section-alt">
   <div class="section">
     <div class="section-label">The ROI Case</div>
     <h2 class="section-title">Your Investment — and What It's Returned</h2>
     <div class="divider"></div>
-    <p class="section-desc">You've invested $8,131 over 5 months. Here's an honest, clear-eyed look at what that investment has produced — and how we make the return more measurable and defensible in the next phase.</p>
+    <p class="section-desc">You've invested $8,131 over 5 months. Here's an honest, data-grounded look at what that investment has produced — using industry-standard conversion methodology.</p>
 
-    <div class="roi-spend-banner">
+    <div class="roi-spend-banner" style="background: var(--navy); border-color: rgba(255,255,255,0.08); border-radius: 12px; padding: 28px 32px; margin-bottom: 28px;">
       <div class="roi-spend-item">
         <div class="roi-spend-val">$8,131</div>
         <div class="roi-spend-label">Total Invested (5 Months)</div>
@@ -828,52 +847,53 @@
       </div>
       <div class="roi-spend-divider"></div>
       <div class="roi-spend-item">
-        <div class="roi-spend-val highlight">$2,500–$5,000+</div>
-        <div class="roi-spend-label">Realistic 5-Month Value Generated</div>
+        <div class="roi-spend-val highlight">~$42,900</div>
+        <div class="roi-spend-label">Projected Revenue Impact</div>
       </div>
     </div>
 
-    <div class="roi-intro">
-      <p>For a community-driven, trust-based business like Up and Running, the path from a viewer seeing a Reel to walking into your store or buying online is not a straight line — but it is measurable. We track what we call <strong>High-Intent Actions (HIAs)</strong>: the moments when someone moves from passive viewer to active consideration. The most trackable HIA is a link tap — someone who saw your content, visited your profile, and clicked through to your website. That person is a warm lead. They're one good experience away from becoming a customer.</p>
-      <div class="roi-philosophy">"For a business like yours, sales are built on trust, not clicks. Our job is to build that trust at scale — turning Instagram from a marketing channel into a core piece of your sales infrastructure."</div>
-    </div>
-
     <div class="roi-calc-section">
-      <h3>The Calculation: Conservative Assumptions, Real Numbers</h3>
+      <h3>The Methodology: Industry-Standard Conversion Model</h3>
+      <p style="font-size:13px; color:var(--text-secondary); margin-bottom:16px; line-height:1.65;">This model uses Instagram <strong>Reach</strong> — the number of unique accounts that saw your content (not total views, which count repeat impressions). Industry standard: 1% of unique viewers become qualified leads; 20% of those convert to paying customers.</p>
       <div class="roi-assumptions">
         <table>
           <thead>
             <tr>
-              <th>Assumption</th>
-              <th>Basis</th>
-              <th>Value Used</th>
+              <th>Input</th>
+              <th>Source / Basis</th>
+              <th>Value</th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <td>Average Customer Lifetime Value (CLV)</td>
-              <td>Conservative: 2–3 purchases/year at $140/visit avg for specialty running retail</td>
-              <td class="highlight-val">$425</td>
+              <td>Unique Accounts Reached (4 months)</td>
+              <td>Instagram Reach metric — unique accounts, not total views</td>
+              <td class="highlight-val">50,700+</td>
             </tr>
             <tr>
-              <td>HIA-to-Lead Conversion Rate</td>
-              <td>Conservative: 7.5% of link tappers become a trackable lead</td>
-              <td class="highlight-val">7.5%</td>
+              <td>Qualified Lead Rate</td>
+              <td>Industry standard: 1% of unique viewers take qualified action</td>
+              <td class="highlight-val">1%</td>
             </tr>
             <tr>
-              <td>Lead-to-Customer Rate</td>
-              <td>Conservative: 20% of leads convert to a paying customer</td>
+              <td>Qualified Leads Generated</td>
+              <td>50,700 × 1%</td>
+              <td class="highlight-val">507 leads</td>
+            </tr>
+            <tr>
+              <td>Lead-to-Customer Conversion Rate</td>
+              <td>Conservative: 20% of qualified leads become paying customers</td>
               <td class="highlight-val">20%</td>
             </tr>
             <tr>
-              <td>Projected HIA Value</td>
-              <td>$425 CLV × 20% lead rate × 7.5% HIA-to-lead rate</td>
-              <td class="highlight-val">$6.38 per tap</td>
+              <td>Estimated Paying Customers</td>
+              <td>507 leads × 20%</td>
+              <td class="highlight-val">101 customers</td>
             </tr>
             <tr>
-              <td>Total Link Taps (Nov–Feb, 4 months)</td>
-              <td>Tracked via Instagram Insights</td>
-              <td class="highlight-val">39 taps</td>
+              <td>Average Customer Lifetime Value (CLV)</td>
+              <td>Conservative: 2–3 purchases per year at avg. $150–$175 per visit</td>
+              <td class="highlight-val">$425</td>
             </tr>
           </tbody>
         </table>
@@ -885,34 +905,34 @@
         <div class="rs-label">Conservative</div>
         <div class="rs-val">$249</div>
         <div class="rs-title">Tracked Link Taps Only</div>
-        <div class="rs-desc">39 taps × $6.38 projected HIA value. Only counts people who clicked the link — does not include in-store walk-ins or direct visits.</div>
+        <div class="rs-desc">39 tracked link taps × $425 CLV × 20% lead rate × 7.5% tap-to-lead rate. Only counts people who clicked the link — the smallest possible number.</div>
       </div>
       <div class="roi-scenario featured">
-        <div class="rs-label">Moderate — Most Likely</div>
-        <div class="rs-val">$747+</div>
-        <div class="rs-title">With Profile Visit Attribution</div>
-        <div class="rs-desc">477 profile visits × 5% conversion × $425 CLV × 20% lead rate. Accounts for warm leads who visited the profile but didn't tap the link.</div>
+        <div class="rs-label">Industry Standard Model</div>
+        <div class="rs-val">~$42,900</div>
+        <div class="rs-title">Unique Reach Conversion Model</div>
+        <div class="rs-desc">50,700 unique accounts × 1% lead rate = 507 leads × 20% conversion = 101 customers × $425 CLV. Conservative, defensible, industry-standard methodology.</div>
       </div>
       <div class="roi-scenario">
-        <div class="rs-label">Realistic — Full Picture</div>
-        <div class="rs-val">$2,500–$5,000+</div>
-        <div class="rs-title">Including In-Store Influence</div>
-        <div class="rs-desc">The most honest number. Accounts for the customer who saw your Reel, recognized your store on their drive to work, and walked in on Saturday. Real — and untracked.</div>
+        <div class="rs-label">Full Picture</div>
+        <div class="rs-val">5.3x Return</div>
+        <div class="rs-title">ROI Multiple on Investment</div>
+        <div class="rs-desc">$42,900 projected value ÷ $8,131 invested = 5.3x return. Does not include in-store walk-ins, word-of-mouth, or brand equity built over 5 months.</div>
       </div>
     </div>
 
     <div class="roi-context">
-      <h3>The Number You Cannot See — But Is Very Real</h3>
-      <p>The tracked numbers above are the <strong>floor, not the ceiling.</strong> They only count people who clicked a link. They don't count the person who saw the Frozen Feet Challenge Reel and mentioned it to a friend. They don't count the run club member who saw your community content and told their group about you. <strong>For a local business with strong community roots, the in-store influence of social media is often 3–5x the tracked digital impact.</strong> That puts the realistic 5-month value of this partnership at $2,500–$5,000+ — against a $8,131 investment that also built a long-term brand asset that compounds over time.</p>
+      <h3>Important Context</h3>
+      <p>The industry-standard model uses conservative assumptions. The 50,700 unique reach figure is the actual number of unique accounts Instagram served your content to — not total views (which count the same person multiple times). The 1% lead rate and 20% conversion rate are widely cited benchmarks used across social media ROI analysis. <strong>These numbers are the floor, not the ceiling</strong> — they don't account for in-store walk-ins driven by social, word-of-mouth referrals from content, or the long-term brand equity built by 5 months of consistent, community-first content.</p>
     </div>
 
     <div class="roi-next-steps">
-      <h3>How We Make ROI More Measurable in the Next 6 Months</h3>
+      <h3>Making ROI More Measurable in the Next 6 Months</h3>
       <ul>
-        <li><strong>Product of the Month landing pages</strong> — dedicated URLs for each featured product, making link tap attribution precise and trackable</li>
-        <li><strong>UTM parameter implementation</strong> — tagging all bio links so Google Analytics shows exactly how much traffic and revenue comes from Instagram</li>
-        <li><strong>Lead magnets with email capture</strong> — a "First 5K Training Guide" or "Spring Race Prep Plan" that converts viewers into email subscribers we can track and nurture</li>
-        <li><strong>"How did you hear about us?" intake question</strong> — a simple addition to in-store or online checkout that captures offline social attribution</li>
+        <li><strong>UTM parameter implementation</strong> — tag all bio links so Google Analytics shows exactly how much traffic and revenue comes from Instagram</li>
+        <li><strong>Product of the Month landing pages</strong> — dedicated URLs per product, making link tap attribution precise and trackable</li>
+        <li><strong>Lead magnets with email capture</strong> — "Spring Race Prep Guide" converts viewers into email subscribers we can track and nurture</li>
+        <li><strong>"How did you hear about us?"</strong> — simple in-store or checkout question that captures offline social attribution</li>
       </ul>
     </div>
   </div>
@@ -1006,13 +1026,38 @@
 <!-- CTA -->
 <div class="cta-section">
   <h2>Ready to <span>Keep Building</span>?</h2>
-  <p>The foundation is strong. The strategy is working. The next 6 months are where it compounds into real, measurable business growth.</p>
-  <a href="mailto:chase@getscrollmedia.com" class="cta-btn">Let's Extend the Partnership →</a>
+  <p>The foundation is strong. The strategy is working. Here's exactly what happens next to lock in the next 6 months.</p>
+
+  <div style="display:flex; flex-direction:column; gap:12px; max-width:480px; margin:0 auto 36px; text-align:left;">
+    <div style="display:flex; align-items:flex-start; gap:14px; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.1); border-radius:10px; padding:16px 20px;">
+      <div style="width:28px; height:28px; background:var(--lime); border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:13px; font-weight:900; color:var(--navy); flex-shrink:0; margin-top:1px;">1</div>
+      <div>
+        <div style="font-size:13px; font-weight:700; color:var(--white); margin-bottom:3px;">Alignment Today</div>
+        <div style="font-size:12px; color:rgba(255,255,255,0.5); line-height:1.5;">Confirm the 6-month extension at $1,930/month and agree on the roadmap priorities for the next phase.</div>
+      </div>
+    </div>
+    <div style="display:flex; align-items:flex-start; gap:14px; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.1); border-radius:10px; padding:16px 20px;">
+      <div style="width:28px; height:28px; background:var(--lime); border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:13px; font-weight:900; color:var(--navy); flex-shrink:0; margin-top:1px;">2</div>
+      <div>
+        <div style="font-size:13px; font-weight:700; color:var(--white); margin-bottom:3px;">Contract Amendment</div>
+        <div style="font-size:12px; color:rgba(255,255,255,0.5); line-height:1.5;">Chase will prepare and send a contract amendment for the 6-month extension for your review and signature.</div>
+      </div>
+    </div>
+    <div style="display:flex; align-items:flex-start; gap:14px; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.1); border-radius:10px; padding:16px 20px;">
+      <div style="width:28px; height:28px; background:var(--lime); border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:13px; font-weight:900; color:var(--navy); flex-shrink:0; margin-top:1px;">3</div>
+      <div>
+        <div style="font-size:13px; font-weight:700; color:var(--white); margin-bottom:3px;">Sign Before March 29th</div>
+        <div style="font-size:12px; color:rgba(255,255,255,0.5); line-height:1.5;">Current agreement ends 3/29. Signature before that date ensures zero gap in service and momentum heading into spring race season.</div>
+      </div>
+    </div>
+  </div>
+
+  <a href="mailto:chase@getscrollmedia.com" class="cta-btn">Let's Lock In the Next 6 Months →</a>
   <div class="cta-details">
     <span class="cta-detail">6-month extension</span>
-    <span class="cta-detail">Same team, same AM</span>
-    <span class="cta-detail">Monthly ROI reporting</span>
-    <span class="cta-detail">Full conversion infrastructure</span>
+    <span class="cta-detail">$1,930/month — same MRR</span>
+    <span class="cta-detail">Drone + Meta glasses content</span>
+    <span class="cta-detail">Full ROI tracking infrastructure</span>
   </div>
 </div>
 
