@@ -11,54 +11,61 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
 <style>
 /* ═══════════════════════════════════════════════════════════════════
-   SCROLL MEDIA — INTERNAL PERFORMANCE DASHBOARD
-   Design System: Scheme A (Dark / Authority)
+   SCROLL MEDIA — INTERNAL PERFORMANCE DASHBOARD v2
+   Design: Scheme A (Dark / Authority) — Navy + Lime
    ═══════════════════════════════════════════════════════════════════ */
 :root {
-  --shadow:     #0d0e10;
-  --navy:       #111827;
-  --navy-mid:   #1a2235;
-  --navy-card:  #1e2a3a;
-  --navy-hover: #243044;
-  --azure:      #0c3387;
-  --azure-light:#1a4aad;
-  --azure-glow: rgba(12,51,135,0.25);
-  --highlight:  #e2ed7a;
-  --hl-dim:     rgba(226,237,122,0.12);
-  --hl-border:  rgba(226,237,122,0.25);
-  --green:      #22c55e;
-  --green-dim:  rgba(34,197,94,0.12);
-  --red:        #ef4444;
-  --red-dim:    rgba(239,68,68,0.12);
-  --amber:      #f59e0b;
-  --amber-dim:  rgba(245,158,11,0.12);
-  --text-1:     #f0f4ff;
-  --text-2:     rgba(240,244,255,0.65);
-  --text-3:     rgba(240,244,255,0.38);
-  --border:     rgba(240,244,255,0.07);
-  --border-mid: rgba(240,244,255,0.12);
-  --radius-sm:  6px;
-  --radius:     10px;
-  --radius-lg:  16px;
+  --shadow:      #0a0c10;
+  --navy:        #0f1623;
+  --navy-mid:    #161f2e;
+  --navy-card:   #1a2438;
+  --navy-hover:  #1f2d46;
+  --navy-border: #243350;
+  --azure:       #0c3387;
+  --azure-light: #1a4aad;
+  --azure-glow:  rgba(12,51,135,0.2);
+  --highlight:   #d4e84a;
+  --hl-dim:      rgba(212,232,74,0.1);
+  --hl-border:   rgba(212,232,74,0.22);
+  --hl-glow:     rgba(212,232,74,0.06);
+  --green:       #22c55e;
+  --green-dim:   rgba(34,197,94,0.1);
+  --green-border:rgba(34,197,94,0.25);
+  --red:         #ef4444;
+  --red-dim:     rgba(239,68,68,0.1);
+  --red-border:  rgba(239,68,68,0.25);
+  --amber:       #f59e0b;
+  --amber-dim:   rgba(245,158,11,0.1);
+  --amber-border:rgba(245,158,11,0.25);
+  --blue-accent: #3b82f6;
+  --blue-dim:    rgba(59,130,246,0.1);
+  --text-1:      #eef2ff;
+  --text-2:      rgba(238,242,255,0.62);
+  --text-3:      rgba(238,242,255,0.35);
+  --border:      rgba(238,242,255,0.06);
+  --border-mid:  rgba(238,242,255,0.1);
+  --radius-sm:   5px;
+  --radius:      10px;
+  --radius-lg:   16px;
+  --radius-xl:   22px;
+  --sidebar-w:   240px;
+  --header-h:    60px;
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
 body {
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   background: var(--shadow);
   color: var(--text-1);
-  font-size: 14px;
+  font-size: 13px;
   line-height: 1.5;
   min-height: 100vh;
   overflow-x: hidden;
 }
-
-/* ── SCROLLBAR ── */
-::-webkit-scrollbar { width: 6px; height: 6px; }
-::-webkit-scrollbar-track { background: var(--navy); }
+::-webkit-scrollbar { width: 5px; height: 5px; }
+::-webkit-scrollbar-track { background: transparent; }
 ::-webkit-scrollbar-thumb { background: var(--border-mid); border-radius: 3px; }
-::-webkit-scrollbar-thumb:hover { background: rgba(240,244,255,0.2); }
 
 /* ══════════════════════════════════════════════════════════════════
    LOGIN SCREEN
@@ -68,136 +75,25 @@ body {
   align-items: center;
   justify-content: center;
   min-height: 100vh;
-  background: radial-gradient(ellipse at 50% 0%, rgba(12,51,135,0.3) 0%, var(--shadow) 70%);
+  background: radial-gradient(ellipse 80% 60% at 50% -10%, rgba(12,51,135,0.35) 0%, var(--shadow) 65%);
 }
 .login-card {
   width: 100%;
-  max-width: 420px;
-  padding: 48px 40px;
+  max-width: 400px;
+  padding: 44px 40px;
   background: var(--navy-card);
   border: 1px solid var(--border-mid);
-  border-radius: var(--radius-lg);
-  box-shadow: 0 24px 80px rgba(0,0,0,0.6);
+  border-radius: var(--radius-xl);
+  box-shadow: 0 32px 80px rgba(0,0,0,0.7), 0 0 0 1px rgba(255,255,255,0.03);
 }
 .login-logo {
   display: flex;
   align-items: center;
   gap: 12px;
-  margin-bottom: 32px;
+  margin-bottom: 28px;
 }
-.login-logo img { height: 28px; width: auto; }
+.login-logo img { height: 26px; width: auto; }
 .login-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  background: var(--hl-dim);
-  border: 1px solid var(--hl-border);
-  color: var(--highlight);
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 1.5px;
-  text-transform: uppercase;
-  padding: 4px 10px;
-  border-radius: 100px;
-}
-.login-title {
-  font-size: 24px;
-  font-weight: 800;
-  letter-spacing: -0.5px;
-  color: var(--text-1);
-  margin-bottom: 6px;
-}
-.login-sub {
-  font-size: 13px;
-  color: var(--text-3);
-  margin-bottom: 32px;
-}
-.form-group {
-  margin-bottom: 16px;
-}
-.form-label {
-  display: block;
-  font-size: 12px;
-  font-weight: 600;
-  color: var(--text-2);
-  margin-bottom: 6px;
-  letter-spacing: 0.3px;
-}
-.form-input {
-  width: 100%;
-  padding: 11px 14px;
-  background: var(--navy);
-  border: 1px solid var(--border-mid);
-  border-radius: var(--radius-sm);
-  color: var(--text-1);
-  font-size: 14px;
-  font-family: inherit;
-  transition: border-color 0.15s, box-shadow 0.15s;
-  outline: none;
-}
-.form-input:focus {
-  border-color: var(--azure-light);
-  box-shadow: 0 0 0 3px var(--azure-glow);
-}
-.form-input::placeholder { color: var(--text-3); }
-.btn-login {
-  width: 100%;
-  padding: 13px;
-  background: var(--azure);
-  color: #fff;
-  border: none;
-  border-radius: var(--radius-sm);
-  font-size: 14px;
-  font-weight: 700;
-  font-family: inherit;
-  cursor: pointer;
-  margin-top: 8px;
-  transition: background 0.15s, transform 0.1s;
-  letter-spacing: 0.2px;
-}
-.btn-login:hover { background: var(--azure-light); }
-.btn-login:active { transform: scale(0.99); }
-.btn-login:disabled { opacity: 0.5; cursor: not-allowed; }
-.login-error {
-  margin-top: 12px;
-  padding: 10px 14px;
-  background: var(--red-dim);
-  border: 1px solid rgba(239,68,68,0.3);
-  border-radius: var(--radius-sm);
-  color: #fca5a5;
-  font-size: 13px;
-  display: none;
-}
-
-/* ══════════════════════════════════════════════════════════════════
-   MAIN APP LAYOUT
-   ══════════════════════════════════════════════════════════════════ */
-#app { display: none; min-height: 100vh; }
-
-/* ── SIDEBAR ── */
-.sidebar {
-  position: fixed;
-  left: 0; top: 0; bottom: 0;
-  width: 240px;
-  background: var(--navy);
-  border-right: 1px solid var(--border);
-  display: flex;
-  flex-direction: column;
-  z-index: 50;
-  overflow-y: auto;
-}
-.sidebar-header {
-  padding: 20px 20px 16px;
-  border-bottom: 1px solid var(--border);
-}
-.sidebar-logo {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin-bottom: 12px;
-}
-.sidebar-logo img { height: 22px; width: auto; }
-.sidebar-badge {
   display: inline-flex;
   align-items: center;
   gap: 5px;
@@ -206,189 +102,341 @@ body {
   color: var(--highlight);
   font-size: 9px;
   font-weight: 700;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+  padding: 3px 9px;
+  border-radius: 20px;
+}
+.login-badge::before {
+  content: '';
+  width: 5px; height: 5px;
+  background: var(--highlight);
+  border-radius: 50%;
+}
+.login-title {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--text-1);
+  margin-bottom: 6px;
+}
+.login-sub {
+  font-size: 12px;
+  color: var(--text-3);
+  margin-bottom: 28px;
+}
+.form-group { margin-bottom: 16px; }
+.form-label {
+  display: block;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-2);
+  letter-spacing: 0.5px;
+  margin-bottom: 6px;
+}
+.form-input {
+  width: 100%;
+  padding: 11px 14px;
+  background: var(--navy);
+  border: 1px solid var(--border-mid);
+  border-radius: var(--radius);
+  color: var(--text-1);
+  font-size: 13px;
+  font-family: inherit;
+  outline: none;
+  transition: border-color 0.2s;
+}
+.form-input:focus { border-color: var(--highlight); }
+.form-input::placeholder { color: var(--text-3); }
+.btn-login {
+  width: 100%;
+  padding: 12px;
+  background: var(--highlight);
+  color: var(--shadow);
+  border: none;
+  border-radius: var(--radius);
+  font-size: 13px;
+  font-weight: 700;
+  font-family: inherit;
+  cursor: pointer;
+  transition: opacity 0.2s, transform 0.1s;
+  margin-top: 8px;
+  letter-spacing: 0.3px;
+}
+.btn-login:hover { opacity: 0.9; }
+.btn-login:active { transform: scale(0.99); }
+.login-error {
+  display: none;
+  background: var(--red-dim);
+  border: 1px solid var(--red-border);
+  color: var(--red);
+  font-size: 12px;
+  padding: 10px 12px;
+  border-radius: var(--radius-sm);
+  margin-bottom: 14px;
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   APP SHELL
+   ══════════════════════════════════════════════════════════════════ */
+#app { display: none; }
+
+/* ── SIDEBAR ── */
+.sidebar {
+  position: fixed;
+  top: 0; left: 0;
+  width: var(--sidebar-w);
+  height: 100vh;
+  background: var(--navy);
+  border-right: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  z-index: 100;
+  overflow-y: auto;
+}
+.sidebar-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 18px 20px 16px;
+  border-bottom: 1px solid var(--border);
+}
+.sidebar-logo img { height: 22px; width: auto; }
+.sidebar-badge {
+  font-size: 8px;
+  font-weight: 700;
   letter-spacing: 1.5px;
   text-transform: uppercase;
-  padding: 3px 8px;
-  border-radius: 100px;
+  color: var(--highlight);
+  background: var(--hl-dim);
+  border: 1px solid var(--hl-border);
+  padding: 2px 7px;
+  border-radius: 20px;
 }
 .sidebar-user {
   padding: 14px 20px;
   border-bottom: 1px solid var(--border);
 }
 .sidebar-user-name {
-  font-size: 13px;
-  font-weight: 700;
+  font-size: 12px;
+  font-weight: 600;
   color: var(--text-1);
 }
 .sidebar-user-role {
-  font-size: 11px;
-  color: var(--text-3);
-  margin-top: 2px;
-}
-.sidebar-nav {
-  padding: 12px 10px;
-  flex: 1;
-}
-.nav-section-label {
   font-size: 10px;
+  color: var(--text-3);
+  margin-top: 1px;
+}
+.sidebar-section {
+  padding: 16px 20px 6px;
+}
+.sidebar-section-label {
+  font-size: 9px;
   font-weight: 700;
   letter-spacing: 1.5px;
   text-transform: uppercase;
   color: var(--text-3);
-  padding: 8px 10px 6px;
+  margin-bottom: 6px;
 }
 .nav-item {
   display: flex;
   align-items: center;
-  gap: 10px;
-  padding: 9px 10px;
+  gap: 9px;
+  padding: 8px 10px;
   border-radius: var(--radius-sm);
-  color: var(--text-2);
-  font-size: 13px;
-  font-weight: 500;
   cursor: pointer;
-  transition: background 0.12s, color 0.12s;
-  text-decoration: none;
+  color: var(--text-2);
+  font-size: 12px;
+  font-weight: 500;
+  transition: background 0.15s, color 0.15s;
   margin-bottom: 1px;
+  user-select: none;
 }
 .nav-item:hover { background: var(--navy-hover); color: var(--text-1); }
-.nav-item.active { background: var(--azure-glow); color: var(--highlight); }
-.nav-item .nav-icon { font-size: 15px; width: 18px; text-align: center; flex-shrink: 0; }
-.nav-item .nav-count {
+.nav-item.active { background: var(--hl-dim); color: var(--highlight); border: 1px solid var(--hl-border); }
+.nav-item .nav-icon { font-size: 13px; opacity: 0.7; flex-shrink: 0; }
+.nav-item .nav-badge {
   margin-left: auto;
-  font-size: 10px;
+  font-size: 9px;
   font-weight: 700;
-  background: var(--border-mid);
-  padding: 2px 7px;
-  border-radius: 100px;
+  background: var(--navy-border);
   color: var(--text-3);
+  padding: 1px 6px;
+  border-radius: 20px;
 }
-.nav-item.active .nav-count { background: var(--hl-dim); color: var(--highlight); }
+.nav-item.active .nav-badge { background: var(--hl-border); color: var(--highlight); }
+.nav-item .stage-dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.stage-dot.rise  { background: #a78bfa; }
+.stage-dot.lift  { background: var(--highlight); }
+.stage-dot.spark { background: var(--blue-accent); }
 .sidebar-footer {
+  margin-top: auto;
   padding: 14px 20px;
   border-top: 1px solid var(--border);
 }
-.btn-sync {
-  width: 100%;
-  padding: 10px;
-  background: var(--hl-dim);
-  border: 1px solid var(--hl-border);
-  border-radius: var(--radius-sm);
-  color: var(--highlight);
-  font-size: 12px;
-  font-weight: 700;
-  font-family: inherit;
-  cursor: pointer;
-  transition: background 0.15s;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 7px;
-  letter-spacing: 0.3px;
-}
-.btn-sync:hover { background: rgba(226,237,122,0.18); }
-.btn-sync:disabled { opacity: 0.5; cursor: not-allowed; }
-.btn-sync .spin { display: inline-block; }
-.btn-sync.loading .spin { animation: spin 1s linear infinite; }
-@keyframes spin { to { transform: rotate(360deg); } }
-.last-sync {
-  font-size: 10px;
-  color: var(--text-3);
-  text-align: center;
-  margin-top: 8px;
-}
-.btn-logout {
+.btn-signout {
   width: 100%;
   padding: 8px;
   background: transparent;
-  border: 1px solid var(--border);
+  border: 1px solid var(--border-mid);
   border-radius: var(--radius-sm);
   color: var(--text-3);
   font-size: 11px;
   font-family: inherit;
   cursor: pointer;
-  margin-top: 8px;
-  transition: border-color 0.15s, color 0.15s;
+  transition: all 0.15s;
 }
-.btn-logout:hover { border-color: var(--red); color: #fca5a5; }
+.btn-signout:hover { border-color: var(--red-border); color: var(--red); background: var(--red-dim); }
 
 /* ── MAIN CONTENT ── */
 .main {
-  margin-left: 240px;
+  margin-left: var(--sidebar-w);
   min-height: 100vh;
   display: flex;
   flex-direction: column;
 }
+
+/* ── TOP BAR ── */
 .topbar {
   position: sticky;
   top: 0;
-  z-index: 40;
-  background: rgba(13,14,16,0.85);
+  height: var(--header-h);
+  background: rgba(10,12,16,0.92);
   backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--border);
-  padding: 0 32px;
-  height: 60px;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  padding: 0 28px;
+  z-index: 50;
+  gap: 16px;
 }
-.topbar-left { display: flex; align-items: center; gap: 16px; }
 .topbar-title {
-  font-size: 16px;
-  font-weight: 800;
-  letter-spacing: -0.3px;
+  font-size: 15px;
+  font-weight: 700;
   color: var(--text-1);
+  flex-shrink: 0;
 }
 .topbar-period {
-  font-size: 12px;
+  font-size: 11px;
   color: var(--text-3);
-  background: var(--border);
-  padding: 4px 10px;
-  border-radius: 100px;
+  font-weight: 500;
 }
-.topbar-right { display: flex; align-items: center; gap: 12px; }
-.health-pill {
+
+/* ── DATE RANGE PICKER ── */
+.date-range-bar {
   display: flex;
   align-items: center;
-  gap: 6px;
-  font-size: 12px;
-  font-weight: 700;
-  padding: 5px 12px;
-  border-radius: 100px;
+  gap: 8px;
+  margin-left: auto;
 }
-.health-pill.good { background: var(--green-dim); color: var(--green); border: 1px solid rgba(34,197,94,0.2); }
-.health-pill.mid { background: var(--amber-dim); color: var(--amber); border: 1px solid rgba(245,158,11,0.2); }
-.health-pill.low { background: var(--red-dim); color: var(--red); border: 1px solid rgba(239,68,68,0.2); }
-.health-dot { width: 7px; height: 7px; border-radius: 50%; }
-.health-pill.good .health-dot { background: var(--green); }
-.health-pill.mid .health-dot { background: var(--amber); }
-.health-pill.low .health-dot { background: var(--red); }
+.date-preset-btn {
+  padding: 5px 11px;
+  background: var(--navy-mid);
+  border: 1px solid var(--border-mid);
+  border-radius: var(--radius-sm);
+  color: var(--text-2);
+  font-size: 11px;
+  font-weight: 500;
+  font-family: inherit;
+  cursor: pointer;
+  transition: all 0.15s;
+  white-space: nowrap;
+}
+.date-preset-btn:hover { border-color: var(--hl-border); color: var(--highlight); }
+.date-preset-btn.active { background: var(--hl-dim); border-color: var(--hl-border); color: var(--highlight); }
+.date-input {
+  padding: 5px 10px;
+  background: var(--navy-mid);
+  border: 1px solid var(--border-mid);
+  border-radius: var(--radius-sm);
+  color: var(--text-1);
+  font-size: 11px;
+  font-family: inherit;
+  outline: none;
+  cursor: pointer;
+  transition: border-color 0.15s;
+}
+.date-input:focus { border-color: var(--highlight); }
+.date-sep { color: var(--text-3); font-size: 11px; }
+.btn-apply {
+  padding: 5px 13px;
+  background: var(--highlight);
+  color: var(--shadow);
+  border: none;
+  border-radius: var(--radius-sm);
+  font-size: 11px;
+  font-weight: 700;
+  font-family: inherit;
+  cursor: pointer;
+  transition: opacity 0.15s;
+}
+.btn-apply:hover { opacity: 0.88; }
+.btn-sync {
+  padding: 5px 13px;
+  background: transparent;
+  border: 1px solid var(--border-mid);
+  border-radius: var(--radius-sm);
+  color: var(--text-2);
+  font-size: 11px;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+  transition: all 0.15s;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.btn-sync:hover { border-color: var(--hl-border); color: var(--highlight); }
+.btn-sync.loading { opacity: 0.6; pointer-events: none; }
+.sync-icon { font-size: 12px; display: inline-block; }
+.btn-sync.loading .sync-icon { animation: spin 1s linear infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
 
-/* ── CONTENT AREA ── */
-.content { padding: 28px 32px 64px; flex: 1; }
+/* ── PAGE CONTENT ── */
+.page-content {
+  padding: 28px;
+  flex: 1;
+}
+.page { display: none; }
+.page.active { display: block; }
 
-/* ══════════════════════════════════════════════════════════════════
-   EXECUTIVE VIEW — AGENCY OVERVIEW
-   ══════════════════════════════════════════════════════════════════ */
-.view { display: none; }
-.view.active { display: block; }
+/* ── SECTION HEADER ── */
+.section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 18px;
+}
+.section-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text-1);
+}
+.section-sub {
+  font-size: 11px;
+  color: var(--text-3);
+  margin-top: 2px;
+}
 
-/* ── AGENCY STAT CARDS ── */
-.agency-stats {
+/* ── STAT CARDS ROW ── */
+.stat-row {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 14px;
-  margin-bottom: 28px;
+  margin-bottom: 24px;
 }
 .stat-card {
   background: var(--navy-card);
   border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 20px;
+  border-radius: var(--radius-lg);
+  padding: 20px 22px;
   position: relative;
   overflow: hidden;
-  transition: border-color 0.15s;
+  transition: border-color 0.2s;
 }
 .stat-card:hover { border-color: var(--border-mid); }
 .stat-card::before {
@@ -396,321 +444,341 @@ body {
   position: absolute;
   top: 0; left: 0; right: 0;
   height: 2px;
-  background: linear-gradient(90deg, var(--azure), var(--azure-light));
-  opacity: 0;
-  transition: opacity 0.15s;
+  background: linear-gradient(90deg, var(--highlight), transparent);
+  opacity: 0.5;
 }
-.stat-card:hover::before { opacity: 1; }
 .stat-label {
-  font-size: 11px;
+  font-size: 10px;
   font-weight: 600;
-  color: var(--text-3);
-  letter-spacing: 0.5px;
+  letter-spacing: 0.8px;
   text-transform: uppercase;
-  margin-bottom: 8px;
+  color: var(--text-3);
+  margin-bottom: 10px;
 }
 .stat-value {
   font-size: 28px;
   font-weight: 800;
-  letter-spacing: -1px;
   color: var(--text-1);
   line-height: 1;
   margin-bottom: 6px;
+  letter-spacing: -0.5px;
 }
-.stat-value.highlight { color: var(--highlight); }
-.stat-sub {
+.stat-meta {
   font-size: 11px;
   color: var(--text-3);
 }
-.stat-icon {
-  position: absolute;
-  top: 18px; right: 18px;
-  font-size: 22px;
-  opacity: 0.15;
-}
 
-/* ── SECTION HEADER ── */
-.section-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 16px;
-}
-.section-title {
-  font-size: 13px;
-  font-weight: 800;
-  letter-spacing: 0.5px;
-  text-transform: uppercase;
-  color: var(--text-2);
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-.section-title::before {
-  content: '';
-  display: block;
-  width: 3px;
-  height: 14px;
-  background: var(--highlight);
-  border-radius: 2px;
-}
-
-/* ── AM COLUMNS (EXEC VIEW) ── */
-.am-columns {
+/* ── AM PORTFOLIO GRID ── */
+.am-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 16px;
   margin-bottom: 28px;
 }
-.am-column {
+.am-card {
   background: var(--navy-card);
   border: 1px solid var(--border);
   border-radius: var(--radius-lg);
-  overflow: hidden;
+  padding: 18px 20px;
 }
-.am-column-header {
-  padding: 16px 20px;
-  border-bottom: 1px solid var(--border);
+.am-card-header {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 10px;
+  margin-bottom: 14px;
 }
 .am-avatar {
-  width: 36px;
-  height: 36px;
+  width: 34px; height: 34px;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 13px;
-  font-weight: 800;
+  font-size: 12px;
+  font-weight: 700;
   flex-shrink: 0;
 }
-.am-avatar.riley { background: rgba(139,92,246,0.2); color: #a78bfa; }
-.am-avatar.emily { background: rgba(236,72,153,0.2); color: #f472b6; }
-.am-avatar.rachel { background: rgba(20,184,166,0.2); color: #2dd4bf; }
-.am-name { font-size: 13px; font-weight: 700; color: var(--text-1); }
-.am-count { font-size: 11px; color: var(--text-3); margin-top: 1px; }
-.am-health-score {
+.am-avatar.riley  { background: rgba(167,139,250,0.15); color: #a78bfa; border: 1px solid rgba(167,139,250,0.3); }
+.am-avatar.emily  { background: rgba(212,232,74,0.12); color: var(--highlight); border: 1px solid var(--hl-border); }
+.am-avatar.rachel { background: rgba(59,130,246,0.12); color: var(--blue-accent); border: 1px solid rgba(59,130,246,0.25); }
+.am-name { font-size: 13px; font-weight: 700; }
+.am-count { font-size: 10px; color: var(--text-3); }
+.am-health {
   margin-left: auto;
-  font-size: 18px;
+  font-size: 20px;
   font-weight: 800;
-  letter-spacing: -0.5px;
+  color: var(--highlight);
 }
-.am-health-score.good { color: var(--green); }
-.am-health-score.mid { color: var(--amber); }
-.am-health-score.low { color: var(--red); }
-.am-accounts { padding: 10px; }
-
-/* ── ACCOUNT MINI CARD ── */
-.account-mini {
-  padding: 12px 14px;
-  border-radius: var(--radius-sm);
-  cursor: pointer;
-  transition: background 0.12s;
-  margin-bottom: 4px;
-  border: 1px solid transparent;
-}
-.account-mini:hover { background: var(--navy-hover); border-color: var(--border); }
-.account-mini:last-child { margin-bottom: 0; }
-.account-mini-top {
+.am-accounts { display: flex; flex-direction: column; gap: 6px; }
+.am-account-row {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  margin-bottom: 8px;
+  gap: 8px;
+  padding: 7px 10px;
+  background: var(--navy-mid);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: background 0.15s;
 }
-.account-mini-name {
-  font-size: 13px;
+.am-account-row:hover { background: var(--navy-hover); }
+.am-account-name { font-size: 11px; font-weight: 600; flex: 1; }
+.am-account-stage {
+  font-size: 9px;
   font-weight: 700;
-  color: var(--text-1);
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  padding: 2px 7px;
+  border-radius: 20px;
 }
-.account-mini-stage {
+.stage-rise  { background: rgba(167,139,250,0.12); color: #a78bfa; border: 1px solid rgba(167,139,250,0.25); }
+.stage-lift  { background: var(--hl-dim); color: var(--highlight); border: 1px solid var(--hl-border); }
+.stage-spark { background: var(--blue-dim); color: var(--blue-accent); border: 1px solid rgba(59,130,246,0.25); }
+.kpi-dots { display: flex; gap: 3px; }
+.kpi-dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+}
+.kpi-dot.above    { background: var(--green); }
+.kpi-dot.on-track { background: var(--amber); }
+.kpi-dot.below    { background: var(--red); }
+.kpi-dot.unknown  { background: var(--border-mid); }
+
+/* ── ACCOUNTS TABLE ── */
+.accounts-table-wrap {
+  background: var(--navy-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+.accounts-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.accounts-table th {
+  padding: 10px 16px;
+  text-align: left;
   font-size: 9px;
   font-weight: 700;
   letter-spacing: 1px;
   text-transform: uppercase;
-  padding: 2px 8px;
-  border-radius: 100px;
-}
-.stage-spark { background: rgba(99,102,241,0.15); color: #818cf8; }
-.stage-lift  { background: rgba(59,130,246,0.15); color: #60a5fa; }
-.stage-rise  { background: var(--hl-dim); color: var(--highlight); }
-.account-mini-handle {
-  font-size: 11px;
   color: var(--text-3);
-  margin-bottom: 8px;
+  background: var(--navy-mid);
+  border-bottom: 1px solid var(--border);
 }
-.account-mini-bar {
-  height: 4px;
-  background: var(--border);
-  border-radius: 2px;
-  overflow: hidden;
+.accounts-table td {
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--border);
+  vertical-align: middle;
 }
-.account-mini-bar-fill {
-  height: 100%;
-  border-radius: 2px;
-  transition: width 0.6s ease;
+.accounts-table tr:last-child td { border-bottom: none; }
+.accounts-table tr:hover td { background: var(--navy-hover); cursor: pointer; }
+.acct-name { font-size: 12px; font-weight: 700; }
+.acct-handle { font-size: 10px; color: var(--text-3); }
+.health-score {
+  font-size: 14px;
+  font-weight: 800;
 }
-.bar-good  { background: var(--green); }
-.bar-mid   { background: var(--amber); }
-.bar-low   { background: var(--red); }
-.account-mini-kpis {
-  display: flex;
-  gap: 8px;
-  margin-top: 8px;
-}
-.kpi-dot {
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  flex-shrink: 0;
-}
-.kpi-dot.above { background: var(--green); }
-.kpi-dot.on-track { background: var(--amber); }
-.kpi-dot.below { background: var(--red); }
-.kpi-dot.unknown { background: var(--border-mid); }
+.health-score.high   { color: var(--green); }
+.health-score.mid    { color: var(--amber); }
+.health-score.low    { color: var(--red); }
+.sparkline-cell canvas { display: block; }
 
 /* ══════════════════════════════════════════════════════════════════
-   ACCOUNT DETAIL VIEW
+   ACCOUNT DETAIL PAGE
    ══════════════════════════════════════════════════════════════════ */
-.account-detail-header {
+.account-header {
   display: flex;
   align-items: flex-start;
-  gap: 20px;
+  justify-content: space-between;
   margin-bottom: 24px;
-  padding: 24px;
-  background: var(--navy-card);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-lg);
+  gap: 20px;
 }
-.account-detail-info { flex: 1; }
-.account-detail-name {
+.account-header-left { flex: 1; }
+.account-title {
   font-size: 22px;
   font-weight: 800;
-  letter-spacing: -0.5px;
   color: var(--text-1);
   margin-bottom: 4px;
+}
+.account-meta {
   display: flex;
   align-items: center;
   gap: 10px;
-}
-.account-detail-meta {
-  font-size: 13px;
-  color: var(--text-3);
-  display: flex;
-  align-items: center;
-  gap: 12px;
   flex-wrap: wrap;
 }
-.account-detail-meta span { display: flex; align-items: center; gap: 4px; }
-.back-btn {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  font-size: 12px;
-  font-weight: 600;
+.account-handle { font-size: 12px; color: var(--text-3); }
+.account-niche {
+  font-size: 10px;
   color: var(--text-3);
-  cursor: pointer;
-  padding: 7px 12px;
-  border-radius: var(--radius-sm);
-  border: 1px solid var(--border);
-  background: transparent;
-  font-family: inherit;
-  transition: all 0.15s;
+  background: var(--navy-mid);
+  border: 1px solid var(--border-mid);
+  padding: 2px 8px;
+  border-radius: 20px;
+}
+.account-am {
+  font-size: 10px;
+  color: var(--text-3);
+}
+.health-badge {
+  text-align: right;
   flex-shrink: 0;
 }
-.back-btn:hover { border-color: var(--border-mid); color: var(--text-1); }
-
-/* ── FUNNEL GOALS ── */
-.funnel-goals {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 12px;
-  margin-bottom: 24px;
+.health-badge-score {
+  font-size: 36px;
+  font-weight: 900;
+  line-height: 1;
+  letter-spacing: -1px;
 }
-.funnel-card {
+.health-badge-label {
+  font-size: 10px;
+  color: var(--text-3);
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  margin-top: 2px;
+}
+
+/* ── FUNNEL TABS ── */
+.funnel-tabs {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 20px;
+  background: var(--navy-mid);
+  padding: 4px;
+  border-radius: var(--radius);
+  width: fit-content;
+}
+.funnel-tab {
+  padding: 7px 18px;
+  border-radius: var(--radius-sm);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  color: var(--text-3);
+  transition: all 0.15s;
+  user-select: none;
+}
+.funnel-tab:hover { color: var(--text-1); }
+.funnel-tab.active {
+  background: var(--navy-card);
+  color: var(--text-1);
+  box-shadow: 0 1px 4px rgba(0,0,0,0.3);
+}
+.funnel-tab.tofu.active  { color: var(--blue-accent); }
+.funnel-tab.mofu.active  { color: var(--highlight); }
+.funnel-tab.bofu.active  { color: #a78bfa; }
+
+/* ── GOAL CARD ── */
+.goal-card {
   background: var(--navy-card);
   border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 16px 18px;
+  border-radius: var(--radius-lg);
+  padding: 18px 22px;
+  margin-bottom: 20px;
   position: relative;
   overflow: hidden;
 }
-.funnel-card::before {
+.goal-card::before {
   content: '';
   position: absolute;
-  top: 0; left: 0; right: 0;
-  height: 2px;
+  top: 0; left: 0;
+  width: 3px;
+  height: 100%;
 }
-.funnel-card.tofu::before { background: linear-gradient(90deg, #6366f1, #818cf8); }
-.funnel-card.mofu::before { background: linear-gradient(90deg, #3b82f6, #60a5fa); }
-.funnel-card.bofu::before { background: linear-gradient(90deg, var(--highlight), #c8d95a); }
-.funnel-label {
+.goal-card.tofu::before  { background: var(--blue-accent); }
+.goal-card.mofu::before  { background: var(--highlight); }
+.goal-card.bofu::before  { background: #a78bfa; }
+.goal-funnel-label {
   font-size: 9px;
   font-weight: 700;
   letter-spacing: 1.5px;
   text-transform: uppercase;
   margin-bottom: 6px;
 }
-.funnel-card.tofu .funnel-label { color: #818cf8; }
-.funnel-card.mofu .funnel-label { color: #60a5fa; }
-.funnel-card.bofu .funnel-label { color: var(--highlight); }
-.funnel-stage-name {
-  font-size: 10px;
-  color: var(--text-3);
-  margin-bottom: 8px;
-}
-.funnel-goal-text {
-  font-size: 12px;
-  font-weight: 600;
+.goal-card.tofu .goal-funnel-label  { color: var(--blue-accent); }
+.goal-card.mofu .goal-funnel-label  { color: var(--highlight); }
+.goal-card.bofu .goal-funnel-label  { color: #a78bfa; }
+.goal-title {
+  font-size: 13px;
+  font-weight: 700;
   color: var(--text-1);
-  line-height: 1.45;
+  margin-bottom: 6px;
+}
+.goal-desc {
+  font-size: 11px;
+  color: var(--text-2);
+  line-height: 1.6;
 }
 
-/* ── KPI GRID ── */
+/* ── KPI SECTION ── */
+.kpi-section { display: none; }
+.kpi-section.active { display: block; }
+
 .kpi-grid {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 12px;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 14px;
   margin-bottom: 24px;
 }
 .kpi-card {
   background: var(--navy-card);
   border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 16px;
+  border-radius: var(--radius-lg);
+  padding: 18px 20px;
+  cursor: pointer;
+  transition: border-color 0.2s, background 0.2s;
   position: relative;
   overflow: hidden;
-  transition: border-color 0.15s;
 }
-.kpi-card:hover { border-color: var(--border-mid); }
-.kpi-card.above { border-color: rgba(34,197,94,0.25); }
-.kpi-card.on-track { border-color: rgba(245,158,11,0.25); }
-.kpi-card.below { border-color: rgba(239,68,68,0.25); }
+.kpi-card:hover { border-color: var(--border-mid); background: var(--navy-hover); }
+.kpi-card.selected {
+  border-color: var(--highlight);
+  background: var(--hl-glow);
+}
+.kpi-card.above    { border-left: 3px solid var(--green); }
+.kpi-card.on-track { border-left: 3px solid var(--amber); }
+.kpi-card.below    { border-left: 3px solid var(--red); }
+.kpi-card.unknown  { border-left: 3px solid var(--border-mid); }
+.kpi-card-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
 .kpi-card-label {
   font-size: 10px;
   font-weight: 600;
+  letter-spacing: 0.5px;
   color: var(--text-3);
   text-transform: uppercase;
-  letter-spacing: 0.5px;
-  margin-bottom: 10px;
 }
-.kpi-card-value {
-  font-size: 24px;
+.kpi-status-badge {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  padding: 2px 8px;
+  border-radius: 20px;
+}
+.kpi-status-badge.above    { background: var(--green-dim); color: var(--green); border: 1px solid var(--green-border); }
+.kpi-status-badge.on-track { background: var(--amber-dim); color: var(--amber); border: 1px solid var(--amber-border); }
+.kpi-status-badge.below    { background: var(--red-dim); color: var(--red); border: 1px solid var(--red-border); }
+.kpi-status-badge.unknown  { background: var(--navy-mid); color: var(--text-3); border: 1px solid var(--border-mid); }
+.kpi-value {
+  font-size: 26px;
   font-weight: 800;
-  letter-spacing: -0.8px;
+  color: var(--text-1);
   line-height: 1;
   margin-bottom: 4px;
+  letter-spacing: -0.5px;
 }
-.kpi-card.above .kpi-card-value { color: var(--green); }
-.kpi-card.on-track .kpi-card-value { color: var(--amber); }
-.kpi-card.below .kpi-card-value { color: var(--red); }
-.kpi-card.unknown .kpi-card-value { color: var(--text-3); }
-.kpi-card-target {
-  font-size: 10px;
-  color: var(--text-3);
+.kpi-target-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
   margin-bottom: 10px;
 }
+.kpi-target-label { font-size: 10px; color: var(--text-3); }
+.kpi-target-range { font-size: 10px; color: var(--text-2); font-weight: 600; }
 .kpi-progress-bar {
   height: 3px;
   background: var(--border);
@@ -720,984 +788,1042 @@ body {
 .kpi-progress-fill {
   height: 100%;
   border-radius: 2px;
-  transition: width 0.8s ease;
+  transition: width 0.5s ease;
 }
-.kpi-card.above .kpi-progress-fill { background: var(--green); }
-.kpi-card.on-track .kpi-progress-fill { background: var(--amber); }
-.kpi-card.below .kpi-progress-fill { background: var(--red); }
-.kpi-status-badge {
-  position: absolute;
-  top: 12px; right: 12px;
+.kpi-progress-fill.above    { background: var(--green); }
+.kpi-progress-fill.on-track { background: var(--amber); }
+.kpi-progress-fill.below    { background: var(--red); }
+.kpi-progress-fill.unknown  { background: var(--border-mid); }
+.kpi-platform {
   font-size: 9px;
-  font-weight: 700;
-  letter-spacing: 0.5px;
-  text-transform: uppercase;
-  padding: 2px 7px;
-  border-radius: 100px;
+  color: var(--text-3);
+  margin-top: 8px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
 }
-.kpi-card.above .kpi-status-badge { background: var(--green-dim); color: var(--green); }
-.kpi-card.on-track .kpi-status-badge { background: var(--amber-dim); color: var(--amber); }
-.kpi-card.below .kpi-status-badge { background: var(--red-dim); color: var(--red); }
-.kpi-card.unknown .kpi-status-badge { background: var(--border); color: var(--text-3); }
+.kpi-platform::before {
+  content: '';
+  width: 4px; height: 4px;
+  background: var(--border-mid);
+  border-radius: 50%;
+}
 
-/* ── SPARKLINE SECTION ── */
-.sparkline-section {
+/* ── CHART AREA ── */
+.chart-area {
   background: var(--navy-card);
   border: 1px solid var(--border);
   border-radius: var(--radius-lg);
-  padding: 20px 24px;
-  margin-bottom: 24px;
+  padding: 22px 24px;
+  margin-bottom: 20px;
 }
-.sparkline-header {
+.chart-area-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 16px;
+  margin-bottom: 18px;
 }
-.sparkline-title {
+.chart-title {
   font-size: 13px;
   font-weight: 700;
   color: var(--text-1);
 }
-.sparkline-sub {
-  font-size: 11px;
+.chart-subtitle {
+  font-size: 10px;
   color: var(--text-3);
+  margin-top: 2px;
 }
-.sparkline-chart-wrap {
-  height: 120px;
-  position: relative;
+.chart-type-btns {
+  display: flex;
+  gap: 4px;
 }
+.chart-type-btn {
+  padding: 4px 10px;
+  background: var(--navy-mid);
+  border: 1px solid var(--border-mid);
+  border-radius: var(--radius-sm);
+  color: var(--text-3);
+  font-size: 10px;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.chart-type-btn:hover { color: var(--text-1); }
+.chart-type-btn.active { background: var(--hl-dim); border-color: var(--hl-border); color: var(--highlight); }
+.chart-canvas-wrap { position: relative; height: 240px; }
 
-/* ── POSTS ACTIVITY ── */
-.posts-section {
-  background: var(--navy-card);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-lg);
-  padding: 20px 24px;
-}
-.posts-grid {
+/* ── CONTENT BREAKDOWN ── */
+.content-breakdown {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 12px;
-  margin-top: 16px;
+  margin-bottom: 20px;
 }
-.post-stat {
-  text-align: center;
-  padding: 14px;
-  background: var(--navy);
-  border-radius: var(--radius-sm);
-}
-.post-stat-value {
-  font-size: 22px;
-  font-weight: 800;
-  letter-spacing: -0.5px;
-  color: var(--text-1);
-}
-.post-stat-label {
-  font-size: 10px;
-  color: var(--text-3);
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  margin-top: 4px;
-}
-
-/* ══════════════════════════════════════════════════════════════════
-   AM VIEW — ACCOUNT LIST
-   ══════════════════════════════════════════════════════════════════ */
-.account-list {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-.account-row {
+.content-stat {
   background: var(--navy-card);
   border: 1px solid var(--border);
-  border-radius: var(--radius-lg);
-  padding: 20px 24px;
-  cursor: pointer;
-  transition: border-color 0.15s, background 0.15s;
-  display: grid;
-  grid-template-columns: 1fr auto;
-  gap: 16px;
-  align-items: center;
+  border-radius: var(--radius);
+  padding: 14px 16px;
+  text-align: center;
 }
-.account-row:hover { border-color: var(--border-mid); background: var(--navy-hover); }
-.account-row-left {}
-.account-row-name {
-  font-size: 16px;
+.content-stat-value {
+  font-size: 22px;
   font-weight: 800;
-  letter-spacing: -0.3px;
   color: var(--text-1);
   margin-bottom: 4px;
-  display: flex;
-  align-items: center;
-  gap: 10px;
 }
-.account-row-meta {
-  font-size: 12px;
-  color: var(--text-3);
-  margin-bottom: 12px;
-}
-.account-row-kpis {
-  display: flex;
-  gap: 8px;
-  flex-wrap: wrap;
-}
-.kpi-chip {
-  display: flex;
-  align-items: center;
-  gap: 5px;
-  font-size: 11px;
-  font-weight: 600;
-  padding: 4px 10px;
-  border-radius: 100px;
-}
-.kpi-chip.above { background: var(--green-dim); color: var(--green); }
-.kpi-chip.on-track { background: var(--amber-dim); color: var(--amber); }
-.kpi-chip.below { background: var(--red-dim); color: var(--red); }
-.kpi-chip.unknown { background: var(--border); color: var(--text-3); }
-.account-row-right {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  gap: 8px;
-}
-.account-health-score {
-  font-size: 32px;
-  font-weight: 900;
-  letter-spacing: -1.5px;
-  line-height: 1;
-}
-.account-health-score.good { color: var(--green); }
-.account-health-score.mid { color: var(--amber); }
-.account-health-score.low { color: var(--red); }
-.account-health-label {
+.content-stat-label {
   font-size: 10px;
   color: var(--text-3);
   text-transform: uppercase;
   letter-spacing: 0.5px;
 }
-.account-sparkline-wrap {
-  width: 100px;
-  height: 36px;
-}
 
-/* ══════════════════════════════════════════════════════════════════
-   LOADING STATE
-   ══════════════════════════════════════════════════════════════════ */
+/* ── LOADING OVERLAY ── */
 .loading-overlay {
-  display: flex;
-  flex-direction: column;
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(10,12,16,0.75);
+  backdrop-filter: blur(4px);
+  z-index: 200;
   align-items: center;
   justify-content: center;
-  padding: 80px 32px;
+  flex-direction: column;
   gap: 16px;
 }
+.loading-overlay.show { display: flex; }
 .loading-spinner {
-  width: 40px;
-  height: 40px;
-  border: 3px solid var(--border);
+  width: 36px; height: 36px;
+  border: 3px solid var(--border-mid);
   border-top-color: var(--highlight);
   border-radius: 50%;
   animation: spin 0.8s linear infinite;
 }
-.loading-text {
-  font-size: 13px;
-  color: var(--text-3);
-}
+.loading-text { font-size: 13px; color: var(--text-2); font-weight: 500; }
 
-/* ══════════════════════════════════════════════════════════════════
-   EMPTY / ERROR STATES
-   ══════════════════════════════════════════════════════════════════ */
+/* ── EMPTY STATE ── */
 .empty-state {
   text-align: center;
-  padding: 60px 32px;
+  padding: 60px 20px;
   color: var(--text-3);
 }
-.empty-state-icon { font-size: 40px; margin-bottom: 12px; opacity: 0.4; }
-.empty-state-title { font-size: 15px; font-weight: 700; color: var(--text-2); margin-bottom: 6px; }
-.empty-state-sub { font-size: 13px; }
+.empty-state-icon { font-size: 36px; margin-bottom: 12px; opacity: 0.4; }
+.empty-state-text { font-size: 13px; }
 
-/* ══════════════════════════════════════════════════════════════════
-   UTILITY
-   ══════════════════════════════════════════════════════════════════ */
-.divider {
-  height: 1px;
-  background: var(--border);
-  margin: 24px 0;
+/* ── RESPONSIVE ── */
+@media (max-width: 1100px) {
+  .stat-row { grid-template-columns: repeat(2, 1fr); }
+  .am-grid  { grid-template-columns: 1fr; }
 }
-.tag {
-  display: inline-flex;
-  align-items: center;
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 0.5px;
-  text-transform: uppercase;
-  padding: 2px 8px;
-  border-radius: 100px;
-}
-.tag-azure { background: var(--azure-glow); color: #60a5fa; }
-
-/* ══════════════════════════════════════════════════════════════════
-   RESPONSIVE
-   ══════════════════════════════════════════════════════════════════ */
-@media (max-width: 1200px) {
-  .kpi-grid { grid-template-columns: repeat(3, 1fr); }
-  .agency-stats { grid-template-columns: repeat(2, 1fr); }
-}
-@media (max-width: 900px) {
-  .sidebar { width: 200px; }
-  .main { margin-left: 200px; }
-  .am-columns { grid-template-columns: 1fr; }
-  .funnel-goals { grid-template-columns: 1fr; }
+@media (max-width: 768px) {
+  :root { --sidebar-w: 0px; }
+  .sidebar { transform: translateX(-100%); }
+  .stat-row { grid-template-columns: 1fr 1fr; }
+  .kpi-grid { grid-template-columns: 1fr; }
 }
 </style>
 </head>
 <body>
 
-<!-- ═══════════════════════════════════════════════════════════════
+<!-- ══════════════════════════════════════════════════════════════════
      LOGIN SCREEN
-     ═══════════════════════════════════════════════════════════════ -->
+     ══════════════════════════════════════════════════════════════════ -->
 <div id="login-screen">
   <div class="login-card">
     <div class="login-logo">
-      <img src="/scroll-media-logo.svg" alt="Scroll Media" onerror="this.style.display='none'">
-      <div class="login-badge">⚡ Internal</div>
+      <img src="/scroll-logo.png" alt="Scroll Media" onerror="this.style.display='none'">
+      <span class="login-badge">Internal</span>
     </div>
-    <h1 class="login-title">Performance Dashboard</h1>
-    <p class="login-sub">Sign in to access your account data and KPI tracking.</p>
-    <form id="login-form" onsubmit="handleLogin(event)">
-      <div class="form-group">
-        <label class="form-label" for="email">Email Address</label>
-        <input class="form-input" type="email" id="email" placeholder="you@getscrollmedia.com" required autocomplete="email">
-      </div>
-      <div class="form-group">
-        <label class="form-label" for="password">Password</label>
-        <input class="form-input" type="password" id="password" placeholder="••••••••" required autocomplete="current-password">
-      </div>
-      <button class="btn-login" type="submit" id="login-btn">Sign In</button>
-      <div class="login-error" id="login-error"></div>
-    </form>
+    <div class="login-title">Performance Dashboard</div>
+    <div class="login-sub">Sign in with your Scroll Media credentials</div>
+    <div class="login-error" id="login-error">Invalid username or password. Please try again.</div>
+    <div class="form-group">
+      <label class="form-label" for="input-username">Username</label>
+      <input class="form-input" id="input-username" type="text" placeholder="e.g. cgianattasio" autocomplete="username" autocapitalize="none">
+    </div>
+    <div class="form-group">
+      <label class="form-label" for="input-password">Password</label>
+      <input class="form-input" id="input-password" type="password" placeholder="••••••••" autocomplete="current-password">
+    </div>
+    <button class="btn-login" id="btn-login">Sign In</button>
   </div>
 </div>
 
-<!-- ═══════════════════════════════════════════════════════════════
-     MAIN APP
-     ═══════════════════════════════════════════════════════════════ -->
+<!-- ══════════════════════════════════════════════════════════════════
+     APP
+     ══════════════════════════════════════════════════════════════════ -->
 <div id="app">
+
   <!-- SIDEBAR -->
-  <aside class="sidebar">
-    <div class="sidebar-header">
-      <div class="sidebar-logo">
-        <img src="/scroll-media-logo.svg" alt="Scroll Media" onerror="this.style.display='none'">
-      </div>
-      <div class="sidebar-badge">⚡ Dashboard</div>
+  <nav class="sidebar">
+    <div class="sidebar-logo">
+      <img src="/scroll-logo.png" alt="Scroll Media" onerror="this.style.display='none'">
+      <span class="sidebar-badge">Dashboard</span>
     </div>
     <div class="sidebar-user">
       <div class="sidebar-user-name" id="sidebar-user-name">—</div>
       <div class="sidebar-user-role" id="sidebar-user-role">—</div>
     </div>
-    <nav class="sidebar-nav" id="sidebar-nav">
-      <!-- Populated by JS -->
-    </nav>
-    <div class="sidebar-footer">
-      <button class="btn-sync" id="sync-btn" onclick="syncData()">
-        <span class="spin">↻</span> Sync Data
-      </button>
-      <div class="last-sync" id="last-sync-time">Never synced</div>
-      <button class="btn-logout" onclick="logout()">Sign Out</button>
-    </div>
-  </aside>
 
-  <!-- MAIN CONTENT -->
-  <main class="main">
-    <div class="topbar">
-      <div class="topbar-left">
-        <span class="topbar-title" id="topbar-title">Overview</span>
-        <span class="topbar-period" id="topbar-period">Loading...</span>
+    <!-- Executive-only nav -->
+    <div class="sidebar-section" id="nav-exec-section" style="display:none">
+      <div class="sidebar-section-label">Executive</div>
+      <div class="nav-item active" id="nav-overview" onclick="showPage('overview')">
+        <span class="nav-icon">📊</span> Agency Overview
       </div>
-      <div class="topbar-right">
-        <div class="health-pill mid" id="agency-health-pill">
-          <div class="health-dot"></div>
-          <span id="agency-health-text">—</span>
+    </div>
+
+    <!-- AM sections (exec sees all, AM sees their section only) -->
+    <div class="sidebar-section" id="nav-am-riley-section">
+      <div class="sidebar-section-label">Riley Walker</div>
+      <div id="nav-am-riley-accounts"></div>
+    </div>
+    <div class="sidebar-section" id="nav-am-emily-section">
+      <div class="sidebar-section-label">Emily Krintz</div>
+      <div id="nav-am-emily-accounts"></div>
+    </div>
+    <div class="sidebar-section" id="nav-am-rachel-section">
+      <div class="sidebar-section-label">Rachel Dina</div>
+      <div id="nav-am-rachel-accounts"></div>
+    </div>
+
+    <div class="sidebar-footer">
+      <button class="btn-signout" onclick="signOut()">Sign Out</button>
+    </div>
+  </nav>
+
+  <!-- MAIN -->
+  <div class="main">
+    <!-- TOP BAR -->
+    <div class="topbar">
+      <div>
+        <div class="topbar-title" id="topbar-title">Agency Overview</div>
+        <div class="topbar-period" id="topbar-period">Loading...</div>
+      </div>
+      <div class="date-range-bar">
+        <button class="date-preset-btn active" id="preset-mtd" onclick="applyPreset('mtd')">MTD</button>
+        <button class="date-preset-btn" id="preset-7d" onclick="applyPreset('7d')">Last 7D</button>
+        <button class="date-preset-btn" id="preset-30d" onclick="applyPreset('30d')">Last 30D</button>
+        <button class="date-preset-btn" id="preset-custom" onclick="toggleCustomRange()">Custom</button>
+        <div id="custom-range-inputs" style="display:none; align-items:center; gap:6px;">
+          <input class="date-input" type="date" id="date-from">
+          <span class="date-sep">→</span>
+          <input class="date-input" type="date" id="date-to">
+          <button class="btn-apply" onclick="applyCustomRange()">Apply</button>
+        </div>
+        <button class="btn-sync" id="btn-sync" onclick="syncData()">
+          <span class="sync-icon">↻</span> Sync
+        </button>
+      </div>
+    </div>
+
+    <!-- PAGE CONTENT -->
+    <div class="page-content">
+
+      <!-- ── OVERVIEW PAGE ── -->
+      <div class="page active" id="page-overview">
+        <div class="section-header">
+          <div>
+            <div class="section-title">Agency Overview</div>
+            <div class="section-sub" id="overview-period-sub">—</div>
+          </div>
+        </div>
+
+        <!-- Stat cards -->
+        <div class="stat-row">
+          <div class="stat-card">
+            <div class="stat-label">Avg Agency Health</div>
+            <div class="stat-value" id="stat-avg-health">—</div>
+            <div class="stat-meta" id="stat-health-meta">—</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-label">Total Views (Period)</div>
+            <div class="stat-value" id="stat-total-views">—</div>
+            <div class="stat-meta" id="stat-views-meta">Across all accounts</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-label">Total Saves (Period)</div>
+            <div class="stat-value" id="stat-total-saves">—</div>
+            <div class="stat-meta">High-intent engagement signal</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-label">Total Shares (Period)</div>
+            <div class="stat-value" id="stat-total-shares">—</div>
+            <div class="stat-meta">Organic reach amplifier</div>
+          </div>
+        </div>
+
+        <!-- AM Portfolio -->
+        <div class="section-header">
+          <div class="section-title">Account Manager Portfolios</div>
+        </div>
+        <div class="am-grid" id="am-grid"></div>
+
+        <!-- All Accounts Table -->
+        <div class="section-header">
+          <div class="section-title">All Accounts</div>
+        </div>
+        <div class="accounts-table-wrap">
+          <table class="accounts-table">
+            <thead>
+              <tr>
+                <th>Account</th>
+                <th>AM</th>
+                <th>Tier</th>
+                <th>Views</th>
+                <th>Saves</th>
+                <th>Shares</th>
+                <th>Comments</th>
+                <th>Health</th>
+                <th>Trend</th>
+              </tr>
+            </thead>
+            <tbody id="accounts-tbody"></tbody>
+          </table>
         </div>
       </div>
-    </div>
 
-    <div class="content" id="content">
-      <div class="loading-overlay">
-        <div class="loading-spinner"></div>
-        <div class="loading-text">Loading dashboard...</div>
-      </div>
-    </div>
-  </main>
+      <!-- ── ACCOUNT DETAIL PAGE ── -->
+      <div class="page" id="page-account">
+        <div class="account-header">
+          <div class="account-header-left">
+            <div class="account-title" id="acct-title">—</div>
+            <div class="account-meta">
+              <span class="account-handle" id="acct-handle">—</span>
+              <span class="account-niche" id="acct-niche">—</span>
+              <span class="account-am" id="acct-am">—</span>
+              <span id="acct-stage-badge">—</span>
+            </div>
+          </div>
+          <div class="health-badge">
+            <div class="health-badge-score" id="acct-health-score">—</div>
+            <div class="health-badge-label">Health Score</div>
+          </div>
+        </div>
+
+        <!-- Content breakdown -->
+        <div class="content-breakdown" id="content-breakdown"></div>
+
+        <!-- Funnel tabs -->
+        <div class="funnel-tabs">
+          <div class="funnel-tab tofu active" onclick="showFunnelSection('tofu')">↑ TOFU</div>
+          <div class="funnel-tab mofu" onclick="showFunnelSection('mofu')">◎ MOFU</div>
+          <div class="funnel-tab bofu" onclick="showFunnelSection('bofu')">↓ BOFU</div>
+        </div>
+
+        <!-- TOFU Section -->
+        <div class="kpi-section active" id="section-tofu">
+          <div class="goal-card tofu" id="goal-tofu"></div>
+          <div class="kpi-grid" id="kpi-grid-tofu"></div>
+          <div class="chart-area">
+            <div class="chart-area-header">
+              <div>
+                <div class="chart-title" id="chart-tofu-title">Views — 4-Week Trend</div>
+                <div class="chart-subtitle">Weekly totals, oldest → newest</div>
+              </div>
+              <div class="chart-type-btns">
+                <button class="chart-type-btn active" onclick="setChartType('tofu','bar',this)">Bar</button>
+                <button class="chart-type-btn" onclick="setChartType('tofu','line',this)">Line</button>
+              </div>
+            </div>
+            <div class="chart-canvas-wrap"><canvas id="chart-tofu"></canvas></div>
+          </div>
+        </div>
+
+        <!-- MOFU Section -->
+        <div class="kpi-section" id="section-mofu">
+          <div class="goal-card mofu" id="goal-mofu"></div>
+          <div class="kpi-grid" id="kpi-grid-mofu"></div>
+          <div class="chart-area">
+            <div class="chart-area-header">
+              <div>
+                <div class="chart-title" id="chart-mofu-title">Saves — 4-Week Trend</div>
+                <div class="chart-subtitle">Weekly totals, oldest → newest</div>
+              </div>
+              <div class="chart-type-btns">
+                <button class="chart-type-btn active" onclick="setChartType('mofu','bar',this)">Bar</button>
+                <button class="chart-type-btn" onclick="setChartType('mofu','line',this)">Line</button>
+              </div>
+            </div>
+            <div class="chart-canvas-wrap"><canvas id="chart-mofu"></canvas></div>
+          </div>
+        </div>
+
+        <!-- BOFU Section -->
+        <div class="kpi-section" id="section-bofu">
+          <div class="goal-card bofu" id="goal-bofu"></div>
+          <div class="kpi-grid" id="kpi-grid-bofu"></div>
+          <div class="chart-area">
+            <div class="chart-area-header">
+              <div>
+                <div class="chart-title" id="chart-bofu-title">Shares — 4-Week Trend</div>
+                <div class="chart-subtitle">Weekly totals, oldest → newest</div>
+              </div>
+              <div class="chart-type-btns">
+                <button class="chart-type-btn active" onclick="setChartType('bofu','bar',this)">Bar</button>
+                <button class="chart-type-btn" onclick="setChartType('bofu','line',this)">Line</button>
+              </div>
+            </div>
+            <div class="chart-canvas-wrap"><canvas id="chart-bofu"></canvas></div>
+          </div>
+        </div>
+
+      </div><!-- /page-account -->
+
+    </div><!-- /page-content -->
+  </div><!-- /main -->
+</div><!-- /app -->
+
+<!-- LOADING OVERLAY -->
+<div class="loading-overlay" id="loading-overlay">
+  <div class="loading-spinner"></div>
+  <div class="loading-text" id="loading-text">Syncing data from Metricool...</div>
 </div>
 
 <script>
-/* ═══════════════════════════════════════════════════════════════
-   STATE
-   ═══════════════════════════════════════════════════════════════ */
-const STATE = {
-  session: null,   // { token, role, name, am }
-  data: null,      // API response
-  view: 'overview', // 'overview' | 'account'
-  activeAccount: null,
-  charts: {},
-};
+/* ═══════════════════════════════════════════════════════════════════
+   SCROLL MEDIA DASHBOARD — Client-Side Logic
+   ═══════════════════════════════════════════════════════════════════ */
 
-/* ═══════════════════════════════════════════════════════════════
-   AUTH
-   ═══════════════════════════════════════════════════════════════ */
-async function handleLogin(e) {
-  e.preventDefault();
-  const btn = document.getElementById('login-btn');
+const API_BASE = '/api';
+let SESSION = null;
+let DASH_DATA = null;
+let CURRENT_CLIENT = null;
+let CHARTS = {};
+let CURRENT_RANGE = { mode: 'mtd', from: null, to: null };
+
+// ── UTILS ──────────────────────────────────────────────────────────
+function fmt(n, unit) {
+  if (n === null || n === undefined) return '—';
+  if (unit === 'percent') return n + '%';
+  if (unit === 'seconds') return n + 's';
+  if (n >= 1000000) return (n / 1000000).toFixed(1) + 'M';
+  if (n >= 1000) return (n / 1000).toFixed(1) + 'K';
+  return n.toLocaleString();
+}
+function healthColor(score) {
+  if (score >= 70) return 'var(--green)';
+  if (score >= 40) return 'var(--amber)';
+  return 'var(--red)';
+}
+function healthClass(score) {
+  if (score >= 70) return 'high';
+  if (score >= 40) return 'mid';
+  return 'low';
+}
+function statusLabel(s) {
+  if (s === 'above') return 'Above Target';
+  if (s === 'on-track') return 'On Track';
+  if (s === 'below') return 'Below Target';
+  return 'No Data';
+}
+function stageClass(s) {
+  return s ? s.toLowerCase() : 'spark';
+}
+function getToday() {
+  return new Date().toISOString().split('T')[0];
+}
+function getDateNDaysAgo(n) {
+  const d = new Date();
+  d.setDate(d.getDate() - n);
+  return d.toISOString().split('T')[0];
+}
+function getMonthStart() {
+  const d = new Date();
+  return new Date(d.getFullYear(), d.getMonth(), 1).toISOString().split('T')[0];
+}
+
+// ── AUTH ───────────────────────────────────────────────────────────
+document.getElementById('input-password').addEventListener('keydown', e => {
+  if (e.key === 'Enter') doLogin();
+});
+document.getElementById('btn-login').addEventListener('click', doLogin);
+
+async function doLogin() {
+  const username = document.getElementById('input-username').value.trim();
+  const password = document.getElementById('input-password').value;
   const errEl = document.getElementById('login-error');
-  const email = document.getElementById('email').value.trim();
-  const password = document.getElementById('password').value;
-
-  btn.disabled = true;
-  btn.textContent = 'Signing in...';
   errEl.style.display = 'none';
 
+  if (!username || !password) {
+    errEl.textContent = 'Please enter your username and password.';
+    errEl.style.display = 'block';
+    return;
+  }
+
+  const btn = document.getElementById('btn-login');
+  btn.textContent = 'Signing in...';
+  btn.disabled = true;
+
   try {
-    const res = await fetch('/api/dashboard-auth', {
+    const res = await fetch(`${API_BASE}/dashboard-auth`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email, password }),
+      body: JSON.stringify({ username, password }),
     });
     const data = await res.json();
+    if (!res.ok) throw new Error(data.error || 'Login failed');
 
-    if (!res.ok || !data.token) {
-      throw new Error(data.error || 'Invalid credentials');
-    }
-
-    STATE.session = data;
-    localStorage.setItem('dash_token', data.token);
-    localStorage.setItem('dash_session', JSON.stringify(data));
-    bootApp();
+    SESSION = { token: data.token, role: data.role, name: data.name, am: data.am };
+    localStorage.setItem('sm_dash_session', JSON.stringify(SESSION));
+    initApp();
   } catch (err) {
     errEl.textContent = err.message || 'Login failed. Please try again.';
     errEl.style.display = 'block';
-    btn.disabled = false;
     btn.textContent = 'Sign In';
+    btn.disabled = false;
   }
 }
 
-async function checkSession() {
-  const saved = localStorage.getItem('dash_session');
-  const token = localStorage.getItem('dash_token');
-  if (!saved || !token) return false;
-
-  try {
-    const res = await fetch('/api/dashboard-session', {
-      headers: { 'Authorization': `Bearer ${token}` },
-    });
-    if (!res.ok) {
-      localStorage.removeItem('dash_token');
-      localStorage.removeItem('dash_session');
-      return false;
-    }
-    const data = await res.json();
-    if (!data.valid) {
-      localStorage.removeItem('dash_token');
-      localStorage.removeItem('dash_session');
-      return false;
-    }
-    STATE.session = { ...JSON.parse(saved), ...data };
-    return true;
-  } catch {
-    return false;
-  }
-}
-
-function logout() {
-  localStorage.removeItem('dash_token');
-  localStorage.removeItem('dash_session');
-  STATE.session = null;
-  STATE.data = null;
+function signOut() {
+  SESSION = null;
+  DASH_DATA = null;
+  localStorage.removeItem('sm_dash_session');
   document.getElementById('app').style.display = 'none';
   document.getElementById('login-screen').style.display = 'flex';
+  document.getElementById('input-username').value = '';
+  document.getElementById('input-password').value = '';
+  document.getElementById('btn-login').textContent = 'Sign In';
+  document.getElementById('btn-login').disabled = false;
 }
 
-/* ═══════════════════════════════════════════════════════════════
-   BOOT
-   ═══════════════════════════════════════════════════════════════ */
-async function bootApp() {
-  document.getElementById('login-screen').style.display = 'none';
-  document.getElementById('app').style.display = 'flex';
-
-  // Set user info
-  document.getElementById('sidebar-user-name').textContent = STATE.session.name || '—';
-  document.getElementById('sidebar-user-role').textContent =
-    STATE.session.role === 'executive' ? 'Executive View' : 'Account Manager';
-
-  // Build nav
-  buildNav();
-
-  // Load data
-  await syncData();
-}
-
-function buildNav() {
-  const nav = document.getElementById('sidebar-nav');
-  const isExec = STATE.session.role === 'executive';
-
-  let html = '';
-
-  if (isExec) {
-    html += `<div class="nav-section-label">Executive</div>`;
-    html += navItem('overview', '📊', 'Agency Overview', null, true);
-    html += `<div class="nav-section-label" style="margin-top:12px">Account Managers</div>`;
-    html += navItem('am-riley', '👤', 'Riley Walker', '4');
-    html += navItem('am-emily', '👤', 'Emily Krintz', '2');
-    html += navItem('am-rachel', '👤', 'Rachel Dina', '3');
-    html += `<div class="nav-section-label" style="margin-top:12px">All Accounts</div>`;
-    const clients = ['Skin by Brownlee','Launch Party','MEAS Active','Plas Dentistry','DEFINE Oakley','Ombre Gallery','Up & Running','Lane & Kate','Holos House'];
-    clients.forEach(c => {
-      html += navItem('account-' + slugify(c), '◦', c, null);
+async function checkExistingSession() {
+  const stored = localStorage.getItem('sm_dash_session');
+  if (!stored) return;
+  try {
+    const s = JSON.parse(stored);
+    const res = await fetch(`${API_BASE}/dashboard-session`, {
+      headers: { 'Authorization': `Bearer ${s.token}` },
     });
+    if (res.ok) {
+      SESSION = s;
+      initApp();
+    } else {
+      localStorage.removeItem('sm_dash_session');
+    }
+  } catch { localStorage.removeItem('sm_dash_session'); }
+}
+
+// ── APP INIT ───────────────────────────────────────────────────────
+function initApp() {
+  document.getElementById('login-screen').style.display = 'none';
+  document.getElementById('app').style.display = 'block';
+
+  // Set user info in sidebar
+  document.getElementById('sidebar-user-name').textContent = SESSION.name;
+  document.getElementById('sidebar-user-role').textContent =
+    SESSION.role === 'executive' ? 'Executive View' : 'Account Manager';
+
+  // Show/hide nav sections based on role
+  if (SESSION.role === 'executive') {
+    document.getElementById('nav-exec-section').style.display = 'block';
+    document.getElementById('nav-am-riley-section').style.display = 'block';
+    document.getElementById('nav-am-emily-section').style.display = 'block';
+    document.getElementById('nav-am-rachel-section').style.display = 'block';
   } else {
-    html += `<div class="nav-section-label">My Accounts</div>`;
-    html += navItem('overview', '📊', 'My Overview', null, true);
+    document.getElementById('nav-exec-section').style.display = 'none';
+    // Show only the AM's own section
+    const amMap = {
+      'Riley Walker': 'riley',
+      'Emily Krintz': 'emily',
+      'Rachel Dina':  'rachel',
+    };
+    ['riley', 'emily', 'rachel'].forEach(am => {
+      const el = document.getElementById(`nav-am-${am}-section`);
+      const amName = Object.keys(amMap).find(k => amMap[k] === am);
+      el.style.display = (SESSION.am === amName) ? 'block' : 'none';
+    });
   }
 
-  nav.innerHTML = html;
+  fetchData();
 }
 
-function navItem(id, icon, label, count, active = false) {
-  const countHtml = count ? `<span class="nav-count">${count}</span>` : '';
-  return `<div class="nav-item ${active ? 'active' : ''}" onclick="navClick('${id}')" id="nav-${id}">
-    <span class="nav-icon">${icon}</span>
-    <span>${label}</span>
-    ${countHtml}
-  </div>`;
-}
-
-function slugify(s) {
-  return s.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
-}
-
-function navClick(id) {
-  // Update active state
-  document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
-  const navEl = document.getElementById('nav-' + id);
-  if (navEl) navEl.classList.add('active');
-
-  if (id === 'overview') {
-    renderOverview();
-  } else if (id.startsWith('am-')) {
-    const amMap = { 'am-riley': 'Riley Walker', 'am-emily': 'Emily Krintz', 'am-rachel': 'Rachel Dina' };
-    renderAMView(amMap[id]);
-  } else if (id.startsWith('account-')) {
-    const slug = id.replace('account-', '');
-    const client = STATE.data?.clients?.find(c => slugify(c.name) === slug);
-    if (client) renderAccountDetail(client);
-  }
-}
-
-/* ═══════════════════════════════════════════════════════════════
-   DATA SYNC
-   ═══════════════════════════════════════════════════════════════ */
-async function syncData() {
-  const btn = document.getElementById('sync-btn');
-  btn.disabled = true;
+// ── DATA FETCH ─────────────────────────────────────────────────────
+async function fetchData(from, to) {
+  showLoading('Syncing data from Metricool...');
+  const btn = document.getElementById('btn-sync');
   btn.classList.add('loading');
-  btn.innerHTML = '<span class="spin">↻</span> Syncing...';
 
-  const content = document.getElementById('content');
-  content.innerHTML = `<div class="loading-overlay">
-    <div class="loading-spinner"></div>
-    <div class="loading-text">Pulling live data from Metricool...</div>
-  </div>`;
+  let url = `${API_BASE}/metricool-data`;
+  const params = [];
+  if (from && to) { params.push(`from=${from}`, `to=${to}`); }
+  if (SESSION.role === 'am' && SESSION.am) params.push(`am=${encodeURIComponent(SESSION.am)}`);
+  if (params.length) url += '?' + params.join('&');
 
   try {
-    const token = localStorage.getItem('dash_token');
-    const amParam = STATE.session.role === 'am' && STATE.session.am
-      ? `?am=${encodeURIComponent(STATE.session.am)}`
-      : '';
-
-    const res = await fetch(`/api/metricool-data${amParam}`, {
-      headers: { 'Authorization': `Bearer ${token}` },
+    const res = await fetch(url, {
+      headers: { 'Authorization': `Bearer ${SESSION.token}` },
     });
-
-    if (!res.ok) throw new Error('Failed to fetch data');
-    STATE.data = await res.json();
-
-    // Update topbar
-    updateTopbar();
-
-    // Render default view
-    renderOverview();
-
-    // Update sync time
-    const now = new Date();
-    document.getElementById('last-sync-time').textContent =
-      `Synced ${now.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' })}`;
-
+    if (res.status === 401) { signOut(); return; }
+    if (!res.ok) throw new Error('Data fetch failed');
+    DASH_DATA = await res.json();
+    renderAll();
   } catch (err) {
-    content.innerHTML = `<div class="empty-state">
-      <div class="empty-state-icon">⚠️</div>
-      <div class="empty-state-title">Failed to load data</div>
-      <div class="empty-state-sub">${err.message}. Try syncing again.</div>
-    </div>`;
+    console.error(err);
+    document.getElementById('loading-text').textContent = 'Error loading data. Please try again.';
+    setTimeout(hideLoading, 2000);
   } finally {
-    btn.disabled = false;
     btn.classList.remove('loading');
-    btn.innerHTML = '<span class="spin">↻</span> Sync Data';
+    hideLoading();
   }
 }
 
-function updateTopbar() {
-  if (!STATE.data) return;
-  const { agency, period } = STATE.data;
-
-  const monthName = new Date().toLocaleString('en-US', { month: 'long' });
-  document.getElementById('topbar-period').textContent =
-    `${monthName} · Day ${period.daysElapsed} of ${new Date(new Date().getFullYear(), new Date().getMonth()+1,0).getDate()}`;
-
-  const score = agency.avgHealth;
-  const pill = document.getElementById('agency-health-pill');
-  const text = document.getElementById('agency-health-text');
-  text.textContent = `Agency Health ${score}%`;
-  pill.className = 'health-pill ' + (score >= 70 ? 'good' : score >= 45 ? 'mid' : 'low');
+function syncData() {
+  const from = CURRENT_RANGE.from;
+  const to = CURRENT_RANGE.to;
+  fetchData(from, to);
 }
 
-/* ═══════════════════════════════════════════════════════════════
-   RENDER: EXECUTIVE OVERVIEW
-   ═══════════════════════════════════════════════════════════════ */
-function renderOverview() {
-  if (!STATE.data) return;
-  const { agency, clients } = STATE.data;
-  const isExec = STATE.session.role === 'executive';
+// ── DATE RANGE ─────────────────────────────────────────────────────
+function applyPreset(mode) {
+  document.querySelectorAll('.date-preset-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('custom-range-inputs').style.display = 'none';
 
-  document.getElementById('topbar-title').textContent = isExec ? 'Agency Overview' : 'My Accounts';
+  let from = null, to = null;
+  const today = getToday();
 
-  // Destroy old charts
-  Object.values(STATE.charts).forEach(c => c.destroy());
-  STATE.charts = {};
+  if (mode === 'mtd') {
+    from = getMonthStart();
+    to = today;
+    document.getElementById('preset-mtd').classList.add('active');
+  } else if (mode === '7d') {
+    from = getDateNDaysAgo(6);
+    to = today;
+    document.getElementById('preset-7d').classList.add('active');
+  } else if (mode === '30d') {
+    from = getDateNDaysAgo(29);
+    to = today;
+    document.getElementById('preset-30d').classList.add('active');
+  }
 
-  const content = document.getElementById('content');
+  CURRENT_RANGE = { mode, from, to };
+  fetchData(from, to);
+}
 
-  if (isExec) {
-    // Agency stat cards
-    const totalViews = fmtNum(agency.totalViews);
-    const totalSaves = fmtNum(agency.totalSaves);
+function toggleCustomRange() {
+  const el = document.getElementById('custom-range-inputs');
+  const isVisible = el.style.display !== 'none';
+  el.style.display = isVisible ? 'none' : 'flex';
+  if (!isVisible) {
+    document.getElementById('date-from').value = getDateNDaysAgo(29);
+    document.getElementById('date-to').value = getToday();
+    document.querySelectorAll('.date-preset-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById('preset-custom').classList.add('active');
+  }
+}
 
-    content.innerHTML = `
-      <!-- Agency Stats -->
-      <div class="agency-stats">
-        <div class="stat-card">
-          <div class="stat-label">Avg Agency Health</div>
-          <div class="stat-value highlight">${agency.avgHealth}%</div>
-          <div class="stat-sub">${agency.aboveCount} of ${agency.totalClients} accounts above target</div>
-          <div class="stat-icon">📈</div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-label">Total Views (MTD)</div>
-          <div class="stat-value">${totalViews}</div>
-          <div class="stat-sub">Across all ${agency.totalClients} accounts</div>
-          <div class="stat-icon">👁</div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-label">Total Saves (MTD)</div>
-          <div class="stat-value">${totalSaves}</div>
-          <div class="stat-sub">High-intent engagement signal</div>
-          <div class="stat-icon">🔖</div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-label">Active Accounts</div>
-          <div class="stat-value">${agency.totalClients}</div>
-          <div class="stat-sub">3 AMs · Spark / Lift / Rise</div>
-          <div class="stat-icon">🏢</div>
-        </div>
-      </div>
+function applyCustomRange() {
+  const from = document.getElementById('date-from').value;
+  const to = document.getElementById('date-to').value;
+  if (!from || !to) return;
+  CURRENT_RANGE = { mode: 'custom', from, to };
+  document.getElementById('custom-range-inputs').style.display = 'none';
+  fetchData(from, to);
+}
 
-      <!-- AM Columns -->
-      <div class="section-header">
-        <div class="section-title">Account Manager Portfolios</div>
-      </div>
-      <div class="am-columns" id="am-columns"></div>
+// ── RENDER ALL ─────────────────────────────────────────────────────
+function renderAll() {
+  if (!DASH_DATA) return;
 
-      <!-- All Accounts List -->
-      <div class="section-header">
-        <div class="section-title">All Accounts</div>
-      </div>
-      <div class="account-list" id="all-accounts"></div>
-    `;
+  const period = DASH_DATA.period;
+  document.getElementById('topbar-period').textContent = period.label;
+  document.getElementById('overview-period-sub').textContent = period.label;
 
-    // Render AM columns
-    renderAMColumns(clients);
+  if (SESSION.role === 'executive') {
+    renderOverview();
+  }
+  renderSidebarAccounts();
 
-    // Render all accounts list
-    const listEl = document.getElementById('all-accounts');
-    listEl.innerHTML = clients.map(c => accountRowHTML(c)).join('');
-    clients.forEach(c => renderMiniSparkline(c));
-
+  // If we're on an account page, re-render it
+  if (CURRENT_CLIENT) {
+    const updated = DASH_DATA.clients.find(c => c.slug === CURRENT_CLIENT.slug);
+    if (updated) renderAccountDetail(updated);
+  } else if (SESSION.role === 'am') {
+    // AM: auto-navigate to first account
+    if (DASH_DATA.clients.length > 0) {
+      showPage('account', DASH_DATA.clients[0]);
+    }
   } else {
-    // AM view — just their accounts
-    content.innerHTML = `
-      <div class="section-header">
-        <div class="section-title">My Accounts</div>
-      </div>
-      <div class="account-list" id="all-accounts"></div>
-    `;
-    const listEl = document.getElementById('all-accounts');
-    listEl.innerHTML = clients.map(c => accountRowHTML(c)).join('');
-    clients.forEach(c => renderMiniSparkline(c));
+    showPage('overview');
   }
 }
 
-function renderAMColumns(clients) {
-  const ams = [
-    { id: 'riley', name: 'Riley Walker', initials: 'RW', cls: 'riley' },
-    { id: 'emily', name: 'Emily Krintz', initials: 'EK', cls: 'emily' },
-    { id: 'rachel', name: 'Rachel Dina', initials: 'RD', cls: 'rachel' },
-  ];
+// ── OVERVIEW ───────────────────────────────────────────────────────
+function renderOverview() {
+  const agency = DASH_DATA.agency;
+  const clients = DASH_DATA.clients;
 
-  const container = document.getElementById('am-columns');
-  container.innerHTML = ams.map(am => {
-    const amClients = clients.filter(c => c.am === am.name);
-    const avgHealth = amClients.length
-      ? Math.round(amClients.reduce((s, c) => s + c.healthScore, 0) / amClients.length)
-      : 0;
-    const healthCls = avgHealth >= 70 ? 'good' : avgHealth >= 45 ? 'mid' : 'low';
+  document.getElementById('stat-avg-health').textContent = agency.avgHealth + '%';
+  document.getElementById('stat-avg-health').style.color = healthColor(agency.avgHealth);
+  document.getElementById('stat-health-meta').textContent =
+    `${agency.aboveCount} of ${agency.totalClients} accounts above 70%`;
+  document.getElementById('stat-total-views').textContent = fmt(agency.totalViews);
+  document.getElementById('stat-total-saves').textContent = fmt(agency.totalSaves);
+  document.getElementById('stat-total-shares').textContent = fmt(agency.totalShares);
 
-    const accountsHTML = amClients.map(c => {
-      const barCls = c.healthScore >= 70 ? 'bar-good' : c.healthScore >= 45 ? 'bar-mid' : 'bar-low';
-      const kpiDots = Object.values(c.kpis).map(k =>
-        k ? `<div class="kpi-dot ${k.status}" title="${k.label}: ${k.status}"></div>` : ''
-      ).join('');
+  // AM Portfolio
+  const amGrid = document.getElementById('am-grid');
+  const amGroups = {};
+  clients.forEach(c => {
+    if (!amGroups[c.am]) amGroups[c.am] = [];
+    amGroups[c.am].push(c);
+  });
 
-      return `<div class="account-mini" onclick="openAccount('${slugify(c.name)}')">
-        <div class="account-mini-top">
-          <div class="account-mini-name">${c.name}</div>
-          <div class="account-mini-stage stage-${c.stage.toLowerCase()}">${c.stage}</div>
-        </div>
-        <div class="account-mini-handle">${c.instagram}</div>
-        <div class="account-mini-bar">
-          <div class="account-mini-bar-fill ${barCls}" style="width:${c.healthScore}%"></div>
-        </div>
-        <div class="account-mini-kpis">${kpiDots}</div>
+  const amConfig = {
+    'Riley Walker':  { cls: 'riley',  initials: 'RW' },
+    'Emily Krintz':  { cls: 'emily',  initials: 'EK' },
+    'Rachel Dina':   { cls: 'rachel', initials: 'RD' },
+  };
+
+  amGrid.innerHTML = Object.entries(amGroups).map(([am, accts]) => {
+    const cfg = amConfig[am] || { cls: 'riley', initials: am.split(' ').map(w=>w[0]).join('') };
+    const avgH = Math.round(accts.reduce((s,a) => s + a.healthScore, 0) / accts.length);
+    const accountRows = accts.map(a => {
+      const dots = ['views','saves','shares','comments'].map(k => {
+        const kpi = a.kpis[k];
+        return `<div class="kpi-dot ${kpi?.status || 'unknown'}"></div>`;
+      }).join('');
+      return `<div class="am-account-row" onclick="showPage('account', ${JSON.stringify(a).replace(/"/g,'&quot;')})">
+        <div class="stage-dot ${stageClass(a.stage)}"></div>
+        <div class="am-account-name">${a.name}</div>
+        <span class="am-account-stage stage-${stageClass(a.stage)}">${a.stage}</span>
+        <div class="kpi-dots">${dots}</div>
       </div>`;
     }).join('');
 
-    return `<div class="am-column">
-      <div class="am-column-header">
-        <div class="am-avatar ${am.cls}">${am.initials}</div>
+    return `<div class="am-card">
+      <div class="am-card-header">
+        <div class="am-avatar ${cfg.cls}">${cfg.initials}</div>
         <div>
-          <div class="am-name">${am.name}</div>
-          <div class="am-count">${amClients.length} accounts</div>
+          <div class="am-name">${am}</div>
+          <div class="am-count">${accts.length} accounts</div>
         </div>
-        <div class="am-health-score ${healthCls}">${avgHealth}%</div>
+        <div class="am-health" style="color:${healthColor(avgH)}">${avgH}%</div>
       </div>
-      <div class="am-accounts">${accountsHTML}</div>
+      <div class="am-accounts">${accountRows}</div>
     </div>`;
   }).join('');
+
+  // Accounts table
+  const tbody = document.getElementById('accounts-tbody');
+  tbody.innerHTML = clients.map(c => {
+    const hc = healthClass(c.healthScore);
+    const sparkId = `spark-${c.slug}`;
+    return `<tr onclick="showPage('account', ${JSON.stringify(c).replace(/"/g,'&quot;')})">
+      <td>
+        <div class="acct-name">${c.name}</div>
+        <div class="acct-handle">${c.instagram} · ${c.niche}</div>
+      </td>
+      <td style="color:var(--text-2);font-size:11px">${c.am.split(' ')[0]}</td>
+      <td><span class="am-account-stage stage-${stageClass(c.stage)}">${c.stage}</span></td>
+      <td style="font-weight:600">${fmt(c.current.views)}</td>
+      <td style="font-weight:600">${fmt(c.current.saves)}</td>
+      <td style="font-weight:600">${fmt(c.current.shares)}</td>
+      <td style="font-weight:600">${fmt(c.current.comments)}</td>
+      <td><span class="health-score ${hc}">${c.healthScore}%</span></td>
+      <td class="sparkline-cell"><canvas id="${sparkId}" width="80" height="30"></canvas></td>
+    </tr>`;
+  }).join('');
+
+  // Draw sparklines
+  clients.forEach(c => {
+    const canvas = document.getElementById(`spark-${c.slug}`);
+    if (!canvas) return;
+    drawSparkline(canvas, c.trends.views);
+  });
 }
 
-function accountRowHTML(c) {
-  const healthCls = c.healthScore >= 70 ? 'good' : c.healthScore >= 45 ? 'mid' : 'low';
-  const kpiChips = Object.values(c.kpis).map(k => {
+// ── SIDEBAR ACCOUNTS ───────────────────────────────────────────────
+function renderSidebarAccounts() {
+  const clients = DASH_DATA.clients;
+  const amMap = {
+    'Riley Walker': 'riley',
+    'Emily Krintz': 'emily',
+    'Rachel Dina':  'rachel',
+  };
+
+  Object.entries(amMap).forEach(([am, key]) => {
+    const container = document.getElementById(`nav-am-${key}-accounts`);
+    if (!container) return;
+    const amClients = clients.filter(c => c.am === am);
+    container.innerHTML = amClients.map(c => `
+      <div class="nav-item" id="nav-${c.slug}" onclick="showPage('account', ${JSON.stringify(c).replace(/"/g,'&quot;')})">
+        <div class="stage-dot ${stageClass(c.stage)}"></div>
+        <span style="flex:1">${c.name}</span>
+        <span class="nav-badge">${c.healthScore}%</span>
+      </div>`).join('');
+  });
+}
+
+// ── PAGE NAVIGATION ────────────────────────────────────────────────
+function showPage(page, clientData) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+
+  if (page === 'overview') {
+    document.getElementById('page-overview').classList.add('active');
+    document.getElementById('nav-overview')?.classList.add('active');
+    document.getElementById('topbar-title').textContent = 'Agency Overview';
+    CURRENT_CLIENT = null;
+  } else if (page === 'account' && clientData) {
+    // clientData may be a stringified object from onclick
+    const c = typeof clientData === 'string' ? JSON.parse(clientData) : clientData;
+    // Find fresh data from DASH_DATA
+    const fresh = DASH_DATA?.clients.find(x => x.slug === c.slug) || c;
+    CURRENT_CLIENT = fresh;
+    document.getElementById('page-account').classList.add('active');
+    document.getElementById(`nav-${fresh.slug}`)?.classList.add('active');
+    document.getElementById('topbar-title').textContent = fresh.name;
+    renderAccountDetail(fresh);
+  }
+}
+
+// ── ACCOUNT DETAIL ─────────────────────────────────────────────────
+function renderAccountDetail(c) {
+  document.getElementById('acct-title').textContent = c.name;
+  document.getElementById('acct-handle').textContent = c.instagram;
+  document.getElementById('acct-niche').textContent = c.niche;
+  document.getElementById('acct-am').textContent = `AM: ${c.am}`;
+  document.getElementById('acct-stage-badge').innerHTML =
+    `<span class="am-account-stage stage-${stageClass(c.stage)}">${c.stage}</span>`;
+
+  const hs = c.healthScore;
+  const hsEl = document.getElementById('acct-health-score');
+  hsEl.textContent = hs + '%';
+  hsEl.style.color = healthColor(hs);
+
+  // Content breakdown
+  document.getElementById('content-breakdown').innerHTML = `
+    <div class="content-stat">
+      <div class="content-stat-value">${c.current.reelCount ?? '—'}</div>
+      <div class="content-stat-label">Reels Published</div>
+    </div>
+    <div class="content-stat">
+      <div class="content-stat-value">${c.current.postCount ?? '—'}</div>
+      <div class="content-stat-label">Feed Posts</div>
+    </div>
+    <div class="content-stat">
+      <div class="content-stat-value">${c.current.storyCount ?? '—'}</div>
+      <div class="content-stat-label">Stories</div>
+    </div>`;
+
+  // Goals
+  renderGoalCard('tofu', c.goals.tofu);
+  renderGoalCard('mofu', c.goals.mofu);
+  renderGoalCard('bofu', c.goals.bofu);
+
+  // KPI grids
+  renderKPIGrid('tofu', c.tofuKpis);
+  renderKPIGrid('mofu', c.mofuKpis);
+  renderKPIGrid('bofu', c.bofuKpis);
+
+  // Charts
+  renderFunnelChart('tofu', 'Views', c.trends.labels, c.trends.views, 'rgba(59,130,246,0.8)', 'rgba(59,130,246,0.15)');
+  renderFunnelChart('mofu', 'Saves', c.trends.labels, c.trends.saves, 'rgba(212,232,74,0.8)', 'rgba(212,232,74,0.1)');
+  renderFunnelChart('bofu', 'Shares', c.trends.labels, c.trends.shares, 'rgba(167,139,250,0.8)', 'rgba(167,139,250,0.1)');
+
+  // Reset to TOFU tab
+  showFunnelSection('tofu');
+}
+
+function renderGoalCard(funnel, goal) {
+  const el = document.getElementById(`goal-${funnel}`);
+  if (!goal || !goal.title) { el.style.display = 'none'; return; }
+  el.style.display = 'block';
+  const funnelLabels = { tofu: '↑ Top of Funnel — Authority & Awareness', mofu: '◎ Middle of Funnel — Education & Engagement', bofu: '↓ Bottom of Funnel — Consideration & Conversion' };
+  el.innerHTML = `
+    <div class="goal-funnel-label">${funnelLabels[funnel]}</div>
+    <div class="goal-title">${goal.title}</div>
+    <div class="goal-desc">${goal.desc || ''}</div>`;
+}
+
+function renderKPIGrid(funnel, kpis) {
+  const grid = document.getElementById(`kpi-grid-${funnel}`);
+  if (!kpis || !kpis.length) {
+    grid.innerHTML = '<div class="empty-state"><div class="empty-state-icon">📊</div><div class="empty-state-text">No KPI data available for this period.</div></div>';
+    return;
+  }
+  grid.innerHTML = kpis.map(k => {
     if (!k) return '';
-    const val = k.key === 'retention' ? `${k.value ?? '—'}%` : fmtNum(k.value);
-    return `<div class="kpi-chip ${k.status}" title="${k.label}">
-      ${k.label.split(' ')[0]}: ${val}
+    const val = fmt(k.value, k.unit);
+    const range = k.unit === 'percent'
+      ? `${k.floor}% – ${k.ceiling}%`
+      : k.unit === 'seconds'
+      ? `${k.floor}s – ${k.ceiling}s`
+      : `${fmt(k.floor)} – ${fmt(k.ceiling)}`;
+    const prorated = k.unit === 'percent' || k.unit === 'seconds'
+      ? null
+      : `Prorated target: ${fmt(k.proratedFloor)} – ${fmt(k.proratedCeiling)}`;
+
+    return `<div class="kpi-card ${k.status}" onclick="selectKPICard(this, '${funnel}', '${k.key}')">
+      <div class="kpi-card-header">
+        <div class="kpi-card-label">${k.label}</div>
+        <span class="kpi-status-badge ${k.status}">${statusLabel(k.status)}</span>
+      </div>
+      <div class="kpi-value">${val}</div>
+      <div class="kpi-target-row">
+        <span class="kpi-target-label">Target:</span>
+        <span class="kpi-target-range">${range}</span>
+      </div>
+      ${prorated ? `<div class="kpi-target-row"><span class="kpi-target-label">${prorated}</span></div>` : ''}
+      <div class="kpi-progress-bar">
+        <div class="kpi-progress-fill ${k.status}" style="width:${k.progress}%"></div>
+      </div>
+      <div class="kpi-platform">${k.platform}</div>
     </div>`;
   }).join('');
-
-  return `<div class="account-row" onclick="openAccount('${slugify(c.name)}')">
-    <div class="account-row-left">
-      <div class="account-row-name">
-        ${c.name}
-        <span class="account-mini-stage stage-${c.stage.toLowerCase()}">${c.stage}</span>
-        ${c.am ? `<span class="tag tag-azure">${c.am.split(' ')[0]}</span>` : ''}
-      </div>
-      <div class="account-row-meta">${c.instagram} · ${c.niche}</div>
-      <div class="account-row-kpis">${kpiChips}</div>
-    </div>
-    <div class="account-row-right">
-      <div class="account-health-score ${healthCls}">${c.healthScore}%</div>
-      <div class="account-health-label">Health Score</div>
-      <div class="account-sparkline-wrap">
-        <canvas id="spark-${slugify(c.name)}" width="100" height="36"></canvas>
-      </div>
-    </div>
-  </div>`;
 }
 
-function renderMiniSparkline(c) {
-  const canvasId = `spark-${slugify(c.name)}`;
+// ── FUNNEL SECTION SWITCHING ───────────────────────────────────────
+function showFunnelSection(funnel) {
+  document.querySelectorAll('.kpi-section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.funnel-tab').forEach(t => t.classList.remove('active'));
+  document.getElementById(`section-${funnel}`)?.classList.add('active');
+  document.querySelector(`.funnel-tab.${funnel}`)?.classList.add('active');
+}
+
+// ── KPI CARD SELECTION (interactive chart update) ──────────────────
+function selectKPICard(el, funnel, kpiKey) {
+  document.querySelectorAll(`#kpi-grid-${funnel} .kpi-card`).forEach(c => c.classList.remove('selected'));
+  el.classList.add('selected');
+
+  if (!CURRENT_CLIENT) return;
+  const c = CURRENT_CLIENT;
+
+  // Map KPI key to available trend data
+  const trendMap = {
+    views: c.trends.views, saves: c.trends.saves,
+    shares: c.trends.shares, comments: c.trends.comments,
+  };
+  const colorMap = {
+    tofu: ['rgba(59,130,246,0.8)', 'rgba(59,130,246,0.15)'],
+    mofu: ['rgba(212,232,74,0.8)', 'rgba(212,232,74,0.1)'],
+    bofu: ['rgba(167,139,250,0.8)', 'rgba(167,139,250,0.1)'],
+  };
+
+  const data = trendMap[kpiKey] || trendMap.views;
+  const [borderColor, bgColor] = colorMap[funnel];
+  const kpiDef = c.tofuKpis?.concat(c.mofuKpis || []).concat(c.bofuKpis || []).find(k => k?.key === kpiKey);
+  const label = kpiDef?.label || kpiKey;
+
+  document.getElementById(`chart-${funnel}-title`).textContent = `${label} — 4-Week Trend`;
+  renderFunnelChart(funnel, label, c.trends.labels, data, borderColor, bgColor);
+}
+
+// ── CHARTS ─────────────────────────────────────────────────────────
+function renderFunnelChart(funnel, label, labels, data, borderColor, bgColor, type) {
+  const canvasId = `chart-${funnel}`;
   const canvas = document.getElementById(canvasId);
   if (!canvas) return;
 
-  const data = c.sparkline || [0,0,0,0];
-  const max = Math.max(...data, 1);
-  const color = c.healthScore >= 70 ? '#22c55e' : c.healthScore >= 45 ? '#f59e0b' : '#ef4444';
+  if (CHARTS[canvasId]) { CHARTS[canvasId].destroy(); }
 
-  if (STATE.charts[canvasId]) STATE.charts[canvasId].destroy();
-  STATE.charts[canvasId] = new Chart(canvas, {
+  const chartType = type || 'bar';
+  CHARTS[canvasId] = new Chart(canvas, {
+    type: chartType,
+    data: {
+      labels: labels || ['W-4', 'W-3', 'W-2', 'W-1'],
+      datasets: [{
+        label,
+        data: data || [0, 0, 0, 0],
+        backgroundColor: chartType === 'bar' ? borderColor : bgColor,
+        borderColor,
+        borderWidth: chartType === 'line' ? 2 : 0,
+        borderRadius: chartType === 'bar' ? 5 : 0,
+        fill: chartType === 'line',
+        tension: 0.4,
+        pointBackgroundColor: borderColor,
+        pointRadius: chartType === 'line' ? 4 : 0,
+        pointHoverRadius: 6,
+      }],
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      interaction: { mode: 'index', intersect: false },
+      plugins: {
+        legend: { display: false },
+        tooltip: {
+          backgroundColor: 'rgba(26,36,56,0.95)',
+          borderColor: 'rgba(238,242,255,0.1)',
+          borderWidth: 1,
+          titleColor: '#eef2ff',
+          bodyColor: 'rgba(238,242,255,0.7)',
+          padding: 10,
+          cornerRadius: 8,
+        },
+      },
+      scales: {
+        x: {
+          grid: { color: 'rgba(238,242,255,0.04)' },
+          ticks: { color: 'rgba(238,242,255,0.4)', font: { size: 10, family: 'Inter' } },
+        },
+        y: {
+          grid: { color: 'rgba(238,242,255,0.04)' },
+          ticks: {
+            color: 'rgba(238,242,255,0.4)',
+            font: { size: 10, family: 'Inter' },
+            callback: v => v >= 1000 ? (v/1000).toFixed(0)+'K' : v,
+          },
+          beginAtZero: true,
+        },
+      },
+    },
+  });
+}
+
+function setChartType(funnel, type, btn) {
+  btn.closest('.chart-type-btns').querySelectorAll('.chart-type-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  if (!CURRENT_CLIENT) return;
+  const c = CURRENT_CLIENT;
+  const colorMap = {
+    tofu: { data: c.trends.views,    label: 'Views',  border: 'rgba(59,130,246,0.8)',  bg: 'rgba(59,130,246,0.15)' },
+    mofu: { data: c.trends.saves,    label: 'Saves',  border: 'rgba(212,232,74,0.8)',  bg: 'rgba(212,232,74,0.1)' },
+    bofu: { data: c.trends.shares,   label: 'Shares', border: 'rgba(167,139,250,0.8)', bg: 'rgba(167,139,250,0.1)' },
+  };
+  const cfg = colorMap[funnel];
+  renderFunnelChart(funnel, cfg.label, c.trends.labels, cfg.data, cfg.border, cfg.bg, type);
+}
+
+function drawSparkline(canvas, data) {
+  if (!data || !data.length) return;
+  if (CHARTS[canvas.id]) CHARTS[canvas.id].destroy();
+  CHARTS[canvas.id] = new Chart(canvas, {
     type: 'line',
     data: {
-      labels: ['W-4','W-3','W-2','W-1'],
+      labels: data.map((_, i) => i),
       datasets: [{
         data,
-        borderColor: color,
-        borderWidth: 2,
-        fill: true,
-        backgroundColor: color + '18',
+        borderColor: 'rgba(212,232,74,0.7)',
+        borderWidth: 1.5,
+        fill: false,
         tension: 0.4,
         pointRadius: 0,
       }],
     },
     options: {
       responsive: false,
-      animation: false,
       plugins: { legend: { display: false }, tooltip: { enabled: false } },
-      scales: { x: { display: false }, y: { display: false, min: 0, max: max * 1.2 } },
+      scales: { x: { display: false }, y: { display: false, beginAtZero: true } },
+      animation: false,
     },
   });
 }
 
-/* ═══════════════════════════════════════════════════════════════
-   RENDER: AM FILTER VIEW
-   ═══════════════════════════════════════════════════════════════ */
-function renderAMView(amName) {
-  if (!STATE.data) return;
-  const clients = STATE.data.clients.filter(c => c.am === amName);
-  document.getElementById('topbar-title').textContent = amName;
-
-  Object.values(STATE.charts).forEach(c => c.destroy());
-  STATE.charts = {};
-
-  const content = document.getElementById('content');
-  content.innerHTML = `
-    <div class="section-header">
-      <div class="section-title">${amName}'s Accounts</div>
-    </div>
-    <div class="account-list" id="all-accounts"></div>
-  `;
-
-  const listEl = document.getElementById('all-accounts');
-  listEl.innerHTML = clients.map(c => accountRowHTML(c)).join('');
-  clients.forEach(c => renderMiniSparkline(c));
+// ── LOADING ────────────────────────────────────────────────────────
+function showLoading(text) {
+  document.getElementById('loading-text').textContent = text || 'Loading...';
+  document.getElementById('loading-overlay').classList.add('show');
+}
+function hideLoading() {
+  document.getElementById('loading-overlay').classList.remove('show');
 }
 
-/* ═══════════════════════════════════════════════════════════════
-   RENDER: ACCOUNT DETAIL
-   ═══════════════════════════════════════════════════════════════ */
-function openAccount(slug) {
-  const client = STATE.data?.clients?.find(c => slugify(c.name) === slug);
-  if (!client) return;
-  renderAccountDetail(client);
-
-  // Update nav
-  document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
-  const navEl = document.getElementById('nav-account-' + slug);
-  if (navEl) navEl.classList.add('active');
-}
-
-function renderAccountDetail(client) {
-  document.getElementById('topbar-title').textContent = client.name;
-
-  Object.values(STATE.charts).forEach(c => c.destroy());
-  STATE.charts = {};
-
-  const content = document.getElementById('content');
-  const healthCls = client.healthScore >= 70 ? 'good' : client.healthScore >= 45 ? 'mid' : 'low';
-  const goals = client.goals || {};
-
-  // Build KPI cards HTML
-  const kpiOrder = ['views','saves','shares','comments','retention'];
-  const kpiHTML = kpiOrder.map(key => {
-    const k = client.kpis[key];
-    if (!k) return '';
-    const val = key === 'retention' ? `${k.value ?? '—'}%` : fmtNum(k.value);
-    const target = key === 'retention'
-      ? `Target: ${k.floor}–${k.ceiling}%`
-      : `Target: ${fmtNum(k.proratedFloor)}–${fmtNum(k.proratedCeiling)} (prorated)`;
-    const statusLabel = k.status === 'above' ? 'Above' : k.status === 'on-track' ? 'On Track' : k.status === 'below' ? 'Below' : '—';
-
-    return `<div class="kpi-card ${k.status}">
-      <div class="kpi-status-badge">${statusLabel}</div>
-      <div class="kpi-card-label">${k.label}</div>
-      <div class="kpi-card-value">${val}</div>
-      <div class="kpi-card-target">${target}</div>
-      <div class="kpi-progress-bar">
-        <div class="kpi-progress-fill" style="width:${k.progress}%"></div>
-      </div>
-    </div>`;
-  }).join('');
-
-  content.innerHTML = `
-    <!-- Header -->
-    <div class="account-detail-header">
-      <div class="account-detail-info">
-        <div class="account-detail-name">
-          ${client.name}
-          <span class="account-mini-stage stage-${client.stage.toLowerCase()}">${client.stage}</span>
-        </div>
-        <div class="account-detail-meta">
-          <span>📱 ${client.instagram}</span>
-          <span>🏷 ${client.niche}</span>
-          <span>👤 ${client.am}</span>
-          <span>📅 Day ${client.daysElapsed} of ${client.daysInMonth}</span>
-        </div>
-      </div>
-      <div style="text-align:right">
-        <div class="account-health-score ${healthCls}" style="font-size:40px">${client.healthScore}%</div>
-        <div class="account-health-label">Health Score</div>
-      </div>
-      <button class="back-btn" onclick="renderOverview()">← Back</button>
-    </div>
-
-    <!-- Funnel Goals -->
-    <div class="section-header">
-      <div class="section-title">Funnel Goals</div>
-    </div>
-    <div class="funnel-goals">
-      <div class="funnel-card tofu">
-        <div class="funnel-label">TOFU · Awareness</div>
-        <div class="funnel-stage-name">Top of Funnel</div>
-        <div class="funnel-goal-text">${goals.tofu || '—'}</div>
-      </div>
-      <div class="funnel-card mofu">
-        <div class="funnel-label">MOFU · Engagement</div>
-        <div class="funnel-stage-name">Middle of Funnel</div>
-        <div class="funnel-goal-text">${goals.mofu || '—'}</div>
-      </div>
-      <div class="funnel-card bofu">
-        <div class="funnel-label">BOFU · Conversion</div>
-        <div class="funnel-stage-name">Bottom of Funnel</div>
-        <div class="funnel-goal-text">${goals.bofu || '—'}</div>
-      </div>
-    </div>
-
-    <!-- KPI Cards -->
-    <div class="section-header">
-      <div class="section-title">KPI Tracking — Month to Date</div>
-    </div>
-    <div class="kpi-grid">${kpiHTML}</div>
-
-    <!-- Sparkline Trend -->
-    <div class="sparkline-section">
-      <div class="sparkline-header">
-        <div>
-          <div class="sparkline-title">4-Week Views Trend</div>
-          <div class="sparkline-sub">Weekly total views — last 4 weeks</div>
-        </div>
-        <div style="text-align:right">
-          <div style="font-size:20px;font-weight:800;color:var(--text-1)">${fmtNum(client.current.views)}</div>
-          <div style="font-size:11px;color:var(--text-3)">Views this month</div>
-        </div>
-      </div>
-      <div class="sparkline-chart-wrap">
-        <canvas id="trend-chart"></canvas>
-      </div>
-    </div>
-
-    <!-- Post Activity -->
-    <div class="posts-section">
-      <div class="section-title">Post Activity — This Month</div>
-      <div class="posts-grid">
-        <div class="post-stat">
-          <div class="post-stat-value">${client.current.reelCount ?? '—'}</div>
-          <div class="post-stat-label">Reels Published</div>
-        </div>
-        <div class="post-stat">
-          <div class="post-stat-value">${client.current.postCount ?? '—'}</div>
-          <div class="post-stat-label">Feed Posts</div>
-        </div>
-        <div class="post-stat">
-          <div class="post-stat-value">${client.current.storyCount ?? '—'}</div>
-          <div class="post-stat-label">Stories</div>
-        </div>
-      </div>
-    </div>
-  `;
-
-  // Render trend chart
-  renderTrendChart(client);
-}
-
-function renderTrendChart(client) {
-  const canvas = document.getElementById('trend-chart');
-  if (!canvas) return;
-
-  const data = client.sparkline || [0,0,0,0];
-  const color = client.healthScore >= 70 ? '#22c55e' : client.healthScore >= 45 ? '#f59e0b' : '#ef4444';
-
-  STATE.charts['trend'] = new Chart(canvas, {
-    type: 'line',
-    data: {
-      labels: ['4 Weeks Ago', '3 Weeks Ago', '2 Weeks Ago', 'Last Week'],
-      datasets: [{
-        label: 'Views',
-        data,
-        borderColor: color,
-        borderWidth: 2.5,
-        fill: true,
-        backgroundColor: color + '15',
-        tension: 0.4,
-        pointRadius: 5,
-        pointBackgroundColor: color,
-        pointBorderColor: '#1e2a3a',
-        pointBorderWidth: 2,
-      }],
-    },
-    options: {
-      responsive: true,
-      maintainAspectRatio: false,
-      plugins: {
-        legend: { display: false },
-        tooltip: {
-          backgroundColor: '#1e2a3a',
-          borderColor: 'rgba(240,244,255,0.12)',
-          borderWidth: 1,
-          titleColor: '#f0f4ff',
-          bodyColor: 'rgba(240,244,255,0.65)',
-          callbacks: {
-            label: ctx => ` ${fmtNum(ctx.raw)} views`,
-          },
-        },
-      },
-      scales: {
-        x: {
-          grid: { color: 'rgba(240,244,255,0.05)' },
-          ticks: { color: 'rgba(240,244,255,0.38)', font: { size: 11 } },
-        },
-        y: {
-          grid: { color: 'rgba(240,244,255,0.05)' },
-          ticks: {
-            color: 'rgba(240,244,255,0.38)',
-            font: { size: 11 },
-            callback: v => fmtNum(v),
-          },
-        },
-      },
-    },
-  });
-}
-
-/* ═══════════════════════════════════════════════════════════════
-   UTILITIES
-   ═══════════════════════════════════════════════════════════════ */
-function fmtNum(n) {
-  if (n == null || n === undefined) return '—';
-  if (n >= 1000000) return (n / 1000000).toFixed(1) + 'M';
-  if (n >= 1000) return (n / 1000).toFixed(1) + 'K';
-  return n.toString();
-}
-
-/* ═══════════════════════════════════════════════════════════════
-   INIT
-   ═══════════════════════════════════════════════════════════════ */
-(async function init() {
-  const valid = await checkSession();
-  if (valid) {
-    bootApp();
-  }
-  // Otherwise login screen is already visible
-})();
+// ── BOOT ───────────────────────────────────────────────────────────
+checkExistingSession();
 </script>
 </body>
 </html>

@@ -1,30 +1,30 @@
 // dashboard-auth.js
 // Handles login for the internal performance dashboard
 // Users: Chase (Executive) + 3 AMs (Riley, Emily, Rachel)
-// Returns a session token stored in Netlify Blobs
+// Username format: first initial + last name (e.g. cgianattasio, rwalker)
 
 const USERS = {
   // Executive
-  'chase@getscrollmedia.com': {
+  'cgianattasio': {
     password: process.env.DASHBOARD_PASS_CHASE,
     role: 'executive',
-    name: 'Chase',
-    am: null, // sees all accounts
+    name: 'Chase Gianattasio',
+    am: null,
   },
   // Account Managers
-  'riley@getscrollmedia.com': {
+  'rwalker': {
     password: process.env.DASHBOARD_PASS_RILEY,
     role: 'am',
     name: 'Riley Walker',
     am: 'Riley Walker',
   },
-  'emily@getscrollmedia.com': {
+  'ekrintz': {
     password: process.env.DASHBOARD_PASS_EMILY,
     role: 'am',
     name: 'Emily Krintz',
     am: 'Emily Krintz',
   },
-  'rachel@getscrollmedia.com': {
+  'rdina': {
     password: process.env.DASHBOARD_PASS_RACHEL,
     role: 'am',
     name: 'Rachel Dina',
@@ -64,31 +64,30 @@ exports.handler = async (event) => {
     return { statusCode: 400, headers: corsHeaders, body: JSON.stringify({ error: 'Invalid JSON' }) };
   }
 
-  const { email, password } = body;
+  const { username, password } = body;
 
-  if (!email || !password) {
-    return { statusCode: 400, headers: corsHeaders, body: JSON.stringify({ error: 'Email and password required' }) };
+  if (!username || !password) {
+    return { statusCode: 400, headers: corsHeaders, body: JSON.stringify({ error: 'Username and password required' }) };
   }
 
-  const user = USERS[email.toLowerCase()];
+  const user = USERS[username.toLowerCase().trim()];
 
   if (!user || !user.password || user.password !== password) {
     return {
       statusCode: 401,
       headers: corsHeaders,
-      body: JSON.stringify({ error: 'Invalid credentials' }),
+      body: JSON.stringify({ error: 'Invalid username or password' }),
     };
   }
 
-  // Generate session token
   const token = generateToken();
   const sessionData = {
-    email: email.toLowerCase(),
+    username: username.toLowerCase().trim(),
     role: user.role,
     name: user.name,
     am: user.am,
     created: new Date().toISOString(),
-    expires: new Date(Date.now() + 8 * 60 * 60 * 1000).toISOString(), // 8 hours
+    expires: new Date(Date.now() + 8 * 60 * 60 * 1000).toISOString(),
   };
 
   try {
@@ -97,8 +96,6 @@ exports.handler = async (event) => {
     await store.setJSON(`session-${token}`, sessionData);
   } catch (err) {
     console.error('Blob store error:', err);
-    // Fall through — token still returned, session won't persist across cold starts
-    // but will work for the current request context
   }
 
   return {
