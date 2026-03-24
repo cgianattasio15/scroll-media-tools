@@ -195,13 +195,18 @@ async function fetchInstagramStats(blogId, startISO, endISO) {
   const avgWatchTime = watchTimeCount > 0 ? Math.round((totalWatchTime / watchTimeCount) * 10) / 10 : null;
 
   // Build daily trend data (views per day) for chart rendering
+  function safeDate(val) {
+    if (!val) return '';
+    if (typeof val === 'number') return new Date(val).toISOString().substring(0, 10);
+    return String(val).substring(0, 10);
+  }
   const dailyViews = {};
   for (const r of reelList) {
-    const d = (r.publishedAt || r.date || '').substring(0, 10);
+    const d = safeDate(r.publishedAt || r.date);
     if (d) dailyViews[d] = (dailyViews[d] || 0) + (r.plays || r.views || 0);
   }
   for (const p of postList) {
-    const d = (p.publishedAt || p.date || '').substring(0, 10);
+    const d = safeDate(p.publishedAt || p.date);
     if (d) dailyViews[d] = (dailyViews[d] || 0) + (p.impressions || p.reach || 0);
   }
 
