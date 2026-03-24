@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Up and Running × Scroll Media — Partnership Review</title>
+<title>Up and Running x Scroll Media — Partnership Review</title>
 <style>
   :root {
     --navy: #0B1B2B;
@@ -21,7 +21,6 @@
     --text-secondary: #4A5568;
     --green: #22C55E;
     --amber: #F59E0B;
-    --red: #EF4444;
     --blue: #3B82F6;
     --font: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
     --radius: 12px;
@@ -43,19 +42,20 @@
     top: 0;
     z-index: 100;
     border-bottom: 1px solid rgba(200,241,53,0.15);
+    gap: 16px;
   }
-  .top-nav .nav-brand { display: flex; align-items: center; gap: 10px; color: var(--white); font-size: 13px; font-weight: 600; letter-spacing: 0.02em; }
-  .top-nav .nav-brand .scroll-mark { width: 28px; height: 28px; background: var(--lime); border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 900; color: var(--navy); }
+  .top-nav .nav-brand { display: flex; align-items: center; gap: 10px; color: var(--white); font-size: 13px; font-weight: 600; letter-spacing: 0.02em; flex-shrink: 0; }
+  .top-nav .nav-brand .scroll-mark { width: 28px; height: 28px; background: var(--lime); border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 900; color: var(--navy); flex-shrink: 0; }
   .top-nav .nav-links { display: flex; gap: 4px; flex-wrap: wrap; }
-  .top-nav .nav-links a { color: rgba(255,255,255,0.6); text-decoration: none; font-size: 11px; font-weight: 500; padding: 5px 10px; border-radius: 6px; transition: all 0.2s; }
+  .top-nav .nav-links a { color: rgba(255,255,255,0.6); text-decoration: none; font-size: 11px; font-weight: 500; padding: 5px 10px; border-radius: 6px; transition: all 0.2s; white-space: nowrap; }
   .top-nav .nav-links a:hover { color: var(--white); background: rgba(255,255,255,0.08); }
   .top-nav .nav-links a.active { color: var(--lime); }
-  .top-nav .nav-date { color: rgba(255,255,255,0.4); font-size: 12px; }
+  .top-nav .nav-date { color: rgba(255,255,255,0.4); font-size: 12px; white-space: nowrap; flex-shrink: 0; }
 
   /* ── HERO ── */
   .hero {
     background: var(--navy);
-    padding: 80px 40px 60px;
+    padding: 72px 40px 56px;
     text-align: center;
     position: relative;
     overflow: hidden;
@@ -68,398 +68,297 @@
     background: radial-gradient(circle, rgba(200,241,53,0.08) 0%, transparent 70%);
     pointer-events: none;
   }
-  .hero-eyebrow { font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--lime); opacity: 0.8; margin-bottom: 24px; }
-  .hero-client-badge { display: flex; align-items: center; justify-content: center; gap: 16px; margin-bottom: 28px; }
-  .hero-logo { width: 64px; height: 64px; background: rgba(200,241,53,0.12); border: 2px solid rgba(200,241,53,0.3); border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 18px; font-weight: 900; color: var(--lime); letter-spacing: -0.02em; }
-  .hero-x { font-size: 20px; color: rgba(255,255,255,0.2); font-weight: 300; }
-  .hero-scroll-logo { width: 64px; height: 64px; background: var(--lime); border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 28px; font-weight: 900; color: var(--navy); }
-  .hero h1 { font-size: clamp(32px, 5vw, 52px); font-weight: 800; color: var(--white); line-height: 1.1; letter-spacing: -0.03em; margin-bottom: 16px; }
+  .hero-eyebrow { font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--lime); opacity: 0.8; margin-bottom: 20px; }
+  .hero-client-badge { display: flex; align-items: center; justify-content: center; gap: 16px; margin-bottom: 24px; }
+  .hero-logo { width: 56px; height: 56px; background: rgba(200,241,53,0.12); border: 2px solid rgba(200,241,53,0.3); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 16px; font-weight: 900; color: var(--lime); letter-spacing: -0.02em; }
+  .hero-x { font-size: 18px; color: rgba(255,255,255,0.2); font-weight: 300; }
+  .hero-scroll-logo { width: 56px; height: 56px; background: var(--lime); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 24px; font-weight: 900; color: var(--navy); }
+  .hero h1 { font-size: clamp(28px, 5vw, 48px); font-weight: 800; color: var(--white); line-height: 1.1; letter-spacing: -0.03em; margin-bottom: 14px; }
   .hero h1 span { color: var(--lime); }
-  .hero-sub { color: rgba(255,255,255,0.5); font-size: 16px; max-width: 520px; margin: 0 auto 48px; line-height: 1.7; }
-  .hero-stats { display: flex; justify-content: center; gap: 0; max-width: 700px; margin: 0 auto; border: 1px solid rgba(255,255,255,0.08); border-radius: var(--radius); overflow: hidden; }
-  .hero-stat { flex: 1; padding: 24px 20px; text-align: center; border-right: 1px solid rgba(255,255,255,0.08); }
+  .hero-sub { color: rgba(255,255,255,0.5); font-size: 15px; max-width: 500px; margin: 0 auto 44px; line-height: 1.7; }
+  .hero-stats { display: grid; grid-template-columns: repeat(5, 1fr); max-width: 760px; margin: 0 auto; border: 1px solid rgba(255,255,255,0.08); border-radius: var(--radius); overflow: hidden; }
+  .hero-stat { padding: 22px 16px; text-align: center; border-right: 1px solid rgba(255,255,255,0.08); }
   .hero-stat:last-child { border-right: none; }
-  .stat-val { display: block; font-size: clamp(22px, 3vw, 30px); font-weight: 800; color: var(--lime); letter-spacing: -0.02em; line-height: 1; margin-bottom: 6px; }
-  .stat-label { display: block; font-size: 11px; color: rgba(255,255,255,0.45); font-weight: 500; text-transform: uppercase; letter-spacing: 0.06em; }
+  .stat-val { display: block; font-size: clamp(18px, 2.5vw, 26px); font-weight: 800; color: var(--lime); letter-spacing: -0.02em; line-height: 1; margin-bottom: 6px; }
+  .stat-label { display: block; font-size: 10px; color: rgba(255,255,255,0.45); font-weight: 500; text-transform: uppercase; letter-spacing: 0.05em; }
 
   /* ── SECTIONS ── */
-  .section { max-width: 1100px; margin: 0 auto; padding: 72px 40px; }
+  .section { max-width: 1100px; margin: 0 auto; padding: 64px 40px; }
   .section-alt { background: var(--off-white); }
   .section-white { background: var(--white); }
   .section-dark { background: var(--navy); }
-  .section-label { font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--lime); opacity: 0.8; margin-bottom: 12px; }
+  .section-label { font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--lime); opacity: 0.8; margin-bottom: 10px; }
   .section-dark .section-label { color: var(--lime); opacity: 0.7; }
-  .section-title { font-size: clamp(24px, 3.5vw, 36px); font-weight: 800; color: var(--text-primary); line-height: 1.2; letter-spacing: -0.02em; margin-bottom: 8px; }
+  .section-title { font-size: clamp(22px, 3vw, 32px); font-weight: 800; color: var(--text-primary); line-height: 1.2; letter-spacing: -0.02em; margin-bottom: 8px; }
   .section-dark .section-title { color: var(--white); }
-  .section-desc { font-size: 15px; color: var(--text-secondary); max-width: 680px; line-height: 1.7; margin-bottom: 0; }
+  .section-desc { font-size: 15px; color: var(--text-secondary); max-width: 680px; line-height: 1.7; }
   .section-dark .section-desc { color: rgba(255,255,255,0.5); }
-  .divider { width: 48px; height: 3px; background: var(--lime); border-radius: 2px; margin: 16px 0 32px; }
+  .divider { width: 40px; height: 3px; background: var(--lime); border-radius: 2px; margin: 14px 0 28px; }
 
-  /* ── WHY SOCIAL MEDIA SECTION ── */
-  .social-case-intro {
-    background: linear-gradient(135deg, var(--navy) 0%, #162840 100%);
-    border: 1px solid rgba(200,241,53,0.15);
+  /* ── YOUR STORY (CHALLENGES) ── */
+  .story-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    margin-top: 36px;
+  }
+  .story-card {
+    background: var(--navy-light);
+    border: 1px solid rgba(255,255,255,0.07);
     border-radius: var(--radius);
-    padding: 40px;
-    margin-bottom: 40px;
-    position: relative;
     overflow: hidden;
   }
-  .social-case-intro::before {
-    content: '';
-    position: absolute;
-    top: -40px; right: -40px;
-    width: 200px; height: 200px;
-    background: radial-gradient(circle, rgba(200,241,53,0.06) 0%, transparent 70%);
+  .story-challenge {
+    padding: 20px 24px;
+    border-bottom: 1px solid rgba(255,255,255,0.07);
   }
-  .social-case-intro h3 { font-size: 20px; font-weight: 700; color: var(--white); margin-bottom: 12px; }
-  .social-case-intro p { font-size: 15px; color: rgba(255,255,255,0.65); line-height: 1.75; max-width: 780px; }
-  .social-case-intro p strong { color: var(--lime); }
-
-  .stat-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 16px;
-    margin-bottom: 32px;
+  .story-label-before {
+    font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+    color: rgba(255,255,255,0.3); margin-bottom: 6px;
   }
-  .stat-card {
-    background: var(--white);
-    border: 1px solid var(--grey-200);
+  .story-challenge h4 { font-size: 14px; font-weight: 700; color: rgba(255,255,255,0.7); margin-bottom: 6px; }
+  .story-challenge p { font-size: 13px; color: rgba(255,255,255,0.45); line-height: 1.6; }
+  .story-solution {
+    padding: 20px 24px;
+  }
+  .story-label-after {
+    font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--lime); opacity: 0.8; margin-bottom: 6px;
+  }
+  .story-solution h4 { font-size: 14px; font-weight: 700; color: var(--white); margin-bottom: 6px; }
+  .story-solution p { font-size: 13px; color: rgba(255,255,255,0.65); line-height: 1.6; }
+  .story-proof {
+    display: inline-block; margin-top: 10px;
+    background: rgba(200,241,53,0.1); border: 1px solid rgba(200,241,53,0.2);
+    border-radius: 6px; padding: 5px 12px;
+    font-size: 12px; font-weight: 600; color: var(--lime);
+  }
+  .client-quote-block {
+    background: rgba(200,241,53,0.06);
+    border: 1px solid rgba(200,241,53,0.2);
     border-radius: var(--radius);
-    padding: 24px 20px;
+    padding: 28px 36px;
+    margin-top: 28px;
     text-align: center;
     position: relative;
     overflow: hidden;
   }
-  .stat-card::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 3px;
-    background: var(--lime);
-  }
-  .stat-card .sc-val { font-size: 28px; font-weight: 800; color: var(--navy); letter-spacing: -0.02em; line-height: 1; margin-bottom: 6px; }
-  .stat-card .sc-val span { color: var(--lime); }
-  .stat-card .sc-label { font-size: 12px; color: var(--text-secondary); font-weight: 500; line-height: 1.4; }
-  .stat-card .sc-source { font-size: 10px; color: var(--grey-400); margin-top: 8px; font-style: italic; }
-
-  .social-why-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
-    margin-top: 32px;
-  }
-  .why-card {
-    background: var(--white);
-    border: 1px solid var(--grey-200);
-    border-radius: var(--radius);
-    padding: 28px 24px;
-  }
-  .why-card .why-icon { font-size: 28px; margin-bottom: 14px; display: block; }
-  .why-card h3 { font-size: 15px; font-weight: 700; color: var(--text-primary); margin-bottom: 8px; }
-  .why-card p { font-size: 13px; color: var(--text-secondary); line-height: 1.65; }
-  .why-card .why-stat { display: inline-block; margin-top: 12px; background: var(--grey-100); border-radius: 6px; padding: 6px 12px; font-size: 12px; font-weight: 700; color: var(--navy); }
-
-  .conversion-callout {
-    background: linear-gradient(135deg, rgba(200,241,53,0.08) 0%, rgba(200,241,53,0.03) 100%);
-    border: 1px solid rgba(200,241,53,0.25);
-    border-radius: var(--radius);
-    padding: 32px 36px;
-    margin-top: 32px;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 40px;
-    align-items: center;
-  }
-  .conversion-callout h3 { font-size: 20px; font-weight: 800; color: var(--text-primary); margin-bottom: 12px; line-height: 1.3; }
-  .conversion-callout h3 span { color: var(--lime-dim); }
-  .conversion-callout p { font-size: 14px; color: var(--text-secondary); line-height: 1.7; }
-  .conversion-callout p strong { color: var(--text-primary); }
-  .conversion-numbers { display: flex; flex-direction: column; gap: 16px; }
-  .conv-num-row { display: flex; align-items: center; gap: 16px; background: var(--white); border: 1px solid var(--grey-200); border-radius: var(--radius-sm); padding: 16px 20px; }
-  .conv-num-row .cn-val { font-size: 22px; font-weight: 800; color: var(--navy); letter-spacing: -0.02em; min-width: 60px; }
-  .conv-num-row .cn-val.highlight { color: var(--lime-dim); }
-  .conv-num-row .cn-desc { font-size: 12px; color: var(--text-secondary); line-height: 1.4; }
-  .conv-num-row .cn-desc strong { color: var(--text-primary); font-size: 13px; display: block; margin-bottom: 2px; }
-
-  /* ── ORIGINAL CHALLENGES SECTION ── */
-  .challenges-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 20px;
-    margin-top: 40px;
-  }
-  .challenge-card {
-    background: var(--navy-light);
-    border: 1px solid rgba(255,255,255,0.07);
-    border-radius: var(--radius);
-    padding: 28px 24px;
-  }
-  .challenge-card .ch-before {
-    display: flex;
-    align-items: flex-start;
-    gap: 14px;
-    margin-bottom: 20px;
-    padding-bottom: 20px;
-    border-bottom: 1px solid rgba(255,255,255,0.07);
-  }
-  .ch-icon-before { font-size: 20px; flex-shrink: 0; margin-top: 2px; opacity: 0.6; }
-  .ch-before-text h4 { font-size: 13px; font-weight: 700; color: rgba(255,255,255,0.45); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 4px; }
-  .ch-before-text p { font-size: 14px; color: rgba(255,255,255,0.55); line-height: 1.6; }
-  .challenge-card .ch-after { display: flex; align-items: flex-start; gap: 14px; }
-  .ch-icon-after { font-size: 20px; flex-shrink: 0; margin-top: 2px; }
-  .ch-after-text h4 { font-size: 13px; font-weight: 700; color: var(--lime); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 4px; }
-  .ch-after-text p { font-size: 14px; color: rgba(255,255,255,0.7); line-height: 1.6; }
-  .ch-after-text .ch-proof { display: inline-block; margin-top: 10px; background: rgba(200,241,53,0.1); border: 1px solid rgba(200,241,53,0.2); border-radius: 6px; padding: 5px 12px; font-size: 12px; font-weight: 600; color: var(--lime); }
-
-  /* ── NICHE GUIDE SECTION ── */
-  .niche-intro {
-    background: var(--grey-100);
-    border: 1px solid var(--grey-200);
-    border-radius: var(--radius);
-    padding: 32px 36px;
-    margin-bottom: 36px;
-  }
-  .niche-intro p { font-size: 15px; color: var(--text-secondary); line-height: 1.75; }
-  .niche-intro p strong { color: var(--text-primary); }
-
-  .niche-tactics-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 16px;
-  }
-  .tactic-card {
-    background: var(--white);
-    border: 1px solid var(--grey-200);
-    border-radius: var(--radius);
-    padding: 24px;
-    display: flex;
-    flex-direction: column;
-    gap: 0;
-  }
-  .tactic-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; margin-bottom: 12px; }
-  .tactic-title-group { display: flex; align-items: flex-start; gap: 12px; }
-  .tactic-icon { font-size: 22px; flex-shrink: 0; }
-  .tactic-card h3 { font-size: 14px; font-weight: 700; color: var(--text-primary); line-height: 1.3; }
-  .tactic-card p { font-size: 13px; color: var(--text-secondary); line-height: 1.6; margin-bottom: 14px; }
-  .tactic-status { display: inline-flex; align-items: center; gap: 6px; font-size: 11px; font-weight: 700; padding: 4px 10px; border-radius: 20px; letter-spacing: 0.04em; white-space: nowrap; flex-shrink: 0; }
-  .status-live { background: rgba(34,197,94,0.12); color: #16a34a; border: 1px solid rgba(34,197,94,0.25); }
-  .status-live::before { content: '●'; font-size: 8px; }
-  .status-building { background: rgba(245,158,11,0.12); color: #d97706; border: 1px solid rgba(245,158,11,0.25); }
-  .status-building::before { content: '◐'; font-size: 10px; }
-  .status-next { background: rgba(59,130,246,0.12); color: #2563eb; border: 1px solid rgba(59,130,246,0.25); }
-  .status-next::before { content: '○'; font-size: 10px; }
-  .tactic-proof { font-size: 12px; font-weight: 600; color: var(--navy); background: var(--grey-100); border-radius: 6px; padding: 8px 12px; margin-top: auto; line-height: 1.4; }
-  .tactic-proof span { color: var(--lime-dim); }
+  .client-quote-block::before { content: '"'; position: absolute; top: -10px; left: 20px; font-size: 100px; color: rgba(200,241,53,0.06); font-family: Georgia, serif; line-height: 1; }
+  .client-quote-block blockquote { font-size: 18px; font-weight: 600; color: var(--white); line-height: 1.5; font-style: italic; max-width: 560px; margin: 0 auto 12px; position: relative; z-index: 1; }
+  .client-quote-block cite { font-size: 13px; color: var(--lime); font-style: normal; font-weight: 600; }
 
   /* ── GOALS SECTION ── */
-  .goals-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 40px; }
-  .goal-card { background: var(--white); border: 1px solid var(--grey-200); border-radius: var(--radius); padding: 28px 24px; position: relative; }
+  .goals-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 36px; }
+  .goal-card { background: var(--white); border: 1px solid var(--grey-200); border-radius: var(--radius); padding: 24px; position: relative; }
   .goal-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--lime); border-radius: 3px 3px 0 0; }
-  .goal-num { font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--grey-400); margin-bottom: 10px; }
-  .goal-card h3 { font-size: 16px; font-weight: 700; color: var(--text-primary); margin-bottom: 10px; line-height: 1.3; }
-  .goal-card p { font-size: 13px; color: var(--text-secondary); line-height: 1.6; margin-bottom: 16px; }
-  .goal-status { display: inline-flex; align-items: center; gap: 6px; font-size: 11px; font-weight: 700; padding: 5px 12px; border-radius: 20px; }
+  .goal-funnel-tag { font-size: 10px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--grey-400); margin-bottom: 6px; }
+  .goal-card h3 { font-size: 15px; font-weight: 700; color: var(--text-primary); margin-bottom: 8px; line-height: 1.3; }
+  .goal-status { display: inline-flex; align-items: center; gap: 6px; font-size: 11px; font-weight: 700; padding: 4px 10px; border-radius: 20px; margin-bottom: 14px; }
   .goal-status.on-track { background: rgba(34,197,94,0.1); color: #16a34a; border: 1px solid rgba(34,197,94,0.2); }
   .goal-status.building { background: rgba(245,158,11,0.1); color: #d97706; border: 1px solid rgba(245,158,11,0.2); }
   .goal-status.in-progress { background: rgba(59,130,246,0.1); color: #2563eb; border: 1px solid rgba(59,130,246,0.2); }
-  .goal-funnel-tag { display: inline-block; font-size: 10px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--grey-400); margin-bottom: 6px; }
-  .goal-metrics { margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--grey-100); display: flex; flex-direction: column; gap: 6px; }
+  .goal-metrics { display: flex; flex-direction: column; gap: 6px; padding-top: 14px; border-top: 1px solid var(--grey-100); }
   .goal-metric-row { display: flex; align-items: center; justify-content: space-between; font-size: 12px; }
   .goal-metric-row .gm-label { color: var(--text-secondary); }
   .goal-metric-row .gm-val { font-weight: 700; color: var(--text-primary); }
   .goal-metric-row .gm-val.win { color: #16a34a; }
+  .goal-next { margin-top: 14px; padding-top: 14px; border-top: 1px solid var(--grey-100); }
+  .goal-next-label { font-size: 10px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--lime-dim); margin-bottom: 8px; }
+  .goal-next ul { list-style: none; display: flex; flex-direction: column; gap: 5px; }
+  .goal-next ul li { font-size: 12px; color: var(--text-secondary); padding-left: 14px; position: relative; line-height: 1.4; }
+  .goal-next ul li::before { content: '→'; position: absolute; left: 0; color: var(--lime-dim); font-weight: 700; font-size: 11px; }
 
   /* ── STRATEGY ALIGNMENT ── */
-  .strategy-match-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 40px; }
+  .strategy-match-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 36px; }
   .strategy-match-card { border-radius: var(--radius); overflow: hidden; border: 1px solid rgba(255,255,255,0.08); }
-  .sm-header { padding: 20px 24px; }
+  .sm-header { padding: 18px 22px; }
   .sm-header.tofu { background: rgba(59,130,246,0.15); }
   .sm-header.mofu { background: rgba(168,208,32,0.12); }
   .sm-header.bofu { background: rgba(200,241,53,0.12); }
-  .sm-funnel-tag { font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 6px; }
+  .sm-funnel-tag { font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 5px; }
   .sm-header.tofu .sm-funnel-tag { color: #60a5fa; }
   .sm-header.mofu .sm-funnel-tag { color: #a8d020; }
   .sm-header.bofu .sm-funnel-tag { color: var(--lime); }
-  .sm-header h3 { font-size: 15px; font-weight: 700; color: var(--white); line-height: 1.3; }
-  .sm-body { background: var(--navy-light); padding: 20px 24px; }
-  .sm-original { margin-bottom: 16px; }
-  .sm-original-label { font-size: 10px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(255,255,255,0.35); margin-bottom: 6px; }
-  .sm-original p { font-size: 13px; color: rgba(255,255,255,0.55); line-height: 1.6; font-style: italic; }
-  .sm-delivering { }
-  .sm-delivering-label { font-size: 10px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--lime); opacity: 0.7; margin-bottom: 8px; }
-  .sm-delivering ul { list-style: none; display: flex; flex-direction: column; gap: 6px; }
-  .sm-delivering ul li { font-size: 12px; color: rgba(255,255,255,0.7); padding-left: 16px; position: relative; line-height: 1.5; }
+  .sm-header h3 { font-size: 14px; font-weight: 700; color: var(--white); line-height: 1.3; }
+  .sm-body { background: var(--navy-light); padding: 18px 22px; }
+  .sm-original { margin-bottom: 14px; }
+  .sm-original-label { font-size: 10px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(255,255,255,0.3); margin-bottom: 5px; }
+  .sm-original p { font-size: 12px; color: rgba(255,255,255,0.5); line-height: 1.6; font-style: italic; }
+  .sm-delivering-label { font-size: 10px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--lime); opacity: 0.7; margin-bottom: 7px; }
+  .sm-delivering ul { list-style: none; display: flex; flex-direction: column; gap: 5px; }
+  .sm-delivering ul li { font-size: 12px; color: rgba(255,255,255,0.65); padding-left: 16px; position: relative; line-height: 1.5; }
   .sm-delivering ul li::before { content: '✓'; position: absolute; left: 0; color: var(--lime); font-weight: 700; font-size: 11px; }
-  .sm-data-point { margin-top: 16px; background: rgba(200,241,53,0.07); border: 1px solid rgba(200,241,53,0.15); border-radius: 6px; padding: 10px 14px; font-size: 12px; font-weight: 600; color: var(--lime); }
+  .sm-data-point { margin-top: 14px; background: rgba(200,241,53,0.07); border: 1px solid rgba(200,241,53,0.15); border-radius: 6px; padding: 9px 13px; font-size: 12px; font-weight: 600; color: var(--lime); }
 
-  /* ── WHAT WE BUILT ── */
-  .built-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; margin-top: 40px; }
-  .built-card { background: var(--navy-light); border: 1px solid rgba(255,255,255,0.07); border-radius: var(--radius); padding: 28px 24px; }
-  .built-icon { font-size: 28px; margin-bottom: 14px; display: block; }
-  .built-card h3 { font-size: 15px; font-weight: 700; color: var(--white); margin-bottom: 10px; }
-  .built-card p { font-size: 13px; color: rgba(255,255,255,0.55); line-height: 1.65; }
-  .built-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 16px; }
-  .built-tag { background: rgba(200,241,53,0.1); color: var(--lime); font-size: 11px; font-weight: 600; padding: 3px 8px; border-radius: 4px; }
+  /* ── PROGRESS TIMELINE ── */
+  .perf-header { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 36px; }
+  .perf-kpi { background: var(--white); border: 1px solid var(--grey-200); border-radius: var(--radius); padding: 20px; text-align: center; }
+  .kpi-val { font-size: 26px; font-weight: 800; color: var(--text-primary); letter-spacing: -0.02em; line-height: 1; margin-bottom: 5px; }
+  .kpi-val.highlight { color: var(--lime-dim); }
+  .kpi-label { font-size: 11px; color: var(--text-secondary); font-weight: 500; margin-bottom: 7px; }
+  .kpi-trend { display: inline-block; font-size: 11px; font-weight: 600; padding: 3px 8px; border-radius: 20px; }
+  .kpi-trend.up { background: rgba(34,197,94,0.1); color: #16a34a; }
+  .kpi-trend.stable { background: rgba(59,130,246,0.1); color: #2563eb; }
+  .timeline { display: flex; flex-direction: column; gap: 0; position: relative; }
+  .timeline::before { content: ''; position: absolute; left: 40px; top: 0; bottom: 0; width: 2px; background: var(--grey-200); }
+  .timeline-item { display: flex; gap: 24px; padding: 0 0 28px 0; position: relative; }
+  .timeline-item:last-child { padding-bottom: 0; }
+  .timeline-dot { width: 80px; height: 38px; background: var(--navy); border: 2px solid var(--lime); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 800; color: var(--lime); letter-spacing: 0.08em; flex-shrink: 0; position: relative; z-index: 1; }
+  .timeline-dot.dim { border-color: rgba(200,241,53,0.3); color: rgba(200,241,53,0.4); }
+  .timeline-content { flex: 1; background: var(--white); border: 1px solid var(--grey-200); border-radius: var(--radius); padding: 20px 22px; }
+  .tc-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; gap: 12px; flex-wrap: wrap; }
+  .tc-header h3 { font-size: 14px; font-weight: 700; color: var(--text-primary); }
+  .tc-score { font-size: 12px; font-weight: 700; background: var(--grey-100); color: var(--text-primary); padding: 3px 9px; border-radius: 6px; white-space: nowrap; }
+  .tc-score.pending { background: rgba(245,158,11,0.1); color: #d97706; }
+  .timeline-content p { font-size: 13px; color: var(--text-secondary); line-height: 1.65; margin-bottom: 14px; }
+  .tc-metrics { display: flex; flex-wrap: wrap; gap: 7px; }
+  .tc-metric { font-size: 12px; font-weight: 600; background: var(--grey-100); color: var(--text-primary); padding: 4px 9px; border-radius: 6px; }
+  .tc-metric.win { background: rgba(34,197,94,0.1); color: #16a34a; }
 
   /* ── WINS SECTION ── */
   .wins-banner {
     background: linear-gradient(135deg, rgba(200,241,53,0.1) 0%, rgba(200,241,53,0.04) 100%);
     border: 1px solid rgba(200,241,53,0.25);
     border-radius: var(--radius);
-    padding: 28px 36px;
-    margin-bottom: 32px;
+    padding: 24px 32px;
+    margin-bottom: 28px;
     display: flex;
     align-items: center;
-    gap: 24px;
+    gap: 20px;
   }
-  .wins-banner-icon { font-size: 36px; flex-shrink: 0; }
-  .wins-banner h3 { font-size: 18px; font-weight: 800; color: var(--text-primary); margin-bottom: 6px; }
-  .wins-banner p { font-size: 14px; color: var(--text-secondary); line-height: 1.6; }
+  .wins-banner-icon { font-size: 32px; flex-shrink: 0; }
+  .wins-banner h3 { font-size: 16px; font-weight: 800; color: var(--text-primary); margin-bottom: 5px; }
+  .wins-banner p { font-size: 13px; color: var(--text-secondary); line-height: 1.6; }
   .wins-banner p strong { color: var(--text-primary); }
-  .wins-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
-  .win-card { background: var(--white); border: 1px solid var(--grey-200); border-radius: var(--radius); padding: 22px 20px; position: relative; overflow: hidden; }
+  .wins-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+  .win-card { background: var(--white); border: 1px solid var(--grey-200); border-radius: var(--radius); padding: 20px; position: relative; overflow: hidden; }
   .win-card.featured { border-color: rgba(200,241,53,0.4); background: linear-gradient(135deg, rgba(200,241,53,0.05) 0%, var(--white) 100%); }
   .win-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--grey-200); }
   .win-card.featured::before { background: var(--lime); }
-  .win-num { font-size: 26px; font-weight: 800; color: var(--navy); letter-spacing: -0.02em; line-height: 1; margin-bottom: 4px; }
+  .win-num { font-size: 24px; font-weight: 800; color: var(--navy); letter-spacing: -0.02em; line-height: 1; margin-bottom: 3px; }
   .win-card.featured .win-num { color: var(--lime-dim); }
-  .win-label { font-size: 12px; font-weight: 600; color: var(--text-primary); margin-bottom: 6px; }
+  .win-label { font-size: 12px; font-weight: 600; color: var(--text-primary); margin-bottom: 5px; }
   .win-desc { font-size: 12px; color: var(--text-secondary); line-height: 1.5; }
 
-  /* ── PROGRESS TIMELINE ── */
-  .perf-header { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 40px; }
-  .perf-kpi { background: var(--white); border: 1px solid var(--grey-200); border-radius: var(--radius); padding: 22px 20px; text-align: center; }
-  .kpi-val { font-size: 28px; font-weight: 800; color: var(--text-primary); letter-spacing: -0.02em; line-height: 1; margin-bottom: 6px; }
-  .kpi-val.highlight { color: var(--lime-dim); }
-  .kpi-label { font-size: 12px; color: var(--text-secondary); font-weight: 500; margin-bottom: 8px; }
-  .kpi-trend { display: inline-block; font-size: 11px; font-weight: 600; padding: 3px 8px; border-radius: 20px; }
-  .kpi-trend.up { background: rgba(34,197,94,0.1); color: #16a34a; }
-  .kpi-trend.stable { background: rgba(59,130,246,0.1); color: #2563eb; }
-  .timeline { display: flex; flex-direction: column; gap: 0; position: relative; }
-  .timeline::before { content: ''; position: absolute; left: 40px; top: 0; bottom: 0; width: 2px; background: var(--grey-200); }
-  .timeline-item { display: flex; gap: 28px; padding: 0 0 32px 0; position: relative; }
-  .timeline-item:last-child { padding-bottom: 0; }
-  .timeline-dot { width: 80px; height: 40px; background: var(--navy); border: 2px solid var(--lime); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 800; color: var(--lime); letter-spacing: 0.08em; flex-shrink: 0; position: relative; z-index: 1; }
-  .timeline-dot.current { background: var(--lime); color: var(--navy); border-color: var(--lime); }
-  .timeline-content { flex: 1; background: var(--white); border: 1px solid var(--grey-200); border-radius: var(--radius); padding: 24px; }
-  .tc-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; gap: 12px; }
-  .tc-header h3 { font-size: 15px; font-weight: 700; color: var(--text-primary); }
-  .tc-score { font-size: 12px; font-weight: 700; background: var(--grey-100); color: var(--text-primary); padding: 4px 10px; border-radius: 6px; white-space: nowrap; }
-  .tc-score.pending { background: rgba(245,158,11,0.1); color: #d97706; }
-  .timeline-content p { font-size: 13px; color: var(--text-secondary); line-height: 1.65; margin-bottom: 16px; }
-  .tc-metrics { display: flex; flex-wrap: wrap; gap: 8px; }
-  .tc-metric { font-size: 12px; font-weight: 600; background: var(--grey-100); color: var(--text-primary); padding: 5px 10px; border-radius: 6px; }
-  .tc-metric.win { background: rgba(34,197,94,0.1); color: #16a34a; }
-
-  /* ── BRAND VOICE ── */
-  .brand-voice-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 40px; }
-  .bv-card { background: var(--white); border: 1px solid var(--grey-200); border-radius: var(--radius); padding: 28px 24px; }
-  .bv-card h3 { font-size: 15px; font-weight: 700; color: var(--text-primary); margin-bottom: 10px; }
-  .bv-card p { font-size: 13px; color: var(--text-secondary); line-height: 1.65; }
-  .bv-quote { font-size: 13px; font-style: italic; color: var(--navy); background: var(--grey-100); border-left: 3px solid var(--lime-dim); padding: 10px 14px; border-radius: 0 6px 6px 0; margin-top: 14px; line-height: 1.5; }
-  .client-quote-block {
-    background: var(--navy);
-    border-radius: var(--radius);
-    padding: 36px 40px;
-    margin-top: 36px;
-    text-align: center;
-    position: relative;
-    overflow: hidden;
-  }
-  .client-quote-block::before { content: '"'; position: absolute; top: -10px; left: 20px; font-size: 120px; color: rgba(200,241,53,0.06); font-family: Georgia, serif; line-height: 1; }
-  .client-quote-block blockquote { font-size: 20px; font-weight: 600; color: var(--white); line-height: 1.5; font-style: italic; max-width: 600px; margin: 0 auto 16px; position: relative; z-index: 1; }
-  .client-quote-block cite { font-size: 13px; color: var(--lime); font-style: normal; font-weight: 600; }
-
   /* ── ROI SECTION ── */
-  .roi-intro { background: var(--navy-light); border: 1px solid rgba(255,255,255,0.07); border-radius: var(--radius); padding: 32px 36px; margin-bottom: 32px; }
-  .roi-intro p { font-size: 15px; color: rgba(255,255,255,0.65); line-height: 1.75; }
-  .roi-intro p strong { color: var(--lime); }
-  .roi-philosophy { font-size: 16px; font-style: italic; color: rgba(255,255,255,0.8); border-left: 3px solid var(--lime); padding-left: 20px; margin-top: 20px; line-height: 1.7; }
+  .roi-spend-banner {
+    background: var(--navy-light);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: var(--radius);
+    padding: 28px 32px;
+    margin-bottom: 28px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 24px;
+    align-items: center;
+  }
+  .roi-spend-item { text-align: center; }
+  .roi-spend-val { font-size: 30px; font-weight: 800; color: var(--white); letter-spacing: -0.02em; line-height: 1; margin-bottom: 5px; }
+  .roi-spend-val.highlight { color: var(--lime); }
+  .roi-spend-label { font-size: 11px; color: rgba(255,255,255,0.45); font-weight: 500; text-transform: uppercase; letter-spacing: 0.06em; }
+  .roi-spend-divider { width: 1px; background: rgba(255,255,255,0.08); height: 60px; margin: 0 auto; }
 
-  .roi-calc-section { margin-bottom: 32px; }
-  .roi-calc-section h3 { font-size: 16px; font-weight: 700; color: var(--white); margin-bottom: 20px; }
-  .roi-assumptions { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: var(--radius); overflow: hidden; margin-bottom: 24px; }
-  .roi-assumptions table { width: 100%; border-collapse: collapse; }
-  .roi-assumptions th { background: rgba(200,241,53,0.08); padding: 12px 20px; text-align: left; font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(255,255,255,0.45); }
-  .roi-assumptions td { padding: 12px 20px; font-size: 13px; color: rgba(255,255,255,0.7); border-top: 1px solid rgba(255,255,255,0.05); }
-  .roi-assumptions td:last-child { font-weight: 700; color: var(--white); text-align: right; }
+  .roi-intro { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: var(--radius); padding: 28px 32px; margin-bottom: 28px; }
+  .roi-intro p { font-size: 14px; color: rgba(255,255,255,0.65); line-height: 1.75; }
+  .roi-intro p strong { color: var(--lime); }
+  .roi-philosophy { font-size: 15px; font-style: italic; color: rgba(255,255,255,0.75); border-left: 3px solid var(--lime); padding-left: 18px; margin-top: 18px; line-height: 1.7; }
+
+  .roi-calc-section { margin-bottom: 28px; }
+  .roi-calc-section h3 { font-size: 15px; font-weight: 700; color: var(--white); margin-bottom: 16px; }
+  .roi-assumptions { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: var(--radius); overflow: hidden; margin-bottom: 20px; overflow-x: auto; }
+  .roi-assumptions table { width: 100%; border-collapse: collapse; min-width: 500px; }
+  .roi-assumptions th { background: rgba(200,241,53,0.08); padding: 11px 18px; text-align: left; font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(255,255,255,0.45); }
+  .roi-assumptions td { padding: 11px 18px; font-size: 13px; color: rgba(255,255,255,0.65); border-top: 1px solid rgba(255,255,255,0.05); }
   .roi-assumptions td.highlight-val { color: var(--lime); font-weight: 700; }
 
-  .roi-scenarios { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 32px; }
-  .roi-scenario { background: var(--navy-light); border: 1px solid rgba(255,255,255,0.08); border-radius: var(--radius); padding: 24px; text-align: center; }
+  .roi-scenarios { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-bottom: 28px; }
+  .roi-scenario { background: var(--navy-light); border: 1px solid rgba(255,255,255,0.08); border-radius: var(--radius); padding: 22px; text-align: center; }
   .roi-scenario.featured { border-color: rgba(200,241,53,0.3); background: rgba(200,241,53,0.06); }
-  .roi-scenario .rs-label { font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.4); margin-bottom: 10px; }
+  .roi-scenario .rs-label { font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.35); margin-bottom: 8px; }
   .roi-scenario.featured .rs-label { color: var(--lime); opacity: 0.7; }
-  .roi-scenario .rs-val { font-size: 32px; font-weight: 800; color: var(--white); letter-spacing: -0.02em; line-height: 1; margin-bottom: 8px; }
+  .roi-scenario .rs-val { font-size: 28px; font-weight: 800; color: var(--white); letter-spacing: -0.02em; line-height: 1; margin-bottom: 7px; }
   .roi-scenario.featured .rs-val { color: var(--lime); }
-  .roi-scenario .rs-title { font-size: 13px; font-weight: 700; color: rgba(255,255,255,0.7); margin-bottom: 8px; }
-  .roi-scenario .rs-desc { font-size: 12px; color: rgba(255,255,255,0.4); line-height: 1.5; }
+  .roi-scenario .rs-title { font-size: 12px; font-weight: 700; color: rgba(255,255,255,0.65); margin-bottom: 7px; }
+  .roi-scenario .rs-desc { font-size: 11px; color: rgba(255,255,255,0.4); line-height: 1.5; }
 
-  .roi-multiplier { background: rgba(200,241,53,0.06); border: 1px solid rgba(200,241,53,0.2); border-radius: var(--radius); padding: 28px 32px; margin-bottom: 24px; }
-  .roi-multiplier h3 { font-size: 16px; font-weight: 700; color: var(--white); margin-bottom: 12px; }
-  .roi-multiplier p { font-size: 14px; color: rgba(255,255,255,0.6); line-height: 1.7; }
-  .roi-multiplier p strong { color: var(--lime); }
+  .roi-context { background: rgba(200,241,53,0.06); border: 1px solid rgba(200,241,53,0.2); border-radius: var(--radius); padding: 24px 28px; margin-bottom: 24px; }
+  .roi-context h3 { font-size: 14px; font-weight: 700; color: var(--white); margin-bottom: 10px; }
+  .roi-context p { font-size: 13px; color: rgba(255,255,255,0.6); line-height: 1.7; }
+  .roi-context p strong { color: var(--lime); }
 
-  .roi-next-steps { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: var(--radius); padding: 24px 28px; }
-  .roi-next-steps h3 { font-size: 14px; font-weight: 700; color: var(--white); margin-bottom: 16px; }
-  .roi-next-steps ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
-  .roi-next-steps ul li { font-size: 13px; color: rgba(255,255,255,0.65); padding-left: 20px; position: relative; line-height: 1.5; }
+  .roi-next-steps { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: var(--radius); padding: 22px 26px; }
+  .roi-next-steps h3 { font-size: 13px; font-weight: 700; color: var(--white); margin-bottom: 14px; text-transform: uppercase; letter-spacing: 0.06em; }
+  .roi-next-steps ul { list-style: none; display: flex; flex-direction: column; gap: 9px; }
+  .roi-next-steps ul li { font-size: 13px; color: rgba(255,255,255,0.6); padding-left: 18px; position: relative; line-height: 1.5; }
   .roi-next-steps ul li::before { content: '→'; position: absolute; left: 0; color: var(--lime); font-weight: 700; }
   .roi-next-steps ul li strong { color: var(--white); }
 
   /* ── ROADMAP ── */
-  .roadmap-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; margin-top: 40px; }
-  .roadmap-card { background: var(--navy-light); border: 1px solid rgba(255,255,255,0.08); border-radius: var(--radius); padding: 28px 24px; position: relative; overflow: hidden; }
+  .roadmap-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; margin-top: 36px; }
+  .roadmap-card { background: var(--navy-light); border: 1px solid rgba(255,255,255,0.08); border-radius: var(--radius); padding: 24px; position: relative; overflow: hidden; }
   .roadmap-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--lime); }
-  .roadmap-card .rm-num { font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--lime); opacity: 0.7; margin-bottom: 10px; }
-  .roadmap-card h3 { font-size: 16px; font-weight: 700; color: var(--white); margin-bottom: 10px; line-height: 1.3; }
+  .roadmap-card .rm-num { font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--lime); opacity: 0.7; margin-bottom: 8px; }
+  .roadmap-card h3 { font-size: 15px; font-weight: 700; color: var(--white); margin-bottom: 8px; line-height: 1.3; }
   .roadmap-card p { font-size: 13px; color: rgba(255,255,255,0.55); line-height: 1.6; }
-  .roadmap-card .rm-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 16px; }
+  .roadmap-card .rm-tags { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 14px; }
   .rm-tag { background: rgba(200,241,53,0.1); color: var(--lime); font-size: 11px; font-weight: 600; padding: 3px 8px; border-radius: 4px; }
 
   /* ── COMMITMENT SECTION ── */
-  .commitment-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 40px; }
-  .commit-card { background: var(--grey-100); border: 1px solid var(--grey-200); border-radius: var(--radius); padding: 28px 24px; text-align: center; }
-  .commit-card .commit-icon { font-size: 28px; margin-bottom: 14px; display: block; }
-  .commit-card h3 { font-size: 15px; font-weight: 700; color: var(--text-primary); margin-bottom: 8px; }
+  .commitment-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 36px; }
+  .commit-card { background: var(--grey-100); border: 1px solid var(--grey-200); border-radius: var(--radius); padding: 24px; text-align: center; }
+  .commit-card .commit-icon { font-size: 26px; margin-bottom: 12px; display: block; }
+  .commit-card h3 { font-size: 14px; font-weight: 700; color: var(--text-primary); margin-bottom: 7px; }
   .commit-card p { font-size: 13px; color: var(--text-secondary); line-height: 1.6; }
 
   /* ── CTA SECTION ── */
-  .cta-section { background: var(--navy); padding: 80px 40px; text-align: center; }
-  .cta-section h2 { font-size: clamp(28px, 4vw, 44px); font-weight: 800; color: var(--white); line-height: 1.2; letter-spacing: -0.02em; margin-bottom: 16px; }
+  .cta-section { background: var(--navy); padding: 72px 40px; text-align: center; }
+  .cta-section h2 { font-size: clamp(26px, 4vw, 40px); font-weight: 800; color: var(--white); line-height: 1.2; letter-spacing: -0.02em; margin-bottom: 14px; }
   .cta-section h2 span { color: var(--lime); }
-  .cta-section p { color: rgba(255,255,255,0.55); font-size: 16px; max-width: 480px; margin: 0 auto 40px; line-height: 1.7; }
-  .cta-btn { display: inline-flex; align-items: center; gap: 10px; background: var(--lime); color: var(--navy); font-size: 15px; font-weight: 700; padding: 16px 36px; border-radius: 10px; text-decoration: none; transition: all 0.2s; letter-spacing: 0.01em; }
+  .cta-section p { color: rgba(255,255,255,0.5); font-size: 15px; max-width: 460px; margin: 0 auto 36px; line-height: 1.7; }
+  .cta-btn { display: inline-flex; align-items: center; gap: 10px; background: var(--lime); color: var(--navy); font-size: 15px; font-weight: 700; padding: 15px 34px; border-radius: 10px; text-decoration: none; transition: all 0.2s; letter-spacing: 0.01em; }
   .cta-btn:hover { background: #d4f550; transform: translateY(-1px); }
-  .cta-details { display: flex; justify-content: center; gap: 32px; margin-top: 32px; }
-  .cta-detail { display: flex; align-items: center; gap: 8px; font-size: 13px; color: rgba(255,255,255,0.45); }
+  .cta-details { display: flex; justify-content: center; gap: 28px; margin-top: 28px; flex-wrap: wrap; }
+  .cta-detail { display: flex; align-items: center; gap: 7px; font-size: 13px; color: rgba(255,255,255,0.4); }
   .cta-detail::before { content: '✓'; color: var(--lime); font-weight: 700; }
 
   /* ── FOOTER ── */
-  .footer { background: var(--navy); border-top: 1px solid rgba(255,255,255,0.06); padding: 24px 40px; display: flex; align-items: center; justify-content: space-between; }
+  .footer { background: var(--navy); border-top: 1px solid rgba(255,255,255,0.06); padding: 22px 40px; display: flex; align-items: center; justify-content: space-between; }
   .footer-brand { display: flex; align-items: center; gap: 10px; color: rgba(255,255,255,0.4); font-size: 12px; }
   .footer-brand .scroll-mark { width: 22px; height: 22px; background: var(--lime); border-radius: 5px; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 900; color: var(--navy); }
   .footer-note { font-size: 11px; color: rgba(255,255,255,0.25); }
 
   /* ── RESPONSIVE ── */
   @media (max-width: 768px) {
-    .top-nav { padding: 12px 20px; }
+    .top-nav { padding: 12px 16px; }
     .top-nav .nav-links { display: none; }
-    .hero { padding: 60px 20px 48px; }
-    .hero-stats { flex-direction: column; }
+    .top-nav .nav-date { font-size: 11px; }
+    .hero { padding: 52px 20px 44px; }
+    .hero-stats { grid-template-columns: repeat(3, 1fr); }
+    .hero-stat:nth-child(4), .hero-stat:nth-child(5) { border-top: 1px solid rgba(255,255,255,0.08); }
+    .hero-stat:nth-child(3) { border-right: none; }
     .section { padding: 48px 20px; }
-    .stat-grid { grid-template-columns: repeat(2, 1fr); }
-    .social-why-grid, .goals-grid, .brand-voice-grid, .commitment-grid { grid-template-columns: 1fr; }
-    .built-grid, .roadmap-grid, .challenges-grid, .niche-tactics-grid { grid-template-columns: 1fr; }
+    .story-grid { grid-template-columns: 1fr; }
+    .goals-grid { grid-template-columns: 1fr; }
     .strategy-match-grid { grid-template-columns: 1fr; }
-    .roi-scenarios { grid-template-columns: 1fr; }
-    .wins-grid { grid-template-columns: repeat(2, 1fr); }
     .perf-header { grid-template-columns: repeat(2, 1fr); }
-    .conversion-callout { grid-template-columns: 1fr; }
-    .cta-section { padding: 60px 20px; }
-    .cta-details { flex-direction: column; align-items: center; gap: 12px; }
-    .footer { flex-direction: column; gap: 12px; text-align: center; }
+    .wins-grid { grid-template-columns: repeat(2, 1fr); }
+    .roi-spend-banner { grid-template-columns: 1fr; gap: 16px; }
+    .roi-spend-divider { display: none; }
+    .roi-scenarios { grid-template-columns: 1fr; }
+    .roadmap-grid { grid-template-columns: 1fr; }
+    .commitment-grid { grid-template-columns: 1fr; }
+    .cta-section { padding: 56px 20px; }
+    .cta-details { flex-direction: column; align-items: center; gap: 10px; }
+    .footer { flex-direction: column; gap: 10px; text-align: center; padding: 20px; }
+    .wins-banner { flex-direction: column; text-align: center; }
+    .roi-assumptions { font-size: 12px; }
+  }
+  @media (max-width: 480px) {
+    .hero-stats { grid-template-columns: repeat(2, 1fr); }
+    .hero-stat:nth-child(5) { grid-column: span 2; border-right: none; }
+    .hero-stat:nth-child(3) { border-right: 1px solid rgba(255,255,255,0.08); }
+    .hero-stat:nth-child(4) { border-right: none; }
+    .wins-grid { grid-template-columns: 1fr; }
   }
 </style>
 </head>
@@ -472,14 +371,13 @@
     Scroll Media
   </div>
   <div class="nav-links">
-    <a href="#why-social">Why Social</a>
-    <a href="#challenges">Your Story</a>
-    <a href="#niche">Niche Guide</a>
+    <a href="#story">Your Story</a>
     <a href="#goals">Goals</a>
     <a href="#strategy">Strategy</a>
     <a href="#progress">Progress</a>
+    <a href="#wins">Wins</a>
     <a href="#roi">ROI</a>
-    <a href="#next">What's Next</a>
+    <a href="#next">Next 6 Months</a>
   </div>
   <div class="nav-date">Partnership Review — March 2026</div>
 </nav>
@@ -492,8 +390,8 @@
     <div class="hero-x">×</div>
     <div class="hero-scroll-logo">S</div>
   </div>
-  <h1>Up and Running<br><span>× Scroll Media</span></h1>
-  <p class="hero-sub">A look back at what we've built together since October 2025 — and the opportunity ahead for the next six months.</p>
+  <h1>Up and Running<br><span>x Scroll Media</span></h1>
+  <p class="hero-sub">A look back at what we've built together since October 2025 — and the case for what comes next.</p>
   <div class="hero-stats">
     <div class="hero-stat">
       <span class="stat-val">5</span>
@@ -518,309 +416,109 @@
   </div>
 </section>
 
-<!-- SECTION 0: WHY SOCIAL MEDIA -->
-<div id="why-social" class="section-white">
-  <div class="section">
-    <div class="section-label">The Business Case</div>
-    <h2 class="section-title">Why Instagram Matters for Up and Running</h2>
-    <div class="divider"></div>
-    <p class="section-desc">Before we talk about what we've built, let's ground ourselves in why this investment matters — and why Instagram specifically is the right platform for a community-driven specialty retail business like yours.</p>
-
-    <div class="social-case-intro">
-      <h3>The Platform Your Customers Are Already On</h3>
-      <p>Instagram has <strong>2 billion monthly active users</strong> — and more importantly, it's the platform where <strong>83% of users discover new products and local businesses</strong>. For a specialty running store rooted in community, Instagram isn't just a marketing channel. It's the digital version of your storefront window, your community bulletin board, and your most trusted word-of-mouth engine — all in one place. The question was never whether to be on Instagram. The question was whether to show up with strategy and intention, or get left behind.</p>
-    </div>
-
-    <div class="stat-grid">
-      <div class="stat-card">
-        <div class="sc-val">2<span>B</span></div>
-        <div class="sc-label">Monthly Active Users on Instagram</div>
-        <div class="sc-source">Meta, 2025</div>
-      </div>
-      <div class="stat-card">
-        <div class="sc-val">83<span>%</span></div>
-        <div class="sc-label">of users discover new businesses on Instagram</div>
-        <div class="sc-source">Instagram Business, 2025</div>
-      </div>
-      <div class="stat-card">
-        <div class="sc-val">36<span>%</span></div>
-        <div class="sc-label">more reach from Reels vs. static posts</div>
-        <div class="sc-source">Socialinsider, 2025</div>
-      </div>
-      <div class="stat-card">
-        <div class="sc-val">46<span>%</span></div>
-        <div class="sc-label">of Instagram time is spent on Reels</div>
-        <div class="sc-source">Sensor Tower, 2025</div>
-      </div>
-    </div>
-
-    <div class="social-why-grid">
-      <div class="why-card">
-        <span class="why-icon">🏃</span>
-        <h3>Your Audience Lives Here</h3>
-        <p>Your core customer — the active woman aged 30–55 who runs, walks, or works on her feet — is highly active on Instagram. She follows fitness accounts, local businesses, and community groups. She discovers brands through Reels and saves content that teaches her something. She's already there. We just need to show up for her.</p>
-        <span class="why-stat">Primary audience: 25–54 female, active lifestyle</span>
-      </div>
-      <div class="why-card">
-        <span class="why-icon">🤝</span>
-        <h3>Community Drives Specialty Retail</h3>
-        <p>Specialty running stores don't compete on price — they compete on trust, expertise, and community. Instagram is the only platform that lets you build all three simultaneously, at scale, without a paid ads budget. Every post is a chance to reinforce why Up and Running is the local authority, not just another shoe store.</p>
-        <span class="why-stat">Community content drives 3–5x more engagement than product posts</span>
-      </div>
-      <div class="why-card">
-        <span class="why-icon">📈</span>
-        <h3>Organic Reach is Still Powerful</h3>
-        <p>Unlike paid ads that stop the moment you stop spending, organic social builds a compounding asset. Every follower gained, every save earned, every profile visit is a warm lead in your pipeline. The algorithm rewards consistency and community engagement — which is exactly what our strategy is built around.</p>
-        <span class="why-stat">Organic social compounds over time — paid ads stop when you stop</span>
-      </div>
-    </div>
-
-    <div class="conversion-callout">
-      <div>
-        <h3>The Conversion Opportunity:<br><span>Getting in Front of the Right People</span></h3>
-        <p>The industry average social media conversion rate is <strong>~1%</strong> — meaning 1 out of every 100 people who see your content takes action. But that number assumes a broad, untargeted audience. When you use the algorithm strategically to reach people who are already interested in running, fitness, and local community — people who actually care about what you sell — that conversion rate can climb significantly. <strong>Our entire strategy is built around getting high-quality, relevant viewers in front of Up and Running, not just any viewers.</strong></p>
-      </div>
-      <div class="conversion-numbers">
-        <div class="conv-num-row">
-          <div class="cn-val">~1%</div>
-          <div class="cn-desc"><strong>Industry Avg Conversion Rate</strong>Broad, untargeted audience</div>
-        </div>
-        <div class="conv-num-row">
-          <div class="cn-val highlight">3–5%</div>
-          <div class="cn-desc"><strong>Targeted Audience Potential</strong>High-quality, niche-relevant viewers who already care about running and fitness</div>
-        </div>
-        <div class="conv-num-row">
-          <div class="cn-val">5.0%</div>
-          <div class="cn-desc"><strong>UAR's Jan 2026 CTR</strong>Already above the targeted benchmark — proof the strategy is working</div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- SECTION 1: WHY THEY CAME TO US -->
-<div id="challenges" class="section-dark">
+<!-- SECTION 1: YOUR STORY -->
+<div id="story" class="section-dark">
   <div class="section">
     <div class="section-label">Your Story</div>
-    <h2 class="section-title" style="color:var(--white)">Why You Came to Us — and What We've Solved</h2>
+    <h2 class="section-title">Why You Came to Us — and What We've Solved</h2>
     <div class="divider"></div>
-    <p class="section-desc">You came to Scroll Media with real, specific challenges. Here's an honest look at what those were — and how we've addressed each one over the past five months.</p>
+    <p class="section-desc">You came to Scroll Media with real, specific challenges. Here's an honest look at what those were — and how we've addressed each one.</p>
 
-    <div class="challenges-grid">
-      <div class="challenge-card">
-        <div class="ch-before">
-          <div class="ch-icon-before">😓</div>
-          <div class="ch-before-text">
-            <h4>The Challenge</h4>
-            <p>Nickie was wearing multiple hats across the business. Social media was one of them — and it was becoming overwhelming. Keeping up with content creation, strategy, and posting while running daily operations wasn't sustainable.</p>
-          </div>
+    <div class="story-grid">
+      <div class="story-card">
+        <div class="story-challenge">
+          <div class="story-label-before">The Challenge</div>
+          <h4>Bandwidth and Ownership</h4>
+          <p>Nickie was wearing too many hats. Social media was one of them — and keeping up with content, strategy, and posting while running daily operations wasn't sustainable.</p>
         </div>
-        <div class="ch-after">
-          <div class="ch-icon-after">✅</div>
-          <div class="ch-after-text">
-            <h4>What We Solved</h4>
-            <p>We took full ownership of the social media function — strategy, content creation, scheduling, and performance tracking. Nickie's time is freed up to focus on the business. Social media runs without her having to think about it.</p>
-            <span class="ch-proof">5 months of consistent, on-brand content delivered on schedule</span>
-          </div>
+        <div class="story-solution">
+          <div class="story-label-after">What We Solved</div>
+          <h4>Full Social Media Ownership</h4>
+          <p>We took complete ownership — strategy, creation, scheduling, and performance tracking. Social media runs without Nickie having to think about it.</p>
+          <span class="story-proof">5 months of consistent, on-brand content delivered on schedule</span>
         </div>
       </div>
 
-      <div class="challenge-card">
-        <div class="ch-before">
-          <div class="ch-icon-before">🎭</div>
-          <div class="ch-before-text">
-            <h4>The Challenge</h4>
-            <p>Previous marketing partners couldn't accurately capture the Up and Running brand. The content felt generic, off-tone, or like it could have been for any running store — not specifically for Up and Running and the Dayton community.</p>
-          </div>
+      <div class="story-card">
+        <div class="story-challenge">
+          <div class="story-label-before">The Challenge</div>
+          <h4>Generic Content That Missed the Brand</h4>
+          <p>Previous partners couldn't capture the Up and Running voice. Content felt like it could have been for any running store — not specifically for Up and Running and the Dayton community.</p>
         </div>
-        <div class="ch-after">
-          <div class="ch-icon-after">✅</div>
-          <div class="ch-after-text">
-            <h4>What We Solved</h4>
-            <p>We built a detailed Brand Voice System in Month 0 — documenting the exact tone, language, energy, and personality that makes Up and Running content feel authentic. The result speaks for itself.</p>
-            <span class="ch-proof">"You've done a nice job of capturing our brand style and tone." — Nickie</span>
-          </div>
+        <div class="story-solution">
+          <div class="story-label-after">What We Solved</div>
+          <h4>A Brand Voice System Built for You</h4>
+          <p>We built a detailed Brand Voice System in Month 0 — documenting the exact tone, language, and energy that makes Up and Running content feel authentic and community-first.</p>
+          <span class="story-proof">"You've done a nice job of capturing our brand style and tone." — Nickie</span>
         </div>
       </div>
 
-      <div class="challenge-card">
-        <div class="ch-before">
-          <div class="ch-icon-before">🔍</div>
-          <div class="ch-before-text">
-            <h4>The Challenge</h4>
-            <p>The team didn't have a clear understanding of how to use the Instagram algorithm to reach the right audience — people who actually care about running, fitness, and local community — and grow the business at the same time.</p>
-          </div>
+      <div class="story-card">
+        <div class="story-challenge">
+          <div class="story-label-before">The Challenge</div>
+          <h4>No Algorithm Strategy</h4>
+          <p>The team didn't have a clear framework for using Instagram to reach the right audience — people who actually care about running, fitness, and local community.</p>
         </div>
-        <div class="ch-after">
-          <div class="ch-icon-after">✅</div>
-          <div class="ch-after-text">
-            <h4>What We Solved</h4>
-            <p>We built a content strategy designed specifically to work with the algorithm — using Reels for reach, carousels for saves, and Stories for community engagement. The result: 140K+ views and consistent growth in profile visits and reach.</p>
-            <span class="ch-proof">56,942 views in December — nearly double the October baseline</span>
-          </div>
+        <div class="story-solution">
+          <div class="story-label-after">What We Solved</div>
+          <h4>A Content Strategy Built for the Algorithm</h4>
+          <p>We built a content system designed to work with the algorithm — Reels for reach, carousels for saves, Stories for community. The result: 140K+ views and consistent profile visit growth.</p>
+          <span class="story-proof">56,942 views in December — nearly double the October baseline</span>
         </div>
       </div>
 
-      <div class="challenge-card">
-        <div class="ch-before">
-          <div class="ch-icon-before">🎥</div>
-          <div class="ch-before-text">
-            <h4>The Challenge</h4>
-            <p>Video content was largely absent from the Up and Running feed. The team lacked the time, skills, and bandwidth to produce consistent Reels — which are the highest-reach format on Instagram and critical for growing a new audience.</p>
-          </div>
+      <div class="story-card">
+        <div class="story-challenge">
+          <div class="story-label-before">The Challenge</div>
+          <h4>No Video Content</h4>
+          <p>Reels were largely absent from the feed. The team lacked the time and bandwidth to produce consistent short-form video — the highest-reach format on Instagram.</p>
         </div>
-        <div class="ch-after">
-          <div class="ch-icon-after">✅</div>
-          <div class="ch-after-text">
-            <h4>What We Solved</h4>
-            <p>We introduced a consistent Reels strategy — from community event coverage to expert fitting content to motivational movement videos. Video is now a core part of the Up and Running content mix, driving the majority of reach and views.</p>
-            <span class="ch-proof">Reels driving 70%+ of total monthly views across all months</span>
-          </div>
+        <div class="story-solution">
+          <div class="story-label-after">What We Solved</div>
+          <h4>Reels as a Core Pillar</h4>
+          <p>We introduced a consistent Reels strategy — community event coverage, expert fitting content, movement education. Video now drives the majority of monthly reach and views.</p>
+          <span class="story-proof">Reels driving 70%+ of total monthly views across all months</span>
         </div>
       </div>
+    </div>
+
+    <div class="client-quote-block">
+      <blockquote>"You've done a nice job of capturing our brand style and tone."</blockquote>
+      <cite>— Up and Running Team</cite>
     </div>
   </div>
 </div>
 
-<!-- SECTION 2: NICHE GUIDE -->
-<div id="niche" class="section-alt">
-  <div class="section">
-    <div class="section-label">The Playbook</div>
-    <h2 class="section-title">What Wins on Instagram for Specialty Running Stores</h2>
-    <div class="divider"></div>
-    <p class="section-desc">Not all Instagram strategies are created equal. Here's the specific playbook for specialty running and movement retail — and exactly where we stand on each tactic for Up and Running.</p>
-
-    <div class="niche-intro">
-      <p>Specialty running stores have a unique advantage on social media: <strong>you sell expertise, community, and transformation — not just product.</strong> The stores that win on Instagram aren't the ones posting the most product shots. They're the ones that make their audience feel like they belong to something bigger. They teach, they inspire, they celebrate the community. The content that converts isn't "buy our shoes" — it's "here's why the right shoe changes everything" followed by a clear, frictionless path to action.</p>
-    </div>
-
-    <div class="niche-tactics-grid">
-      <div class="tactic-card">
-        <div class="tactic-header">
-          <div class="tactic-title-group">
-            <span class="tactic-icon">🏃</span>
-            <h3>Community Event Coverage</h3>
-          </div>
-          <span class="tactic-status status-live">Live</span>
-        </div>
-        <p>Covering local runs, races, group events, and wellness partnerships positions the store as the hub of the running community — not just a retailer. This content earns shares, tags, and organic reach from the community itself.</p>
-        <div class="tactic-proof">✓ Implemented — Frozen Feet Challenge coverage drove our highest-ever engagement. <span>32 shares in February, best month ever.</span></div>
-      </div>
-
-      <div class="tactic-card">
-        <div class="tactic-header">
-          <div class="tactic-title-group">
-            <span class="tactic-icon">👟</span>
-            <h3>Expert Shoe Fitting Content</h3>
-          </div>
-          <span class="tactic-status status-live">Live</span>
-        </div>
-        <p>Short-form video showing the fitting process, gait analysis, and shoe selection builds massive trust and differentiates specialty retail from big-box stores. This is the content that makes people drive past three other shoe stores to get to yours.</p>
-        <div class="tactic-proof">✓ Implemented — Expert fitting Reels are a core pillar. <span>Avg watch time: 7.5s in February, up from 5.2s in November.</span></div>
-      </div>
-
-      <div class="tactic-card">
-        <div class="tactic-header">
-          <div class="tactic-title-group">
-            <span class="tactic-icon">📚</span>
-            <h3>Educational Running Tips</h3>
-          </div>
-          <span class="tactic-status status-live">Live</span>
-        </div>
-        <p>Carousels and Reels that teach — injury prevention, training tips, gear guidance — earn saves and shares, which are the highest-value engagement signals on Instagram. Saves tell the algorithm your content is worth keeping.</p>
-        <div class="tactic-proof">✓ Implemented — Education content driving saves. <span>99 total saves across 4 months — our strongest MOFU signal.</span></div>
-      </div>
-
-      <div class="tactic-card">
-        <div class="tactic-header">
-          <div class="tactic-title-group">
-            <span class="tactic-icon">👥</span>
-            <h3>Staff Stories and Team Culture</h3>
-          </div>
-          <span class="tactic-status status-building">Building</span>
-        </div>
-        <p>Introducing the team — their running stories, their expertise, their personalities — creates the human connection that makes customers choose you over a website. People buy from people they know and trust.</p>
-        <div class="tactic-proof">◐ In progress — Staff features introduced. <span>Expanding depth and frequency in the next 6 months.</span></div>
-      </div>
-
-      <div class="tactic-card">
-        <div class="tactic-header">
-          <div class="tactic-title-group">
-            <span class="tactic-icon">🎯</span>
-            <h3>Product of the Month with Clear CTA</h3>
-          </div>
-          <span class="tactic-status status-next">Next Phase</span>
-        </div>
-        <p>A recurring monthly feature spotlighting one key product with a specific landing page link drives consistent, trackable e-commerce traffic. This is the bridge between brand awareness and direct revenue — and it's one of the highest-ROI tactics for specialty retail.</p>
-        <div class="tactic-proof">○ Planned — Launching in the next 6-month phase as part of the A2A Conversion Infrastructure initiative.</div>
-      </div>
-
-      <div class="tactic-card">
-        <div class="tactic-header">
-          <div class="tactic-title-group">
-            <span class="tactic-icon">🔗</span>
-            <h3>Lead Magnets and Conversion Paths</h3>
-          </div>
-          <span class="tactic-status status-next">Next Phase</span>
-        </div>
-        <p>High-value downloadable content — a "First 5K Training Guide," a "Shoe Fitting Checklist," or a "Spring Race Prep Plan" — captures email addresses from warm Instagram audiences and moves them into a nurture sequence toward purchase.</p>
-        <div class="tactic-proof">○ Planned — Lead magnet strategy is a core part of the 6-month roadmap. Designed to significantly improve tracked ROI.</div>
-      </div>
-
-      <div class="tactic-card">
-        <div class="tactic-header">
-          <div class="tactic-title-group">
-            <span class="tactic-icon">🏆</span>
-            <h3>Customer Spotlights and Social Proof</h3>
-          </div>
-          <span class="tactic-status status-building">Building</span>
-        </div>
-        <p>Featuring real customers — their race finishes, their fitness milestones, their fitting experiences — is the most authentic form of social proof. It validates the brand to new audiences and deepens loyalty with existing customers.</p>
-        <div class="tactic-proof">◐ In progress — Customer content introduced. <span>Expanding UGC and community spotlight series in next phase.</span></div>
-      </div>
-
-      <div class="tactic-card">
-        <div class="tactic-header">
-          <div class="tactic-title-group">
-            <span class="tactic-icon">📅</span>
-            <h3>Seasonal Campaign Moments</h3>
-          </div>
-          <span class="tactic-status status-live">Live</span>
-        </div>
-        <p>Aligning content with seasonal running moments — spring race season, summer training, fall marathons, winter fitness challenges — creates timely, relevant content that rides natural audience interest spikes.</p>
-        <div class="tactic-proof">✓ Implemented — Frozen Feet Winter Challenge was our breakout campaign. <span>Spring race season content underway in March.</span></div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- SECTION 3: ORIGINAL GOALS -->
+<!-- SECTION 2: ORIGINAL GOALS -->
 <div id="goals" class="section-white">
   <div class="section">
     <div class="section-label">Where We Started</div>
     <h2 class="section-title">Your Original Goals — Still Our North Star</h2>
     <div class="divider"></div>
-    <p class="section-desc">When we kicked off in October 2025, you gave us three clear business objectives. Every piece of content we've created has been built to serve these goals. Here's where we stand on each one — with the specific metrics that prove progress.</p>
+    <p class="section-desc">When we kicked off in October 2025, you gave us three clear business objectives. Every piece of content we've created has been built to serve these goals. Here's where we stand — and how we'll make each goal more measurable in the next phase.</p>
 
     <div class="goals-grid">
       <div class="goal-card">
         <div class="goal-funnel-tag">TOFU — Awareness</div>
-        <div class="goal-num">Goal 01</div>
         <h3>More Wellness Partnerships</h3>
-        <p>Grow Up and Running's visibility and credibility with local wellness organizations, run clubs, and community partners to drive collaborative opportunities and expand reach.</p>
         <span class="goal-status building">🤝 Building Momentum</span>
         <div class="goal-metrics">
           <div class="goal-metric-row"><span class="gm-label">Total Views (4 months)</span><span class="gm-val win">140,271</span></div>
           <div class="goal-metric-row"><span class="gm-label">Total Reach</span><span class="gm-val win">50,700+</span></div>
           <div class="goal-metric-row"><span class="gm-label">Total Shares</span><span class="gm-val win">67</span></div>
-          <div class="goal-metric-row"><span class="gm-label">Community Content Live</span><span class="gm-val win">✓ Yes</span></div>
+          <div class="goal-metric-row"><span class="gm-label">Community Content</span><span class="gm-val win">Live and Active</span></div>
+        </div>
+        <div class="goal-next">
+          <div class="goal-next-label">Next Phase Tracking</div>
+          <ul>
+            <li>Track partner tags and co-posts per month</li>
+            <li>Log new partnership inquiries attributed to Instagram</li>
+          </ul>
         </div>
       </div>
       <div class="goal-card">
         <div class="goal-funnel-tag">MOFU — Engagement</div>
-        <div class="goal-num">Goal 02</div>
         <h3>Improve Customer Retention</h3>
-        <p>Deepen loyalty with your existing community — run group members, regular customers, and brand advocates — so they keep coming back and bring others with them.</p>
         <span class="goal-status on-track">✓ On Track</span>
         <div class="goal-metrics">
           <div class="goal-metric-row"><span class="gm-label">Total Saves</span><span class="gm-val win">99</span></div>
@@ -828,29 +526,41 @@
           <div class="goal-metric-row"><span class="gm-label">Total Profile Visits</span><span class="gm-val win">477</span></div>
           <div class="goal-metric-row"><span class="gm-label">Avg Watch Time (Feb)</span><span class="gm-val win">7.5s</span></div>
         </div>
+        <div class="goal-next">
+          <div class="goal-next-label">Next Phase Tracking</div>
+          <ul>
+            <li>Monthly email subscriber growth from lead magnets</li>
+            <li>Repeat profile visitors (audience loyalty signal)</li>
+          </ul>
+        </div>
       </div>
       <div class="goal-card">
         <div class="goal-funnel-tag">BOFU — Conversion</div>
-        <div class="goal-num">Goal 03</div>
         <h3>Grow E-Commerce Activity</h3>
-        <p>Drive qualified traffic from Instagram to your online shop, expanding your revenue footprint beyond Dayton and Troy to a broader Ohio and regional audience.</p>
         <span class="goal-status in-progress">↗ In Progress</span>
         <div class="goal-metrics">
           <div class="goal-metric-row"><span class="gm-label">Total Link Taps</span><span class="gm-val win">39</span></div>
           <div class="goal-metric-row"><span class="gm-label">Best CTR (Jan 2026)</span><span class="gm-val win">5.0%</span></div>
           <div class="goal-metric-row"><span class="gm-label">Profile-to-Link Rate</span><span class="gm-val">8.2%</span></div>
-          <div class="goal-metric-row"><span class="gm-label">BOFU Infra (Next Phase)</span><span class="gm-val">Planned ↗</span></div>
+          <div class="goal-metric-row"><span class="gm-label">BOFU Infrastructure</span><span class="gm-val">Launching Next Phase</span></div>
+        </div>
+        <div class="goal-next">
+          <div class="goal-next-label">Next Phase Tracking</div>
+          <ul>
+            <li>UTM-tagged links to track Instagram-driven website revenue</li>
+            <li>"How did you hear about us?" in-store attribution question</li>
+          </ul>
         </div>
       </div>
     </div>
   </div>
 </div>
 
-<!-- SECTION 4: STRATEGY ALIGNMENT -->
+<!-- SECTION 3: STRATEGY ALIGNMENT -->
 <div id="strategy" class="section-dark">
   <div class="section">
     <div class="section-label">Staying on Strategy</div>
-    <h2 class="section-title" style="color:var(--white)">The Original Strategy — and How We're Executing It</h2>
+    <h2 class="section-title">The Original Strategy — and How We're Executing It</h2>
     <div class="divider"></div>
     <p class="section-desc">We know you have the original strategy document. Here's a direct mapping of what we proposed in November 2025 to what we've delivered — and where we're continuing to build.</p>
 
@@ -917,7 +627,7 @@
               <li>Product Spotlight pillar with shop CTAs active</li>
               <li>39 total link taps — warm leads sent to the website</li>
               <li>5.0% CTR in January — above industry benchmark</li>
-              <li>A2A Conversion Infrastructure planned for next phase</li>
+              <li>A2A Conversion Infrastructure launching next phase</li>
             </ul>
           </div>
           <div class="sm-data-point">📊 39 link taps. 5.0% peak CTR. BOFU infrastructure expanding next phase.</div>
@@ -927,118 +637,13 @@
   </div>
 </div>
 
-<!-- SECTION 5: WHAT WE BUILT -->
-<div class="section-alt">
-  <div class="section">
-    <div class="section-label">The Foundation</div>
-    <h2 class="section-title">What We Built Before We Posted a Single Piece of Content</h2>
-    <div class="divider"></div>
-    <p class="section-desc">Most agencies start posting immediately. We spent Month 0 building the strategic infrastructure that everything else runs on. This is the work that most clients never see — but it's what makes everything else work.</p>
-
-    <div class="built-grid">
-      <div class="built-card">
-        <div class="built-icon">🎯</div>
-        <h3>Brand Voice and Tone System</h3>
-        <p>Defined the exact language, energy, and personality that makes Up and Running content feel authentic — expert and approachable, community-first, never pushy or salesy. This is the document that ensures every piece of content sounds like you, not like a generic running brand.</p>
-        <div class="built-tags">
-          <span class="built-tag">Motivational</span>
-          <span class="built-tag">Expert</span>
-          <span class="built-tag">Community-First</span>
-          <span class="built-tag">Inclusive</span>
-        </div>
-      </div>
-      <div class="built-card">
-        <div class="built-icon">👥</div>
-        <h3>Audience Profile (IVP)</h3>
-        <p>Built a detailed profile of your two core audiences: The Committed Mover (30–55, female-skew, community-driven) and The On-Your-Feet Worker (26–45, comfort-focused, practical). Every piece of content is written for one of these two people.</p>
-        <div class="built-tags">
-          <span class="built-tag">The Committed Mover</span>
-          <span class="built-tag">The On-Your-Feet Worker</span>
-        </div>
-      </div>
-      <div class="built-card">
-        <div class="built-icon">🏗️</div>
-        <h3>Content Pillar Framework</h3>
-        <p>Established 4 strategic content pillars that map directly to your business goals — Community Champions, Expert Shoe Fitting, Movement Education, and Product Spotlight. Every post belongs to a pillar. Every pillar serves a goal. Nothing is random.</p>
-        <div class="built-tags">
-          <span class="built-tag">Community Champions</span>
-          <span class="built-tag">Expert Fitting</span>
-          <span class="built-tag">Movement Education</span>
-          <span class="built-tag">Product Spotlight</span>
-        </div>
-      </div>
-      <div class="built-card">
-        <div class="built-icon">📊</div>
-        <h3>Performance Tracking System</h3>
-        <p>Set up a full 13-metric performance dashboard tracking awareness, engagement, and conversion metrics every month — so we always know what's working, what to adjust, and how to prove the value of what we're doing.</p>
-        <div class="built-tags">
-          <span class="built-tag">13 KPIs Tracked</span>
-          <span class="built-tag">Monthly Scoring</span>
-          <span class="built-tag">Goal Mapping</span>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- SECTION 6: WINS -->
-<div class="section-white">
-  <div class="section">
-    <div class="section-label">The Highlights</div>
-    <h2 class="section-title">What We're Most Proud Of</h2>
-    <div class="divider"></div>
-    <p class="section-desc">Five months in, here are the moments and metrics that stand out — proof that the strategy is working and the foundation is strong.</p>
-
-    <div class="wins-banner">
-      <div class="wins-banner-icon">🏆</div>
-      <div>
-        <h3>The Frozen Feet Challenge — Breakout Campaign</h3>
-        <p>Our biggest win of the partnership. The Frozen Feet Winter Challenge drove Up and Running's highest-ever engagement — <strong>56,942 views in December</strong>, nearly double the October baseline. This campaign validated the community-first content approach and showed exactly what's possible when we align content with a live event and the right audience. <strong>This is the blueprint for what we'll build more of in the next 6 months.</strong></p>
-      </div>
-    </div>
-
-    <div class="wins-grid">
-      <div class="win-card featured">
-        <div class="win-num">56,942</div>
-        <div class="win-label">Views in December</div>
-        <div class="win-desc">Best month of the partnership. Nearly double the October baseline of 31,866.</div>
-      </div>
-      <div class="win-card featured">
-        <div class="win-num">32</div>
-        <div class="win-label">Shares in February</div>
-        <div class="win-desc">Highest share count ever. Shares are the strongest signal of content that resonates.</div>
-      </div>
-      <div class="win-card featured">
-        <div class="win-num">5.0%</div>
-        <div class="win-label">CTR in January</div>
-        <div class="win-desc">Above the 2–4% healthy range. Proof that when we drive to a link, the audience clicks.</div>
-      </div>
-      <div class="win-card">
-        <div class="win-num">477</div>
-        <div class="win-label">Total Profile Visits</div>
-        <div class="win-desc">477 people moved from content to profile — warm leads actively exploring the brand.</div>
-      </div>
-      <div class="win-card">
-        <div class="win-num">7.5s</div>
-        <div class="win-label">Avg Watch Time (Feb)</div>
-        <div class="win-desc">Up from 5.2s in November. The audience is watching longer — the content is holding attention.</div>
-      </div>
-      <div class="win-card">
-        <div class="win-num">7.9</div>
-        <div class="win-label">Avg Monthly Score</div>
-        <div class="win-desc">Consistent performance across all 4 months. No outlier months — steady, reliable execution.</div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- SECTION 7: PROGRESS TIMELINE -->
+<!-- SECTION 4: PROGRESS TIMELINE -->
 <div id="progress" class="section-alt">
   <div class="section">
     <div class="section-label">Month-by-Month</div>
     <h2 class="section-title">5 Months of Consistent Progress</h2>
     <div class="divider"></div>
-    <p class="section-desc">Here's the honest story of what happened each month — the wins, the context behind the dips, and what we learned and adjusted along the way.</p>
+    <p class="section-desc">The honest story of what happened each month — the wins, the context behind the dips, and what we learned and adjusted along the way.</p>
 
     <div class="perf-header">
       <div class="perf-kpi">
@@ -1105,36 +710,37 @@
             <h3>January 2026 — Post-Holiday Normalization</h3>
             <span class="tc-score">Score: 7.4</span>
           </div>
-          <p>January pulled back from December's event-driven spike — this is normal and expected across all accounts and industries. Post-holiday, the algorithm resets and audiences disengage from content broadly. Views dropped to 15,715, but conversion metrics held strong: CTR at 5.0% (above the healthy range), 10 link taps, and 23 new followers. The audience that stayed was high-quality.</p>
+          <p>January pulled back from December's event-driven spike — this is normal and expected across all accounts and industries. Post-holiday, the algorithm resets and audiences disengage broadly. Views dropped to 15,715, but conversion metrics held strong: CTR at 5.0% (above the healthy range), 10 link taps, and 23 new followers. The audience that stayed was high-quality.</p>
           <div class="tc-metrics">
             <div class="tc-metric"><strong>15,715</strong> Views (Post-Holiday)</div>
             <div class="tc-metric win"><strong>5.0%</strong> CTR (Above Range)</div>
             <div class="tc-metric win"><strong>10</strong> Link Taps</div>
-            <div class="tc-metric win"><strong>2,304</strong> Followers (+23)</div>
+            <div class="tc-metric win"><strong>+23</strong> New Followers</div>
+            <div class="tc-metric"><strong>2,304</strong> Followers</div>
           </div>
         </div>
       </div>
 
       <div class="timeline-item">
-        <div class="timeline-dot current">FEB</div>
+        <div class="timeline-dot">FEB</div>
         <div class="timeline-content">
           <div class="tc-header">
-            <h3>February 2026 — Strong Recovery</h3>
-            <span class="tc-score">Score: 8.3</span>
+            <h3>February 2026 — Strong Rebound</h3>
+            <span class="tc-score">Score: 8.2</span>
           </div>
-          <p>February confirmed the strategy is working. Views rebounded to 35,614 — a 126% increase from January. Avg reach per day jumped to 1,772. 32 shares — our highest ever. Watch time improved to 7.5s. The community is growing and engaging. This is the trajectory we want to sustain and accelerate heading into spring race season.</p>
+          <p>February bounced back strongly — 35,614 views, up 126% from January. Most importantly, shares hit a new all-time high of 32, signaling that the audience is actively spreading the content. Watch time improved to 7.5s. This is the kind of month-over-month recovery that shows the strategy is working.</p>
           <div class="tc-metrics">
-            <div class="tc-metric win"><strong>35,614</strong> Views (+126% MoM)</div>
-            <div class="tc-metric win"><strong>1,772</strong> Avg Reach/Day</div>
-            <div class="tc-metric win"><strong>32</strong> Shares (Best Ever)</div>
+            <div class="tc-metric win"><strong>35,614</strong> Views (+126%)</div>
+            <div class="tc-metric win"><strong>32</strong> Shares (All-Time High)</div>
             <div class="tc-metric win"><strong>7.5s</strong> Avg Watch Time</div>
+            <div class="tc-metric win"><strong>14</strong> Link Taps</div>
             <div class="tc-metric"><strong>2,307</strong> Followers (+3)</div>
           </div>
         </div>
       </div>
 
       <div class="timeline-item">
-        <div class="timeline-dot" style="border-color:rgba(200,241,53,0.3); color:rgba(200,241,53,0.4)">MAR</div>
+        <div class="timeline-dot dim">MAR</div>
         <div class="timeline-content">
           <div class="tc-header">
             <h3>March 2026 — In Progress</h3>
@@ -1151,50 +757,85 @@
   </div>
 </div>
 
-<!-- SECTION 8: BRAND VOICE -->
-<div class="section-white">
+<!-- SECTION 5: WINS -->
+<div id="wins" class="section-white">
   <div class="section">
-    <div class="section-label">What You Said</div>
-    <h2 class="section-title">We Got the Voice Right</h2>
+    <div class="section-label">The Highlights</div>
+    <h2 class="section-title">What We're Most Proud Of</h2>
     <div class="divider"></div>
-    <p class="section-desc">You told us we've done a strong job capturing the Up and Running brand — its tone, its community energy, and its authenticity. Here's what that looks like in practice.</p>
+    <p class="section-desc">Five months in, here are the moments and metrics that stand out — proof that the strategy is working and the foundation is strong.</p>
 
-    <div class="brand-voice-grid">
-      <div class="bv-card">
-        <h3>Community-First, Always</h3>
-        <p>Every piece of content leads with the community — the run groups, the events, the people. The brand never feels like a store pushing product; it feels like a movement hub that happens to sell great gear.</p>
-        <div class="bv-quote">"Content should feel inclusive, expert, and energized."</div>
-      </div>
-      <div class="bv-card">
-        <h3>Expert Without Being Intimidating</h3>
-        <p>We position Up and Running as the authority on fitting, movement, and gear — but in a way that welcomes everyone, from first-time runners to seasoned marathoners. No gatekeeping. No jargon. Just genuine expertise.</p>
-        <div class="bv-quote">"Don't make them feel like they need to be a runner to shop here."</div>
-      </div>
-      <div class="bv-card">
-        <h3>Authentic, Never Salesy</h3>
-        <p>CTAs are woven in naturally. We never push, pressure, or use urgency tactics. The goal is to create content so valuable that the audience wants to take action — not feels forced to. Rooted in truth, always.</p>
-        <div class="bv-quote">"Rooted in truth and authenticity across all content."</div>
+    <div class="wins-banner">
+      <div class="wins-banner-icon">🏆</div>
+      <div>
+        <h3>The Frozen Feet Challenge — Breakout Campaign</h3>
+        <p>Our biggest win of the partnership. The Frozen Feet Winter Challenge drove Up and Running's highest-ever engagement — <strong>56,942 views in December</strong>, nearly double the October baseline. This campaign validated the community-first approach. <strong>This is the blueprint for what we build more of in the next 6 months.</strong></p>
       </div>
     </div>
 
-    <div class="client-quote-block">
-      <blockquote>"You've done a nice job of capturing our brand style and tone."</blockquote>
-      <cite>— Up and Running Team</cite>
+    <div class="wins-grid">
+      <div class="win-card featured">
+        <div class="win-num">56,942</div>
+        <div class="win-label">Views in December</div>
+        <div class="win-desc">Best month of the partnership. Nearly double the October baseline of 31,866.</div>
+      </div>
+      <div class="win-card featured">
+        <div class="win-num">32</div>
+        <div class="win-label">Shares in February</div>
+        <div class="win-desc">All-time high. Shares are the strongest signal of content that resonates with an audience.</div>
+      </div>
+      <div class="win-card featured">
+        <div class="win-num">5.0%</div>
+        <div class="win-label">CTR in January</div>
+        <div class="win-desc">Above the 2–4% healthy range. When we drive to a link, the audience clicks.</div>
+      </div>
+      <div class="win-card">
+        <div class="win-num">477</div>
+        <div class="win-label">Total Profile Visits</div>
+        <div class="win-desc">477 people moved from content to profile — warm leads actively exploring the brand.</div>
+      </div>
+      <div class="win-card">
+        <div class="win-num">7.5s</div>
+        <div class="win-label">Avg Watch Time (Feb)</div>
+        <div class="win-desc">Up from 5.2s in November. The audience is watching longer — content is holding attention.</div>
+      </div>
+      <div class="win-card">
+        <div class="win-num">7.9</div>
+        <div class="win-label">Avg Monthly Score</div>
+        <div class="win-desc">Consistent performance across all 4 months. Steady, reliable execution — no outlier months.</div>
+      </div>
     </div>
   </div>
 </div>
 
-<!-- SECTION 9: ROI -->
+<!-- SECTION 6: ROI -->
 <div id="roi" class="section-dark">
   <div class="section">
     <div class="section-label">The ROI Case</div>
-    <h2 class="section-title" style="color:var(--white)">How We Measure and Project Your Return</h2>
+    <h2 class="section-title">Your Investment — and What It's Returned</h2>
     <div class="divider"></div>
-    <p class="section-desc">You deserve a clear, honest answer to the ROI question. Here's exactly how we think about it, how we calculate it, and what the numbers say.</p>
+    <p class="section-desc">You've invested $8,131 over 5 months. Here's an honest, clear-eyed look at what that investment has produced — and how we make the return more measurable and defensible in the next phase.</p>
+
+    <div class="roi-spend-banner">
+      <div class="roi-spend-item">
+        <div class="roi-spend-val">$8,131</div>
+        <div class="roi-spend-label">Total Invested (5 Months)</div>
+      </div>
+      <div class="roi-spend-divider"></div>
+      <div class="roi-spend-item">
+        <div class="roi-spend-val highlight">$1,930</div>
+        <div class="roi-spend-label">Monthly Retainer (MRR)</div>
+      </div>
+      <div class="roi-spend-divider"></div>
+      <div class="roi-spend-item">
+        <div class="roi-spend-val highlight">$2,500–$5,000+</div>
+        <div class="roi-spend-label">Realistic 5-Month Value Generated</div>
+      </div>
+    </div>
 
     <div class="roi-intro">
-      <p>For a community-driven, trust-based business like Up and Running, the path from a viewer seeing a Reel to walking into your store or buying online is not a straight line — but it is measurable. We track what we call <strong>High-Intent Actions (HIAs)</strong>: the moments when someone moves from passive viewer to active consideration. The most trackable HIA is a link tap — someone who saw your content, visited your profile, and clicked through to your website. That person is a warm lead. They know who you are. They're interested. They're one good experience away from becoming a customer.</p>
-      <div class="roi-philosophy">"For a business like yours, sales are built on trust, not clicks. Our job is to build that trust at scale — turning your social media from a simple marketing channel into a core piece of your sales infrastructure."</div>
+      <p>For a community-driven, trust-based business like Up and Running, the path from a viewer seeing a Reel to walking into your store or buying online is not a straight line — but it is measurable. We track what we call <strong>High-Intent Actions (HIAs)</strong>: the moments when someone moves from passive viewer to active consideration. The most trackable HIA is a link tap — someone who saw your content, visited your profile, and clicked through to your website. That person is a warm lead. They're one good experience away from becoming a customer.</p>
+      <div class="roi-philosophy">"For a business like yours, sales are built on trust, not clicks. Our job is to build that trust at scale — turning Instagram from a marketing channel into a core piece of your sales infrastructure."</div>
     </div>
 
     <div class="roi-calc-section">
@@ -1211,12 +852,12 @@
           <tbody>
             <tr>
               <td>Average Customer Lifetime Value (CLV)</td>
-              <td>Conservative estimate: 2–3 purchases/year at $140/visit avg for specialty running retail</td>
+              <td>Conservative: 2–3 purchases/year at $140/visit avg for specialty running retail</td>
               <td class="highlight-val">$425</td>
             </tr>
             <tr>
               <td>HIA-to-Lead Conversion Rate</td>
-              <td>Conservative: 7.5% of link tappers become a trackable lead (inquiry, email, visit)</td>
+              <td>Conservative: 7.5% of link tappers become a trackable lead</td>
               <td class="highlight-val">7.5%</td>
             </tr>
             <tr>
@@ -1244,46 +885,46 @@
         <div class="rs-label">Conservative</div>
         <div class="rs-val">$249</div>
         <div class="rs-title">Tracked Link Taps Only</div>
-        <div class="rs-desc">39 taps × $6.38 projected HIA value. Only counts people who clicked the link. Does not include in-store walk-ins or direct website visits.</div>
+        <div class="rs-desc">39 taps × $6.38 projected HIA value. Only counts people who clicked the link — does not include in-store walk-ins or direct visits.</div>
       </div>
       <div class="roi-scenario featured">
         <div class="rs-label">Moderate — Most Likely</div>
         <div class="rs-val">$747+</div>
         <div class="rs-title">With Profile Visit Attribution</div>
-        <div class="rs-desc">477 profile visits × 5% conversion × $425 CLV × 20% lead rate. Accounts for people who visited the profile but didn't tap the link — still warm leads.</div>
+        <div class="rs-desc">477 profile visits × 5% conversion × $425 CLV × 20% lead rate. Accounts for warm leads who visited the profile but didn't tap the link.</div>
       </div>
       <div class="roi-scenario">
         <div class="rs-label">Realistic — Full Picture</div>
         <div class="rs-val">$2,500–$5,000+</div>
         <div class="rs-title">Including In-Store Influence</div>
-        <div class="rs-desc">The most honest number. Accounts for the customer who saw your Reel, recognized your store when they drove past, and walked in. This is real — and it's not tracked in any analytics tool.</div>
+        <div class="rs-desc">The most honest number. Accounts for the customer who saw your Reel, recognized your store on their drive to work, and walked in on Saturday. Real — and untracked.</div>
       </div>
     </div>
 
-    <div class="roi-multiplier">
-      <h3>The Number You Can't See — But Is Very Real</h3>
-      <p>The tracked ROI numbers above are the <strong>floor, not the ceiling.</strong> They only count the people who clicked a link. They don't count the person who saw your Frozen Feet Challenge Reel and mentioned it to a friend. They don't count the person who followed you for three months, recognized your store on their drive to work, and walked in on a Saturday. They don't count the run club member who saw your community content and told their group about you. <strong>For a local business with strong community roots, the in-store influence of social media is often 3–5x the tracked digital impact.</strong> That puts the realistic 4-month value of this partnership in the $2,500–$5,000+ range — against a fraction of that in investment.</p>
+    <div class="roi-context">
+      <h3>The Number You Cannot See — But Is Very Real</h3>
+      <p>The tracked numbers above are the <strong>floor, not the ceiling.</strong> They only count people who clicked a link. They don't count the person who saw the Frozen Feet Challenge Reel and mentioned it to a friend. They don't count the run club member who saw your community content and told their group about you. <strong>For a local business with strong community roots, the in-store influence of social media is often 3–5x the tracked digital impact.</strong> That puts the realistic 5-month value of this partnership at $2,500–$5,000+ — against a $8,131 investment that also built a long-term brand asset that compounds over time.</p>
     </div>
 
     <div class="roi-next-steps">
-      <h3>How We'll Make ROI More Measurable in the Next 6 Months</h3>
+      <h3>How We Make ROI More Measurable in the Next 6 Months</h3>
       <ul>
         <li><strong>Product of the Month landing pages</strong> — dedicated URLs for each featured product, making link tap attribution precise and trackable</li>
-        <li><strong>Lead magnets with email capture</strong> — a "First 5K Training Guide" or "Spring Race Prep Plan" that converts Instagram viewers into email subscribers we can track and nurture</li>
-        <li><strong>UTM parameter implementation</strong> — tagging all bio links with UTM codes so Google Analytics can show exactly how much website traffic and revenue comes from Instagram</li>
-        <li><strong>"How did you hear about us?" intake question</strong> — a simple addition to your in-store or online checkout process that captures offline social attribution</li>
+        <li><strong>UTM parameter implementation</strong> — tagging all bio links so Google Analytics shows exactly how much traffic and revenue comes from Instagram</li>
+        <li><strong>Lead magnets with email capture</strong> — a "First 5K Training Guide" or "Spring Race Prep Plan" that converts viewers into email subscribers we can track and nurture</li>
+        <li><strong>"How did you hear about us?" intake question</strong> — a simple addition to in-store or online checkout that captures offline social attribution</li>
       </ul>
     </div>
   </div>
 </div>
 
-<!-- SECTION 10: NEXT 6 MONTHS -->
+<!-- SECTION 7: NEXT 6 MONTHS -->
 <div id="next" class="section-white">
   <div class="section">
     <div class="section-label">The Next Chapter</div>
     <h2 class="section-title">6-Month Extension Roadmap</h2>
     <div class="divider"></div>
-    <p class="section-desc">We've built a strong foundation. The next 6 months are about turning that foundation into measurable, compounding business growth. Here's exactly what we're focused on.</p>
+    <p class="section-desc">The foundation is strong. The next 6 months are about turning that foundation into measurable, compounding business growth. Here's exactly what we're focused on.</p>
 
     <div class="roadmap-grid">
       <div class="roadmap-card">
@@ -1334,7 +975,7 @@
   </div>
 </div>
 
-<!-- SECTION 11: OUR COMMITMENTS -->
+<!-- SECTION 8: COMMITMENT -->
 <div class="section-alt">
   <div class="section">
     <div class="section-label">Our Commitment to You</div>
@@ -1384,5 +1025,20 @@
   <div class="footer-note">Prepared for Up and Running — March 2026 | Confidential</div>
 </footer>
 
+<script>
+  // Active nav link on scroll
+  const sections = document.querySelectorAll('[id]');
+  const navLinks = document.querySelectorAll('.nav-links a');
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(s => {
+      if (window.scrollY >= s.offsetTop - 100) current = s.id;
+    });
+    navLinks.forEach(a => {
+      a.classList.remove('active');
+      if (a.getAttribute('href') === '#' + current) a.classList.add('active');
+    });
+  });
+</script>
 </body>
 </html>
