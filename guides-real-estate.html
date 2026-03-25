@@ -2237,6 +2237,210 @@ footer {
   line-height: 1.6;
 }
 
+
+/* ═══════════════════════════════════════════
+   ACCOUNTS WE'RE LOVING
+═══════════════════════════════════════════ */
+.account-spotlight {
+  margin-bottom: 80px;
+}
+.account-spotlight:last-child {
+  margin-bottom: 0;
+}
+.account-header {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  margin-bottom: 32px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid var(--border);
+}
+.account-avatar {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--azure), var(--lime));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  flex-shrink: 0;
+  position: relative;
+  overflow: hidden;
+}
+.account-avatar::after {
+  content: '';
+  position: absolute;
+  inset: 3px;
+  border-radius: 50%;
+  background: var(--navy-card);
+  z-index: 0;
+}
+.account-avatar span {
+  position: relative;
+  z-index: 1;
+}
+.account-meta {
+  flex: 1;
+}
+.account-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 4px;
+}
+.account-handle {
+  color: var(--lime);
+  font-size: 0.95rem;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+.account-stats {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+.account-stat {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+.account-stat strong {
+  color: var(--off-white);
+  font-weight: 600;
+}
+.account-badge {
+  background: var(--lime-dim);
+  border: 1px solid var(--lime-border);
+  color: var(--lime);
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 4px 12px;
+  border-radius: 20px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  white-space: nowrap;
+}
+.account-why {
+  background: var(--navy-card);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--lime);
+  border-radius: 12px;
+  padding: 20px 24px;
+  margin-bottom: 28px;
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--off-white);
+}
+.account-why strong {
+  color: var(--lime);
+}
+.posts-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+  margin-bottom: 32px;
+}
+.post-embed-wrapper {
+  background: var(--navy-card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  overflow: hidden;
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+.post-embed-wrapper:hover {
+  transform: translateY(-4px);
+  border-color: var(--lime-border);
+}
+.post-embed-wrapper blockquote.instagram-media {
+  margin: 0 !important;
+  min-width: unset !important;
+  max-width: 100% !important;
+  width: 100% !important;
+  border: none !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+}
+.post-analysis {
+  padding: 20px;
+  border-top: 1px solid var(--border);
+}
+.post-analysis-label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--azure);
+  margin-bottom: 8px;
+}
+.post-analysis p {
+  font-size: 0.9rem;
+  color: var(--muted);
+  line-height: 1.6;
+}
+.post-analysis p strong {
+  color: var(--off-white);
+}
+.takeaways-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+  margin-top: 28px;
+}
+.takeaway-card {
+  background: var(--navy-mid);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 20px;
+  transition: border-color 0.2s ease;
+}
+.takeaway-card:hover {
+  border-color: var(--lime-border);
+}
+.takeaway-icon {
+  font-size: 1.4rem;
+  margin-bottom: 10px;
+}
+.takeaway-title {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 6px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+.takeaway-desc {
+  font-size: 0.85rem;
+  color: var(--muted);
+  line-height: 1.5;
+}
+.accounts-intro {
+  background: linear-gradient(135deg, var(--navy-mid), var(--navy-card));
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 32px 40px;
+  margin-bottom: 60px;
+  text-align: center;
+}
+.accounts-intro p {
+  font-size: 1.05rem;
+  color: var(--muted);
+  max-width: 680px;
+  margin: 0 auto;
+  line-height: 1.7;
+}
+.accounts-intro p strong {
+  color: var(--lime);
+}
+.account-divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--border), transparent);
+  margin: 60px 0;
+}
+
 </style>
 </head>
 <body>
@@ -2256,6 +2460,8 @@ footer {
     <li><a href="#content-ideas">Content Ideas</a></li>
     <li><a href="#cta-system">CTAs</a></li>
     <li><a href="#lead-magnets">Lead Magnets</a></li>
+    <li><a href="#results">Results</a></li>
+    <li><a href="#accounts">Accounts We're Loving</a></li>
     <li><a href="#pricing">Pricing</a></li>
     <li><a href="#next-steps" class="nav-cta">Get Started</a></li>
   </ul>
@@ -2336,7 +2542,11 @@ footer {
         <div class="toc-num">07</div>
         <div class="toc-label">Real Results</div>
       </a>
-      <a href="#pricing" class="toc-item fade-up fade-up-delay-2">
+      <a href="#accounts" class="toc-item fade-up fade-up-delay-2">
+        <span class="toc-num">08</span>
+        <span class="toc-label">Accounts We're Loving</span>
+      </a>
+      <a href="#pricing" class="toc-item fade-up fade-up-delay-3">
         <div class="toc-num">08</div>
         <div class="toc-label">Packages & Pricing</div>
       </a>
@@ -3600,12 +3810,319 @@ footer {
   </div>
 </section>
 
+
+<!-- ═══════════════════════════════════════════
+     ACCOUNTS WE'RE LOVING
+═══════════════════════════════════════════ -->
+<section id="accounts">
+  <div class="container">
+    <span class="section-eyebrow fade-up">Chapter 08</span>
+    <h2 class="section-title fade-up fade-up-delay-1">Accounts We're Loving</h2>
+    <div class="rule fade-up fade-up-delay-1"></div>
+    <p class="section-subtitle fade-up fade-up-delay-2">Three real estate Instagram accounts that are doing it right — and exactly what you can steal from each one.</p>
+
+    <div class="accounts-intro fade-up">
+      <p>These aren't just accounts with big follower counts. They're accounts with a <strong>clear strategy, a distinct voice, and content that actually converts</strong>. Study what they're doing, understand why it works, and apply the principles to your own market.</p>
+    </div>
+
+    <!-- ─── ACCOUNT 1: RYAN SERHANT ─── -->
+    <div class="account-spotlight fade-up">
+      <div class="account-header">
+        <div class="account-avatar"><span>RS</span></div>
+        <div class="account-meta">
+          <div class="account-name">Ryan Serhant</div>
+          <div class="account-handle">@ryanserhant</div>
+          <div class="account-stats">
+            <div class="account-stat"><strong>3.1M</strong> followers</div>
+            <div class="account-stat"><strong>1,603</strong> posts</div>
+            <div class="account-stat"><strong>24.1M</strong> views on top reel</div>
+          </div>
+        </div>
+        <div class="account-badge">#1 Most Followed Agent</div>
+      </div>
+
+      <div class="account-why fade-up">
+        <strong>Why we love this account:</strong> Ryan Serhant is the definitive proof that <strong>personality-first content is the trojan horse of real estate marketing</strong>. His most-viewed content has nothing to do with listings — it's entertainment, humor, and behind-the-scenes moments that pull in millions of new eyes. Those viewers then discover his real estate content, his brokerage, and his brand. He's built a media company that happens to sell real estate, not a real estate agent who occasionally posts.
+      </div>
+
+      <div class="posts-grid">
+        <div class="post-embed-wrapper">
+          <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DKCfYT9OhQ0/" data-instgrm-version="14" style="background:#FFF; border:0; border-radius:3px; box-shadow:0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15); margin:1px; max-width:540px; min-width:326px; padding:0; width:99.375%; width:-webkit-calc(100% - 2px); width:calc(100% - 2px);">
+            <div style="padding:16px;">
+              <a href="https://www.instagram.com/reel/DKCfYT9OhQ0/" style="background:#FFFFFF; line-height:0; padding:0 0; text-align:center; text-decoration:none; width:100%;" target="_blank">
+                <div style="display:flex; flex-direction:row; align-items:center;">
+                  <div style="background-color:#F4F4F4; border-radius:50%; flex-grow:0; height:40px; margin-right:14px; width:40px;"></div>
+                  <div style="display:flex; flex-direction:column; flex-grow:1; justify-content:center;">
+                    <div style="background-color:#F4F4F4; border-radius:4px; flex-grow:0; height:14px; margin-bottom:6px; width:100px;"></div>
+                    <div style="background-color:#F4F4F4; border-radius:4px; flex-grow:0; height:14px; width:60px;"></div>
+                  </div>
+                </div>
+                <div style="padding:19% 0;"></div>
+                <div style="display:block; height:50px; margin:0 auto 12px; width:50px;">
+                  <svg width="50px" height="50px" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><g transform="translate(-511 -20)" fill="#000"><path d="M556.869 30.41c-4.132 0-7.494 3.362-7.494 7.494 0 4.132 3.362 7.494 7.494 7.494 4.132 0 7.494-3.362 7.494-7.494 0-4.132-3.362-7.494-7.494-7.494z"/></g></g></svg>
+                </div>
+                <div style="padding-top:8px;">
+                  <div style="color:#3897f0; font-family:Arial,sans-serif; font-size:14px; font-style:normal; font-weight:550; line-height:18px;">View this post on Instagram</div>
+                </div>
+              </a>
+            </div>
+          </blockquote>
+          <div class="post-analysis">
+            <div class="post-analysis-label">Why This Works</div>
+            <p><strong>24.1M views.</strong> An office prank reel — zero real estate content. This is the trojan horse in action: entertainment content builds a massive audience that then gets exposed to his listings, brand, and brokerage. The hook is universal. The reach is unlimited.</p>
+          </div>
+        </div>
+
+        <div class="post-embed-wrapper">
+          <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DSkp4A0joNd/" data-instgrm-version="14" style="background:#FFF; border:0; border-radius:3px; box-shadow:0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15); margin:1px; max-width:540px; min-width:326px; padding:0; width:99.375%; width:-webkit-calc(100% - 2px); width:calc(100% - 2px);">
+            <div style="padding:16px;">
+              <a href="https://www.instagram.com/reel/DSkp4A0joNd/" style="background:#FFFFFF; line-height:0; padding:0 0; text-align:center; text-decoration:none; width:100%;" target="_blank">
+                <div style="display:flex; flex-direction:row; align-items:center;">
+                  <div style="background-color:#F4F4F4; border-radius:50%; flex-grow:0; height:40px; margin-right:14px; width:40px;"></div>
+                  <div style="display:flex; flex-direction:column; flex-grow:1; justify-content:center;">
+                    <div style="background-color:#F4F4F4; border-radius:4px; flex-grow:0; height:14px; margin-bottom:6px; width:100px;"></div>
+                    <div style="background-color:#F4F4F4; border-radius:4px; flex-grow:0; height:14px; width:60px;"></div>
+                  </div>
+                </div>
+                <div style="padding:19% 0;"></div>
+                <div style="display:block; height:50px; margin:0 auto 12px; width:50px;">
+                  <svg width="50px" height="50px" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><g transform="translate(-511 -20)" fill="#000"><path d="M556.869 30.41c-4.132 0-7.494 3.362-7.494 7.494 0 4.132 3.362 7.494 7.494 7.494 4.132 0 7.494-3.362 7.494-7.494 0-4.132-3.362-7.494-7.494-7.494z"/></g></g></svg>
+                </div>
+                <div style="padding-top:8px;">
+                  <div style="color:#3897f0; font-family:Arial,sans-serif; font-size:14px; font-style:normal; font-weight:550; line-height:18px;">View this post on Instagram</div>
+                </div>
+              </a>
+            </div>
+          </blockquote>
+          <div class="post-analysis">
+            <div class="post-analysis-label">Why This Works</div>
+            <p><strong>Year-in-review format.</strong> Milestone content that celebrates wins, builds credibility, and humanizes the brand simultaneously. The format is replicable at any scale — you don't need $1B in sales to do a year-in-review that builds trust.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="takeaways-grid fade-up">
+        <div class="takeaway-card">
+          <div class="takeaway-icon">🎭</div>
+          <div class="takeaway-title">Entertainment = Reach</div>
+          <div class="takeaway-desc">Your most viral content probably won't be about real estate. Use entertainment to build audience, then convert with expertise content.</div>
+        </div>
+        <div class="takeaway-card">
+          <div class="takeaway-icon">📌</div>
+          <div class="takeaway-title">Pin Your Best Work</div>
+          <div class="takeaway-desc">Serhant pins his highest-performing reels. Your pinned posts are your first impression — make them count. Rotate them as you create better content.</div>
+        </div>
+        <div class="takeaway-card">
+          <div class="takeaway-icon">🏢</div>
+          <div class="takeaway-title">Think Like a Media Company</div>
+          <div class="takeaway-desc">He's not a real estate agent who posts — he's a media company that sells real estate. That mindset shift changes everything about how you approach content.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="account-divider"></div>
+
+    <!-- ─── ACCOUNT 2: GLENNDA BAKER ─── -->
+    <div class="account-spotlight fade-up">
+      <div class="account-header">
+        <div class="account-avatar" style="background: linear-gradient(135deg, #e91e8c, #f0a500);"><span>GB</span></div>
+        <div class="account-meta">
+          <div class="account-name">Glennda Baker</div>
+          <div class="account-handle">@glenndabaker</div>
+          <div class="account-stats">
+            <div class="account-stat"><strong>329K</strong> Instagram followers</div>
+            <div class="account-stat"><strong>872K+</strong> TikTok followers</div>
+            <div class="account-stat"><strong>1.1M</strong> views on top reel</div>
+          </div>
+        </div>
+        <div class="account-badge" style="background: rgba(240,165,0,0.15); border-color: rgba(240,165,0,0.3); color: #f0a500;">Queen of RE Video</div>
+      </div>
+
+      <div class="account-why fade-up">
+        <strong>Why we love this account:</strong> Glennda Baker has built her entire brand on one thing: <strong>an unmistakable voice and a strong point of view</strong>. Her "Glenndaisms" — punchy, quotable takes on real estate, money, and life — are the kind of content that gets saved, shared, and remembered. She doesn't try to be polished. She's real, direct, and unapologetically herself. In a sea of agents posting the same listing content, she stands out because you always know exactly who she is and what she stands for.
+      </div>
+
+      <div class="posts-grid">
+        <div class="post-embed-wrapper">
+          <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/Cy-3Hi3unDr/" data-instgrm-version="14" style="background:#FFF; border:0; border-radius:3px; box-shadow:0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15); margin:1px; max-width:540px; min-width:326px; padding:0; width:99.375%; width:-webkit-calc(100% - 2px); width:calc(100% - 2px);">
+            <div style="padding:16px;">
+              <a href="https://www.instagram.com/reel/Cy-3Hi3unDr/" style="background:#FFFFFF; line-height:0; padding:0 0; text-align:center; text-decoration:none; width:100%;" target="_blank">
+                <div style="display:flex; flex-direction:row; align-items:center;">
+                  <div style="background-color:#F4F4F4; border-radius:50%; flex-grow:0; height:40px; margin-right:14px; width:40px;"></div>
+                  <div style="display:flex; flex-direction:column; flex-grow:1; justify-content:center;">
+                    <div style="background-color:#F4F4F4; border-radius:4px; flex-grow:0; height:14px; margin-bottom:6px; width:100px;"></div>
+                    <div style="background-color:#F4F4F4; border-radius:4px; flex-grow:0; height:14px; width:60px;"></div>
+                  </div>
+                </div>
+                <div style="padding:19% 0;"></div>
+                <div style="display:block; height:50px; margin:0 auto 12px; width:50px;">
+                  <svg width="50px" height="50px" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><g transform="translate(-511 -20)" fill="#000"><path d="M556.869 30.41c-4.132 0-7.494 3.362-7.494 7.494 0 4.132 3.362 7.494 7.494 7.494 4.132 0 7.494-3.362 7.494-7.494 0-4.132-3.362-7.494-7.494-7.494z"/></g></g></svg>
+                </div>
+                <div style="padding-top:8px;">
+                  <div style="color:#3897f0; font-family:Arial,sans-serif; font-size:14px; font-style:normal; font-weight:550; line-height:18px;">View this post on Instagram</div>
+                </div>
+              </a>
+            </div>
+          </blockquote>
+          <div class="post-analysis">
+            <div class="post-analysis-label">Why This Works</div>
+            <p><strong>1.1M views. "Houses Over Handbags."</strong> A strong opinion-led hook that immediately triggers a reaction. It's not a listing. It's not a market update. It's a worldview — and it attracts exactly the kind of buyer/seller she wants to work with.</p>
+          </div>
+        </div>
+
+        <div class="post-embed-wrapper">
+          <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DOLs9PgjsVi/" data-instgrm-version="14" style="background:#FFF; border:0; border-radius:3px; box-shadow:0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15); margin:1px; max-width:540px; min-width:326px; padding:0; width:99.375%; width:-webkit-calc(100% - 2px); width:calc(100% - 2px);">
+            <div style="padding:16px;">
+              <a href="https://www.instagram.com/reel/DOLs9PgjsVi/" style="background:#FFFFFF; line-height:0; padding:0 0; text-align:center; text-decoration:none; width:100%;" target="_blank">
+                <div style="display:flex; flex-direction:row; align-items:center;">
+                  <div style="background-color:#F4F4F4; border-radius:50%; flex-grow:0; height:40px; margin-right:14px; width:40px;"></div>
+                  <div style="display:flex; flex-direction:column; flex-grow:1; justify-content:center;">
+                    <div style="background-color:#F4F4F4; border-radius:4px; flex-grow:0; height:14px; margin-bottom:6px; width:100px;"></div>
+                    <div style="background-color:#F4F4F4; border-radius:4px; flex-grow:0; height:14px; width:60px;"></div>
+                  </div>
+                </div>
+                <div style="padding:19% 0;"></div>
+                <div style="display:block; height:50px; margin:0 auto 12px; width:50px;">
+                  <svg width="50px" height="50px" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><g transform="translate(-511 -20)" fill="#000"><path d="M556.869 30.41c-4.132 0-7.494 3.362-7.494 7.494 0 4.132 3.362 7.494 7.494 7.494 4.132 0 7.494-3.362 7.494-7.494 0-4.132-3.362-7.494-7.494-7.494z"/></g></g></svg>
+                </div>
+                <div style="padding-top:8px;">
+                  <div style="color:#3897f0; font-family:Arial,sans-serif; font-size:14px; font-style:normal; font-weight:550; line-height:18px;">View this post on Instagram</div>
+                </div>
+              </a>
+            </div>
+          </blockquote>
+          <div class="post-analysis">
+            <div class="post-analysis-label">Why This Works</div>
+            <p><strong>"The 5 D's of Real Estate."</strong> Educational storytelling that packages hard-won experience into a memorable framework. Agents and clients both save this. It positions Glennda as the expert who's seen everything — and that's exactly who you want to hire.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="takeaways-grid fade-up">
+        <div class="takeaway-card">
+          <div class="takeaway-icon">🎯</div>
+          <div class="takeaway-title">Strong POV = Strong Brand</div>
+          <div class="takeaway-desc">Glennda's opinions repel the wrong clients and attract the right ones. Don't try to appeal to everyone — say what you actually believe about real estate.</div>
+        </div>
+        <div class="takeaway-card">
+          <div class="takeaway-icon">💬</div>
+          <div class="takeaway-title">Create Quotable Moments</div>
+          <div class="takeaway-desc">"Houses over handbags" is a bumper sticker. Build your content around lines people want to repeat. That's how you become memorable in a crowded market.</div>
+        </div>
+        <div class="takeaway-card">
+          <div class="takeaway-icon">📖</div>
+          <div class="takeaway-title">Package Your Experience</div>
+          <div class="takeaway-desc">Your years in the market are a content goldmine. Turn your hard-won lessons into frameworks, lists, and stories that only someone with your experience could tell.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="account-divider"></div>
+
+    <!-- ─── ACCOUNT 3: COFFEE & CONTRACTS ─── -->
+    <div class="account-spotlight fade-up">
+      <div class="account-header">
+        <div class="account-avatar" style="background: linear-gradient(135deg, #6b4c2a, #c8a96e);"><span>C&C</span></div>
+        <div class="account-meta">
+          <div class="account-name">Coffee &amp; Contracts</div>
+          <div class="account-handle">@coffeecontracts</div>
+          <div class="account-stats">
+            <div class="account-stat"><strong>127K</strong> followers</div>
+            <div class="account-stat"><strong>5,000+</strong> paying members</div>
+            <div class="account-stat"><strong>213K</strong> views on top reel</div>
+          </div>
+        </div>
+        <div class="account-badge" style="background: rgba(107,76,42,0.25); border-color: rgba(200,169,110,0.4); color: #c8a96e;">The RE Marketing Playbook</div>
+      </div>
+
+      <div class="account-why fade-up">
+        <strong>Why we love this account:</strong> Coffee &amp; Contracts has done something most accounts never achieve: they've become <strong>the definitive resource for a specific audience</strong>. They don't try to be everything to everyone — they own the "Instagram marketing for real estate agents" lane completely. Every post delivers immediate, actionable value. The result? 127K followers who trust them enough to pay $97/month for their templates. That's the power of niching down and consistently over-delivering on education.
+      </div>
+
+      <div class="posts-grid">
+        <div class="post-embed-wrapper">
+          <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DU69dK0DWhB/" data-instgrm-version="14" style="background:#FFF; border:0; border-radius:3px; box-shadow:0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15); margin:1px; max-width:540px; min-width:326px; padding:0; width:99.375%; width:-webkit-calc(100% - 2px); width:calc(100% - 2px);">
+            <div style="padding:16px;">
+              <a href="https://www.instagram.com/reel/DU69dK0DWhB/" style="background:#FFFFFF; line-height:0; padding:0 0; text-align:center; text-decoration:none; width:100%;" target="_blank">
+                <div style="display:flex; flex-direction:row; align-items:center;">
+                  <div style="background-color:#F4F4F4; border-radius:50%; flex-grow:0; height:40px; margin-right:14px; width:40px;"></div>
+                  <div style="display:flex; flex-direction:column; flex-grow:1; justify-content:center;">
+                    <div style="background-color:#F4F4F4; border-radius:4px; flex-grow:0; height:14px; margin-bottom:6px; width:100px;"></div>
+                    <div style="background-color:#F4F4F4; border-radius:4px; flex-grow:0; height:14px; width:60px;"></div>
+                  </div>
+                </div>
+                <div style="padding:19% 0;"></div>
+                <div style="display:block; height:50px; margin:0 auto 12px; width:50px;">
+                  <svg width="50px" height="50px" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><g transform="translate(-511 -20)" fill="#000"><path d="M556.869 30.41c-4.132 0-7.494 3.362-7.494 7.494 0 4.132 3.362 7.494 7.494 7.494 4.132 0 7.494-3.362 7.494-7.494 0-4.132-3.362-7.494-7.494-7.494z"/></g></g></svg>
+                </div>
+                <div style="padding-top:8px;">
+                  <div style="color:#3897f0; font-family:Arial,sans-serif; font-size:14px; font-style:normal; font-weight:550; line-height:18px;">View this post on Instagram</div>
+                </div>
+              </a>
+            </div>
+          </blockquote>
+          <div class="post-analysis">
+            <div class="post-analysis-label">Why This Works</div>
+            <p><strong>213K views. iPhone camera settings for Realtors.</strong> Hyper-specific, immediately actionable, zero fluff. The "comment GUIDE" CTA generated hundreds of comments — a DM automation trigger that converts viewers into leads. This is the lead magnet funnel in action.</p>
+          </div>
+        </div>
+
+        <div class="post-embed-wrapper">
+          <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DU09eEpEWae/" data-instgrm-version="14" style="background:#FFF; border:0; border-radius:3px; box-shadow:0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15); margin:1px; max-width:540px; min-width:326px; padding:0; width:99.375%; width:-webkit-calc(100% - 2px); width:calc(100% - 2px);">
+            <div style="padding:16px;">
+              <a href="https://www.instagram.com/reel/DU09eEpEWae/" style="background:#FFFFFF; line-height:0; padding:0 0; text-align:center; text-decoration:none; width:100%;" target="_blank">
+                <div style="display:flex; flex-direction:row; align-items:center;">
+                  <div style="background-color:#F4F4F4; border-radius:50%; flex-grow:0; height:40px; margin-right:14px; width:40px;"></div>
+                  <div style="display:flex; flex-direction:column; flex-grow:1; justify-content:center;">
+                    <div style="background-color:#F4F4F4; border-radius:4px; flex-grow:0; height:14px; margin-bottom:6px; width:100px;"></div>
+                    <div style="background-color:#F4F4F4; border-radius:4px; flex-grow:0; height:14px; width:60px;"></div>
+                  </div>
+                </div>
+                <div style="padding:19% 0;"></div>
+                <div style="display:block; height:50px; margin:0 auto 12px; width:50px;">
+                  <svg width="50px" height="50px" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><g transform="translate(-511 -20)" fill="#000"><path d="M556.869 30.41c-4.132 0-7.494 3.362-7.494 7.494 0 4.132 3.362 7.494 7.494 7.494 4.132 0 7.494-3.362 7.494-7.494 0-4.132-3.362-7.494-7.494-7.494z"/></g></g></svg>
+                </div>
+                <div style="padding-top:8px;">
+                  <div style="color:#3897f0; font-family:Arial,sans-serif; font-size:14px; font-style:normal; font-weight:550; line-height:18px;">View this post on Instagram</div>
+                </div>
+              </a>
+            </div>
+          </blockquote>
+          <div class="post-analysis">
+            <div class="post-analysis-label">Why This Works</div>
+            <p><strong>"I'm a Realtor, not an influencer."</strong> Positioning content that reframes the goal of social media for agents. It speaks directly to the agent's identity and reframes success from follower count to client acquisition. Highly shareable within the target audience.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="takeaways-grid fade-up">
+        <div class="takeaway-card">
+          <div class="takeaway-icon">🎯</div>
+          <div class="takeaway-title">Niche Down to Scale Up</div>
+          <div class="takeaway-desc">C&C doesn't serve all of Instagram — they serve real estate agents. That specificity is why agents trust them enough to pay monthly. The riches are in the niches.</div>
+        </div>
+        <div class="takeaway-card">
+          <div class="takeaway-icon">💡</div>
+          <div class="takeaway-title">Comment CTAs = Lead Gen</div>
+          <div class="takeaway-desc">"Comment GUIDE below" triggers DM automation that turns passive viewers into warm leads. This is one of the highest-converting formats on Instagram right now.</div>
+        </div>
+        <div class="takeaway-card">
+          <div class="takeaway-icon">🔄</div>
+          <div class="takeaway-title">Consistency Compounds</div>
+          <div class="takeaway-desc">928 posts over 6 years. The account didn't blow up overnight — it compounded. Show up consistently with value and the algorithm eventually rewards you at scale.</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
 <!-- ═══════════════════════════════════════════
      PRICING
 ═══════════════════════════════════════════ -->
 <section id="pricing">
   <div class="container">
-    <span class="section-eyebrow fade-up">Chapter 08</span>
+    <span class="section-eyebrow fade-up">Chapter 09</span>
     <h2 class="section-title fade-up fade-up-delay-1">Packages &amp; Pricing</h2>
     <div class="rule fade-up fade-up-delay-1"></div>
     <p class="section-subtitle fade-up fade-up-delay-2">Four ways to work with Scroll Media — from a $87 digital playbook to a full-service retainer. Every path is built to move the needle. Most real estate agents start with the Blueprint and move to Signature within 90 days.</p>
@@ -3740,7 +4257,7 @@ footer {
 ═══════════════════════════════════════════ -->
 <section id="next-steps">
   <div class="container">
-    <span class="section-eyebrow fade-up">Chapter 09</span>
+    <span class="section-eyebrow fade-up">Chapter 10</span>
     <h2 class="section-title fade-up fade-up-delay-1">Next Steps</h2>
     <div class="rule fade-up fade-up-delay-1"></div>
     <p class="section-subtitle fade-up fade-up-delay-2">If this guide made you think differently about what your Instagram could be doing for your business — here's what happens when you decide to move forward.</p>
@@ -3823,6 +4340,18 @@ window.addEventListener('scroll', () => {
 });
 
 // Intersection Observer for fade-up animations
+// Fix: also trigger elements already in viewport on load
+function checkInViewport() {
+  document.querySelectorAll('.fade-up').forEach(el => {
+    const rect = el.getBoundingClientRect();
+    if (rect.top < window.innerHeight && rect.bottom > 0) {
+      el.classList.add('visible');
+    }
+  });
+}
+window.addEventListener('load', checkInViewport);
+window.addEventListener('hashchange', () => setTimeout(checkInViewport, 100));
+
 const observer = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
@@ -3902,5 +4431,6 @@ document.querySelectorAll('.tam-keyword').forEach(kw => {
 });
 </script>
 
+<script async src="//www.instagram.com/embed.js"></script>
 </body>
 </html>
