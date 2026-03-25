@@ -1,7 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
+  <meta name="description" content="The Real Estate Instagram Playbook — a complete guide to building a lead-generating Instagram presence for real estate agents. From profile optimization to Social SEO, content strategy, and pricing.">
+  <meta property="og:title" content="The Real Estate Instagram Playbook | Scroll Media">
+  <meta property="og:description" content="Stop posting. Start converting. A complete Instagram strategy guide for real estate agents.">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>The Real Estate Instagram Playbook | Scroll Media</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -2441,7 +2446,214 @@ footer {
   margin: 60px 0;
 }
 
-</style>
+
+    /* Outlier intro box */
+    .outlier-intro {
+      margin-bottom: 3rem;
+    }
+    .outlier-intro-inner {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      background: rgba(200, 241, 53, 0.08);
+      border: 1px solid rgba(200, 241, 53, 0.25);
+      border-radius: 12px;
+      padding: 1.25rem 1.5rem;
+    }
+    .outlier-intro-icon { flex-shrink: 0; margin-top: 2px; }
+    .outlier-intro-text { font-size: 0.95rem; color: var(--text-secondary); line-height: 1.6; }
+    .outlier-intro-text strong { color: var(--text-primary); }
+
+    /* Account spotlight cards */
+    .account-spotlight {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 2.5rem;
+      margin-bottom: 3rem;
+    }
+    .account-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 1.5rem;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .account-handle {
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--lime);
+      font-family: var(--font-mono, monospace);
+      margin-bottom: 0.25rem;
+    }
+    .account-name {
+      font-size: 1rem;
+      color: var(--text-secondary);
+      margin-bottom: 1rem;
+    }
+    .account-stats-row {
+      display: flex;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+    .account-stat {
+      display: flex;
+      flex-direction: column;
+      gap: 0.2rem;
+    }
+    .stat-value {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+    .stat-label {
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .outlier-stat .stat-value { color: #f59e0b; }
+    .multiplier-stat .stat-value { color: var(--lime); font-size: 1.5rem; }
+    .account-love-badge {
+      background: linear-gradient(135deg, var(--lime), #a8d800);
+      color: var(--navy);
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 0.4rem 1rem;
+      border-radius: 20px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      white-space: nowrap;
+      align-self: flex-start;
+    }
+    .account-why {
+      background: rgba(255,255,255,0.03);
+      border-left: 3px solid var(--lime);
+      padding: 1.25rem 1.5rem;
+      border-radius: 0 12px 12px 0;
+      margin-bottom: 2rem;
+    }
+    .account-why h4 {
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--lime);
+      margin-bottom: 0.75rem;
+    }
+    .account-why p { color: var(--text-secondary); line-height: 1.7; margin: 0; }
+
+    /* Post grid */
+    .account-posts-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+    .account-posts-grid.two-posts {
+      grid-template-columns: 1fr 1fr;
+    }
+    @media (max-width: 768px) {
+      .account-posts-grid.two-posts { grid-template-columns: 1fr; }
+    }
+    .account-post-card {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 1.5rem;
+      background: rgba(255,255,255,0.02);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 1.5rem;
+    }
+    .account-posts-grid.two-posts .account-post-card {
+      grid-template-columns: 1fr;
+    }
+    .post-embed-wrapper {
+      width: 280px;
+      flex-shrink: 0;
+    }
+    .account-posts-grid.two-posts .post-embed-wrapper { width: 100%; }
+    .post-views-badge {
+      display: inline-block;
+      background: rgba(245, 158, 11, 0.15);
+      color: #f59e0b;
+      border: 1px solid rgba(245, 158, 11, 0.3);
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 0.3rem 0.8rem;
+      border-radius: 20px;
+      margin-bottom: 0.75rem;
+    }
+    .post-analysis h5 {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 0.6rem;
+    }
+    .post-analysis p { color: var(--text-secondary); font-size: 0.9rem; line-height: 1.6; }
+    .post-takeaways {
+      margin-top: 1rem;
+      background: rgba(200, 241, 53, 0.06);
+      border: 1px solid rgba(200, 241, 53, 0.15);
+      border-radius: 10px;
+      padding: 1rem;
+    }
+    .takeaway-label {
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--lime);
+      margin-bottom: 0.5rem;
+    }
+    .post-takeaways p { color: var(--text-secondary); font-size: 0.875rem; line-height: 1.6; margin: 0; }
+
+    /* Lessons grid */
+    .account-lessons h4 {
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--text-muted);
+      margin-bottom: 1.25rem;
+    }
+    .lessons-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+    }
+    @media (max-width: 900px) {
+      .lessons-grid { grid-template-columns: 1fr; }
+    }
+    .lesson-card {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.25rem;
+      display: flex;
+      gap: 1rem;
+    }
+    .lesson-number {
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: rgba(200, 241, 53, 0.2);
+      flex-shrink: 0;
+      line-height: 1;
+    }
+    .lesson-content strong {
+      display: block;
+      color: var(--text-primary);
+      font-size: 0.9rem;
+      margin-bottom: 0.4rem;
+    }
+    .lesson-content p { color: var(--text-secondary); font-size: 0.85rem; line-height: 1.6; margin: 0; }
+
+    @media (max-width: 768px) {
+      .account-post-card { grid-template-columns: 1fr; }
+      .post-embed-wrapper { width: 100%; }
+      .account-spotlight { padding: 1.5rem; }
+    }
+
+  </style>
 </head>
 <body>
 
@@ -2451,7 +2663,7 @@ footer {
 <!-- Navigation -->
 <nav>
   <a href="#hero" class="nav-logo">
-    <img src="data:image/png;base64,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" alt="Scroll Media" style="height:28px;width:auto;display:block;" />
+    <img src="data:image/png;base64,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" alt="Scroll Media" style="height:28px;width:auto;display:block;" / loading="lazy">
   </a>
   <ul class="nav-links">
     <li><a href="#gaps">The Gaps</a></li>
@@ -2463,7 +2675,7 @@ footer {
     <li><a href="#results">Results</a></li>
     <li><a href="#accounts">Accounts We're Loving</a></li>
     <li><a href="#pricing">Pricing</a></li>
-    <li><a href="#next-steps" class="nav-cta">Get Started</a></li>
+    <li><a href="https://calendly.com/scrollmedia/discovery" class="nav-cta" target="_blank" rel="noopener">Get Started</a></li>
   </ul>
 </nav>
 
@@ -3814,308 +4026,277 @@ footer {
 <!-- ═══════════════════════════════════════════
      ACCOUNTS WE'RE LOVING
 ═══════════════════════════════════════════ -->
-<section id="accounts">
+<!-- ACCOUNTS SECTION START -->
+<section id="accounts" class="section">
   <div class="container">
-    <span class="section-eyebrow fade-up">Chapter 08</span>
-    <h2 class="section-title fade-up fade-up-delay-1">Accounts We're Loving</h2>
-    <div class="rule fade-up fade-up-delay-1"></div>
-    <p class="section-subtitle fade-up fade-up-delay-2">Three real estate Instagram accounts that are doing it right — and exactly what you can steal from each one.</p>
-
-    <div class="accounts-intro fade-up">
-      <p>These aren't just accounts with big follower counts. They're accounts with a <strong>clear strategy, a distinct voice, and content that actually converts</strong>. Study what they're doing, understand why it works, and apply the principles to your own market.</p>
+    <div class="section-header fade-up">
+      <span class="section-eyebrow fade-up">Chapter 08</span>
+      <h2>Accounts We're Loving</h2>
+      <p class="section-subtitle">These aren't the biggest names in real estate. They're the ones with <strong>specific pieces of content that broke through</strong> — posts that performed 30x, 50x, even 200x above their channel average. That's the outlier signal. That's what we study.</p>
     </div>
 
-    <!-- ─── ACCOUNT 1: RYAN SERHANT ─── -->
+    <div class="outlier-intro fade-up">
+      <div class="outlier-intro-inner">
+        <div class="outlier-intro-icon">
+          <svg width="32" height="32" viewBox="0 0 32 32" fill="none"><circle cx="16" cy="16" r="16" fill="#C8F135" fill-opacity="0.15"/><path d="M8 22L14 10L18 18L21 14L24 22" stroke="#C8F135" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="outlier-intro-text">
+          <strong>How we find these accounts:</strong> We look at a creator's full reel history, calculate their average view count, then identify posts that are 3x–15x above that average. Those outliers reveal the specific format, hook, or topic that actually resonates — and that's what's worth studying and adapting.
+        </div>
+      </div>
+    </div>
+
+    <!-- ACCOUNT 1: Chris Smith -->
     <div class="account-spotlight fade-up">
       <div class="account-header">
-        <div class="account-avatar"><span>RS</span></div>
         <div class="account-meta">
-          <div class="account-name">Ryan Serhant</div>
-          <div class="account-handle">@ryanserhant</div>
-          <div class="account-stats">
-            <div class="account-stat"><strong>3.1M</strong> followers</div>
-            <div class="account-stat"><strong>1,603</strong> posts</div>
-            <div class="account-stat"><strong>24.1M</strong> views on top reel</div>
+          <div class="account-handle">@chris_smth</div>
+          <div class="account-name">Chris Smith</div>
+          <div class="account-stats-row">
+            <div class="account-stat">
+              <span class="stat-value">41.1K</span>
+              <span class="stat-label">Followers</span>
+            </div>
+            <div class="account-stat">
+              <span class="stat-value">~9K</span>
+              <span class="stat-label">Avg Views</span>
+            </div>
+            <div class="account-stat outlier-stat">
+              <span class="stat-value">319K</span>
+              <span class="stat-label">Outlier Peak</span>
+            </div>
+            <div class="account-stat multiplier-stat">
+              <span class="stat-value">35x</span>
+              <span class="stat-label">Outlier Score</span>
+            </div>
           </div>
         </div>
-        <div class="account-badge">#1 Most Followed Agent</div>
+        <div class="account-love-badge">We Love This</div>
       </div>
 
       <div class="account-why fade-up">
-        <strong>Why we love this account:</strong> Ryan Serhant is the definitive proof that <strong>personality-first content is the trojan horse of real estate marketing</strong>. His most-viewed content has nothing to do with listings — it's entertainment, humor, and behind-the-scenes moments that pull in millions of new eyes. Those viewers then discover his real estate content, his brokerage, and his brand. He's built a media company that happens to sell real estate, not a real estate agent who occasionally posts.
+        <h4>Why We Love This Account</h4>
+        <p>Chris is a mid-tier real estate agent who cracked the code on one specific format: the <strong>handwritten whiteboard reel</strong>. His average content performs at ~9K views — respectable for a 41K account. But two specific posts hit 319K and 328K views. That's a 35x outlier. The secret? He leads with a contrarian hook that speaks directly to agent identity and market skepticism. No production budget. No fancy editing. Just a whiteboard, a marker, and a take that makes agents stop scrolling.</p>
       </div>
 
-      <div class="posts-grid">
-        <div class="post-embed-wrapper">
-          <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DKCfYT9OhQ0/" data-instgrm-version="14" style="background:#FFF; border:0; border-radius:3px; box-shadow:0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15); margin:1px; max-width:540px; min-width:326px; padding:0; width:99.375%; width:-webkit-calc(100% - 2px); width:calc(100% - 2px);">
-            <div style="padding:16px;">
-              <a href="https://www.instagram.com/reel/DKCfYT9OhQ0/" style="background:#FFFFFF; line-height:0; padding:0 0; text-align:center; text-decoration:none; width:100%;" target="_blank">
-                <div style="display:flex; flex-direction:row; align-items:center;">
-                  <div style="background-color:#F4F4F4; border-radius:50%; flex-grow:0; height:40px; margin-right:14px; width:40px;"></div>
-                  <div style="display:flex; flex-direction:column; flex-grow:1; justify-content:center;">
-                    <div style="background-color:#F4F4F4; border-radius:4px; flex-grow:0; height:14px; margin-bottom:6px; width:100px;"></div>
-                    <div style="background-color:#F4F4F4; border-radius:4px; flex-grow:0; height:14px; width:60px;"></div>
-                  </div>
-                </div>
-                <div style="padding:19% 0;"></div>
-                <div style="display:block; height:50px; margin:0 auto 12px; width:50px;">
-                  <svg width="50px" height="50px" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><g transform="translate(-511 -20)" fill="#000"><path d="M556.869 30.41c-4.132 0-7.494 3.362-7.494 7.494 0 4.132 3.362 7.494 7.494 7.494 4.132 0 7.494-3.362 7.494-7.494 0-4.132-3.362-7.494-7.494-7.494z"/></g></g></svg>
-                </div>
-                <div style="padding-top:8px;">
-                  <div style="color:#3897f0; font-family:Arial,sans-serif; font-size:14px; font-style:normal; font-weight:550; line-height:18px;">View this post on Instagram</div>
-                </div>
-              </a>
-            </div>
-          </blockquote>
-          <div class="post-analysis">
-            <div class="post-analysis-label">Why This Works</div>
-            <p><strong>24.1M views.</strong> An office prank reel — zero real estate content. This is the trojan horse in action: entertainment content builds a massive audience that then gets exposed to his listings, brand, and brokerage. The hook is universal. The reach is unlimited.</p>
+      <div class="account-posts-grid">
+        <div class="account-post-card">
+          <div class="post-embed-wrapper">
+            <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DRuT1CfEtNl/" data-instgrm-version="14" style="background:#FFF; border:0; border-radius:3px; box-shadow:0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15); margin: 1px; max-width:540px; min-width:326px; padding:0; width:99.375%; width:-webkit-calc(100% - 2px); width:calc(100% - 2px);"></blockquote>
           </div>
-        </div>
-
-        <div class="post-embed-wrapper">
-          <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DSkp4A0joNd/" data-instgrm-version="14" style="background:#FFF; border:0; border-radius:3px; box-shadow:0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15); margin:1px; max-width:540px; min-width:326px; padding:0; width:99.375%; width:-webkit-calc(100% - 2px); width:calc(100% - 2px);">
-            <div style="padding:16px;">
-              <a href="https://www.instagram.com/reel/DSkp4A0joNd/" style="background:#FFFFFF; line-height:0; padding:0 0; text-align:center; text-decoration:none; width:100%;" target="_blank">
-                <div style="display:flex; flex-direction:row; align-items:center;">
-                  <div style="background-color:#F4F4F4; border-radius:50%; flex-grow:0; height:40px; margin-right:14px; width:40px;"></div>
-                  <div style="display:flex; flex-direction:column; flex-grow:1; justify-content:center;">
-                    <div style="background-color:#F4F4F4; border-radius:4px; flex-grow:0; height:14px; margin-bottom:6px; width:100px;"></div>
-                    <div style="background-color:#F4F4F4; border-radius:4px; flex-grow:0; height:14px; width:60px;"></div>
-                  </div>
-                </div>
-                <div style="padding:19% 0;"></div>
-                <div style="display:block; height:50px; margin:0 auto 12px; width:50px;">
-                  <svg width="50px" height="50px" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><g transform="translate(-511 -20)" fill="#000"><path d="M556.869 30.41c-4.132 0-7.494 3.362-7.494 7.494 0 4.132 3.362 7.494 7.494 7.494 4.132 0 7.494-3.362 7.494-7.494 0-4.132-3.362-7.494-7.494-7.494z"/></g></g></svg>
-                </div>
-                <div style="padding-top:8px;">
-                  <div style="color:#3897f0; font-family:Arial,sans-serif; font-size:14px; font-style:normal; font-weight:550; line-height:18px;">View this post on Instagram</div>
-                </div>
-              </a>
-            </div>
-          </blockquote>
           <div class="post-analysis">
-            <div class="post-analysis-label">Why This Works</div>
-            <p><strong>Year-in-review format.</strong> Milestone content that celebrates wins, builds credibility, and humanizes the brand simultaneously. The format is replicable at any scale — you don't need $1B in sales to do a year-in-review that builds trust.</p>
+            <div class="post-views-badge">319K views · ~35x outlier</div>
+            <h5>"If being a Realtor is so easy, why do 87% fail?"</h5>
+            <p>Handwritten whiteboard format. Contrarian hook targeting agent identity. Zero production cost — maximum psychological impact. This hit the For You Page because it speaks to a frustration every agent feels but nobody says out loud.</p>
+            <div class="post-takeaways">
+              <div class="takeaway-label">Key Takeaway</div>
+              <p>The whiteboard format signals authenticity and effort. The hook works because it's <em>about</em> the viewer, not the creator. Adapt this: "If selling a home is so easy, why do 73% of sellers leave money on the table?"</p>
+            </div>
           </div>
         </div>
       </div>
 
-      <div class="takeaways-grid fade-up">
-        <div class="takeaway-card">
-          <div class="takeaway-icon">🎭</div>
-          <div class="takeaway-title">Entertainment = Reach</div>
-          <div class="takeaway-desc">Your most viral content probably won't be about real estate. Use entertainment to build audience, then convert with expertise content.</div>
-        </div>
-        <div class="takeaway-card">
-          <div class="takeaway-icon">📌</div>
-          <div class="takeaway-title">Pin Your Best Work</div>
-          <div class="takeaway-desc">Serhant pins his highest-performing reels. Your pinned posts are your first impression — make them count. Rotate them as you create better content.</div>
-        </div>
-        <div class="takeaway-card">
-          <div class="takeaway-icon">🏢</div>
-          <div class="takeaway-title">Think Like a Media Company</div>
-          <div class="takeaway-desc">He's not a real estate agent who posts — he's a media company that sells real estate. That mindset shift changes everything about how you approach content.</div>
+      <div class="account-lessons fade-up">
+        <h4>3 Things to Steal From This Account</h4>
+        <div class="lessons-grid">
+          <div class="lesson-card">
+            <div class="lesson-number">01</div>
+            <div class="lesson-content">
+              <strong>The Contrarian Hook</strong>
+              <p>Lead with a statement that challenges a widely-held belief in your market. "If the market is so bad, why are these 3 zip codes up 12%?" creates instant curiosity and positions you as the person with the real data.</p>
+            </div>
+          </div>
+          <div class="lesson-card">
+            <div class="lesson-number">02</div>
+            <div class="lesson-content">
+              <strong>Low-Fi = High Trust</strong>
+              <p>A whiteboard or handwritten list signals that you're focused on the message, not the production. In a feed full of polished listing videos, raw authenticity stands out. Don't over-produce your educational content.</p>
+            </div>
+          </div>
+          <div class="lesson-card">
+            <div class="lesson-number">03</div>
+            <div class="lesson-content">
+              <strong>Speak to Agent Psychology</strong>
+              <p>Content that validates the difficulty of real estate — or challenges the "anyone can do this" narrative — resonates deeply with agents AND with buyers/sellers who respect expertise. Use it to build authority.</p>
+            </div>
+          </div>
         </div>
       </div>
     </div>
 
-    <div class="account-divider"></div>
-
-    <!-- ─── ACCOUNT 2: GLENNDA BAKER ─── -->
+    <!-- ACCOUNT 2: Haley Ingram -->
     <div class="account-spotlight fade-up">
       <div class="account-header">
-        <div class="account-avatar" style="background: linear-gradient(135deg, #e91e8c, #f0a500);"><span>GB</span></div>
         <div class="account-meta">
-          <div class="account-name">Glennda Baker</div>
+          <div class="account-handle">@hayingram</div>
+          <div class="account-name">Haley Ingram — Founder, Coffee & Contracts</div>
+          <div class="account-stats-row">
+            <div class="account-stat">
+              <span class="stat-value">10.2K</span>
+              <span class="stat-label">Followers</span>
+            </div>
+            <div class="account-stat">
+              <span class="stat-value">~4K</span>
+              <span class="stat-label">Avg Views</span>
+            </div>
+            <div class="account-stat outlier-stat">
+              <span class="stat-value">213K</span>
+              <span class="stat-label">Outlier Peak</span>
+            </div>
+            <div class="account-stat multiplier-stat">
+              <span class="stat-value">53x</span>
+              <span class="stat-label">Outlier Score</span>
+            </div>
+          </div>
+        </div>
+        <div class="account-love-badge">We Love This</div>
+      </div>
+
+      <div class="account-why fade-up">
+        <h4>Why We Love This Account</h4>
+        <p>Haley runs Coffee & Contracts — a 127K-member Instagram marketing platform for real estate agents — but her <em>personal</em> account only has 10.2K followers. Her average reel gets ~4K views. Then one post hit 213K. That's a 53x outlier. The format: a hyper-specific, immediately actionable tip (iPhone camera settings for recording content) paired with a comment-trigger lead magnet ("comment GUIDE"). The comment section exploded. This is a masterclass in <strong>education-to-DM conversion</strong> — and it works even with a small audience.</p>
+      </div>
+
+      <div class="account-posts-grid">
+        <div class="account-post-card">
+          <div class="post-embed-wrapper">
+            <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DU69dK0DWhB/" data-instgrm-version="14" style="background:#FFF; border:0; border-radius:3px; box-shadow:0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15); margin: 1px; max-width:540px; min-width:326px; padding:0; width:99.375%; width:-webkit-calc(100% - 2px); width:calc(100% - 2px);"></blockquote>
+          </div>
+          <div class="post-analysis">
+            <div class="post-views-badge">213K views · ~53x outlier</div>
+            <h5>"iPhone Camera Settings for Recording Content as a Realtor"</h5>
+            <p>Hyper-specific, immediately actionable, and built around a comment-trigger lead magnet. The comment section is flooded with "GUIDE" — every one of those is a warm lead in the DMs. This is the comment-CTA strategy at its best: the content provides value, the CTA converts viewers into conversations.</p>
+            <div class="post-takeaways">
+              <div class="takeaway-label">Key Takeaway</div>
+              <p>Specificity is the multiplier. "How to make better videos" gets scrolled past. "Exact iPhone settings for recording real estate content" stops the scroll. The more specific the tip, the more it signals expertise — and the more it earns the DM.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="account-lessons fade-up">
+        <h4>3 Things to Steal From This Account</h4>
+        <div class="lessons-grid">
+          <div class="lesson-card">
+            <div class="lesson-number">01</div>
+            <div class="lesson-content">
+              <strong>The Comment-Trigger Lead Magnet</strong>
+              <p>End every educational reel with "Comment [KEYWORD] and I'll send you [specific resource]." This triggers DM automation, builds your lead list, and signals to the algorithm that your content drives engagement. One reel can generate hundreds of warm leads.</p>
+            </div>
+          </div>
+          <div class="lesson-card">
+            <div class="lesson-number">02</div>
+            <div class="lesson-content">
+              <strong>Hyper-Specific Over Broad</strong>
+              <p>"What to know before buying a home" is forgettable. "The 3 things your lender won't tell you about your pre-approval" is shareable. Narrow the topic until it feels like it was made for one specific person — that's when it reaches everyone.</p>
+            </div>
+          </div>
+          <div class="lesson-card">
+            <div class="lesson-number">03</div>
+            <div class="lesson-content">
+              <strong>Small Audience, Big Results</strong>
+              <p>10K followers, 213K views. Follower count is not the ceiling on your reach. One piece of content with the right hook, the right specificity, and the right CTA can outperform accounts 10x your size. Stop waiting to "grow" before you start converting.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ACCOUNT 3: Glennda Baker -->
+    <div class="account-spotlight fade-up">
+      <div class="account-header">
+        <div class="account-meta">
           <div class="account-handle">@glenndabaker</div>
-          <div class="account-stats">
-            <div class="account-stat"><strong>329K</strong> Instagram followers</div>
-            <div class="account-stat"><strong>872K+</strong> TikTok followers</div>
-            <div class="account-stat"><strong>1.1M</strong> views on top reel</div>
+          <div class="account-name">Glennda Baker — Atlanta Real Estate</div>
+          <div class="account-stats-row">
+            <div class="account-stat">
+              <span class="stat-value">329K</span>
+              <span class="stat-label">Followers</span>
+            </div>
+            <div class="account-stat">
+              <span class="stat-value">~10K</span>
+              <span class="stat-label">Avg Views</span>
+            </div>
+            <div class="account-stat outlier-stat">
+              <span class="stat-value">1.1M</span>
+              <span class="stat-label">Outlier Peak</span>
+            </div>
+            <div class="account-stat multiplier-stat">
+              <span class="stat-value">110x</span>
+              <span class="stat-label">Outlier Score</span>
+            </div>
           </div>
         </div>
-        <div class="account-badge" style="background: rgba(240,165,0,0.15); border-color: rgba(240,165,0,0.3); color: #f0a500;">Queen of RE Video</div>
+        <div class="account-love-badge">We Love This</div>
       </div>
 
       <div class="account-why fade-up">
-        <strong>Why we love this account:</strong> Glennda Baker has built her entire brand on one thing: <strong>an unmistakable voice and a strong point of view</strong>. Her "Glenndaisms" — punchy, quotable takes on real estate, money, and life — are the kind of content that gets saved, shared, and remembered. She doesn't try to be polished. She's real, direct, and unapologetically herself. In a sea of agents posting the same listing content, she stands out because you always know exactly who she is and what she stands for.
+        <h4>Why We Love This Account</h4>
+        <p>Glennda has 329K followers — but most of her content gets 5K–15K views. Then two reels hit 1.1M and 762K. That's a 75–110x outlier. The pattern? Both posts are built around a <strong>strong, quotable POV</strong> that connects real estate decisions to life priorities. "Houses Over Handbags" reframes homeownership vs. lifestyle spending. "The 5 D's" explains why sellers move even in a bad market. Neither post is about listings. Neither post is about Glennda. Both posts are about the <em>viewer's</em> life — and that's exactly why they broke through.</p>
       </div>
 
-      <div class="posts-grid">
-        <div class="post-embed-wrapper">
-          <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/Cy-3Hi3unDr/" data-instgrm-version="14" style="background:#FFF; border:0; border-radius:3px; box-shadow:0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15); margin:1px; max-width:540px; min-width:326px; padding:0; width:99.375%; width:-webkit-calc(100% - 2px); width:calc(100% - 2px);">
-            <div style="padding:16px;">
-              <a href="https://www.instagram.com/reel/Cy-3Hi3unDr/" style="background:#FFFFFF; line-height:0; padding:0 0; text-align:center; text-decoration:none; width:100%;" target="_blank">
-                <div style="display:flex; flex-direction:row; align-items:center;">
-                  <div style="background-color:#F4F4F4; border-radius:50%; flex-grow:0; height:40px; margin-right:14px; width:40px;"></div>
-                  <div style="display:flex; flex-direction:column; flex-grow:1; justify-content:center;">
-                    <div style="background-color:#F4F4F4; border-radius:4px; flex-grow:0; height:14px; margin-bottom:6px; width:100px;"></div>
-                    <div style="background-color:#F4F4F4; border-radius:4px; flex-grow:0; height:14px; width:60px;"></div>
-                  </div>
-                </div>
-                <div style="padding:19% 0;"></div>
-                <div style="display:block; height:50px; margin:0 auto 12px; width:50px;">
-                  <svg width="50px" height="50px" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><g transform="translate(-511 -20)" fill="#000"><path d="M556.869 30.41c-4.132 0-7.494 3.362-7.494 7.494 0 4.132 3.362 7.494 7.494 7.494 4.132 0 7.494-3.362 7.494-7.494 0-4.132-3.362-7.494-7.494-7.494z"/></g></g></svg>
-                </div>
-                <div style="padding-top:8px;">
-                  <div style="color:#3897f0; font-family:Arial,sans-serif; font-size:14px; font-style:normal; font-weight:550; line-height:18px;">View this post on Instagram</div>
-                </div>
-              </a>
-            </div>
-          </blockquote>
+      <div class="account-posts-grid two-posts">
+        <div class="account-post-card">
+          <div class="post-embed-wrapper">
+            <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/Cy-3Hi3unDr/" data-instgrm-version="14" style="background:#FFF; border:0; border-radius:3px; box-shadow:0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15); margin: 1px; max-width:540px; min-width:326px; padding:0; width:99.375%; width:-webkit-calc(100% - 2px); width:calc(100% - 2px);"></blockquote>
+          </div>
           <div class="post-analysis">
-            <div class="post-analysis-label">Why This Works</div>
-            <p><strong>1.1M views. "Houses Over Handbags."</strong> A strong opinion-led hook that immediately triggers a reaction. It's not a listing. It's not a market update. It's a worldview — and it attracts exactly the kind of buyer/seller she wants to work with.</p>
-          </div>
-        </div>
-
-        <div class="post-embed-wrapper">
-          <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DOLs9PgjsVi/" data-instgrm-version="14" style="background:#FFF; border:0; border-radius:3px; box-shadow:0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15); margin:1px; max-width:540px; min-width:326px; padding:0; width:99.375%; width:-webkit-calc(100% - 2px); width:calc(100% - 2px);">
-            <div style="padding:16px;">
-              <a href="https://www.instagram.com/reel/DOLs9PgjsVi/" style="background:#FFFFFF; line-height:0; padding:0 0; text-align:center; text-decoration:none; width:100%;" target="_blank">
-                <div style="display:flex; flex-direction:row; align-items:center;">
-                  <div style="background-color:#F4F4F4; border-radius:50%; flex-grow:0; height:40px; margin-right:14px; width:40px;"></div>
-                  <div style="display:flex; flex-direction:column; flex-grow:1; justify-content:center;">
-                    <div style="background-color:#F4F4F4; border-radius:4px; flex-grow:0; height:14px; margin-bottom:6px; width:100px;"></div>
-                    <div style="background-color:#F4F4F4; border-radius:4px; flex-grow:0; height:14px; width:60px;"></div>
-                  </div>
-                </div>
-                <div style="padding:19% 0;"></div>
-                <div style="display:block; height:50px; margin:0 auto 12px; width:50px;">
-                  <svg width="50px" height="50px" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><g transform="translate(-511 -20)" fill="#000"><path d="M556.869 30.41c-4.132 0-7.494 3.362-7.494 7.494 0 4.132 3.362 7.494 7.494 7.494 4.132 0 7.494-3.362 7.494-7.494 0-4.132-3.362-7.494-7.494-7.494z"/></g></g></svg>
-                </div>
-                <div style="padding-top:8px;">
-                  <div style="color:#3897f0; font-family:Arial,sans-serif; font-size:14px; font-style:normal; font-weight:550; line-height:18px;">View this post on Instagram</div>
-                </div>
-              </a>
+            <div class="post-views-badge">1.1M views · ~110x outlier</div>
+            <h5>"Houses Over Handbags"</h5>
+            <p>A reframe of lifestyle spending vs. homeownership. The hook is quotable, the message is emotionally resonant, and it speaks directly to the buyer who keeps saying "I can't afford a house" while spending on depreciating assets. This is opinion-led content done right.</p>
+            <div class="post-takeaways">
+              <div class="takeaway-label">Key Takeaway</div>
+              <p>The best real estate content isn't about real estate — it's about the life decision behind it. Reframe the conversation from "can I afford this?" to "what am I choosing instead?" That shift creates urgency without pressure.</p>
             </div>
-          </blockquote>
+          </div>
+        </div>
+        <div class="account-post-card">
+          <div class="post-embed-wrapper">
+            <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/Cy0rEgQOTsx/" data-instgrm-version="14" style="background:#FFF; border:0; border-radius:3px; box-shadow:0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15); margin: 1px; max-width:540px; min-width:326px; padding:0; width:99.375%; width:-webkit-calc(100% - 2px); width:calc(100% - 2px);"></blockquote>
+          </div>
           <div class="post-analysis">
-            <div class="post-analysis-label">Why This Works</div>
-            <p><strong>"The 5 D's of Real Estate."</strong> Educational storytelling that packages hard-won experience into a memorable framework. Agents and clients both save this. It positions Glennda as the expert who's seen everything — and that's exactly who you want to hire.</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="takeaways-grid fade-up">
-        <div class="takeaway-card">
-          <div class="takeaway-icon">🎯</div>
-          <div class="takeaway-title">Strong POV = Strong Brand</div>
-          <div class="takeaway-desc">Glennda's opinions repel the wrong clients and attract the right ones. Don't try to appeal to everyone — say what you actually believe about real estate.</div>
-        </div>
-        <div class="takeaway-card">
-          <div class="takeaway-icon">💬</div>
-          <div class="takeaway-title">Create Quotable Moments</div>
-          <div class="takeaway-desc">"Houses over handbags" is a bumper sticker. Build your content around lines people want to repeat. That's how you become memorable in a crowded market.</div>
-        </div>
-        <div class="takeaway-card">
-          <div class="takeaway-icon">📖</div>
-          <div class="takeaway-title">Package Your Experience</div>
-          <div class="takeaway-desc">Your years in the market are a content goldmine. Turn your hard-won lessons into frameworks, lists, and stories that only someone with your experience could tell.</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="account-divider"></div>
-
-    <!-- ─── ACCOUNT 3: COFFEE & CONTRACTS ─── -->
-    <div class="account-spotlight fade-up">
-      <div class="account-header">
-        <div class="account-avatar" style="background: linear-gradient(135deg, #6b4c2a, #c8a96e);"><span>C&C</span></div>
-        <div class="account-meta">
-          <div class="account-name">Coffee &amp; Contracts</div>
-          <div class="account-handle">@coffeecontracts</div>
-          <div class="account-stats">
-            <div class="account-stat"><strong>127K</strong> followers</div>
-            <div class="account-stat"><strong>5,000+</strong> paying members</div>
-            <div class="account-stat"><strong>213K</strong> views on top reel</div>
-          </div>
-        </div>
-        <div class="account-badge" style="background: rgba(107,76,42,0.25); border-color: rgba(200,169,110,0.4); color: #c8a96e;">The RE Marketing Playbook</div>
-      </div>
-
-      <div class="account-why fade-up">
-        <strong>Why we love this account:</strong> Coffee &amp; Contracts has done something most accounts never achieve: they've become <strong>the definitive resource for a specific audience</strong>. They don't try to be everything to everyone — they own the "Instagram marketing for real estate agents" lane completely. Every post delivers immediate, actionable value. The result? 127K followers who trust them enough to pay $97/month for their templates. That's the power of niching down and consistently over-delivering on education.
-      </div>
-
-      <div class="posts-grid">
-        <div class="post-embed-wrapper">
-          <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DU69dK0DWhB/" data-instgrm-version="14" style="background:#FFF; border:0; border-radius:3px; box-shadow:0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15); margin:1px; max-width:540px; min-width:326px; padding:0; width:99.375%; width:-webkit-calc(100% - 2px); width:calc(100% - 2px);">
-            <div style="padding:16px;">
-              <a href="https://www.instagram.com/reel/DU69dK0DWhB/" style="background:#FFFFFF; line-height:0; padding:0 0; text-align:center; text-decoration:none; width:100%;" target="_blank">
-                <div style="display:flex; flex-direction:row; align-items:center;">
-                  <div style="background-color:#F4F4F4; border-radius:50%; flex-grow:0; height:40px; margin-right:14px; width:40px;"></div>
-                  <div style="display:flex; flex-direction:column; flex-grow:1; justify-content:center;">
-                    <div style="background-color:#F4F4F4; border-radius:4px; flex-grow:0; height:14px; margin-bottom:6px; width:100px;"></div>
-                    <div style="background-color:#F4F4F4; border-radius:4px; flex-grow:0; height:14px; width:60px;"></div>
-                  </div>
-                </div>
-                <div style="padding:19% 0;"></div>
-                <div style="display:block; height:50px; margin:0 auto 12px; width:50px;">
-                  <svg width="50px" height="50px" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><g transform="translate(-511 -20)" fill="#000"><path d="M556.869 30.41c-4.132 0-7.494 3.362-7.494 7.494 0 4.132 3.362 7.494 7.494 7.494 4.132 0 7.494-3.362 7.494-7.494 0-4.132-3.362-7.494-7.494-7.494z"/></g></g></svg>
-                </div>
-                <div style="padding-top:8px;">
-                  <div style="color:#3897f0; font-family:Arial,sans-serif; font-size:14px; font-style:normal; font-weight:550; line-height:18px;">View this post on Instagram</div>
-                </div>
-              </a>
+            <div class="post-views-badge">762K views · ~75x outlier</div>
+            <h5>"The 5 D's — Why Sellers Always Move"</h5>
+            <p>Divorce. Death. Debt. Downsizing. Displacement. These are the five reasons people sell regardless of interest rates or market conditions. This post works because it gives buyers and sellers a framework — and it positions Glennda as the agent who understands the human side of real estate, not just the transaction.</p>
+            <div class="post-takeaways">
+              <div class="takeaway-label">Key Takeaway</div>
+              <p>Frameworks are shareable. "The 5 D's" is a concept people remember and repeat. Build your own named frameworks around the decisions your clients face — they become your intellectual property and your most shared content.</p>
             </div>
-          </blockquote>
-          <div class="post-analysis">
-            <div class="post-analysis-label">Why This Works</div>
-            <p><strong>213K views. iPhone camera settings for Realtors.</strong> Hyper-specific, immediately actionable, zero fluff. The "comment GUIDE" CTA generated hundreds of comments — a DM automation trigger that converts viewers into leads. This is the lead magnet funnel in action.</p>
-          </div>
-        </div>
-
-        <div class="post-embed-wrapper">
-          <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DU09eEpEWae/" data-instgrm-version="14" style="background:#FFF; border:0; border-radius:3px; box-shadow:0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15); margin:1px; max-width:540px; min-width:326px; padding:0; width:99.375%; width:-webkit-calc(100% - 2px); width:calc(100% - 2px);">
-            <div style="padding:16px;">
-              <a href="https://www.instagram.com/reel/DU09eEpEWae/" style="background:#FFFFFF; line-height:0; padding:0 0; text-align:center; text-decoration:none; width:100%;" target="_blank">
-                <div style="display:flex; flex-direction:row; align-items:center;">
-                  <div style="background-color:#F4F4F4; border-radius:50%; flex-grow:0; height:40px; margin-right:14px; width:40px;"></div>
-                  <div style="display:flex; flex-direction:column; flex-grow:1; justify-content:center;">
-                    <div style="background-color:#F4F4F4; border-radius:4px; flex-grow:0; height:14px; margin-bottom:6px; width:100px;"></div>
-                    <div style="background-color:#F4F4F4; border-radius:4px; flex-grow:0; height:14px; width:60px;"></div>
-                  </div>
-                </div>
-                <div style="padding:19% 0;"></div>
-                <div style="display:block; height:50px; margin:0 auto 12px; width:50px;">
-                  <svg width="50px" height="50px" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><g transform="translate(-511 -20)" fill="#000"><path d="M556.869 30.41c-4.132 0-7.494 3.362-7.494 7.494 0 4.132 3.362 7.494 7.494 7.494 4.132 0 7.494-3.362 7.494-7.494 0-4.132-3.362-7.494-7.494-7.494z"/></g></g></svg>
-                </div>
-                <div style="padding-top:8px;">
-                  <div style="color:#3897f0; font-family:Arial,sans-serif; font-size:14px; font-style:normal; font-weight:550; line-height:18px;">View this post on Instagram</div>
-                </div>
-              </a>
-            </div>
-          </blockquote>
-          <div class="post-analysis">
-            <div class="post-analysis-label">Why This Works</div>
-            <p><strong>"I'm a Realtor, not an influencer."</strong> Positioning content that reframes the goal of social media for agents. It speaks directly to the agent's identity and reframes success from follower count to client acquisition. Highly shareable within the target audience.</p>
           </div>
         </div>
       </div>
 
-      <div class="takeaways-grid fade-up">
-        <div class="takeaway-card">
-          <div class="takeaway-icon">🎯</div>
-          <div class="takeaway-title">Niche Down to Scale Up</div>
-          <div class="takeaway-desc">C&C doesn't serve all of Instagram — they serve real estate agents. That specificity is why agents trust them enough to pay monthly. The riches are in the niches.</div>
-        </div>
-        <div class="takeaway-card">
-          <div class="takeaway-icon">💡</div>
-          <div class="takeaway-title">Comment CTAs = Lead Gen</div>
-          <div class="takeaway-desc">"Comment GUIDE below" triggers DM automation that turns passive viewers into warm leads. This is one of the highest-converting formats on Instagram right now.</div>
-        </div>
-        <div class="takeaway-card">
-          <div class="takeaway-icon">🔄</div>
-          <div class="takeaway-title">Consistency Compounds</div>
-          <div class="takeaway-desc">928 posts over 6 years. The account didn't blow up overnight — it compounded. Show up consistently with value and the algorithm eventually rewards you at scale.</div>
+      <div class="account-lessons fade-up">
+        <h4>3 Things to Steal From This Account</h4>
+        <div class="lessons-grid">
+          <div class="lesson-card">
+            <div class="lesson-number">01</div>
+            <div class="lesson-content">
+              <strong>The Quotable POV</strong>
+              <p>"Houses Over Handbags" is a phrase people repeat. Build your content around a single, memorable take that can be quoted in a caption, a comment, or a conversation. If someone can summarize your video in 4 words, it will spread.</p>
+            </div>
+          </div>
+          <div class="lesson-card">
+            <div class="lesson-number">02</div>
+            <div class="lesson-content">
+              <strong>Name Your Frameworks</strong>
+              <p>"The 5 D's" is a named concept. Named frameworks stick. They become your brand. Instead of "reasons people sell," call it something. Instead of "things buyers should know," build a named checklist. Naming = memorability = authority.</p>
+            </div>
+          </div>
+          <div class="lesson-card">
+            <div class="lesson-number">03</div>
+            <div class="lesson-content">
+              <strong>Content About Life, Not Listings</strong>
+              <p>Both outlier posts are about the viewer's life decisions, not Glennda's listings. The agents who win on Instagram are the ones who understand that people don't follow real estate agents — they follow people who help them think about their life differently.</p>
+            </div>
+          </div>
         </div>
       </div>
     </div>
 
   </div>
 </section>
+<!-- ACCOUNTS SECTION END -->
 
 <!-- ═══════════════════════════════════════════
      PRICING
@@ -4319,7 +4500,7 @@ footer {
   <div class="container">
     <div class="footer-inner">
       <div class="footer-logo">
-        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPoAAACWCAYAAAD32pUcAAAab0lEQVR4nO2dWVvbyLaGv1XygG3MDCFhSGfszOl09j7///qcdKc7c0iTTpgCxhiwjUep1rmQZWywjSTLQ+z1Po8CMZaqJNVXVSqtgZgZgiCMNmrQFRAEofeI0AVhDBChC8IYIEIXhDFAhC4IY4AIXRDGABG6IIwBInRBGANE6IIwBojQBWEMEKELwhggQheEMUCELghjgAhdEMYAEbogjAEidEEYA0TogjAGiNAFYQwIDboCQu+xw4WR87+Gv5x/RkS4SOv9Gr/Xej9h+JARfcRhZhARE6G2UcN2/lk2V2zaL5XOtdkPTZ9JzMGfAxG6AAA4yZbqvzMzUum8q/1E5z8HInQBAMC4qFhR8CghQhdsLulanr1HCRG6cAkiQjgkTWOUkLsptIRlQB8pROiCzUVhyyP6SCFCF2wuCltG9JFChC60Rkb0kUKELlyCmWFZetDVEAJEhC60RCzeRgsRumAjz+QjjQhdsJEBfKQRoQttkCF+lBChC8IYIEIXhDFAhC4IY4AIXRDGABG6IIwBInRBGANE6IIwBojQhTaIBc0oIUIXWqLF1n2kEKELLSBUq9agKyEEiAhdaI0kZhgpROiCMAb4Tsnk+Cs7SXuY7ec6AqCUwsXUP0EPEK38pS3tlN9cWK/TBnHtHwbXXUEszVBkn/dV5XPDP8711Nr+XV3aP/hrKYw+nkZ0ZgYzo1K1sPE1BSJiVUvVoxRxyFBsGKophc+fb7dxVihD1/btBma7DlozDjN5NKcXaiz//LO/PuyiVK7W6+7m+K023fD7xetRLFbwx5stqAt1UYo6pi1y9q9WTLzf2Gu6noahasdoPp+Dw2xTvQTBDa6EzsywtMb23gmIiCNhg3+9c81VK3v5bJ0nE1FWRPz24x5MS/tqoJoZpVIFTqeyNJ90dZAXj1d5IhpmIuLd/VNYHcrP5UuXOg9ncwSYzpxBa4ZpWvj45QBExPFYhP/zfL1tfd583LvUQWjNSB3ZnVUkEuInv95wdT7LS1P1OhVLVVkdF1zRUejM9hTy82YKhlK8vjLbVat69miFQ4biV2+2YGl2lbeLmZHNlaCIOBaLdFX+6vUZNgzFm9/S9ojY8DfNjKnkxJXHX5yftGcvIYMf3V92VZ/nj1bq39PM2N0/hVLE1xbcdVbtiMcirIj4JFuU0V3oSFuhMzOqpgmliB/cdTd6u+W/z2+yoYgLpUrHBqprmUDdCNALd28tMhFxuTal7xeW1lBEvHp9JtBCZ6ZiTEQso7vQjpZCZ2acZIuIhEM9bTmJWKTlaMQAyhUTiqin5U9Ew5w5KfRF7JmTAgylelqQqk3nRe7CRVoKvVCsYnY63pf2MjsdbxIbM6NSMRGN9LaTcZifTfC37UzPLT7nZxN9OZ/YRJizOZnKC81cEjozIxHv7lnYK/OzCa6adhxxzdw3kTvcWp/ng3Sun0X2lOlkjEtlc9DVEIaIJqEzMza/pQdSkUjY4ErV6vn0th3Xl6ZGagiMTYTZlCQMQo0LIzrh7q3FgTX4SNgYKbENmpChZAIvALgg9OPTM18HOT4tkNZMzCBLM6UzZ3213do/zBIz1zfNTN+2j35q+7E/3mzRh419+uPv7a7O4zCd97XfT33xhEvUhc4MfN/JuN7xIJ2rC2tmKgalbNNMQxHmZ+Nw/lYoVnrWZsoVk5iZri0kQUT1TRHh5uocmJmOjvvX6WRzRWJmqlYtX2Xmz8r1a/r70zU8vHcNvz9bBTOT1kzpTN7zca8tdveuXhgNzoUOxosna64aRdXUtDTfLK5GGj+PxyLQzIGK7aA2gkcjoZblN9ZhbjYB09I9FXs2XyJmpqlkDADhzcc9T/sfnxaImSmRiDZdu6bOSxEW5ibBzLTz46TnnZf0DqOFL6eWkOHNsUIRgZlpYzOFitns58wMPHvozvwTALK5Ei3VRnA3EICQocDMRD14L18uVylZEyhgL2i+fOauwwSAatWimamY+/MhwsryNI6Oz6hfr+yEn5+60L0MEa/f7eDFk1V7Pw8N9P6dpUufe3nf+30nQ+srs7680YgIWmtSAa7ql8omRSPheqfHzDjNFTE7HXe1f+bkjGanE5690YgIczNxbO8d09qN7sySW2N73gmjQ33qTkTY+JpydXd/f7pWd6xIZ/IoFCt1Z5VWW2MZF7dCseq6sn5F7qCUAgNNC3fO4p2lvU3vN7+nKRoxLonUi6HR7HTct8spEWH1+oy/nV0QDkmoglGi6W6u35j1fICFuUmOxyIcuuAe6myfN1MoV8yWbpXMjOPTgqtySuVqIEMM4XKHo9o853fi1tp8V52O1kzd+skTEQ6PvC/QBYkM/D8HTUKPRn3HoWjLg7vXOBoJMRHxxr+HdkCFBsG7nXraU+ThaFV/vNkOQKTB1GVhLhHMgcYIXXO71h22UTMhvmQwE9TI2Ypfby/VgzGUK6anld1huvBPHlxv8xd3l+7tpx/D0WN1YFg61aDRduQfNpQd1KPdlkrnhqrNdUuT0ImAaCSEDxv7Pb/L0UiIN76mXH339budoWp34fDlZ3MAMC13kVMXZhOBCunVm+6Mai5CRDCM0XxGd+vKmzsr97gm/eXS3SQiPLx3rS+FP3AZpSb0EzQ6ZrgOkRwOB3s+s1OxQI8HyLP3qNGyxVHtvffnzYOhuN1PH94YqklUu4vidpTWAZ9Mqez+zUU7KlWzKeKPoYa/cxXc0/ZuEhHu376GbL40FGIfLlOtVpZ49mOPG0pXRNbxyuNfr3d9sHu3lpqCa4XChqv97MCb3ZYu9JqO3TYRkExMQDPT1u6xvMap07plu63j+srcUEqjsfrJRNTVPp83UxiyXjgQRmkhDnARBZbINmFduzELzUyZk/56pjmcnErUlFYEmTrJCf4BANMun/t/e7w6kjelUhmtlFSuX5wTAQTC3EwCXHNScXRXKFZwfFrA0XEBvz1e6cmNn52Js2buemA3TQv5wvnUmciJ5w7MzbgzXQ2Ck2wRXmzcW8HMiAQYjScSNrjmE3ApCUYnDo/yWJxPDtmsS2jE14pLo0eVUoREPILV6zN4/uhGzT3VNjPVWtPOj+Cm/B8+73c1qluWRihk8MxUjGen4zw7HeeZKfvn3EwwMfI+fnG3gDk7He96glLpQSLEw0wezOzJ92FpIdk2SYUwHFwKJXXV1orLNuyodQQKK9dnoXUwbqpPHlzn9PGZvwQQWsMwehumiohwc9W9GbFS/kM0a92b2HpL88la/D5CuWK6vm9KEeugXycIgVEXutbcNktJ41Yoelsxtm3LgdNcMRCxL85N8ocvBzVT2qu/z8wolU0E6bXWyQIuNhH2dCRVi8fu9pIyA1XTglK9C4UdCRtcKJYRdrny7qAUsWmOnvkocD4Iat2YnmvQtXJPXehV0900MB6L8N5Btp6PrBPOxTnNljCdjAV2WR7fX2aliI9Pzppyol3Kl6YZbz/uYSLav6iyRISDw6ynTk3ReTKLdpfUud4n2QLCIW+x9SxLk2l6885LxKP85sMuPv3jzZYiFFJ8eJQfmdxwzIBpabz6e6ueDsxJz1XqcwKQbiCnopblfWr7x9ttur02j0jEgGEYUIrsPG2WRrVqYe/gFA/vuUtb1C0bX1M0nYzBsjSOjs/w1EMwC684C1Yd/g6/QS62905obiaGaCQEpRQsrVGpmEhnznBz1d9rOWfx9NM/B327HwCw++OEFuYnEQkbQ2M7b1oaIRft/P3nH/Tw3jLyZ+WOqbo2vqbo3q2loV+IrAu9m8Y5blwtdNuQJDYRHvj1rJoWhUP2FHyQ99g0LQqFvD0K9KQeHoR+++Y8YhNX5zjoJiBKv2gKPDFo3+ZRgQiYiIbw4UvvnYM6kTktNImLiHCaDWatxCvvN/Z/qmdaAK5EDgA3V+eGfgbftOq+MDc5qHoAALTW5PWZcFghIjy82x/noFZ8/HJAs1OxS8uGU8kJbH5P9/0a2xllh1wNDXh9G+J2jWtQXHJT7XXE1HbkC2UiIvx6Zwmv3+30vQ4VnyGaO+E4BwV9XDc8uLvUNjru7fV5vPm4OxIdaq8olbw5CuXypaFemLtkMBMyFIql3gWfaMVJtkiJ2Hmo498er+Cv9/1riFoz9coV1g5K2V+x6yvWEIgITx/c6EvcgXFhmJ/PgTaWcRPRsCdjiW7IF8o0nZxoWrUkIjx/tIJ+xC/XmsmLuacfam8j6J9vhz0t6PNmipiZ3ERwdeIO/Eideq6T9hhIs6FUf7sNAK/2EMnJiaEWext/dNvlUmumd5/2elb7qmlRIh5tM8UEVpZneja72D+0M834E7m/cNN3bi6g0KPzyRfKdP/2oqfGRkRYXpxGyWOn7jySpD1nwRneqe1FyGO7GPbgKB1rpxTh8a/XYQX83F4qV4mZKRwyOkqGyO5ZmZmyAVnWff7ngDQzXVuYbBIFEfDe9VTWX4MlIsRr55MLyM9/58eJneUlFvEZ7x6YiISgmcmL9SIRYX7GTr3lNkz4TwUD5Yq7TvlHKjvMgzmAhvfoV8HMsDRje/cYt9bnPbf0d5/26P7tpZpZpbdML3b5AMAolav4vJny7B6ZSudoYX4S1KFsrRl7Byc4zZbqTjsOpmnBMBRurc9jIuptWtcK53zKFROfNw/w/JG388kcn9HsTBx+rmX7OtlVyBcqSCaiLevz59ttevFktalTYQCsGal0Dstt0k8fHGZpaWFq4IYlXg1mcvkSpqfaW3V++feQ7v6yOPDzugrXQm9Es/2mxNIalqVxclpENl9CuWLCMBSSiSjmZuKIhENQRs3RBcEtWDimogyGthimpZHPl1AsmwiHDSRiEUxMhKBI2eUHVHbN4KT7E2hxXK791BajUjVxki2hVKoiFFKYTEQxmYjCUARVmyL2OpNKo8WkpRlHx2dIxCOYuuJZVGsGCHXryGyuhORkFHGfM46g8SL0R/eXQUSwLI2t3QxurS/U9/vfv77Tb49XEQ6poTivq/Al9EYa93d+c067Xxfg8jkEN8oNgk5egoPi3H/ffR0uZukZBvwIHbh4TwhAbzr9XtF1xoam59xuDxZAHUaBYTwfv/nuRoXL5/JznVvwqVkEQfBMr2c/IvQuOHcIsv9fNS1ozefeWtTdY0zj8Yns+HCWZhiKEA4b9c8ZvXtmt+tAtfUJwDQ1TNMCKUIkXGs+XZ6nvzrZ5+2UZll2vDvDUKhVue+PkG5petytrXWdFSqwLA2lCPFYBJELsQC6PQcRegNaMyq1VFEXwyk52UuUoQC2V8s/bOzjP8/X64Hs2oV73vlxQtcWkgi5XLhhZpimxl7qFDdX5urHj1w4vvP5py/7dGt9HtFIKKBFR7sOxVIFnzdTTvZcAHaWmnYBKdKZPM1Ox6GU96SVbtDMqFQs7P44wZ1fFprMDZudd84/39o7puWFZP1tj1fKFRPa0m3/TorQmDq7E06MhJNsEU5ueyJAKQMzHYJxHh2f0cxUrOm6VqomzFowT6foxlWEUMho6iy6XowbFbTmnkZtcSiWqjQRbS1IW1xVxGPuvKZakUrnaHF+0vcMwrI03n3+0XV013LZpEikez905w3Lt+0j3L650FWd0pk8TU/FXAXucF6vuWkT6UyeOjmEcW1gmIh277ZcrVpUrpiYbPP6sxFLa3IScQy3Oc8IEpsI89tPe5dW1jUzvm4ddSVywA7USERcNS1PThaaGf98SyMUMjiIEM7RqJ1B129MPMAWSDqTh1LE3YocsFN8e43O44ZOedqcEG1BiBwAwmGD3YgcaH5EEKEPgGcPV5ri750VKlBEfCeAxuwQDhn1kF+daCz/3q3FwEWgiDjr0bOLmVGumiAiXpxP/pRTTmbG8WmhL7NEN4jQB0g8FmEi4kS8u1G8HSvL0/zhy0FbkTEzUkd59Kp8h6nJCf62k3EldmZG7qyMaLh/cf6ChpnxfmMfs9PBhBD3X4/z30XoI87j+8v8fff4ksiYgd39U1xb6M+IeWttnv/dPuoodmYgc1LA1GT7GG3DDjPj9bsdPAkgH16QiNDHgF9W5/ioIR4+M+PwKIfV6zN9bYy31xd4e++kpdiZGbl8qb4a/TPCzPjr/S5+f7o2FOcgI/oYsjA3yVYtFn7VtLDUp5H8Iusrs9xq8YoZHaOtDjvMjJ0fJ3jxZDhz0YnQx4i3H/dgaQuRAT//Tk1OsNbn76aZ+/Nq0xseqsN2eqy1G7NDdg7niNAD5M3HXdr4mqK/3vcu5t2HjX16/W7b1/FfPFnlkOHv9dLGZooKxQrZufXsrVwx6d+tI191eftpv/6OPHWU93MIALbb7PbeMaWPzyh1lB+Qb7z/9Fj7qSxpzZeua9DRiMRgpoZfg5nPmwe2P7KiuhmqY1lmae05q0oryhXTDtJB9egudR/wze9p3L+91LObWChVaCISbptd1alLxYdBiGlpMmxrL8/1r1QtCoVUy/gCjgVa6iiH60vTvq6NF4OZ1+92yOuUverUv41BUaN1YiLu7r35RSpVixzrOBnRuyB/Vqb7t5ds09gL0WqUIoRDBpiZ/njjbwT+8+02MTPZWVvOzR+J7E7FMBTu3VpEvlDuySimNVMs2l7kjXWZiIahmenvD+6DeoYMxcenRU91SmfyxMwUCRtQ1Nod2TFXXl6cguU7vp17vIj8y792XL/wFdlrnDYUj0UDOQcRuk/SmTwl4lcHUyAivHiy6quM3x6vujp+IhbBkef4bZ1x4ul5MWFVRHj28Ab+768t1zt5SVedPyvT/GzCdZ2ICIZSfY/C2443H/dq0Wi8xPVDIOcgQveJlwanFHmOG1+pmB1DNjdCRJibiXs5fEdMyyLbYw1NWysuf4fw8vlaYHVx2Plx4qpjbYVSFHjcQz88fXDdt+2/UoRS2X9gUfFe88FprkhTk+29jVoRDnnrU+2pnZc9CGeFMvl9nnN4/W6Hbq7NIWSo+mgC1EYW47LXmmVa9fVpS2vb7dLSyOVKtO4zKWQrblyb7spBRimF/cMsLS+2jmnXa/JnZUrEo10dIxrxH6tQFuNqeFmM0y5jpzfCzPi2k8GttasDa25+S9Ptm/OeG7ZmhhrBRJk/UllaXuw+sKSXJJNeFuNclu16htaJStV0/XpUFuMGxPLilLvvLSV9HZ9+svBGblleTAYSA5AB/O/r732/SF4WKK8iHPI3CReh+8DPXbMXhtw+0/uNLDpyg3mNYHSiiPDL2lwgx/LCynJ3jx3N+LvHInRf+Lxpozng9oHgOjCvqZaCoB5yKyC8vNVwEKH7YlRHztHHGEDqJBVwkX6OJ0LvJ9I/DByrQ/y3XlE1gy3z5bN1zy1JhO4LmYP3l+Cud9Fj3vMgyOWCzJ3u8z18QKULQg8JRiTMjG/bmUCO5YUg7QlkMe4nQGbu/sicFAK7dv/z4uZAboMOoFRmYPN72te+YhnXR3qfRyCYArb2jikcMjo6s3SDZWmcnZVxz6XX3fxsgpm5q4R6zEAqnce1Rbc2CsH2B4Yi7tZoRmuNu7+4D+DZFPfed6ljTWOOkNHjMJ3Hi6dXO9R0BQOlcpXcuramM3kszPmLVw/Y0/Zri4ONKJvLlzCV9GY67cDMePf5B54/WnG/U8Olkqm7cImXz9b48z8HQC1bjdutluIGrNlefLqwccNWC9bguk6L80kuFKu+FrX8xBq4mBUnCKaSMS6WvJ8D12L+P3+04rujEqELLXl4b9lOwOCItgOOeE+yBRARK0WsiJgubKphs23OCdlcyfUQnYhHPMWIdwJQ+LFX79VsJjYR5nTmzNU5MDM0M/58u4NuY/6L0PtJzyeOwRegFPHG10M4I5Guidr5Wa6Y2Ds4BRGx9zjmjOSkN4+u6WSMX/29jXLZrNWh2YXW+b8dYSbfl1h0Hzb2PfUKi/OTTER8fFqA1rrhPM6vrWlp7B2cQhHxy2fdR5UVoftidJ/PW/HrnSWOTYTro3Ljz2gkxCvL3sNGv/p7i5xJ/+FR3tMF/e9v6xyNhlgR8btPezg6zqNUqiJ/VsbWbgZEYKWI+xWz3q9Z7ex0nJVStWuJpplPyFC+rms7ZDFOGAj2Yp/9+8Jcwvdxnj680SSGyUR3Pt9+qVRMivgMENkPZEQX+s5BOkfNMfYIzMMR7skXZAcK+XfbX0TcfiBCH1NS6dxAGuWbj3u0NJ9sudiVP+tNkMt+QET4ZXUOr9549yzrByJ0XwzrDM19G1uYS+DLv8HGDr+KV39vkR037fLfiAiTiSiOT4tDKRQ3EBFePg0+Xp5fSN6jd8so+KMT7v6yAL8JGLzy6s0WvXy2fuVrq5mpmKdXbr2iWrVcf7fVY8ggItl0QoTeT4bs9RrVIq4cnxZ62igPj/L08umaKwtWIiA5OYFyxRyoUBpTRl353QvvxIkI//1tHQcDejxqhQjdF71VbD9bBxFhZioO3aPFMNPStDDnPjS2XScgGgmBmemfb+kBicV9sVYLf3MiwtL8JKrm4MJMSzbVFvTe4cSOBefqez2OgrL5Pd3kXEFkTz+ZmQrFSiBXwsnTZoeN9ndIIsKdm/Oomhb99b77AIvpTJ6qLuPre3lNNz3V2n6diBAOKTAzZfPBPI4UihXKuVy0bAwWKuGeG7AvRS2H+Pmv5zgmHl15UZ0ftGUZQFdeY07iQoBhWYxQSNn/dw7JqOdwa4czFS0UKphMuI8Tny+UKRGLAAjehNS5bqVSFbFYxHWdtnaPafX6DEBoyI1nXyOniq0kQLV0T7pm79++XuffdXMOzMDu/omnzKuZkwLNTsfAqHfI9Tp3KrepMxehjy61OOZd7W9DAOzGValasCwLIcNAJHIxoUNXnqQu6wSc946ESsVEoVhBuWrCUAqxiTDisUitHna9e+qF5wOu97wMy9LI5ks4K1RQNTUiYQPJySiSiYmGa9n9dRWhCz89jS14uCTtjkszOwr+PETogjAGyGKcIIwBInRBGANE6IIwBojQBWEMEKELwhggQheEMUCELghjgAhdEMYAEbogjAEidEEYA0TogjAGiNAFYQwQoQvCGCBCF4QxQIQuCGOACF0QxgARuiCMAf8P2R9atL03ZmcAAAAASUVORK5CYII=" alt="Scroll Media" style="height:32px;width:auto;display:block;filter:brightness(0) invert(1);" />
+        <img src="data:image/png;base64,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" alt="Scroll Media" style="height:32px;width:auto;display:block;filter:brightness(0) invert(1);" / loading="lazy">
       </div>
       <div class="footer-copy">© 2026 Scroll Media. All rights reserved.</div>
       <a href="https://scrollmedia.co" class="footer-link">scrollmedia.co</a>
@@ -4352,7 +4533,15 @@ function checkInViewport() {
 window.addEventListener('load', checkInViewport);
 window.addEventListener('hashchange', () => setTimeout(checkInViewport, 100));
 
-const observer = new IntersectionObserver((entries) => {
+// Fix: immediately show elements that are already in viewport on page load
+    document.querySelectorAll('.fade-up').forEach(el => {
+      const rect = el.getBoundingClientRect();
+      if (rect.top < window.innerHeight && rect.bottom >= 0) {
+        el.classList.add('visible');
+      }
+    });
+    
+    const observer = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
       entry.target.classList.add('visible');
@@ -4429,6 +4618,17 @@ document.querySelectorAll('.tam-keyword').forEach(kw => {
     kw.style.color = '';
   });
 });
+
+  // Smooth scroll for all anchor links
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+      const target = document.querySelector(this.getAttribute('href'));
+      if (target) {
+        e.preventDefault();
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  });
 </script>
 
 <script async src="//www.instagram.com/embed.js"></script>
