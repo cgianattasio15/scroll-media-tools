@@ -1,0 +1,3906 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Real Estate Instagram Playbook | Scroll Media</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="icon" href="scroll-favicon.svg" type="image/svg+xml">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Source+Sans+3:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ═══════════════════════════════════════════
+   RESET & BASE
+═══════════════════════════════════════════ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Source Sans 3', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: #0D1B2A;
+  color: #f2f3f4;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* ═══════════════════════════════════════════
+   CSS VARIABLES
+═══════════════════════════════════════════ */
+:root {
+  --navy: #0D1B2A;
+  --navy-mid: #142233;
+  --navy-light: #1a2e42;
+  --navy-card: #1e3347;
+  --lime: #C8F135;
+  --lime-dim: rgba(200,241,53,0.15);
+  --lime-border: rgba(200,241,53,0.3);
+  --azure: #3A7BD5;
+  --azure-dim: rgba(58,123,213,0.15);
+  --azure-border: rgba(58,123,213,0.3);
+  --white: #ffffff;
+  --off-white: #f2f3f4;
+  --muted: rgba(242,243,244,0.55);
+  --border: rgba(255,255,255,0.08);
+  --tofu-color: #3A7BD5;
+  --mofu-color: #f0a500;
+  --bofu-color: #C8F135;
+}
+
+/* ═══════════════════════════════════════════
+   PROGRESS BAR
+═══════════════════════════════════════════ */
+#progress-bar {
+  position: fixed;
+  top: 0; left: 0;
+  width: 0%;
+  height: 3px;
+  background: linear-gradient(90deg, var(--azure), var(--lime));
+  z-index: 9999;
+  transition: width 0.1s linear;
+}
+
+/* ═══════════════════════════════════════════
+   STICKY NAV
+═══════════════════════════════════════════ */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 1000;
+  background: rgba(13,27,42,0.92);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border);
+  padding: 0 40px;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: all 0.3s ease;
+}
+
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+}
+
+.nav-logo-mark {
+  width: 32px; height: 32px;
+  background: var(--lime);
+  border-radius: 6px;
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Playfair Display', serif;
+  font-weight: 900; font-size: 16px;
+  color: var(--navy);
+}
+
+.nav-logo-text {
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--off-white);
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  list-style: none;
+}
+
+.nav-links a {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--muted);
+  text-decoration: none;
+  letter-spacing: 0.03em;
+  transition: color 0.2s;
+}
+
+.nav-links a:hover { color: var(--white); }
+
+.nav-cta {
+  background: var(--lime);
+  color: var(--navy) !important;
+  font-weight: 700 !important;
+  padding: 8px 18px;
+  border-radius: 6px;
+  font-size: 13px !important;
+  transition: opacity 0.2s !important;
+}
+
+.nav-cta:hover { opacity: 0.88; }
+
+/* ═══════════════════════════════════════════
+   SECTION UTILITIES
+═══════════════════════════════════════════ */
+section {
+  padding: 100px 0;
+  position: relative;
+}
+
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 40px;
+}
+
+.section-eyebrow {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--lime);
+  margin-bottom: 14px;
+  display: block;
+}
+
+.section-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(32px, 4vw, 48px);
+  font-weight: 700;
+  line-height: 1.15;
+  color: var(--white);
+  margin-bottom: 16px;
+}
+
+.section-subtitle {
+  font-size: 17px;
+  font-weight: 300;
+  color: var(--muted);
+  max-width: 640px;
+  line-height: 1.65;
+  margin-bottom: 56px;
+}
+
+.rule {
+  width: 48px; height: 3px;
+  background: var(--lime);
+  margin-bottom: 20px;
+  border-radius: 2px;
+}
+
+/* ═══════════════════════════════════════════
+   ANIMATIONS
+═══════════════════════════════════════════ */
+.fade-up {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.65s ease, transform 0.65s ease;
+}
+
+.fade-up.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.fade-up-delay-1 { transition-delay: 0.1s; }
+.fade-up-delay-2 { transition-delay: 0.2s; }
+.fade-up-delay-3 { transition-delay: 0.3s; }
+.fade-up-delay-4 { transition-delay: 0.4s; }
+.fade-up-delay-5 { transition-delay: 0.5s; }
+
+/* ═══════════════════════════════════════════
+   HERO
+═══════════════════════════════════════════ */
+#hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  padding-top: 64px;
+  background: var(--navy);
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-grid-bg {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(200,241,53,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(200,241,53,0.04) 1px, transparent 1px);
+  background-size: 60px 60px;
+  pointer-events: none;
+}
+
+.hero-glow {
+  position: absolute;
+  top: -200px; right: -200px;
+  width: 700px; height: 700px;
+  background: radial-gradient(circle, rgba(58,123,213,0.18) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.hero-glow-2 {
+  position: absolute;
+  bottom: -100px; left: -100px;
+  width: 500px; height: 500px;
+  background: radial-gradient(circle, rgba(200,241,53,0.08) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 820px;
+}
+
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--lime-dim);
+  border: 1px solid var(--lime-border);
+  border-radius: 100px;
+  padding: 6px 16px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--lime);
+  margin-bottom: 28px;
+}
+
+.hero-badge-dot {
+  width: 6px; height: 6px;
+  background: var(--lime);
+  border-radius: 50%;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(0.8); }
+}
+
+.hero-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(44px, 6vw, 76px);
+  font-weight: 900;
+  line-height: 1.05;
+  color: var(--white);
+  margin-bottom: 24px;
+}
+
+.hero-title .accent {
+  color: var(--lime);
+  font-style: italic;
+}
+
+.hero-subtitle {
+  font-size: 19px;
+  font-weight: 300;
+  color: var(--muted);
+  max-width: 600px;
+  line-height: 1.65;
+  margin-bottom: 44px;
+}
+
+.hero-ctas {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 64px;
+}
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--lime);
+  color: var(--navy);
+  font-weight: 700;
+  font-size: 15px;
+  padding: 14px 28px;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: opacity 0.2s, transform 0.2s;
+  letter-spacing: 0.01em;
+}
+
+.btn-primary:hover { opacity: 0.9; transform: translateY(-1px); }
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: transparent;
+  color: var(--off-white);
+  font-weight: 600;
+  font-size: 15px;
+  padding: 14px 28px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  text-decoration: none;
+  transition: border-color 0.2s, background 0.2s;
+}
+
+.btn-secondary:hover {
+  border-color: rgba(255,255,255,0.25);
+  background: rgba(255,255,255,0.05);
+}
+
+.hero-stats {
+  display: flex;
+  gap: 48px;
+  padding-top: 32px;
+  border-top: 1px solid var(--border);
+}
+
+.hero-stat-value {
+  font-family: 'Playfair Display', serif;
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--lime);
+  line-height: 1;
+  margin-bottom: 4px;
+}
+
+.hero-stat-label {
+  font-size: 13px;
+  color: var(--muted);
+  font-weight: 400;
+}
+
+/* ═══════════════════════════════════════════
+   TABLE OF CONTENTS
+═══════════════════════════════════════════ */
+#toc {
+  background: var(--navy-mid);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  padding: 48px 0;
+}
+
+.toc-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 2px;
+}
+
+.toc-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 24px 16px;
+  background: var(--navy-light);
+  border-radius: 8px;
+  text-decoration: none;
+  transition: background 0.2s, transform 0.2s;
+  gap: 10px;
+}
+
+.toc-item:hover {
+  background: var(--navy-card);
+  transform: translateY(-2px);
+}
+
+.toc-num {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--lime);
+}
+
+.toc-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--off-white);
+  line-height: 1.35;
+}
+
+/* ═══════════════════════════════════════════
+   THE GAPS SECTION
+═══════════════════════════════════════════ */
+#gaps {
+  background: var(--navy);
+}
+
+.gaps-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.gap-card {
+  background: var(--navy-light);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 28px 30px;
+  transition: border-color 0.3s, transform 0.3s;
+  position: relative;
+  overflow: hidden;
+}
+
+.gap-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 4px; height: 100%;
+  background: var(--azure);
+  border-radius: 2px 0 0 2px;
+}
+
+.gap-card.niche::before { background: var(--lime); }
+
+.gap-card:hover {
+  border-color: rgba(255,255,255,0.16);
+  transform: translateY(-2px);
+}
+
+.gap-card-tag {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 10px;
+}
+
+.gap-card.niche .gap-card-tag { color: var(--lime); }
+
+.gap-card-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 16px;
+  line-height: 1.2;
+}
+
+.gap-cols {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.gap-col-label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--azure);
+  margin-bottom: 6px;
+}
+
+.gap-card.niche .gap-col-label { color: var(--lime); }
+
+.gap-col-text {
+  font-size: 14px;
+  color: var(--muted);
+  line-height: 1.55;
+}
+
+/* ═══════════════════════════════════════════
+   PROFILE OPTIMIZATION
+═══════════════════════════════════════════ */
+#profile {
+  background: var(--navy-mid);
+}
+
+.profile-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: start;
+}
+
+.profile-mockup {
+  background: var(--navy-light);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  overflow: hidden;
+  position: sticky;
+  top: 90px;
+}
+
+.profile-mockup-header {
+  background: var(--navy-card);
+  padding: 16px 20px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border-bottom: 1px solid var(--border);
+}
+
+.mockup-dot {
+  width: 10px; height: 10px;
+  border-radius: 50%;
+}
+
+.mockup-dot-red { background: #ff5f57; }
+.mockup-dot-yellow { background: #febc2e; }
+.mockup-dot-green { background: #28c840; }
+
+.profile-mockup-body {
+  padding: 24px;
+}
+
+.mock-profile-top {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.mock-avatar {
+  width: 72px; height: 72px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--azure), var(--lime));
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Playfair Display', serif;
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--navy);
+}
+
+.mock-profile-info { flex: 1; }
+
+.mock-username {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 2px;
+}
+
+.mock-handle {
+  font-size: 13px;
+  color: var(--muted);
+  margin-bottom: 8px;
+}
+
+.mock-stats {
+  display: flex;
+  gap: 16px;
+}
+
+.mock-stat {
+  text-align: center;
+}
+
+.mock-stat-num {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--white);
+}
+
+.mock-stat-label {
+  font-size: 11px;
+  color: var(--muted);
+}
+
+.mock-bio {
+  font-size: 13px;
+  color: var(--off-white);
+  line-height: 1.5;
+  margin-bottom: 12px;
+}
+
+.mock-bio .keyword {
+  color: var(--lime);
+  font-weight: 600;
+}
+
+.mock-link {
+  font-size: 13px;
+  color: var(--azure);
+  text-decoration: underline;
+  margin-bottom: 16px;
+  display: block;
+}
+
+.mock-highlights {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.mock-highlight {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.mock-highlight-circle {
+  width: 52px; height: 52px;
+  border-radius: 50%;
+  border: 2px solid var(--lime);
+  background: var(--navy-card);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+}
+
+.mock-highlight-label {
+  font-size: 10px;
+  color: var(--muted);
+  text-align: center;
+}
+
+.mock-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 3px;
+}
+
+.mock-grid-item {
+  aspect-ratio: 1;
+  border-radius: 4px;
+  background: var(--navy-card);
+  overflow: hidden;
+  position: relative;
+}
+
+.mock-grid-item-inner {
+  width: 100%; height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+}
+
+.profile-checklist {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.profile-check-item {
+  background: var(--navy-light);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 20px 22px;
+  transition: border-color 0.2s;
+}
+
+.profile-check-item:hover { border-color: rgba(200,241,53,0.25); }
+
+.profile-check-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+
+.profile-check-icon {
+  width: 32px; height: 32px;
+  background: var(--lime-dim);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  flex-shrink: 0;
+}
+
+.profile-check-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--white);
+}
+
+.profile-check-desc {
+  font-size: 14px;
+  color: var(--muted);
+  line-height: 1.55;
+  padding-left: 44px;
+}
+
+.profile-check-example {
+  margin-top: 10px;
+  padding: 10px 14px;
+  background: var(--navy-card);
+  border-radius: 6px;
+  border-left: 3px solid var(--lime);
+  font-size: 13px;
+  color: var(--off-white);
+  font-style: italic;
+  line-height: 1.5;
+  margin-left: 44px;
+}
+
+/* ═══════════════════════════════════════════
+   SOCIAL SEO
+═══════════════════════════════════════════ */
+#seo {
+  background: var(--navy);
+}
+
+.tam-ladder {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  margin-bottom: 48px;
+  position: relative;
+}
+
+.tam-ladder::before {
+  content: '';
+  position: absolute;
+  left: 28px;
+  top: 48px;
+  bottom: 48px;
+  width: 2px;
+  background: linear-gradient(to bottom, var(--azure), var(--lime));
+}
+
+.tam-rung {
+  display: flex;
+  align-items: flex-start;
+  gap: 24px;
+  padding: 24px 0;
+  position: relative;
+}
+
+.tam-rung-num {
+  width: 56px; height: 56px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Playfair Display', serif;
+  font-size: 20px;
+  font-weight: 700;
+  flex-shrink: 0;
+  position: relative;
+  z-index: 1;
+}
+
+.tam-rung:nth-child(1) .tam-rung-num { background: rgba(58,123,213,0.2); border: 2px solid var(--azure); color: var(--azure); }
+.tam-rung:nth-child(2) .tam-rung-num { background: rgba(58,123,213,0.3); border: 2px solid var(--azure); color: var(--azure); }
+.tam-rung:nth-child(3) .tam-rung-num { background: rgba(200,241,53,0.15); border: 2px solid var(--lime); color: var(--lime); }
+.tam-rung:nth-child(4) .tam-rung-num { background: rgba(200,241,53,0.25); border: 2px solid var(--lime); color: var(--lime); }
+
+.tam-rung-content { flex: 1; padding-top: 8px; }
+
+.tam-rung-level {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 4px;
+}
+
+.tam-rung-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 6px;
+}
+
+.tam-rung-intent {
+  font-size: 13px;
+  color: var(--muted);
+  margin-bottom: 12px;
+}
+
+.tam-keywords {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.tam-keyword {
+  background: var(--navy-light);
+  border: 1px solid var(--border);
+  border-radius: 100px;
+  padding: 4px 14px;
+  font-size: 13px;
+  color: var(--off-white);
+  font-weight: 500;
+  transition: border-color 0.2s;
+}
+
+.tam-keyword:hover { border-color: var(--lime-border); color: var(--lime); }
+
+.seo-tips-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+.seo-tip-card {
+  background: var(--navy-light);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 24px;
+  transition: border-color 0.2s, transform 0.2s;
+}
+
+.seo-tip-card:hover {
+  border-color: var(--azure-border);
+  transform: translateY(-2px);
+}
+
+.seo-tip-icon {
+  font-size: 28px;
+  margin-bottom: 12px;
+  display: block;
+}
+
+.seo-tip-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 8px;
+}
+
+.seo-tip-text {
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.55;
+}
+
+.seo-tip-example {
+  margin-top: 12px;
+  padding: 8px 12px;
+  background: var(--navy-card);
+  border-radius: 6px;
+  border-left: 3px solid var(--azure);
+  font-size: 12px;
+  color: var(--off-white);
+  font-style: italic;
+  line-height: 1.5;
+}
+
+/* ═══════════════════════════════════════════
+   CONTENT IDEAS
+═══════════════════════════════════════════ */
+#content-ideas {
+  background: var(--navy-mid);
+}
+
+.funnel-tabs {
+  display: flex;
+  gap: 4px;
+  background: var(--navy-light);
+  border-radius: 10px;
+  padding: 4px;
+  margin-bottom: 40px;
+  width: fit-content;
+}
+
+.funnel-tab {
+  padding: 10px 24px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  color: var(--muted);
+  border: none;
+  background: transparent;
+  letter-spacing: 0.04em;
+}
+
+.funnel-tab.active-tofu { background: var(--azure); color: white; }
+.funnel-tab.active-mofu { background: #f0a500; color: var(--navy); }
+.funnel-tab.active-bofu { background: var(--lime); color: var(--navy); }
+.funnel-tab:not(.active-tofu):not(.active-mofu):not(.active-bofu):hover { color: var(--white); }
+
+.ideas-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.idea-card {
+  background: var(--navy-light);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 24px 26px;
+  transition: border-color 0.3s, transform 0.3s;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+.idea-card::after {
+  content: '';
+  position: absolute;
+  top: 0; right: 0;
+  width: 80px; height: 80px;
+  border-radius: 50%;
+  opacity: 0.06;
+  transition: opacity 0.3s;
+}
+
+.idea-card.tofu::after { background: var(--azure); }
+.idea-card.mofu::after { background: #f0a500; }
+.idea-card.bofu::after { background: var(--lime); }
+
+.idea-card:hover {
+  border-color: rgba(255,255,255,0.18);
+  transform: translateY(-3px);
+}
+
+.idea-card:hover::after { opacity: 0.12; }
+
+.idea-card-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+.idea-card-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--white);
+  line-height: 1.2;
+  flex: 1;
+}
+
+.idea-badges {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  align-items: flex-end;
+  flex-shrink: 0;
+}
+
+.badge {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 3px 10px;
+  border-radius: 100px;
+}
+
+.badge-tofu { background: rgba(58,123,213,0.2); color: var(--azure); border: 1px solid rgba(58,123,213,0.3); }
+.badge-mofu { background: rgba(240,165,0,0.2); color: #f0a500; border: 1px solid rgba(240,165,0,0.3); }
+.badge-bofu { background: rgba(200,241,53,0.15); color: var(--lime); border: 1px solid rgba(200,241,53,0.3); }
+.badge-format { background: rgba(255,255,255,0.08); color: var(--off-white); border: 1px solid var(--border); }
+
+.idea-hook {
+  font-size: 14px;
+  font-style: italic;
+  color: var(--off-white);
+  background: var(--navy-card);
+  border-left: 3px solid var(--lime);
+  padding: 10px 14px;
+  border-radius: 0 6px 6px 0;
+  margin-bottom: 14px;
+  line-height: 1.5;
+}
+
+.idea-meta-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+.idea-meta-label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 4px;
+}
+
+.idea-meta-text {
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+.idea-creative-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(200,241,53,0.1);
+  border: 1px solid var(--lime-border);
+  border-radius: 100px;
+  padding: 3px 10px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--lime);
+  margin-bottom: 10px;
+}
+
+/* ═══════════════════════════════════════════
+   CTA SYSTEM
+═══════════════════════════════════════════ */
+#cta-system {
+  background: var(--navy);
+}
+
+.cta-philosophy {
+  background: var(--navy-light);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 36px 40px;
+  margin-bottom: 48px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  align-items: center;
+}
+
+.cta-philosophy-quote {
+  font-family: 'Playfair Display', serif;
+  font-size: 22px;
+  font-style: italic;
+  color: var(--white);
+  line-height: 1.5;
+  border-left: 4px solid var(--lime);
+  padding-left: 24px;
+}
+
+.cta-philosophy-points {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.cta-philosophy-point {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.cta-point-icon {
+  width: 28px; height: 28px;
+  background: var(--lime-dim);
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.cta-point-text {
+  font-size: 14px;
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+.cta-point-text strong { color: var(--white); }
+
+.cta-types-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  margin-bottom: 48px;
+}
+
+.cta-type-card {
+  background: var(--navy-light);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 22px;
+  transition: border-color 0.2s, transform 0.2s;
+}
+
+.cta-type-card:hover {
+  border-color: rgba(255,255,255,0.16);
+  transform: translateY(-2px);
+}
+
+.cta-type-stage {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+.cta-type-stage.tofu { color: var(--azure); }
+.cta-type-stage.mofu { color: #f0a500; }
+.cta-type-stage.bofu { color: var(--lime); }
+
+.cta-type-name {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 8px;
+}
+
+.cta-type-desc {
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.5;
+  margin-bottom: 12px;
+}
+
+.cta-example-box {
+  background: var(--navy-card);
+  border-radius: 6px;
+  padding: 10px 12px;
+  border-left: 3px solid;
+}
+
+.cta-type-card:nth-child(1) .cta-example-box,
+.cta-type-card:nth-child(2) .cta-example-box { border-color: var(--azure); }
+.cta-type-card:nth-child(3) .cta-example-box,
+.cta-type-card:nth-child(4) .cta-example-box { border-color: #f0a500; }
+.cta-type-card:nth-child(5) .cta-example-box,
+.cta-type-card:nth-child(6) .cta-example-box { border-color: var(--lime); }
+
+.cta-example-label {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 4px;
+}
+
+.cta-example-text {
+  font-size: 12px;
+  color: var(--off-white);
+  font-style: italic;
+  line-height: 1.45;
+}
+
+.link-in-bio-section {
+  background: var(--navy-light);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 36px 40px;
+}
+
+.lib-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 8px;
+}
+
+.lib-subtitle {
+  font-size: 15px;
+  color: var(--muted);
+  margin-bottom: 28px;
+  line-height: 1.55;
+}
+
+.lib-rule {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.lib-rule:last-child { border-bottom: none; }
+
+.lib-rule-icon {
+  width: 36px; height: 36px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  flex-shrink: 0;
+}
+
+.lib-rule-icon.good { background: rgba(200,241,53,0.15); }
+.lib-rule-icon.bad { background: rgba(255,80,80,0.15); }
+
+.lib-rule-text {
+  font-size: 14px;
+  color: var(--off-white);
+  line-height: 1.45;
+}
+
+.lib-rule-text strong { color: var(--white); }
+
+/* ═══════════════════════════════════════════
+   LEAD MAGNETS
+═══════════════════════════════════════════ */
+#lead-magnets {
+  background: var(--navy-mid);
+}
+
+.lm-intro {
+  background: linear-gradient(135deg, var(--navy-light), var(--navy-card));
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 36px 40px;
+  margin-bottom: 48px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  align-items: center;
+}
+
+.lm-intro-text {
+  font-size: 16px;
+  color: var(--muted);
+  line-height: 1.65;
+}
+
+.lm-intro-text strong { color: var(--white); }
+
+.lm-stat-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.lm-stat {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  background: var(--navy-card);
+  border-radius: 10px;
+  padding: 14px 18px;
+  border: 1px solid var(--border);
+}
+
+.lm-stat-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--lime);
+  line-height: 1;
+  flex-shrink: 0;
+  min-width: 70px;
+}
+
+.lm-stat-text {
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.45;
+}
+
+.lm-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  margin-bottom: 40px;
+}
+
+.lm-card {
+  background: var(--navy-light);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 28px;
+  transition: border-color 0.2s, transform 0.2s;
+  position: relative;
+  overflow: hidden;
+}
+
+.lm-card:hover {
+  border-color: var(--lime-border);
+  transform: translateY(-2px);
+}
+
+.lm-card-icon {
+  font-size: 36px;
+  margin-bottom: 14px;
+  display: block;
+}
+
+.lm-card-type {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--lime);
+  margin-bottom: 6px;
+}
+
+.lm-card-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 10px;
+  line-height: 1.2;
+}
+
+.lm-card-desc {
+  font-size: 14px;
+  color: var(--muted);
+  line-height: 1.55;
+  margin-bottom: 16px;
+}
+
+.lm-card-why {
+  background: var(--navy-card);
+  border-radius: 8px;
+  padding: 12px 14px;
+  border-left: 3px solid var(--lime);
+}
+
+.lm-card-why-label {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--lime);
+  margin-bottom: 4px;
+}
+
+.lm-card-why-text {
+  font-size: 12px;
+  color: var(--muted);
+  line-height: 1.45;
+}
+
+.lm-funnel-visual {
+  background: var(--navy-light);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 36px 40px;
+}
+
+.lm-funnel-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 8px;
+}
+
+.lm-funnel-subtitle {
+  font-size: 14px;
+  color: var(--muted);
+  margin-bottom: 32px;
+}
+
+.lm-funnel-steps {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  overflow-x: auto;
+}
+
+.lm-funnel-step {
+  flex: 1;
+  text-align: center;
+  padding: 20px 12px;
+  background: var(--navy-card);
+  border-radius: 10px;
+  position: relative;
+  min-width: 120px;
+}
+
+.lm-funnel-step-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--lime);
+  line-height: 1;
+  margin-bottom: 6px;
+}
+
+.lm-funnel-step-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--white);
+  margin-bottom: 4px;
+}
+
+.lm-funnel-step-desc {
+  font-size: 11px;
+  color: var(--muted);
+  line-height: 1.4;
+}
+
+.lm-funnel-arrow {
+  font-size: 20px;
+  color: var(--lime);
+  padding: 0 8px;
+  flex-shrink: 0;
+}
+
+/* ═══════════════════════════════════════════
+   REAL RESULTS
+═══════════════════════════════════════════ */
+#results {
+  background: var(--navy);
+}
+
+.results-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-bottom: 32px;
+}
+
+.result-card {
+  background: var(--navy-light);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 28px;
+  transition: border-color 0.2s, transform 0.2s;
+}
+
+.result-card:hover {
+  border-color: rgba(255,255,255,0.16);
+  transform: translateY(-2px);
+}
+
+.result-card-tag {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--lime);
+  margin-bottom: 10px;
+}
+
+.result-card-challenge {
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.55;
+  margin-bottom: 20px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--border);
+}
+
+.result-metrics {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.result-metric {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.result-metric-value {
+  font-family: 'Playfair Display', serif;
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--lime);
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.result-metric-label {
+  font-size: 12px;
+  color: var(--muted);
+  line-height: 1.35;
+  text-align: right;
+}
+
+.bridge-callout {
+  background: linear-gradient(135deg, rgba(200,241,53,0.08), rgba(58,123,213,0.08));
+  border: 1px solid var(--lime-border);
+  border-radius: 16px;
+  padding: 36px 40px;
+}
+
+.bridge-callout-label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--lime);
+  margin-bottom: 14px;
+}
+
+.bridge-callout-quote {
+  font-family: 'Playfair Display', serif;
+  font-size: 20px;
+  font-style: italic;
+  color: var(--white);
+  line-height: 1.6;
+}
+
+/* ═══════════════════════════════════════════
+   PRICING
+═══════════════════════════════════════════ */
+#pricing {
+  background: var(--navy-mid);
+}
+
+.pricing-roi-bar {
+  background: var(--navy-light);
+  border: 1px solid var(--lime-border);
+  border-radius: 12px;
+  padding: 20px 28px;
+  margin-bottom: 40px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.pricing-roi-icon {
+  font-size: 28px;
+  flex-shrink: 0;
+}
+
+.pricing-roi-text {
+  font-size: 15px;
+  color: var(--off-white);
+  line-height: 1.5;
+  font-style: italic;
+}
+
+.pricing-roi-text strong { color: var(--lime); }
+
+.pricing-grid {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 40px;
+}
+
+.pricing-card {
+  background: var(--navy-light);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 32px;
+  transition: border-color 0.2s, transform 0.2s;
+}
+
+.pricing-card.featured {
+  background: var(--navy-card);
+  border-color: var(--lime-border);
+  position: relative;
+}
+
+.pricing-card.featured::before {
+  content: 'Most Popular';
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--lime);
+  color: var(--navy);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 4px 16px;
+  border-radius: 100px;
+  white-space: nowrap;
+}
+
+.pricing-card:hover {
+  border-color: rgba(255,255,255,0.2);
+  transform: translateY(-2px);
+}
+
+.pricing-card.featured:hover { border-color: var(--lime); }
+
+.pricing-card-label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--lime);
+  margin-bottom: 8px;
+}
+
+.pricing-card-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 6px;
+}
+
+.pricing-card-desc {
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.5;
+  margin-bottom: 20px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--border);
+}
+
+.pricing-price {
+  font-family: 'Playfair Display', serif;
+  font-size: 36px;
+  font-weight: 700;
+  color: var(--lime);
+  line-height: 1;
+  margin-bottom: 4px;
+}
+
+.pricing-period {
+  font-size: 13px;
+  color: var(--muted);
+  margin-bottom: 20px;
+}
+
+.pricing-features {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.pricing-features li {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 14px;
+  color: var(--muted);
+  line-height: 1.4;
+}
+
+.pricing-features li::before {
+  content: '→';
+  color: var(--lime);
+  font-size: 13px;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.pricing-roi-note {
+  font-size: 12px;
+  color: rgba(200,241,53,0.7);
+  font-style: italic;
+  line-height: 1.45;
+  padding-top: 14px;
+  border-top: 1px solid var(--border);
+}
+
+.pricing-credit-note {
+  font-size: 12px;
+  color: rgba(200,241,53,0.7);
+  font-style: italic;
+  line-height: 1.45;
+  padding-top: 14px;
+  border-top: 1px solid var(--border);
+}
+
+.whats-included {
+  background: var(--navy-light);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 32px 36px;
+}
+
+.whats-included-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 20px;
+}
+
+.included-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+
+.included-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.included-item::before {
+  content: '✓';
+  color: var(--lime);
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+/* ═══════════════════════════════════════════
+   NEXT STEPS
+═══════════════════════════════════════════ */
+#next-steps {
+  background: var(--navy);
+}
+
+.steps-timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  margin-bottom: 48px;
+  position: relative;
+}
+
+.steps-timeline::before {
+  content: '';
+  position: absolute;
+  left: 27px;
+  top: 56px;
+  bottom: 56px;
+  width: 2px;
+  background: linear-gradient(to bottom, var(--azure), var(--lime));
+}
+
+.step-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 24px;
+  padding: 20px 0;
+  position: relative;
+}
+
+.step-num {
+  width: 56px; height: 56px;
+  border-radius: 50%;
+  background: var(--navy-card);
+  border: 2px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Playfair Display', serif;
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--lime);
+  flex-shrink: 0;
+  position: relative;
+  z-index: 1;
+  transition: border-color 0.3s, background 0.3s;
+}
+
+.step-item:hover .step-num {
+  border-color: var(--lime);
+  background: var(--lime-dim);
+}
+
+.step-content {
+  flex: 1;
+  padding-top: 10px;
+}
+
+.step-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 6px;
+}
+
+.step-desc {
+  font-size: 14px;
+  color: var(--muted);
+  line-height: 1.55;
+}
+
+.cta-final {
+  background: linear-gradient(135deg, var(--navy-light), var(--navy-card));
+  border: 1px solid var(--lime-border);
+  border-radius: 20px;
+  padding: 56px 60px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.cta-final::before {
+  content: '';
+  position: absolute;
+  top: -100px; left: 50%;
+  transform: translateX(-50%);
+  width: 400px; height: 400px;
+  background: radial-gradient(circle, rgba(200,241,53,0.08) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.cta-final-label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--lime);
+  margin-bottom: 16px;
+}
+
+.cta-final-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 36px;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 16px;
+  line-height: 1.2;
+}
+
+.cta-final-text {
+  font-size: 17px;
+  color: var(--muted);
+  max-width: 560px;
+  margin: 0 auto 36px;
+  line-height: 1.65;
+}
+
+.cta-final-contact {
+  display: flex;
+  justify-content: center;
+  gap: 32px;
+  margin-top: 24px;
+}
+
+.cta-final-contact-item {
+  font-size: 14px;
+  color: var(--muted);
+}
+
+.cta-final-contact-item span {
+  color: var(--lime);
+  font-weight: 600;
+}
+
+/* ═══════════════════════════════════════════
+   FOOTER
+═══════════════════════════════════════════ */
+footer {
+  background: var(--navy-card);
+  border-top: 1px solid var(--border);
+  padding: 40px 0;
+}
+
+.footer-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.footer-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.footer-logo-mark {
+  width: 28px; height: 28px;
+  background: var(--lime);
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Playfair Display', serif;
+  font-weight: 900;
+  font-size: 14px;
+  color: var(--navy);
+}
+
+.footer-logo-text {
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--off-white);
+}
+
+.footer-copy {
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.footer-link {
+  font-size: 13px;
+  color: var(--azure);
+  text-decoration: none;
+}
+
+/* ═══════════════════════════════════════════
+   RESPONSIVE
+═══════════════════════════════════════════ */
+@media (max-width: 900px) {
+  nav { padding: 0 20px; }
+  .nav-links { display: none; }
+  .container { padding: 0 20px; }
+  section { padding: 70px 0; }
+  .toc-grid { grid-template-columns: repeat(3, 1fr); }
+  .gaps-grid { grid-template-columns: 1fr; }
+  .profile-layout { grid-template-columns: 1fr; }
+  .profile-mockup { position: static; }
+  .seo-tips-grid { grid-template-columns: 1fr 1fr; }
+  .ideas-grid { grid-template-columns: 1fr; }
+  .cta-types-grid { grid-template-columns: 1fr 1fr; }
+  .cta-philosophy { grid-template-columns: 1fr; }
+  .lm-intro { grid-template-columns: 1fr; }
+  .lm-grid { grid-template-columns: 1fr; }
+  .results-grid { grid-template-columns: 1fr; }
+  .pricing-grid { grid-template-columns: 1fr; }
+  .included-grid { grid-template-columns: 1fr 1fr; }
+  .cta-final { padding: 40px 24px; }
+  .hero-stats { gap: 24px; flex-wrap: wrap; }
+}
+
+/* ═══════════════════════════════════════════
+   SAMMY JONES FRAMEWORK
+═══════════════════════════════════════════ */
+.sj-framework {
+  margin-top: 18px;
+  padding-top: 18px;
+  border-top: 1px solid var(--border);
+}
+
+.sj-framework-label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--lime);
+  margin-bottom: 14px;
+}
+
+.sj-steps {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.sj-step {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+}
+
+.sj-step-num {
+  width: 22px;
+  height: 22px;
+  min-width: 22px;
+  background: var(--lime-dim);
+  border: 1px solid var(--lime-border);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--lime);
+  margin-top: 1px;
+}
+
+.sj-step-content {
+  flex: 1;
+}
+
+.sj-step-title {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--off-white);
+  margin-bottom: 3px;
+}
+
+.sj-time {
+  font-weight: 400;
+  color: var(--muted);
+  font-size: 11px;
+}
+
+.sj-step-text {
+  font-size: 12px;
+  color: var(--muted);
+  line-height: 1.55;
+}
+
+
+/* ═══════════════════════════════════════════
+   UPDATED PRICING — ENTRY POINTS + SIGNATURE
+═══════════════════════════════════════════ */
+.pricing-entry-label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 20px;
+  margin-top: 40px;
+}
+
+.pricing-grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin-bottom: 40px;
+}
+
+@media (max-width: 900px) {
+  .pricing-grid-3 { grid-template-columns: 1fr; }
+}
+
+.pricing-entry {
+  background: var(--navy-light);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.pricing-best-for {
+  font-size: 12px;
+  color: var(--muted);
+  line-height: 1.5;
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid var(--border);
+  font-style: italic;
+}
+
+.pricing-cta-link {
+  display: inline-block;
+  margin-top: 16px;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--lime);
+  text-decoration: none;
+  letter-spacing: 0.02em;
+  transition: opacity 0.2s;
+}
+.pricing-cta-link:hover { opacity: 0.7; }
+
+/* Signature Hero */
+.signature-hero {
+  background: linear-gradient(135deg, var(--navy-light) 0%, rgba(200,241,53,0.05) 100%);
+  border: 1px solid var(--lime-border);
+  border-radius: 16px;
+  padding: 40px;
+  margin-top: 16px;
+}
+
+.signature-hero-badge {
+  display: inline-block;
+  background: var(--lime);
+  color: var(--navy);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 5px 14px;
+  border-radius: 20px;
+  margin-bottom: 24px;
+}
+
+.signature-hero-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 40px;
+  margin-bottom: 32px;
+}
+
+@media (max-width: 768px) {
+  .signature-hero-header { flex-direction: column; gap: 20px; }
+}
+
+.signature-hero-label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--lime);
+  margin-bottom: 8px;
+}
+
+.signature-hero-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 36px;
+  font-weight: 900;
+  color: var(--white);
+  margin-bottom: 12px;
+}
+
+.signature-hero-desc {
+  font-size: 15px;
+  color: var(--muted);
+  line-height: 1.65;
+  max-width: 520px;
+}
+
+.signature-hero-price-block {
+  text-align: right;
+  min-width: 200px;
+}
+
+@media (max-width: 768px) {
+  .signature-hero-price-block { text-align: left; }
+}
+
+.signature-hero-price {
+  font-family: 'Playfair Display', serif;
+  font-size: 40px;
+  font-weight: 900;
+  color: var(--lime);
+  line-height: 1;
+}
+
+.signature-hero-period {
+  font-size: 13px;
+  color: var(--muted);
+  margin-top: 4px;
+}
+
+.signature-included-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 10px;
+  margin-bottom: 32px;
+  padding: 24px;
+  background: rgba(255,255,255,0.03);
+  border-radius: 10px;
+  border: 1px solid var(--border);
+}
+
+.signature-included-item {
+  font-size: 13px;
+  color: var(--off-white);
+  padding-left: 18px;
+  position: relative;
+}
+
+.signature-included-item::before {
+  content: '✓';
+  position: absolute;
+  left: 0;
+  color: var(--lime);
+  font-weight: 700;
+  font-size: 12px;
+}
+
+.signature-tiers {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  margin-bottom: 24px;
+}
+
+@media (max-width: 600px) {
+  .signature-tiers { flex-direction: column; gap: 12px; }
+  .signature-tier-divider { display: none; }
+}
+
+.signature-tier {
+  flex: 1;
+  background: var(--navy-card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 20px 24px;
+}
+
+.featured-tier {
+  border-color: var(--lime-border);
+  background: rgba(200,241,53,0.06);
+}
+
+.signature-tier-divider {
+  font-size: 24px;
+  color: var(--muted);
+  flex-shrink: 0;
+}
+
+.signature-tier-name {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--lime);
+  margin-bottom: 6px;
+}
+
+.signature-tier-price {
+  font-family: 'Playfair Display', serif;
+  font-size: 28px;
+  font-weight: 900;
+  color: var(--white);
+  margin-bottom: 6px;
+}
+
+.signature-tier-price span {
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--muted);
+}
+
+.signature-tier-details {
+  font-size: 12px;
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+.signature-credit-callout {
+  background: var(--azure-dim);
+  border: 1px solid var(--azure-border);
+  border-radius: 8px;
+  padding: 16px 20px;
+  font-size: 13px;
+  color: var(--off-white);
+  line-height: 1.6;
+}
+
+</style>
+</head>
+<body>
+
+<!-- Progress Bar -->
+<div id="progress-bar"></div>
+
+<!-- Navigation -->
+<nav>
+  <a href="#hero" class="nav-logo">
+    <img src="data:image/png;base64,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" alt="Scroll Media" style="height:28px;width:auto;display:block;" />
+  </a>
+  <ul class="nav-links">
+    <li><a href="#gaps">The Gaps</a></li>
+    <li><a href="#profile">Profile</a></li>
+    <li><a href="#seo">Social SEO</a></li>
+    <li><a href="#content-ideas">Content Ideas</a></li>
+    <li><a href="#cta-system">CTAs</a></li>
+    <li><a href="#lead-magnets">Lead Magnets</a></li>
+    <li><a href="#pricing">Pricing</a></li>
+    <li><a href="#next-steps" class="nav-cta">Get Started</a></li>
+  </ul>
+</nav>
+
+<!-- ═══════════════════════════════════════════
+     HERO
+═══════════════════════════════════════════ -->
+<section id="hero">
+  <div class="hero-grid-bg"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-glow-2"></div>
+  <div class="container">
+    <div class="hero-content">
+      <div class="hero-badge fade-up">
+        <div class="hero-badge-dot"></div>
+        Real Estate — Instagram Strategy Guide
+      </div>
+      <h1 class="hero-title fade-up fade-up-delay-1">
+        You're Posting.<br>Nobody's <span class="accent">Calling.</span>
+      </h1>
+      <p class="hero-subtitle fade-up fade-up-delay-2">
+        Most real estate agents are active on Instagram and getting nothing from it. This guide breaks down exactly why — and what a content system that actually generates leads looks like.
+      </p>
+      <div class="hero-ctas fade-up fade-up-delay-3">
+        <a href="#gaps" class="btn-primary">Read the Guide ↓</a>
+        <a href="#next-steps" class="btn-secondary">Work With Us</a>
+      </div>
+      <div class="hero-stats fade-up fade-up-delay-4">
+        <div>
+          <div class="hero-stat-value">209%</div>
+          <div class="hero-stat-label">Avg. Reach Growth<br>in 90 Days</div>
+        </div>
+        <div>
+          <div class="hero-stat-value">96%+</div>
+          <div class="hero-stat-label">Engagement Rate<br>Achieved</div>
+        </div>
+        <div>
+          <div class="hero-stat-value">77%</div>
+          <div class="hero-stat-label">Reach Increase<br>in 6 Months</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Table of Contents -->
+<div id="toc">
+  <div class="container">
+    <div class="toc-grid">
+      <a href="#gaps" class="toc-item fade-up">
+        <div class="toc-num">01</div>
+        <div class="toc-label">The Gaps</div>
+      </a>
+      <a href="#profile" class="toc-item fade-up fade-up-delay-1">
+        <div class="toc-num">02</div>
+        <div class="toc-label">Profile Optimization</div>
+      </a>
+      <a href="#seo" class="toc-item fade-up fade-up-delay-2">
+        <div class="toc-num">03</div>
+        <div class="toc-label">Social SEO</div>
+      </a>
+      <a href="#content-ideas" class="toc-item fade-up fade-up-delay-3">
+        <div class="toc-num">04</div>
+        <div class="toc-label">Content Ideas</div>
+      </a>
+      <a href="#cta-system" class="toc-item fade-up fade-up-delay-4">
+        <div class="toc-num">05</div>
+        <div class="toc-label">CTA System</div>
+      </a>
+    </div>
+    <div class="toc-grid" style="margin-top: 2px;">
+      <a href="#lead-magnets" class="toc-item fade-up">
+        <div class="toc-num">06</div>
+        <div class="toc-label">Lead Magnets</div>
+      </a>
+      <a href="#results" class="toc-item fade-up fade-up-delay-1">
+        <div class="toc-num">07</div>
+        <div class="toc-label">Real Results</div>
+      </a>
+      <a href="#pricing" class="toc-item fade-up fade-up-delay-2">
+        <div class="toc-num">08</div>
+        <div class="toc-label">Packages & Pricing</div>
+      </a>
+      <a href="#next-steps" class="toc-item fade-up fade-up-delay-3">
+        <div class="toc-num">09</div>
+        <div class="toc-label">Next Steps</div>
+      </a>
+      <div class="toc-item" style="background: transparent; border: 1px dashed rgba(255,255,255,0.08);">
+        <div class="toc-num" style="color: var(--muted);">↑</div>
+        <div class="toc-label" style="color: var(--muted);">Scroll to Explore</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     THE GAPS
+═══════════════════════════════════════════ -->
+<section id="gaps">
+  <div class="container">
+    <span class="section-eyebrow fade-up">Chapter 01</span>
+    <h2 class="section-title fade-up fade-up-delay-1">The Gaps</h2>
+    <div class="rule fade-up fade-up-delay-1"></div>
+    <p class="section-subtitle fade-up fade-up-delay-2">These aren't criticisms of your business. They're the patterns we see across almost every real estate agent on Instagram — and the reason consistent posting rarely turns into consistent leads.</p>
+
+    <div class="gaps-grid">
+      <div class="gap-card fade-up">
+        <div class="gap-card-tag">Gap 01 — Universal</div>
+        <div class="gap-card-title">No Content Funnel</div>
+        <div class="gap-cols">
+          <div>
+            <div class="gap-col-label">Why It Matters</div>
+            <div class="gap-col-text">Posting without a TOFU/MOFU/BOFU structure attracts attention but doesn't convert it. Reach without direction is just noise — and noise doesn't fill a pipeline.</div>
+          </div>
+          <div>
+            <div class="gap-col-label">The Fix</div>
+            <div class="gap-col-text">Map every post to a funnel stage — awareness, education, or action — so your content compounds instead of just accumulates. Every post should have a job.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="gap-card fade-up fade-up-delay-1">
+        <div class="gap-card-tag">Gap 02 — Universal</div>
+        <div class="gap-card-title">No Social SEO</div>
+        <div class="gap-cols">
+          <div>
+            <div class="gap-col-label">Why It Matters</div>
+            <div class="gap-col-text">Instagram is a search engine. Buyers and sellers search for agents in their market. Without keywords in your bio, captions, and audio, you're invisible to the exact people you want to reach.</div>
+          </div>
+          <div>
+            <div class="gap-col-label">The Fix</div>
+            <div class="gap-col-text">Build a keyword bank from your ICP's search behavior and embed it in every post. Your bio, captions, and Reel audio should all be optimized for how buyers and sellers actually search.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="gap-card niche fade-up fade-up-delay-2">
+        <div class="gap-card-tag">Gap 03 — Real Estate Specific</div>
+        <div class="gap-card-title">No Listing-Responsive Content System</div>
+        <div class="gap-cols">
+          <div>
+            <div class="gap-col-label">Why It Matters</div>
+            <div class="gap-col-text">Most agents post about a new listing days after it goes live — or not at all. The window of peak buyer attention is the first 24–48 hours. Miss that window and you've left reach, engagement, and potential leads on the table every single time.</div>
+          </div>
+          <div>
+            <div class="gap-col-label">The Fix</div>
+            <div class="gap-col-text">Build a repeatable content system around every listing: a launch Reel within hours of going live, a behind-the-scenes Story series, and a sold announcement with results. Listings are your best content asset — treat them like it.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="gap-card niche fade-up fade-up-delay-3">
+        <div class="gap-card-tag">Gap 04 — Real Estate Specific</div>
+        <div class="gap-card-title">Posting Listings Instead of Building Authority</div>
+        <div class="gap-cols">
+          <div>
+            <div class="gap-col-label">Why It Matters</div>
+            <div class="gap-col-text">A feed full of listing photos is a catalog, not a brand. Buyers and sellers don't choose an agent because they saw a house — they choose one because they trust the person. A catalog feed attracts browsers. An authority feed attracts clients.</div>
+          </div>
+          <div>
+            <div class="gap-col-label">The Fix</div>
+            <div class="gap-col-text">Lead with market insight, local expertise, and process transparency. Listings are proof points — not the main event. The agent is the brand. Build content around that.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="gap-card niche fade-up fade-up-delay-4" style="grid-column: 1 / -1;">
+        <div class="gap-card-tag">Gap 05 — Real Estate Specific</div>
+        <div class="gap-card-title">No IVP (Ideal Viewer Profile)</div>
+        <div class="gap-cols">
+          <div>
+            <div class="gap-col-label">Why It Matters</div>
+            <div class="gap-col-text">Without a clear picture of who you're talking to — first-time buyer, move-up seller, investor, relocating professional — your content appeals to everyone and converts no one. Generic content gets generic results.</div>
+          </div>
+          <div>
+            <div class="gap-col-label">The Fix</div>
+            <div class="gap-col-text">Define your IVP before writing a single caption. Every post should feel like it was written for one specific person — the person most likely to become your next client. When you talk to everyone, you reach no one.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     PROFILE OPTIMIZATION
+═══════════════════════════════════════════ -->
+<section id="profile">
+  <div class="container">
+    <span class="section-eyebrow fade-up">Chapter 02</span>
+    <h2 class="section-title fade-up fade-up-delay-1">Profile Optimization</h2>
+    <div class="rule fade-up fade-up-delay-1"></div>
+    <p class="section-subtitle fade-up fade-up-delay-2">Your Instagram profile is a landing page. Most agents treat it like a business card. Here's the difference — and how to fix it in under an hour.</p>
+
+    <div class="profile-layout">
+      <!-- Mockup -->
+      <div class="profile-mockup fade-up">
+        <div class="profile-mockup-header">
+          <div class="mockup-dot mockup-dot-red"></div>
+          <div class="mockup-dot mockup-dot-yellow"></div>
+          <div class="mockup-dot mockup-dot-green"></div>
+        </div>
+        <div class="profile-mockup-body">
+          <div class="mock-profile-top">
+            <div class="mock-avatar">JD</div>
+            <div class="mock-profile-info">
+              <div class="mock-username">Jane Doe Real Estate</div>
+              <div class="mock-handle">@janedoe.realtor</div>
+              <div class="mock-stats">
+                <div class="mock-stat">
+                  <div class="mock-stat-num">284</div>
+                  <div class="mock-stat-label">posts</div>
+                </div>
+                <div class="mock-stat">
+                  <div class="mock-stat-num">4.2K</div>
+                  <div class="mock-stat-label">followers</div>
+                </div>
+                <div class="mock-stat">
+                  <div class="mock-stat-num">612</div>
+                  <div class="mock-stat-label">following</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="mock-bio">
+            🏡 <span class="keyword">Columbus OH Realtor</span> | Helping <span class="keyword">first-time buyers</span> & <span class="keyword">move-up sellers</span> navigate the <span class="keyword">Columbus real estate market</span><br>
+            📍 <span class="keyword">Short North · Clintonville · Dublin</span><br>
+            ↓ Free Market Guide
+          </div>
+          <a class="mock-link" href="#">linktr.ee/janedoe ← ✗ Don't do this</a>
+          <div class="mock-highlights">
+            <div class="mock-highlight">
+              <div class="mock-highlight-circle">🏠</div>
+              <div class="mock-highlight-label">Listings</div>
+            </div>
+            <div class="mock-highlight">
+              <div class="mock-highlight-circle">📊</div>
+              <div class="mock-highlight-label">Market</div>
+            </div>
+            <div class="mock-highlight">
+              <div class="mock-highlight-circle">🏆</div>
+              <div class="mock-highlight-label">Wins</div>
+            </div>
+            <div class="mock-highlight">
+              <div class="mock-highlight-circle">👤</div>
+              <div class="mock-highlight-label">About</div>
+            </div>
+          </div>
+          <div class="mock-grid">
+            <div class="mock-grid-item"><div class="mock-grid-item-inner">🏡</div></div>
+            <div class="mock-grid-item"><div class="mock-grid-item-inner">📈</div></div>
+            <div class="mock-grid-item"><div class="mock-grid-item-inner">🏘️</div></div>
+            <div class="mock-grid-item"><div class="mock-grid-item-inner">🔑</div></div>
+            <div class="mock-grid-item"><div class="mock-grid-item-inner">📍</div></div>
+            <div class="mock-grid-item"><div class="mock-grid-item-inner">💬</div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Checklist -->
+      <div class="profile-checklist">
+        <div class="profile-check-item fade-up">
+          <div class="profile-check-header">
+            <div class="profile-check-icon">👤</div>
+            <div class="profile-check-title">Name Field — Your SEO Headline</div>
+          </div>
+          <div class="profile-check-desc">The name field is searchable. Don't just put your name — add your niche and market. Instagram searches this field first.</div>
+          <div class="profile-check-example">"Jane Doe | Columbus OH Realtor" — not just "Jane Doe"</div>
+        </div>
+
+        <div class="profile-check-item fade-up fade-up-delay-1">
+          <div class="profile-check-header">
+            <div class="profile-check-icon">✍️</div>
+            <div class="profile-check-title">Bio — 150 Characters, Maximum Clarity</div>
+          </div>
+          <div class="profile-check-desc">Your bio should answer three questions in 150 characters: Who do you help? Where? What do they get? Lead with your IVP, not your credentials.</div>
+          <div class="profile-check-example">"Helping first-time buyers & move-up sellers navigate the Columbus market. 📍 Short North · Clintonville · Dublin. ↓ Free Market Guide"</div>
+        </div>
+
+        <div class="profile-check-item fade-up fade-up-delay-2">
+          <div class="profile-check-header">
+            <div class="profile-check-icon">🔗</div>
+            <div class="profile-check-title">Link in Bio — One Link, One Destination</div>
+          </div>
+          <div class="profile-check-desc">Linktree creates decision fatigue and kills conversion. Your link in bio should point to one specific destination that matches your primary CTA for the month. Change it monthly.</div>
+          <div class="profile-check-example">This month's CTA is "Download my free Columbus Market Guide" → link goes directly to the download page. Not a Linktree. Not your website homepage.</div>
+        </div>
+
+        <div class="profile-check-item fade-up fade-up-delay-3">
+          <div class="profile-check-header">
+            <div class="profile-check-icon">⭕</div>
+            <div class="profile-check-title">Story Highlights — Your Always-On Sales Team</div>
+          </div>
+          <div class="profile-check-desc">Highlights are the first thing a new profile visitor sees after your bio. Treat them as organized sales collateral — not a random archive of old Stories.</div>
+          <div class="profile-check-example">Recommended highlights: Listings · Market Updates · Client Wins · Neighborhoods · About Me. Each one should have a custom cover that matches your brand.</div>
+        </div>
+
+        <div class="profile-check-item fade-up fade-up-delay-4">
+          <div class="profile-check-header">
+            <div class="profile-check-icon">🖼️</div>
+            <div class="profile-check-title">Grid — Your Visual First Impression</div>
+          </div>
+          <div class="profile-check-desc">A new visitor decides in 3 seconds whether to follow you. Your grid should communicate: who you are, what you do, and what your content is worth following. Consistency of style and color builds brand recognition at a glance.</div>
+          <div class="profile-check-example">Aim for a consistent visual palette. Mix content types: listings, market education, personal brand, community. Avoid posting 6 listing photos in a row — it reads as a catalog, not a brand.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     SOCIAL SEO
+═══════════════════════════════════════════ -->
+<section id="seo">
+  <div class="container">
+    <span class="section-eyebrow fade-up">Chapter 03</span>
+    <h2 class="section-title fade-up fade-up-delay-1">Social SEO</h2>
+    <div class="rule fade-up fade-up-delay-1"></div>
+    <p class="section-subtitle fade-up fade-up-delay-2">Instagram is a search engine. Buyers and sellers are actively searching for agents in their market right now. Here's how to make sure they find you — not your competition.</p>
+
+    <div class="tam-ladder">
+      <div class="tam-rung fade-up">
+        <div class="tam-rung-num">1</div>
+        <div class="tam-rung-content">
+          <div class="tam-rung-level">Level 1 — Broad Industry</div>
+          <div class="tam-rung-title">Discovery Intent</div>
+          <div class="tam-rung-intent">People exploring real estate broadly — not yet in buying or selling mode</div>
+          <div class="tam-keywords">
+            <span class="tam-keyword">real estate</span>
+            <span class="tam-keyword">realtor</span>
+            <span class="tam-keyword">home buying</span>
+            <span class="tam-keyword">real estate tips</span>
+            <span class="tam-keyword">housing market</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="tam-rung fade-up fade-up-delay-1">
+        <div class="tam-rung-num">2</div>
+        <div class="tam-rung-content">
+          <div class="tam-rung-level">Level 2 — Niche Specific</div>
+          <div class="tam-rung-title">Interest Intent</div>
+          <div class="tam-rung-intent">People researching specific market conditions, neighborhoods, or buyer/seller situations</div>
+          <div class="tam-keywords">
+            <span class="tam-keyword">first time home buyer</span>
+            <span class="tam-keyword">how to sell your home</span>
+            <span class="tam-keyword">investment property</span>
+            <span class="tam-keyword">home staging tips</span>
+            <span class="tam-keyword">bidding war strategy</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="tam-rung fade-up fade-up-delay-2">
+        <div class="tam-rung-num">3</div>
+        <div class="tam-rung-content">
+          <div class="tam-rung-level">Level 3 — Brand + Location</div>
+          <div class="tam-rung-title">Consideration Intent</div>
+          <div class="tam-rung-intent">People actively looking for an agent in a specific market — this is where you win or lose</div>
+          <div class="tam-keywords">
+            <span class="tam-keyword">Columbus realtor</span>
+            <span class="tam-keyword">Columbus OH real estate</span>
+            <span class="tam-keyword">Short North homes for sale</span>
+            <span class="tam-keyword">buy a home in Columbus</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="tam-rung fade-up fade-up-delay-3">
+        <div class="tam-rung-num">4</div>
+        <div class="tam-rung-content">
+          <div class="tam-rung-level">Level 4 — Hyper-Local / Purchase Intent</div>
+          <div class="tam-rung-title">Purchase Intent</div>
+          <div class="tam-rung-intent">High-intent buyers and sellers ready to act — the most valuable search traffic on the platform</div>
+          <div class="tam-keywords">
+            <span class="tam-keyword">best realtor Columbus OH</span>
+            <span class="tam-keyword">sell my home Columbus</span>
+            <span class="tam-keyword">Clintonville homes for sale 2026</span>
+            <span class="tam-keyword">Columbus luxury real estate agent</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <h3 style="font-family: 'Playfair Display', serif; font-size: 24px; font-weight: 700; color: var(--white); margin-bottom: 24px;" class="fade-up">Where to Embed Keywords</h3>
+    <div class="seo-tips-grid">
+      <div class="seo-tip-card fade-up">
+        <span class="seo-tip-icon">👤</span>
+        <div class="seo-tip-title">Name Field</div>
+        <div class="seo-tip-text">The single most important SEO field on your profile. Instagram's search algorithm indexes this first. Include your name, role, and market.</div>
+        <div class="seo-tip-example">"Jane Doe | Columbus OH Realtor"</div>
+      </div>
+
+      <div class="seo-tip-card fade-up fade-up-delay-1">
+        <span class="seo-tip-icon">✍️</span>
+        <div class="seo-tip-title">Bio Copy</div>
+        <div class="seo-tip-text">Weave 2–3 high-intent keywords naturally into your bio. Don't keyword-stuff — write for humans first, search second.</div>
+        <div class="seo-tip-example">"Helping first-time buyers navigate the Columbus real estate market"</div>
+      </div>
+
+      <div class="seo-tip-card fade-up fade-up-delay-2">
+        <span class="seo-tip-icon">📝</span>
+        <div class="seo-tip-title">Caption First Line</div>
+        <div class="seo-tip-text">Instagram indexes the first 125 characters of your caption. Lead with your keyword-rich hook — it's both SEO and the hook that stops the scroll.</div>
+        <div class="seo-tip-example">"The Columbus housing market just shifted — here's what buyers need to know right now."</div>
+      </div>
+
+      <div class="seo-tip-card fade-up fade-up-delay-3">
+        <span class="seo-tip-icon">🎙️</span>
+        <div class="seo-tip-title">Reel Audio (Voiceover)</div>
+        <div class="seo-tip-text">Instagram auto-transcribes Reel audio and uses it for search indexing. Say your keywords out loud in your Reels — especially in the first 5 seconds.</div>
+        <div class="seo-tip-example">Open with: "If you're buying a home in Columbus this year, here's what you need to know..."</div>
+      </div>
+
+      <div class="seo-tip-card fade-up fade-up-delay-4">
+        <span class="seo-tip-icon">#️⃣</span>
+        <div class="seo-tip-title">Hashtags (Strategic, Not Spammy)</div>
+        <div class="seo-tip-text">Use 5–8 targeted hashtags per post. Mix broad, niche, and hyper-local. Avoid generic hashtags with 50M+ posts — you'll never surface there.</div>
+        <div class="seo-tip-example">#ColumbusRealEstate #ColumbusRealtor #ShortNorthHomes #FirstTimeHomeBuyer #OhioRealEstate</div>
+      </div>
+
+      <div class="seo-tip-card fade-up fade-up-delay-5">
+        <span class="seo-tip-icon">📍</span>
+        <div class="seo-tip-title">Location Tags</div>
+        <div class="seo-tip-text">Tag your location on every post and Reel. Neighborhood-level tags (Short North, Clintonville) outperform city-level tags for local discovery.</div>
+        <div class="seo-tip-example">Tag the neighborhood, not just the city. "Short North, Columbus" beats "Columbus, Ohio" for local intent searches.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     CONTENT IDEAS
+═══════════════════════════════════════════ -->
+<section id="content-ideas">
+  <div class="container">
+    <span class="section-eyebrow fade-up">Chapter 04</span>
+    <h2 class="section-title fade-up fade-up-delay-1">Content Ideas</h2>
+    <div class="rule fade-up fade-up-delay-1"></div>
+    <p class="section-subtitle fade-up fade-up-delay-2">Ten ready-to-execute concepts built specifically for real estate agents — including formats you won't find in any generic social media tips article. Each one is mapped to a funnel stage so you know exactly what it's doing for your business.</p>
+
+    <div class="funnel-tabs fade-up">
+      <button class="funnel-tab active-tofu" onclick="filterIdeas('all', this)">All Ideas</button>
+      <button class="funnel-tab" onclick="filterIdeas('tofu', this)">TOFU — Awareness</button>
+      <button class="funnel-tab" onclick="filterIdeas('mofu', this)">MOFU — Education</button>
+      <button class="funnel-tab" onclick="filterIdeas('bofu', this)">BOFU — Conversion</button>
+    </div>
+
+    <div class="ideas-grid" id="ideas-grid">
+
+      <!-- Idea 1 -->
+      <div class="idea-card tofu fade-up">
+        <div class="idea-creative-tag">★ Creative Format</div>
+        <div class="idea-card-header">
+          <div class="idea-card-title">The 48-Hour Listing Launch</div>
+          <div class="idea-badges">
+            <span class="badge badge-tofu">TOFU</span>
+            <span class="badge badge-format">Reel</span>
+          </div>
+        </div>
+        <div class="idea-hook">"New listing just hit the market — here's a full walkthrough before the open house this weekend."</div>
+        <div class="idea-meta-grid">
+          <div>
+            <div class="idea-meta-label">Why It Works</div>
+            <div class="idea-meta-text">Timeliness drives reach. A listing Reel posted within hours of going live catches the algorithm's recency window and signals to sellers: this agent moves fast.</div>
+          </div>
+          <div>
+            <div class="idea-meta-label">Execution Note</div>
+            <div class="idea-meta-text">60-sec walkthrough with voiceover on the 3 best features. Post within 24 hours of MLS activation. Follow with a Story poll: "Would you tour this one?"</div>
+          </div>
+        
+        </div>
+        <div class="sj-framework">
+          <div class="sj-framework-label">Sammy Jones Script Framework</div>
+          <div class="sj-steps">
+            <div class="sj-step">
+              <div class="sj-step-num">1</div>
+              <div class="sj-step-content">
+                <div class="sj-step-title">Hook <span class="sj-time">(0:00–0:03)</span></div>
+                <div class="sj-step-text">Open mid-walkthrough: camera moving through the front door, voiceover: "This one just hit the market — and it won't last."</div>
+              </div>
+            </div>
+            <div class="sj-step">
+              <div class="sj-step-num">2</div>
+              <div class="sj-step-content">
+                <div class="sj-step-title">Context &amp; Conflict <span class="sj-time">(0:03–0:20)</span></div>
+                <div class="sj-step-text">Set the scene: neighborhood, price point, standout feature. Establish why this listing matters to your IVP right now — buyer demand, limited inventory, location.</div>
+              </div>
+            </div>
+            <div class="sj-step">
+              <div class="sj-step-num">3</div>
+              <div class="sj-step-content">
+                <div class="sj-step-title">Turning Point <span class="sj-time">(0:20–0:40)</span></div>
+                <div class="sj-step-text">Reveal the 3 features that make this property worth touring: the kitchen, the backyard, the location relative to [local landmark]. Show, don't just tell.</div>
+              </div>
+            </div>
+            <div class="sj-step">
+              <div class="sj-step-num">4</div>
+              <div class="sj-step-content">
+                <div class="sj-step-title">Resolution &amp; CTA <span class="sj-time">(0:40–0:60)</span></div>
+                <div class="sj-step-text">"Open house is [date/time]. DM me 'TOUR' and I'll send you the full details before it hits the weekend crowd." End with your handle on screen.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Idea 2 -->
+      <div class="idea-card tofu fade-up fade-up-delay-1">
+        <div class="idea-card-header">
+          <div class="idea-card-title">The Market Shift Explainer</div>
+          <div class="idea-badges">
+            <span class="badge badge-tofu">TOFU</span>
+            <span class="badge badge-format">Carousel</span>
+          </div>
+        </div>
+        <div class="idea-hook">"The Columbus market just shifted. Here's what that actually means for buyers and sellers right now."</div>
+        <div class="idea-meta-grid">
+          <div>
+            <div class="idea-meta-label">Why It Works</div>
+            <div class="idea-meta-text">Market commentary is the highest-authority content format in real estate. It positions you as the expert who understands the data — not just someone who sells houses.</div>
+          </div>
+          <div>
+            <div class="idea-meta-label">Execution Note</div>
+            <div class="idea-meta-text">5–7 slides. Slide 1: the headline shift. Slides 2–4: what it means for buyers, sellers, and the market. Slide 5: your take. Pull from MLS data monthly.</div>
+          </div>
+        
+        </div>
+        <div class="sj-framework">
+          <div class="sj-framework-label">Sammy Jones Script Framework</div>
+          <div class="sj-steps">
+            <div class="sj-step">
+              <div class="sj-step-num">1</div>
+              <div class="sj-step-content">
+                <div class="sj-step-title">Hook <span class="sj-time">(0:00–0:03)</span></div>
+                <div class="sj-step-text">"The [city] market just shifted — and most buyers and sellers don't know it yet." Cut to your face, direct to camera.</div>
+              </div>
+            </div>
+            <div class="sj-step">
+              <div class="sj-step-num">2</div>
+              <div class="sj-step-content">
+                <div class="sj-step-title">Context &amp; Conflict <span class="sj-time">(0:03–0:20)</span></div>
+                <div class="sj-step-text">Establish the baseline: what the market looked like 60–90 days ago. Inventory levels, average days on market, list-to-sale ratio. Make it feel real with local data.</div>
+              </div>
+            </div>
+            <div class="sj-step">
+              <div class="sj-step-num">3</div>
+              <div class="sj-step-content">
+                <div class="sj-step-title">Turning Point <span class="sj-time">(0:20–0:40)</span></div>
+                <div class="sj-step-text">Name the specific shift: rates moved, inventory dropped, a new development changed a neighborhood's trajectory. Be specific — vague market commentary is forgettable.</div>
+              </div>
+            </div>
+            <div class="sj-step">
+              <div class="sj-step-num">4</div>
+              <div class="sj-step-content">
+                <div class="sj-step-title">Resolution &amp; CTA <span class="sj-time">(0:40–0:60)</span></div>
+                <div class="sj-step-text">"Here's what this means for you if you're buying [X] or selling [Y] right now." Give one actionable takeaway per viewer type. End: "Save this — I'll update it monthly."</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Idea 3 -->
+      <div class="idea-card tofu fade-up fade-up-delay-2">
+        <div class="idea-creative-tag">★ Creative Format</div>
+        <div class="idea-card-header">
+          <div class="idea-card-title">The Seller's Objection Reel</div>
+          <div class="idea-badges">
+            <span class="badge badge-tofu">TOFU</span>
+            <span class="badge badge-format">Reel</span>
+          </div>
+        </div>
+        <div class="idea-hook">"'I'll wait until spring to list.' Here's why that's costing sellers money in this market."</div>
+        <div class="idea-meta-grid">
+          <div>
+            <div class="idea-meta-label">Why It Works</div>
+            <div class="idea-meta-text">Opinion-led content earns trust faster than neutral content. When you take a clear stance on a common seller belief, you attract sellers already in the consideration phase.</div>
+          </div>
+          <div>
+            <div class="idea-meta-label">Execution Note</div>
+            <div class="idea-meta-text">Talking head, 30–45 seconds. State the objection, challenge it with data, give your recommendation. Rotate through common objections — one per Reel.</div>
+          </div>
+        
+        </div>
+        <div class="sj-framework">
+          <div class="sj-framework-label">Sammy Jones Script Framework</div>
+          <div class="sj-steps">
+            <div class="sj-step">
+              <div class="sj-step-num">1</div>
+              <div class="sj-step-content">
+                <div class="sj-step-title">Hook <span class="sj-time">(0:00–0:03)</span></div>
+                <div class="sj-step-text">"'I'll wait until spring to list.' I hear this every week. Here's why it's costing sellers money." Direct to camera, confident.</div>
+              </div>
+            </div>
+            <div class="sj-step">
+              <div class="sj-step-num">2</div>
+              <div class="sj-step-content">
+                <div class="sj-step-title">Context &amp; Conflict <span class="sj-time">(0:03–0:20)</span></div>
+                <div class="sj-step-text">Acknowledge the objection as valid — it's a common belief, not a stupid one. Establish why sellers think this way: seasonal demand, more buyers in spring, etc.</div>
+              </div>
+            </div>
+            <div class="sj-step">
+              <div class="sj-step-num">3</div>
+              <div class="sj-step-content">
+                <div class="sj-step-title">Turning Point <span class="sj-time">(0:20–0:40)</span></div>
+                <div class="sj-step-text">Challenge it with data: winter listings in [city] sell in X days on average. Less competition = more visibility. Motivated buyers are active year-round.</div>
+              </div>
+            </div>
+            <div class="sj-step">
+              <div class="sj-step-num">4</div>
+              <div class="sj-step-content">
+                <div class="sj-step-title">Resolution &amp; CTA <span class="sj-time">(0:40–0:60)</span></div>
+                <div class="sj-step-text">"If you're thinking about selling in the next 6 months, the best time to start the conversation is now — not February." CTA: "DM me 'SELL' and I'll send you a free market analysis."</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Idea 4 -->
+      <div class="idea-card tofu fade-up fade-up-delay-3">
+        <div class="idea-creative-tag">★ Creative Format</div>
+        <div class="idea-card-header">
+          <div class="idea-card-title">"What I'd Do If I Were Buying Right Now"</div>
+          <div class="idea-badges">
+            <span class="badge badge-tofu">TOFU</span>
+            <span class="badge badge-format">Reel</span>
+          </div>
+        </div>
+        <div class="idea-hook">"If I were a buyer in Columbus right now, here's exactly what I'd do — step by step."</div>
+        <div class="idea-meta-grid">
+          <div>
+            <div class="idea-meta-label">Why It Works</div>
+            <div class="idea-meta-text">First-person perspective content is the most trusted format on Instagram. You're not selling — you're advising. Buyers feel like they're getting insider access, not a pitch.</div>
+          </div>
+          <div>
+            <div class="idea-meta-label">Execution Note</div>
+            <div class="idea-meta-text">45–60 seconds, talking head. Give 3–4 specific, actionable steps. Be direct and opinionated. This format works best when you take a clear stance, not a neutral one.</div>
+          </div>
+        
+        </div>
+        <div class="sj-framework">
+          <div class="sj-framework-label">Sammy Jones Script Framework</div>
+          <div class="sj-steps">
+            <div class="sj-step">
+              <div class="sj-step-num">1</div>
+              <div class="sj-step-content">
+                <div class="sj-step-title">Hook <span class="sj-time">(0:00–0:03)</span></div>
+                <div class="sj-step-text">"If I were a buyer in [city] right now — with everything I know — here's exactly what I'd do." Pause. "Step one..."</div>
+              </div>
+            </div>
+            <div class="sj-step">
+              <div class="sj-step-num">2</div>
+              <div class="sj-step-content">
+                <div class="sj-step-title">Context &amp; Conflict <span class="sj-time">(0:03–0:20)</span></div>
+                <div class="sj-step-text">Establish the current market reality for buyers: competition, rates, inventory. Make the viewer feel seen — this is hard, and you know it.</div>
+              </div>
+            </div>
+            <div class="sj-step">
+              <div class="sj-step-num">3</div>
+              <div class="sj-step-content">
+                <div class="sj-step-title">Turning Point <span class="sj-time">(0:20–0:40)</span></div>
+                <div class="sj-step-text">Give 3 specific, actionable steps you'd actually take: get pre-approved before browsing, target [specific neighborhoods] for value, use an escalation clause strategy on competitive offers.</div>
+              </div>
+            </div>
+            <div class="sj-step">
+              <div class="sj-step-num">4</div>
+              <div class="sj-step-content">
+                <div class="sj-step-title">Resolution &amp; CTA <span class="sj-time">(0:40–0:60)</span></div>
+                <div class="sj-step-text">"The buyers winning right now aren't the ones with the most money — they're the ones with the best strategy." CTA: "DM me 'BUYER' and I'll walk you through my full buyer playbook."</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Idea 5 -->
+      <div class="idea-card mofu fade-up">
+        <div class="idea-card-header">
+          <div class="idea-card-title">What Nobody Tells First-Time Buyers</div>
+          <div class="idea-badges">
+            <span class="badge badge-mofu">MOFU</span>
+            <span class="badge badge-format">Carousel</span>
+          </div>
+        </div>
+        <div class="idea-hook">"Three things I wish every first-time buyer knew before making an offer in Columbus."</div>
+        <div class="idea-meta-grid">
+          <div>
+            <div class="idea-meta-label">Why It Works</div>
+            <div class="idea-meta-text">Education-first content builds trust with buyers who are actively researching but not yet ready to call. They save this post, come back to it, and when ready — they already trust you.</div>
+          </div>
+          <div>
+            <div class="idea-meta-label">Execution Note</div>
+            <div class="idea-meta-text">3 real insights from recent deals — escalation clauses, inspection waivers, appraisal gaps. End with: "DM me 'BUYER' and I'll send you my full first-time buyer checklist."</div>
+          </div>
+        
+        </div>
+        <div class="sj-framework">
+          <div class="sj-framework-label">Sammy Jones Script Framework</div>
+          <div class="sj-steps">
+            <div class="sj-step">
+              <div class="sj-step-num">1</div>
+              <div class="sj-step-content">
+                <div class="sj-step-title">Hook <span class="sj-time">(0:00–0:03)</span></div>
+                <div class="sj-step-text">"Three things I wish every first-time buyer knew before making an offer. Nobody talks about these."</div>
+              </div>
+            </div>
+            <div class="sj-step">
+              <div class="sj-step-num">2</div>
+              <div class="sj-step-content">
+                <div class="sj-step-title">Context &amp; Conflict <span class="sj-time">(0:03–0:20)</span></div>
+                <div class="sj-step-text">Frame the problem: first-time buyers are navigating the most complex financial decision of their lives with incomplete information. They're reading Reddit threads and watching YouTube. They need a real expert.</div>
+              </div>
+            </div>
+            <div class="sj-step">
+              <div class="sj-step-num">3</div>
+              <div class="sj-step-content">
+                <div class="sj-step-title">Turning Point <span class="sj-time">(0:20–0:40)</span></div>
+                <div class="sj-step-text">Reveal the 3 insights: (1) Escalation clauses and when to use them. (2) Why waiving inspection contingencies is riskier than agents often admit. (3) The appraisal gap — what it is and how to protect yourself.</div>
+              </div>
+            </div>
+            <div class="sj-step">
+              <div class="sj-step-num">4</div>
+              <div class="sj-step-content">
+                <div class="sj-step-title">Resolution &amp; CTA <span class="sj-time">(0:40–0:60)</span></div>
+                <div class="sj-step-text">"If you're buying for the first time, you deserve a strategy — not just a search portal." CTA: "DM me 'FIRSTTIME' and I'll send you my complete first-time buyer checklist — free."</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Idea 6 -->
+      <div class="idea-card mofu fade-up fade-up-delay-1">
+        <div class="idea-creative-tag">★ Creative Format</div>
+        <div class="idea-card-header">
+          <div class="idea-card-title">The Neighborhood Deep-Dive Series</div>
+          <div class="idea-badges">
+            <span class="badge badge-mofu">MOFU</span>
+            <span class="badge badge-format">Reel</span>
+          </div>
+        </div>
+        <div class="idea-hook">"If you're thinking about moving to Short North, here's what the listing photos don't show you."</div>
+        <div class="idea-meta-grid">
+          <div>
+            <div class="idea-meta-label">Why It Works</div>
+            <div class="idea-meta-text">Buyers don't just buy a house — they buy into a neighborhood. This positions you as the local expert who knows the market beyond the MLS. Earns shares from current residents too.</div>
+          </div>
+          <div>
+            <div class="idea-meta-label">Execution Note</div>
+            <div class="idea-meta-text">Walk the neighborhood. Film the coffee shop, the park, the main street. 45–60 seconds. Cover: walkability, vibe, price range, who it's best for. Make one per neighborhood — evergreen content.</div>
+          </div>
+        
+        </div>
+        <div class="sj-framework">
+          <div class="sj-framework-label">Sammy Jones Script Framework</div>
+          <div class="sj-steps">
+            <div class="sj-step">
+              <div class="sj-step-num">1</div>
+              <div class="sj-step-content">
+                <div class="sj-step-title">Hook <span class="sj-time">(0:00–0:03)</span></div>
+                <div class="sj-step-text">Walking shot, entering the neighborhood: "If you're thinking about moving to [neighborhood], here's what the listing photos don't show you."</div>
+              </div>
+            </div>
+            <div class="sj-step">
+              <div class="sj-step-num">2</div>
+              <div class="sj-step-content">
+                <div class="sj-step-title">Context &amp; Conflict <span class="sj-time">(0:03–0:20)</span></div>
+                <div class="sj-step-text">Establish what most people think they know about this neighborhood — the reputation, the price range, the vibe. Then hint that there's more to the story.</div>
+              </div>
+            </div>
+            <div class="sj-step">
+              <div class="sj-step-num">3</div>
+              <div class="sj-step-content">
+                <div class="sj-step-title">Turning Point <span class="sj-time">(0:20–0:40)</span></div>
+                <div class="sj-step-text">Walk through the real experience: the coffee shop on the corner, the park two blocks over, the school rating, the walkability score, the 5-year price appreciation. Show it — don't just say it.</div>
+              </div>
+            </div>
+            <div class="sj-step">
+              <div class="sj-step-num">4</div>
+              <div class="sj-step-content">
+                <div class="sj-step-title">Resolution &amp; CTA <span class="sj-time">(0:40–0:60)</span></div>
+                <div class="sj-step-text">"[Neighborhood] is one of the most underrated pockets in [city] right now. Prices are still accessible, but not for long." CTA: "Save this — I'm doing one for every neighborhood in [city]."</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Idea 7 -->
+      <div class="idea-card mofu fade-up fade-up-delay-2">
+        <div class="idea-creative-tag">★ Creative Format</div>
+        <div class="idea-card-header">
+          <div class="idea-card-title">The "Before You List" Checklist Reel</div>
+          <div class="idea-badges">
+            <span class="badge badge-mofu">MOFU</span>
+            <span class="badge badge-format">Reel + Carousel</span>
+          </div>
+        </div>
+        <div class="idea-hook">"Most sellers leave $10,000–$30,000 on the table because they skip these 5 steps before listing."</div>
+        <div class="idea-meta-grid">
+          <div>
+            <div class="idea-meta-label">Why It Works</div>
+            <div class="idea-meta-text">Loss-aversion framing is one of the most powerful psychological triggers in content. Sellers who are thinking about listing will save this immediately — and remember who taught them.</div>
+          </div>
+          <div>
+            <div class="idea-meta-label">Execution Note</div>
+            <div class="idea-meta-text">Reel for reach, Carousel for saves. Cover: declutter, deep clean, minor repairs, professional photos, pricing strategy. End with a CTA to DM for your free pre-listing guide.</div>
+          </div>
+        
+        </div>
+        <div class="sj-framework">
+          <div class="sj-framework-label">Sammy Jones Script Framework</div>
+          <div class="sj-steps">
+            <div class="sj-step">
+              <div class="sj-step-num">1</div>
+              <div class="sj-step-content">
+                <div class="sj-step-title">Hook <span class="sj-time">(0:00–0:03)</span></div>
+                <div class="sj-step-text">"Most sellers leave $10,000–$30,000 on the table because they skip these 5 steps before listing." Hard cut to checklist graphic.</div>
+              </div>
+            </div>
+            <div class="sj-step">
+              <div class="sj-step-num">2</div>
+              <div class="sj-step-content">
+                <div class="sj-step-title">Context &amp; Conflict <span class="sj-time">(0:03–0:20)</span></div>
+                <div class="sj-step-text">Establish the pain: sellers focus on the listing price but ignore the pre-listing work that actually drives that price up. A few hundred dollars in prep can return thousands.</div>
+              </div>
+            </div>
+            <div class="sj-step">
+              <div class="sj-step-num">3</div>
+              <div class="sj-step-content">
+                <div class="sj-step-title">Turning Point <span class="sj-time">(0:20–0:40)</span></div>
+                <div class="sj-step-text">Walk through the 5 steps: (1) Declutter and depersonalize. (2) Deep clean — especially kitchens and bathrooms. (3) Minor repairs that buyers will flag in inspection. (4) Professional photography — non-negotiable. (5) Pricing strategy — list at market, not above it.</div>
+              </div>
+            </div>
+            <div class="sj-step">
+              <div class="sj-step-num">4</div>
+              <div class="sj-step-content">
+                <div class="sj-step-title">Resolution &amp; CTA <span class="sj-time">(0:40–0:60)</span></div>
+                <div class="sj-step-text">"Sellers who do this work before listing consistently sell faster and closer to asking price." CTA: "DM me 'LIST' and I'll send you my full pre-listing guide — it's free."</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Idea 8 -->
+      <div class="idea-card bofu fade-up fade-up-delay-3">
+        <div class="idea-card-header">
+          <div class="idea-card-title">The Bidding War Breakdown</div>
+          <div class="idea-badges">
+            <span class="badge badge-bofu">BOFU</span>
+            <span class="badge badge-format">Reel</span>
+          </div>
+        </div>
+        <div class="idea-hook">"My client was outbid twice. Here's the exact strategy we used to win on the third offer — without going over budget."</div>
+        <div class="idea-meta-grid">
+          <div>
+            <div class="idea-meta-label">Why It Works</div>
+            <div class="idea-meta-text">Proof-of-outcome content is the most direct conversion tool in real estate. Buyers who are frustrated or stuck in a competitive market will DM you after watching this.</div>
+          </div>
+          <div>
+            <div class="idea-meta-label">Execution Note</div>
+            <div class="idea-meta-text">3-part story: the challenge, the strategy, the win. 45–60 seconds. Anonymize the client. Be specific about the tactic — specificity is what makes it credible.</div>
+          </div>
+        
+        </div>
+        <div class="sj-framework">
+          <div class="sj-framework-label">Sammy Jones Script Framework</div>
+          <div class="sj-steps">
+            <div class="sj-step">
+              <div class="sj-step-num">1</div>
+              <div class="sj-step-content">
+                <div class="sj-step-title">Hook <span class="sj-time">(0:00–0:03)</span></div>
+                <div class="sj-step-text">"My client was outbid twice. Here's the exact strategy we used to win on the third offer — without going over budget."</div>
+              </div>
+            </div>
+            <div class="sj-step">
+              <div class="sj-step-num">2</div>
+              <div class="sj-step-content">
+                <div class="sj-step-title">Context &amp; Conflict <span class="sj-time">(0:03–0:20)</span></div>
+                <div class="sj-step-text">Set the scene: competitive market, multiple offers, my client was qualified and motivated but kept losing. The frustration was real. Most agents would have just said 'offer more.'</div>
+              </div>
+            </div>
+            <div class="sj-step">
+              <div class="sj-step-num">3</div>
+              <div class="sj-step-content">
+                <div class="sj-step-title">Turning Point <span class="sj-time">(0:20–0:40)</span></div>
+                <div class="sj-step-text">Reveal the strategy: we analyzed the seller's timeline (they needed a quick close), structured the offer with a flexible possession date, wrote a clean offer with no unnecessary contingencies, and used an escalation clause with a hard cap.</div>
+              </div>
+            </div>
+            <div class="sj-step">
+              <div class="sj-step-num">4</div>
+              <div class="sj-step-content">
+                <div class="sj-step-title">Resolution &amp; CTA <span class="sj-time">(0:40–0:60)</span></div>
+                <div class="sj-step-text">"They got the house for $3,000 under their max budget." CTA: "If you're in a competitive market and need a strategy — not just a higher number — DM me. Let's talk."</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Idea 9 -->
+      <div class="idea-card bofu fade-up fade-up-delay-4">
+        <div class="idea-creative-tag">★ Creative Format</div>
+        <div class="idea-card-header">
+          <div class="idea-card-title">The "Sold in [X] Days" Story Arc</div>
+          <div class="idea-badges">
+            <span class="badge badge-bofu">BOFU</span>
+            <span class="badge badge-format">Story Series</span>
+          </div>
+        </div>
+        <div class="idea-hook">"We listed on Monday. We had 12 offers by Thursday. Here's the full story."</div>
+        <div class="idea-meta-grid">
+          <div>
+            <div class="idea-meta-label">Why It Works</div>
+            <div class="idea-meta-text">A multi-part Story arc builds suspense and keeps viewers coming back. Sellers watching this think: "I want that result." It's the most compelling proof format available on the platform.</div>
+          </div>
+          <div>
+            <div class="idea-meta-label">Execution Note</div>
+            <div class="idea-meta-text">Part 1: The listing goes live. Part 2: Showings and feedback. Part 3: Offer review. Part 4: The result. Save as a Highlight titled "Client Wins." This becomes your best BOFU asset.</div>
+          </div>
+        
+        </div>
+        <div class="sj-framework">
+          <div class="sj-framework-label">Sammy Jones Script Framework</div>
+          <div class="sj-steps">
+            <div class="sj-step">
+              <div class="sj-step-num">1</div>
+              <div class="sj-step-content">
+                <div class="sj-step-title">Hook <span class="sj-time">(0:00–0:03)</span></div>
+                <div class="sj-step-text">Story frame 1: "We listed on Monday." Story frame 2: "We had 12 offers by Thursday." Story frame 3: "Here's the full story."</div>
+              </div>
+            </div>
+            <div class="sj-step">
+              <div class="sj-step-num">2</div>
+              <div class="sj-step-content">
+                <div class="sj-step-title">Context &amp; Conflict <span class="sj-time">(0:03–0:20)</span></div>
+                <div class="sj-step-text">Part 1 — The listing goes live: show the professional photos, the MLS activation, the first showing request within hours. Build anticipation.</div>
+              </div>
+            </div>
+            <div class="sj-step">
+              <div class="sj-step-num">3</div>
+              <div class="sj-step-content">
+                <div class="sj-step-title">Turning Point <span class="sj-time">(0:20–0:40)</span></div>
+                <div class="sj-step-text">Part 2 — The showings: document the activity. How many showings in 48 hours? What feedback are buyers giving? What's driving the demand? This is proof of your system working.</div>
+              </div>
+            </div>
+            <div class="sj-step">
+              <div class="sj-step-num">4</div>
+              <div class="sj-step-content">
+                <div class="sj-step-title">Resolution &amp; CTA <span class="sj-time">(0:40–0:60)</span></div>
+                <div class="sj-step-text">Part 3 — The result: the accepted offer, the price, the timeline. Save all 3 frames as a Highlight titled 'Client Wins.' This becomes your most powerful BOFU asset — and it compounds every time you add a new one.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Idea 10 -->
+      <div class="idea-card bofu fade-up fade-up-delay-5">
+        <div class="idea-card-header">
+          <div class="idea-card-title">The Direct Lead Capture Reel</div>
+          <div class="idea-badges">
+            <span class="badge badge-bofu">BOFU</span>
+            <span class="badge badge-format">Reel</span>
+          </div>
+        </div>
+        <div class="idea-hook">"Thinking about buying or selling in Columbus this year? DM me 'READY' — I'll send you my free Columbus Market Guide."</div>
+        <div class="idea-meta-grid">
+          <div>
+            <div class="idea-meta-label">Why It Works</div>
+            <div class="idea-meta-text">Low-friction lead capture with a clear value exchange. The DM keyword trigger creates a warm conversation without a cold pitch — and filters for people already in buying or selling mode.</div>
+          </div>
+          <div>
+            <div class="idea-meta-label">Execution Note</div>
+            <div class="idea-meta-text">Talking head, 15–20 seconds, confident and direct. Set up an auto-DM responder for the keyword. Post quarterly and whenever market conditions shift.</div>
+          </div>
+        
+        </div>
+        <div class="sj-framework">
+          <div class="sj-framework-label">Sammy Jones Script Framework</div>
+          <div class="sj-steps">
+            <div class="sj-step">
+              <div class="sj-step-num">1</div>
+              <div class="sj-step-content">
+                <div class="sj-step-title">Hook <span class="sj-time">(0:00–0:03)</span></div>
+                <div class="sj-step-text">"Thinking about buying or selling in [city] this year? Watch this." 3 seconds, direct to camera, confident.</div>
+              </div>
+            </div>
+            <div class="sj-step">
+              <div class="sj-step-num">2</div>
+              <div class="sj-step-content">
+                <div class="sj-step-title">Context &amp; Conflict <span class="sj-time">(0:03–0:20)</span></div>
+                <div class="sj-step-text">Acknowledge the hesitation: most people thinking about real estate are in research mode. They're not ready to call an agent. They're gathering information. That's fine — and this is for them.</div>
+              </div>
+            </div>
+            <div class="sj-step">
+              <div class="sj-step-num">3</div>
+              <div class="sj-step-content">
+                <div class="sj-step-title">Turning Point <span class="sj-time">(0:20–0:40)</span></div>
+                <div class="sj-step-text">Offer the value exchange: "I put together a free [City] Market Guide — it covers what's happening with inventory, prices, and what buyers and sellers need to know right now. It's yours, no strings attached."</div>
+              </div>
+            </div>
+            <div class="sj-step">
+              <div class="sj-step-num">4</div>
+              <div class="sj-step-content">
+                <div class="sj-step-title">Resolution &amp; CTA <span class="sj-time">(0:40–0:60)</span></div>
+                <div class="sj-step-text">"DM me 'READY' and I'll send it over right now." Set up an auto-DM responder. Post this quarterly and whenever market conditions shift significantly. This is your highest-converting lead gen format.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     CTA SYSTEM
+═══════════════════════════════════════════ -->
+<section id="cta-system">
+  <div class="container">
+    <span class="section-eyebrow fade-up">Chapter 05</span>
+    <h2 class="section-title fade-up fade-up-delay-1">The CTA System</h2>
+    <div class="rule fade-up fade-up-delay-1"></div>
+    <p class="section-subtitle fade-up fade-up-delay-2">CTAs are not afterthoughts. They are the conversion infrastructure that turns attention into measurable outcomes. Every post needs one — and it needs to be the right one for the funnel stage.</p>
+
+    <div class="cta-philosophy fade-up">
+      <div class="cta-philosophy-quote">
+        "Every piece of content must have a clear, intentional, on-strategy call to action. The CTA is what separates content that builds your audience from content that builds your business."
+      </div>
+      <div class="cta-philosophy-points">
+        <div class="cta-philosophy-point">
+          <div class="cta-point-icon">🎯</div>
+          <div class="cta-point-text"><strong>Funnel stage alignment is non-negotiable.</strong> A TOFU post with a "Book a call" CTA will kill your engagement. Match the ask to the relationship.</div>
+        </div>
+        <div class="cta-philosophy-point">
+          <div class="cta-point-icon">🔗</div>
+          <div class="cta-point-text"><strong>One link, one destination.</strong> Your link in bio must always point to a single, specific destination that matches your primary CTA. No Linktree. No homepage.</div>
+        </div>
+        <div class="cta-philosophy-point">
+          <div class="cta-point-icon">📣</div>
+          <div class="cta-point-text"><strong>The Follow CTA must earn its ask.</strong> Never use a generic "Follow for more." State the specific, tangible value the viewer gets in return.</div>
+        </div>
+        <div class="cta-philosophy-point">
+          <div class="cta-point-icon">✂️</div>
+          <div class="cta-point-text"><strong>Direct and specific beats clever.</strong> Name the destination. Name the outcome. "DM me 'BUYER' for my free first-time buyer checklist" outperforms "DM me for more info" every time.</div>
+        </div>
+      </div>
+    </div>
+
+    <h3 style="font-family: 'Playfair Display', serif; font-size: 24px; font-weight: 700; color: var(--white); margin: 48px 0 24px;" class="fade-up">CTA Types by Funnel Stage</h3>
+
+    <div class="cta-types-grid">
+      <div class="cta-type-card fade-up">
+        <div class="cta-type-stage tofu">TOFU — Awareness</div>
+        <div class="cta-type-name">Save CTA</div>
+        <div class="cta-type-desc">Ask viewers to save the post for future reference. Saves are the highest-value engagement signal on Instagram — they tell the algorithm your content is worth keeping.</div>
+        <div class="cta-example-box">
+          <div class="cta-example-label">Example Copy</div>
+          <div class="cta-example-text">"Save this before your next home search — you'll want it when you're ready to make an offer."</div>
+        </div>
+      </div>
+
+      <div class="cta-type-card fade-up fade-up-delay-1">
+        <div class="cta-type-stage tofu">TOFU — Awareness</div>
+        <div class="cta-type-name">Follow CTA</div>
+        <div class="cta-type-desc">Earn the follow by stating the specific value. Generic "follow for more" is dead. Tell them exactly what they get by following you.</div>
+        <div class="cta-example-box">
+          <div class="cta-example-label">Example Copy</div>
+          <div class="cta-example-text">"Follow me for weekly Columbus market updates, neighborhood guides, and real talk about buying and selling."</div>
+        </div>
+      </div>
+
+      <div class="cta-type-card fade-up fade-up-delay-2">
+        <div class="cta-type-stage mofu">MOFU — Education</div>
+        <div class="cta-type-name">Question CTA</div>
+        <div class="cta-type-desc">Ask a specific question that invites your IVP to self-identify. Comments signal intent and surface warm leads without any direct selling.</div>
+        <div class="cta-example-box">
+          <div class="cta-example-label">Example Copy</div>
+          <div class="cta-example-text">"Are you a first-time buyer or a move-up seller? Drop it in the comments — I'll send you the guide that's most relevant to you."</div>
+        </div>
+      </div>
+
+      <div class="cta-type-card fade-up fade-up-delay-3">
+        <div class="cta-type-stage mofu">MOFU — Education</div>
+        <div class="cta-type-name">Lead Magnet CTA</div>
+        <div class="cta-type-desc">Offer a high-value, niche-specific resource in exchange for a DM or email. The best lead magnets solve a specific problem your IVP is already searching for.</div>
+        <div class="cta-example-box">
+          <div class="cta-example-label">Example Copy</div>
+          <div class="cta-example-text">"DM me 'GUIDE' and I'll send you my free Columbus First-Time Buyer Checklist — 12 steps before you make an offer."</div>
+        </div>
+      </div>
+
+      <div class="cta-type-card fade-up fade-up-delay-4">
+        <div class="cta-type-stage bofu">BOFU — Conversion</div>
+        <div class="cta-type-name">Book / Inquire CTA</div>
+        <div class="cta-type-desc">Direct invitation to start a conversation. Use only on BOFU content where the viewer has already seen enough to be in decision mode. Low friction, high intent.</div>
+        <div class="cta-example-box">
+          <div class="cta-example-label">Example Copy</div>
+          <div class="cta-example-text">"Thinking about selling this year? Tap the link in my bio to book a free 20-minute strategy call — no pressure, just a conversation."</div>
+        </div>
+      </div>
+
+      <div class="cta-type-card fade-up fade-up-delay-5">
+        <div class="cta-type-stage bofu">BOFU — Conversion</div>
+        <div class="cta-type-name">DM Keyword CTA</div>
+        <div class="cta-type-desc">Ask viewers to DM a specific keyword to receive a resource or start a conversation. The keyword triggers a warm conversation without a cold pitch — and filters for high-intent leads.</div>
+        <div class="cta-example-box">
+          <div class="cta-example-label">Example Copy</div>
+          <div class="cta-example-text">"DM me 'READY' and I'll send you my free Columbus Market Guide — everything you need to know before buying or selling in 2026."</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="link-in-bio-section fade-up">
+      <div class="lib-title">The One Link, One Destination Rule</div>
+      <div class="lib-subtitle">Your link in bio is your most valuable real estate on Instagram. Most agents waste it. Here's how to use it correctly.</div>
+
+      <div class="lib-rule">
+        <div class="lib-rule-icon bad">✗</div>
+        <div class="lib-rule-text"><strong>Don't use Linktree or multi-link pages.</strong> Every additional option you give a viewer reduces the probability they click any of them. Decision fatigue kills conversion.</div>
+      </div>
+      <div class="lib-rule">
+        <div class="lib-rule-icon bad">✗</div>
+        <div class="lib-rule-text"><strong>Don't link to your homepage.</strong> A homepage is a starting point, not a destination. Visitors who land on a homepage have to figure out what to do next — most won't.</div>
+      </div>
+      <div class="lib-rule">
+        <div class="lib-rule-icon good">✓</div>
+        <div class="lib-rule-text"><strong>Link to one specific destination that matches your primary CTA for the month.</strong> If your CTA is "DM me for my market guide," your link should go to a page where they can download it directly.</div>
+      </div>
+      <div class="lib-rule">
+        <div class="lib-rule-icon good">✓</div>
+        <div class="lib-rule-text"><strong>Change your link monthly.</strong> Align it with your primary business goal for the month — lead gen, bookings, or a specific listing. Update your bio copy to match.</div>
+      </div>
+      <div class="lib-rule">
+        <div class="lib-rule-icon good">✓</div>
+        <div class="lib-rule-text"><strong>Track link taps.</strong> Link taps are the most important conversion metric on Instagram. They tell you how many people took action — not just how many people watched.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     LEAD MAGNETS
+═══════════════════════════════════════════ -->
+<section id="lead-magnets">
+  <div class="container">
+    <span class="section-eyebrow fade-up">Chapter 06</span>
+    <h2 class="section-title fade-up fade-up-delay-1">Lead Magnets</h2>
+    <div class="rule fade-up fade-up-delay-1"></div>
+    <p class="section-subtitle fade-up fade-up-delay-2">The best lead magnets don't feel like marketing — they feel like the most useful thing someone has ever gotten for free. Here's how to build one that actually converts followers into consultations.</p>
+
+    <div class="lm-intro fade-up">
+      <div class="lm-intro-text">
+        <p style="margin-bottom: 16px;">A lead magnet is not a PDF you made in Canva. It's a <strong>bridge between a stranger's attention and a sales conversation.</strong></p>
+        <p style="margin-bottom: 16px;">The best lead magnets for real estate agents solve a specific, high-stakes problem that your IVP is already searching for — before they're ready to call an agent. They provide real value, build trust, and end with a clear, natural next step.</p>
+        <p>Generic lead magnets ("10 Home Buying Tips") get downloaded and forgotten. <strong>Specific lead magnets</strong> ("The Columbus First-Time Buyer Checklist: 12 Steps Before You Make an Offer") get saved, shared, and acted on.</p>
+      </div>
+      <div class="lm-stat-stack">
+        <div class="lm-stat">
+          <div class="lm-stat-num">3x</div>
+          <div class="lm-stat-text">Higher conversion rate for niche-specific lead magnets vs. generic ones</div>
+        </div>
+        <div class="lm-stat">
+          <div class="lm-stat-num">67%</div>
+          <div class="lm-stat-text">Of buyers and sellers research an agent online before reaching out</div>
+        </div>
+        <div class="lm-stat">
+          <div class="lm-stat-num">1 link</div>
+          <div class="lm-stat-text">One destination in bio = higher click-through than multi-link pages</div>
+        </div>
+      </div>
+    </div>
+
+    <h3 style="font-family: 'Playfair Display', serif; font-size: 24px; font-weight: 700; color: var(--white); margin-bottom: 24px;" class="fade-up">Lead Magnet Ideas for Real Estate</h3>
+
+    <div class="lm-grid">
+      <div class="lm-card fade-up">
+        <span class="lm-card-icon">📋</span>
+        <div class="lm-card-type">Checklist</div>
+        <div class="lm-card-title">The First-Time Buyer Checklist</div>
+        <div class="lm-card-desc">12 steps every first-time buyer should take before making an offer — from getting pre-approved to understanding escalation clauses. Specific, actionable, and solves the #1 fear of first-time buyers: not knowing what they don't know.</div>
+        <div class="lm-card-why">
+          <div class="lm-card-why-label">Why It Converts</div>
+          <div class="lm-card-why-text">First-time buyers are the most research-hungry segment in real estate. They save and share this. Every share is a warm referral.</div>
+        </div>
+      </div>
+
+      <div class="lm-card fade-up fade-up-delay-1">
+        <span class="lm-card-icon">📊</span>
+        <div class="lm-card-type">Market Report</div>
+        <div class="lm-card-title">The Columbus Market Guide</div>
+        <div class="lm-card-desc">A monthly snapshot of the Columbus market — median prices, days on market, inventory levels, and your take on what it means for buyers and sellers right now. Updated monthly and promoted with a DM keyword CTA.</div>
+        <div class="lm-card-why">
+          <div class="lm-card-why-label">Why It Converts</div>
+          <div class="lm-card-why-text">People who download a market guide are in active research mode. They're 3–6 months from a transaction. This puts you in their inbox before they call anyone.</div>
+        </div>
+      </div>
+
+      <div class="lm-card fade-up fade-up-delay-2">
+        <span class="lm-card-icon">🏠</span>
+        <div class="lm-card-type">Seller Guide</div>
+        <div class="lm-card-title">The Pre-Listing Prep Guide</div>
+        <div class="lm-card-desc">Everything a seller needs to do in the 30 days before listing — repairs, staging, photography, pricing strategy, and timing. Positions you as the agent who maximizes their sale price, not just the one who puts a sign in the yard.</div>
+        <div class="lm-card-why">
+          <div class="lm-card-why-label">Why It Converts</div>
+          <div class="lm-card-why-text">Sellers who download this are planning to list. You're now their trusted resource before they've interviewed a single agent. That's an enormous competitive advantage.</div>
+        </div>
+      </div>
+
+      <div class="lm-card fade-up fade-up-delay-3">
+        <span class="lm-card-icon">🧮</span>
+        <div class="lm-card-type">Interactive Quiz</div>
+        <div class="lm-card-title">The "Am I Ready to Buy?" Quiz</div>
+        <div class="lm-card-desc">A 5-question quiz that helps potential buyers assess their readiness — credit score, down payment, timeline, and market knowledge. Ends with a personalized result and a CTA to book a free consultation.</div>
+        <div class="lm-card-why">
+          <div class="lm-card-why-label">Why It Converts</div>
+          <div class="lm-card-why-text">Quizzes have the highest completion rate of any lead magnet format. They feel like a tool, not marketing. And they pre-qualify leads before the first conversation.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="lm-funnel-visual fade-up">
+      <div class="lm-funnel-title">The Lead Magnet Funnel</div>
+      <div class="lm-funnel-subtitle">How a lead magnet turns a stranger into a consultation</div>
+      <div class="lm-funnel-steps">
+        <div class="lm-funnel-step">
+          <div class="lm-funnel-step-num">1</div>
+          <div class="lm-funnel-step-label">Content</div>
+          <div class="lm-funnel-step-desc">TOFU Reel or Carousel drives awareness</div>
+        </div>
+        <div class="lm-funnel-arrow">→</div>
+        <div class="lm-funnel-step">
+          <div class="lm-funnel-step-num">2</div>
+          <div class="lm-funnel-step-label">CTA</div>
+          <div class="lm-funnel-step-desc">"DM me 'GUIDE' for the free checklist"</div>
+        </div>
+        <div class="lm-funnel-arrow">→</div>
+        <div class="lm-funnel-step">
+          <div class="lm-funnel-step-num">3</div>
+          <div class="lm-funnel-step-label">Lead Magnet</div>
+          <div class="lm-funnel-step-desc">High-value resource delivered via DM or email</div>
+        </div>
+        <div class="lm-funnel-arrow">→</div>
+        <div class="lm-funnel-step">
+          <div class="lm-funnel-step-num">4</div>
+          <div class="lm-funnel-step-label">Nurture</div>
+          <div class="lm-funnel-step-desc">Follow-up email sequence or DM conversation</div>
+        </div>
+        <div class="lm-funnel-arrow">→</div>
+        <div class="lm-funnel-step">
+          <div class="lm-funnel-step-num">5</div>
+          <div class="lm-funnel-step-label">Consultation</div>
+          <div class="lm-funnel-step-desc">Warm lead books a call — already trusts you</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     REAL RESULTS
+═══════════════════════════════════════════ -->
+<section id="results">
+  <div class="container">
+    <span class="section-eyebrow fade-up">Chapter 07</span>
+    <h2 class="section-title fade-up fade-up-delay-1">Real Results</h2>
+    <div class="rule fade-up fade-up-delay-1"></div>
+    <p class="section-subtitle fade-up fade-up-delay-2">Three anonymized case studies from our current client roster. Different niches, same system — because the content infrastructure that builds trust and drives action works the same way across every service-based business.</p>
+
+    <div class="results-grid">
+      <div class="result-card fade-up">
+        <div class="result-card-tag">Case Study 01 — Local Aesthetics & Wellness · Signature Package</div>
+        <div class="result-card-challenge">Starting point: No defined social strategy, inconsistent posting, no IVP. Strong visual assets with no system to turn them into audience growth or booked appointments.</div>
+        <div class="result-metrics">
+          <div class="result-metric">
+            <div class="result-metric-value">96%+</div>
+            <div class="result-metric-label">Engagement Rate<br>(Last 30 Days)</div>
+          </div>
+          <div class="result-metric">
+            <div class="result-metric-value">77%</div>
+            <div class="result-metric-label">Reach Increase<br>(First 6 Months)</div>
+          </div>
+          <div class="result-metric">
+            <div class="result-metric-value">2.8K+</div>
+            <div class="result-metric-label">Avg. Reel Views<br>Per Post</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="result-card fade-up fade-up-delay-1">
+        <div class="result-card-tag">Case Study 02 — Boutique Wellness Brand · Signature Package</div>
+        <div class="result-card-challenge">Starting point: No content creation capacity, no defined social strategy. Strong product, zero social infrastructure. Needed a system, not just content.</div>
+        <div class="result-metrics">
+          <div class="result-metric">
+            <div class="result-metric-value">71%+</div>
+            <div class="result-metric-label">Total Views Growth<br>(Last 90 Days)</div>
+          </div>
+          <div class="result-metric">
+            <div class="result-metric-value">70%+</div>
+            <div class="result-metric-label">Avg. Reach Growth<br>(Last 90 Days)</div>
+          </div>
+          <div class="result-metric">
+            <div class="result-metric-value">33%+</div>
+            <div class="result-metric-label">Total Interactions<br>(Last 90 Days)</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="result-card fade-up fade-up-delay-2">
+        <div class="result-card-tag">Case Study 03 — Fitness Shoes & Apparel · Signature Package</div>
+        <div class="result-card-challenge">Starting point: No social media capacity, no defined strategy
+. Needed a complete system to build brand presence and drive online-to-offline traffic.</div>
+        <div class="result-metrics">
+          <div class="result-metric">
+            <div class="result-metric-value">209%</div>
+            <div class="result-metric-label">Reach Growth<br>(First 90 Days)</div>
+          </div>
+          <div class="result-metric">
+            <div class="result-metric-value">4x</div>
+            <div class="result-metric-label">Follower Growth<br>Rate Increase</div>
+          </div>
+          <div class="result-metric">
+            <div class="result-metric-value">Top 5%</div>
+            <div class="result-metric-label">Engagement Rate<br>vs. Industry Avg.</div>
+          </div>
+        </div>
+    </div>
+
+    <div class="bridge-callout fade-up">
+      <div class="bridge-callout-label">The Through Line</div>
+      <div class="bridge-callout-quote">
+        "Your buyers and sellers are already on Instagram. They're watching content, saving posts, and researching agents — often for months before they reach out. The question isn't whether social media works for real estate. The question is whether your content is the one they find when they're ready to act."
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     PRICING
+═══════════════════════════════════════════ -->
+<section id="pricing">
+  <div class="container">
+    <span class="section-eyebrow fade-up">Chapter 08</span>
+    <h2 class="section-title fade-up fade-up-delay-1">Packages &amp; Pricing</h2>
+    <div class="rule fade-up fade-up-delay-1"></div>
+    <p class="section-subtitle fade-up fade-up-delay-2">Four ways to work with Scroll Media — from a $87 digital playbook to a full-service retainer. Every path is built to move the needle. Most real estate agents start with the Blueprint and move to Signature within 90 days.</p>
+
+    <div class="pricing-roi-bar fade-up">
+      <div class="pricing-roi-icon">💡</div>
+      <div class="pricing-roi-text"><strong>The ROI math is simple:</strong> One closed deal from a social-sourced lead pays for 6+ months of a full-service retainer. The question isn't whether it's worth it — it's whether you can afford to keep leaving those leads to agents who are investing in their presence.</div>
+    </div>
+
+    <!-- Entry Points Row -->
+    <div class="pricing-entry-label fade-up">Entry Points — Start Here</div>
+    <div class="pricing-grid pricing-grid-3 fade-up">
+
+      <!-- A2A Playbook -->
+      <div class="pricing-card pricing-entry">
+        <div class="pricing-card-label">Digital Playbook</div>
+        <div class="pricing-card-name">Audience-to-Action Playbook</div>
+        <div class="pricing-card-desc">The complete system for converting passive Instagram followers into qualified leads — without paid ads, without posting more.</div>
+        <div class="pricing-price">$87</div>
+        <div class="pricing-period">One-time · Instant digital access</div>
+        <ul class="pricing-features">
+          <li>5-Part Interactive Playbook</li>
+          <li>71 Plug-and-Play CTA Scripts</li>
+          <li>The 3-Message DM-to-Booking Script</li>
+          <li>Funnel-Aware CTA Framework (TOFU/MOFU/BOFU)</li>
+          <li>3-Layer CTA Stack — bio link funnel system</li>
+          <li>30-Day Implementation Challenge</li>
+          <li>Niche Cheatsheet — 9 service business categories</li>
+          <li>Scroll Media Formats Library (bonus)</li>
+        </ul>
+        <div class="pricing-best-for">Best for agents who want a proven CTA and conversion system to implement immediately — without hiring an agency.</div>
+        <a href="https://calendly.com/scrollmedia/discovery" target="_blank" class="pricing-cta-link">Get Instant Access →</a>
+      </div>
+
+      <!-- Blueprint -->
+      <div class="pricing-card pricing-entry">
+        <div class="pricing-card-label">Done-With-You</div>
+        <div class="pricing-card-name">Instagram Growth Blueprint</div>
+        <div class="pricing-card-desc">A complete, 90-day Instagram strategy built for your business in 3 weeks. You get the plan. You execute it — or use it as the foundation for Signature.</div>
+        <div class="pricing-price">$997</div>
+        <div class="pricing-period">One-time · Credited toward Signature</div>
+        <ul class="pricing-features">
+          <li>60-min onboarding strategy call</li>
+          <li>Full brand &amp; competitor analysis</li>
+          <li>Ideal Viewer Profile (IVP) development</li>
+          <li>Content pillar strategy (TOFU/MOFU/BOFU)</li>
+          <li>Custom keyword bank &amp; social SEO setup</li>
+          <li>Profile optimization plan</li>
+          <li>Complete 90-day strategy document</li>
+          <li>Week-by-week 90-day content calendar</li>
+        </ul>
+        <div class="pricing-best-for">Best for agents who want a clear, data-driven strategy they can execute — or use as the foundation for a full-service retainer.</div>
+        <div class="pricing-credit-note"><strong style="color: var(--lime);">$997 fully credited</strong> toward your first month of Signature.</div>
+        <a href="https://calendly.com/scrollmedia/discovery" target="_blank" class="pricing-cta-link">Book a Discovery Call →</a>
+      </div>
+
+      <!-- Content Day -->
+      <div class="pricing-card pricing-entry">
+        <div class="pricing-card-label">One-Time</div>
+        <div class="pricing-card-name">Content Day</div>
+        <div class="pricing-card-desc">A focused, strategy-led shoot that captures high-quality photo and video assets in a single session. Delivered in 2–3 weeks.</div>
+        <div class="pricing-price">$1,450</div>
+        <div class="pricing-period">Flat one-time fee · Credited toward Signature</div>
+        <ul class="pricing-features">
+          <li>Creative planning &amp; shot list</li>
+          <li>On-site content shoot (photo + video)</li>
+          <li>2–3 fully edited creative pieces</li>
+          <li>Raw photo &amp; video assets (b-roll)</li>
+          <li>Brand-aligned visual direction</li>
+          <li>Full asset delivery within 2–3 weeks</li>
+        </ul>
+        <div class="pricing-best-for">Best for agents launching a new listing campaign, rebranding, or needing a fresh batch of on-brand content without a long-term commitment.</div>
+        <div class="pricing-credit-note"><strong style="color: var(--lime);">$1,450 credited</strong> toward your first month of Signature.</div>
+        <a href="https://calendly.com/scrollmedia/discovery" target="_blank" class="pricing-cta-link">Book a Discovery Call →</a>
+      </div>
+
+    </div>
+
+    <!-- Signature Package — Hero -->
+    <div class="signature-hero fade-up">
+      <div class="signature-hero-badge">⭐ Our Gold Standard — Most Popular</div>
+      <div class="signature-hero-header">
+        <div>
+          <div class="signature-hero-label">Full-Service Done-For-You</div>
+          <div class="signature-hero-title">Signature Package</div>
+          <div class="signature-hero-desc">Full-service, done-for-you Instagram management. We handle strategy, content creation, execution, and reporting. You focus on your business — we build the system that compounds over time.</div>
+        </div>
+        <div class="signature-hero-price-block">
+          <div class="signature-hero-price">$2,975 – $3,250</div>
+          <div class="signature-hero-period">per month</div>
+          <a href="https://calendly.com/scrollmedia/discovery" target="_blank" class="btn-primary" style="margin-top:16px;display:inline-flex;">Book a Discovery Call →</a>
+        </div>
+      </div>
+
+      <div class="signature-included-grid">
+        <div class="signature-included-item">Full strategy foundation &amp; IVP</div>
+        <div class="signature-included-item">Monthly on-location content shoots</div>
+        <div class="signature-included-item">Reels scripting, filming &amp; editing</div>
+        <div class="signature-included-item">Carousel design &amp; copywriting</div>
+        <div class="signature-included-item">Story sequences &amp; interactive content</div>
+        <div class="signature-included-item">Scheduled posting at optimal times</div>
+        <div class="signature-included-item">Community management</div>
+        <div class="signature-included-item">Monthly KPI dashboard &amp; reporting</div>
+        <div class="signature-included-item">Monthly strategy call with your account lead</div>
+        <div class="signature-included-item">Link-in-bio funnel management</div>
+      </div>
+
+      <div class="signature-tiers">
+        <div class="signature-tier">
+          <div class="signature-tier-name">Essential</div>
+          <div class="signature-tier-price">$2,975<span>/mo</span></div>
+          <div class="signature-tier-details">2 feed posts/week · 3 story days/week · Content shoots every 3–4 weeks</div>
+        </div>
+        <div class="signature-tier-divider">→</div>
+        <div class="signature-tier featured-tier">
+          <div class="signature-tier-name">Growth</div>
+          <div class="signature-tier-price">$3,250<span>/mo</span></div>
+          <div class="signature-tier-details">3 feed posts/week · 5 story days/week · Bi-weekly shoots · Quarterly strategy review</div>
+        </div>
+      </div>
+
+      <div class="signature-credit-callout">
+        <strong>Already purchased the Blueprint or Content Day?</strong> Your investment is fully credited toward your first month of Signature. It's designed as a low-risk entry point into working with Scroll Media.
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     NEXT STEPS
+═══════════════════════════════════════════ -->
+<section id="next-steps">
+  <div class="container">
+    <span class="section-eyebrow fade-up">Chapter 09</span>
+    <h2 class="section-title fade-up fade-up-delay-1">Next Steps</h2>
+    <div class="rule fade-up fade-up-delay-1"></div>
+    <p class="section-subtitle fade-up fade-up-delay-2">If this guide made you think differently about what your Instagram could be doing for your business — here's what happens when you decide to move forward.</p>
+
+    <div class="steps-timeline">
+      <div class="step-item fade-up">
+        <div class="step-num">1</div>
+        <div class="step-content">
+          <div class="step-title">Reach Out</div>
+          <div class="step-desc">Send us a message — email, DM, or phone. No forms, no sales funnel. A real conversation with a real strategist about your business, your goals, and whether we're the right fit.</div>
+        </div>
+      </div>
+      <div class="step-item fade-up fade-up-delay-1">
+        <div class="step-num">2</div>
+        <div class="step-content">
+          <div class="step-title">Discovery Call (30 Minutes)</div>
+          <div class="step-desc">We audit your current Instagram presence, understand your market and IVP, and map out what a content system built around your specific goals would look like. You'll leave with clarity regardless of whether we work together.</div>
+        </div>
+      </div>
+      <div class="step-item fade-up fade-up-delay-2">
+        <div class="step-num">3</div>
+        <div class="step-content">
+          <div class="step-title">Strategy Month Begins</div>
+          <div class="step-desc">We build the entire foundation — IVP, content pillars, keyword bank, competitor analysis, and your 30-day roadmap. You review and approve everything before a single post goes live.</div>
+        </div>
+      </div>
+      <div class="step-item fade-up fade-up-delay-3">
+        <div class="step-num">4</div>
+        <div class="step-content">
+          <div class="step-title">Execution Begins</div>
+          <div class="step-desc">Your dedicated account manager takes over day-to-day execution. Content shoots, creation, copywriting, posting, and community management — all done for you, all on strategy.</div>
+        </div>
+      </div>
+      <div class="step-item fade-up fade-up-delay-4">
+        <div class="step-num">5</div>
+        <div class="step-content">
+          <div class="step-title">Monthly Reporting &amp; Refinement</div>
+          <div class="step-desc">Every month you receive a full performance report with reach, engagement, follower growth, and strategic recommendations for the next 30 days. The system compounds over time — and you can see it happening.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="cta-final fade-up">
+      <div class="cta-final-label">Ready to Build Something That Actually Works?</div>
+      <h2 class="cta-final-title">Let's turn your Instagram into a lead generation system.</h2>
+      <p class="cta-final-text">Most real estate agents will read this guide and do nothing. The ones who act will have a significant advantage over every agent in their market who is still just posting listings and hoping for the best.</p>
+      <a href="https://calendly.com/scrollmedia/discovery" class="btn-primary" style="display: inline-flex; margin: 0 auto;">Book a Free Discovery Call →</a>
+      <div class="cta-final-contact">
+        <div class="cta-final-contact-item">Email: <span>hello@scrollmedia.co</span></div>
+        <div class="cta-final-contact-item">Instagram: <span>@scrollmedia</span></div>
+        <div class="cta-final-contact-item">Web: <span>scrollmedia.co</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-logo">
+        <img src="data:image/png;base64,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" alt="Scroll Media" style="height:32px;width:auto;display:block;filter:brightness(0) invert(1);" />
+      </div>
+      <div class="footer-copy">© 2026 Scroll Media. All rights reserved.</div>
+      <a href="https://scrollmedia.co" class="footer-link">scrollmedia.co</a>
+    </div>
+  </div>
+</footer>
+
+<!-- ═══════════════════════════════════════════
+     JAVASCRIPT
+═══════════════════════════════════════════ -->
+<script>
+// Progress bar
+window.addEventListener('scroll', () => {
+  const scrollTop = window.scrollY;
+  const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+  const progress = (scrollTop / docHeight) * 100;
+  document.getElementById('progress-bar').style.width = progress + '%';
+});
+
+// Intersection Observer for fade-up animations
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+// Content ideas filter
+function filterIdeas(stage, btn) {
+  // Update tab states
+  document.querySelectorAll('.funnel-tab').forEach(t => {
+    t.classList.remove('active-tofu', 'active-mofu', 'active-bofu');
+  });
+
+  if (stage === 'all') {
+    btn.classList.add('active-tofu');
+  } else if (stage === 'tofu') {
+    btn.classList.add('active-tofu');
+  } else if (stage === 'mofu') {
+    btn.classList.add('active-mofu');
+  } else if (stage === 'bofu') {
+    btn.classList.add('active-bofu');
+  }
+
+  // Filter cards
+  const cards = document.querySelectorAll('.idea-card');
+  cards.forEach(card => {
+    if (stage === 'all') {
+      card.style.display = 'block';
+      card.style.opacity = '1';
+    } else if (card.classList.contains(stage)) {
+      card.style.display = 'block';
+      card.style.opacity = '1';
+    } else {
+      card.style.opacity = '0.2';
+      card.style.pointerEvents = 'none';
+    }
+  });
+}
+
+// Smooth nav active state
+const sections = document.querySelectorAll('section[id], div[id="toc"]');
+const navLinks = document.querySelectorAll('.nav-links a');
+
+window.addEventListener('scroll', () => {
+  let current = '';
+  sections.forEach(section => {
+    const sectionTop = section.offsetTop - 100;
+    if (window.scrollY >= sectionTop) {
+      current = section.getAttribute('id');
+    }
+  });
+
+  navLinks.forEach(link => {
+    link.style.color = '';
+    if (link.getAttribute('href') === '#' + current) {
+      link.style.color = 'var(--lime)';
+    }
+  });
+});
+
+// Animate TAM keywords on hover
+document.querySelectorAll('.tam-keyword').forEach(kw => {
+  kw.addEventListener('mouseenter', () => {
+    kw.style.background = 'var(--lime-dim)';
+    kw.style.borderColor = 'var(--lime-border)';
+    kw.style.color = 'var(--lime)';
+  });
+  kw.addEventListener('mouseleave', () => {
+    kw.style.background = '';
+    kw.style.borderColor = '';
+    kw.style.color = '';
+  });
+});
+</script>
+
+</body>
+</html>
