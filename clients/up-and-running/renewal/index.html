@@ -328,6 +328,46 @@
   .footer-brand .scroll-mark { width: 22px; height: 22px; background: var(--lime); border-radius: 5px; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 900; color: var(--navy); }
   .footer-note { font-size: 11px; color: rgba(255,255,255,0.25); }
 
+  /* ── BEFORE vs WITH SCROLL COMPARISON ── */
+  .compare-intro { background: var(--white); border: 1px solid var(--grey-200); border-radius: var(--radius); padding: 24px 28px; margin-bottom: 28px; }
+  .compare-intro p { font-size: 14px; color: var(--text-secondary); line-height: 1.75; }
+  .compare-intro p strong { color: var(--text-primary); }
+  .compare-period-labels { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 0; margin-bottom: 0; }
+  .compare-period-label { padding: 10px 16px; font-size: 10px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; text-align: center; }
+  .compare-period-label.before { background: var(--grey-100); color: var(--grey-400); }
+  .compare-period-label.after { background: rgba(200,241,53,0.12); color: var(--lime-dim); }
+  .compare-period-label.change { background: var(--grey-100); color: var(--grey-400); }
+  .compare-period-label.metric { text-align: left; background: var(--grey-100); color: var(--grey-400); }
+  .compare-table { background: var(--white); border: 1px solid var(--grey-200); border-radius: var(--radius); overflow: hidden; margin-bottom: 20px; overflow-x: auto; }
+  .compare-table-inner { width: 100%; border-collapse: collapse; min-width: 520px; }
+  .compare-table-inner thead tr { background: var(--grey-100); }
+  .compare-table-inner thead th { padding: 11px 16px; font-size: 10px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--grey-400); text-align: center; }
+  .compare-table-inner thead th:first-child { text-align: left; }
+  .compare-table-inner thead th.th-after { background: rgba(200,241,53,0.1); color: var(--lime-dim); }
+  .compare-table-inner tbody tr { border-top: 1px solid var(--grey-100); }
+  .compare-table-inner tbody tr:hover { background: var(--off-white); }
+  .compare-table-inner tbody tr.section-row td { background: var(--grey-100); font-size: 10px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--grey-400); padding: 7px 16px; }
+  .compare-table-inner td { padding: 11px 16px; font-size: 13px; color: var(--text-secondary); text-align: center; }
+  .compare-table-inner td:first-child { text-align: left; font-weight: 600; color: var(--text-primary); }
+  .compare-table-inner td.td-after { font-weight: 700; color: var(--text-primary); background: rgba(200,241,53,0.04); }
+  .compare-badge { display: inline-flex; align-items: center; gap: 4px; font-size: 11px; font-weight: 700; padding: 3px 8px; border-radius: 20px; }
+  .compare-badge.up { background: rgba(34,197,94,0.1); color: #16a34a; }
+  .compare-badge.neutral { background: rgba(59,130,246,0.1); color: #2563eb; }
+  .compare-callouts { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-bottom: 28px; }
+  .compare-callout { background: var(--white); border: 1px solid var(--grey-200); border-radius: var(--radius); padding: 20px; text-align: center; position: relative; overflow: hidden; }
+  .compare-callout::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--lime); }
+  .compare-callout .cc-val { font-size: 26px; font-weight: 800; color: var(--lime-dim); letter-spacing: -0.02em; line-height: 1; margin-bottom: 4px; }
+  .compare-callout .cc-label { font-size: 12px; font-weight: 600; color: var(--text-primary); margin-bottom: 5px; }
+  .compare-callout .cc-desc { font-size: 12px; color: var(--text-secondary); line-height: 1.5; }
+  .compare-pivot { background: var(--navy); border: 1px solid rgba(200,241,53,0.2); border-radius: var(--radius); padding: 28px 32px; margin-top: 8px; }
+  .compare-pivot h3 { font-size: 16px; font-weight: 800; color: var(--white); margin-bottom: 10px; }
+  .compare-pivot p { font-size: 14px; color: rgba(255,255,255,0.6); line-height: 1.75; margin-bottom: 16px; }
+  .compare-pivot p strong { color: var(--lime); }
+  .compare-pivot-items { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 16px; }
+  .compare-pivot-item { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08); border-radius: 8px; padding: 14px 16px; }
+  .compare-pivot-item .cpi-label { font-size: 10px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--lime); opacity: 0.7; margin-bottom: 5px; }
+  .compare-pivot-item .cpi-text { font-size: 12px; color: rgba(255,255,255,0.65); line-height: 1.5; }
+
   /* ── RESPONSIVE ── */
   @media (max-width: 768px) {
     .top-nav { padding: 12px 16px; }
@@ -353,6 +393,8 @@
     .footer { flex-direction: column; gap: 10px; text-align: center; padding: 20px; }
     .wins-banner { flex-direction: column; text-align: center; }
     .roi-assumptions { font-size: 12px; }
+    .compare-callouts { grid-template-columns: 1fr; }
+    .compare-pivot-items { grid-template-columns: 1fr; }
   }
   @media (max-width: 480px) {
     .hero-stats { grid-template-columns: repeat(2, 1fr); }
@@ -376,6 +418,7 @@
     <a href="#goals">Goals</a>
     <a href="#progress">Progress</a>
     <a href="#wins">Wins</a>
+    <a href="#compare">Before vs. Now</a>
     <a href="#roi">ROI</a>
     <a href="#innovation">What's Next</a>
     <a href="#next">Roadmap</a>
@@ -702,6 +745,139 @@
         </div>
       </div>
     </div>
+  </div>
+</div>
+
+<!-- SECTION 4.5: BEFORE vs WITH SCROLL -->
+<div id="compare" class="section-white">
+  <div class="section">
+    <div class="section-label">The Proof</div>
+    <h2 class="section-title">Before Scroll vs. With Scroll</h2>
+    <div class="divider"></div>
+    <p class="section-desc">A direct comparison of the 4 months before partnering with Scroll (Aug 4 – Nov 28, 2025) vs. the 4 months since (Nov 29, 2025 – Mar 25, 2026). Same account, same audience — different results.</p>
+
+    <div class="compare-intro">
+      <p>The numbers below tell a clear story: <strong>the foundation is working.</strong> New followers are up 75%. Daily reach has nearly doubled. Reels — the highest-leverage format on Instagram — are performing across every metric. The audience we’ve built is growing in quality and consistency. <strong>Now the focus shifts to converting that attention into action.</strong></p>
+    </div>
+
+    <!-- Top callouts -->
+    <div class="compare-callouts">
+      <div class="compare-callout">
+        <div class="cc-val">+75%</div>
+        <div class="cc-label">New Followers</div>
+        <div class="cc-desc">55 new followers vs. 14 in the prior 4 months — audience is actively growing with Scroll.</div>
+      </div>
+      <div class="compare-callout">
+        <div class="cc-val">+55%</div>
+        <div class="cc-label">Avg Daily Reach</div>
+        <div class="cc-desc">755 accounts reached per day vs. 341 — consistent, compounding visibility.</div>
+      </div>
+      <div class="compare-callout">
+        <div class="cc-val">+67%</div>
+        <div class="cc-label">Reel Interactions</div>
+        <div class="cc-desc">472 Reel interactions vs. 157 — the short-form engine is clearly gaining traction.</div>
+      </div>
+    </div>
+
+    <!-- Comparison table -->
+    <div class="compare-table">
+      <table class="compare-table-inner">
+        <thead>
+          <tr>
+            <th>Metric</th>
+            <th>Before Scroll<br><span style="font-size:9px;font-weight:500;text-transform:none;letter-spacing:0;">Aug 4 – Nov 28, 2025</span></th>
+            <th class="th-after">With Scroll<br><span style="font-size:9px;font-weight:500;text-transform:none;letter-spacing:0;">Nov 29, 2025 – Mar 25, 2026</span></th>
+            <th>Change</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="section-row"><td colspan="4">Overall Growth</td></tr>
+          <tr>
+            <td>New Followers</td>
+            <td>14</td>
+            <td class="td-after">55</td>
+            <td><span class="compare-badge up">↑ 75%</span></td>
+          </tr>
+          <tr>
+            <td>Avg Reach Per Day</td>
+            <td>341</td>
+            <td class="td-after">755</td>
+            <td><span class="compare-badge up">↑ 55%</span></td>
+          </tr>
+          <tr class="section-row"><td colspan="4">Reels Performance</td></tr>
+          <tr>
+            <td>Reel Views</td>
+            <td>4,017</td>
+            <td class="td-after">12,301</td>
+            <td><span class="compare-badge up">↑ 67%</span></td>
+          </tr>
+          <tr>
+            <td>Reel Interactions</td>
+            <td>157</td>
+            <td class="td-after">472</td>
+            <td><span class="compare-badge up">↑ 67%</span></td>
+          </tr>
+          <tr>
+            <td>Reel Shares</td>
+            <td>5</td>
+            <td class="td-after">33</td>
+            <td><span class="compare-badge up">↑ 85%</span></td>
+          </tr>
+          <tr>
+            <td>Reel Comments</td>
+            <td>9</td>
+            <td class="td-after">27</td>
+            <td><span class="compare-badge up">↑ 67%</span></td>
+          </tr>
+          <tr>
+            <td>Reel Saves</td>
+            <td>2</td>
+            <td class="td-after">6</td>
+            <td><span class="compare-badge up">↑ 67%</span></td>
+          </tr>
+          <tr>
+            <td>Reels Published</td>
+            <td>5</td>
+            <td class="td-after">20</td>
+            <td><span class="compare-badge up">↑ 75%</span></td>
+          </tr>
+          <tr class="section-row"><td colspan="4">Post (Carousel / Static) Performance</td></tr>
+          <tr>
+            <td>Post Engagement Rate</td>
+            <td>6%</td>
+            <td class="td-after">9%</td>
+            <td><span class="compare-badge up">↑ 34%</span></td>
+          </tr>
+          <tr>
+            <td>Avg Reach Per Post</td>
+            <td>365</td>
+            <td class="td-after">390</td>
+            <td><span class="compare-badge neutral">→ Stable</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Phase pivot callout -->
+    <div class="compare-pivot">
+      <h3>Foundation Built. Now We Convert.</h3>
+      <p>The first phase was about building the right foundation — growing a real audience, establishing daily reach, and proving the content approach with Reels. That work is done. <strong>The next phase is about turning that reach and attention into measurable action.</strong> Saves, shares, comments, and link taps — the metrics that signal a warm audience moving toward a buying decision.</p>
+      <div class="compare-pivot-items">
+        <div class="compare-pivot-item">
+          <div class="cpi-label">Phase 1 Focus</div>
+          <div class="cpi-text">Build reach, grow followers, establish content cadence and brand voice</div>
+        </div>
+        <div class="compare-pivot-item">
+          <div class="cpi-label">Phase 2 Focus</div>
+          <div class="cpi-text">Drive saves, shares, comments, and link taps with intentional CTAs and conversion content</div>
+        </div>
+        <div class="compare-pivot-item">
+          <div class="cpi-label">The Goal</div>
+          <div class="cpi-text">Turn a growing, engaged audience into qualified foot traffic and in-store conversions</div>
+        </div>
+      </div>
+    </div>
+
   </div>
 </div>
 
