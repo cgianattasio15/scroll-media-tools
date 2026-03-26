@@ -1,6 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <!-- Meta Pixel - activate by replacing YOUR_PIXEL_ID with your actual Meta Pixel ID -->
+  <!-- <script>
+  !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window, document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', 'YOUR_PIXEL_ID');
+  fbq('track', 'PageView');
+  </script> -->
+  <!-- GA4 - activate by replacing G-XXXXXXXXXX with your actual Measurement ID -->
+  <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-XXXXXXXXXX');
+  </script> -->
   <meta name="description" content="The Med Spa Instagram Playbook — a complete Instagram strategy guide for med spas, aesthetic injectors, and clinical providers. Stop competing on price. Start converting on trust.">
   <meta property="og:title" content="The Med Spa Instagram Playbook | Scroll Media">
   <meta property="og:description" content="Stop competing on price. Start converting on trust. A complete Instagram strategy guide for med spas, aesthetic injectors, and clinical providers.">
@@ -888,7 +908,15 @@ footer { background: var(--navy-card); border-top: 1px solid var(--border); padd
 ═══════════════════════════════════════════ */
 @media (max-width: 900px) {
   nav { padding: 0 20px; }
-  .nav-links { display: none; }
+  .hamburger { display: flex; }
+  .nav-links { display: none; position: fixed; top: 60px; left: 0; right: 0; bottom: 0; background: rgba(10,14,26,0.98); flex-direction: column; align-items: center; justify-content: center; gap: 0; padding: 40px 20px; z-index: 999; overflow-y: auto; }
+  .nav-links.open { display: flex; }
+  .nav-links li { width: 100%; text-align: center; border-bottom: 1px solid rgba(255,255,255,0.08); }
+  .nav-links li:last-child { border-bottom: none; }
+  .nav-links a { display: block; padding: 18px 20px; font-size: 18px; color: rgba(255,255,255,0.85); }
+  .nav-links a:hover { color: #c8f135; }
+  .nav-cta { display: block !important; margin-top: 20px; background: #c8f135 !important; color: #0a0e1a !important; border-radius: 8px !important; font-weight: 700 !important; padding: 16px 32px !important; }
+  body { overflow-x: hidden; }
   .container { padding: 0 20px; }
   section { padding: 70px 0; }
   .toc-grid { grid-template-columns: repeat(3, 1fr); }
@@ -915,6 +943,11 @@ footer { background: var(--navy-card); border-top: 1px solid var(--border); padd
   .signature-tiers { flex-direction: column; gap: 12px; }
   .signature-tier-divider { display: none; }
 }
+  .hamburger { display: none; flex-direction: column; justify-content: space-between; width: 28px; height: 20px; background: none; border: none; cursor: pointer; padding: 0; margin-left: auto; z-index: 1001; }
+  .hamburger span { display: block; width: 100%; height: 2px; background: #ffffff; border-radius: 2px; transition: all 0.3s ease; transform-origin: center; }
+  .hamburger.active span:nth-child(1) { transform: translateY(9px) rotate(45deg); }
+  .hamburger.active span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+  .hamburger.active span:nth-child(3) { transform: translateY(-9px) rotate(-45deg); }
   </style>
 </head>
 <body>
@@ -923,10 +956,15 @@ footer { background: var(--navy-card); border-top: 1px solid var(--border); padd
 
 <!-- Navigation -->
 <nav>
-  <a href="#hero" class="nav-logo">
-    <img src="data:image/png;base64,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" alt="Scroll Media" style="height:28px;width:auto;display:block;" loading="lazy">
+  <a href="https://decks.scrollmedia.co/pitch/" class="nav-logo" target="_blank" rel="noopener">
+    <img src="scroll-media-logo-white-transparent.png" alt="Scroll Media" style="height:32px;width:auto;display:block;">
   </a>
-  <ul class="nav-links">
+  <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+  <ul class="nav-links" id="nav-links">
     <li><a href="#gaps">The Gaps</a></li>
     <li><a href="#profile">Profile</a></li>
     <li><a href="#seo">Social SEO</a></li>
@@ -956,7 +994,7 @@ footer { background: var(--navy-card); border-top: 1px solid var(--border); padd
       <h1 class="hero-title fade-up fade-up-delay-1">
         You're Posting.<br>Nobody's <span class="accent">Booking.</span>
       </h1>
-      <p class="hero-subtitle fade-up fade-up-delay-2">
+      <p id="hero-subtitle" class="hero-subtitle fade-up fade-up-delay-2">
         Most med spas are active on Instagram and getting nothing from it. This guide breaks down exactly why — and what a content system built on clinical authority and patient trust actually looks like.
       </p>
       <div class="hero-ctas fade-up fade-up-delay-3">
@@ -2287,7 +2325,7 @@ footer { background: var(--navy-card); border-top: 1px solid var(--border); padd
           <li>Caption copywriting</li>
         </ul>
         <div class="pricing-best-for">Best for: New practices or providers starting from zero with a limited budget.</div>
-        <a href="https://calendly.com/scrollmedia/discovery" class="pricing-cta-link" target="_blank" rel="noopener">Book a Discovery Call →</a>
+        <a href="https://tools.scrollmedia.co/audience-to-action" class="pricing-cta-link" target="_blank" rel="noopener">Get the Playbook →</a>
       </div>
 
       <div class="pricing-entry">
@@ -2304,7 +2342,7 @@ footer { background: var(--navy-card); border-top: 1px solid var(--border); padd
           <li>Monthly performance reporting</li>
         </ul>
         <div class="pricing-best-for">Best for: Practices with an existing audience that want to convert reach into bookings.</div>
-        <a href="https://calendly.com/scrollmedia/discovery" class="pricing-cta-link" target="_blank" rel="noopener">Book a Discovery Call →</a>
+        <a href="https://tools.scrollmedia.co/instagram-growth-blueprint" class="pricing-cta-link" target="_blank" rel="noopener">Get the Blueprint →</a>
       </div>
 
       <div class="pricing-entry">
@@ -2321,7 +2359,7 @@ footer { background: var(--navy-card); border-top: 1px solid var(--border); padd
           <li>Quarterly strategy sessions</li>
         </ul>
         <div class="pricing-best-for">Best for: Established practices with multiple providers or locations that want to scale their digital authority.</div>
-        <a href="https://calendly.com/scrollmedia/discovery" class="pricing-cta-link" target="_blank" rel="noopener">Book a Discovery Call →</a>
+        <a href="https://tools.scrollmedia.co/content-shoot" class="pricing-cta-link" target="_blank" rel="noopener">Book a Content Day →</a>
       </div>
     </div>
 
@@ -2398,14 +2436,23 @@ footer { background: var(--navy-card); border-top: 1px solid var(--border); padd
       </div>
     </div>
 
+    <!-- DM for Sample CTA - ManyChat Loop Hook -->
+    <div class="cta-final fade-up" style="margin-bottom:32px;">
+      <div class="cta-final-label">Want to See This Built for Your Brand?</div>
+      <h2 class="cta-final-title" style="font-size:28px;">We'll script one custom piece of content for you - free.</h2>
+      <p class="cta-final-text">Send us a DM on Instagram with the word <strong style="color:var(--lime);">SAMPLE</strong> and we'll write a custom Reel script built specifically for your med spa. No pitch. No strings. Just proof of what a real content strategy looks like in action.</p>
+      <a href="https://www.instagram.com/scrollmedia" target="_blank" rel="noopener" class="btn-primary" style="display: inline-flex; margin: 0 auto;">DM Us "SAMPLE" on Instagram</a>
+    </div>
+
     <div class="cta-final fade-up">
       <div class="cta-final-label">Ready to Build Your Authority?</div>
       <div class="cta-final-title">Stop Posting.<br>Start Converting.</div>
       <div class="cta-final-text">Your expertise deserves a content system that reflects it. Let's build the Instagram presence your practice has been missing — one that attracts the right patients, builds genuine trust, and fills your consultation calendar.</div>
-      <a href="https://calendly.com/scrollmedia/discovery" class="btn-primary" target="_blank" rel="noopener" style="display: inline-flex; margin: 0 auto;">Book Your Discovery Call →</a>
+      <a href="https://tools.scrollmedia.co/signature-package" class="btn-primary" target="_blank" rel="noopener" style="display: inline-flex; margin: 0 auto;">See the Signature Package →</a>
       <div class="cta-final-contact">
-        <div class="cta-final-contact-item">Email: <span>chase@getscrollmedia.com</span></div>
-        <div class="cta-final-contact-item">Website: <span>getscrollmedia.com</span></div>
+        <div class="cta-final-contact-item">Email: <span>hello@scrollmedia.co</span></div>
+        <div class="cta-final-contact-item">Instagram: <span>@scrollmedia</span></div>
+        <div class="cta-final-contact-item">Web: <span>scrollmedia.co</span></div>
       </div>
     </div>
   </div>
@@ -2415,15 +2462,48 @@ footer { background: var(--navy-card); border-top: 1px solid var(--border); padd
 <footer>
   <div class="container">
     <div class="footer-inner">
-      <div style="display:flex;align-items:center;gap:10px;">
-        <div style="width:28px;height:28px;background:var(--lime);border-radius:5px;display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-weight:900;font-size:14px;color:var(--navy);">S</div>
-        <div style="font-size:13px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--off-white);">Scroll Media</div>
+      <div class="footer-logo">
+        <img src="scroll-media-logo-white-transparent.png" alt="Scroll Media" style="height:36px;width:auto;display:block;">
       </div>
       <div class="footer-copy">&copy; 2026 Scroll Media. All rights reserved.</div>
-      <a href="https://getscrollmedia.com" class="footer-link" target="_blank" rel="noopener">getscrollmedia.com</a>
+      <a href="https://decks.scrollmedia.co/pitch/" class="footer-link">scrollmedia.co</a>
     </div>
   </div>
 </footer>
+
+<!-- UTM Pass-Through + Name Personalization -->
+<script>
+(function() {
+  var params = new URLSearchParams(window.location.search);
+  var name = params.get('name');
+  if (name) {
+    var subtitle = document.getElementById('hero-subtitle');
+    if (subtitle) {
+      subtitle.textContent = 'Hey ' + decodeURIComponent(name) + ' - most med spas are active on Instagram and getting nothing from it. This guide breaks down exactly why - and what a content system that actually books consultations looks like.';
+    }
+  }
+  var utmParams = ['utm_source','utm_medium','utm_campaign','utm_content','utm_term'];
+  var utmString = utmParams
+    .filter(function(k) { return params.get(k); })
+    .map(function(k) { return k + '=' + encodeURIComponent(params.get(k)); })
+    .join('&');
+  if (utmString) {
+    var ctaSelectors = [
+      'a[href*="tools.scrollmedia.co"]',
+      'a[href*="calendly.com"]',
+      'a[href*="decks.scrollmedia.co"]'
+    ];
+    ctaSelectors.forEach(function(sel) {
+      document.querySelectorAll(sel).forEach(function(link) {
+        var href = link.getAttribute('href');
+        if (href && !href.startsWith('#')) {
+          link.setAttribute('href', href + (href.includes('?') ? '&' : '?') + utmString);
+        }
+      });
+    });
+  }
+})();
+</script>
 
 <!-- Instagram Embed Script -->
 <script async src="//www.instagram.com/embed.js"></script>
@@ -2476,6 +2556,36 @@ function filterIdeas(stage, btn) {
 document.addEventListener('DOMContentLoaded', () => {
   filterIdeas('tofu', document.querySelector('.funnel-tab'));
 });
+</script>
+
+<!-- Hamburger Menu -->
+<script>
+(function() {
+  var hamburger = document.getElementById('hamburger');
+  var navLinks = document.getElementById('nav-links');
+  if (!hamburger || !navLinks) return;
+  hamburger.addEventListener('click', function() {
+    var isOpen = navLinks.classList.toggle('open');
+    hamburger.classList.toggle('active');
+    hamburger.setAttribute('aria-expanded', isOpen);
+    document.body.style.overflow = isOpen ? 'hidden' : '';
+  });
+  navLinks.querySelectorAll('a').forEach(function(link) {
+    link.addEventListener('click', function() {
+      navLinks.classList.remove('open');
+      hamburger.classList.remove('active');
+      hamburger.setAttribute('aria-expanded', 'false');
+      document.body.style.overflow = '';
+    });
+  });
+  window.addEventListener('resize', function() {
+    if (window.innerWidth > 768) {
+      navLinks.classList.remove('open');
+      hamburger.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+  });
+})();
 </script>
 
 </body>
