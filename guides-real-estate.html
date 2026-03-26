@@ -89,6 +89,13 @@ nav {
   text-decoration: none;
 }
 
+.nav-logo img {
+  height: 32px;
+  width: auto;
+  display: block;
+  filter: brightness(0) invert(1);
+}
+
 .nav-logo-mark {
   width: 32px; height: 32px;
   background: var(--lime);
@@ -756,6 +763,7 @@ section {
   bottom: 48px;
   width: 2px;
   background: linear-gradient(to bottom, var(--azure), var(--lime));
+  z-index: 0;
 }
 
 .tam-rung {
@@ -777,7 +785,10 @@ section {
   font-weight: 700;
   flex-shrink: 0;
   position: relative;
-  z-index: 1;
+  z-index: 2;
+  text-decoration: none !important;
+  border-style: solid !important;
+  background-clip: padding-box;
 }
 
 .tam-rung:nth-child(1) .tam-rung-num { background: rgba(58,123,213,0.2); border: 2px solid var(--azure); color: var(--azure); }
@@ -1525,6 +1536,19 @@ section {
   font-style: italic;
   color: var(--white);
   line-height: 1.6;
+}
+
+.results-grid-with-callout {
+  margin-bottom: 24px;
+}
+
+.bridge-callout {
+  background: linear-gradient(135deg, rgba(200,241,53,0.08), rgba(58,123,213,0.08));
+  border: 1px solid var(--lime-border);
+  border-radius: 16px;
+  padding: 36px 40px;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 /* ═══════════════════════════════════════════
@@ -2713,10 +2737,7 @@ footer {
 <!-- Navigation -->
 <nav>
   <a href="#hero" class="nav-logo">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 80" height="28" width="70" aria-label="Scroll Media" style="display:block;overflow:visible;">
-  <text x="0" y="36" font-family="Georgia, 'Times New Roman', serif" font-size="38" font-weight="700" fill="#ffffff" letter-spacing="-1">scroll</text>
-  <text x="28" y="68" font-family="Georgia, 'Times New Roman', serif" font-size="38" font-weight="700" fill="#c8f135" letter-spacing="-1">media</text>
-</svg>
+    <img src="scroll-media-logo.svg" alt="Scroll Media" style="height:32px;width:auto;display:block;filter:brightness(0) invert(1);">
   </a>
   <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
     <span></span>
@@ -4012,7 +4033,7 @@ footer {
     <div class="rule fade-up fade-up-delay-1"></div>
     <p class="section-subtitle fade-up fade-up-delay-2">Three anonymized case studies from our current client roster. Different niches, same system — because the content infrastructure that builds trust and drives action works the same way across every service-based business.</p>
 
-    <div class="results-grid">
+    <div class="results-grid results-grid-with-callout">
       <div class="result-card fade-up">
         <div class="result-card-tag">Case Study 01 — Local Aesthetics & Wellness · Signature Package</div>
         <div class="result-card-challenge">Starting point: No defined social strategy, inconsistent posting, no IVP. Strong visual assets with no system to turn them into audience growth or booked appointments.</div>
@@ -4069,6 +4090,7 @@ footer {
             <div class="result-metric-label">Engagement Rate<br>vs. Industry Avg.</div>
           </div>
         </div>
+      </div>
     </div>
 
     <div class="bridge-callout fade-up">
@@ -4260,27 +4282,27 @@ footer {
       </div>
     </div>
 
-    <!-- ACCOUNT 3: Glennda Baker -->
+    <!-- ACCOUNT 3: Pridemore Properties -->
     <div class="account-spotlight fade-up">
       <div class="account-header">
         <div class="account-meta">
-          <div class="account-handle">@glenndabaker</div>
-          <div class="account-name">Glennda Baker — Atlanta Real Estate</div>
+          <div class="account-handle">@pridemoreproperties</div>
+          <div class="account-name">The Pridemore Team at Compass — Charlotte, NC</div>
           <div class="account-stats-row">
             <div class="account-stat">
-              <span class="stat-value">329K</span>
+              <span class="stat-value">40.2K</span>
               <span class="stat-label">Followers</span>
             </div>
             <div class="account-stat">
-              <span class="stat-value">~10K</span>
+              <span class="stat-value">~3K</span>
               <span class="stat-label">Avg Views</span>
             </div>
             <div class="account-stat outlier-stat">
-              <span class="stat-value">1.1M</span>
+              <span class="stat-value">6.3M+</span>
               <span class="stat-label">Outlier Peak</span>
             </div>
             <div class="account-stat multiplier-stat">
-              <span class="stat-value">110x</span>
+              <span class="stat-value">2,100x</span>
               <span class="stat-label">Outlier Score</span>
             </div>
           </div>
@@ -4290,35 +4312,21 @@ footer {
 
       <div class="account-why fade-up">
         <h4>Why We Love This Account</h4>
-        <p>Glennda has 329K followers — but most of her content gets 5K–15K views. Then two reels hit 1.1M and 762K. That's a 75–110x outlier. The pattern? Both posts are built around a <strong>strong, quotable POV</strong> that connects real estate decisions to life priorities. "Houses Over Handbags" reframes homeownership vs. lifestyle spending. "The 5 D's" explains why sellers move even in a bad market. Neither post is about listings. Neither post is about Glennda. Both posts are about the <em>viewer's</em> life — and that's exactly why they broke through.</p>
+        <p>Pridemore Properties has 40K followers and averages 2K–5K views per reel. Then one post hit 6.3M likes. That's not a fluke — it's a signal. The reel? "I asked my Gen Z employee to edit a video for me, and this is what I got." No market update. No listing tour. Just a relatable, behind-the-scenes moment that made people feel like they were in on the joke. The content worked because it was <strong>human-first, brand-second</strong> — and it proved that personality and authenticity can outperform production value at any follower count.</p>
       </div>
 
-      <div class="account-posts-grid two-posts">
+      <div class="account-posts-grid one-post">
         <div class="account-post-card">
           <div class="post-embed-wrapper">
-            <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/Cy-3Hi3unDr/" data-instgrm-version="14" style="background:#FFF; border:0; border-radius:3px; box-shadow:0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15); margin: 1px; max-width:540px; min-width:326px; padding:0; width:99.375%; width:-webkit-calc(100% - 2px); width:calc(100% - 2px);"></blockquote>
+            <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/C9KjT6IJHia/" data-instgrm-version="14" style="background:#FFF; border:0; border-radius:3px; box-shadow:0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15); margin: 1px; max-width:540px; min-width:326px; padding:0; width:99.375%; width:-webkit-calc(100% - 2px); width:calc(100% - 2px);"></blockquote>
           </div>
           <div class="post-analysis">
-            <div class="post-views-badge">1.1M views · ~110x outlier</div>
-            <h5>"Houses Over Handbags"</h5>
-            <p>A reframe of lifestyle spending vs. homeownership. The hook is quotable, the message is emotionally resonant, and it speaks directly to the buyer who keeps saying "I can't afford a house" while spending on depreciating assets. This is opinion-led content done right.</p>
+            <div class="post-views-badge">6.3M+ likes · ~2,100x outlier</div>
+            <h5>"I Asked My Gen Z Employee to Edit a Video for Me"</h5>
+            <p>A simple behind-the-scenes moment — a senior agent hands off a video edit to a Gen Z team member and shares the result. No script. No strategy deck. Just a relatable generational moment that made 6.3 million people feel something. The hook is universal, the format is effortless, and the brand comes through naturally. That's the formula.</p>
             <div class="post-takeaways">
               <div class="takeaway-label">Key Takeaway</div>
-              <p>The best real estate content isn't about real estate — it's about the life decision behind it. Reframe the conversation from "can I afford this?" to "what am I choosing instead?" That shift creates urgency without pressure.</p>
-            </div>
-          </div>
-        </div>
-        <div class="account-post-card">
-          <div class="post-embed-wrapper">
-            <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/Cy0rEgQOTsx/" data-instgrm-version="14" style="background:#FFF; border:0; border-radius:3px; box-shadow:0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15); margin: 1px; max-width:540px; min-width:326px; padding:0; width:99.375%; width:-webkit-calc(100% - 2px); width:calc(100% - 2px);"></blockquote>
-          </div>
-          <div class="post-analysis">
-            <div class="post-views-badge">762K views · ~75x outlier</div>
-            <h5>"The 5 D's — Why Sellers Always Move"</h5>
-            <p>Divorce. Death. Debt. Downsizing. Displacement. These are the five reasons people sell regardless of interest rates or market conditions. This post works because it gives buyers and sellers a framework — and it positions Glennda as the agent who understands the human side of real estate, not just the transaction.</p>
-            <div class="post-takeaways">
-              <div class="takeaway-label">Key Takeaway</div>
-              <p>Frameworks are shareable. "The 5 D's" is a concept people remember and repeat. Build your own named frameworks around the decisions your clients face — they become your intellectual property and your most shared content.</p>
+              <p>You don't need a production budget to go viral — you need a moment people recognize. Behind-the-scenes content, team dynamics, and honest "this is what it's actually like" posts consistently outperform polished listing content because they build the one thing listings can't: <strong>trust in the person, not just the property.</strong></p>
             </div>
           </div>
         </div>
@@ -4330,22 +4338,22 @@ footer {
           <div class="lesson-card">
             <div class="lesson-number">01</div>
             <div class="lesson-content">
-              <strong>The Quotable POV</strong>
-              <p>"Houses Over Handbags" is a phrase people repeat. Build your content around a single, memorable take that can be quoted in a caption, a comment, or a conversation. If someone can summarize your video in 4 words, it will spread.</p>
+              <strong>The Relatable Moment</strong>
+              <p>The best-performing reel on this account wasn't about real estate at all — it was about a generational dynamic every business owner understands. Find the universal moments in your day-to-day and put a camera on them. Relatability travels further than expertise.</p>
             </div>
           </div>
           <div class="lesson-card">
             <div class="lesson-number">02</div>
             <div class="lesson-content">
-              <strong>Name Your Frameworks</strong>
-              <p>"The 5 D's" is a named concept. Named frameworks stick. They become your brand. Instead of "reasons people sell," call it something. Instead of "things buyers should know," build a named checklist. Naming = memorability = authority.</p>
+              <strong>Team = Brand</strong>
+              <p>Featuring your team humanizes your business in a way solo content can't. When people see the personalities behind the brand, they stop seeing a transaction and start seeing a relationship. That's what drives referrals and repeat business.</p>
             </div>
           </div>
           <div class="lesson-card">
             <div class="lesson-number">03</div>
             <div class="lesson-content">
-              <strong>Content About Life, Not Listings</strong>
-              <p>Both outlier posts are about the viewer's life decisions, not Glennda's listings. The agents who win on Instagram are the ones who understand that people don't follow real estate agents — they follow people who help them think about their life differently.</p>
+              <strong>Follower Count Is Not the Ceiling</strong>
+              <p>40K followers. 6.3M likes. That's a 157x reach multiplier on one post. Your audience size does not determine your reach — your content quality does. One piece of content with the right hook can outperform accounts 10x your size. Stop waiting to "grow" before you start converting.</p>
             </div>
           </div>
         </div>
@@ -4393,7 +4401,7 @@ footer {
           <li>Scroll Media Formats Library (bonus)</li>
         </ul>
         <div class="pricing-best-for">Best for agents who want a proven CTA and conversion system to implement immediately — without hiring an agency.</div>
-        <a href="https://calendly.com/scrollmedia/discovery" target="_blank" class="pricing-cta-link">Get Instant Access →</a>
+        <a href="https://tools.scrollmedia.co/audience-to-action" target="_blank" class="pricing-cta-link">Get Instant Access →</a>
       </div>
 
       <!-- Blueprint -->
@@ -4415,7 +4423,7 @@ footer {
         </ul>
         <div class="pricing-best-for">Best for agents who want a clear, data-driven strategy they can execute — or use as the foundation for a full-service retainer.</div>
         <div class="pricing-credit-note"><strong style="color: var(--lime);">$997 fully credited</strong> toward your first month of Signature.</div>
-        <a href="https://calendly.com/scrollmedia/discovery" target="_blank" class="pricing-cta-link">Book a Discovery Call →</a>
+        <a href="https://tools.scrollmedia.co/instagram-growth-blueprint" target="_blank" class="pricing-cta-link">Get the Blueprint →</a>
       </div>
 
       <!-- Content Day -->
@@ -4435,7 +4443,7 @@ footer {
         </ul>
         <div class="pricing-best-for">Best for agents launching a new listing campaign, rebranding, or needing a fresh batch of on-brand content without a long-term commitment.</div>
         <div class="pricing-credit-note"><strong style="color: var(--lime);">$1,450 credited</strong> toward your first month of Signature.</div>
-        <a href="https://calendly.com/scrollmedia/discovery" target="_blank" class="pricing-cta-link">Book a Discovery Call →</a>
+        <a href="https://tools.scrollmedia.co/content-shoot" target="_blank" class="pricing-cta-link">Book a Content Day →</a>
       </div>
 
     </div>
@@ -4452,7 +4460,7 @@ footer {
         <div class="signature-hero-price-block">
           <div class="signature-hero-price">$2,975 – $3,250</div>
           <div class="signature-hero-period">per month</div>
-          <a href="https://calendly.com/scrollmedia/discovery" target="_blank" class="btn-primary" style="margin-top:16px;display:inline-flex;">Book a Discovery Call →</a>
+          <a href="https://tools.scrollmedia.co/signature-package" target="_blank" class="btn-primary" style="margin-top:16px;display:inline-flex;">See the Signature Package →</a>
         </div>
       </div>
 
@@ -4543,7 +4551,7 @@ footer {
       <div class="cta-final-label">Ready to Build Something That Actually Works?</div>
       <h2 class="cta-final-title">Let's turn your Instagram into a lead generation system.</h2>
       <p class="cta-final-text">Most real estate agents will read this guide and do nothing. The ones who act will have a significant advantage over every agent in their market who is still just posting listings and hoping for the best.</p>
-      <a href="https://calendly.com/scrollmedia/discovery" class="btn-primary" style="display: inline-flex; margin: 0 auto;">Book a Free Discovery Call →</a>
+      <a href="https://tools.scrollmedia.co/signature-package" class="btn-primary" style="display: inline-flex; margin: 0 auto;">See the Signature Package →</a>
       <div class="cta-final-contact">
         <div class="cta-final-contact-item">Email: <span>hello@scrollmedia.co</span></div>
         <div class="cta-final-contact-item">Instagram: <span>@scrollmedia</span></div>
@@ -4558,10 +4566,7 @@ footer {
   <div class="container">
     <div class="footer-inner">
       <div class="footer-logo">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 80" height="28" width="70" aria-label="Scroll Media" style="display:block;overflow:visible;">
-  <text x="0" y="36" font-family="Georgia, 'Times New Roman', serif" font-size="38" font-weight="700" fill="#ffffff" letter-spacing="-1">scroll</text>
-  <text x="28" y="68" font-family="Georgia, 'Times New Roman', serif" font-size="38" font-weight="700" fill="#c8f135" letter-spacing="-1">media</text>
-</svg>
+        <img src="scroll-media-logo.svg" alt="Scroll Media" style="height:36px;width:auto;display:block;filter:brightness(0) invert(1);">
       </div>
       <div class="footer-copy">© 2026 Scroll Media. All rights reserved.</div>
       <a href="https://decks.scrollmedia.co/pitch/" class="footer-link">scrollmedia.co</a>
