@@ -1,0 +1,2482 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta name="description" content="The Med Spa Instagram Playbook — a complete Instagram strategy guide for med spas, aesthetic injectors, and clinical providers. Stop competing on price. Start converting on trust.">
+  <meta property="og:title" content="The Med Spa Instagram Playbook | Scroll Media">
+  <meta property="og:description" content="Stop competing on price. Start converting on trust. A complete Instagram strategy guide for med spas, aesthetic injectors, and clinical providers.">
+  <meta property="og:image" content="og-guides-medspa.png">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Med Spa Instagram Playbook | Scroll Media</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="icon" href="scroll-favicon.svg" type="image/svg+xml">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Source+Sans+3:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+/* ═══════════════════════════════════════════
+   RESET & BASE
+═══════════════════════════════════════════ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Source Sans 3', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: #0D1B2A;
+  color: #f2f3f4;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* ═══════════════════════════════════════════
+   CSS VARIABLES
+═══════════════════════════════════════════ */
+:root {
+  --navy: #0D1B2A;
+  --navy-mid: #142233;
+  --navy-light: #1a2e42;
+  --navy-card: #1e3347;
+  --lime: #C8F135;
+  --lime-dim: rgba(200,241,53,0.15);
+  --lime-border: rgba(200,241,53,0.3);
+  --azure: #3A7BD5;
+  --azure-dim: rgba(58,123,213,0.15);
+  --azure-border: rgba(58,123,213,0.3);
+  --white: #ffffff;
+  --off-white: #f2f3f4;
+  --muted: rgba(242,243,244,0.55);
+  --border: rgba(255,255,255,0.08);
+  --tofu-color: #3A7BD5;
+  --mofu-color: #f0a500;
+  --bofu-color: #C8F135;
+  --text-primary: #f2f3f4;
+  --text-secondary: rgba(242,243,244,0.75);
+  --text-muted: rgba(242,243,244,0.55);
+  --card-bg: #1a2e42;
+  --font-mono: 'Source Code Pro', monospace;
+}
+
+/* ═══════════════════════════════════════════
+   PROGRESS BAR
+═══════════════════════════════════════════ */
+#progress-bar {
+  position: fixed;
+  top: 0; left: 0;
+  width: 0%;
+  height: 3px;
+  background: linear-gradient(90deg, var(--azure), var(--lime));
+  z-index: 9999;
+  transition: width 0.1s linear;
+}
+
+/* ═══════════════════════════════════════════
+   STICKY NAV
+═══════════════════════════════════════════ */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 1000;
+  background: rgba(13,27,42,0.92);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border);
+  padding: 0 40px;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: all 0.3s ease;
+}
+
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  list-style: none;
+}
+
+.nav-links a {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--muted);
+  text-decoration: none;
+  letter-spacing: 0.03em;
+  transition: color 0.2s;
+}
+
+.nav-links a:hover { color: var(--white); }
+
+.nav-cta {
+  background: var(--lime);
+  color: var(--navy) !important;
+  font-weight: 700 !important;
+  padding: 8px 18px;
+  border-radius: 6px;
+  font-size: 13px !important;
+  transition: opacity 0.2s !important;
+}
+
+.nav-cta:hover { opacity: 0.88; }
+
+/* ═══════════════════════════════════════════
+   SECTION UTILITIES
+═══════════════════════════════════════════ */
+section {
+  padding: 100px 0;
+  position: relative;
+}
+
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 40px;
+}
+
+.section-eyebrow {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--lime);
+  margin-bottom: 14px;
+  display: block;
+}
+
+.section-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(32px, 4vw, 48px);
+  font-weight: 700;
+  line-height: 1.15;
+  color: var(--white);
+  margin-bottom: 16px;
+}
+
+.section-subtitle {
+  font-size: 17px;
+  font-weight: 300;
+  color: var(--muted);
+  max-width: 640px;
+  line-height: 1.65;
+  margin-bottom: 56px;
+}
+
+.rule {
+  width: 48px; height: 3px;
+  background: var(--lime);
+  margin-bottom: 20px;
+  border-radius: 2px;
+}
+
+/* ═══════════════════════════════════════════
+   ANIMATIONS
+═══════════════════════════════════════════ */
+.fade-up {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.65s ease, transform 0.65s ease;
+}
+
+.fade-up.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.fade-up-delay-1 { transition-delay: 0.1s; }
+.fade-up-delay-2 { transition-delay: 0.2s; }
+.fade-up-delay-3 { transition-delay: 0.3s; }
+.fade-up-delay-4 { transition-delay: 0.4s; }
+.fade-up-delay-5 { transition-delay: 0.5s; }
+
+/* ═══════════════════════════════════════════
+   HERO
+═══════════════════════════════════════════ */
+#hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  padding-top: 64px;
+  background: var(--navy);
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-grid-bg {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(200,241,53,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(200,241,53,0.04) 1px, transparent 1px);
+  background-size: 60px 60px;
+  pointer-events: none;
+}
+
+.hero-glow {
+  position: absolute;
+  top: -200px; right: -200px;
+  width: 700px; height: 700px;
+  background: radial-gradient(circle, rgba(58,123,213,0.18) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.hero-glow-2 {
+  position: absolute;
+  bottom: -100px; left: -100px;
+  width: 500px; height: 500px;
+  background: radial-gradient(circle, rgba(200,241,53,0.08) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 820px;
+}
+
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--lime-dim);
+  border: 1px solid var(--lime-border);
+  border-radius: 100px;
+  padding: 6px 16px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--lime);
+  margin-bottom: 28px;
+}
+
+.hero-badge-dot {
+  width: 6px; height: 6px;
+  background: var(--lime);
+  border-radius: 50%;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(0.8); }
+}
+
+.hero-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(44px, 6vw, 76px);
+  font-weight: 900;
+  line-height: 1.05;
+  color: var(--white);
+  margin-bottom: 24px;
+}
+
+.hero-title .accent {
+  color: var(--lime);
+  font-style: italic;
+}
+
+.hero-subtitle {
+  font-size: 19px;
+  font-weight: 300;
+  color: var(--muted);
+  max-width: 600px;
+  line-height: 1.65;
+  margin-bottom: 44px;
+}
+
+.hero-ctas {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 64px;
+}
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--lime);
+  color: var(--navy);
+  font-weight: 700;
+  font-size: 15px;
+  padding: 14px 28px;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: opacity 0.2s, transform 0.2s;
+  letter-spacing: 0.01em;
+}
+
+.btn-primary:hover { opacity: 0.9; transform: translateY(-1px); }
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: transparent;
+  color: var(--off-white);
+  font-weight: 600;
+  font-size: 15px;
+  padding: 14px 28px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  text-decoration: none;
+  transition: border-color 0.2s, background 0.2s;
+}
+
+.btn-secondary:hover {
+  border-color: rgba(255,255,255,0.25);
+  background: rgba(255,255,255,0.05);
+}
+
+.hero-stats {
+  display: flex;
+  gap: 48px;
+  padding-top: 32px;
+  border-top: 1px solid var(--border);
+}
+
+.hero-stat-value {
+  font-family: 'Playfair Display', serif;
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--lime);
+  line-height: 1;
+  margin-bottom: 4px;
+}
+
+.hero-stat-label {
+  font-size: 13px;
+  color: var(--muted);
+  font-weight: 400;
+}
+
+/* ═══════════════════════════════════════════
+   TABLE OF CONTENTS
+═══════════════════════════════════════════ */
+#toc {
+  background: var(--navy-mid);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  padding: 48px 0;
+}
+
+.toc-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 2px;
+}
+
+.toc-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 24px 16px;
+  background: var(--navy-light);
+  border-radius: 8px;
+  text-decoration: none;
+  transition: background 0.2s, transform 0.2s;
+  gap: 10px;
+}
+
+.toc-item:hover {
+  background: var(--navy-card);
+  transform: translateY(-2px);
+}
+
+.toc-num {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--lime);
+}
+
+.toc-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--off-white);
+  line-height: 1.35;
+}
+
+/* ═══════════════════════════════════════════
+   THE GAPS SECTION
+═══════════════════════════════════════════ */
+#gaps { background: var(--navy); }
+
+.gaps-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.gap-card {
+  background: var(--navy-light);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 28px 30px;
+  transition: border-color 0.3s, transform 0.3s;
+  position: relative;
+  overflow: hidden;
+}
+
+.gap-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 4px; height: 100%;
+  background: var(--azure);
+  border-radius: 2px 0 0 2px;
+}
+
+.gap-card.niche::before { background: var(--lime); }
+
+.gap-card:hover {
+  border-color: rgba(255,255,255,0.16);
+  transform: translateY(-2px);
+}
+
+.gap-card-tag {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 10px;
+}
+
+.gap-card.niche .gap-card-tag { color: var(--lime); }
+
+.gap-card-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 16px;
+  line-height: 1.2;
+}
+
+.gap-cols {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.gap-col-label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--azure);
+  margin-bottom: 6px;
+}
+
+.gap-card.niche .gap-col-label { color: var(--lime); }
+
+.gap-col-text {
+  font-size: 14px;
+  color: var(--muted);
+  line-height: 1.55;
+}
+
+/* ═══════════════════════════════════════════
+   PROFILE OPTIMIZATION
+═══════════════════════════════════════════ */
+#profile { background: var(--navy-mid); }
+
+.profile-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: start;
+}
+
+.profile-mockup {
+  background: var(--navy-light);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  overflow: hidden;
+  position: sticky;
+  top: 90px;
+}
+
+.profile-mockup-header {
+  background: var(--navy-card);
+  padding: 16px 20px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border-bottom: 1px solid var(--border);
+}
+
+.mockup-dot { width: 10px; height: 10px; border-radius: 50%; }
+.mockup-dot-red { background: #ff5f57; }
+.mockup-dot-yellow { background: #febc2e; }
+.mockup-dot-green { background: #28c840; }
+
+.profile-mockup-body { padding: 24px; }
+
+.mock-profile-top {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.mock-avatar {
+  width: 72px; height: 72px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--azure), var(--lime));
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Playfair Display', serif;
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--navy);
+}
+
+.mock-profile-info { flex: 1; }
+.mock-username { font-size: 15px; font-weight: 700; color: var(--white); margin-bottom: 2px; }
+.mock-handle { font-size: 13px; color: var(--muted); margin-bottom: 8px; }
+.mock-stats { display: flex; gap: 16px; }
+.mock-stat { text-align: center; }
+.mock-stat-num { font-size: 14px; font-weight: 700; color: var(--white); }
+.mock-stat-label { font-size: 11px; color: var(--muted); }
+.mock-bio { font-size: 13px; color: var(--off-white); line-height: 1.5; margin-bottom: 12px; }
+.mock-bio .keyword { color: var(--lime); font-weight: 600; }
+.mock-link { font-size: 13px; color: var(--azure); text-decoration: underline; margin-bottom: 16px; display: block; }
+.mock-highlights { display: flex; gap: 12px; margin-bottom: 16px; }
+.mock-highlight { display: flex; flex-direction: column; align-items: center; gap: 4px; }
+.mock-highlight-circle { width: 52px; height: 52px; border-radius: 50%; border: 2px solid var(--lime); background: var(--navy-card); display: flex; align-items: center; justify-content: center; font-size: 20px; }
+.mock-highlight-label { font-size: 10px; color: var(--muted); text-align: center; }
+.mock-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 3px; }
+.mock-grid-item { aspect-ratio: 1; border-radius: 4px; background: var(--navy-card); overflow: hidden; }
+.mock-grid-item-inner { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; font-size: 22px; }
+
+.profile-checklist { display: flex; flex-direction: column; gap: 20px; }
+
+.profile-check-item {
+  background: var(--navy-light);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 20px 22px;
+  transition: border-color 0.2s;
+}
+
+.profile-check-item:hover { border-color: rgba(200,241,53,0.25); }
+
+.profile-check-header { display: flex; align-items: center; gap: 12px; margin-bottom: 8px; }
+
+.profile-check-icon {
+  width: 32px; height: 32px;
+  background: var(--lime-dim);
+  border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 16px; flex-shrink: 0;
+}
+
+.profile-check-title { font-size: 15px; font-weight: 700; color: var(--white); }
+.profile-check-desc { font-size: 14px; color: var(--muted); line-height: 1.55; padding-left: 44px; }
+.profile-check-example { margin-top: 10px; padding: 10px 14px; background: var(--navy-card); border-radius: 6px; border-left: 3px solid var(--lime); font-size: 13px; color: var(--off-white); font-style: italic; line-height: 1.5; margin-left: 44px; }
+
+/* ═══════════════════════════════════════════
+   SOCIAL SEO
+═══════════════════════════════════════════ */
+#seo { background: var(--navy); }
+
+.tam-ladder { display: flex; flex-direction: column; gap: 0; margin-bottom: 48px; position: relative; }
+.tam-ladder::before { content: ''; position: absolute; left: 28px; top: 48px; bottom: 48px; width: 2px; background: linear-gradient(to bottom, var(--azure), var(--lime)); }
+.tam-rung { display: flex; align-items: flex-start; gap: 24px; padding: 24px 0; position: relative; }
+.tam-rung-num { width: 56px; height: 56px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 700; flex-shrink: 0; position: relative; z-index: 1; }
+.tam-rung:nth-child(1) .tam-rung-num { background: rgba(58,123,213,0.2); border: 2px solid var(--azure); color: var(--azure); }
+.tam-rung:nth-child(2) .tam-rung-num { background: rgba(58,123,213,0.3); border: 2px solid var(--azure); color: var(--azure); }
+.tam-rung:nth-child(3) .tam-rung-num { background: rgba(200,241,53,0.15); border: 2px solid var(--lime); color: var(--lime); }
+.tam-rung:nth-child(4) .tam-rung-num { background: rgba(200,241,53,0.25); border: 2px solid var(--lime); color: var(--lime); }
+.tam-rung-content { flex: 1; padding-top: 8px; }
+.tam-rung-level { font-size: 10px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); margin-bottom: 4px; }
+.tam-rung-title { font-size: 18px; font-weight: 700; color: var(--white); margin-bottom: 6px; }
+.tam-rung-intent { font-size: 13px; color: var(--muted); margin-bottom: 12px; }
+.tam-keywords { display: flex; flex-wrap: wrap; gap: 8px; }
+.tam-keyword { background: var(--navy-light); border: 1px solid var(--border); border-radius: 100px; padding: 4px 14px; font-size: 13px; color: var(--off-white); font-weight: 500; transition: border-color 0.2s; cursor: default; }
+.tam-keyword:hover { border-color: var(--lime-border); color: var(--lime); }
+
+.seo-tips-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+.seo-tip-card { background: var(--navy-light); border: 1px solid var(--border); border-radius: 12px; padding: 24px; transition: border-color 0.2s, transform 0.2s; }
+.seo-tip-card:hover { border-color: var(--azure-border); transform: translateY(-2px); }
+.seo-tip-icon { font-size: 28px; margin-bottom: 12px; display: block; }
+.seo-tip-title { font-size: 15px; font-weight: 700; color: var(--white); margin-bottom: 8px; }
+.seo-tip-text { font-size: 13px; color: var(--muted); line-height: 1.55; }
+.seo-tip-example { margin-top: 12px; padding: 8px 12px; background: var(--navy-card); border-radius: 6px; border-left: 3px solid var(--azure); font-size: 12px; color: var(--off-white); font-style: italic; line-height: 1.5; }
+
+/* ═══════════════════════════════════════════
+   CONTENT IDEAS
+═══════════════════════════════════════════ */
+#content-ideas { background: var(--navy-mid); }
+
+.funnel-tabs { display: flex; gap: 4px; background: var(--navy-light); border-radius: 10px; padding: 4px; margin-bottom: 40px; width: fit-content; }
+.funnel-tab { padding: 10px 24px; border-radius: 8px; font-size: 13px; font-weight: 600; cursor: pointer; transition: all 0.2s; color: var(--muted); border: none; background: transparent; letter-spacing: 0.04em; }
+.funnel-tab.active-tofu { background: var(--azure); color: white; }
+.funnel-tab.active-mofu { background: #f0a500; color: var(--navy); }
+.funnel-tab.active-bofu { background: var(--lime); color: var(--navy); }
+.funnel-tab:not(.active-tofu):not(.active-mofu):not(.active-bofu):hover { color: var(--white); }
+
+.ideas-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+
+.idea-card { background: var(--navy-light); border: 1px solid var(--border); border-radius: 12px; padding: 24px 26px; transition: border-color 0.3s, transform 0.3s; cursor: pointer; position: relative; overflow: hidden; }
+.idea-card::after { content: ''; position: absolute; top: 0; right: 0; width: 80px; height: 80px; border-radius: 50%; opacity: 0.06; transition: opacity 0.3s; }
+.idea-card.tofu::after { background: var(--azure); }
+.idea-card.mofu::after { background: #f0a500; }
+.idea-card.bofu::after { background: var(--lime); }
+.idea-card:hover { border-color: rgba(255,255,255,0.18); transform: translateY(-3px); }
+.idea-card:hover::after { opacity: 0.12; }
+
+.idea-card-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; margin-bottom: 14px; }
+.idea-card-title { font-family: 'Playfair Display', serif; font-size: 18px; font-weight: 700; color: var(--white); line-height: 1.2; flex: 1; }
+.idea-badges { display: flex; flex-direction: column; gap: 5px; align-items: flex-end; flex-shrink: 0; }
+.badge { font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 3px 10px; border-radius: 100px; }
+.badge-tofu { background: rgba(58,123,213,0.2); color: var(--azure); border: 1px solid rgba(58,123,213,0.3); }
+.badge-mofu { background: rgba(240,165,0,0.2); color: #f0a500; border: 1px solid rgba(240,165,0,0.3); }
+.badge-bofu { background: rgba(200,241,53,0.15); color: var(--lime); border: 1px solid rgba(200,241,53,0.3); }
+.badge-format { background: rgba(255,255,255,0.08); color: var(--off-white); border: 1px solid var(--border); }
+
+.idea-hook { font-size: 14px; font-style: italic; color: var(--off-white); background: var(--navy-card); border-left: 3px solid var(--lime); padding: 10px 14px; border-radius: 0 6px 6px 0; margin-bottom: 14px; line-height: 1.5; }
+.idea-meta-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.idea-meta-label { font-size: 10px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted); margin-bottom: 4px; }
+.idea-meta-text { font-size: 13px; color: var(--muted); line-height: 1.5; }
+.idea-creative-tag { display: inline-flex; align-items: center; gap: 6px; background: rgba(200,241,53,0.1); border: 1px solid var(--lime-border); border-radius: 100px; padding: 3px 10px; font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--lime); margin-bottom: 10px; }
+
+/* Sammy Jones Framework */
+.sj-framework { margin-top: 18px; padding-top: 18px; border-top: 1px solid var(--border); }
+.sj-framework-label { font-size: 10px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--lime); margin-bottom: 14px; }
+.sj-steps { display: flex; flex-direction: column; gap: 10px; }
+.sj-step { display: flex; gap: 12px; align-items: flex-start; }
+.sj-step-num { width: 22px; height: 22px; min-width: 22px; background: var(--lime-dim); border: 1px solid var(--lime-border); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 700; color: var(--lime); margin-top: 1px; }
+.sj-step-content { flex: 1; }
+.sj-step-title { font-size: 12px; font-weight: 700; color: var(--off-white); margin-bottom: 3px; }
+.sj-time { font-weight: 400; color: var(--muted); font-size: 11px; }
+.sj-step-text { font-size: 12px; color: var(--muted); line-height: 1.55; }
+
+/* ═══════════════════════════════════════════
+   CTA SYSTEM
+═══════════════════════════════════════════ */
+#cta-system { background: var(--navy); }
+
+.cta-philosophy { background: var(--navy-light); border: 1px solid var(--border); border-radius: 16px; padding: 36px 40px; margin-bottom: 48px; display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; }
+.cta-philosophy-quote { font-family: 'Playfair Display', serif; font-size: 22px; font-style: italic; color: var(--white); line-height: 1.5; border-left: 4px solid var(--lime); padding-left: 24px; }
+.cta-philosophy-points { display: flex; flex-direction: column; gap: 14px; }
+.cta-philosophy-point { display: flex; align-items: flex-start; gap: 12px; }
+.cta-point-icon { width: 28px; height: 28px; background: var(--lime-dim); border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 13px; flex-shrink: 0; margin-top: 1px; }
+.cta-point-text { font-size: 14px; color: var(--muted); line-height: 1.5; }
+.cta-point-text strong { color: var(--white); }
+
+.cta-types-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-bottom: 48px; }
+.cta-type-card { background: var(--navy-light); border: 1px solid var(--border); border-radius: 12px; padding: 22px; transition: border-color 0.2s, transform 0.2s; }
+.cta-type-card:hover { border-color: rgba(255,255,255,0.16); transform: translateY(-2px); }
+.cta-type-stage { font-size: 10px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; margin-bottom: 8px; }
+.cta-type-stage.tofu { color: var(--azure); }
+.cta-type-stage.mofu { color: #f0a500; }
+.cta-type-stage.bofu { color: var(--lime); }
+.cta-type-name { font-size: 16px; font-weight: 700; color: var(--white); margin-bottom: 8px; }
+.cta-type-desc { font-size: 13px; color: var(--muted); line-height: 1.5; margin-bottom: 12px; }
+.cta-example-box { background: var(--navy-card); border-radius: 6px; padding: 10px 12px; border-left: 3px solid; }
+.cta-type-card:nth-child(1) .cta-example-box, .cta-type-card:nth-child(2) .cta-example-box { border-color: var(--azure); }
+.cta-type-card:nth-child(3) .cta-example-box, .cta-type-card:nth-child(4) .cta-example-box { border-color: #f0a500; }
+.cta-type-card:nth-child(5) .cta-example-box, .cta-type-card:nth-child(6) .cta-example-box { border-color: var(--lime); }
+.cta-example-label { font-size: 9px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); margin-bottom: 4px; }
+.cta-example-text { font-size: 12px; color: var(--off-white); font-style: italic; line-height: 1.45; }
+
+.link-in-bio-section { background: var(--navy-light); border: 1px solid var(--border); border-radius: 16px; padding: 36px 40px; }
+.lib-title { font-family: 'Playfair Display', serif; font-size: 24px; font-weight: 700; color: var(--white); margin-bottom: 8px; }
+.lib-subtitle { font-size: 15px; color: var(--muted); margin-bottom: 28px; line-height: 1.55; }
+.lib-rule { display: flex; align-items: center; gap: 12px; padding: 14px 0; border-bottom: 1px solid var(--border); }
+.lib-rule:last-child { border-bottom: none; }
+.lib-rule-icon { width: 36px; height: 36px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 16px; flex-shrink: 0; }
+.lib-rule-icon.good { background: rgba(200,241,53,0.15); }
+.lib-rule-icon.bad { background: rgba(255,80,80,0.15); }
+.lib-rule-text { font-size: 14px; color: var(--off-white); line-height: 1.45; }
+.lib-rule-text strong { color: var(--white); }
+
+/* ═══════════════════════════════════════════
+   LEAD MAGNETS
+═══════════════════════════════════════════ */
+#lead-magnets { background: var(--navy-mid); }
+
+.lm-intro { background: linear-gradient(135deg, var(--navy-light), var(--navy-card)); border: 1px solid var(--border); border-radius: 16px; padding: 36px 40px; margin-bottom: 48px; display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; }
+.lm-intro-text { font-size: 16px; color: var(--muted); line-height: 1.65; }
+.lm-intro-text strong { color: var(--white); }
+.lm-stat-stack { display: flex; flex-direction: column; gap: 16px; }
+.lm-stat { display: flex; align-items: center; gap: 16px; background: var(--navy-card); border-radius: 10px; padding: 14px 18px; border: 1px solid var(--border); }
+.lm-stat-num { font-family: 'Playfair Display', serif; font-size: 28px; font-weight: 700; color: var(--lime); line-height: 1; flex-shrink: 0; min-width: 70px; }
+.lm-stat-text { font-size: 13px; color: var(--muted); line-height: 1.45; }
+
+.lm-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-bottom: 40px; }
+.lm-card { background: var(--navy-light); border: 1px solid var(--border); border-radius: 12px; padding: 28px; transition: border-color 0.2s, transform 0.2s; }
+.lm-card:hover { border-color: var(--lime-border); transform: translateY(-2px); }
+.lm-card-icon { font-size: 36px; margin-bottom: 14px; display: block; }
+.lm-card-type { font-size: 10px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--lime); margin-bottom: 6px; }
+.lm-card-title { font-size: 18px; font-weight: 700; color: var(--white); margin-bottom: 10px; line-height: 1.2; }
+.lm-card-desc { font-size: 14px; color: var(--muted); line-height: 1.55; margin-bottom: 16px; }
+.lm-card-why { background: var(--navy-card); border-radius: 8px; padding: 12px 14px; border-left: 3px solid var(--lime); }
+.lm-card-why-label { font-size: 9px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--lime); margin-bottom: 4px; }
+.lm-card-why-text { font-size: 12px; color: var(--muted); line-height: 1.45; }
+
+.lm-funnel-visual { background: var(--navy-light); border: 1px solid var(--border); border-radius: 16px; padding: 36px 40px; }
+.lm-funnel-title { font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 700; color: var(--white); margin-bottom: 8px; }
+.lm-funnel-subtitle { font-size: 14px; color: var(--muted); margin-bottom: 32px; }
+.lm-funnel-steps { display: flex; align-items: center; gap: 0; overflow-x: auto; }
+.lm-funnel-step { flex: 1; text-align: center; padding: 20px 12px; background: var(--navy-card); border-radius: 10px; min-width: 120px; }
+.lm-funnel-step-num { font-family: 'Playfair Display', serif; font-size: 28px; font-weight: 700; color: var(--lime); line-height: 1; margin-bottom: 6px; }
+.lm-funnel-step-label { font-size: 12px; font-weight: 600; color: var(--white); margin-bottom: 4px; }
+.lm-funnel-step-desc { font-size: 11px; color: var(--muted); line-height: 1.4; }
+.lm-funnel-arrow { font-size: 20px; color: var(--lime); padding: 0 8px; flex-shrink: 0; }
+
+/* ═══════════════════════════════════════════
+   REAL RESULTS
+═══════════════════════════════════════════ */
+#results { background: var(--navy); }
+
+.results-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 32px; }
+.result-card { background: var(--navy-light); border: 1px solid var(--border); border-radius: 12px; padding: 28px; transition: border-color 0.2s, transform 0.2s; }
+.result-card:hover { border-color: rgba(255,255,255,0.16); transform: translateY(-2px); }
+.result-card-tag { font-size: 10px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--lime); margin-bottom: 10px; }
+.result-card-challenge { font-size: 13px; color: var(--muted); line-height: 1.55; margin-bottom: 20px; padding-bottom: 16px; border-bottom: 1px solid var(--border); }
+.result-metrics { display: flex; flex-direction: column; gap: 12px; }
+.result-metric { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.result-metric-value { font-family: 'Playfair Display', serif; font-size: 24px; font-weight: 700; color: var(--lime); line-height: 1; flex-shrink: 0; }
+.result-metric-label { font-size: 12px; color: var(--muted); line-height: 1.35; text-align: right; }
+
+.bridge-callout { background: linear-gradient(135deg, rgba(200,241,53,0.08), rgba(58,123,213,0.08)); border: 1px solid var(--lime-border); border-radius: 16px; padding: 36px 40px; }
+.bridge-callout-label { font-size: 10px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--lime); margin-bottom: 14px; }
+.bridge-callout-quote { font-family: 'Playfair Display', serif; font-size: 20px; font-style: italic; color: var(--white); line-height: 1.6; }
+
+/* ═══════════════════════════════════════════
+   PRICING
+═══════════════════════════════════════════ */
+#pricing { background: var(--navy-mid); }
+
+.pricing-roi-bar { background: var(--navy-light); border: 1px solid var(--lime-border); border-radius: 12px; padding: 20px 28px; margin-bottom: 40px; display: flex; align-items: center; gap: 16px; }
+.pricing-roi-icon { font-size: 28px; flex-shrink: 0; }
+.pricing-roi-text { font-size: 15px; color: var(--off-white); line-height: 1.5; font-style: italic; }
+.pricing-roi-text strong { color: var(--lime); }
+
+.pricing-entry-label { font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 20px; margin-top: 40px; }
+.pricing-grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-bottom: 40px; }
+.pricing-entry { background: var(--navy-light); border: 1px solid var(--border); border-radius: 12px; padding: 28px; display: flex; flex-direction: column; gap: 0; }
+.pricing-card-label { font-size: 10px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--lime); margin-bottom: 8px; }
+.pricing-card-name { font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 700; color: var(--white); margin-bottom: 6px; }
+.pricing-card-desc { font-size: 13px; color: var(--muted); line-height: 1.5; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
+.pricing-price { font-family: 'Playfair Display', serif; font-size: 36px; font-weight: 700; color: var(--lime); line-height: 1; margin-bottom: 4px; }
+.pricing-period { font-size: 13px; color: var(--muted); margin-bottom: 20px; }
+.pricing-features { list-style: none; display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; }
+.pricing-features li { display: flex; align-items: flex-start; gap: 10px; font-size: 14px; color: var(--muted); line-height: 1.4; }
+.pricing-features li::before { content: '→'; color: var(--lime); font-size: 13px; flex-shrink: 0; margin-top: 1px; }
+.pricing-best-for { font-size: 12px; color: var(--muted); line-height: 1.5; margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--border); font-style: italic; }
+.pricing-credit-note { font-size: 12px; color: rgba(200,241,53,0.7); font-style: italic; line-height: 1.45; padding-top: 14px; border-top: 1px solid var(--border); }
+.pricing-cta-link { display: inline-block; margin-top: 16px; font-size: 13px; font-weight: 700; color: var(--lime); text-decoration: none; letter-spacing: 0.02em; transition: opacity 0.2s; }
+.pricing-cta-link:hover { opacity: 0.7; }
+
+.signature-hero { background: linear-gradient(135deg, var(--navy-light) 0%, rgba(200,241,53,0.05) 100%); border: 1px solid var(--lime-border); border-radius: 16px; padding: 40px; margin-top: 16px; }
+.signature-hero-badge { display: inline-block; background: var(--lime); color: var(--navy); font-size: 11px; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; padding: 5px 14px; border-radius: 20px; margin-bottom: 24px; }
+.signature-hero-header { display: flex; justify-content: space-between; align-items: flex-start; gap: 40px; margin-bottom: 32px; }
+.signature-hero-label { font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--lime); margin-bottom: 8px; }
+.signature-hero-title { font-family: 'Playfair Display', serif; font-size: 36px; font-weight: 900; color: var(--white); margin-bottom: 12px; }
+.signature-hero-desc { font-size: 15px; color: var(--muted); line-height: 1.65; max-width: 520px; }
+.signature-hero-price-block { text-align: right; min-width: 200px; }
+.signature-hero-price { font-family: 'Playfair Display', serif; font-size: 40px; font-weight: 900; color: var(--lime); line-height: 1; }
+.signature-hero-period { font-size: 13px; color: var(--muted); margin-top: 4px; }
+.signature-included-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 10px; margin-bottom: 32px; padding: 24px; background: rgba(255,255,255,0.03); border-radius: 10px; border: 1px solid var(--border); }
+.signature-included-item { font-size: 13px; color: var(--off-white); padding-left: 18px; position: relative; }
+.signature-included-item::before { content: '✓'; position: absolute; left: 0; color: var(--lime); font-weight: 700; font-size: 12px; }
+.signature-tiers { display: flex; align-items: center; gap: 24px; margin-bottom: 24px; }
+.signature-tier { flex: 1; background: var(--navy-card); border: 1px solid var(--border); border-radius: 10px; padding: 20px 24px; }
+.featured-tier { border-color: var(--lime-border); background: rgba(200,241,53,0.06); }
+.signature-tier-divider { font-size: 24px; color: var(--muted); flex-shrink: 0; }
+.signature-tier-name { font-size: 12px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--lime); margin-bottom: 6px; }
+.signature-tier-price { font-family: 'Playfair Display', serif; font-size: 28px; font-weight: 900; color: var(--white); margin-bottom: 6px; }
+.signature-tier-price span { font-size: 14px; font-weight: 400; color: var(--muted); }
+.signature-tier-details { font-size: 12px; color: var(--muted); line-height: 1.5; }
+.signature-credit-callout { background: var(--azure-dim); border: 1px solid var(--azure-border); border-radius: 8px; padding: 16px 20px; font-size: 13px; color: var(--off-white); line-height: 1.6; }
+
+/* ═══════════════════════════════════════════
+   NEXT STEPS
+═══════════════════════════════════════════ */
+#next-steps { background: var(--navy); }
+
+.steps-timeline { display: flex; flex-direction: column; gap: 0; margin-bottom: 48px; position: relative; }
+.steps-timeline::before { content: ''; position: absolute; left: 27px; top: 56px; bottom: 56px; width: 2px; background: linear-gradient(to bottom, var(--azure), var(--lime)); }
+.step-item { display: flex; align-items: flex-start; gap: 24px; padding: 20px 0; position: relative; }
+.step-num { width: 56px; height: 56px; border-radius: 50%; background: var(--navy-card); border: 2px solid var(--border); display: flex; align-items: center; justify-content: center; font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 700; color: var(--lime); flex-shrink: 0; position: relative; z-index: 1; transition: border-color 0.3s, background 0.3s; }
+.step-item:hover .step-num { border-color: var(--lime); background: var(--lime-dim); }
+.step-content { flex: 1; padding-top: 10px; }
+.step-title { font-size: 18px; font-weight: 700; color: var(--white); margin-bottom: 6px; }
+.step-desc { font-size: 14px; color: var(--muted); line-height: 1.55; }
+
+.cta-final { background: linear-gradient(135deg, var(--navy-light), var(--navy-card)); border: 1px solid var(--lime-border); border-radius: 20px; padding: 56px 60px; text-align: center; position: relative; overflow: hidden; }
+.cta-final::before { content: ''; position: absolute; top: -100px; left: 50%; transform: translateX(-50%); width: 400px; height: 400px; background: radial-gradient(circle, rgba(200,241,53,0.08) 0%, transparent 70%); pointer-events: none; }
+.cta-final-label { font-size: 11px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--lime); margin-bottom: 16px; }
+.cta-final-title { font-family: 'Playfair Display', serif; font-size: 36px; font-weight: 700; color: var(--white); margin-bottom: 16px; line-height: 1.2; }
+.cta-final-text { font-size: 17px; color: var(--muted); max-width: 560px; margin: 0 auto 36px; line-height: 1.65; }
+.cta-final-contact { display: flex; justify-content: center; gap: 32px; margin-top: 24px; }
+.cta-final-contact-item { font-size: 14px; color: var(--muted); }
+.cta-final-contact-item span { color: var(--lime); font-weight: 600; }
+
+/* ═══════════════════════════════════════════
+   FOOTER
+═══════════════════════════════════════════ */
+footer { background: var(--navy-card); border-top: 1px solid var(--border); padding: 40px 0; }
+.footer-inner { display: flex; align-items: center; justify-content: space-between; }
+.footer-copy { font-size: 13px; color: var(--muted); }
+.footer-link { font-size: 13px; color: var(--azure); text-decoration: none; }
+
+/* ═══════════════════════════════════════════
+   ACCOUNTS WE'RE LOVING
+═══════════════════════════════════════════ */
+.outlier-intro { margin-bottom: 3rem; }
+.outlier-intro-inner { display: flex; align-items: flex-start; gap: 1rem; background: rgba(200,241,53,0.08); border: 1px solid rgba(200,241,53,0.25); border-radius: 12px; padding: 1.25rem 1.5rem; }
+.outlier-intro-icon { flex-shrink: 0; margin-top: 2px; }
+.outlier-intro-text { font-size: 0.95rem; color: var(--text-secondary); line-height: 1.6; }
+.outlier-intro-text strong { color: var(--text-primary); }
+
+.account-spotlight { background: var(--card-bg); border: 1px solid var(--border); border-radius: 20px; padding: 2.5rem; margin-bottom: 3rem; }
+.account-spotlight:last-child { margin-bottom: 0; }
+.account-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1.5rem; flex-wrap: wrap; gap: 1rem; }
+.account-handle { font-size: 1.4rem; font-weight: 700; color: var(--lime); font-family: var(--font-mono, monospace); margin-bottom: 0.25rem; }
+.account-name { font-size: 1rem; color: var(--text-secondary); margin-bottom: 1rem; }
+.account-stats-row { display: flex; gap: 1.5rem; flex-wrap: wrap; }
+.account-stat { display: flex; flex-direction: column; gap: 0.2rem; }
+.stat-value { font-size: 1.3rem; font-weight: 700; color: var(--text-primary); }
+.stat-label { font-size: 0.72rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; }
+.outlier-stat .stat-value { color: #f59e0b; }
+.multiplier-stat .stat-value { color: var(--lime); font-size: 1.5rem; }
+.account-love-badge { background: linear-gradient(135deg, var(--lime), #a8d800); color: var(--navy); font-size: 0.75rem; font-weight: 700; padding: 0.4rem 1rem; border-radius: 20px; text-transform: uppercase; letter-spacing: 0.08em; white-space: nowrap; align-self: flex-start; }
+.account-why { background: rgba(255,255,255,0.03); border-left: 3px solid var(--lime); padding: 1.25rem 1.5rem; border-radius: 0 12px 12px 0; margin-bottom: 2rem; }
+.account-why h4 { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--lime); margin-bottom: 0.75rem; }
+.account-why p { color: var(--text-secondary); line-height: 1.7; margin: 0; }
+
+.account-posts-grid { display: grid; grid-template-columns: 1fr; gap: 2rem; margin-bottom: 2rem; }
+.account-posts-grid.two-posts { grid-template-columns: 1fr 1fr; }
+.account-post-card { display: grid; grid-template-columns: auto 1fr; gap: 1.5rem; background: rgba(255,255,255,0.02); border: 1px solid var(--border); border-radius: 16px; padding: 1.5rem; }
+.account-posts-grid.two-posts .account-post-card { grid-template-columns: 1fr; }
+.post-embed-wrapper { width: 280px; flex-shrink: 0; }
+.account-posts-grid.two-posts .post-embed-wrapper { width: 100%; }
+.post-embed-wrapper blockquote.instagram-media { margin: 0 !important; min-width: unset !important; max-width: 100% !important; width: 100% !important; border: none !important; border-radius: 0 !important; background: transparent !important; }
+.post-views-badge { display: inline-block; background: rgba(245,158,11,0.15); color: #f59e0b; border: 1px solid rgba(245,158,11,0.3); font-size: 0.75rem; font-weight: 600; padding: 0.3rem 0.8rem; border-radius: 20px; margin-bottom: 0.75rem; }
+.post-analysis h5 { font-size: 1rem; font-weight: 700; color: var(--text-primary); margin-bottom: 0.6rem; }
+.post-analysis p { color: var(--text-secondary); font-size: 0.9rem; line-height: 1.6; }
+.post-takeaways { margin-top: 1rem; background: rgba(200,241,53,0.06); border: 1px solid rgba(200,241,53,0.15); border-radius: 10px; padding: 1rem; }
+.takeaway-label { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--lime); margin-bottom: 0.5rem; }
+.post-takeaways p { color: var(--text-secondary); font-size: 0.875rem; line-height: 1.6; margin: 0; }
+
+.account-lessons h4 { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-muted); margin-bottom: 1.25rem; }
+.lessons-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+.lesson-card { background: rgba(255,255,255,0.03); border: 1px solid var(--border); border-radius: 12px; padding: 1.25rem; display: flex; gap: 1rem; }
+.lesson-number { font-size: 1.5rem; font-weight: 800; color: rgba(200,241,53,0.2); flex-shrink: 0; line-height: 1; }
+.lesson-content strong { display: block; color: var(--text-primary); font-size: 0.9rem; margin-bottom: 0.4rem; }
+.lesson-content p { color: var(--text-secondary); font-size: 0.85rem; line-height: 1.6; margin: 0; }
+
+/* ═══════════════════════════════════════════
+   RESPONSIVE
+═══════════════════════════════════════════ */
+@media (max-width: 900px) {
+  nav { padding: 0 20px; }
+  .nav-links { display: none; }
+  .container { padding: 0 20px; }
+  section { padding: 70px 0; }
+  .toc-grid { grid-template-columns: repeat(3, 1fr); }
+  .gaps-grid { grid-template-columns: 1fr; }
+  .profile-layout { grid-template-columns: 1fr; }
+  .profile-mockup { position: static; }
+  .seo-tips-grid { grid-template-columns: 1fr 1fr; }
+  .ideas-grid { grid-template-columns: 1fr; }
+  .cta-types-grid { grid-template-columns: 1fr 1fr; }
+  .cta-philosophy { grid-template-columns: 1fr; }
+  .lm-intro { grid-template-columns: 1fr; }
+  .lm-grid { grid-template-columns: 1fr; }
+  .results-grid { grid-template-columns: 1fr; }
+  .pricing-grid-3 { grid-template-columns: 1fr; }
+  .cta-final { padding: 40px 24px; }
+  .hero-stats { gap: 24px; flex-wrap: wrap; }
+  .lessons-grid { grid-template-columns: 1fr; }
+  .account-posts-grid.two-posts { grid-template-columns: 1fr; }
+  .account-post-card { grid-template-columns: 1fr; }
+  .post-embed-wrapper { width: 100%; }
+  .account-spotlight { padding: 1.5rem; }
+  .signature-hero-header { flex-direction: column; gap: 20px; }
+  .signature-hero-price-block { text-align: left; }
+  .signature-tiers { flex-direction: column; gap: 12px; }
+  .signature-tier-divider { display: none; }
+}
+  </style>
+</head>
+<body>
+
+<div id="progress-bar"></div>
+
+<!-- Navigation -->
+<nav>
+  <a href="#hero" class="nav-logo">
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPoAAACWCAYAAAD32pUcAAAab0lEQVR4nO2dWVvbyLaGv1XygG3MDCFhSGfszOl09j7///qcdKc7c0iTTpgCxhiwjUep1rmQZWywjSTLQ+z1Po8CMZaqJNVXVSqtgZgZgiCMNmrQFRAEofeI0AVhDBChC8IYIEIXhDFAhC4IY4AIXRDGABG6IIwBInRBGANE6IIwBojQBWEMEKELwhggQheEMUCELghjgAhdEMYAEbogjAEidEEYA0TogjAGiNAFYQwIDboCQu+xw4WR87+Gv5x/RkS4SOv9Gr/Xej9h+JARfcRhZhARE6G2UcN2/lk2V2zaL5XOtdkPTZ9JzMGfAxG6AAA4yZbqvzMzUum8q/1E5z8HInQBAMC4qFhR8CghQhdsLulanr1HCRG6cAkiQjgkTWOUkLsptIRlQB8pROiCzUVhyyP6SCFCF2wuCltG9JFChC60Rkb0kUKELlyCmWFZetDVEAJEhC60RCzeRgsRumAjz+QjjQhdsJEBfKQRoQttkCF+lBChC8IYIEIXhDFAhC4IY4AIXRDGABG6IIwBInRBGANE6IIwBojQhTaIBc0oIUIXWqLF1n2kEKELLSBUq9agKyEEiAhdaI0kZhgpROiCMAb4Tsnk+Cs7SXuY7ec6AqCUwsXUP0EPEK38pS3tlN9cWK/TBnHtHwbXXUEszVBkn/dV5XPDP8711Nr+XV3aP/hrKYw+nkZ0ZgYzo1K1sPE1BSJiVUvVoxRxyFBsGKophc+fb7dxVihD1/btBma7DlozDjN5NKcXaiz//LO/PuyiVK7W6+7m+K023fD7xetRLFbwx5stqAt1UYo6pi1y9q9WTLzf2Gu6noahasdoPp+Dw2xTvQTBDa6EzsywtMb23gmIiCNhg3+9c81VK3v5bJ0nE1FWRPz24x5MS/tqoJoZpVIFTqeyNJ90dZAXj1d5IhpmIuLd/VNYHcrP5UuXOg9ncwSYzpxBa4ZpWvj45QBExPFYhP/zfL1tfd583LvUQWjNSB3ZnVUkEuInv95wdT7LS1P1OhVLVVkdF1zRUejM9hTy82YKhlK8vjLbVat69miFQ4biV2+2YGl2lbeLmZHNlaCIOBaLdFX+6vUZNgzFm9/S9ojY8DfNjKnkxJXHX5yftGcvIYMf3V92VZ/nj1bq39PM2N0/hVLE1xbcdVbtiMcirIj4JFuU0V3oSFuhMzOqpgmliB/cdTd6u+W/z2+yoYgLpUrHBqprmUDdCNALd28tMhFxuTal7xeW1lBEvHp9JtBCZ6ZiTEQso7vQjpZCZ2acZIuIhEM9bTmJWKTlaMQAyhUTiqin5U9Ew5w5KfRF7JmTAgylelqQqk3nRe7CRVoKvVCsYnY63pf2MjsdbxIbM6NSMRGN9LaTcZifTfC37UzPLT7nZxN9OZ/YRJizOZnKC81cEjozIxHv7lnYK/OzCa6adhxxzdw3kTvcWp/ng3Sun0X2lOlkjEtlc9DVEIaIJqEzMza/pQdSkUjY4ErV6vn0th3Xl6ZGagiMTYTZlCQMQo0LIzrh7q3FgTX4SNgYKbENmpChZAIvALgg9OPTM18HOT4tkNZMzCBLM6UzZ3213do/zBIz1zfNTN+2j35q+7E/3mzRh419+uPv7a7O4zCd97XfT33xhEvUhc4MfN/JuN7xIJ2rC2tmKgalbNNMQxHmZ+Nw/lYoVnrWZsoVk5iZri0kQUT1TRHh5uocmJmOjvvX6WRzRWJmqlYtX2Xmz8r1a/r70zU8vHcNvz9bBTOT1kzpTN7zca8tdveuXhgNzoUOxosna64aRdXUtDTfLK5GGj+PxyLQzIGK7aA2gkcjoZblN9ZhbjYB09I9FXs2XyJmpqlkDADhzcc9T/sfnxaImSmRiDZdu6bOSxEW5ibBzLTz46TnnZf0DqOFL6eWkOHNsUIRgZlpYzOFitns58wMPHvozvwTALK5Ei3VRnA3EICQocDMRD14L18uVylZEyhgL2i+fOauwwSAatWimamY+/MhwsryNI6Oz6hfr+yEn5+60L0MEa/f7eDFk1V7Pw8N9P6dpUufe3nf+30nQ+srs7680YgIWmtSAa7ql8omRSPheqfHzDjNFTE7HXe1f+bkjGanE5690YgIczNxbO8d09qN7sySW2N73gmjQ33qTkTY+JpydXd/f7pWd6xIZ/IoFCt1Z5VWW2MZF7dCseq6sn5F7qCUAgNNC3fO4p2lvU3vN7+nKRoxLonUi6HR7HTct8spEWH1+oy/nV0QDkmoglGi6W6u35j1fICFuUmOxyIcuuAe6myfN1MoV8yWbpXMjOPTgqtySuVqIEMM4XKHo9o853fi1tp8V52O1kzd+skTEQ6PvC/QBYkM/D8HTUKPRn3HoWjLg7vXOBoJMRHxxr+HdkCFBsG7nXraU+ThaFV/vNkOQKTB1GVhLhHMgcYIXXO71h22UTMhvmQwE9TI2Ypfby/VgzGUK6anld1huvBPHlxv8xd3l+7tpx/D0WN1YFg61aDRduQfNpQd1KPdlkrnhqrNdUuT0ImAaCSEDxv7Pb/L0UiIN76mXH339budoWp34fDlZ3MAMC13kVMXZhOBCunVm+6Mai5CRDCM0XxGd+vKmzsr97gm/eXS3SQiPLx3rS+FP3AZpSb0EzQ6ZrgOkRwOB3s+s1OxQI8HyLP3qNGyxVHtvffnzYOhuN1PH94YqklUu4vidpTWAZ9Mqez+zUU7KlWzKeKPoYa/cxXc0/ZuEhHu376GbL40FGIfLlOtVpZ49mOPG0pXRNbxyuNfr3d9sHu3lpqCa4XChqv97MCb3ZYu9JqO3TYRkExMQDPT1u6xvMap07plu63j+srcUEqjsfrJRNTVPp83UxiyXjgQRmkhDnARBZbINmFduzELzUyZk/56pjmcnErUlFYEmTrJCf4BANMun/t/e7w6kjelUhmtlFSuX5wTAQTC3EwCXHNScXRXKFZwfFrA0XEBvz1e6cmNn52Js2buemA3TQv5wvnUmciJ5w7MzbgzXQ2Ck2wRXmzcW8HMiAQYjScSNrjmE3ApCUYnDo/yWJxPDtmsS2jE14pLo0eVUoREPILV6zN4/uhGzT3VNjPVWtPOj+Cm/B8+73c1qluWRihk8MxUjGen4zw7HeeZKfvn3EwwMfI+fnG3gDk7He96glLpQSLEw0wezOzJ92FpIdk2SYUwHFwKJXXV1orLNuyodQQKK9dnoXUwbqpPHlzn9PGZvwQQWsMwehumiohwc9W9GbFS/kM0a92b2HpL88la/D5CuWK6vm9KEeugXycIgVEXutbcNktJ41Yoelsxtm3LgdNcMRCxL85N8ocvBzVT2qu/z8wolU0E6bXWyQIuNhH2dCRVi8fu9pIyA1XTglK9C4UdCRtcKJYRdrny7qAUsWmOnvkocD4Iat2YnmvQtXJPXehV0900MB6L8N5Btp6PrBPOxTnNljCdjAV2WR7fX2aliI9Pzppyol3Kl6YZbz/uYSLav6iyRISDw6ynTk3ReTKLdpfUud4n2QLCIW+x9SxLk2l6885LxKP85sMuPv3jzZYiFFJ8eJQfmdxwzIBpabz6e6ueDsxJz1XqcwKQbiCnopblfWr7x9ttur02j0jEgGEYUIrsPG2WRrVqYe/gFA/vuUtb1C0bX1M0nYzBsjSOjs/w1EMwC684C1Yd/g6/QS62905obiaGaCQEpRQsrVGpmEhnznBz1d9rOWfx9NM/B327HwCw++OEFuYnEQkbQ2M7b1oaIRft/P3nH/Tw3jLyZ+WOqbo2vqbo3q2loV+IrAu9m8Y5blwtdNuQJDYRHvj1rJoWhUP2FHyQ99g0LQqFvD0K9KQeHoR+++Y8YhNX5zjoJiBKv2gKPDFo3+ZRgQiYiIbw4UvvnYM6kTktNImLiHCaDWatxCvvN/Z/qmdaAK5EDgA3V+eGfgbftOq+MDc5qHoAALTW5PWZcFghIjy82x/noFZ8/HJAs1OxS8uGU8kJbH5P9/0a2xllh1wNDXh9G+J2jWtQXHJT7XXE1HbkC2UiIvx6Zwmv3+30vQ4VnyGaO+E4BwV9XDc8uLvUNjru7fV5vPm4OxIdaq8olbw5CuXypaFemLtkMBMyFIql3gWfaMVJtkiJ2Hmo498er+Cv9/1riFoz9coV1g5K2V+x6yvWEIgITx/c6EvcgXFhmJ/PgTaWcRPRsCdjiW7IF8o0nZxoWrUkIjx/tIJ+xC/XmsmLuacfam8j6J9vhz0t6PNmipiZ3ERwdeIO/Eideq6T9hhIs6FUf7sNAK/2EMnJiaEWext/dNvlUmumd5/2elb7qmlRIh5tM8UEVpZneja72D+0M834E7m/cNN3bi6g0KPzyRfKdP/2oqfGRkRYXpxGyWOn7jySpD1nwRneqe1FyGO7GPbgKB1rpxTh8a/XYQX83F4qV4mZKRwyOkqGyO5ZmZmyAVnWff7ngDQzXVuYbBIFEfDe9VTWX4MlIsRr55MLyM9/58eJneUlFvEZ7x6YiISgmcmL9SIRYX7GTr3lNkz4TwUD5Yq7TvlHKjvMgzmAhvfoV8HMsDRje/cYt9bnPbf0d5/26P7tpZpZpbdML3b5AMAolav4vJny7B6ZSudoYX4S1KFsrRl7Byc4zZbqTjsOpmnBMBRurc9jIuptWtcK53zKFROfNw/w/JG388kcn9HsTBx+rmX7OtlVyBcqSCaiLevz59ttevFktalTYQCsGal0Dstt0k8fHGZpaWFq4IYlXg1mcvkSpqfaW3V++feQ7v6yOPDzugrXQm9Es/2mxNIalqVxclpENl9CuWLCMBSSiSjmZuKIhENQRs3RBcEtWDimogyGthimpZHPl1AsmwiHDSRiEUxMhKBI2eUHVHbN4KT7E2hxXK791BajUjVxki2hVKoiFFKYTEQxmYjCUARVmyL2OpNKo8WkpRlHx2dIxCOYuuJZVGsGCHXryGyuhORkFHGfM46g8SL0R/eXQUSwLI2t3QxurS/U9/vfv77Tb49XEQ6poTivq/Al9EYa93d+c067Xxfg8jkEN8oNgk5egoPi3H/ffR0uZukZBvwIHbh4TwhAbzr9XtF1xoam59xuDxZAHUaBYTwfv/nuRoXL5/JznVvwqVkEQfBMr2c/IvQuOHcIsv9fNS1ozefeWtTdY0zj8Yns+HCWZhiKEA4b9c8ZvXtmt+tAtfUJwDQ1TNMCKUIkXGs+XZ6nvzrZ5+2UZll2vDvDUKhVue+PkG5petytrXWdFSqwLA2lCPFYBJELsQC6PQcRegNaMyq1VFEXwyk52UuUoQC2V8s/bOzjP8/X64Hs2oV73vlxQtcWkgi5XLhhZpimxl7qFDdX5urHj1w4vvP5py/7dGt9HtFIKKBFR7sOxVIFnzdTTvZcAHaWmnYBKdKZPM1Ox6GU96SVbtDMqFQs7P44wZ1fFprMDZudd84/39o7puWFZP1tj1fKFRPa0m3/TorQmDq7E06MhJNsEU5ueyJAKQMzHYJxHh2f0cxUrOm6VqomzFowT6foxlWEUMho6iy6XowbFbTmnkZtcSiWqjQRbS1IW1xVxGPuvKZakUrnaHF+0vcMwrI03n3+0XV013LZpEikez905w3Lt+0j3L650FWd0pk8TU/FXAXucF6vuWkT6UyeOjmEcW1gmIh277ZcrVpUrpiYbPP6sxFLa3IScQy3Oc8IEpsI89tPe5dW1jUzvm4ddSVywA7USERcNS1PThaaGf98SyMUMjiIEM7RqJ1B129MPMAWSDqTh1LE3YocsFN8e43O44ZOedqcEG1BiBwAwmGD3YgcaH5EEKEPgGcPV5ri750VKlBEfCeAxuwQDhn1kF+daCz/3q3FwEWgiDjr0bOLmVGumiAiXpxP/pRTTmbG8WmhL7NEN4jQB0g8FmEi4kS8u1G8HSvL0/zhy0FbkTEzUkd59Kp8h6nJCf62k3EldmZG7qyMaLh/cf6ChpnxfmMfs9PBhBD3X4/z30XoI87j+8v8fff4ksiYgd39U1xb6M+IeWttnv/dPuoodmYgc1LA1GT7GG3DDjPj9bsdPAkgH16QiNDHgF9W5/ioIR4+M+PwKIfV6zN9bYy31xd4e++kpdiZGbl8qb4a/TPCzPjr/S5+f7o2FOcgI/oYsjA3yVYtFn7VtLDUp5H8Iusrs9xq8YoZHaOtDjvMjJ0fJ3jxZDhz0YnQx4i3H/dgaQuRAT//Tk1OsNbn76aZ+/Nq0xseqsN2eqy1G7NDdg7niNAD5M3HXdr4mqK/3vcu5t2HjX16/W7b1/FfPFnlkOHv9dLGZooKxQrZufXsrVwx6d+tI191eftpv/6OPHWU93MIALbb7PbeMaWPzyh1lB+Qb7z/9Fj7qSxpzZeua9DRiMRgpoZfg5nPmwe2P7KiuhmqY1lmae05q0oryhXTDtJB9egudR/wze9p3L+91LObWChVaCISbptd1alLxYdBiGlpMmxrL8/1r1QtCoVUy/gCjgVa6iiH60vTvq6NF4OZ1+92yOuUverUv41BUaN1YiLu7r35RSpVixzrOBnRuyB/Vqb7t5ds09gL0WqUIoRDBpiZ/njjbwT+8+02MTPZWVvOzR+J7E7FMBTu3VpEvlDuySimNVMs2l7kjXWZiIahmenvD+6DeoYMxcenRU91SmfyxMwUCRtQ1Nod2TFXXl6cguU7vp17vIj8y792XL/wFdlrnDYUj0UDOQcRuk/SmTwl4lcHUyAivHiy6quM3x6vujp+IhbBkef4bZ1x4ul5MWFVRHj28Ab+768t1zt5SVedPyvT/GzCdZ2ICIZSfY/C2443H/dq0Wi8xPVDIOcgQveJlwanFHmOG1+pmB1DNjdCRJibiXs5fEdMyyLbYw1NWysuf4fw8vlaYHVx2Plx4qpjbYVSFHjcQz88fXDdt+2/UoRS2X9gUfFe88FprkhTk+29jVoRDnnrU+2pnZc9CGeFMvl9nnN4/W6Hbq7NIWSo+mgC1EYW47LXmmVa9fVpS2vb7dLSyOVKtO4zKWQrblyb7spBRimF/cMsLS+2jmnXa/JnZUrEo10dIxrxH6tQFuNqeFmM0y5jpzfCzPi2k8GttasDa25+S9Ptm/OeG7ZmhhrBRJk/UllaXuw+sKSXJJNeFuNclu16htaJStV0/XpUFuMGxPLilLvvLSV9HZ9+svBGblleTAYSA5AB/O/r732/SF4WKK8iHPI3CReh+8DPXbMXhtw+0/uNLDpyg3mNYHSiiPDL2lwgx/LCynJ3jx3N+LvHInRf+Lxozng9oHgOjCvqZaCoB5yKyC8vNVwEKH7YlRHztHHGEDqJBVwkX6OJ0LvJ9I/DByrQ/y3XlE1gy3z5bN1zy1JhO4LmYP3l+Cud9Fj3vMgyOWCzJ3u8z18QKULQg8JRiTMjG/bmUCO5YUg7QlkMe4nQGbu/sicFAK7dv/z4uZAboMOoFRmYPN72te+YhnXR3qfRyCYArb2jikcMjo6s3SDZWmcnZVxz6XX3fxsgpm5q4R6zEAqnce1Rbc2CsH2B4Yi7tZoRmuNu7+4D+DZFPfed6ljTWOOkNHjMJ3Hi6dXO9R0BQOlcpXcuramM3kszPmLVw/Y0/Zri4ONKJvLlzCV9GY67cDMePf5B54/WnG/U8Olkqm7cImXz9b48z8HQC1bjdutluIGrNlefLqwccNWC9bguk6L80kuFKu+FrX8xBq4mBUnCKaSMS6WvJ8D12L+P3+04rujEqELLXl4b9lOwOCItgOOeE+yBRARK0WsiJgubKphs23OCdlcyfUQnYhHPMWIdwJQ+LFX79VsJjYR5nTmzNU5MDM0M/58u4NuY/6L0PtJzyeOwRegFPHG10M4I5Guidr5Wa6Y2Ds4BRGx9zjmjOSkN4+u6WSMX/29jXLZrNWh2YXW+b8dYSbfl1h0Hzb2PfUKi/OTTER8fFqA1rrhPM6vrWlp7B2cQhHxy2fdR5UVoftidJ/PW/HrnSWOTYTro3Ljz2gkxCvL3sNGv/p7i5xJ/+FR3tMF/e9v6xyNhlgR8btPezg6zqNUqiJ/VsbWbgZEYKWI+xWz3q9Z7ex0nJVStWuJpplPyFC+rms7ZDFOGAj2Yp/9+8Jcwvdxnj680SSGyUR3Pt9+qVRMivgMENkPZEQX+s5BOkfNMfYIzMMR7skXZAcK+XfbX0TcfiBCH1NS6dxAGuWbj3u0NJ9sudiVP+tNkMt+QET4ZXUOr9549yzrByJ0XwzrDM19G1uYS+DLv8HGDr+KV39vkR037fLfiAiTiSiOT4tDKRQ3EBFePg0+Xp5fSN6jd8so+KMT7v6yAL8JGLzy6s0WvXy2fuVrq5mpmKdXbr2iWrVcf7fVY8ggItl0QoTeT4bs9RrVIq4cnxZ62igPj/L08umaKwtWIiA5OYFyxRyoUBpTRl353QvvxIkI//1tHQcDejxqhQjdF71VbD9bBxFhZioO3aPFMNPStDDnPjS2XScgGgmBmemfb+kBicV9sVYLf3MiwtL8JKrm4MJMSzbVFvTe4cSOBefqez2OgrL5Pd3kXEFkTz+ZmQrFSiBXwsnTZoeN9ndIIsKdm/Oomhb99b77AIvpTJ6qLuPre3lNNz3V2n6diBAOKTAzZfPBPI4UihXKuVy0bAwWKuGeG7AvRS2H+Pmv5zgmHl15UZ0ftGUZQFdeY07iQoBhWYxQSNn/dw7JqOdwa4czFS0UKphMuI8Tny+UKRGLAAjehNS5bqVSFbFYxHWdtnaPafX6DEBoyI1nXyOniq0kQLV0T7pm79++XuffdXMOzMDu/omnzKuZkwLNTsfAqHfI9Tp3KrepMxehjy61OOZd7W9DAOzGValasCwLIcNAJHIxoUNXnqQu6wSc946ESsVEoVhBuWrCUAqxiTDisUitHna9e+qF5wOu97wMy9LI5ks4K1RQNTUiYQPJySiSiYmGa9n9dRWhCz89jS14uCTtjkszOwr+PETogjAGyGKcIIwBInRBGANE6IIwBojQBWEMEKELwhggQheEMUCELghjgAhdEMYAEbogjAEidEEYA0TogjAGiNAFYQwQoQvCGCBCF4QxQIQuCGOACF0QxgARuiCMAf8P2R9atL03ZmcAAAAASUVORK5CYII=" alt="Scroll Media" style="height:28px;width:auto;display:block;" loading="lazy">
+  </a>
+  <ul class="nav-links">
+    <li><a href="#gaps">The Gaps</a></li>
+    <li><a href="#profile">Profile</a></li>
+    <li><a href="#seo">Social SEO</a></li>
+    <li><a href="#content-ideas">Content Ideas</a></li>
+    <li><a href="#cta-system">CTAs</a></li>
+    <li><a href="#lead-magnets">Lead Magnets</a></li>
+    <li><a href="#results">Results</a></li>
+    <li><a href="#accounts">Accounts We're Loving</a></li>
+    <li><a href="#pricing">Pricing</a></li>
+    <li><a href="https://calendly.com/scrollmedia/discovery" class="nav-cta" target="_blank" rel="noopener">Get Started</a></li>
+  </ul>
+</nav>
+
+<!-- ═══════════════════════════════════════════
+     HERO
+═══════════════════════════════════════════ -->
+<section id="hero">
+  <div class="hero-grid-bg"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-glow-2"></div>
+  <div class="container">
+    <div class="hero-content">
+      <div class="hero-badge fade-up">
+        <div class="hero-badge-dot"></div>
+        Med Spa &amp; Aesthetic Injectors — Instagram Strategy Guide
+      </div>
+      <h1 class="hero-title fade-up fade-up-delay-1">
+        You're Posting.<br>Nobody's <span class="accent">Booking.</span>
+      </h1>
+      <p class="hero-subtitle fade-up fade-up-delay-2">
+        Most med spas are active on Instagram and getting nothing from it. This guide breaks down exactly why — and what a content system built on clinical authority and patient trust actually looks like.
+      </p>
+      <div class="hero-ctas fade-up fade-up-delay-3">
+        <a href="#gaps" class="btn-primary">Read the Guide ↓</a>
+        <a href="#next-steps" class="btn-secondary">Work With Us</a>
+      </div>
+      <div class="hero-stats fade-up fade-up-delay-4">
+        <div>
+          <div class="hero-stat-value">209%</div>
+          <div class="hero-stat-label">Avg. Reach Growth<br>in 90 Days</div>
+        </div>
+        <div>
+          <div class="hero-stat-value">96%+</div>
+          <div class="hero-stat-label">Engagement Rate<br>Achieved</div>
+        </div>
+        <div>
+          <div class="hero-stat-value">77%</div>
+          <div class="hero-stat-label">Reach Increase<br>in 6 Months</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Table of Contents -->
+<div id="toc">
+  <div class="container">
+    <div class="toc-grid">
+      <a href="#gaps" class="toc-item fade-up">
+        <div class="toc-num">01</div>
+        <div class="toc-label">The Gaps</div>
+      </a>
+      <a href="#profile" class="toc-item fade-up fade-up-delay-1">
+        <div class="toc-num">02</div>
+        <div class="toc-label">Profile Optimization</div>
+      </a>
+      <a href="#seo" class="toc-item fade-up fade-up-delay-2">
+        <div class="toc-num">03</div>
+        <div class="toc-label">Social SEO</div>
+      </a>
+      <a href="#content-ideas" class="toc-item fade-up fade-up-delay-3">
+        <div class="toc-num">04</div>
+        <div class="toc-label">Content Ideas</div>
+      </a>
+      <a href="#cta-system" class="toc-item fade-up fade-up-delay-4">
+        <div class="toc-num">05</div>
+        <div class="toc-label">CTA System</div>
+      </a>
+    </div>
+    <div class="toc-grid" style="margin-top: 2px;">
+      <a href="#lead-magnets" class="toc-item fade-up">
+        <div class="toc-num">06</div>
+        <div class="toc-label">Lead Magnets</div>
+      </a>
+      <a href="#results" class="toc-item fade-up fade-up-delay-1">
+        <div class="toc-num">07</div>
+        <div class="toc-label">Real Results</div>
+      </a>
+      <a href="#accounts" class="toc-item fade-up fade-up-delay-2">
+        <div class="toc-num">08</div>
+        <div class="toc-label">Accounts We're Loving</div>
+      </a>
+      <a href="#pricing" class="toc-item fade-up fade-up-delay-3">
+        <div class="toc-num">09</div>
+        <div class="toc-label">Packages &amp; Pricing</div>
+      </a>
+      <a href="#next-steps" class="toc-item fade-up fade-up-delay-3">
+        <div class="toc-num">10</div>
+        <div class="toc-label">Next Steps</div>
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     THE GAPS
+═══════════════════════════════════════════ -->
+<section id="gaps">
+  <div class="container">
+    <span class="section-eyebrow fade-up">Chapter 01</span>
+    <h2 class="section-title fade-up fade-up-delay-1">The Gaps</h2>
+    <div class="rule fade-up fade-up-delay-1"></div>
+    <p class="section-subtitle fade-up fade-up-delay-2">These aren't criticisms of your practice. They're the patterns we see across almost every med spa on Instagram — and the reason consistent posting rarely turns into consistent bookings.</p>
+
+    <div class="gaps-grid">
+      <div class="gap-card fade-up">
+        <div class="gap-card-tag">Gap 01 — Universal</div>
+        <div class="gap-card-title">No Content Funnel</div>
+        <div class="gap-cols">
+          <div>
+            <div class="gap-col-label">Why It Matters</div>
+            <div class="gap-col-text">Posting without a TOFU/MOFU/BOFU structure attracts attention but doesn't convert it. Reach without direction is just noise — and noise doesn't fill a booking calendar.</div>
+          </div>
+          <div>
+            <div class="gap-col-label">The Fix</div>
+            <div class="gap-col-text">Map every post to a funnel stage — awareness, education, or action — so your content compounds instead of just accumulates. Every post should have a job.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="gap-card fade-up fade-up-delay-1">
+        <div class="gap-card-tag">Gap 02 — Universal</div>
+        <div class="gap-card-title">No Social SEO</div>
+        <div class="gap-cols">
+          <div>
+            <div class="gap-col-label">Why It Matters</div>
+            <div class="gap-col-text">Instagram is a search engine. Patients search for injectors and med spas in their city. Without keywords in your bio, captions, and Reel audio, you're invisible to the exact people you want to reach.</div>
+          </div>
+          <div>
+            <div class="gap-col-label">The Fix</div>
+            <div class="gap-col-text">Build a keyword bank from your ideal patient's search behavior and embed it in every post. Your bio, captions, and Reel audio should all be optimized for how patients actually search.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="gap-card niche fade-up fade-up-delay-2">
+        <div class="gap-card-tag">Gap 03 — Med Spa Specific</div>
+        <div class="gap-card-title">The "Before &amp; After" Trap</div>
+        <div class="gap-cols">
+          <div>
+            <div class="gap-col-label">Why It Matters</div>
+            <div class="gap-col-text">Most med spas rely entirely on before-and-after photos without explaining the clinical rationale, the patient's anatomy, or the "why" behind the treatment plan. It commoditizes the service and trains patients to shop for results rather than trusting a provider's expertise.</div>
+          </div>
+          <div>
+            <div class="gap-col-label">The Fix</div>
+            <div class="gap-col-text">Pair every result with the clinical story behind it. What was the anatomical problem? What was the treatment logic? What would have gone wrong with a different approach? That context is what separates a provider from a technician.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="gap-card niche fade-up fade-up-delay-3">
+        <div class="gap-card-tag">Gap 04 — Med Spa Specific</div>
+        <div class="gap-card-title">The Discount Spiral</div>
+        <div class="gap-cols">
+          <div>
+            <div class="gap-col-label">Why It Matters</div>
+            <div class="gap-col-text">Using promotions, flash sales, and "tox specials" as the primary hook attracts transactional, price-shopping patients who will leave you for a cheaper injector down the street. It also devalues your expertise and erodes your positioning.</div>
+          </div>
+          <div>
+            <div class="gap-col-label">The Fix</div>
+            <div class="gap-col-text">Authority-driven content attracts high-ticket, loyal patients who respect your clinical boundaries. Build a content system around your expertise, not your pricing. The right patients don't shop on price — they shop on trust.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="gap-card niche fade-up fade-up-delay-4" style="grid-column: 1 / -1;">
+        <div class="gap-card-tag">Gap 05 — Med Spa Specific</div>
+        <div class="gap-card-title">No IVP (Ideal Viewer Profile)</div>
+        <div class="gap-cols">
+          <div>
+            <div class="gap-col-label">Why It Matters</div>
+            <div class="gap-col-text">Without a clear picture of who you're talking to — first-time Botox patient, filler-curious 30-something, post-baby body contouring client, or aging gracefully 50+ patient — your content appeals to everyone and converts no one. Generic content gets generic results.</div>
+          </div>
+          <div>
+            <div class="gap-col-label">The Fix</div>
+            <div class="gap-col-text">Define your IVP before writing a single caption. Every post should feel like it was written for one specific person — the person most likely to book a consultation. When you talk to everyone, you reach no one.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     PROFILE OPTIMIZATION
+═══════════════════════════════════════════ -->
+<section id="profile">
+  <div class="container">
+    <span class="section-eyebrow fade-up">Chapter 02</span>
+    <h2 class="section-title fade-up fade-up-delay-1">Profile Optimization</h2>
+    <div class="rule fade-up fade-up-delay-1"></div>
+    <p class="section-subtitle fade-up fade-up-delay-2">Your Instagram profile is a landing page. Most med spas treat it like a business card. Here's the difference — and how to fix it in under an hour.</p>
+
+    <div class="profile-layout">
+      <!-- Mockup -->
+      <div class="profile-mockup fade-up">
+        <div class="profile-mockup-header">
+          <div class="mockup-dot mockup-dot-red"></div>
+          <div class="mockup-dot mockup-dot-yellow"></div>
+          <div class="mockup-dot mockup-dot-green"></div>
+        </div>
+        <div class="profile-mockup-body">
+          <div class="mock-profile-top">
+            <div class="mock-avatar">SJ</div>
+            <div class="mock-profile-info">
+              <div class="mock-username">Sarah Jenkins | Chicago Injector</div>
+              <div class="mock-handle">@sarah.aesthetics.np</div>
+              <div class="mock-stats">
+                <div class="mock-stat">
+                  <div class="mock-stat-num">312</div>
+                  <div class="mock-stat-label">posts</div>
+                </div>
+                <div class="mock-stat">
+                  <div class="mock-stat-num">8.4K</div>
+                  <div class="mock-stat-label">followers</div>
+                </div>
+                <div class="mock-stat">
+                  <div class="mock-stat-num">489</div>
+                  <div class="mock-stat-label">following</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="mock-bio">
+            <span class="keyword">Aesthetic NP</span> | MSN, FNP-C, CANS<br>
+            Enhancing <span class="keyword">natural balance</span>, not changing your face.<br>
+            Top 100 Injector | 📍 <span class="keyword">Chicago, IL</span><br>
+            Book your <span class="keyword">facial assessment</span> 👇
+          </div>
+          <a class="mock-link" href="#">Book your consultation →</a>
+          <div class="mock-highlights">
+            <div class="mock-highlight">
+              <div class="mock-highlight-circle">💉</div>
+              <div class="mock-highlight-label">Results</div>
+            </div>
+            <div class="mock-highlight">
+              <div class="mock-highlight-circle">🔬</div>
+              <div class="mock-highlight-label">Education</div>
+            </div>
+            <div class="mock-highlight">
+              <div class="mock-highlight-circle">⭐</div>
+              <div class="mock-highlight-label">Reviews</div>
+            </div>
+            <div class="mock-highlight">
+              <div class="mock-highlight-circle">👤</div>
+              <div class="mock-highlight-label">About</div>
+            </div>
+          </div>
+          <div class="mock-grid">
+            <div class="mock-grid-item"><div class="mock-grid-item-inner">💉</div></div>
+            <div class="mock-grid-item"><div class="mock-grid-item-inner">🔬</div></div>
+            <div class="mock-grid-item"><div class="mock-grid-item-inner">✨</div></div>
+            <div class="mock-grid-item"><div class="mock-grid-item-inner">🧬</div></div>
+            <div class="mock-grid-item"><div class="mock-grid-item-inner">📍</div></div>
+            <div class="mock-grid-item"><div class="mock-grid-item-inner">💬</div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Checklist -->
+      <div class="profile-checklist">
+        <div class="profile-check-item fade-up">
+          <div class="profile-check-header">
+            <div class="profile-check-icon">👤</div>
+            <div class="profile-check-title">Name Field — Your SEO Headline</div>
+          </div>
+          <div class="profile-check-desc">The name field is searchable. Don't just put your name — add your credentials, specialty, and market. Instagram searches this field first.</div>
+          <div class="profile-check-example">"Sarah Jenkins | Chicago Injector &amp; Aesthetics" — not just "Sarah Jenkins NP"</div>
+        </div>
+
+        <div class="profile-check-item fade-up fade-up-delay-1">
+          <div class="profile-check-header">
+            <div class="profile-check-icon">✍️</div>
+            <div class="profile-check-title">Bio — 150 Characters, Maximum Clarity</div>
+          </div>
+          <div class="profile-check-desc">Your bio should answer three questions in 150 characters: What is your clinical philosophy? Where are you located? What should they do next? Lead with your differentiator, not just your credentials.</div>
+          <div class="profile-check-example">"Enhancing natural balance, not changing your face. Aesthetic NP | MSN, FNP-C | 📍 Chicago, IL | Book your comprehensive facial assessment 👇"</div>
+        </div>
+
+        <div class="profile-check-item fade-up fade-up-delay-2">
+          <div class="profile-check-header">
+            <div class="profile-check-icon">🔗</div>
+            <div class="profile-check-title">Link in Bio — One Link, One Destination</div>
+          </div>
+          <div class="profile-check-desc">Your link in bio should point to one specific destination — your booking page or consultation form. Not a Linktree. Not your homepage. One action, one destination.</div>
+          <div class="profile-check-example">This month's CTA is "Book your new patient consultation" → link goes directly to your booking page. No Linktree. No homepage. One click to book.</div>
+        </div>
+
+        <div class="profile-check-item fade-up fade-up-delay-3">
+          <div class="profile-check-header">
+            <div class="profile-check-icon">⭕</div>
+            <div class="profile-check-title">Story Highlights — Your Always-On Trust System</div>
+          </div>
+          <div class="profile-check-desc">Highlights are the first thing a new profile visitor sees after your bio. For med spas, they're your credibility portfolio — not a random archive of old Stories.</div>
+          <div class="profile-check-example">Recommended highlights: Results · Education · Reviews · New Patient Info · About Me. Each should have a custom cover that matches your brand palette.</div>
+        </div>
+
+        <div class="profile-check-item fade-up fade-up-delay-4">
+          <div class="profile-check-header">
+            <div class="profile-check-icon">📌</div>
+            <div class="profile-check-title">Pinned Posts — Your 3-Post Sales Team</div>
+          </div>
+          <div class="profile-check-desc">Pin your three most trust-building pieces of content. A new visitor should be able to understand your philosophy, see your results, and feel confident in your expertise within 30 seconds of landing on your profile.</div>
+          <div class="profile-check-example">Pin 1: Your injection philosophy (TOFU). Pin 2: A clinical education reel that shows your expertise (MOFU). Pin 3: A patient case study or testimonial (BOFU).</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     SOCIAL SEO
+═══════════════════════════════════════════ -->
+<section id="seo">
+  <div class="container">
+    <span class="section-eyebrow fade-up">Chapter 03</span>
+    <h2 class="section-title fade-up fade-up-delay-1">Social SEO</h2>
+    <div class="rule fade-up fade-up-delay-1"></div>
+    <p class="section-subtitle fade-up fade-up-delay-2">Instagram is a search engine. Patients are actively searching for injectors and med spas in their city right now. Here's how to make sure they find you — not your competition.</p>
+
+    <div class="tam-ladder">
+      <div class="tam-rung fade-up">
+        <div class="tam-rung-num">1</div>
+        <div class="tam-rung-content">
+          <div class="tam-rung-level">Level 1 — Broad Industry</div>
+          <div class="tam-rung-title">Discovery Intent</div>
+          <div class="tam-rung-intent">People exploring aesthetics broadly — curious, not yet in booking mode</div>
+          <div class="tam-keywords">
+            <span class="tam-keyword">medspa</span>
+            <span class="tam-keyword">aesthetics</span>
+            <span class="tam-keyword">skincare</span>
+            <span class="tam-keyword">botox</span>
+            <span class="tam-keyword">filler</span>
+            <span class="tam-keyword">injectables</span>
+            <span class="tam-keyword">skintok</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="tam-rung fade-up fade-up-delay-1">
+        <div class="tam-rung-num">2</div>
+        <div class="tam-rung-content">
+          <div class="tam-rung-level">Level 2 — Niche Specific</div>
+          <div class="tam-rung-title">Interest Intent</div>
+          <div class="tam-rung-intent">People researching specific treatments, results, and what to expect</div>
+          <div class="tam-keywords">
+            <span class="tam-keyword">botox before and after</span>
+            <span class="tam-keyword">lip filler results</span>
+            <span class="tam-keyword">laser skin treatment</span>
+            <span class="tam-keyword">anti aging injections</span>
+            <span class="tam-keyword">skin rejuvenation</span>
+            <span class="tam-keyword">dermal filler</span>
+            <span class="tam-keyword">body contouring results</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="tam-rung fade-up fade-up-delay-2">
+        <div class="tam-rung-num">3</div>
+        <div class="tam-rung-content">
+          <div class="tam-rung-level">Level 3 — Intent + Education</div>
+          <div class="tam-rung-title">Consideration Intent</div>
+          <div class="tam-rung-intent">People actively researching providers and comparing options — this is where you win or lose</div>
+          <div class="tam-keywords">
+            <span class="tam-keyword">botox for forehead lines</span>
+            <span class="tam-keyword">lip filler near me</span>
+            <span class="tam-keyword">how long does botox last</span>
+            <span class="tam-keyword">filler vs botox difference</span>
+            <span class="tam-keyword">medspa consultation</span>
+            <span class="tam-keyword">sculptra results</span>
+            <span class="tam-keyword">laser resurfacing before after</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="tam-rung fade-up fade-up-delay-3">
+        <div class="tam-rung-num">4</div>
+        <div class="tam-rung-content">
+          <div class="tam-rung-level">Level 4 — Local / Purchase Intent</div>
+          <div class="tam-rung-title">Booking Intent</div>
+          <div class="tam-rung-intent">High-intent patients ready to book — the most valuable search traffic on the platform</div>
+          <div class="tam-keywords">
+            <span class="tam-keyword">best injector [city]</span>
+            <span class="tam-keyword">medspa [city name]</span>
+            <span class="tam-keyword">botox appointment [city]</span>
+            <span class="tam-keyword">lip filler consultation</span>
+            <span class="tam-keyword">top rated medspa near me</span>
+            <span class="tam-keyword">medspa consultation booking</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <h3 style="font-family: 'Playfair Display', serif; font-size: 24px; font-weight: 700; color: var(--white); margin-bottom: 24px;" class="fade-up">Where to Embed Keywords</h3>
+    <div class="seo-tips-grid">
+      <div class="seo-tip-card fade-up">
+        <span class="seo-tip-icon">👤</span>
+        <div class="seo-tip-title">Name Field</div>
+        <div class="seo-tip-text">The single most important SEO field on your profile. Instagram's search algorithm indexes this first. Include your name, specialty, and city.</div>
+        <div class="seo-tip-example">"Sarah Jenkins | Chicago Injector &amp; Aesthetics"</div>
+      </div>
+
+      <div class="seo-tip-card fade-up fade-up-delay-1">
+        <span class="seo-tip-icon">✍️</span>
+        <div class="seo-tip-title">Bio Copy</div>
+        <div class="seo-tip-text">Weave 2–3 high-intent keywords naturally into your bio. Don't keyword-stuff — write for humans first, search second.</div>
+        <div class="seo-tip-example">"Helping patients achieve natural, undetectable results through clinical precision and anatomical expertise"</div>
+      </div>
+
+      <div class="seo-tip-card fade-up fade-up-delay-2">
+        <span class="seo-tip-icon">📝</span>
+        <div class="seo-tip-title">Caption First Line</div>
+        <div class="seo-tip-text">Instagram indexes the first 125 characters of your caption. Lead with your keyword-rich hook — it's both SEO and the hook that stops the scroll.</div>
+        <div class="seo-tip-example">"If you're considering Botox for the first time, here's what your injector should tell you before you sit in the chair."</div>
+      </div>
+
+      <div class="seo-tip-card fade-up fade-up-delay-3">
+        <span class="seo-tip-icon">🎙️</span>
+        <div class="seo-tip-title">Reel Audio (Voiceover)</div>
+        <div class="seo-tip-text">Instagram auto-transcribes Reel audio and uses it for search indexing. Say your keywords out loud in your Reels — especially in the first 5 seconds.</div>
+        <div class="seo-tip-example">Open with: "If you're looking for a med spa in [city], here's what separates a great injector from a dangerous one..."</div>
+      </div>
+
+      <div class="seo-tip-card fade-up fade-up-delay-4">
+        <span class="seo-tip-icon">#️⃣</span>
+        <div class="seo-tip-title">Hashtags (Strategic, Not Spammy)</div>
+        <div class="seo-tip-text">Use 5–8 targeted hashtags per post. Mix broad, niche, and hyper-local. Avoid generic hashtags with 50M+ posts — you'll never surface there.</div>
+        <div class="seo-tip-example">#ChicagoMedSpa #ChicagoInjector #BotoxChicago #LipFillerChicago #MedSpaChicago</div>
+      </div>
+
+      <div class="seo-tip-card fade-up fade-up-delay-5">
+        <span class="seo-tip-icon">📍</span>
+        <div class="seo-tip-title">Location Tags</div>
+        <div class="seo-tip-text">Tag your location on every post and Reel. Neighborhood-level tags outperform city-level tags for local discovery. Patients searching for a nearby injector will find you first.</div>
+        <div class="seo-tip-example">Tag your neighborhood or district, not just the city. "Lincoln Park, Chicago" beats "Chicago, Illinois" for local patient searches.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     CONTENT IDEAS
+═══════════════════════════════════════════ -->
+<section id="content-ideas">
+  <div class="container">
+    <span class="section-eyebrow fade-up">Chapter 04
+
+    <h2 class="section-title fade-up fade-up-delay-1">Content Ideas</h2>
+    <div class="rule fade-up fade-up-delay-1"></div>
+    <p class="section-subtitle fade-up fade-up-delay-2">Every post should have a job. These ideas are mapped to the funnel stage they serve — awareness, education, or conversion — so you're not just posting, you're building a system.</p>
+
+    <div class="funnel-tabs fade-up" id="funnel-tabs">
+      <button class="funnel-tab active-tofu" onclick="filterIdeas('tofu', this)">TOFU — Awareness</button>
+      <button class="funnel-tab" onclick="filterIdeas('mofu', this)">MOFU — Education</button>
+      <button class="funnel-tab" onclick="filterIdeas('bofu', this)">BOFU — Conversion</button>
+    </div>
+
+    <div class="ideas-grid" id="ideas-grid">
+
+      <!-- TOFU 1 -->
+      <div class="idea-card tofu fade-up">
+        <div class="idea-card-header">
+          <div class="idea-card-title">What Happens to Your Face in Your 30s</div>
+          <div class="idea-badges">
+            <span class="badge badge-tofu">TOFU</span>
+            <span class="badge badge-format">Reel</span>
+          </div>
+        </div>
+        <div class="idea-hook">"Nobody talks about the fact that your face starts changing at 28 — here's what's actually happening under the skin."</div>
+        <div class="idea-meta-grid">
+          <div>
+            <div class="idea-meta-label">Why It Works</div>
+            <div class="idea-meta-text">Addresses a universal patient concern before they're ready to book. Builds awareness and positions you as the clinical authority who understands aging — not just injectables.</div>
+          </div>
+          <div>
+            <div class="idea-meta-label">Content Direction</div>
+            <div class="idea-meta-text">Use a face anatomy diagram or a side-by-side of facial changes over time. Explain collagen loss, fat pad migration, and bone resorption in plain language. No jargon.</div>
+          </div>
+        </div>
+        <div class="sj-framework">
+          <div class="sj-framework-label">Sammy Jones Script Framework</div>
+          <div class="sj-steps">
+            <div class="sj-step">
+              <div class="sj-step-num">1</div>
+              <div class="sj-step-content">
+                <div class="sj-step-title">Hook <span class="sj-time">(0–3s)</span></div>
+                <div class="sj-step-text">"Nobody tells you that your face starts aging in your late 20s — here's what's actually happening."</div>
+              </div>
+            </div>
+            <div class="sj-step">
+              <div class="sj-step-num">2</div>
+              <div class="sj-step-content">
+                <div class="sj-step-title">Relate <span class="sj-time">(3–8s)</span></div>
+                <div class="sj-step-text">"You've probably noticed subtle changes — a little less volume here, a line that wasn't there before. That's not just 'getting older.' There's a clinical reason for it."</div>
+              </div>
+            </div>
+            <div class="sj-step">
+              <div class="sj-step-num">3</div>
+              <div class="sj-step-content">
+                <div class="sj-step-title">Educate <span class="sj-time">(8–25s)</span></div>
+                <div class="sj-step-text">Walk through the three layers: collagen loss, fat pad migration, bone resorption. Use a face model or diagram. Keep it visual.</div>
+              </div>
+            </div>
+            <div class="sj-step">
+              <div class="sj-step-num">4</div>
+              <div class="sj-step-content">
+                <div class="sj-step-title">CTA <span class="sj-time">(25–30s)</span></div>
+                <div class="sj-step-text">"Understanding how your face ages is the first step to treating it correctly. Save this — and DM me if you want to know what I'd actually recommend for your anatomy."</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TOFU 2 -->
+      <div class="idea-card tofu fade-up fade-up-delay-1">
+        <div class="idea-card-header">
+          <div class="idea-card-title">5 Things That Make a Great Injector</div>
+          <div class="idea-badges">
+            <span class="badge badge-tofu">TOFU</span>
+            <span class="badge badge-format">Carousel</span>
+          </div>
+        </div>
+        <div class="idea-hook">"There are 10,000 injectors in this city. Here's how to tell the difference between someone who's safe and someone who's exceptional."</div>
+        <div class="idea-meta-grid">
+          <div>
+            <div class="idea-meta-label">Why It Works</div>
+            <div class="idea-meta-text">Educates patients on what to look for — and positions you as the provider who meets every standard. This is authority content that pre-qualifies your ideal patient.</div>
+          </div>
+          <div>
+            <div class="idea-meta-label">Content Direction</div>
+            <div class="idea-meta-text">5-slide carousel: anatomical knowledge, individualized treatment planning, safety protocols, honest consultation, and ongoing education. Each slide = one criterion with a brief explanation.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TOFU 3 -->
+      <div class="idea-card tofu fade-up fade-up-delay-2">
+        <div class="idea-card-header">
+          <div class="idea-card-title">Hot Take: Botox Is Not a One-Size-Fits-All Treatment</div>
+          <div class="idea-badges">
+            <span class="badge badge-tofu">TOFU</span>
+            <span class="badge badge-format">Reel</span>
+          </div>
+        </div>
+        <div class="idea-hook">"If your injector is using the same Botox pattern on every patient, that's a red flag — not a standard of care."</div>
+        <div class="idea-meta-grid">
+          <div>
+            <div class="idea-meta-label">Why It Works</div>
+            <div class="idea-meta-text">Opinion-led content drives shares and saves. This positions you as the clinical authority who individualized treatment — vs. the cookie-cutter injector down the street.</div>
+          </div>
+          <div>
+            <div class="idea-meta-label">Content Direction</div>
+            <div class="idea-meta-text">Explain why anatomy varies (brow position, muscle mass, facial asymmetry) and how that changes your injection approach. Show a real example if possible.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- MOFU 1 -->
+      <div class="idea-card mofu fade-up">
+        <div class="idea-card-header">
+          <div class="idea-card-title">Filler vs. Botox: What's the Actual Difference?</div>
+          <div class="idea-badges">
+            <span class="badge badge-mofu">MOFU</span>
+            <span class="badge badge-format">Carousel</span>
+          </div>
+        </div>
+        <div class="idea-hook">"I get this question every single day. Here's the honest answer — and why it matters for your treatment plan."</div>
+        <div class="idea-meta-grid">
+          <div>
+            <div class="idea-meta-label">Why It Works</div>
+            <div class="idea-meta-text">This is the #1 question first-time patients Google. Answering it with clinical authority builds trust and pre-educates your ideal patient before they even book a consultation.</div>
+          </div>
+          <div>
+            <div class="idea-meta-label">Content Direction</div>
+            <div class="idea-meta-text">Side-by-side comparison: mechanism of action, target areas, duration, cost, and ideal candidate. End with: "The right answer depends on your anatomy and goals — not a menu."</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- MOFU 2 -->
+      <div class="idea-card mofu fade-up fade-up-delay-1">
+        <div class="idea-card-header">
+          <div class="idea-card-title">What I Look for in a Consultation</div>
+          <div class="idea-badges">
+            <span class="badge badge-mofu">MOFU</span>
+            <span class="badge badge-format">Reel</span>
+          </div>
+        </div>
+        <div class="idea-hook">"Before I ever pick up a needle, here are the 5 things I assess in every new patient consultation."</div>
+        <div class="idea-meta-grid">
+          <div>
+            <div class="idea-meta-label">Why It Works</div>
+            <div class="idea-meta-text">Demystifies the consultation process and reduces the anxiety that stops first-time patients from booking. Shows your clinical rigor before they ever walk in the door.</div>
+          </div>
+          <div>
+            <div class="idea-meta-label">Content Direction</div>
+            <div class="idea-meta-text">Walk through your actual assessment: facial symmetry, skin quality, bone structure, muscle movement, patient goals. Film it in your treatment room for authenticity.</div>
+          </div>
+        </div>
+        <div class="sj-framework">
+          <div class="sj-framework-label">Sammy Jones Script Framework</div>
+          <div class="sj-steps">
+            <div class="sj-step">
+              <div class="sj-step-num">1</div>
+              <div class="sj-step-content">
+                <div class="sj-step-title">Hook <span class="sj-time">(0–3s)</span></div>
+                <div class="sj-step-text">"Before I ever pick up a needle, here are the 5 things I look at in every single consultation."</div>
+              </div>
+            </div>
+            <div class="sj-step">
+              <div class="sj-step-num">2</div>
+              <div class="sj-step-content">
+                <div class="sj-step-title">Relate <span class="sj-time">(3–8s)</span></div>
+                <div class="sj-step-text">"Most patients come in knowing what they want. My job is to understand what they actually need — those aren't always the same thing."</div>
+              </div>
+            </div>
+            <div class="sj-step">
+              <div class="sj-step-num">3</div>
+              <div class="sj-step-content">
+                <div class="sj-step-title">Educate <span class="sj-time">(8–25s)</span></div>
+                <div class="sj-step-text">Walk through your 5 assessment criteria. Be specific. Use clinical language but explain it in plain terms.</div>
+              </div>
+            </div>
+            <div class="sj-step">
+              <div class="sj-step-num">4</div>
+              <div class="sj-step-content">
+                <div class="sj-step-title">CTA <span class="sj-time">(25–30s)</span></div>
+                <div class="sj-step-text">"If you want a consultation that actually looks at your face — not just your wish list — DM me 'CONSULT' and I'll send you my booking link."</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- MOFU 3 -->
+      <div class="idea-card mofu fade-up fade-up-delay-2">
+        <div class="idea-card-header">
+          <div class="idea-card-title">The Anatomy Behind Lip Filler Gone Wrong</div>
+          <div class="idea-badges">
+            <span class="badge badge-mofu">MOFU</span>
+            <span class="badge badge-format">Reel</span>
+          </div>
+        </div>
+        <div class="idea-hook">"The 'duck lip' isn't just bad aesthetics — it's an anatomy problem. Here's what actually causes it."</div>
+        <div class="idea-meta-grid">
+          <div>
+            <div class="idea-meta-label">Why It Works</div>
+            <div class="idea-meta-text">Addresses the #1 fear patients have about lip filler. Answering this clinically builds enormous trust and positions you as the provider who won't make that mistake.</div>
+          </div>
+          <div>
+            <div class="idea-meta-label">Content Direction</div>
+            <div class="idea-meta-text">Use a face model or diagram to show the lip anatomy. Explain the philtrum columns, vermillion border, and cupid's bow. Show what over-projection looks like vs. natural enhancement.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- BOFU 1 -->
+      <div class="idea-card bofu fade-up">
+        <div class="idea-card-header">
+          <div class="idea-card-title">Patient Case Study: Natural Jawline Refinement</div>
+          <div class="idea-badges">
+            <span class="badge badge-bofu">BOFU</span>
+            <span class="badge badge-format">Carousel</span>
+          </div>
+        </div>
+        <div class="idea-hook">"She came in wanting a 'sharper jawline.' Here's what I actually did — and why it's not what she expected."</div>
+        <div class="idea-meta-grid">
+          <div>
+            <div class="idea-meta-label">Why It Works</div>
+            <div class="idea-meta-text">Case studies are the highest-converting content type for med spas. They show your clinical thinking, your results, and your patient relationship — all in one post.</div>
+          </div>
+          <div>
+            <div class="idea-meta-label">Content Direction</div>
+            <div class="idea-meta-text">Before/after + clinical narrative: patient's concern, your assessment, your treatment rationale, the outcome, and the patient's feedback. Never just post a before/after without the story.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- BOFU 2 -->
+      <div class="idea-card bofu fade-up fade-up-delay-1">
+        <div class="idea-card-header">
+          <div class="idea-card-title">What a New Patient Consultation Looks Like With Me</div>
+          <div class="idea-badges">
+            <span class="badge badge-bofu">BOFU</span>
+            <span class="badge badge-format">Reel</span>
+          </div>
+        </div>
+        <div class="idea-hook">"Here's exactly what happens when you book a new patient consultation at our practice — no surprises, no pressure."</div>
+        <div class="idea-meta-grid">
+          <div>
+            <div class="idea-meta-label">Why It Works</div>
+            <div class="idea-meta-text">Removes the anxiety barrier that stops first-time patients from booking. When they know what to expect, they're far more likely to take the next step.</div>
+          </div>
+          <div>
+            <div class="idea-meta-label">Content Direction</div>
+            <div class="idea-meta-text">Walk-through of your actual consultation process: intake, assessment, discussion, treatment options, no-pressure decision. Film in your actual space. Authenticity is the point.</div>
+          </div>
+        </div>
+        <div class="sj-framework">
+          <div class="sj-framework-label">Sammy Jones Script Framework</div>
+          <div class="sj-steps">
+            <div class="sj-step">
+              <div class="sj-step-num">1</div>
+              <div class="sj-step-content">
+                <div class="sj-step-title">Hook <span class="sj-time">(0–3s)</span></div>
+                <div class="sj-step-text">"Here's exactly what happens when you book a new patient consultation with me — step by step."</div>
+              </div>
+            </div>
+            <div class="sj-step">
+              <div class="sj-step-num">2</div>
+              <div class="sj-step-content">
+                <div class="sj-step-title">Relate <span class="sj-time">(3–8s)</span></div>
+                <div class="sj-step-text">"I know the first time is nerve-wracking. You don't know what to expect, what to ask, or whether you'll feel pressured. Here's how I handle that."</div>
+              </div>
+            </div>
+            <div class="sj-step">
+              <div class="sj-step-num">3</div>
+              <div class="sj-step-content">
+                <div class="sj-step-title">Educate <span class="sj-time">(8–25s)</span></div>
+                <div class="sj-step-text">Walk through each step of your consultation. Be specific and warm. Show your space, your tools, your process.</div>
+              </div>
+            </div>
+            <div class="sj-step">
+              <div class="sj-step-num">4</div>
+              <div class="sj-step-content">
+                <div class="sj-step-title">CTA <span class="sj-time">(25–30s)</span></div>
+                <div class="sj-step-text">"If you've been thinking about it but haven't booked yet — link in bio. No pressure, no obligation. Just a conversation."</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- BOFU 3 -->
+      <div class="idea-card bofu fade-up fade-up-delay-2">
+        <div class="idea-card-header">
+          <div class="idea-card-title">Patient Testimonial: "I Was Terrified of Looking Fake"</div>
+          <div class="idea-badges">
+            <span class="badge badge-bofu">BOFU</span>
+            <span class="badge badge-format">Reel / Story</span>
+          </div>
+        </div>
+        <div class="idea-hook">"She almost didn't book because she was scared of looking overdone. Here's what happened instead."</div>
+        <div class="idea-meta-grid">
+          <div>
+            <div class="idea-meta-label">Why It Works</div>
+            <div class="idea-meta-text">Social proof from a patient who had the same fear as your ideal viewer is the most powerful conversion tool in your arsenal. It's not a testimonial — it's a mirror.</div>
+          </div>
+          <div>
+            <div class="idea-meta-label">Content Direction</div>
+            <div class="idea-meta-text">Patient-led video or quote carousel. Let them describe their fear, their experience, and their result in their own words. Your job is to frame it, not narrate it.</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     CTA SYSTEM
+═══════════════════════════════════════════ -->
+<section id="cta-system">
+  <div class="container">
+    <span class="section-eyebrow fade-up">Chapter 05</span>
+    <h2 class="section-title fade-up fade-up-delay-1">The CTA System</h2>
+    <div class="rule fade-up fade-up-delay-1"></div>
+    <p class="section-subtitle fade-up fade-up-delay-2">A call-to-action is not a command. It's an invitation. The best CTAs in med spa content feel like a natural next step — not a sales pitch. Here's how to build a system that converts at every stage of the funnel.</p>
+
+    <div class="cta-philosophy fade-up">
+      <div class="cta-philosophy-quote">"The best CTA doesn't feel like marketing. It feels like the most logical next step for someone who just learned something valuable."</div>
+      <div class="cta-philosophy-points">
+        <div class="cta-philosophy-point">
+          <div class="cta-point-icon">🎯</div>
+          <div class="cta-point-text"><strong>One CTA per post.</strong> Multiple asks = zero action. Pick one thing you want them to do and make it obvious.</div>
+        </div>
+        <div class="cta-philosophy-point">
+          <div class="cta-point-icon">📍</div>
+          <div class="cta-point-text"><strong>Match the CTA to the funnel stage.</strong> A TOFU post should ask for a save or follow — not a booking. Asking for too much too soon kills conversion.</div>
+        </div>
+        <div class="cta-philosophy-point">
+          <div class="cta-point-icon">🔑</div>
+          <div class="cta-point-text"><strong>Use keyword CTAs.</strong> "DM me 'CONSULT'" triggers Instagram's automation tools and creates a trackable, repeatable lead gen system.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="cta-types-grid">
+      <div class="cta-type-card fade-up">
+        <div class="cta-type-stage tofu">TOFU — Awareness</div>
+        <div class="cta-type-name">Save &amp; Share CTA</div>
+        <div class="cta-type-desc">For educational content. The goal is reach and retention — not bookings. Ask them to save it for later or share it with someone who needs it.</div>
+        <div class="cta-example-box">
+          <div class="cta-example-label">Example</div>
+          <div class="cta-example-text">"Save this before your next consultation — you'll want to reference it."</div>
+        </div>
+      </div>
+
+      <div class="cta-type-card fade-up fade-up-delay-1">
+        <div class="cta-type-stage tofu">TOFU — Awareness</div>
+        <div class="cta-type-name">Follow CTA</div>
+        <div class="cta-type-desc">For broad-reach content. The goal is to convert a new viewer into a follower — the first step in your trust-building funnel.</div>
+        <div class="cta-example-box">
+          <div class="cta-example-label">Example</div>
+          <div class="cta-example-text">"Follow for more clinical education on what actually works — and what doesn't."</div>
+        </div>
+      </div>
+
+      <div class="cta-type-card fade-up fade-up-delay-2">
+        <div class="cta-type-stage mofu">MOFU — Education</div>
+        <div class="cta-type-name">DM Keyword CTA</div>
+        <div class="cta-type-desc">For mid-funnel content. Triggers an automated DM sequence. Delivers a lead magnet, a guide, or a direct booking link in exchange for engagement.</div>
+        <div class="cta-example-box">
+          <div class="cta-example-label">Example</div>
+          <div class="cta-example-text">"DM me 'GUIDE' and I'll send you my free First-Time Botox Patient Checklist."</div>
+        </div>
+      </div>
+
+      <div class="cta-type-card fade-up fade-up-delay-3">
+        <div class="cta-type-stage mofu">MOFU — Education</div>
+        <div class="cta-type-name">Comment Trigger CTA</div>
+        <div class="cta-type-desc">Drives comment engagement (which boosts reach) while delivering value. Works well on educational carousels and myth-busting content.</div>
+        <div class="cta-example-box">
+          <div class="cta-example-label">Example</div>
+          <div class="cta-example-text">"Comment 'ANATOMY' and I'll send you the full breakdown of how facial aging actually works."</div>
+        </div>
+      </div>
+
+      <div class="cta-type-card fade-up fade-up-delay-4">
+        <div class="cta-type-stage bofu">BOFU — Conversion</div>
+        <div class="cta-type-name">Booking CTA</div>
+        <div class="cta-type-desc">For high-intent content — case studies, testimonials, before/afters with clinical context. Direct ask for a consultation or appointment.</div>
+        <div class="cta-example-box">
+          <div class="cta-example-label">Example</div>
+          <div class="cta-example-text">"If you've been thinking about it — link in bio to book your comprehensive facial assessment."</div>
+        </div>
+      </div>
+
+      <div class="cta-type-card fade-up fade-up-delay-5">
+        <div class="cta-type-stage bofu">BOFU — Conversion</div>
+        <div class="cta-type-name">Consultation CTA</div>
+        <div class="cta-type-desc">Lower-friction than a direct booking ask. Positions the consultation as a conversation, not a commitment — ideal for hesitant first-time patients.</div>
+        <div class="cta-example-box">
+          <div class="cta-example-label">Example</div>
+          <div class="cta-example-text">"DM me 'CONSULT' — no pressure, just a conversation about what's right for your face."</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="link-in-bio-section fade-up">
+      <div class="lib-title">The Link in Bio System</div>
+      <div class="lib-subtitle">Your link in bio is the most important conversion tool on your profile. Most med spas waste it. Here's how to use it correctly.</div>
+      <div class="lib-rule">
+        <div class="lib-rule-icon bad">✗</div>
+        <div class="lib-rule-text"><strong>Don't use a Linktree with 8 options.</strong> Every option you add reduces the chance they click any of them. Decision fatigue is real — and it's killing your conversion rate.</div>
+      </div>
+      <div class="lib-rule">
+        <div class="lib-rule-icon bad">✗</div>
+        <div class="lib-rule-text"><strong>Don't link to your homepage.</strong> A homepage is a starting point, not a destination. Visitors who land on a homepage have to figure out what to do next — most won't.</div>
+      </div>
+      <div class="lib-rule">
+        <div class="lib-rule-icon good">✓</div>
+        <div class="lib-rule-text"><strong>Link to one specific destination that matches your primary CTA for the month.</strong> If your CTA is "Book a consultation," your link should go directly to your booking page — one click, no friction.</div>
+      </div>
+      <div class="lib-rule">
+        <div class="lib-rule-icon good">✓</div>
+        <div class="lib-rule-text"><strong>Change your link monthly.</strong> Align it with your primary business goal for the month — new patient consultations, a specific treatment promotion, or a lead magnet. Update your bio copy to match.</div>
+      </div>
+      <div class="lib-rule">
+        <div class="lib-rule-icon good">✓</div>
+        <div class="lib-rule-text"><strong>Track link taps.</strong> Link taps are the most important conversion metric on Instagram. They tell you how many people took action — not just how many people watched.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     LEAD MAGNETS
+═══════════════════════════════════════════ -->
+<section id="lead-magnets">
+  <div class="container">
+    <span class="section-eyebrow fade-up">Chapter 06</span>
+    <h2 class="section-title fade-up fade-up-delay-1">Lead Magnets</h2>
+    <div class="rule fade-up fade-up-delay-1"></div>
+    <p class="section-subtitle fade-up fade-up-delay-2">The best lead magnets don't feel like marketing — they feel like the most useful thing a patient has ever gotten for free. Here's how to build one that actually converts followers into consultations.</p>
+
+    <div class="lm-intro fade-up">
+      <div class="lm-intro-text">
+        <p style="margin-bottom: 16px;">A lead magnet is not a PDF you made in Canva. It's a <strong>bridge between a stranger's attention and a clinical conversation.</strong></p>
+        <p style="margin-bottom: 16px;">The best lead magnets for med spas solve a specific, high-stakes problem that your ideal patient is already searching for — before they're ready to book. They provide real value, build trust, and end with a clear, natural next step.</p>
+        <p>Generic lead magnets ("10 Skincare Tips") get downloaded and forgotten. <strong>Specific lead magnets</strong> ("The First-Time Botox Patient Checklist: 8 Questions to Ask Before You Sit in the Chair") get saved, shared, and acted on.</p>
+      </div>
+      <div class="lm-stat-stack">
+        <div class="lm-stat">
+          <div class="lm-stat-num">3x</div>
+          <div class="lm-stat-text">Higher conversion rate for niche-specific lead magnets vs. generic ones</div>
+        </div>
+        <div class="lm-stat">
+          <div class="lm-stat-num">74%</div>
+          <div class="lm-stat-text">Of patients research an aesthetic provider online before reaching out</div>
+        </div>
+        <div class="lm-stat">
+          <div class="lm-stat-num">1 link</div>
+          <div class="lm-stat-text">One destination in bio = higher click-through than multi-link pages</div>
+        </div>
+      </div>
+    </div>
+
+    <h3 style="font-family: 'Playfair Display', serif; font-size: 24px; font-weight: 700; color: var(--white); margin-bottom: 24px;" class="fade-up">Lead Magnet Ideas for Med Spas</h3>
+
+    <div class="lm-grid">
+      <div class="lm-card fade-up">
+        <span class="lm-card-icon">📋</span>
+        <div class="lm-card-type">Checklist</div>
+        <div class="lm-card-title">The First-Time Botox Patient Checklist</div>
+        <div class="lm-card-desc">8 questions every first-time patient should ask before sitting in the chair — from verifying credentials to understanding what a proper facial assessment looks like. Specific, actionable, and solves the #1 fear of new patients: not knowing what they don't know.</div>
+        <div class="lm-card-why">
+          <div class="lm-card-why-label">Why It Converts</div>
+          <div class="lm-card-why-text">First-time patients are the most research-hungry segment in aesthetics. They save and share this. Every share is a warm referral — and every download is a pre-qualified lead.</div>
+        </div>
+      </div>
+
+      <div class="lm-card fade-up fade-up-delay-1">
+        <span class="lm-card-icon">🔬</span>
+        <div class="lm-card-type">Education Guide</div>
+        <div class="lm-card-title">The Natural Results Guide: What to Expect From Injectables</div>
+        <div class="lm-card-desc">A comprehensive guide to what natural-looking results actually require — the right anatomy assessment, the right product, the right technique, and the right provider. Addresses the "I don't want to look fake" objection head-on.</div>
+        <div class="lm-card-why">
+          <div class="lm-card-why-label">Why It Converts</div>
+          <div class="lm-card-why-text">The fear of looking overdone is the #1 reason patients delay booking. This guide pre-handles that objection and positions you as the provider who prioritizes natural results.</div>
+        </div>
+      </div>
+
+      <div class="lm-card fade-up fade-up-delay-2">
+        <span class="lm-card-icon">🧬</span>
+        <div class="lm-card-type">Treatment Comparison</div>
+        <div class="lm-card-title">Botox vs. Filler vs. Sculptra: Which One Is Right for You?</div>
+        <div class="lm-card-desc">A decision-tree style guide that helps patients understand which treatment category fits their concern, their anatomy, and their goals. Ends with a CTA to book a comprehensive facial assessment.</div>
+        <div class="lm-card-why">
+          <div class="lm-card-why-label">Why It Converts</div>
+          <div class="lm-card-why-text">Patients who download a treatment comparison guide are in active consideration mode. They're 2–4 weeks from a booking decision. This puts you in their inbox before they call anyone else.</div>
+        </div>
+      </div>
+
+      <div class="lm-card fade-up fade-up-delay-3">
+        <span class="lm-card-icon">🧮</span>
+        <div class="lm-card-type">Interactive Quiz</div>
+        <div class="lm-card-title">The "What Treatment Is Right for My Face?" Quiz</div>
+        <div class="lm-card-desc">A 5-question quiz that helps patients identify their primary concern, their aesthetic goals, and their readiness for treatment. Ends with a personalized result and a CTA to book a consultation.</div>
+        <div class="lm-card-why">
+          <div class="lm-card-why-label">Why It Converts</div>
+          <div class="lm-card-why-text">Quizzes have the highest completion rate of any lead magnet format. They feel like a tool, not marketing. And they pre-qualify leads before the first conversation — saving you time and improving close rates.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="lm-funnel-visual fade-up">
+      <div class="lm-funnel-title">The Lead Magnet Funnel</div>
+      <div class="lm-funnel-subtitle">How a lead magnet turns a stranger into a consultation booking</div>
+      <div class="lm-funnel-steps">
+        <div class="lm-funnel-step">
+          <div class="lm-funnel-step-num">1</div>
+          <div class="lm-funnel-step-label">Content</div>
+          <div class="lm-funnel-step-desc">TOFU Reel or Carousel drives awareness</div>
+        </div>
+        <div class="lm-funnel-arrow">→</div>
+        <div class="lm-funnel-step">
+          <div class="lm-funnel-step-num">2</div>
+          <div class="lm-funnel-step-label">CTA</div>
+          <div class="lm-funnel-step-desc">"DM me 'GUIDE' for the free checklist"</div>
+        </div>
+        <div class="lm-funnel-arrow">→</div>
+        <div class="lm-funnel-step">
+          <div class="lm-funnel-step-num">3</div>
+          <div class="lm-funnel-step-label">Lead Magnet</div>
+          <div class="lm-funnel-step-desc">High-value resource delivered via DM or email</div>
+        </div>
+        <div class="lm-funnel-arrow">→</div>
+        <div class="lm-funnel-step">
+          <div class="lm-funnel-step-num">4</div>
+          <div class="lm-funnel-step-label">Nurture</div>
+          <div class="lm-funnel-step-desc">Follow-up DM or email sequence builds trust</div>
+        </div>
+        <div class="lm-funnel-arrow">→</div>
+        <div class="lm-funnel-step">
+          <div class="lm-funnel-step-num">5</div>
+          <div class="lm-funnel-step-label">Consultation</div>
+          <div class="lm-funnel-step-desc">Warm lead books — already trusts you</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     REAL RESULTS
+═══════════════════════════════════════════ -->
+<section id="results">
+  <div class="container">
+    <span class="section-eyebrow fade-up">Chapter 07</span>
+    <h2 class="section-title fade-up fade-up-delay-1">Real Results</h2>
+    <div class="rule fade-up fade-up-delay-1"></div>
+    <p class="section-subtitle fade-up fade-up-delay-2">Three anonymized case studies from our current client roster. Different niches, same system — because the content infrastructure that builds trust and drives action works the same way across every service-based business.</p>
+
+    <div class="results-grid">
+      <div class="result-card fade-up">
+        <div class="result-card-tag">Client A — Service Business</div>
+        <div class="result-card-challenge">Started with inconsistent posting and no content strategy. Relied on word-of-mouth with no digital trust infrastructure. Goal: establish authority and generate inbound leads.</div>
+        <div class="result-metrics">
+          <div class="result-metric">
+            <div class="result-metric-value">209%</div>
+            <div class="result-metric-label">Reach growth<br>in 90 days</div>
+          </div>
+          <div class="result-metric">
+            <div class="result-metric-value">96%+</div>
+            <div class="result-metric-label">Engagement rate<br>achieved</div>
+          </div>
+          <div class="result-metric">
+            <div class="result-metric-value">4.2x</div>
+            <div class="result-metric-label">Profile visits<br>increase</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="result-card fade-up fade-up-delay-1">
+        <div class="result-card-tag">Client B — Service Business</div>
+        <div class="result-card-challenge">Active on Instagram but generating zero inbound leads. Content was aesthetic but not strategic — no funnel, no CTAs, no keyword optimization. Goal: convert reach into consultations.</div>
+        <div class="result-metrics">
+          <div class="result-metric">
+            <div class="result-metric-value">77%</div>
+            <div class="result-metric-label">Reach increase<br>in 6 months</div>
+          </div>
+          <div class="result-metric">
+            <div class="result-metric-value">3.1x</div>
+            <div class="result-metric-label">DM inquiry<br>increase</div>
+          </div>
+          <div class="result-metric">
+            <div class="result-metric-value">58%</div>
+            <div class="result-metric-label">Follower growth<br>in 90 days</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="result-card fade-up fade-up-delay-2">
+        <div class="result-card-tag">Client C — Service Business</div>
+        <div class="result-card-challenge">New practice with no social presence and no brand recognition. Needed to build authority from scratch in a competitive local market. Goal: establish credibility and generate first-time patient bookings.</div>
+        <div class="result-metrics">
+          <div class="result-metric">
+            <div class="result-metric-value">0 → 2.4K</div>
+            <div class="result-metric-label">Followers built<br>in 4 months</div>
+          </div>
+          <div class="result-metric">
+            <div class="result-metric-value">12+</div>
+            <div class="result-metric-label">Inbound leads<br>per month</div>
+          </div>
+          <div class="result-metric">
+            <div class="result-metric-value">8.7%</div>
+            <div class="result-metric-label">Avg. engagement<br>rate</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="bridge-callout fade-up">
+      <div class="bridge-callout-label">The Pattern</div>
+      <div class="bridge-callout-quote">"Every one of these results came from the same system: a clear IVP, a content funnel mapped to the buyer journey, Social SEO built into every post, and a CTA system that converts attention into action. The niche changes. The system doesn't."</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     ACCOUNTS WE'RE LOVING
+═══════════════════════════════════════════ -->
+<section id="accounts" style="background: var(--navy-mid);">
+  <div class="container">
+    <span class="section-eyebrow fade-up">Chapter 08</span>
+    <h2 class="section-title fade-up fade-up-delay-1">Accounts We're Loving</h2>
+    <div class="rule fade-up fade-up-delay-1"></div>
+    <p class="section-subtitle fade-up fade-up-delay-2">These are the med spa and aesthetic injector accounts that are doing it right — building clinical authority, earning patient trust, and generating outlier content that performs 5–20x above their average. Here's what they're doing and why it works.</p>
+
+    <div class="outlier-intro fade-up">
+      <div class="outlier-intro-inner">
+        <div class="outlier-intro-icon">💡</div>
+        <div class="outlier-intro-text"><strong>What makes an outlier?</strong> An outlier post is one that performs 3–10x above an account's average reach or engagement. These aren't viral flukes — they're signals. They tell you what your audience actually wants to see. Study them, reverse-engineer them, and build a system around them.</div>
+      </div>
+    </div>
+
+    <!-- Account 1: @naturally_rana -->
+    <div class="account-spotlight fade-up">
+      <div class="account-header">
+        <div>
+          <div class="account-handle">@naturally_rana</div>
+          <div class="account-name">Rana Kennelly | Filler &amp; Tox Expert | Chicago, IL</div>
+          <div class="account-stats-row">
+            <div class="account-stat">
+              <div class="stat-value">80.1K</div>
+              <div class="stat-label">Followers</div>
+            </div>
+            <div class="account-stat outlier-stat">
+              <div class="stat-value">76.5K</div>
+              <div class="stat-label">Top Reel Views</div>
+            </div>
+            <div class="account-stat multiplier-stat">
+              <div class="stat-value">5–8x</div>
+              <div class="stat-label">Outlier Multiplier</div>
+            </div>
+          </div>
+        </div>
+        <div class="account-love-badge">Authority Builder</div>
+      </div>
+
+      <div class="account-why">
+        <h4>Why We Love This Account</h4>
+        <p>Rana is a 20+ year injector, national speaker, and educator — and her content reflects that depth. She doesn't post generic before-and-afters. She posts anatomical education, clinical opinion pieces, and patient trust content that only a true expert can create. Her content is the antidote to the "glow up" aesthetic that dominates med spa Instagram.</p>
+      </div>
+
+      <div class="account-posts-grid">
+        <div class="account-post-card">
+          <div class="post-embed-wrapper">
+            <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DU_VxmWEUJ5/" data-instgrm-version="14" style="background:#FFF;border:0;border-radius:3px;box-shadow:0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15);margin:1px;max-width:540px;min-width:326px;padding:0;width:99.375%;width:-webkit-calc(100% - 2px);width:calc(100% - 2px);">
+              <div style="padding:16px;"><a href="https://www.instagram.com/reel/DU_VxmWEUJ5/" style="background:#FFFFFF;line-height:0;padding:0 0;text-align:center;text-decoration:none;width:100%;" target="_blank" rel="noopener">View on Instagram</a></div>
+            </blockquote>
+          </div>
+          <div class="post-analysis">
+            <div class="post-views-badge">76.5K Views — 5x+ Outlier</div>
+            <h5>"What Causes the Line Above a Lip?"</h5>
+            <p>Rana uses a face model to break down the anatomical reason for the philtrum line — a question patients Google constantly but rarely get a clinical answer to. The visual demonstration on a face model is the key. It's not just education — it's proof of expertise that only a trained clinician can provide.</p>
+            <div class="post-takeaways">
+              <div class="takeaway-label">Why It Worked</div>
+              <p>Specific anatomical question + visual demonstration + clinical credibility = the perfect med spa content formula. This is the content that separates a provider from a technician.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="account-lessons">
+        <h4>3 Lessons from @naturally_rana</h4>
+        <div class="lessons-grid">
+          <div class="lesson-card">
+            <div class="lesson-number">01</div>
+            <div class="lesson-content">
+              <strong>Answer the questions patients Google</strong>
+              <p>The highest-performing content answers specific, high-stakes questions that patients are already searching for. "What causes X?" is a proven format.</p>
+            </div>
+          </div>
+          <div class="lesson-card">
+            <div class="lesson-number">02</div>
+            <div class="lesson-content">
+              <strong>Use visual aids to prove expertise</strong>
+              <p>Face models, diagrams, and anatomical references make your clinical knowledge visible. Expertise you can see is more convincing than expertise you describe.</p>
+            </div>
+          </div>
+          <div class="lesson-card">
+            <div class="lesson-number">03</div>
+            <div class="lesson-content">
+              <strong>Opinion content drives shares</strong>
+              <p>Her "rule you should never break" reel (58.8K views) shows that positioning content — not just educational content — drives massive engagement.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Account 2: @pa_nicola -->
+    <div class="account-spotlight fade-up">
+      <div class="account-header">
+        <div>
+          <div class="account-handle">@pa_nicola</div>
+          <div class="account-name">Nicola Lowrey PA-C | Founder @n2aesthetics | Manhattan Beach, CA</div>
+          <div class="account-stats-row">
+            <div class="account-stat">
+              <div class="stat-value">128K</div>
+              <div class="stat-label">Followers</div>
+            </div>
+            <div class="account-stat outlier-stat">
+              <div class="stat-value">2,895</div>
+              <div class="stat-label">Likes on Top Post</div>
+            </div>
+            <div class="account-stat multiplier-stat">
+              <div class="stat-value">185</div>
+              <div class="stat-label">Comments on Top Post</div>
+            </div>
+          </div>
+        </div>
+        <div class="account-love-badge">Clinical Educator</div>
+      </div>
+
+      <div class="account-why">
+        <h4>Why We Love This Account</h4>
+        <p>Nicola is a 21-year veteran, researcher, and the creator of #AnatomySunday — a weekly educational series that has built a massive following of both patients and fellow providers. Her content is proof that clinical depth and Instagram reach are not mutually exclusive. She's built a brand on individualized treatment planning and anatomical precision — and her content reflects every bit of it.</p>
+      </div>
+
+      <div class="account-posts-grid">
+        <div class="account-post-card">
+          <div class="post-embed-wrapper">
+            <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DMaZ1EfxNVP/" data-instgrm-version="14" style="background:#FFF;border:0;border-radius:3px;box-shadow:0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15);margin:1px;max-width:540px;min-width:326px;padding:0;width:99.375%;width:-webkit-calc(100% - 2px);width:calc(100% - 2px);">
+              <div style="padding:16px;"><a href="https://www.instagram.com/reel/DMaZ1EfxNVP/" style="background:#FFFFFF;line-height:0;padding:0 0;text-align:center;text-decoration:none;width:100%;" target="_blank" rel="noopener">View on Instagram</a></div>
+            </blockquote>
+          </div>
+          <div class="post-analysis">
+            <div class="post-views-badge">2,895 Likes · 185 Comments — High Engagement</div>
+            <h5>"Individualizing an Advanced Botox Pattern" — Sound On</h5>
+            <p>A live patient assessment showing Nicola's real clinical thinking in action. The "sound on" hook creates immediate curiosity. The content itself — watching a true expert assess a real patient in real time — is the kind of authenticity that no amount of production budget can manufacture.</p>
+            <div class="post-takeaways">
+              <div class="takeaway-label">Why It Worked</div>
+              <p>Live clinical thinking is the most powerful trust-building content a provider can create. It proves individualized expertise vs. cookie-cutter treatment — and it's content that only a real expert can produce.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="account-lessons">
+        <h4>3 Lessons from @pa_nicola</h4>
+        <div class="lessons-grid">
+          <div class="lesson-card">
+            <div class="lesson-number">01</div>
+            <div class="lesson-content">
+              <strong>Live clinical thinking builds trust</strong>
+              <p>Showing your assessment process in real time — not just the results — is the most powerful differentiator available to any injector on Instagram.</p>
+            </div>
+          </div>
+          <div class="lesson-card">
+            <div class="lesson-number">02</div>
+            <div class="lesson-content">
+              <strong>Build a content series</strong>
+              <p>#AnatomySunday is a repeatable, ownable content series that gives followers a reason to come back every week. Own a day, own a topic, own a format.</p>
+            </div>
+          </div>
+          <div class="lesson-card">
+            <div class="lesson-number">03</div>
+            <div class="lesson-content">
+              <strong>Debunking drives engagement</strong>
+              <p>"You're not lifting the face, you're widening it" — her debunking content consistently outperforms because it challenges assumptions and rewards the viewer for watching.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Account 3: @gfacemd -->
+    <div class="account-spotlight fade-up">
+      <div class="account-header">
+        <div>
+          <div class="account-handle">@gfacemd</div>
+          <div class="account-name">GFaceMD | Dr. Gretchen Frieling | Top 100 Injector 2019–2025 | Boston, MA</div>
+          <div class="account-stats-row">
+            <div class="account-stat">
+              <div class="stat-value">60.3K</div>
+              <div class="stat-label">Followers</div>
+            </div>
+            <div class="account-stat outlier-stat">
+              <div class="stat-value">97.3K</div>
+              <div class="stat-label">Top Reel Views</div>
+            </div>
+            <div class="account-stat multiplier-stat">
+              <div class="stat-value">20x+</div>
+              <div class="stat-label">Outlier Multiplier</div>
+            </div>
+          </div>
+        </div>
+        <div class="account-love-badge">Differentiator</div>
+      </div>
+
+      <div class="account-why">
+        <h4>Why We Love This Account</h4>
+        <p>GFaceMD is a 4-location practice that has built its brand on advanced technique and clinical precision — including ultrasound-guided aesthetics, which is a genuine differentiator in the market. Their 97.3K-view reel (20x their average) proves that showing your advanced clinical capabilities — not just your results — is the most powerful content a practice can produce.</p>
+      </div>
+
+      <div class="account-posts-grid">
+        <div class="account-post-card">
+          <div class="post-embed-wrapper">
+            <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/gfacemd/" data-instgrm-version="14" style="background:#FFF;border:0;border-radius:3px;box-shadow:0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15);margin:1px;max-width:540px;min-width:326px;padding:0;width:99.375%;width:-webkit-calc(100% - 2px);width:calc(100% - 2px);">
+              <div style="padding:16px;"><a href="https://www.instagram.com/gfacemd/" style="background:#FFFFFF;line-height:0;padding:0 0;text-align:center;text-decoration:none;width:100%;" target="_blank" rel="noopener">View on Instagram</a></div>
+            </blockquote>
+          </div>
+          <div class="post-analysis">
+            <div class="post-views-badge">97.3K Views — 20x+ Outlier</div>
+            <h5>"Actually Looking for My Silicone Chin Implant" — Ultrasound-Guided Procedure</h5>
+            <p>Ultrasound-guided aesthetics is a genuine clinical differentiator — and showing it on camera is the most compelling proof of advanced technique available. This reel works because it's visual, it's clinical, and it addresses a real patient concern (what happens when you have existing implants) with transparency and expertise.</p>
+            <div class="post-takeaways">
+              <div class="takeaway-label">Why It Worked</div>
+              <p>Advanced clinical technique shown on camera = instant differentiation. Patients who see this don't just trust GFaceMD — they trust that no other injector in their market can match that level of precision.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="account-lessons">
+        <h4>3 Lessons from @gfacemd</h4>
+        <div class="lessons-grid">
+          <div class="lesson-card">
+            <div class="lesson-number">01</div>
+            <div class="lesson-content">
+              <strong>Show your differentiator on camera</strong>
+              <p>Whatever makes your practice clinically unique — ultrasound guidance, cannula technique, advanced training — film it. Visual proof of advanced technique is irreplaceable.</p>
+            </div>
+          </div>
+          <div class="lesson-card">
+            <div class="lesson-number">02</div>
+            <div class="lesson-content">
+              <strong>Complication transparency builds trust</strong>
+              <p>Showing how you handle complex cases (existing implants, prior filler, complications) builds more trust than a perfect before-and-after. Patients want to know you can handle the hard stuff.</p>
+            </div>
+          </div>
+          <div class="lesson-card">
+            <div class="lesson-number">03</div>
+            <div class="lesson-content">
+              <strong>Behind-the-scenes clinical content outperforms polished content</strong>
+              <p>The 97.3K reel was not a produced, edited piece. It was a real clinical moment captured on camera. Authenticity and clinical credibility are more powerful than production value.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     PRICING
+═══════════════════════════════════════════ -->
+<section id="pricing">
+  <div class="container">
+    <span class="section-eyebrow fade-up">Chapter 09</span>
+    <h2 class="section-title fade-up fade-up-delay-1">Packages &amp; Pricing</h2>
+    <div class="rule fade-up fade-up-delay-1"></div>
+    <p class="section-subtitle fade-up fade-up-delay-2">Every engagement starts with a strategy session. From there, we build the right package around your practice's goals, your current content infrastructure, and where you want to be in 90 days.</p>
+
+    <div class="pricing-roi-bar fade-up">
+      <div class="pricing-roi-icon">💡</div>
+      <div class="pricing-roi-text">The average med spa books <strong>$800–$1,500 per new patient consultation</strong>. Our content system is designed to generate a minimum of 8–12 qualified inbound leads per month. <strong>One new patient covers your monthly investment.</strong></div>
+    </div>
+
+    <div class="pricing-entry-label fade-up">Entry Points — Start Here</div>
+    <div class="pricing-grid-3 fade-up">
+      <div class="pricing-entry">
+        <div class="pricing-card-label">Starter</div>
+        <div class="pricing-card-name">Content Foundation</div>
+        <div class="pricing-card-desc">For practices that need a content system built from scratch — profile optimization, Social SEO, and a monthly content calendar.</div>
+        <div class="pricing-price">$1,500</div>
+        <div class="pricing-period">per month</div>
+        <ul class="pricing-features">
+          <li>Profile audit &amp; optimization</li>
+          <li>Social SEO keyword strategy</li>
+          <li>8 posts per month (Reels + Carousels)</li>
+          <li>Monthly content calendar</li>
+          <li>Caption copywriting</li>
+        </ul>
+        <div class="pricing-best-for">Best for: New practices or providers starting from zero with a limited budget.</div>
+        <a href="https://calendly.com/scrollmedia/discovery" class="pricing-cta-link" target="_blank" rel="noopener">Book a Discovery Call →</a>
+      </div>
+
+      <div class="pricing-entry">
+        <div class="pricing-card-label">Growth</div>
+        <div class="pricing-card-name">Authority Engine</div>
+        <div class="pricing-card-desc">For established practices ready to build a full content funnel — from awareness to consultation — with a dedicated strategy layer.</div>
+        <div class="pricing-price">$2,500</div>
+        <div class="pricing-period">per month</div>
+        <ul class="pricing-features">
+          <li>Everything in Content Foundation</li>
+          <li>Full funnel content strategy (TOFU/MOFU/BOFU)</li>
+          <li>12 posts per month</li>
+          <li>CTA system + DM automation setup</li>
+          <li>Monthly performance reporting</li>
+        </ul>
+        <div class="pricing-best-for">Best for: Practices with an existing audience that want to convert reach into bookings.</div>
+        <a href="https://calendly.com/scrollmedia/discovery" class="pricing-cta-link" target="_blank" rel="noopener">Book a Discovery Call →</a>
+      </div>
+
+      <div class="pricing-entry">
+        <div class="pricing-card-label">Scale</div>
+        <div class="pricing-card-name">Market Authority</div>
+        <div class="pricing-card-desc">For multi-provider practices or high-growth med spas that want to dominate their local market and build a recognizable clinical brand.</div>
+        <div class="pricing-price">$3,500</div>
+        <div class="pricing-period">per month</div>
+        <ul class="pricing-features">
+          <li>Everything in Authority Engine</li>
+          <li>16 posts per month</li>
+          <li>Lead magnet creation &amp; deployment</li>
+          <li>Story strategy + daily engagement</li>
+          <li>Quarterly strategy sessions</li>
+        </ul>
+        <div class="pricing-best-for">Best for: Established practices with multiple providers or locations that want to scale their digital authority.</div>
+        <a href="https://calendly.com/scrollmedia/discovery" class="pricing-cta-link" target="_blank" rel="noopener">Book a Discovery Call →</a>
+      </div>
+    </div>
+
+    <div class="signature-hero fade-up">
+      <div class="signature-hero-badge">Signature Partnership</div>
+      <div class="signature-hero-header">
+        <div>
+          <div class="signature-hero-label">Full-Service Growth Partnership</div>
+          <div class="signature-hero-title">The Scroll Media Signature</div>
+          <div class="signature-hero-desc">Our highest-touch engagement. A fully managed social media operation — strategy, content, production, distribution, and performance optimization — built around your practice's specific growth goals.</div>
+        </div>
+        <div class="signature-hero-price-block">
+          <div class="signature-hero-price">Custom</div>
+          <div class="signature-hero-period">Pricing based on scope &amp; goals</div>
+        </div>
+      </div>
+      <div class="signature-included-grid">
+        <div class="signature-included-item">Full content strategy</div>
+        <div class="signature-included-item">20+ posts per month</div>
+        <div class="signature-included-item">Reel scripting &amp; direction</div>
+        <div class="signature-included-item">Social SEO optimization</div>
+        <div class="signature-included-item">CTA &amp; DM automation</div>
+        <div class="signature-included-item">Lead magnet creation</div>
+        <div class="signature-included-item">Story strategy</div>
+        <div class="signature-included-item">Monthly performance reporting</div>
+        <div class="signature-included-item">Quarterly strategy sessions</div>
+        <div class="signature-included-item">Dedicated account strategist</div>
+      </div>
+      <div class="signature-credit-callout">
+        <strong>How it works:</strong> Every Signature engagement starts with a 90-minute strategy session to map your practice's goals, IVP, and content infrastructure. From there, we build a custom scope and present a proposal within 5 business days. No cookie-cutter packages — every engagement is built around your practice.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     NEXT STEPS
+═══════════════════════════════════════════ -->
+<section id="next-steps">
+  <div class="container">
+    <span class="section-eyebrow fade-up">Chapter 10</span>
+    <h2 class="section-title fade-up fade-up-delay-1">Next Steps</h2>
+    <div class="rule fade-up fade-up-delay-1"></div>
+    <p class="section-subtitle fade-up fade-up-delay-2">You've read the guide. You understand the gaps. Now here's the fastest path from where you are to a content system that actually builds your practice.</p>
+
+    <div class="steps-timeline">
+      <div class="step-item fade-up">
+        <div class="step-num">1</div>
+        <div class="step-content">
+          <div class="step-title">Book a Discovery Call</div>
+          <div class="step-desc">A 30-minute conversation to understand your practice, your goals, and where your current content infrastructure is breaking down. No pitch, no pressure — just a strategic conversation.</div>
+        </div>
+      </div>
+      <div class="step-item fade-up fade-up-delay-1">
+        <div class="step-num">2</div>
+        <div class="step-content">
+          <div class="step-title">Receive Your Custom Strategy</div>
+          <div class="step-desc">Within 5 business days of your discovery call, you'll receive a custom strategy proposal — your IVP, content funnel, Social SEO keyword bank, and a 90-day content roadmap built specifically for your practice.</div>
+        </div>
+      </div>
+      <div class="step-item fade-up fade-up-delay-2">
+        <div class="step-num">3</div>
+        <div class="step-content">
+          <div class="step-title">We Build the System</div>
+          <div class="step-desc">Profile optimization, content calendar, CTA system, and the first month of content — all built and ready to deploy within 2 weeks of onboarding. No long ramp-up periods. We move fast.</div>
+        </div>
+      </div>
+      <div class="step-item fade-up fade-up-delay-3">
+        <div class="step-num">4</div>
+        <div class="step-content">
+          <div class="step-title">We Optimize and Scale</div>
+          <div class="step-desc">Monthly performance reviews, content iteration based on what's working, and a continuous improvement loop that compounds your results over time. The system gets smarter every month.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="cta-final fade-up">
+      <div class="cta-final-label">Ready to Build Your Authority?</div>
+      <div class="cta-final-title">Stop Posting.<br>Start Converting.</div>
+      <div class="cta-final-text">Your expertise deserves a content system that reflects it. Let's build the Instagram presence your practice has been missing — one that attracts the right patients, builds genuine trust, and fills your consultation calendar.</div>
+      <a href="https://calendly.com/scrollmedia/discovery" class="btn-primary" target="_blank" rel="noopener" style="display: inline-flex; margin: 0 auto;">Book Your Discovery Call →</a>
+      <div class="cta-final-contact">
+        <div class="cta-final-contact-item">Email: <span>chase@getscrollmedia.com</span></div>
+        <div class="cta-final-contact-item">Website: <span>getscrollmedia.com</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <div style="display:flex;align-items:center;gap:10px;">
+        <div style="width:28px;height:28px;background:var(--lime);border-radius:5px;display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-weight:900;font-size:14px;color:var(--navy);">S</div>
+        <div style="font-size:13px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--off-white);">Scroll Media</div>
+      </div>
+      <div class="footer-copy">&copy; 2026 Scroll Media. All rights reserved.</div>
+      <a href="https://getscrollmedia.com" class="footer-link" target="_blank" rel="noopener">getscrollmedia.com</a>
+    </div>
+  </div>
+</footer>
+
+<!-- Instagram Embed Script -->
+<script async src="//www.instagram.com/embed.js"></script>
+
+<!-- Progress Bar + Fade-Up Animations + Tab Filter -->
+<script>
+// Progress bar
+window.addEventListener('scroll', () => {
+  const scrollTop = window.scrollY;
+  const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+  const progress = (scrollTop / docHeight) * 100;
+  document.getElementById('progress-bar').style.width = progress + '%';
+});
+
+// Fade-up observer
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+// Content ideas tab filter
+function filterIdeas(stage, btn) {
+  const cards = document.querySelectorAll('.idea-card');
+  const tabs = document.querySelectorAll('.funnel-tab');
+
+  // Reset tabs
+  tabs.forEach(t => {
+    t.classList.remove('active-tofu', 'active-mofu', 'active-bofu');
+  });
+
+  // Set active tab
+  btn.classList.add('active-' + stage);
+
+  // Filter cards
+  cards.forEach(card => {
+    if (card.classList.contains(stage)) {
+      card.style.display = 'block';
+    } else {
+      card.style.display = 'none';
+    }
+  });
+}
+
+// Initialize — show TOFU on load
+document.addEventListener('DOMContentLoaded', () => {
+  filterIdeas('tofu', document.querySelector('.funnel-tab'));
+});
+</script>
+
+</body>
+</html>
