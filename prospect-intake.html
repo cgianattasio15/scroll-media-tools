@@ -735,7 +735,7 @@
   <h1>Let's Get Right To It.</h1>
   <p class="hero-sub">Takes 90 seconds. Helps us skip the surface-level questions and show up to your discovery call with a real strategy — not a pitch deck.</p>
   <div class="hero-pills">
-    <div class="hero-pill"><span class="hero-pill-icon">📋</span> 10 questions</div>
+    <div class="hero-pill"><span class="hero-pill-icon">📋</span> 11 questions</div>
     <div class="hero-pill"><span class="hero-pill-icon">⏱</span> ~90 seconds</div>
     <div class="hero-pill"><span class="hero-pill-icon">🔒</span> Sent directly to Chase</div>
   </div>
@@ -982,9 +982,28 @@
             <input type="text" id="inspiration" name="inspiration" placeholder="e.g. Glossier, Peloton, a local competitor...">
           </div>
 
-          <div class="field-group" style="margin-top:20px;" id="fg-bottleneck">
+          <div class="field-group" style="margin-top:20px;" id="fg-clv">
             <div class="field-header">
               <span class="field-num">12</span>
+              <span class="field-question">What's the average lifetime value of one of your clients?</span>
+            </div>
+            <p class="field-hint">Rough estimate is fine — this helps us model the ROI of social media for your business specifically.</p>
+            <select id="clv" name="clv">
+              <option value="" disabled selected>Select a range</option>
+              <option value="Under $500">Under $500</option>
+              <option value="$500 – $1,000">$500 – $1,000</option>
+              <option value="$1,000 – $2,500">$1,000 – $2,500</option>
+              <option value="$2,500 – $5,000">$2,500 – $5,000</option>
+              <option value="$5,000 – $10,000">$5,000 – $10,000</option>
+              <option value="$10,000 – $25,000">$10,000 – $25,000</option>
+              <option value="$25,000+">$25,000+</option>
+              <option value="Not sure">Not sure</option>
+            </select>
+          </div>
+
+          <div class="field-group" style="margin-top:20px;" id="fg-bottleneck">
+            <div class="field-header">
+              <span class="field-num">13</span>
               <span class="field-question">What's the biggest thing holding you back right now?</span>
             </div>
             <p class="field-hint">Content creation, strategy, time, knowing what to post, not seeing results — anything goes. The more specific, the better.</p>
@@ -1158,6 +1177,7 @@
       goal:         (document.querySelector('input[name="goal"]:checked') || {}).value || '',
       currentState: (document.querySelector('input[name="current-state"]:checked') || {}).value || '',
       inspiration:  document.getElementById('inspiration').value.trim(),
+      clv:          document.getElementById('clv').value,
       bottleneck:   document.getElementById('bottleneck').value.trim(),
       submittedAt:  new Date().toLocaleString(),
     };
@@ -1184,6 +1204,7 @@
       'Primary Goal':   data.goal || '—',
       'Current Social State': data.currentState || '—',
       'Brand Inspiration': data.inspiration || '—',
+      'Client Lifetime Value (CLV)': data.clv || '—',
       'Biggest Bottleneck': data.bottleneck || '—',
       'Submitted At':  data.submittedAt,
     };
