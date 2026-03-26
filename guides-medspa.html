@@ -660,7 +660,7 @@ section {
 .idea-card:hover::after { opacity: 0.12; }
 
 .idea-card-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; margin-bottom: 14px; }
-.idea-card-title { font-family: 'Playfair Display', serif; font-size: 18px; font-weight: 700; color: var(--white); line-height: 1.2; flex: 1; }
+.idea-card-title { font-family: 'Inter', sans-serif; font-size: 18px; font-weight: 700; color: var(--white); line-height: 1.2; flex: 1; }
 .idea-badges { display: flex; flex-direction: column; gap: 5px; align-items: flex-end; flex-shrink: 0; }
 .badge { font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 3px 10px; border-radius: 100px; }
 .badge-tofu { background: rgba(58,123,213,0.2); color: var(--azure); border: 1px solid rgba(58,123,213,0.3); }
@@ -672,7 +672,7 @@ section {
 .idea-meta-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
 .idea-meta-label { font-size: 10px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted); margin-bottom: 4px; }
 .idea-meta-text { font-size: 13px; color: var(--muted); line-height: 1.5; }
-.idea-creative-tag { display: inline-flex; align-items: center; gap: 6px; background: rgba(200,241,53,0.1); border: 1px solid var(--lime-border); border-radius: 100px; padding: 3px 10px; font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--lime); margin-bottom: 10px; }
+.idea-creative-tag { display: inline-flex; align-items: center; gap: 6px; background: rgba(200,241,53,0.1); border: 1px solid var(--lime-border); border-radius: 100px; padding: 3px 10px; font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: none; color: var(--lime); margin-bottom: 10px; }
 
 /* Sammy Jones Framework */
 .sj-framework { margin-top: 18px; padding-top: 18px; border-top: 1px solid var(--border); }
@@ -884,9 +884,9 @@ footer { background: var(--navy-card); border-top: 1px solid var(--border); padd
 
 .account-posts-grid { display: grid; grid-template-columns: 1fr; gap: 2rem; margin-bottom: 2rem; }
 .account-posts-grid.two-posts { grid-template-columns: 1fr 1fr; }
-.account-post-card { display: grid; grid-template-columns: auto 1fr; gap: 1.5rem; background: rgba(255,255,255,0.02); border: 1px solid var(--border); border-radius: 16px; padding: 1.5rem; }
+.account-post-card { display: grid; grid-template-columns: 320px 1fr; gap: 2rem; background: rgba(255,255,255,0.02); border: 1px solid var(--border); border-radius: 16px; padding: 1.5rem; align-items: start; }
 .account-posts-grid.two-posts .account-post-card { grid-template-columns: 1fr; }
-.post-embed-wrapper { width: 280px; flex-shrink: 0; }
+.post-embed-wrapper { width: 320px; flex-shrink: 0; overflow: hidden; }
 .account-posts-grid.two-posts .post-embed-wrapper { width: 100%; }
 .post-embed-wrapper blockquote.instagram-media { margin: 0 !important; min-width: unset !important; max-width: 100% !important; width: 100% !important; border: none !important; border-radius: 0 !important; background: transparent !important; }
 .post-views-badge { display: inline-block; background: rgba(245,158,11,0.15); color: #f59e0b; border: 1px solid rgba(245,158,11,0.3); font-size: 0.75rem; font-weight: 600; padding: 0.3rem 0.8rem; border-radius: 20px; margin-bottom: 0.75rem; }
@@ -2247,8 +2247,8 @@ footer { background: var(--navy-card); border-top: 1px solid var(--border); padd
       <div class="account-posts-grid">
         <div class="account-post-card">
           <div class="post-embed-wrapper">
-            <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/gfacemd/" data-instgrm-version="14" style="background:#FFF;border:0;border-radius:3px;box-shadow:0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15);margin:1px;max-width:540px;min-width:326px;padding:0;width:99.375%;width:-webkit-calc(100% - 2px);width:calc(100% - 2px);">
-              <div style="padding:16px;"><a href="https://www.instagram.com/gfacemd/" style="background:#FFFFFF;line-height:0;padding:0 0;text-align:center;text-decoration:none;width:100%;" target="_blank" rel="noopener">View on Instagram</a></div>
+            <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DWRN5ClDUPj/" data-instgrm-version="14" style="background:#FFF;border:0;border-radius:3px;box-shadow:0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15);margin:1px;max-width:540px;min-width:326px;padding:0;width:99.375%;width:-webkit-calc(100% - 2px);width:calc(100% - 2px);">
+              <div style="padding:16px;"><a href="https://www.instagram.com/reel/DWRN5ClDUPj/" style="background:#FFFFFF;line-height:0;padding:0 0;text-align:center;text-decoration:none;width:100%;" target="_blank" rel="noopener">View on Instagram</a></div>
             </blockquote>
           </div>
           <div class="post-analysis">
@@ -2302,99 +2302,121 @@ footer { background: var(--navy-card); border-top: 1px solid var(--border); padd
     <span class="section-eyebrow fade-up">Chapter 09</span>
     <h2 class="section-title fade-up fade-up-delay-1">Packages &amp; Pricing</h2>
     <div class="rule fade-up fade-up-delay-1"></div>
-    <p class="section-subtitle fade-up fade-up-delay-2">Every engagement starts with a strategy session. From there, we build the right package around your practice's goals, your current content infrastructure, and where you want to be in 90 days.</p>
-
+    <p class="section-subtitle fade-up fade-up-delay-2">Four ways to work with Scroll Media — from a $87 digital playbook to a full-service retainer. Every path is built to move the needle. Most med spa owners start with the Blueprint and move to Signature within 90 days.</p>
     <div class="pricing-roi-bar fade-up">
       <div class="pricing-roi-icon">💡</div>
-      <div class="pricing-roi-text">The average med spa books <strong>$800–$1,500 per new patient consultation</strong>. Our content system is designed to generate a minimum of 8–12 qualified inbound leads per month. <strong>One new patient covers your monthly investment.</strong></div>
+      <div class="pricing-roi-text"><strong>The ROI math is simple:</strong> One new patient booking from a social-sourced lead pays for months of a full-service retainer. The question isn't whether it's worth it — it's whether you can afford to keep leaving those bookings to the practice down the street that's investing in their presence.</div>
     </div>
-
+    <!-- Entry Points Row -->
     <div class="pricing-entry-label fade-up">Entry Points — Start Here</div>
-    <div class="pricing-grid-3 fade-up">
-      <div class="pricing-entry">
-        <div class="pricing-card-label">Starter</div>
-        <div class="pricing-card-name">Content Foundation</div>
-        <div class="pricing-card-desc">For practices that need a content system built from scratch — profile optimization, Social SEO, and a monthly content calendar.</div>
-        <div class="pricing-price">$1,500</div>
-        <div class="pricing-period">per month</div>
+    <div class="pricing-grid pricing-grid-3 fade-up">
+      <!-- A2A Playbook -->
+      <div class="pricing-card pricing-entry">
+        <div class="pricing-card-label">Digital Playbook</div>
+        <div class="pricing-card-name">Audience-to-Action Playbook</div>
+        <div class="pricing-card-desc">The complete system for converting passive Instagram followers into booked consultations — without paid ads, without posting more.</div>
+        <div class="pricing-price">$87</div>
+        <div class="pricing-period">One-time · Instant digital access</div>
         <ul class="pricing-features">
-          <li>Profile audit &amp; optimization</li>
-          <li>Social SEO keyword strategy</li>
-          <li>8 posts per month (Reels + Carousels)</li>
-          <li>Monthly content calendar</li>
-          <li>Caption copywriting</li>
+          <li>5-Part Interactive Playbook</li>
+          <li>71 Plug-and-Play CTA Scripts</li>
+          <li>The 3-Message DM-to-Booking Script</li>
+          <li>Funnel-Aware CTA Framework (TOFU/MOFU/BOFU)</li>
+          <li>3-Layer CTA Stack — bio link funnel system</li>
+          <li>30-Day Implementation Challenge</li>
+          <li>Niche Cheatsheet — 9 service business categories</li>
+          <li>Scroll Media Formats Library (bonus)</li>
         </ul>
-        <div class="pricing-best-for">Best for: New practices or providers starting from zero with a limited budget.</div>
-        <a href="https://tools.scrollmedia.co/audience-to-action" class="pricing-cta-link" target="_blank" rel="noopener">Get the Playbook →</a>
+        <div class="pricing-best-for">Best for med spa owners who want a proven CTA and conversion system to implement immediately — without hiring an agency.</div>
+        <a href="https://tools.scrollmedia.co/audience-to-action" target="_blank" class="pricing-cta-link">Get Instant Access →</a>
       </div>
-
-      <div class="pricing-entry">
-        <div class="pricing-card-label">Growth</div>
-        <div class="pricing-card-name">Authority Engine</div>
-        <div class="pricing-card-desc">For established practices ready to build a full content funnel — from awareness to consultation — with a dedicated strategy layer.</div>
-        <div class="pricing-price">$2,500</div>
-        <div class="pricing-period">per month</div>
+      <!-- Blueprint -->
+      <div class="pricing-card pricing-entry">
+        <div class="pricing-card-label">Strategy Engagement</div>
+        <div class="pricing-card-name">Instagram Growth Blueprint</div>
+        <div class="pricing-card-desc">A complete, custom Instagram strategy built specifically for your practice — including your IVP, content system, keyword map, and 90-day execution plan.</div>
+        <div class="pricing-price">$997</div>
+        <div class="pricing-period">One-time · Delivered in 5–7 business days</div>
         <ul class="pricing-features">
-          <li>Everything in Content Foundation</li>
-          <li>Full funnel content strategy (TOFU/MOFU/BOFU)</li>
-          <li>12 posts per month</li>
-          <li>CTA system + DM automation setup</li>
-          <li>Monthly performance reporting</li>
+          <li>Full IVP (Ideal Viewer Profile) development</li>
+          <li>Profile audit &amp; optimization recommendations</li>
+          <li>Custom TAM keyword map (4 levels)</li>
+          <li>Content pillar framework (TOFU/MOFU/BOFU)</li>
+          <li>10 custom content ideas with hooks &amp; angles</li>
+          <li>CTA architecture &amp; bio link funnel setup</li>
+          <li>Complete 90-day strategy document</li>
+          <li>Week-by-week 90-day content calendar</li>
         </ul>
-        <div class="pricing-best-for">Best for: Practices with an existing audience that want to convert reach into bookings.</div>
-        <a href="https://tools.scrollmedia.co/instagram-growth-blueprint" class="pricing-cta-link" target="_blank" rel="noopener">Get the Blueprint →</a>
+        <div class="pricing-best-for">Best for med spa owners who want a clear, data-driven strategy they can execute — or use as the foundation for a full-service retainer.</div>
+        <div class="pricing-credit-note"><strong style="color: var(--lime);">$997 fully credited</strong> toward your first month of Signature.</div>
+        <a href="https://tools.scrollmedia.co/instagram-growth-blueprint" target="_blank" class="pricing-cta-link">Get the Blueprint →</a>
       </div>
-
-      <div class="pricing-entry">
-        <div class="pricing-card-label">Scale</div>
-        <div class="pricing-card-name">Market Authority</div>
-        <div class="pricing-card-desc">For multi-provider practices or high-growth med spas that want to dominate their local market and build a recognizable clinical brand.</div>
-        <div class="pricing-price">$3,500</div>
-        <div class="pricing-period">per month</div>
+      <!-- Content Day -->
+      <div class="pricing-card pricing-entry">
+        <div class="pricing-card-label">One-Time</div>
+        <div class="pricing-card-name">Content Day</div>
+        <div class="pricing-card-desc">A focused, strategy-led shoot that captures high-quality photo and video assets in a single session. Delivered in 2–3 weeks.</div>
+        <div class="pricing-price">$1,450</div>
+        <div class="pricing-period">Flat one-time fee · Credited toward Signature</div>
         <ul class="pricing-features">
-          <li>Everything in Authority Engine</li>
-          <li>16 posts per month</li>
-          <li>Lead magnet creation &amp; deployment</li>
-          <li>Story strategy + daily engagement</li>
-          <li>Quarterly strategy sessions</li>
+          <li>Creative planning &amp; shot list</li>
+          <li>On-site content shoot (photo + video)</li>
+          <li>2–3 fully edited creative pieces</li>
+          <li>Raw photo &amp; video assets (b-roll)</li>
+          <li>Brand-aligned visual direction</li>
+          <li>Full asset delivery within 2–3 weeks</li>
         </ul>
-        <div class="pricing-best-for">Best for: Established practices with multiple providers or locations that want to scale their digital authority.</div>
-        <a href="https://tools.scrollmedia.co/content-shoot" class="pricing-cta-link" target="_blank" rel="noopener">Book a Content Day →</a>
+        <div class="pricing-best-for">Best for med spas launching a new service, rebranding, or needing a fresh batch of on-brand content without a long-term commitment.</div>
+        <div class="pricing-credit-note"><strong style="color: var(--lime);">$1,450 credited</strong> toward your first month of Signature.</div>
+        <a href="https://tools.scrollmedia.co/content-shoot" target="_blank" class="pricing-cta-link">Book a Content Day →</a>
       </div>
     </div>
-
+    <!-- Signature Package — Hero -->
     <div class="signature-hero fade-up">
-      <div class="signature-hero-badge">Signature Partnership</div>
+      <div class="signature-hero-badge">⭐ Our Gold Standard — Most Popular</div>
       <div class="signature-hero-header">
         <div>
-          <div class="signature-hero-label">Full-Service Growth Partnership</div>
-          <div class="signature-hero-title">The Scroll Media Signature</div>
-          <div class="signature-hero-desc">Our highest-touch engagement. A fully managed social media operation — strategy, content, production, distribution, and performance optimization — built around your practice's specific growth goals.</div>
+          <div class="signature-hero-label">Full-Service Done-For-You</div>
+          <div class="signature-hero-title">Signature Package</div>
+          <div class="signature-hero-desc">Full-service, done-for-you Instagram management. We handle strategy, content creation, execution, and reporting. You focus on your practice — we build the system that compounds over time.</div>
         </div>
         <div class="signature-hero-price-block">
-          <div class="signature-hero-price">Custom</div>
-          <div class="signature-hero-period">Pricing based on scope &amp; goals</div>
+          <div class="signature-hero-price">$2,975 – $3,250</div>
+          <div class="signature-hero-period">per month</div>
+          <a href="https://tools.scrollmedia.co/signature-package" target="_blank" class="btn-primary" style="margin-top:16px;display:inline-flex;">See the Signature Package →</a>
         </div>
       </div>
       <div class="signature-included-grid">
-        <div class="signature-included-item">Full content strategy</div>
-        <div class="signature-included-item">20+ posts per month</div>
-        <div class="signature-included-item">Reel scripting &amp; direction</div>
-        <div class="signature-included-item">Social SEO optimization</div>
-        <div class="signature-included-item">CTA &amp; DM automation</div>
-        <div class="signature-included-item">Lead magnet creation</div>
-        <div class="signature-included-item">Story strategy</div>
-        <div class="signature-included-item">Monthly performance reporting</div>
-        <div class="signature-included-item">Quarterly strategy sessions</div>
-        <div class="signature-included-item">Dedicated account strategist</div>
+        <div class="signature-included-item">Full strategy foundation &amp; IVP</div>
+        <div class="signature-included-item">Monthly on-location content shoots</div>
+        <div class="signature-included-item">Reels scripting, filming &amp; editing</div>
+        <div class="signature-included-item">Carousel design &amp; copywriting</div>
+        <div class="signature-included-item">Story sequences &amp; interactive content</div>
+        <div class="signature-included-item">Scheduled posting at optimal times</div>
+        <div class="signature-included-item">Community management</div>
+        <div class="signature-included-item">Monthly KPI dashboard &amp; reporting</div>
+        <div class="signature-included-item">Monthly strategy call with your account lead</div>
+        <div class="signature-included-item">Link-in-bio funnel management</div>
+      </div>
+      <div class="signature-tiers">
+        <div class="signature-tier">
+          <div class="signature-tier-name">Essential</div>
+          <div class="signature-tier-price">$2,975<span>/mo</span></div>
+          <div class="signature-tier-details">2 feed posts/week · 3 story days/week · Content shoots every 3–4 weeks</div>
+        </div>
+        <div class="signature-tier-divider">→</div>
+        <div class="signature-tier featured-tier">
+          <div class="signature-tier-name">Growth</div>
+          <div class="signature-tier-price">$3,250<span>/mo</span></div>
+          <div class="signature-tier-details">3 feed posts/week · 5 story days/week · Bi-weekly shoots · Quarterly strategy review</div>
+        </div>
       </div>
       <div class="signature-credit-callout">
-        <strong>How it works:</strong> Every Signature engagement starts with a 90-minute strategy session to map your practice's goals, IVP, and content infrastructure. From there, we build a custom scope and present a proposal within 5 business days. No cookie-cutter packages — every engagement is built around your practice.
+        <strong>Already purchased the Blueprint or Content Day?</strong> Your investment is fully credited toward your first month of Signature. It's designed as a low-risk entry point into working with Scroll Media.
       </div>
     </div>
   </div>
 </section>
-
 <!-- ═══════════════════════════════════════════
      NEXT STEPS
 ═══════════════════════════════════════════ -->
