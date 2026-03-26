@@ -5,7 +5,32 @@
   <meta property="og:title" content="The Real Estate Instagram Playbook | Scroll Media">
   <meta property="og:description" content="Stop posting. Start converting. A complete Instagram strategy guide for real estate agents.">
   <meta property="og:type" content="website">
+  <meta property="og:url" content="https://tools.scrollmedia.co/guides-real-estate">
+  <meta property="og:image" content="https://tools.scrollmedia.co/og-real-estate.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
   <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://tools.scrollmedia.co/og-real-estate.png">
+  <!-- Meta Pixel — activate by replacing 'YOUR_PIXEL_ID' with your actual Meta Pixel ID -->
+  <!-- <script>
+  !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window, document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', 'YOUR_PIXEL_ID');
+  fbq('track', 'PageView');
+  </script> -->
+  <!-- GA4 — activate by replacing 'G-XXXXXXXXXX' with your actual Measurement ID -->
+  <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-XXXXXXXXXX');
+  </script> -->
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>The Real Estate Instagram Playbook | Scroll Media</title>
@@ -2773,7 +2798,7 @@ footer {
       <h1 class="hero-title fade-up fade-up-delay-1">
         You're Posting.<br>Nobody's <span class="accent">Calling.</span>
       </h1>
-      <p class="hero-subtitle fade-up fade-up-delay-2">
+      <p class="hero-subtitle fade-up fade-up-delay-2" id="hero-subtitle">
         Most real estate agents are active on Instagram and getting nothing from it. This guide breaks down exactly why — and what a content system that actually generates leads looks like.
       </p>
       <div class="hero-ctas fade-up fade-up-delay-3">
@@ -4546,6 +4571,14 @@ footer {
       </div>
     </div>
 
+    <!-- DM for Sample CTA — ManyChat Loop Hook -->
+    <div class="cta-final fade-up" style="margin-bottom:32px;">
+      <div class="cta-final-label">Want to See This Built for Your Brand?</div>
+      <h2 class="cta-final-title" style="font-size:28px;">We'll script one custom piece of content for you — free.</h2>
+      <p class="cta-final-text">Send us a DM on Instagram with the word <strong style="color:var(--lime);">SAMPLE</strong> and we'll write a custom Reel script built specifically for your real estate brand. No pitch. No strings. Just proof of what a real content strategy looks like in action.</p>
+      <a href="https://www.instagram.com/scrollmedia" target="_blank" rel="noopener" class="btn-primary" style="display: inline-flex; margin: 0 auto;">DM Us "SAMPLE" on Instagram →</a>
+    </div>
+
     <div class="cta-final fade-up">
       <div class="cta-final-label">Ready to Build Something That Actually Works?</div>
       <h2 class="cta-final-title">Let's turn your Instagram into a lead generation system.</h2>
@@ -4694,6 +4727,51 @@ document.querySelectorAll('.tam-keyword').forEach(kw => {
       }
     });
   });
+</script>
+
+<!-- UTM Pass-Through + Name Personalization -->
+<script>
+(function() {
+  // Parse URL parameters
+  var params = new URLSearchParams(window.location.search);
+
+  // 1. NAME PERSONALIZATION
+  // Usage: append ?name=John to the URL (e.g., from email merge tag)
+  var name = params.get('name');
+  if (name) {
+    var subtitle = document.getElementById('hero-subtitle');
+    if (subtitle) {
+      subtitle.textContent = 'Hey ' + decodeURIComponent(name) + ' — most real estate agents are active on Instagram and getting nothing from it. This guide breaks down exactly why — and what a content system that actually generates leads looks like.';
+    }
+  }
+
+  // 2. UTM PASS-THROUGH
+  // Captures utm_source, utm_medium, utm_campaign from the guide URL
+  // and appends them to all outbound CTA links so you can track which
+  // channel (email, manychat, social) drove each conversion.
+  var utmParams = ['utm_source','utm_medium','utm_campaign','utm_content','utm_term'];
+  var utmString = utmParams
+    .filter(function(k) { return params.get(k); })
+    .map(function(k) { return k + '=' + encodeURIComponent(params.get(k)); })
+    .join('&');
+
+  if (utmString) {
+    // Target all outbound CTA links (sales pages, Calendly)
+    var ctaSelectors = [
+      'a[href*="tools.scrollmedia.co"]',
+      'a[href*="calendly.com"]',
+      'a[href*="decks.scrollmedia.co"]'
+    ];
+    ctaSelectors.forEach(function(sel) {
+      document.querySelectorAll(sel).forEach(function(link) {
+        var href = link.getAttribute('href');
+        if (href && !href.startsWith('#')) {
+          link.setAttribute('href', href + (href.includes('?') ? '&' : '?') + utmString);
+        }
+      });
+    });
+  }
+})();
 </script>
 
 <script async src="//www.instagram.com/embed.js">
