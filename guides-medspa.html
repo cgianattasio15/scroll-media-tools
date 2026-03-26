@@ -1427,15 +1427,17 @@ footer { background: var(--navy-card); border-top: 1px solid var(--border); padd
     <p class="section-subtitle fade-up fade-up-delay-2">Every post should have a job. These ideas are mapped to the funnel stage they serve — awareness, education, or conversion — so you're not just posting, you're building a system.</p>
 
     <div class="funnel-tabs fade-up" id="funnel-tabs">
-      <button class="funnel-tab active-tofu" onclick="filterIdeas('tofu', this)">TOFU — Awareness</button>
+      <button class="funnel-tab active-tofu" onclick="filterIdeas('all', this)">All Ideas</button>
+      <button class="funnel-tab" onclick="filterIdeas('tofu', this)">TOFU — Awareness</button>
       <button class="funnel-tab" onclick="filterIdeas('mofu', this)">MOFU — Education</button>
       <button class="funnel-tab" onclick="filterIdeas('bofu', this)">BOFU — Conversion</button>
     </div>
 
-    <div class="ideas-grid" id="ideas-grid">
+        <div class="ideas-grid" id="ideas-grid">
 
       <!-- TOFU 1 -->
       <div class="idea-card tofu fade-up">
+        <div class="idea-creative-tag">★ Creative Format</div>
         <div class="idea-card-header">
           <div class="idea-card-title">What Happens to Your Face in Your 30s</div>
           <div class="idea-badges">
@@ -1450,38 +1452,38 @@ footer { background: var(--navy-card); border-top: 1px solid var(--border); padd
             <div class="idea-meta-text">Addresses a universal patient concern before they're ready to book. Builds awareness and positions you as the clinical authority who understands aging — not just injectables.</div>
           </div>
           <div>
-            <div class="idea-meta-label">Content Direction</div>
+            <div class="idea-meta-label">Execution Note</div>
             <div class="idea-meta-text">Use a face anatomy diagram or a side-by-side of facial changes over time. Explain collagen loss, fat pad migration, and bone resorption in plain language. No jargon.</div>
           </div>
         </div>
         <div class="sj-framework">
-          <div class="sj-framework-label">Sammy Jones Script Framework</div>
+          <div class="sj-framework-label">Script Framework</div>
           <div class="sj-steps">
             <div class="sj-step">
               <div class="sj-step-num">1</div>
               <div class="sj-step-content">
-                <div class="sj-step-title">Hook <span class="sj-time">(0–3s)</span></div>
-                <div class="sj-step-text">"Nobody tells you that your face starts aging in your late 20s — here's what's actually happening."</div>
+                <div class="sj-step-title">Hook <span class="sj-time">(0:00–0:03)</span></div>
+                <div class="sj-step-text">"Nobody tells you that your face starts aging in your late 20s — here's what's actually happening under the skin."</div>
               </div>
             </div>
             <div class="sj-step">
               <div class="sj-step-num">2</div>
               <div class="sj-step-content">
-                <div class="sj-step-title">Relate <span class="sj-time">(3–8s)</span></div>
-                <div class="sj-step-text">"You've probably noticed subtle changes — a little less volume here, a line that wasn't there before. That's not just 'getting older.' There's a clinical reason for it."</div>
+                <div class="sj-step-title">Context &amp; Conflict <span class="sj-time">(0:03–0:15)</span></div>
+                <div class="sj-step-text">Set the scene: collagen drops 1% per year after 25. Fat pads shift. Bone resorbs. This isn't just "getting older" — there's a clinical reason your face looks different.</div>
               </div>
             </div>
             <div class="sj-step">
               <div class="sj-step-num">3</div>
               <div class="sj-step-content">
-                <div class="sj-step-title">Educate <span class="sj-time">(8–25s)</span></div>
-                <div class="sj-step-text">Walk through the three layers: collagen loss, fat pad migration, bone resorption. Use a face model or diagram. Keep it visual.</div>
+                <div class="sj-step-title">Turning Point <span class="sj-time">(0:15–0:40)</span></div>
+                <div class="sj-step-text">Walk through the three layers using a face model or diagram. Show exactly where volume loss happens first — temples, under-eye, mid-cheek. Keep it visual, not lecture-y.</div>
               </div>
             </div>
             <div class="sj-step">
               <div class="sj-step-num">4</div>
               <div class="sj-step-content">
-                <div class="sj-step-title">CTA <span class="sj-time">(25–30s)</span></div>
+                <div class="sj-step-title">Resolution &amp; CTA <span class="sj-time">(0:40–0:60)</span></div>
                 <div class="sj-step-text">"Understanding how your face ages is the first step to treating it correctly. Save this — and DM me if you want to know what I'd actually recommend for your anatomy."</div>
               </div>
             </div>
@@ -1490,7 +1492,8 @@ footer { background: var(--navy-card); border-top: 1px solid var(--border); padd
       </div>
 
       <!-- TOFU 2 -->
-      <div class="idea-card tofu fade-up fade-up-delay-1">
+      <div class="idea-card tofu fade-up">
+        <div class="idea-creative-tag">★ Creative Format</div>
         <div class="idea-card-header">
           <div class="idea-card-title">5 Things That Make a Great Injector</div>
           <div class="idea-badges">
@@ -1502,17 +1505,51 @@ footer { background: var(--navy-card); border-top: 1px solid var(--border); padd
         <div class="idea-meta-grid">
           <div>
             <div class="idea-meta-label">Why It Works</div>
-            <div class="idea-meta-text">Educates patients on what to look for — and positions you as the provider who meets every standard. This is authority content that pre-qualifies your ideal patient.</div>
+            <div class="idea-meta-text">Educates patients on what to look for — and simultaneously positions you as the standard. Every slide is a trust signal that filters for the right patient.</div>
           </div>
           <div>
-            <div class="idea-meta-label">Content Direction</div>
-            <div class="idea-meta-text">5-slide carousel: anatomical knowledge, individualized treatment planning, safety protocols, honest consultation, and ongoing education. Each slide = one criterion with a brief explanation.</div>
+            <div class="idea-meta-label">Execution Note</div>
+            <div class="idea-meta-text">5-slide carousel: anatomical knowledge, individualized treatment planning, conservative approach, before/after transparency, and ongoing education. Each slide = one differentiator with a one-line proof point.</div>
+          </div>
+        </div>
+        <div class="sj-framework">
+          <div class="sj-framework-label">Script Framework</div>
+          <div class="sj-steps">
+            <div class="sj-step">
+              <div class="sj-step-num">1</div>
+              <div class="sj-step-content">
+                <div class="sj-step-title">Hook <span class="sj-time">(Slide 1)</span></div>
+                <div class="sj-step-text">"Most injectors can give you filler. Very few can give you a result that looks like you — just better. Here's what separates them."</div>
+              </div>
+            </div>
+            <div class="sj-step">
+              <div class="sj-step-num">2</div>
+              <div class="sj-step-content">
+                <div class="sj-step-title">Context &amp; Conflict <span class="sj-time">(Slides 2–4)</span></div>
+                <div class="sj-step-text">Walk through the 5 criteria: anatomical training, individualized planning, conservative philosophy, transparent results, continuing education. Each one is a quiet disqualifier for the injectors who don't meet it.</div>
+              </div>
+            </div>
+            <div class="sj-step">
+              <div class="sj-step-num">3</div>
+              <div class="sj-step-content">
+                <div class="sj-step-title">Turning Point <span class="sj-time">(Slide 5)</span></div>
+                <div class="sj-step-text">Show your own credentials, training, or philosophy in one line. Let the list do the positioning — you just confirm you check every box.</div>
+              </div>
+            </div>
+            <div class="sj-step">
+              <div class="sj-step-num">4</div>
+              <div class="sj-step-content">
+                <div class="sj-step-title">Resolution &amp; CTA <span class="sj-time">(Final Slide)</span></div>
+                <div class="sj-step-text">"Save this for when you're ready to book. And if you want to know how I approach each of these — DM me 'CRITERIA' and I'll send you my full philosophy."</div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
 
       <!-- TOFU 3 -->
-      <div class="idea-card tofu fade-up fade-up-delay-2">
+      <div class="idea-card tofu fade-up">
+        <div class="idea-creative-tag">★ Creative Format</div>
         <div class="idea-card-header">
           <div class="idea-card-title">Hot Take: Botox Is Not a One-Size-Fits-All Treatment</div>
           <div class="idea-badges">
@@ -1520,21 +1557,55 @@ footer { background: var(--navy-card); border-top: 1px solid var(--border); padd
             <span class="badge badge-format">Reel</span>
           </div>
         </div>
-        <div class="idea-hook">"If your injector is using the same Botox pattern on every patient, that's a red flag — not a standard of care."</div>
+        <div class="idea-hook">"Every injector using the same unit count for every patient is doing it wrong — here's why your anatomy changes everything."</div>
         <div class="idea-meta-grid">
           <div>
             <div class="idea-meta-label">Why It Works</div>
-            <div class="idea-meta-text">Opinion-led content drives shares and saves. This positions you as the clinical authority who individualized treatment — vs. the cookie-cutter injector down the street.</div>
+            <div class="idea-meta-text">Opinion-led content drives saves and shares. This positions you as the expert who thinks differently — and makes patients question whether their current provider is treating them as an individual.</div>
           </div>
           <div>
-            <div class="idea-meta-label">Content Direction</div>
-            <div class="idea-meta-text">Explain why anatomy varies (brow position, muscle mass, facial asymmetry) and how that changes your injection approach. Show a real example if possible.</div>
+            <div class="idea-meta-label">Execution Note</div>
+            <div class="idea-meta-text">Talking-head Reel with on-screen text callouts. Show two different patient anatomy types and explain why the same protocol would produce different results. End with your individualized approach.</div>
+          </div>
+        </div>
+        <div class="sj-framework">
+          <div class="sj-framework-label">Script Framework</div>
+          <div class="sj-steps">
+            <div class="sj-step">
+              <div class="sj-step-num">1</div>
+              <div class="sj-step-content">
+                <div class="sj-step-title">Hook <span class="sj-time">(0:00–0:03)</span></div>
+                <div class="sj-step-text">"Hot take: if your injector uses the same Botox protocol for every patient, that's a red flag."</div>
+              </div>
+            </div>
+            <div class="sj-step">
+              <div class="sj-step-num">2</div>
+              <div class="sj-step-content">
+                <div class="sj-step-title">Context &amp; Conflict <span class="sj-time">(0:03–0:20)</span></div>
+                <div class="sj-step-text">Explain why anatomy varies: muscle mass, movement patterns, facial structure. A 20-unit forehead treatment on one patient is overtreated on another. This is why cookie-cutter protocols produce frozen faces.</div>
+              </div>
+            </div>
+            <div class="sj-step">
+              <div class="sj-step-num">3</div>
+              <div class="sj-step-content">
+                <div class="sj-step-title">Turning Point <span class="sj-time">(0:20–0:45)</span></div>
+                <div class="sj-step-text">Walk through your consultation process: how you assess muscle movement, map injection points, and customize units per zone. Show the difference between a mapped plan and a generic one.</div>
+              </div>
+            </div>
+            <div class="sj-step">
+              <div class="sj-step-num">4</div>
+              <div class="sj-step-content">
+                <div class="sj-step-title">Resolution &amp; CTA <span class="sj-time">(0:45–0:60)</span></div>
+                <div class="sj-step-text">"This is why I spend 15 minutes mapping before I inject anything. DM me 'MAP' if you want to see what a customized treatment plan actually looks like."</div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
 
       <!-- MOFU 1 -->
       <div class="idea-card mofu fade-up">
+        <div class="idea-creative-tag">★ Creative Format</div>
         <div class="idea-card-header">
           <div class="idea-card-title">Filler vs. Botox: What's the Actual Difference?</div>
           <div class="idea-badges">
@@ -1542,21 +1613,55 @@ footer { background: var(--navy-card); border-top: 1px solid var(--border); padd
             <span class="badge badge-format">Carousel</span>
           </div>
         </div>
-        <div class="idea-hook">"I get this question every single day. Here's the honest answer — and why it matters for your treatment plan."</div>
+        <div class="idea-hook">"Most people use these terms interchangeably. They're completely different products that do completely different things."</div>
         <div class="idea-meta-grid">
           <div>
             <div class="idea-meta-label">Why It Works</div>
-            <div class="idea-meta-text">This is the #1 question first-time patients Google. Answering it with clinical authority builds trust and pre-educates your ideal patient before they even book a consultation.</div>
+            <div class="idea-meta-text">One of the most searched questions in aesthetics. Answering it with clinical clarity builds authority and captures patients who are actively researching before booking their first appointment.</div>
           </div>
           <div>
-            <div class="idea-meta-label">Content Direction</div>
-            <div class="idea-meta-text">Side-by-side comparison: mechanism of action, target areas, duration, cost, and ideal candidate. End with: "The right answer depends on your anatomy and goals — not a menu."</div>
+            <div class="idea-meta-label">Execution Note</div>
+            <div class="idea-meta-text">Side-by-side carousel: mechanism, target area, duration, ideal candidate. Use clean graphics — no stock photos. End with a slide that shows which one you'd recommend for the most common patient concerns.</div>
+          </div>
+        </div>
+        <div class="sj-framework">
+          <div class="sj-framework-label">Script Framework</div>
+          <div class="sj-steps">
+            <div class="sj-step">
+              <div class="sj-step-num">1</div>
+              <div class="sj-step-content">
+                <div class="sj-step-title">Hook <span class="sj-time">(Slide 1)</span></div>
+                <div class="sj-step-text">"Botox and filler are not the same thing. Here's the breakdown most injectors never explain clearly."</div>
+              </div>
+            </div>
+            <div class="sj-step">
+              <div class="sj-step-num">2</div>
+              <div class="sj-step-content">
+                <div class="sj-step-title">Context &amp; Conflict <span class="sj-time">(Slides 2–4)</span></div>
+                <div class="sj-step-text">Botox = neuromodulator, relaxes muscle movement, treats dynamic lines. Filler = volumizer, adds structure and lift, treats static volume loss. Different mechanisms, different goals, different patients.</div>
+              </div>
+            </div>
+            <div class="sj-step">
+              <div class="sj-step-num">3</div>
+              <div class="sj-step-content">
+                <div class="sj-step-title">Turning Point <span class="sj-time">(Slides 5–6)</span></div>
+                <div class="sj-step-text">Show the overlap: some patients need both. Walk through a real scenario — a patient with forehead lines AND mid-face volume loss — and explain the combined approach.</div>
+              </div>
+            </div>
+            <div class="sj-step">
+              <div class="sj-step-num">4</div>
+              <div class="sj-step-content">
+                <div class="sj-step-title">Resolution &amp; CTA <span class="sj-time">(Final Slide)</span></div>
+                <div class="sj-step-text">"Not sure which one is right for you? That's exactly what a consultation is for. DM me 'CONSULT' and I'll walk you through it."</div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
 
       <!-- MOFU 2 -->
-      <div class="idea-card mofu fade-up fade-up-delay-1">
+      <div class="idea-card mofu fade-up">
+        <div class="idea-creative-tag">★ Creative Format</div>
         <div class="idea-card-header">
           <div class="idea-card-title">What I Look for in a Consultation</div>
           <div class="idea-badges">
@@ -1564,46 +1669,46 @@ footer { background: var(--navy-card); border-top: 1px solid var(--border); padd
             <span class="badge badge-format">Reel</span>
           </div>
         </div>
-        <div class="idea-hook">"Before I ever pick up a needle, here are the 5 things I assess in every new patient consultation."</div>
+        <div class="idea-hook">"Before I inject anything, I spend 15 minutes doing this — and most patients have never had a provider do it."</div>
         <div class="idea-meta-grid">
           <div>
             <div class="idea-meta-label">Why It Works</div>
-            <div class="idea-meta-text">Demystifies the consultation process and reduces the anxiety that stops first-time patients from booking. Shows your clinical rigor before they ever walk in the door.</div>
+            <div class="idea-meta-text">Process transparency builds trust at the consideration stage. Patients who see this will compare it to their last consultation — and realize they've never had one this thorough.</div>
           </div>
           <div>
-            <div class="idea-meta-label">Content Direction</div>
-            <div class="idea-meta-text">Walk through your actual assessment: facial symmetry, skin quality, bone structure, muscle movement, patient goals. Film it in your treatment room for authenticity.</div>
+            <div class="idea-meta-label">Execution Note</div>
+            <div class="idea-meta-text">Film a real (consented) or simulated consultation walkthrough. Show the assessment: facial mapping, muscle movement analysis, skin quality evaluation, goal-setting conversation. No voiceover needed — let the process speak.</div>
           </div>
         </div>
         <div class="sj-framework">
-          <div class="sj-framework-label">Sammy Jones Script Framework</div>
+          <div class="sj-framework-label">Script Framework</div>
           <div class="sj-steps">
             <div class="sj-step">
               <div class="sj-step-num">1</div>
               <div class="sj-step-content">
-                <div class="sj-step-title">Hook <span class="sj-time">(0–3s)</span></div>
-                <div class="sj-step-text">"Before I ever pick up a needle, here are the 5 things I look at in every single consultation."</div>
+                <div class="sj-step-title">Hook <span class="sj-time">(0:00–0:03)</span></div>
+                <div class="sj-step-text">"This is what a real consultation looks like — and why most patients have never experienced one."</div>
               </div>
             </div>
             <div class="sj-step">
               <div class="sj-step-num">2</div>
               <div class="sj-step-content">
-                <div class="sj-step-title">Relate <span class="sj-time">(3–8s)</span></div>
-                <div class="sj-step-text">"Most patients come in knowing what they want. My job is to understand what they actually need — those aren't always the same thing."</div>
+                <div class="sj-step-title">Context &amp; Conflict <span class="sj-time">(0:03–0:20)</span></div>
+                <div class="sj-step-text">Most consultations are 5 minutes. A provider looks at you, asks what you want, and starts drawing up product. That's not a consultation — that's an order-taker.</div>
               </div>
             </div>
             <div class="sj-step">
               <div class="sj-step-num">3</div>
               <div class="sj-step-content">
-                <div class="sj-step-title">Educate <span class="sj-time">(8–25s)</span></div>
-                <div class="sj-step-text">Walk through your 5 assessment criteria. Be specific. Use clinical language but explain it in plain terms.</div>
+                <div class="sj-step-title">Turning Point <span class="sj-time">(0:20–0:45)</span></div>
+                <div class="sj-step-text">Walk through your actual process: facial thirds assessment, dynamic movement analysis, skin quality check, goal alignment. Show the tools you use — even a simple mapping diagram elevates trust.</div>
               </div>
             </div>
             <div class="sj-step">
               <div class="sj-step-num">4</div>
               <div class="sj-step-content">
-                <div class="sj-step-title">CTA <span class="sj-time">(25–30s)</span></div>
-                <div class="sj-step-text">"If you want a consultation that actually looks at your face — not just your wish list — DM me 'CONSULT' and I'll send you my booking link."</div>
+                <div class="sj-step-title">Resolution &amp; CTA <span class="sj-time">(0:45–0:60)</span></div>
+                <div class="sj-step-text">"This is the standard every patient deserves. If you've never had a consultation that felt this thorough — DM me 'CONSULT' and let's change that."</div>
               </div>
             </div>
           </div>
@@ -1611,51 +1716,120 @@ footer { background: var(--navy-card); border-top: 1px solid var(--border); padd
       </div>
 
       <!-- MOFU 3 -->
-      <div class="idea-card mofu fade-up fade-up-delay-2">
+      <div class="idea-card mofu fade-up">
+        <div class="idea-creative-tag">★ Creative Format</div>
         <div class="idea-card-header">
           <div class="idea-card-title">The Anatomy Behind Lip Filler Gone Wrong</div>
           <div class="idea-badges">
             <span class="badge badge-mofu">MOFU</span>
-            <span class="badge badge-format">Reel</span>
+            <span class="badge badge-format">Carousel</span>
           </div>
         </div>
-        <div class="idea-hook">"The 'duck lip' isn't just bad aesthetics — it's an anatomy problem. Here's what actually causes it."</div>
+        <div class="idea-hook">"The 'duck lip' isn't a filler problem. It's an anatomy problem — and here's exactly why it happens."</div>
         <div class="idea-meta-grid">
           <div>
             <div class="idea-meta-label">Why It Works</div>
-            <div class="idea-meta-text">Addresses the #1 fear patients have about lip filler. Answering this clinically builds enormous trust and positions you as the provider who won't make that mistake.</div>
+            <div class="idea-meta-text">Addresses the #1 fear patients have about lip filler. By explaining the clinical reason it goes wrong, you simultaneously educate and position yourself as the provider who knows how to avoid it.</div>
           </div>
           <div>
-            <div class="idea-meta-label">Content Direction</div>
-            <div class="idea-meta-text">Use a face model or diagram to show the lip anatomy. Explain the philtrum columns, vermillion border, and cupid's bow. Show what over-projection looks like vs. natural enhancement.</div>
+            <div class="idea-meta-label">Execution Note</div>
+            <div class="idea-meta-text">Diagram-led carousel showing the lip anatomy: vermillion border, Cupid's bow, philtrum columns. Explain what overfilling the body vs. the border looks like. End with your approach to natural-looking lips.</div>
+          </div>
+        </div>
+        <div class="sj-framework">
+          <div class="sj-framework-label">Script Framework</div>
+          <div class="sj-steps">
+            <div class="sj-step">
+              <div class="sj-step-num">1</div>
+              <div class="sj-step-content">
+                <div class="sj-step-title">Hook <span class="sj-time">(Slide 1)</span></div>
+                <div class="sj-step-text">"Lip filler doesn't look bad because of the product. It looks bad because of the technique — and here's the anatomy that explains it."</div>
+              </div>
+            </div>
+            <div class="sj-step">
+              <div class="sj-step-num">2</div>
+              <div class="sj-step-content">
+                <div class="sj-step-title">Context &amp; Conflict <span class="sj-time">(Slides 2–3)</span></div>
+                <div class="sj-step-text">The lip has distinct zones: the body, the border, the Cupid's bow, the philtrum columns. Overfilling the body without respecting the border creates the "sausage" effect. Ignoring the philtrum erases natural definition.</div>
+              </div>
+            </div>
+            <div class="sj-step">
+              <div class="sj-step-num">3</div>
+              <div class="sj-step-content">
+                <div class="sj-step-title">Turning Point <span class="sj-time">(Slides 4–5)</span></div>
+                <div class="sj-step-text">Show the difference between anatomy-led placement and volume-first placement using diagrams. Explain your technique: define the border first, then add volume proportionally to the patient's natural shape.</div>
+              </div>
+            </div>
+            <div class="sj-step">
+              <div class="sj-step-num">4</div>
+              <div class="sj-step-content">
+                <div class="sj-step-title">Resolution &amp; CTA <span class="sj-time">(Final Slide)</span></div>
+                <div class="sj-step-text">"Natural lips aren't about using less product — they're about placing it correctly. DM me 'LIPS' if you want to see what anatomy-led lip filler actually looks like."</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- MOFU 4 -->
+      <div class="idea-card mofu fade-up">
+        <div class="idea-creative-tag">★ Creative Format</div>
+        <div class="idea-card-header">
+          <div class="idea-card-title">Patient Case Study: Natural Jawline Refinement</div>
+          <div class="idea-badges">
+            <span class="badge badge-mofu">MOFU</span>
+            <span class="badge badge-format">Before/After</span>
+          </div>
+        </div>
+        <div class="idea-hook">"She came in wanting 'a little definition.' Here's the full treatment plan — and why I chose this approach over the obvious one."</div>
+        <div class="idea-meta-grid">
+          <div>
+            <div class="idea-meta-label">Why It Works</div>
+            <div class="idea-meta-text">Case studies are the highest-trust content in aesthetics. Walking through your clinical reasoning — not just showing a result — separates you from every provider who just posts before/afters.</div>
+          </div>
+          <div>
+            <div class="idea-meta-label">Execution Note</div>
+            <div class="idea-meta-text">Structure: patient goal → your assessment → treatment decision → technique used → result. Include the "why I didn't do X" moment — it shows clinical judgment, not just execution. Always get written consent for before/after content.</div>
+          </div>
+        </div>
+        <div class="sj-framework">
+          <div class="sj-framework-label">Script Framework</div>
+          <div class="sj-steps">
+            <div class="sj-step">
+              <div class="sj-step-num">1</div>
+              <div class="sj-step-content">
+                <div class="sj-step-title">Hook <span class="sj-time">(0:00–0:03)</span></div>
+                <div class="sj-step-text">"She came in wanting jawline definition. Here's what I actually found — and why I changed the plan."</div>
+              </div>
+            </div>
+            <div class="sj-step">
+              <div class="sj-step-num">2</div>
+              <div class="sj-step-content">
+                <div class="sj-step-title">Context &amp; Conflict <span class="sj-time">(0:03–0:20)</span></div>
+                <div class="sj-step-text">Patient goal: sharper jaw. Assessment finding: the issue wasn't the jaw — it was mid-face volume loss creating the illusion of jowling. Adding jaw filler without addressing mid-face would have made it worse.</div>
+              </div>
+            </div>
+            <div class="sj-step">
+              <div class="sj-step-num">3</div>
+              <div class="sj-step-content">
+                <div class="sj-step-title">Turning Point <span class="sj-time">(0:20–0:45)</span></div>
+                <div class="sj-step-text">Walk through the revised plan: restore mid-cheek volume first, then refine the jawline with minimal product. Show the before, the treatment map, and the result. Explain why this sequence matters.</div>
+              </div>
+            </div>
+            <div class="sj-step">
+              <div class="sj-step-num">4</div>
+              <div class="sj-step-content">
+                <div class="sj-step-title">Resolution &amp; CTA <span class="sj-time">(0:45–0:60)</span></div>
+                <div class="sj-step-text">"The best result isn't always the most obvious treatment. DM me 'CASE' if you want to see more of how I approach complex cases — or book a consult to get your own treatment map."</div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
 
       <!-- BOFU 1 -->
       <div class="idea-card bofu fade-up">
-        <div class="idea-card-header">
-          <div class="idea-card-title">Patient Case Study: Natural Jawline Refinement</div>
-          <div class="idea-badges">
-            <span class="badge badge-bofu">BOFU</span>
-            <span class="badge badge-format">Carousel</span>
-          </div>
-        </div>
-        <div class="idea-hook">"She came in wanting a 'sharper jawline.' Here's what I actually did — and why it's not what she expected."</div>
-        <div class="idea-meta-grid">
-          <div>
-            <div class="idea-meta-label">Why It Works</div>
-            <div class="idea-meta-text">Case studies are the highest-converting content type for med spas. They show your clinical thinking, your results, and your patient relationship — all in one post.</div>
-          </div>
-          <div>
-            <div class="idea-meta-label">Content Direction</div>
-            <div class="idea-meta-text">Before/after + clinical narrative: patient's concern, your assessment, your treatment rationale, the outcome, and the patient's feedback. Never just post a before/after without the story.</div>
-          </div>
-        </div>
-      </div>
-
-      <!-- BOFU 2 -->
-      <div class="idea-card bofu fade-up fade-up-delay-1">
+        <div class="idea-creative-tag">★ Creative Format</div>
         <div class="idea-card-header">
           <div class="idea-card-title">What a New Patient Consultation Looks Like With Me</div>
           <div class="idea-badges">
@@ -1663,46 +1837,102 @@ footer { background: var(--navy-card); border-top: 1px solid var(--border); padd
             <span class="badge badge-format">Reel</span>
           </div>
         </div>
-        <div class="idea-hook">"Here's exactly what happens when you book a new patient consultation at our practice — no surprises, no pressure."</div>
+        <div class="idea-hook">"If you've been thinking about booking but don't know what to expect — here's exactly what happens when you come in."</div>
         <div class="idea-meta-grid">
           <div>
             <div class="idea-meta-label">Why It Works</div>
-            <div class="idea-meta-text">Removes the anxiety barrier that stops first-time patients from booking. When they know what to expect, they're far more likely to take the next step.</div>
+            <div class="idea-meta-text">Removes the #1 barrier to booking: fear of the unknown. Patients who watch this feel like they've already been in your office. That familiarity converts hesitation into appointments.</div>
           </div>
           <div>
-            <div class="idea-meta-label">Content Direction</div>
-            <div class="idea-meta-text">Walk-through of your actual consultation process: intake, assessment, discussion, treatment options, no-pressure decision. Film in your actual space. Authenticity is the point.</div>
+            <div class="idea-meta-label">Execution Note</div>
+            <div class="idea-meta-text">Walk through the full new patient experience: arrival, intake, consultation room, assessment, treatment discussion, booking. Keep it warm and reassuring — not clinical and sterile. Show your face and your space.</div>
           </div>
         </div>
         <div class="sj-framework">
-          <div class="sj-framework-label">Sammy Jones Script Framework</div>
+          <div class="sj-framework-label">Script Framework</div>
           <div class="sj-steps">
             <div class="sj-step">
               <div class="sj-step-num">1</div>
               <div class="sj-step-content">
-                <div class="sj-step-title">Hook <span class="sj-time">(0–3s)</span></div>
-                <div class="sj-step-text">"Here's exactly what happens when you book a new patient consultation with me — step by step."</div>
+                <div class="sj-step-title">Hook <span class="sj-time">(0:00–0:03)</span></div>
+                <div class="sj-step-text">"Nervous about your first appointment? Here's exactly what happens when you walk through my door."</div>
               </div>
             </div>
             <div class="sj-step">
               <div class="sj-step-num">2</div>
               <div class="sj-step-content">
-                <div class="sj-step-title">Relate <span class="sj-time">(3–8s)</span></div>
-                <div class="sj-step-text">"I know the first time is nerve-wracking. You don't know what to expect, what to ask, or whether you'll feel pressured. Here's how I handle that."</div>
+                <div class="sj-step-title">Context &amp; Conflict <span class="sj-time">(0:03–0:15)</span></div>
+                <div class="sj-step-text">Most people put off booking because they don't know what to expect. The unknown is the barrier — not the treatment itself. This video removes it.</div>
               </div>
             </div>
             <div class="sj-step">
               <div class="sj-step-num">3</div>
               <div class="sj-step-content">
-                <div class="sj-step-title">Educate <span class="sj-time">(8–25s)</span></div>
-                <div class="sj-step-text">Walk through each step of your consultation. Be specific and warm. Show your space, your tools, your process.</div>
+                <div class="sj-step-title">Turning Point <span class="sj-time">(0:15–0:45)</span></div>
+                <div class="sj-step-text">Walk through each step: check-in, intake form, consultation room setup, assessment process, treatment options discussion, what happens if they decide to proceed same day. Show the space — clean, calm, professional.</div>
               </div>
             </div>
             <div class="sj-step">
               <div class="sj-step-num">4</div>
               <div class="sj-step-content">
-                <div class="sj-step-title">CTA <span class="sj-time">(25–30s)</span></div>
-                <div class="sj-step-text">"If you've been thinking about it but haven't booked yet — link in bio. No pressure, no obligation. Just a conversation."</div>
+                <div class="sj-step-title">Resolution &amp; CTA <span class="sj-time">(0:45–0:60)</span></div>
+                <div class="sj-step-text">"No pressure, no judgment, no surprises. If you've been thinking about it — the link to book is in my bio. First consultations are always complimentary."</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- BOFU 2 -->
+      <div class="idea-card bofu fade-up">
+        <div class="idea-creative-tag">★ Creative Format</div>
+        <div class="idea-card-header">
+          <div class="idea-card-title">Patient Testimonial: "I Was Terrified of Looking Fake"</div>
+          <div class="idea-badges">
+            <span class="badge badge-bofu">BOFU</span>
+            <span class="badge badge-format">Reel</span>
+          </div>
+        </div>
+        <div class="idea-hook">"She almost didn't book because she was scared of looking overdone. Here's what she said after her first treatment."</div>
+        <div class="idea-meta-grid">
+          <div>
+            <div class="idea-meta-label">Why It Works</div>
+            <div class="idea-meta-text">Social proof from a patient who had the exact fear your ideal patient has. This isn't a generic testimonial — it's a mirror for the prospect who's been on the fence for months.</div>
+          </div>
+          <div>
+            <div class="idea-meta-label">Execution Note</div>
+            <div class="idea-meta-text">Film a 60-second patient interview. Let them speak in their own words. Your job is to ask the right questions: "What were you most nervous about?" "What surprised you?" "What would you tell someone who's hesitant?" Don't script it — coach it.</div>
+          </div>
+        </div>
+        <div class="sj-framework">
+          <div class="sj-framework-label">Script Framework</div>
+          <div class="sj-steps">
+            <div class="sj-step">
+              <div class="sj-step-num">1</div>
+              <div class="sj-step-content">
+                <div class="sj-step-title">Hook <span class="sj-time">(0:00–0:03)</span></div>
+                <div class="sj-step-text">Open on patient mid-sentence: "I almost didn't come in because I was so scared of looking fake." Let her voice be the hook.</div>
+              </div>
+            </div>
+            <div class="sj-step">
+              <div class="sj-step-num">2</div>
+              <div class="sj-step-content">
+                <div class="sj-step-title">Context &amp; Conflict <span class="sj-time">(0:03–0:20)</span></div>
+                <div class="sj-step-text">Let her describe the hesitation: the fear of looking overdone, the Instagram horror stories, the uncertainty about finding the right provider. This is the mirror moment for your ideal prospect.</div>
+              </div>
+            </div>
+            <div class="sj-step">
+              <div class="sj-step-num">3</div>
+              <div class="sj-step-content">
+                <div class="sj-step-title">Turning Point <span class="sj-time">(0:20–0:45)</span></div>
+                <div class="sj-step-text">Her experience: the consultation felt different, the approach was conservative, she felt heard. Show the before/after if she consented. Let the result speak — don't narrate it.</div>
+              </div>
+            </div>
+            <div class="sj-step">
+              <div class="sj-step-num">4</div>
+              <div class="sj-step-content">
+                <div class="sj-step-title">Resolution &amp; CTA <span class="sj-time">(0:45–0:60)</span></div>
+                <div class="sj-step-text">Close with her advice to someone who's hesitant. Then add your CTA as a text overlay: "If this sounds like you — the link to book a complimentary consult is in my bio."</div>
               </div>
             </div>
           </div>
@@ -1710,29 +1940,63 @@ footer { background: var(--navy-card); border-top: 1px solid var(--border); padd
       </div>
 
       <!-- BOFU 3 -->
-      <div class="idea-card bofu fade-up fade-up-delay-2">
+      <div class="idea-card bofu fade-up">
+        <div class="idea-creative-tag">★ Creative Format</div>
         <div class="idea-card-header">
-          <div class="idea-card-title">Patient Testimonial: "I Was Terrified of Looking Fake"</div>
+          <div class="idea-card-title">The "Is This Right for Me?" Treatment Breakdown</div>
           <div class="idea-badges">
             <span class="badge badge-bofu">BOFU</span>
-            <span class="badge badge-format">Reel / Story</span>
+            <span class="badge badge-format">Carousel</span>
           </div>
         </div>
-        <div class="idea-hook">"She almost didn't book because she was scared of looking overdone. Here's what happened instead."</div>
+        <div class="idea-hook">"Not sure if Botox, filler, or a skin treatment is the right starting point? Here's how I'd think through it for you."</div>
         <div class="idea-meta-grid">
           <div>
             <div class="idea-meta-label">Why It Works</div>
-            <div class="idea-meta-text">Social proof from a patient who had the same fear as your ideal viewer is the most powerful conversion tool in your arsenal. It's not a testimonial — it's a mirror.</div>
+            <div class="idea-meta-text">Decision-making content converts. Patients who are close to booking but unsure where to start will save this, share it, and come in having already made their decision — with you as their provider.</div>
           </div>
           <div>
-            <div class="idea-meta-label">Content Direction</div>
-            <div class="idea-meta-text">Patient-led video or quote carousel. Let them describe their fear, their experience, and their result in their own words. Your job is to frame it, not narrate it.</div>
+            <div class="idea-meta-label">Execution Note</div>
+            <div class="idea-meta-text">Build a simple decision framework: primary concern → recommended starting treatment → why. Cover the 4 most common starting points: forehead lines (Botox), volume loss (filler), skin texture (laser/peel), overall refresh (combination). End with a booking CTA.</div>
+          </div>
+        </div>
+        <div class="sj-framework">
+          <div class="sj-framework-label">Script Framework</div>
+          <div class="sj-steps">
+            <div class="sj-step">
+              <div class="sj-step-num">1</div>
+              <div class="sj-step-content">
+                <div class="sj-step-title">Hook <span class="sj-time">(Slide 1)</span></div>
+                <div class="sj-step-text">"Don't know where to start? Here's how I'd think through it — based on your biggest concern."</div>
+              </div>
+            </div>
+            <div class="sj-step">
+              <div class="sj-step-num">2</div>
+              <div class="sj-step-content">
+                <div class="sj-step-title">Context &amp; Conflict <span class="sj-time">(Slides 2–3)</span></div>
+                <div class="sj-step-text">The overwhelm is real: too many options, too much conflicting information online, fear of choosing wrong. A clear decision framework removes the friction and positions you as the guide — not just the provider.</div>
+              </div>
+            </div>
+            <div class="sj-step">
+              <div class="sj-step-num">3</div>
+              <div class="sj-step-content">
+                <div class="sj-step-title">Turning Point <span class="sj-time">(Slides 4–6)</span></div>
+                <div class="sj-step-text">Walk through each concern → treatment path. "If your main concern is forehead lines → Botox, here's why. If it's volume loss → filler, here's the starting zone. If it's skin quality → here's the treatment ladder." Keep each slide to one decision.</div>
+              </div>
+            </div>
+            <div class="sj-step">
+              <div class="sj-step-num">4</div>
+              <div class="sj-step-content">
+                <div class="sj-step-title">Resolution &amp; CTA <span class="sj-time">(Final Slide)</span></div>
+                <div class="sj-step-text">"Still not sure? That's what a consultation is for. DM me 'START' and I'll tell you exactly where I'd begin based on your goals — no obligation."</div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
 
-    </div>
-  </div>
+    </div><!-- end ideas-grid -->
+
 </section>
 
 <!-- ═══════════════════════════════════════════

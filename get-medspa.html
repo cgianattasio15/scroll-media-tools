@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Med Spa Instagram Playbook — Scroll Media</title>
+  <meta name="description" content="The complete Instagram strategy guide built specifically for med spa owners and operators. Learn exactly how to build authority, trust, and a steady stream of new patient bookings.">
+  
+  <!-- OG Tags -->
+  <meta property="og:title" content="The Med Spa Instagram Playbook">
+  <meta property="og:description" content="The complete Instagram strategy guide built specifically for med spa owners and operators.">
+  <meta property="og:image" content="https://tools.scrollmedia.co/og-medspa.png">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <!-- Meta Pixel (activate when ready) -->
+  <!-- <script>!function(f,b,e,v,n,t,s){...}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('init','YOUR_PIXEL_ID');fbq('track','PageView');</script> -->
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,700;0,800;1,700&display=swap" rel="stylesheet">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="scroll-favicon.svg">
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy: #0d1b2a;
+      --navy-mid: #112236;
+      --navy-card: #162840;
+      --navy-border: #1e3a5f;
+      --lime: #c8f135;
+      --lime-dark: #a8d020;
+      --white: #ffffff;
+      --grey: #8899aa;
+      --grey-light: #aabbcc;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--navy);
+      color: var(--white);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 16px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(13, 27, 42, 0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(200, 241, 53, 0.1);
+    }
+
+    .nav-logo a { display: flex; align-items: center; text-decoration: none; }
+    .nav-logo img { height: 36px; width: auto; }
+
+    .nav-cta {
+      background: var(--lime);
+      color: var(--navy);
+      font-weight: 700;
+      font-size: 13px;
+      letter-spacing: 0.05em;
+      padding: 10px 20px;
+      border-radius: 6px;
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+    .nav-cta:hover { background: var(--lime-dark); }
+
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding: 120px 40px 80px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -200px; right: -200px;
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(200,241,53,0.06) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-inner {
+      max-width: 900px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(200, 241, 53, 0.1);
+      border: 1px solid rgba(200, 241, 53, 0.3);
+      color: var(--lime);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      padding: 8px 16px;
+      border-radius: 100px;
+      margin-bottom: 32px;
+    }
+
+    .hero-badge::before {
+      content: '';
+      width: 6px; height: 6px;
+      background: var(--lime);
+      border-radius: 50%;
+    }
+
+    .hero-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(42px, 6vw, 72px);
+      font-weight: 800;
+      line-height: 1.1;
+      margin-bottom: 24px;
+      color: var(--white);
+    }
+
+    .hero-title em { font-style: italic; color: var(--lime); }
+
+    .hero-subtitle {
+      font-size: clamp(17px, 2vw, 20px);
+      color: var(--grey-light);
+      line-height: 1.7;
+      max-width: 680px;
+      margin: 0 auto 48px;
+    }
+
+    .whats-inside {
+      background: var(--navy-card);
+      border: 1px solid var(--navy-border);
+      border-radius: 16px;
+      padding: 40px;
+      margin: 0 auto 48px;
+      max-width: 700px;
+      text-align: left;
+    }
+
+    .whats-inside-title {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--lime);
+      margin-bottom: 24px;
+    }
+
+    .benefit-list {
+      list-style: none;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    @media (max-width: 560px) { .benefit-list { grid-template-columns: 1fr; } }
+
+    .benefit-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 14px;
+      color: var(--grey-light);
+      line-height: 1.5;
+    }
+
+    .benefit-check {
+      flex-shrink: 0;
+      width: 18px; height: 18px;
+      background: rgba(200, 241, 53, 0.15);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 2px;
+    }
+
+    .benefit-check::after {
+      content: '✓';
+      color: var(--lime);
+      font-size: 10px;
+      font-weight: 700;
+    }
+
+    .gate-form-wrap { max-width: 480px; margin: 0 auto; }
+
+    .gate-form { display: flex; flex-direction: column; gap: 12px; }
+
+    .gate-form input {
+      width: 100%;
+      padding: 16px 20px;
+      background: var(--navy-card);
+      border: 1px solid var(--navy-border);
+      border-radius: 8px;
+      color: var(--white);
+      font-family: 'Inter', sans-serif;
+      font-size: 15px;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    .gate-form input::placeholder { color: var(--grey); }
+    .gate-form input:focus { border-color: var(--lime); }
+
+    .gate-submit {
+      width: 100%;
+      padding: 18px;
+      background: var(--lime);
+      color: var(--navy);
+      font-family: 'Inter', sans-serif;
+      font-size: 16px;
+      font-weight: 800;
+      letter-spacing: 0.02em;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.1s;
+    }
+
+    .gate-submit:hover { background: var(--lime-dark); }
+    .gate-submit:active { transform: scale(0.99); }
+    .gate-submit.loading { opacity: 0.7; cursor: not-allowed; }
+
+    .form-disclaimer {
+      font-size: 12px;
+      color: var(--grey);
+      text-align: center;
+      margin-top: 8px;
+      line-height: 1.5;
+    }
+
+    .form-error {
+      color: #ff6b6b;
+      font-size: 13px;
+      text-align: center;
+      display: none;
+    }
+
+    .social-proof {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 32px;
+      font-size: 13px;
+      color: var(--grey);
+    }
+
+    .proof-dot { width: 4px; height: 4px; background: var(--grey); border-radius: 50%; }
+
+    footer {
+      padding: 32px 40px;
+      text-align: center;
+      border-top: 1px solid var(--navy-border);
+    }
+
+    .footer-logo img { height: 28px; width: auto; margin-bottom: 12px; }
+
+    .footer-text { font-size: 12px; color: var(--grey); }
+    .footer-text a { color: var(--grey); text-decoration: none; }
+    .footer-text a:hover { color: var(--lime); }
+
+    @media (max-width: 768px) {
+      nav { padding: 14px 20px; }
+      .hero { padding: 100px 20px 60px; }
+      .whats-inside { padding: 28px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="nav-logo">
+      <a href="https://decks.scrollmedia.co/pitch/" target="_blank" rel="noopener">
+        <img src="scroll-media-logo-white-transparent.png" alt="Scroll Media">
+      </a>
+    </div>
+    <a href="https://tools.scrollmedia.co/services-catalog" class="nav-cta" target="_blank">See Our Services</a>
+  </nav>
+
+  <section class="hero">
+    <div class="hero-inner">
+      <div class="hero-badge">Med Spa — Instagram Strategy Guide</div>
+
+      <h1 class="hero-title">
+        The Instagram Playbook<br>Built for <em>Med Spa Owners</em>
+      </h1>
+
+      <p class="hero-subtitle" id="hero-subtitle">
+        Most med spas post before/afters and promotions — and wonder why their follower count isn't converting into booked appointments. This guide breaks down exactly what's missing, and how to build a content system that drives real patient growth.
+      </p>
+
+      <div class="whats-inside">
+        <div class="whats-inside-title">What's inside the free guide</div>
+        <ul class="benefit-list">
+          <li class="benefit-item">
+            <span class="benefit-check"></span>
+            The 3 content gaps holding most med spas back from real growth
+          </li>
+          <li class="benefit-item">
+            <span class="benefit-check"></span>
+            How to position your profile as a clinical authority — not just a spa
+          </li>
+          <li class="benefit-item">
+            <span class="benefit-check"></span>
+            The Social SEO strategy to get found by patients actively searching
+          </li>
+          <li class="benefit-item">
+            <span class="benefit-check"></span>
+            10 content ideas mapped to awareness, education, and conversion
+          </li>
+          <li class="benefit-item">
+            <span class="benefit-check"></span>
+            The CTA system that turns Instagram followers into booked consults
+          </li>
+          <li class="benefit-item">
+            <span class="benefit-check"></span>
+            3 outlier accounts and exactly why their content outperforms
+          </li>
+          <li class="benefit-item">
+            <span class="benefit-check"></span>
+            A lead magnet framework that builds your patient list on autopilot
+          </li>
+          <li class="benefit-item">
+            <span class="benefit-check"></span>
+            Real client results and the strategy behind each one
+          </li>
+        </ul>
+      </div>
+
+      <div class="gate-form-wrap">
+        <form class="gate-form" id="gate-form">
+          <input type="text" name="first_name" id="first_name" placeholder="First name" required autocomplete="given-name">
+          <input type="email" name="email" id="email" placeholder="Work email address" required autocomplete="email">
+          <div class="form-error" id="form-error">Something went wrong. Please try again.</div>
+          <button type="submit" class="gate-submit" id="submit-btn">
+            Get the Free Guide →
+          </button>
+        </form>
+        <p class="form-disclaimer">No spam. Unsubscribe anytime. We'll also send you a few follow-up emails with strategy tips — you can opt out at any time.</p>
+      </div>
+
+      <div class="social-proof">
+        <span>Free. No credit card required.</span>
+        <span class="proof-dot"></span>
+        <span>Instant access</span>
+        <span class="proof-dot"></span>
+        <span>Built by Scroll Media</span>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-logo">
+      <a href="https://decks.scrollmedia.co/pitch/" target="_blank" rel="noopener">
+        <img src="scroll-media-logo-white-transparent.png" alt="Scroll Media">
+      </a>
+    </div>
+    <p class="footer-text">
+      © 2026 Scroll Media. All rights reserved. &nbsp;·&nbsp;
+      <a href="https://tools.scrollmedia.co/services-catalog">Services</a>
+    </p>
+  </footer>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const firstName = params.get('name');
+    if (firstName) {
+      const subtitle = document.getElementById('hero-subtitle');
+      if (subtitle) {
+        subtitle.textContent = `Hey ${firstName} — most med spas post before/afters and promotions and wonder why their follower count isn't converting into booked appointments. This guide breaks down exactly what's missing.`;
+      }
+      const nameField = document.getElementById('first_name');
+      if (nameField) nameField.value = firstName;
+    }
+
+    const form = document.getElementById('gate-form');
+    const submitBtn = document.getElementById('submit-btn');
+    const formError = document.getElementById('form-error');
+
+    form.addEventListener('submit', async function(e) {
+      e.preventDefault();
+      
+      const firstName = document.getElementById('first_name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      
+      if (!firstName || !email) return;
+
+      submitBtn.textContent = 'Sending...';
+      submitBtn.classList.add('loading');
+      submitBtn.disabled = true;
+      formError.style.display = 'none';
+
+      try {
+        const response = await fetch('/api/subscribe', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            first_name: firstName,
+            email: email,
+            sequence_id: 2670738,
+            guide: 'medspa',
+            utm_source: params.get('utm_source') || 'direct',
+            utm_campaign: params.get('utm_campaign') || ''
+          })
+        });
+
+        const data = await response.json();
+
+        if (response.ok && data.success) {
+          const guideUrl = `https://tools.scrollmedia.co/guides-medspa?name=${encodeURIComponent(firstName)}&utm_source=${params.get('utm_source') || 'gate'}&utm_campaign=${params.get('utm_campaign') || 'medspa_guide'}`;
+          window.location.href = guideUrl;
+        } else {
+          throw new Error(data.error || 'Subscription failed');
+        }
+      } catch (err) {
+        console.error('Subscription error:', err);
+        formError.style.display = 'block';
+        submitBtn.textContent = 'Get the Free Guide →';
+        submitBtn.classList.remove('loading');
+        submitBtn.disabled = false;
+      }
+    });
+  </script>
+
+</body>
+</html>

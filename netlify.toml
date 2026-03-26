@@ -31,6 +31,11 @@
   to = "/.netlify/functions/metricool-data"
   status = 200
 
+[[redirects]]
+  from = "/api/subscribe"
+  to = "/.netlify/functions/subscribe"
+  status = 200
+
 # Security headers
 [[headers]]
   for = "/access/*"
