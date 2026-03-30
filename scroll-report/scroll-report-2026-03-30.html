@@ -1,0 +1,1371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Scroll Report — Week of March 30, 2026</title>
+  <link rel="icon" type="image/svg+xml" href="../scroll-favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --shadow:     #151516;
+      --azure:      #0c3387;
+      --azure-dark: #092a6e;
+      --lucid:      #cbe9ff;
+      --highlight:  #e2ed7a;
+      --porcelain:  #f2f3f4;
+      --ghost:      #fafdff;
+      --white:      #ffffff;
+      --card-bg:    #1e1e1f;
+      --card-border:#2a2a2b;
+      --text-muted: #8a8a8e;
+      --text-dim:   #5a5a5e;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background-color: var(--shadow);
+      color: var(--white);
+      font-size: 15px;
+      line-height: 1.6;
+    }
+
+    /* ── PROGRESS BAR ── */
+    #progress-bar {
+      position: fixed;
+      top: 0; left: 0;
+      height: 3px;
+      width: 0%;
+      background: linear-gradient(90deg, var(--azure), var(--highlight));
+      z-index: 1000;
+      transition: width 0.1s linear;
+    }
+
+    /* ── STICKY NAV ── */
+    .top-nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(21, 21, 22, 0.92);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--card-border);
+      padding: 0 32px;
+      height: 56px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .nav-logo img {
+      height: 22px;
+      width: auto;
+    }
+
+    .nav-divider {
+      width: 1px;
+      height: 18px;
+      background: var(--card-border);
+    }
+
+    .nav-title {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--highlight);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 4px;
+    }
+
+    .nav-link {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-muted);
+      text-decoration: none;
+      padding: 6px 12px;
+      border-radius: 6px;
+      transition: all 0.15s ease;
+    }
+
+    .nav-link:hover {
+      color: var(--white);
+      background: rgba(255,255,255,0.06);
+    }
+
+    .nav-date {
+      font-size: 12px;
+      color: var(--text-dim);
+      font-weight: 500;
+    }
+
+    /* ── PAGE WRAPPER ── */
+    .page-wrapper {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 48px 24px 80px;
+    }
+
+    /* ── HERO HEADER ── */
+    .report-header {
+      background: linear-gradient(135deg, var(--azure) 0%, var(--azure-dark) 100%);
+      border-radius: 16px;
+      padding: 40px 48px;
+      margin-bottom: 8px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .report-header::before {
+      content: '';
+      position: absolute;
+      top: -60px; right: -60px;
+      width: 240px; height: 240px;
+      background: radial-gradient(circle, rgba(226,237,122,0.12) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+
+    .report-header-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      margin-bottom: 20px;
+    }
+
+    .report-wordmark {
+      font-size: 28px;
+      font-weight: 900;
+      color: var(--white);
+      letter-spacing: -1px;
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+
+    .report-label {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--highlight);
+      letter-spacing: 3px;
+      text-transform: uppercase;
+    }
+
+    .report-meta {
+      text-align: right;
+    }
+
+    .report-meta-week {
+      font-size: 11px;
+      color: rgba(255,255,255,0.5);
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      margin-bottom: 4px;
+    }
+
+    .report-meta-date {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--white);
+    }
+
+    .report-intro {
+      font-size: 15px;
+      line-height: 1.7;
+      color: rgba(255,255,255,0.7);
+      max-width: 560px;
+      border-top: 1px solid rgba(255,255,255,0.12);
+      padding-top: 20px;
+    }
+
+    /* ── SECTION NAV PILLS ── */
+    .section-nav {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      padding: 20px 0;
+      margin-bottom: 8px;
+    }
+
+    .section-pill {
+      font-size: 12px;
+      font-weight: 700;
+      padding: 6px 16px;
+      border-radius: 20px;
+      text-decoration: none;
+      transition: all 0.15s ease;
+      white-space: nowrap;
+    }
+
+    .section-pill-blue {
+      color: var(--azure);
+      background: var(--lucid);
+    }
+
+    .section-pill-blue:hover {
+      background: #b8dff7;
+    }
+
+    .section-pill-lime {
+      color: var(--shadow);
+      background: var(--highlight);
+    }
+
+    .section-pill-lime:hover {
+      background: #d4de5e;
+    }
+
+    /* ── SECTION HEADER ── */
+    .section-header {
+      padding: 32px 0 20px;
+      border-top: 3px solid var(--azure);
+      margin-top: 16px;
+    }
+
+    .section-number {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--azure);
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+
+    .section-title {
+      font-size: 24px;
+      font-weight: 800;
+      color: var(--white);
+      letter-spacing: -0.5px;
+      margin-bottom: 4px;
+    }
+
+    .section-subtitle {
+      font-size: 13px;
+      color: var(--text-dim);
+    }
+
+    /* ── CARDS ── */
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 12px;
+      padding: 26px 28px;
+      margin-bottom: 16px;
+    }
+
+    .card-tag {
+      font-size: 10px;
+      font-weight: 700;
+      color: var(--highlight);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+
+    .card-title {
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 12px;
+      line-height: 1.4;
+    }
+
+    .card-body {
+      font-size: 14px;
+      line-height: 1.75;
+      color: var(--text-muted);
+      margin-bottom: 18px;
+    }
+
+    .card-body em {
+      font-style: italic;
+    }
+
+    /* ── INSIGHT BOX ── */
+    .insight-box {
+      background: var(--shadow);
+      border-radius: 8px;
+      border-left: 3px solid var(--azure);
+      padding: 16px 20px;
+    }
+
+    .insight-box-title {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--lucid);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 12px;
+    }
+
+    .insight-row {
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.65;
+      margin-bottom: 10px;
+    }
+
+    .insight-row:last-child {
+      margin-bottom: 0;
+    }
+
+    .insight-row strong {
+      color: var(--white);
+      font-weight: 600;
+    }
+
+    /* ── AI SECTION SPECIFICS ── */
+    .ai-card {
+      background: linear-gradient(135deg, #0d1f4a 0%, #0a1630 100%);
+      border: 1px solid rgba(12, 51, 135, 0.6);
+      border-radius: 12px;
+      padding: 26px 28px;
+      margin-bottom: 16px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .ai-card::before {
+      content: '';
+      position: absolute;
+      top: -40px; right: -40px;
+      width: 160px; height: 160px;
+      background: radial-gradient(circle, rgba(226,237,122,0.07) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+
+    .ai-tag {
+      font-size: 10px;
+      font-weight: 700;
+      color: var(--highlight);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+
+    .ai-title {
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 12px;
+      line-height: 1.4;
+    }
+
+    .ai-body {
+      font-size: 14px;
+      line-height: 1.75;
+      color: rgba(203, 233, 255, 0.7);
+      margin-bottom: 18px;
+    }
+
+    .ai-insight-box {
+      background: rgba(12, 51, 135, 0.25);
+      border-radius: 8px;
+      border-left: 3px solid var(--highlight);
+      padding: 16px 20px;
+    }
+
+    .ai-insight-title {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--highlight);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 12px;
+    }
+
+    .ai-step {
+      display: flex;
+      gap: 14px;
+      margin-bottom: 12px;
+      align-items: flex-start;
+    }
+
+    .ai-step:last-child {
+      margin-bottom: 0;
+    }
+
+    .ai-step-num {
+      font-size: 11px;
+      font-weight: 800;
+      color: var(--shadow);
+      background: var(--highlight);
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    .ai-step-text {
+      font-size: 13px;
+      color: rgba(203, 233, 255, 0.8);
+      line-height: 1.65;
+    }
+
+    .ai-step-text strong {
+      color: var(--white);
+      font-weight: 600;
+    }
+
+    .ai-prompt-box {
+      background: rgba(0,0,0,0.3);
+      border-radius: 6px;
+      border: 1px solid rgba(226,237,122,0.2);
+      padding: 14px 16px;
+      margin-top: 14px;
+      font-family: 'Courier New', monospace;
+      font-size: 12px;
+      color: var(--highlight);
+      line-height: 1.7;
+    }
+
+    .ai-prompt-label {
+      font-size: 10px;
+      font-weight: 700;
+      color: rgba(226,237,122,0.5);
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      margin-bottom: 8px;
+      font-family: 'Inter', sans-serif;
+    }
+
+    /* ── AM DIVIDER ── */
+    .am-divider {
+      background: var(--azure);
+      border-radius: 8px;
+      padding: 14px 22px;
+      margin: 8px 0 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .am-divider-label {
+      font-size: 10px;
+      font-weight: 700;
+      color: rgba(255,255,255,0.55);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 2px;
+    }
+
+    .am-divider-name {
+      font-size: 17px;
+      font-weight: 800;
+      color: var(--white);
+    }
+
+    .am-divider-count {
+      font-size: 12px;
+      color: rgba(255,255,255,0.45);
+      font-weight: 500;
+    }
+
+    /* ── CLIENT CARD ── */
+    .client-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 12px;
+      padding: 26px 28px;
+      margin-bottom: 16px;
+    }
+
+    .client-card-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      margin-bottom: 16px;
+    }
+
+    .client-name {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--lucid);
+      margin-bottom: 3px;
+    }
+
+    .client-meta {
+      font-size: 11px;
+      color: var(--text-dim);
+    }
+
+    .client-stage-badge {
+      font-size: 10px;
+      font-weight: 700;
+      color: var(--shadow);
+      background: var(--highlight);
+      padding: 4px 10px;
+      border-radius: 4px;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .client-play-title {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 10px;
+      line-height: 1.4;
+    }
+
+    .client-why {
+      font-size: 13px;
+      line-height: 1.7;
+      color: var(--text-muted);
+      margin-bottom: 18px;
+    }
+
+    .client-why strong {
+      color: #b0b0b4;
+    }
+
+    /* ── SCRIPT BOX ── */
+    .script-box {
+      background: var(--shadow);
+      border-radius: 8px;
+      padding: 18px 22px;
+    }
+
+    .script-box-title {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--lucid);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 14px;
+    }
+
+    .script-beat {
+      margin-bottom: 14px;
+    }
+
+    .script-beat:last-child {
+      margin-bottom: 0;
+    }
+
+    .script-beat-label {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--azure);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 5px;
+    }
+
+    .script-beat-label span {
+      color: var(--text-dim);
+      font-weight: 400;
+      text-transform: none;
+      letter-spacing: 0;
+      font-size: 10px;
+    }
+
+    .script-line {
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.65;
+      margin-bottom: 4px;
+    }
+
+    .script-line strong {
+      color: var(--white);
+      font-weight: 600;
+    }
+
+    /* ── FOOTER ── */
+    .report-footer {
+      border-top: 1px solid var(--card-border);
+      padding-top: 40px;
+      margin-top: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: gap;
+      gap: 16px;
+    }
+
+    .footer-logo {
+      height: 20px;
+      width: auto;
+      opacity: 0.5;
+    }
+
+    .footer-meta {
+      font-size: 12px;
+      color: var(--text-dim);
+      text-align: right;
+    }
+
+    .footer-meta a {
+      color: var(--text-dim);
+      text-decoration: none;
+    }
+
+    .footer-meta a:hover {
+      color: var(--white);
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 640px) {
+      .page-wrapper { padding: 32px 16px 60px; }
+      .report-header { padding: 28px 24px; }
+      .report-header-top { flex-direction: column; gap: 16px; }
+      .report-meta { text-align: left; }
+      .top-nav { padding: 0 16px; }
+      .nav-links { display: none; }
+      .card, .client-card, .ai-card { padding: 20px; }
+      .am-divider { flex-direction: column; align-items: flex-start; gap: 4px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- PROGRESS BAR -->
+<div id="progress-bar"></div>
+
+<!-- STICKY NAV -->
+<nav class="top-nav">
+  <div class="nav-logo">
+    <img src="../scroll-logo-wordmark.svg" alt="Scroll Media" onerror="this.style.display='none'">
+    <div class="nav-divider"></div>
+    <span class="nav-title">The Scroll Report</span>
+  </div>
+  <div class="nav-links">
+    <a href="#section-instagram" class="nav-link">01 Instagram</a>
+    <a href="#section-strategy" class="nav-link">02 Strategy</a>
+    <a href="#section-ai" class="nav-link">03 AI</a>
+    <a href="#section-ideation" class="nav-link">04 Ideation</a>
+  </div>
+  <div class="nav-date">Mar 30, 2026</div>
+</nav>
+
+<!-- PAGE WRAPPER -->
+<div class="page-wrapper">
+
+  <!-- HERO HEADER -->
+  <div class="report-header">
+    <div class="report-header-top">
+      <div>
+        <div class="report-wordmark">scroll media</div>
+        <div class="report-label">The Scroll Report</div>
+      </div>
+      <div class="report-meta">
+        <div class="report-meta-week">Week of</div>
+        <div class="report-meta-date">March 30, 2026</div>
+      </div>
+    </div>
+    <p class="report-intro">Four things this week: platform updates, strategy signals, AI leverage, and a sharp content play for every client. Use this to show up with a point of view — not just a posting schedule.</p>
+  </div>
+
+  <!-- SECTION NAV PILLS -->
+  <div class="section-nav">
+    <a href="#section-instagram" class="section-pill section-pill-blue">01 Instagram Updates</a>
+    <a href="#section-strategy" class="section-pill section-pill-blue">02 Strategy Signals</a>
+    <a href="#section-ai" class="section-pill section-pill-lime">03 This Week in AI</a>
+    <a href="#section-ideation" class="section-pill section-pill-blue">04 Client Ideation</a>
+  </div>
+
+
+  <!-- ═══════════════════════════════════════════════════════
+       SECTION 01 — INSTAGRAM UPDATES
+  ═══════════════════════════════════════════════════════ -->
+  <div id="section-instagram" class="section-header">
+    <div class="section-number">Section 01</div>
+    <div class="section-title">Notable Instagram Updates</div>
+    <div class="section-subtitle">Signals, not mandates. Read critically, apply strategically.</div>
+  </div>
+
+  <!-- IG Card 1 -->
+  <div class="card">
+    <div class="card-tag">Algorithm Update</div>
+    <div class="card-title">Watch Time Is Now the Primary Ranking Signal</div>
+    <p class="card-body">Instagram confirmed this month that views have replaced likes as the headline metric across all formats. The algorithm now measures <em>intentional viewing behavior</em> — pauses, replays, and 95%+ completion. Content that people watch all the way through, then send to a friend, is what gets pushed to new audiences.</p>
+    <div class="insight-box">
+      <div class="insight-box-title">Key Takeaways</div>
+      <div class="insight-row"><strong>What it means:</strong> Likes are a vanity metric. The algorithm rewards sustained attention. High views with low saves and DM shares means reach without distribution.</div>
+      <div class="insight-row"><strong>How to use it:</strong> Audit the last 10 posts in Insights. Look at Sends and Saves — not likes. If those numbers are low, the content is being watched but not valued. Reframe hooks and endings to trigger a share or save response.</div>
+      <div class="insight-row"><strong>The angle:</strong> Every piece of content should answer: "Would someone send this to a friend?" If the answer is no, rework the angle before posting.</div>
+    </div>
+  </div>
+
+  <!-- IG Card 2 -->
+  <div class="card">
+    <div class="card-tag">New Feature</div>
+    <div class="card-title">Carousel Reorder After Publishing — Live Now</div>
+    <p class="card-body">As of March 23, Instagram rolled out the ability to reorder carousel slides after a post is already live. Long-press and drag any slide to a new position — no delete and repost required. Confirmed by the official @creators account on Threads.</p>
+    <div class="insight-box">
+      <div class="insight-box-title">Key Takeaways</div>
+      <div class="insight-row"><strong>What it means:</strong> The first slide determines whether someone swipes. You can now A/B test first-slide performance without nuking the whole post.</div>
+      <div class="insight-row"><strong>How to use it:</strong> If a carousel underperforms in the first 24 hours, swap the cover slide to a stronger hook frame. Monitor reach and saves for 48 hours after the change.</div>
+      <div class="insight-row"><strong>The angle:</strong> Build this into your weekly review. If a carousel isn't pulling, reorder before you give up on it.</div>
+    </div>
+  </div>
+
+  <!-- IG Card 3 -->
+  <div class="card">
+    <div class="card-tag">Platform Shift</div>
+    <div class="card-title">"Your Algorithm" — Users Now Control Their Own Feed Categories</div>
+    <p class="card-body">Instagram launched a new feature that lets users actively define their feed preferences by selecting content categories they want to see more or less of. This is a direct response to user complaints about irrelevant recommendations — and it changes how the algorithm learns what to surface.</p>
+    <div class="insight-box">
+      <div class="insight-box-title">Key Takeaways</div>
+      <div class="insight-row"><strong>What it means:</strong> Accounts with clear, consistent content categories will benefit. Accounts that post across too many unrelated topics will get filtered out by users who define their preferences tightly.</div>
+      <div class="insight-row"><strong>How to use it:</strong> Audit each client's last 30 posts. If the content doesn't fall into 2–3 clear categories, consolidate. Niche clarity is now a distribution advantage.</div>
+      <div class="insight-row"><strong>The angle:</strong> Positioning and content focus aren't just brand strategy — they're now algorithmic infrastructure.</div>
+    </div>
+  </div>
+
+  <!-- IG Card 4 -->
+  <div class="card">
+    <div class="card-tag">Creator Tools</div>
+    <div class="card-title">Edits App Gets AI Font Styling + AI Transition Tool</div>
+    <p class="card-body">Meta's Edits app (the standalone video editor built for Reels creators) received two significant AI updates this week: an AI-powered font styling tool that matches text aesthetics to video mood, and an AI Transition tool that generates smooth scene transitions based on the content of adjacent clips.</p>
+    <div class="insight-box">
+      <div class="insight-box-title">Key Takeaways</div>
+      <div class="insight-row"><strong>What it means:</strong> Production quality barriers are dropping. Clients who previously couldn't afford polished editing can now produce content that looks more intentional with less effort.</div>
+      <div class="insight-row"><strong>How to use it:</strong> Test the AI transition tool on any client doing talking-head or product Reels. The font styling tool is particularly useful for text-heavy educational carousels.</div>
+      <div class="insight-row"><strong>The angle:</strong> More polish at lower cost means the bar for "good enough" keeps rising. The differentiator is still strategy and positioning — not production value alone.</div>
+    </div>
+  </div>
+
+
+  <!-- ═══════════════════════════════════════════════════════
+       SECTION 02 — CONTENT STRATEGY SIGNALS
+  ═══════════════════════════════════════════════════════ -->
+  <div id="section-strategy" class="section-header">
+    <div class="section-number">Section 02</div>
+    <div class="section-title">Content Strategy Signals</div>
+    <div class="section-subtitle">What's working, what's shifting, and what to apply this week.</div>
+  </div>
+
+  <!-- Strategy Card 1 -->
+  <div class="card">
+    <div class="card-tag">Positioning</div>
+    <div class="card-title">Context Over Content: Positioning Is the Moat</div>
+    <p class="card-body">The accounts growing fastest right now aren't posting more — they're posting with more specificity. The clearer the "who this is for and why," the more the algorithm self-selects the right audience. Broad content reaches everyone and converts no one.</p>
+    <div class="insight-box">
+      <div class="insight-box-title">Application</div>
+      <div class="insight-row"><strong>This week:</strong> For each client, identify the one sentence that describes exactly who their content is for. If you can't write it in under 15 words, the positioning isn't tight enough yet.</div>
+      <div class="insight-row"><strong>The test:</strong> Would a stranger who sees 3 posts in a row know exactly what this brand does and who it serves? If not, the content is too broad.</div>
+    </div>
+  </div>
+
+  <!-- Strategy Card 2 -->
+  <div class="card">
+    <div class="card-tag">Engagement Signal</div>
+    <div class="card-title">DMs Are the New Likes — Private Sharing Is the Real Signal</div>
+    <p class="card-body">Instagram's internal data (shared via Adam Mosseri) confirms that DM shares are now weighted more heavily than any public engagement metric. Content that people send to friends in DMs is treated as a strong quality signal — stronger than comments, saves, or likes.</p>
+    <div class="insight-box">
+      <div class="insight-box-title">Application</div>
+      <div class="insight-row"><strong>This week:</strong> Ask yourself before every post: "Is this the kind of thing someone would screenshot and send to a friend?" If not, rework the angle.</div>
+      <div class="insight-row"><strong>Content types that drive DM shares:</strong> Relatable frustrations, surprising facts, "finally someone said it" opinions, and highly specific how-to content.</div>
+    </div>
+  </div>
+
+  <!-- Strategy Card 3 -->
+  <div class="card">
+    <div class="card-tag">Content Format</div>
+    <div class="card-title">Opinion-Led Content Is Outperforming Information-Only Content</div>
+    <p class="card-body">Data from multiple creator accounts shows that posts with a clear, defensible point of view are generating 2–3x more saves and shares than purely informational posts. The audience doesn't just want to learn — they want to know what you think.</p>
+    <div class="insight-box">
+      <div class="insight-box-title">Application</div>
+      <div class="insight-row"><strong>This week:</strong> Take one informational post from each client's content calendar and add a POV layer. Instead of "5 tips for X," try "The 5 things most people get wrong about X — and what actually works."</div>
+      <div class="insight-row"><strong>The frame:</strong> Information tells. Opinion positions. The brands that take a stance build authority faster.</div>
+    </div>
+  </div>
+
+  <!-- Strategy Card 4 -->
+  <div class="card">
+    <div class="card-tag">Attention Architecture</div>
+    <div class="card-title">The First 3 Seconds Determine Whether Content Gets Seen at All</div>
+    <p class="card-body">With watch time as the primary ranking signal, the hook is now the most important creative decision in every piece of content. Instagram's distribution model front-loads reach — if the first 3 seconds don't hold attention, the content doesn't get pushed further, regardless of what comes after.</p>
+    <div class="insight-box">
+      <div class="insight-box-title">Application</div>
+      <div class="insight-row"><strong>This week:</strong> Audit the first frame of every scheduled Reel. The first visual and the first spoken word need to create an immediate reason to keep watching.</div>
+      <div class="insight-row"><strong>Hook formula that works:</strong> State a specific problem, a counterintuitive claim, or a direct challenge to a common belief — in the first 2 seconds.</div>
+    </div>
+  </div>
+
+  <!-- Strategy Card 5 -->
+  <div class="card">
+    <div class="card-tag">Distribution Strategy</div>
+    <div class="card-title">Zero-Click Content Is Becoming a Core Strategy</div>
+    <p class="card-body">The accounts with the highest reach are increasingly building content that delivers full value without requiring the viewer to click anywhere. The goal is to make the post itself so complete that saving it becomes the natural response — which then drives algorithmic distribution.</p>
+    <div class="insight-box">
+      <div class="insight-box-title">Application</div>
+      <div class="insight-row"><strong>This week:</strong> Identify one piece of content per client that can be made fully self-contained. Remove the "link in bio" dependency and let the content stand alone.</div>
+      <div class="insight-row"><strong>The paradox:</strong> Content that doesn't ask for a click often drives more clicks because it builds trust first.</div>
+    </div>
+  </div>
+
+  <!-- Strategy Card 6 -->
+  <div class="card">
+    <div class="card-tag">Algorithm Behavior</div>
+    <div class="card-title">Relationship-Based Ranking — Two-Way Conversations Are Now an Algorithmic Advantage</div>
+    <p class="card-body">Instagram is increasingly using mutual interaction signals — accounts that reply to comments and DMs consistently are being rewarded with higher reach on subsequent posts. The algorithm is treating active community management as a quality signal, not just a best practice.</p>
+    <div class="insight-box">
+      <div class="insight-box-title">Application</div>
+      <div class="insight-row"><strong>This week:</strong> For every client, set a 15-minute daily window for comment and DM replies in the first 2 hours after posting. This is now a distribution lever, not just a courtesy.</div>
+      <div class="insight-row"><strong>The priority:</strong> Reply to every comment in the first hour. Ask a follow-up question to extend the thread. Longer comment threads signal active community to the algorithm.</div>
+    </div>
+  </div>
+
+
+  <!-- ═══════════════════════════════════════════════════════
+       SECTION 03 — THIS WEEK IN AI
+  ═══════════════════════════════════════════════════════ -->
+  <div id="section-ai" class="section-header">
+    <div class="section-number">Section 03</div>
+    <div class="section-title">This Week in AI</div>
+    <div class="section-subtitle">How we stay ahead — tools, workflows, and leverage plays for the agency.</div>
+  </div>
+
+  <!-- AI Card 1 — Main Tip -->
+  <div class="ai-card">
+    <div class="ai-tag">Workflow Tip</div>
+    <div class="ai-title">The Caption Skeleton: Cut Caption Writing Time by 70%</div>
+    <p class="ai-body">Most of the time spent writing captions isn't the writing — it's the starting. Staring at a blank doc, trying to figure out the angle, the hook, the CTA. The Caption Skeleton workflow solves that. You use AI to generate the structure and the first draft, then spend your time on the only part that actually requires you: voice, specificity, and positioning.</p>
+    <div class="ai-insight-box">
+      <div class="ai-insight-title">The Workflow — 5 Steps</div>
+      <div class="ai-step">
+        <div class="ai-step-num">1</div>
+        <div class="ai-step-text"><strong>Feed it context.</strong> Paste in the client's brand voice doc (or a 3-sentence summary), the content type (Reel, carousel, static), and the funnel stage (TOFU / MOFU / BOFU).</div>
+      </div>
+      <div class="ai-step">
+        <div class="ai-step-num">2</div>
+        <div class="ai-step-text"><strong>Give it the angle.</strong> One sentence: what's the point of this post? What should someone think, feel, or do after reading it?</div>
+      </div>
+      <div class="ai-step">
+        <div class="ai-step-num">3</div>
+        <div class="ai-step-text"><strong>Ask for 3 skeleton options.</strong> Not full captions — just hook + 2-sentence body + CTA structure. Three different angles.</div>
+      </div>
+      <div class="ai-step">
+        <div class="ai-step-num">4</div>
+        <div class="ai-step-text"><strong>Pick the strongest skeleton.</strong> Rewrite the hook in the client's voice. Sharpen the body. Adjust the CTA to match the funnel stage.</div>
+      </div>
+      <div class="ai-step">
+        <div class="ai-step-num">5</div>
+        <div class="ai-step-text"><strong>Final pass for specificity.</strong> Replace any generic phrases with specific details — real numbers, real outcomes, real language the client actually uses.</div>
+      </div>
+      <div class="ai-prompt-box">
+        <div class="ai-prompt-label">Starter Prompt</div>
+        You are writing an Instagram caption for [CLIENT NAME], a [BUSINESS TYPE] targeting [AUDIENCE]. Their voice is [3 ADJECTIVES]. This is a [TOFU/MOFU/BOFU] post about [TOPIC/ANGLE]. Generate 3 caption skeletons: each with a hook (1 sentence), body (2 sentences), and CTA (1 sentence). Prioritize specificity over generality. Do not use emojis.
+      </div>
+    </div>
+  </div>
+
+  <!-- AI Card 2 — Tool Spotlight -->
+  <div class="ai-card">
+    <div class="ai-tag">Tool Spotlight</div>
+    <div class="ai-title">Using AI for Content Gap Analysis — Find What Your Competitors Are Missing</div>
+    <p class="ai-body">One of the highest-leverage uses of AI in content strategy isn't creation — it's analysis. You can feed AI a competitor's top 20 posts (just the captions and engagement data) and ask it to identify the content gaps: topics they're not covering, angles they're avoiding, audience questions they're not answering. That gap is your positioning opportunity.</p>
+    <div class="ai-insight-box">
+      <div class="ai-insight-title">How to Run a Content Gap Analysis</div>
+      <div class="ai-step">
+        <div class="ai-step-num">1</div>
+        <div class="ai-step-text"><strong>Pull 20 posts</strong> from 2–3 competitors in the client's niche. Copy the captions into a doc.</div>
+      </div>
+      <div class="ai-step">
+        <div class="ai-step-num">2</div>
+        <div class="ai-step-text"><strong>Paste into AI</strong> with this prompt: "Analyze these posts. What topics are covered most? What topics are missing? What audience questions aren't being answered?"</div>
+      </div>
+      <div class="ai-step">
+        <div class="ai-step-num">3</div>
+        <div class="ai-step-text"><strong>Map the gaps</strong> to the client's actual expertise. Where do they have something real to say that competitors aren't saying?</div>
+      </div>
+      <div class="ai-step">
+        <div class="ai-step-num">4</div>
+        <div class="ai-step-text"><strong>Build a content pillar</strong> around the strongest gap. This becomes a differentiation play, not just a content idea.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- AI Card 3 — Mindset -->
+  <div class="ai-card">
+    <div class="ai-tag">Agency Mindset</div>
+    <div class="ai-title">AI Doesn't Replace Strategy — It Removes the Friction Between Strategy and Execution</div>
+    <p class="ai-body">The agencies that will win in the next 3 years aren't the ones that use AI the most — they're the ones that use it to do more of the high-value work that only humans can do. AI handles the scaffolding. We handle the judgment, the positioning, and the relationships. That's the model.</p>
+    <div class="ai-insight-box">
+      <div class="ai-insight-title">Where AI Belongs in Our Workflow</div>
+      <div class="ai-step">
+        <div class="ai-step-num">✓</div>
+        <div class="ai-step-text"><strong>AI does:</strong> First drafts, structural outlines, research synthesis, caption skeletons, hashtag research, competitive analysis, repurposing existing content into new formats.</div>
+      </div>
+      <div class="ai-step">
+        <div class="ai-step-num">✓</div>
+        <div class="ai-step-text"><strong>We do:</strong> Positioning decisions, brand voice, client relationships, strategy calls, creative direction, final copy approval, performance interpretation.</div>
+      </div>
+      <div class="ai-step">
+        <div class="ai-step-num">→</div>
+        <div class="ai-step-text"><strong>The goal:</strong> Use AI to eliminate the low-leverage work so we can spend more time on the work that actually moves clients forward.</div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ═══════════════════════════════════════════════════════
+       SECTION 04 — CLIENT IDEATION
+  ═══════════════════════════════════════════════════════ -->
+  <div id="section-ideation" class="section-header">
+    <div class="section-number">Section 04</div>
+    <div class="section-title">Client Ideation</div>
+    <div class="section-subtitle">One sharp play per client. Full Sammy Jones Arc scripts — ready to shoot.</div>
+  </div>
+
+
+  <!-- ── AM: RILEY WALKER ── -->
+  <div class="am-divider">
+    <div>
+      <div class="am-divider-label">Account Manager</div>
+      <div class="am-divider-name">Riley Walker</div>
+    </div>
+    <div class="am-divider-count">3 Accounts</div>
+  </div>
+
+  <!-- CLIENT: SKIN BY BROWNLEE -->
+  <div class="client-card">
+    <div class="client-card-header">
+      <div>
+        <div class="client-name">Skin by Brownlee</div>
+        <div class="client-meta">Esthetics / Skincare &nbsp;·&nbsp; @skinbybrownlee &nbsp;·&nbsp; MOFU</div>
+      </div>
+      <div class="client-stage-badge">MOFU</div>
+    </div>
+    <div class="client-play-title">The Play: "Why Your Skin Is Still Breaking Out After Doing Everything Right"</div>
+    <p class="client-why"><strong>Why this works:</strong> This is the exact frustration of Brownlee's core audience — people who are already trying, already spending money on skincare, and still not getting results. The hook validates their experience and positions Brownlee as the expert who actually has the answer. High save and share potential.</p>
+    <div class="script-box">
+      <div class="script-box-title">Script — Sammy Jones Arc</div>
+      <div class="script-beat">
+        <div class="script-beat-label">Hook <span>0:00–0:03</span></div>
+        <div class="script-line"><strong>Spoken:</strong> "If you're doing everything right and still breaking out — this is why."</div>
+        <div class="script-line"><strong>On-Screen:</strong> "You're doing everything right. You're still breaking out. Here's why."</div>
+        <div class="script-line"><strong>B-Roll:</strong> Close-up of skincare products on a bathroom counter — cleanser, toner, moisturizer, SPF.</div>
+        <div class="script-line"><strong>Audio:</strong> Calm, direct — no music in the first 3 seconds.</div>
+      </div>
+      <div class="script-beat">
+        <div class="script-beat-label">Context <span>0:03–0:18</span></div>
+        <div class="script-line"><strong>Spoken:</strong> "Most people who come to see me have already tried the basics. They're cleansing twice a day, using SPF, moisturizing. Their routine looks right on paper."</div>
+        <div class="script-line"><strong>On-Screen:</strong> "The routine looks right. The results don't match."</div>
+      </div>
+      <div class="script-beat">
+        <div class="script-beat-label">Conflict <span>0:18–0:32</span></div>
+        <div class="script-line"><strong>Spoken:</strong> "But here's the thing — a routine that's right for someone else isn't automatically right for you. Skin is individual. What clears one person's skin can trigger breakouts in another. Generic advice is the problem."</div>
+        <div class="script-line"><strong>On-Screen:</strong> "Generic advice is the problem."</div>
+      </div>
+      <div class="script-beat">
+        <div class="script-beat-label">Turning Point <span>0:32–0:50</span></div>
+        <div class="script-line"><strong>Spoken:</strong> "The three things I see most often that people don't realize are causing their breakouts: [1] over-exfoliating — your barrier is compromised, not congested. [2] The wrong moisturizer for your skin type — you're sealing in bacteria. [3] Skipping SPF or using the wrong formula — UV damage triggers inflammation that looks like acne."</div>
+        <div class="script-line"><strong>On-Screen:</strong> Number each point as it's spoken.</div>
+      </div>
+      <div class="script-beat">
+        <div class="script-beat-label">Resolution + CTA <span>0:50–1:00</span></div>
+        <div class="script-line"><strong>Spoken:</strong> "Save this. And if you want to figure out what's actually going on with your skin — book a consultation. Link in bio."</div>
+        <div class="script-line"><strong>CTA Type:</strong> Save CTA + Book CTA (MOFU)</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CLIENT: LAUNCH PARTY -->
+  <div class="client-card">
+    <div class="client-card-header">
+      <div>
+        <div class="client-name">Launch Party</div>
+        <div class="client-meta">Retail / Boutique &nbsp;·&nbsp; @launchpartycincinnati &nbsp;·&nbsp; TOFU</div>
+      </div>
+      <div class="client-stage-badge">TOFU</div>
+    </div>
+    <div class="client-play-title">The Play: "The Indie Beauty Brands That Deserve More Attention"</div>
+    <p class="client-why"><strong>Why this works:</strong> Launch Party's differentiator is curation — they carry brands you can't find at Sephora. This play leans directly into that positioning. It's a discovery-format video that positions Launch Party as the insider source for emerging beauty, which drives follows and saves from people who care about being ahead of trends.</p>
+    <div class="script-box">
+      <div class="script-box-title">Script — Sammy Jones Arc</div>
+      <div class="script-beat">
+        <div class="script-beat-label">Hook <span>0:00–0:03</span></div>
+        <div class="script-line"><strong>Spoken:</strong> "The indie beauty brands that are about to blow up — and you can already get them here."</div>
+        <div class="script-line"><strong>On-Screen:</strong> "The brands everyone will be talking about in 6 months."</div>
+        <div class="script-line"><strong>B-Roll:</strong> Slow pan across a curated shelf display of indie beauty products.</div>
+        <div class="script-line"><strong>Audio:</strong> Upbeat, editorial — matches a "discovery" energy.</div>
+      </div>
+      <div class="script-beat">
+        <div class="script-beat-label">Context <span>0:03–0:18</span></div>
+        <div class="script-line"><strong>Spoken:</strong> "Most people are still buying the same five brands everyone knows. But the most interesting things happening in beauty right now are coming from smaller, independent founders doing something genuinely different."</div>
+        <div class="script-line"><strong>On-Screen:</strong> "The brands everyone will be talking about in 6 months."</div>
+      </div>
+      <div class="script-beat">
+        <div class="script-beat-label">Conflict <span>0:18–0:32</span></div>
+        <div class="script-line"><strong>Spoken:</strong> "The problem is they're hard to find. You're not going to stumble across them at a department store. That's exactly why we curate them."</div>
+        <div class="script-line"><strong>On-Screen:</strong> "You won't find these at Sephora."</div>
+      </div>
+      <div class="script-beat">
+        <div class="script-beat-label">Turning Point <span>0:32–0:50</span></div>
+        <div class="script-line"><strong>Spoken:</strong> "Here are five that are in the shop right now — and based on what I'm seeing, they won't stay under the radar for long." [Walk through 4–5 brands with one sentence each: name, what makes it different, the product to try first.]</div>
+        <div class="script-line"><strong>On-Screen:</strong> Brand name + one-line differentiator for each.</div>
+      </div>
+      <div class="script-beat">
+        <div class="script-beat-label">Resolution + CTA <span>0:50–1:00</span></div>
+        <div class="script-line"><strong>Spoken:</strong> "Save this for your next shop visit — and follow for more indie beauty finds before they sell out."</div>
+        <div class="script-line"><strong>CTA Type:</strong> Save CTA + Follow CTA (TOFU)</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CLIENT: MEAS ACTIVE -->
+  <div class="client-card">
+    <div class="client-card-header">
+      <div>
+        <div class="client-name">MEAS Active</div>
+        <div class="client-meta">Retail / E-Commerce &nbsp;·&nbsp; @meas_active &nbsp;·&nbsp; TOFU</div>
+      </div>
+      <div class="client-stage-badge">TOFU</div>
+    </div>
+    <div class="client-play-title">The Play: "Most Activewear Looks Great in the Gym. Here's What Actually Passes the Outside Test."</div>
+    <p class="client-why"><strong>Why this works:</strong> MEAS Active's core differentiator is that their pieces work as fashion, not just function. This play leans directly into that positioning — the "test" format creates immediate curiosity and drives shares. Highly relatable for the target audience who goes from workout to errands.</p>
+    <div class="script-box">
+      <div class="script-box-title">Script — Sammy Jones Arc</div>
+      <div class="script-beat">
+        <div class="script-beat-label">Hook <span>0:00–0:03</span></div>
+        <div class="script-line"><strong>Spoken:</strong> "Most activewear looks great in the gym and nowhere else. Let me show you what actually passes the outside-the-gym test."</div>
+        <div class="script-line"><strong>On-Screen:</strong> "Activewear that actually works outside the gym (real test)"</div>
+        <div class="script-line"><strong>B-Roll:</strong> Quick cut — gym setting, then immediately a coffee shop or street setting.</div>
+        <div class="script-line"><strong>Audio:</strong> Upbeat, confident — matches the transition energy.</div>
+      </div>
+      <div class="script-beat">
+        <div class="script-beat-label">Context <span>0:03–0:18</span></div>
+        <div class="script-line"><strong>Spoken:</strong> "If you're someone who goes straight from a workout to errands, coffee, or dinner — you know the problem. Most activewear makes you look like you just came from the gym. Because you did."</div>
+        <div class="script-line"><strong>On-Screen:</strong> "You shouldn't have to go home to change."</div>
+      </div>
+      <div class="script-beat">
+        <div class="script-beat-label">Conflict <span>0:18–0:32</span></div>
+        <div class="script-line"><strong>Spoken:</strong> "The issue is that most brands design for performance first and style as an afterthought. You get great fabric and terrible cuts, or great cuts that fall apart after three washes."</div>
+        <div class="script-line"><strong>On-Screen:</strong> "Performance first. Style as an afterthought. That's the problem."</div>
+      </div>
+      <div class="script-beat">
+        <div class="script-beat-label">Turning Point <span>0:32–0:50</span></div>
+        <div class="script-line"><strong>Spoken:</strong> "Here are three MEAS looks that actually pass the test." [Show 3 outfits styled in real-life settings: coffee shop, errands, casual dinner. Name the pieces for each.]</div>
+        <div class="script-line"><strong>On-Screen:</strong> Outfit name + setting for each look.</div>
+      </div>
+      <div class="script-beat">
+        <div class="script-beat-label">Resolution + CTA <span>0:50–1:00</span></div>
+        <div class="script-line"><strong>Spoken:</strong> "Drop a comment if you'd wear this out — and tap the link in bio to shop the looks."</div>
+        <div class="script-line"><strong>CTA Type:</strong> Engagement CTA + Shop CTA (TOFU)</div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ── AM: EMILY KRINTZ ── -->
+  <div class="am-divider">
+    <div>
+      <div class="am-divider-label">Account Manager</div>
+      <div class="am-divider-name">Emily Krintz</div>
+    </div>
+    <div class="am-divider-count">2 Accounts</div>
+  </div>
+
+  <!-- CLIENT: OMBRE GALLERY -->
+  <div class="client-card">
+    <div class="client-card-header">
+      <div>
+        <div class="client-name">Ombre Gallery</div>
+        <div class="client-meta">Jewelry / Retail &nbsp;·&nbsp; @ombregallery &nbsp;·&nbsp; MOFU</div>
+      </div>
+      <div class="client-stage-badge">MOFU</div>
+    </div>
+    <div class="client-play-title">The Play: "Meet the Artist Behind the Piece"</div>
+    <p class="client-why"><strong>Why this works:</strong> Ombre Gallery's value is in the story behind the work — artist-made, contemporary craft, not mass-produced. This play humanizes the product and creates an emotional connection that drives both saves and purchase intent. The "meet the maker" format consistently outperforms product-only content in the jewelry and art retail space.</p>
+    <div class="script-box">
+      <div class="script-box-title">Script — Sammy Jones Arc</div>
+      <div class="script-beat">
+        <div class="script-beat-label">Hook <span>0:00–0:03</span></div>
+        <div class="script-line"><strong>Spoken:</strong> "This piece took three weeks to make. Here's the person who made it."</div>
+        <div class="script-line"><strong>On-Screen:</strong> "The story behind the piece."</div>
+        <div class="script-line"><strong>B-Roll:</strong> Close-up of the finished piece, then cut to the artist's hands at work.</div>
+        <div class="script-line"><strong>Audio:</strong> Ambient, warm — no voiceover music, let the visuals breathe.</div>
+      </div>
+      <div class="script-beat">
+        <div class="script-beat-label">Context <span>0:03–0:18</span></div>
+        <div class="script-line"><strong>Spoken:</strong> "Most jewelry you see online is made in a factory. What we carry at Ombre is different — every piece is made by an individual artist, by hand, with intention."</div>
+        <div class="script-line"><strong>On-Screen:</strong> "Every piece. One artist. Made by hand."</div>
+      </div>
+      <div class="script-beat">
+        <div class="script-beat-label">Conflict <span>0:18–0:32</span></div>
+        <div class="script-line"><strong>Spoken:</strong> "The problem with mass-produced jewelry isn't just quality — it's that it doesn't mean anything. You wear it, but there's no story attached to it. No one to connect to."</div>
+        <div class="script-line"><strong>On-Screen:</strong> "Mass-produced has no story."</div>
+      </div>
+      <div class="script-beat">
+        <div class="script-beat-label">Turning Point <span>0:32–0:50</span></div>
+        <div class="script-line"><strong>Spoken:</strong> "Meet [Artist Name]. [One sentence on their background and what drives their work.] This piece — [piece name] — is [brief description of what makes it distinctive: material, technique, or concept]."</div>
+        <div class="script-line"><strong>On-Screen:</strong> Artist name + piece name on screen as they're introduced.</div>
+      </div>
+      <div class="script-beat">
+        <div class="script-beat-label">Resolution + CTA <span>0:50–1:00</span></div>
+        <div class="script-line"><strong>Spoken:</strong> "This piece is available now in the gallery. Follow to see more of the artists we carry — and the stories behind the work."</div>
+        <div class="script-line"><strong>CTA Type:</strong> Follow CTA + Visit CTA (MOFU)</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CLIENT: DEFINE OAKLEY -->
+  <div class="client-card">
+    <div class="client-card-header">
+      <div>
+        <div class="client-name">DEFINE Oakley</div>
+        <div class="client-meta">Med Spa / Wellness &nbsp;·&nbsp; @defineoakley &nbsp;·&nbsp; BOFU</div>
+      </div>
+      <div class="client-stage-badge">BOFU</div>
+    </div>
+    <div class="client-play-title">The Play: "What Your First Class at DEFINE Actually Looks Like"</div>
+    <p class="client-why"><strong>Why this works:</strong> The biggest barrier to first-time studio visits is the unknown — people don't book because they don't know what to expect. This play removes that friction entirely by walking through the first-class experience in real time. It's a conversion play disguised as a behind-the-scenes video.</p>
+    <div class="script-box">
+      <div class="script-box-title">Script — Sammy Jones Arc</div>
+      <div class="script-beat">
+        <div class="script-beat-label">Hook <span>0:00–0:03</span></div>
+        <div class="script-line"><strong>Spoken:</strong> "If you've been thinking about trying DEFINE but don't know what to expect — this is exactly what your first class looks like."</div>
+        <div class="script-line"><strong>On-Screen:</strong> "Your first class at DEFINE — exactly what to expect."</div>
+        <div class="script-line"><strong>B-Roll:</strong> Wide shot of the studio space, then cut to a class in progress.</div>
+        <div class="script-line"><strong>Audio:</strong> Energetic but not overwhelming — matches the studio atmosphere.</div>
+      </div>
+      <div class="script-beat">
+        <div class="script-beat-label">Context <span>0:03–0:18</span></div>
+        <div class="script-line"><strong>Spoken:</strong> "A lot of people tell me they've wanted to come in for months but weren't sure if it was the right fit for them. I get it — trying something new, especially fitness, can feel like a commitment before you even know if you'll like it."</div>
+        <div class="script-line"><strong>On-Screen:</strong> "Trying something new feels like a commitment before you know if you'll like it."</div>
+      </div>
+      <div class="script-beat">
+        <div class="script-beat-label">Conflict <span>0:18–0:32</span></div>
+        <div class="script-line"><strong>Spoken:</strong> "The thing is, most studios don't show you what it's actually like until you're already there. And by then, you've already paid and committed. That's the part that stops people."</div>
+        <div class="script-line"><strong>On-Screen:</strong> "Most studios don't show you until you're already there."</div>
+      </div>
+      <div class="script-beat">
+        <div class="script-beat-label">Turning Point <span>0:32–0:50</span></div>
+        <div class="script-line"><strong>Spoken:</strong> "So here's exactly what happens: [Walk through 3–4 steps: arrival, check-in, what the class format is, what the vibe is like, what to bring.] No surprises."</div>
+        <div class="script-line"><strong>On-Screen:</strong> Step number + brief label for each beat.</div>
+      </div>
+      <div class="script-beat">
+        <div class="script-beat-label">Resolution + CTA <span>0:50–1:00</span></div>
+        <div class="script-line"><strong>Spoken:</strong> "Your first class is [price/offer]. Book it in the link in bio — and if you have questions, DM me directly."</div>
+        <div class="script-line"><strong>CTA Type:</strong> Book CTA + DM CTA (BOFU)</div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ── AM: RACHEL DINA ── -->
+  <div class="am-divider">
+    <div>
+      <div class="am-divider-label">Account Manager</div>
+      <div class="am-divider-name">Rachel Dina</div>
+    </div>
+    <div class="am-divider-count">4 Accounts</div>
+  </div>
+
+  <!-- CLIENT: LANE & KATE -->
+  <div class="client-card">
+    <div class="client-card-header">
+      <div>
+        <div class="client-name">Lane &amp; Kate</div>
+        <div class="client-meta">Jewelry / Custom Design &nbsp;·&nbsp; @lanekatedesigns &nbsp;·&nbsp; MOFU</div>
+      </div>
+      <div class="client-stage-badge">MOFU</div>
+    </div>
+    <div class="client-play-title">The Play: "The Custom Process — From Idea to Heirloom"</div>
+    <p class="client-why"><strong>Why this works:</strong> Custom jewelry has a high consideration cycle — people think about it for months before reaching out. This play shortens that cycle by making the process feel accessible and clear. It also positions Lane &amp; Kate as the obvious choice by showing the craft and care behind every piece.</p>
+    <div class="script-box">
+      <div class="script-box-title">Script — Sammy Jones Arc</div>
+      <div class="script-beat">
+        <div class="script-beat-label">Hook <span>0:00–0:03</span></div>
+        <div class="script-line"><strong>Spoken:</strong> "Most people don't realize how simple the custom jewelry process actually is. Here's how it works from start to finish."</div>
+        <div class="script-line"><strong>On-Screen:</strong> "From idea to heirloom — the custom process, explained."</div>
+        <div class="script-line"><strong>B-Roll:</strong> Hands sketching a design, then cut to a finished piece being held.</div>
+        <div class="script-line"><strong>Audio:</strong> Warm, intimate — matches the craftsmanship aesthetic.</div>
+      </div>
+      <div class="script-beat">
+        <div class="script-beat-label">Context <span>0:03–0:18</span></div>
+        <div class="script-line"><strong>Spoken:</strong> "A lot of people come to us with an idea — maybe a stone they inherited, a design they've had in their head for years, or just a feeling they want to capture in a piece. They're not sure where to start."</div>
+        <div class="script-line"><strong>On-Screen:</strong> "An idea. A feeling. A stone passed down. That's all you need."</div>
+      </div>
+      <div class="script-beat">
+        <div class="script-beat-label">Conflict <span>0:18–0:32</span></div>
+        <div class="script-line"><strong>Spoken:</strong> "The thing that stops most people is thinking it's complicated, expensive, or that they need to know exactly what they want before they reach out. None of that is true."</div>
+        <div class="script-line"><strong>On-Screen:</strong> "You don't need to know exactly what you want. That's what we're here for."</div>
+      </div>
+      <div class="script-beat">
+        <div class="script-beat-label">Turning Point <span>0:32–0:50</span></div>
+        <div class="script-line"><strong>Spoken:</strong> "Here's how it actually works: [Step 1: Initial conversation — 15 minutes, tell us the idea. Step 2: Design sketch and pricing — we handle this. Step 3: Approval and production — you see it before we make it. Step 4: Delivery.]"</div>
+        <div class="script-line"><strong>On-Screen:</strong> Step number + one-line description for each.</div>
+      </div>
+      <div class="script-beat">
+        <div class="script-beat-label">Resolution + CTA <span>0:50–1:00</span></div>
+        <div class="script-line"><strong>Spoken:</strong> "The hardest part is starting. DM us the idea — even if it's just a few words — and we'll take it from there."</div>
+        <div class="script-line"><strong>CTA Type:</strong> DM CTA (MOFU)</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CLIENT: UP & RUNNING -->
+  <div class="client-card">
+    <div class="client-card-header">
+      <div>
+        <div class="client-name">Up &amp; Running</div>
+        <div class="client-meta">Running Specialty Retail &nbsp;·&nbsp; @upandrunningdayton &nbsp;·&nbsp; TOFU</div>
+      </div>
+      <div class="client-stage-badge">TOFU</div>
+    </div>
+    <div class="client-play-title">The Play: "The Running Shoe Mistake That's Slowing You Down"</div>
+    <p class="client-why"><strong>Why this works:</strong> Up &amp; Running's core value prop is expert fit and gait analysis — something you can't get at a big-box retailer. This play leads with a problem that their audience has already experienced (wrong shoes, discomfort, injury) and positions the store as the solution. High share potential among runners.</p>
+    <div class="script-box">
+      <div class="script-box-title">Script — Sammy Jones Arc</div>
+      <div class="script-beat">
+        <div class="script-beat-label">Hook <span>0:00–0:03</span></div>
+        <div class="script-line"><strong>Spoken:</strong> "The most common running shoe mistake I see — and it's costing people time, comfort, and miles."</div>
+        <div class="script-line"><strong>On-Screen:</strong> "The running shoe mistake that's slowing you down."</div>
+        <div class="script-line"><strong>B-Roll:</strong> Feet running on a trail or treadmill — close-up on the shoe.</div>
+        <div class="script-line"><strong>Audio:</strong> Energetic, forward-moving — matches the running context.</div>
+      </div>
+      <div class="script-beat">
+        <div class="script-beat-label">Context <span>0:03–0:18</span></div>
+        <div class="script-line"><strong>Spoken:</strong> "Most runners buy shoes based on brand, look, or what's on sale. And for a lot of people, that works fine — until it doesn't. Until the knee pain starts, or the blisters, or the fatigue that shouldn't be there at mile 4."</div>
+        <div class="script-line"><strong>On-Screen:</strong> "Brand. Look. Sale price. That's how most people choose."</div>
+      </div>
+      <div class="script-beat">
+        <div class="script-beat-label">Conflict <span>0:18–0:32</span></div>
+        <div class="script-line"><strong>Spoken:</strong> "The problem is that running shoes aren't one-size-fits-all. Your gait, your arch, your foot width, your weekly mileage — all of it changes what shoe is right for you. A shoe that's perfect for someone else can be the exact wrong shoe for your body."</div>
+        <div class="script-line"><strong>On-Screen:</strong> "The right shoe for someone else might be the wrong shoe for you."</div>
+      </div>
+      <div class="script-beat">
+        <div class="script-beat-label">Turning Point <span>0:32–0:50</span></div>
+        <div class="script-line"><strong>Spoken:</strong> "Here's what a proper fit actually looks at: [1] Gait analysis — how your foot strikes and rolls. [2] Arch type — neutral, overpronation, supination. [3] Fit in motion — not just standing still. We do all three, every time, at no charge."</div>
+        <div class="script-line"><strong>On-Screen:</strong> Number each point as it's spoken.</div>
+      </div>
+      <div class="script-beat">
+        <div class="script-beat-label">Resolution + CTA <span>0:50–1:00</span></div>
+        <div class="script-line"><strong>Spoken:</strong> "Come in before your next pair. It takes 20 minutes and it changes how you run. Link in bio to find us."</div>
+        <div class="script-line"><strong>CTA Type:</strong> Visit CTA (TOFU)</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CLIENT: HOLOS HOUSE -->
+  <div class="client-card">
+    <div class="client-card-header">
+      <div>
+        <div class="client-name">Holos House</div>
+        <div class="client-meta">Wellness / Community &nbsp;·&nbsp; @holoshouse &nbsp;·&nbsp; TOFU</div>
+      </div>
+      <div class="client-stage-badge">TOFU</div>
+    </div>
+    <div class="client-play-title">The Play: "What Holos House Actually Is (Because It's Not What You Think)"</div>
+    <p class="client-why"><strong>Why this works:</strong> Holos House is a concept that requires explanation — people see it and aren't immediately sure what it is or who it's for. This play leans into that ambiguity as the hook and uses it to drive curiosity and follows. The "it's not what you think" format consistently outperforms straightforward explainer content.</p>
+    <div class="script-box">
+      <div class="script-box-title">Script — Sammy Jones Arc</div>
+      <div class="script-beat">
+        <div class="script-beat-label">Hook <span>0:00–0:03</span></div>
+        <div class="script-line"><strong>Spoken:</strong> "People see Holos House and assume they know what it is. They're usually wrong."</div>
+        <div class="script-line"><strong>On-Screen:</strong> "What Holos House actually is — and what it's not."</div>
+        <div class="script-line"><strong>B-Roll:</strong> Wide shot of the space — let the environment create curiosity.</div>
+        <div class="script-line"><strong>Audio:</strong> Calm, grounded — matches the wellness positioning.</div>
+      </div>
+      <div class="script-beat">
+        <div class="script-beat-label">Context <span>0:03–0:18</span></div>
+        <div class="script-line"><strong>Spoken:</strong> "We get called a yoga studio. A wellness center. A retreat. We're not exactly any of those things — and that's intentional."</div>
+        <div class="script-line"><strong>On-Screen:</strong> "Not a yoga studio. Not a wellness center. Not a retreat."</div>
+      </div>
+      <div class="script-beat">
+        <div class="script-beat-label">Conflict <span>0:18–0:32</span></div>
+        <div class="script-line"><strong>Spoken:</strong> "The problem with most wellness spaces is they're designed around a single modality — one class, one approach, one type of person. That works for some people. But a lot of people need something more integrated than that."</div>
+        <div class="script-line"><strong>On-Screen:</strong> "One class. One approach. One type of person. That's not us."</div>
+      </div>
+      <div class="script-beat">
+        <div class="script-beat-label">Turning Point <span>0:32–0:50</span></div>
+        <div class="script-line"><strong>Spoken:</strong> "Holos House is [clear, specific description of what it actually is — the community, the offerings, the philosophy, who it's for]. It's built for people who want [specific outcome or experience]."</div>
+        <div class="script-line"><strong>On-Screen:</strong> Key descriptor on screen as it's spoken.</div>
+      </div>
+      <div class="script-beat">
+        <div class="script-beat-label">Resolution + CTA <span>0:50–1:00</span></div>
+        <div class="script-line"><strong>Spoken:</strong> "If that sounds like you — follow. We'll show you what it looks like from the inside."</div>
+        <div class="script-line"><strong>CTA Type:</strong> Follow CTA (TOFU)</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CLIENT: SCROLL MEDIA -->
+  <div class="client-card" style="border-color: rgba(12,51,135,0.5); background: linear-gradient(135deg, #1a1f35 0%, #1e1e1f 100%);">
+    <div class="client-card-header">
+      <div>
+        <div class="client-name" style="color: var(--highlight);">Scroll Media</div>
+        <div class="client-meta">Social Media Agency &nbsp;·&nbsp; @scrollmediaco &nbsp;·&nbsp; TOFU</div>
+      </div>
+      <div class="client-stage-badge">TOFU</div>
+    </div>
+    <div class="client-play-title">The Play: "Why Most Social Media Agencies Are Selling You the Wrong Thing"</div>
+    <p class="client-why"><strong>Why this works:</strong> This is a direct positioning play for Scroll Media's own account. It challenges the status quo of the agency industry, which immediately differentiates us from every other agency posting "here's why you need social media" content. Opinion-led, category-defining, and designed to attract founders who are already frustrated with the typical agency model.</p>
+    <div class="script-box">
+      <div class="script-box-title">Script — Sammy Jones Arc</div>
+      <div class="script-beat">
+        <div class="script-beat-label">Hook <span>0:00–0:03</span></div>
+        <div class="script-line"><strong>Spoken:</strong> "Most social media agencies are selling you content. That's not what moves the needle."</div>
+        <div class="script-line"><strong>On-Screen:</strong> "Most agencies are selling you the wrong thing."</div>
+        <div class="script-line"><strong>B-Roll:</strong> Quick cuts of generic "content creation" visuals — then cut to a clean, direct talking-head setup.</div>
+        <div class="script-line"><strong>Audio:</strong> Direct, no music — let the statement land.</div>
+      </div>
+      <div class="script-beat">
+        <div class="script-beat-label">Context <span>0:03–0:18</span></div>
+        <div class="script-line"><strong>Spoken:</strong> "The standard agency pitch is: we'll post for you, manage your grid, write your captions. And for a lot of brands, that sounds like exactly what they need. More content, less work on their end."</div>
+        <div class="script-line"><strong>On-Screen:</strong> "More content. Less work. Sounds right."</div>
+      </div>
+      <div class="script-beat">
+        <div class="script-beat-label">Conflict <span>0:18–0:32</span></div>
+        <div class="script-line"><strong>Spoken:</strong> "The problem is that content without strategy is just noise. You can post every day and still see zero growth if the positioning is wrong, the funnel isn't built, and the content isn't aligned to what actually converts."</div>
+        <div class="script-line"><strong>On-Screen:</strong> "Content without strategy is just noise."</div>
+      </div>
+      <div class="script-beat">
+        <div class="script-beat-label">Turning Point <span>0:32–0:50</span></div>
+        <div class="script-line"><strong>Spoken:</strong> "What actually moves the needle is strategy first — knowing who you're talking to, what stage of the funnel they're in, and what content will move them to the next step. The content is just how you execute the strategy."</div>
+        <div class="script-line"><strong>On-Screen:</strong> "Strategy first. Content second. That's the difference."</div>
+      </div>
+      <div class="script-beat">
+        <div class="script-beat-label">Resolution + CTA <span>0:50–1:00</span></div>
+        <div class="script-line"><strong>Spoken:</strong> "That's the difference between an agency that posts and an agency that grows. Follow if you want to see how we think about it."</div>
+        <div class="script-line"><strong>CTA Type:</strong> Follow CTA (TOFU)</div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- FOOTER -->
+  <div class="report-footer">
+    <img src="../scroll-logo-wordmark.svg" alt="Scroll Media" class="footer-logo" onerror="this.style.display='none'">
+    <div class="footer-meta">
+      The Scroll Report — Week of March 30, 2026<br>
+      Internal use only &nbsp;·&nbsp; <a href="../index.html">Back to Dashboard</a>
+    </div>
+  </div>
+
+</div><!-- /page-wrapper -->
+
+<script>
+  // Progress bar
+  window.addEventListener('scroll', () => {
+    const scrollTop = window.scrollY;
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+    document.getElementById('progress-bar').style.width = progress + '%';
+  });
+</script>
+
+</body>
+</html>
