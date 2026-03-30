@@ -3,818 +3,221 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>DEFINE Oakley — Account Homebase | Scroll Media</title>
+  <title>DEFINE Oakley &mdash; Account Homebase | Scroll Media</title>
   <link rel="icon" type="image/svg+xml" href="../../scroll-favicon.svg" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
   <style>
-    /* ─── TOKENS ──────────────────────────────────────────────────────── */
     :root {
-      --navy:       #0c1f4a;
-      --navy-mid:   #0c3387;
-      --navy-light: #1a4db3;
-      --lucid:      #cbe9ff;
-      --lime:       #e2ed7a;
-      --lime-dark:  #c8d94a;
-      --white:      #ffffff;
-      --ghost:      #f7f8fa;
-      --border:     #e4e7ec;
-      --text:       #111827;
-      --text-mid:   #374151;
-      --text-muted: #6b7280;
-      --text-faint: #9ca3af;
-      --tofu-bg:    #eff6ff;
-      --tofu-accent:#2563eb;
-      --mofu-bg:    #f0fdf4;
-      --mofu-accent:#16a34a;
-      --bofu-bg:    #fdf4ff;
-      --bofu-accent:#9333ea;
-      --sidebar-w:  248px;
-      --header-h:   60px;
-      --radius-sm:  8px;
-      --radius-md:  12px;
-      --radius-lg:  16px;
-      --shadow-sm:  0 1px 3px rgba(0,0,0,0.08), 0 1px 2px rgba(0,0,0,0.04);
-      --shadow-md:  0 4px 12px rgba(0,0,0,0.08), 0 2px 4px rgba(0,0,0,0.04);
-      --shadow-lg:  0 12px 32px rgba(0,0,0,0.1), 0 4px 8px rgba(0,0,0,0.06);
-    }
-
-    /* ─── RESET ───────────────────────────────────────────────────────── */
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
-    body {
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-      background: var(--ghost);
-      color: var(--text);
-      font-size: 14px;
-      line-height: 1.6;
-      -webkit-font-smoothing: antialiased;
-    }
-
-    /* ─── PASSWORD GATE ───────────────────────────────────────────────── */
-    #pw-gate {
-      position: fixed; inset: 0;
-      background: var(--navy);
-      display: flex; align-items: center; justify-content: center;
-      z-index: 9999;
-      flex-direction: column;
-      gap: 14px;
-    }
-    #pw-gate::before {
-      content: '';
-      position: absolute;
-      top: -200px; right: -200px;
-      width: 600px; height: 600px;
-      background: radial-gradient(circle, rgba(12,51,135,0.6) 0%, transparent 70%);
-      pointer-events: none;
-    }
-    #pw-gate img { width: 130px; margin-bottom: 6px; position: relative; }
-    #pw-gate h2 { color: #fff; font-size: 17px; font-weight: 700; letter-spacing: -0.3px; position: relative; }
-    #pw-gate p { color: rgba(255,255,255,0.4); font-size: 12px; position: relative; }
-    #pw-gate input {
-      width: 272px; padding: 11px 16px;
-      border-radius: var(--radius-sm); border: 1.5px solid rgba(255,255,255,0.12);
-      background: rgba(255,255,255,0.06); color: #fff;
-      font-size: 14px; outline: none; text-align: center;
-      position: relative; transition: border-color 0.2s;
-    }
-    #pw-gate input::placeholder { color: rgba(255,255,255,0.3); }
-    #pw-gate input:focus { border-color: rgba(203,233,255,0.5); }
-    #pw-gate button {
-      width: 272px; padding: 11px;
-      background: var(--navy-mid); color: #fff;
-      border: none; border-radius: var(--radius-sm);
-      font-size: 14px; font-weight: 700; cursor: pointer;
-      transition: background 0.2s; position: relative;
-    }
-    #pw-gate button:hover { background: var(--navy-light); }
-    #pw-error { color: #f87171; font-size: 12px; display: none; position: relative; }
-    .pw-hidden { display: none !important; }
-
-    /* ─── TOP HEADER ──────────────────────────────────────────────────── */
-    .top-header {
-      position: fixed; top: 0; left: 0; right: 0;
-      height: var(--header-h);
-      background: var(--navy);
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 0 20px;
-      z-index: 200;
-      border-bottom: 1px solid rgba(255,255,255,0.07);
-    }
-    .top-header-left { display: flex; align-items: center; gap: 14px; }
-    .top-header-left img { height: 26px; }
-    .top-header-divider { width: 1px; height: 18px; background: rgba(255,255,255,0.15); }
-    .top-header-crumb {
-      display: flex; align-items: center; gap: 6px;
-      font-size: 12px; color: rgba(255,255,255,0.45);
-    }
-    .top-header-crumb span { color: rgba(255,255,255,0.75); font-weight: 500; }
-    .top-header-right { display: flex; align-items: center; gap: 10px; }
-    .hdr-badge {
-      padding: 3px 9px; border-radius: 20px;
-      font-size: 10px; font-weight: 700; letter-spacing: 0.6px; text-transform: uppercase;
-    }
-    .hdr-badge-stage { background: rgba(203,233,255,0.12); color: var(--lucid); }
-    .hdr-badge-active { background: rgba(226,237,122,0.12); color: var(--lime); }
-    .hdr-back {
-      color: rgba(255,255,255,0.4); font-size: 12px; text-decoration: none;
-      display: flex; align-items: center; gap: 4px; transition: color 0.2s;
-    }
-    .hdr-back:hover { color: rgba(255,255,255,0.8); }
-
-    /* ─── LAYOUT ──────────────────────────────────────────────────────── */
-    .layout {
-      display: flex;
-      padding-top: var(--header-h);
-      min-height: 100vh;
-    }
-
-    /* ─── SIDEBAR ─────────────────────────────────────────────────────── */
-    .sidebar {
-      width: var(--sidebar-w);
-      position: fixed;
-      top: var(--header-h); left: 0; bottom: 0;
-      overflow-y: auto;
-      background: var(--white);
-      border-right: 1px solid var(--border);
-      padding: 20px 0 32px;
-      z-index: 100;
-    }
-    .sidebar::-webkit-scrollbar { width: 4px; }
-    .sidebar::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
-    .sidebar-group { margin-bottom: 6px; }
-    .sidebar-group-label {
-      padding: 10px 18px 5px;
-      font-size: 9.5px; font-weight: 700;
-      letter-spacing: 1.2px; text-transform: uppercase;
-      color: var(--text-faint);
-    }
-    .sidebar-nav { list-style: none; }
-    .sidebar-nav li a {
-      display: flex; align-items: center; gap: 9px;
-      padding: 8px 18px;
-      text-decoration: none;
-      color: var(--text-muted);
-      font-size: 12.5px; font-weight: 500;
-      border-left: 2px solid transparent;
-      transition: all 0.15s;
-      border-radius: 0;
-    }
-    .sidebar-nav li a:hover { color: var(--navy-mid); background: rgba(12,51,135,0.04); }
-    .sidebar-nav li a.active {
-      color: var(--navy-mid);
-      background: rgba(12,51,135,0.06);
-      border-left-color: var(--navy-mid);
-      font-weight: 600;
-    }
-    .nav-icon { width: 14px; height: 14px; flex-shrink: 0; opacity: 0.6; }
-    .sidebar-nav li a:hover .nav-icon,
-    .sidebar-nav li a.active .nav-icon { opacity: 1; }
-    .sidebar-footer {
-      padding: 16px 18px 0;
-      border-top: 1px solid var(--border);
-      margin-top: 16px;
-    }
-    .sidebar-footer-label { font-size: 10px; color: var(--text-faint); margin-bottom: 4px; }
-    .sidebar-footer-am { font-size: 12px; font-weight: 600; color: var(--text-mid); }
-    .sidebar-footer-updated { font-size: 10px; color: var(--text-faint); margin-top: 2px; }
-
-    /* ─── MAIN ────────────────────────────────────────────────────────── */
-    .main {
-      margin-left: var(--sidebar-w);
-      flex: 1;
-      padding: 32px 40px 64px;
-      max-width: calc(var(--sidebar-w) + 900px);
-    }
-
-    /* ─── SECTION SHELL ───────────────────────────────────────────────── */
-    .section { margin-bottom: 48px; }
-    .section-header {
-      display: flex; align-items: flex-start; gap: 12px;
-      margin-bottom: 18px;
-    }
-    .section-icon {
-      width: 34px; height: 34px; flex-shrink: 0;
-      background: var(--navy);
-      border-radius: var(--radius-sm);
-      display: flex; align-items: center; justify-content: center;
-      margin-top: 1px;
-    }
-    .section-icon svg { width: 16px; height: 16px; }
-    .section-title { font-size: 17px; font-weight: 800; color: var(--text); letter-spacing: -0.3px; }
-    .section-subtitle { font-size: 12px; color: var(--text-faint); margin-top: 1px; }
-
-    /* ─── CLIENT HERO ─────────────────────────────────────────────────── */
-    .client-hero {
-      background: var(--navy);
-      border-radius: var(--radius-lg);
-      padding: 28px 32px;
-      margin-bottom: 12px;
-      display: flex; align-items: center; gap: 24px;
-      position: relative; overflow: hidden;
-    }
-    .client-hero::before {
-      content: '';
-      position: absolute; top: -80px; right: -80px;
-      width: 320px; height: 320px;
-      background: radial-gradient(circle, rgba(12,51,135,0.7) 0%, transparent 70%);
-      pointer-events: none;
-    }
-    .client-hero::after {
-      content: '';
-      position: absolute; bottom: 0; left: 0; right: 0;
-      height: 2px;
-      background: linear-gradient(90deg, var(--lime) 0%, transparent 60%);
-    }
-    .client-logo-wrap {
-      width: 72px; height: 72px; flex-shrink: 0;
-      background: rgba(255,255,255,0.07);
-      border: 1px solid rgba(255,255,255,0.1);
-      border-radius: var(--radius-md);
-      display: flex; align-items: center; justify-content: center;
-      overflow: hidden;
-    }
-    .client-logo-wrap img { width: 54px; height: 54px; object-fit: contain; }
-    .client-hero-info { flex: 1; position: relative; }
-    .client-hero-name {
-      font-size: 24px; font-weight: 900;
-      color: #fff; letter-spacing: -0.5px; margin-bottom: 3px;
-    }
-    .client-hero-sub { font-size: 12px; color: rgba(255,255,255,0.45); margin-bottom: 12px; }
-    .hero-tags { display: flex; flex-wrap: wrap; gap: 7px; }
-    .hero-tag {
-      padding: 3px 10px; border-radius: 20px;
-      font-size: 10px; font-weight: 600; letter-spacing: 0.3px;
-    }
-    .ht-blue { background: rgba(203,233,255,0.12); color: var(--lucid); }
-    .ht-lime { background: rgba(226,237,122,0.12); color: var(--lime); }
-    .ht-white { background: rgba(255,255,255,0.08); color: rgba(255,255,255,0.6); }
-    .client-hero-actions { display: flex; flex-direction: column; gap: 7px; align-items: flex-end; position: relative; }
-    .hero-action-btn {
-      display: inline-flex; align-items: center; gap: 6px;
-      padding: 7px 13px;
-      background: rgba(255,255,255,0.08);
-      border: 1px solid rgba(255,255,255,0.1);
-      border-radius: var(--radius-sm);
-      color: rgba(255,255,255,0.75);
-      text-decoration: none;
-      font-size: 11.5px; font-weight: 600;
-      transition: all 0.2s; white-space: nowrap;
-    }
-    .hero-action-btn:hover { background: rgba(255,255,255,0.14); color: #fff; }
-    .hero-action-btn svg { opacity: 0.7; }
-
-    /* ─── ACCOUNT HEALTH STRIP ────────────────────────────────────────── */
-    .account-health {
-      display: grid;
-      grid-template-columns: repeat(6, 1fr);
-      gap: 1px;
-      background: var(--border);
-      border-radius: var(--radius-md);
-      overflow: hidden;
-      margin-bottom: 40px;
-      border: 1px solid var(--border);
-    }
-    .health-cell {
-      background: var(--white);
-      padding: 14px 16px;
-    }
-    .health-cell-label {
-      font-size: 9.5px; font-weight: 700;
-      letter-spacing: 0.9px; text-transform: uppercase;
-      color: var(--text-faint); margin-bottom: 4px;
-    }
-    .health-cell-value {
-      font-size: 13px; font-weight: 700; color: var(--text);
-    }
-    .health-cell-value.accent { color: var(--navy-mid); }
-    .health-cell-value.lime { color: #65a30d; }
-    .health-cell-value.warn { color: #d97706; }
-
-    /* ─── THIS MONTH FOCUS ────────────────────────────────────────────── */
-    .focus-panel {
-      background: var(--white);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-md);
-      overflow: hidden;
-      margin-bottom: 48px;
-      box-shadow: var(--shadow-sm);
-    }
-    .focus-panel-header {
-      background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 100%);
-      padding: 14px 20px;
-      display: flex; align-items: center; justify-content: space-between;
-    }
-    .focus-panel-title {
-      font-size: 12px; font-weight: 700; color: #fff;
-      display: flex; align-items: center; gap: 8px;
-      letter-spacing: 0.2px;
-    }
-    .focus-panel-title .dot {
-      width: 7px; height: 7px; border-radius: 50%;
-      background: var(--lime); flex-shrink: 0;
-      box-shadow: 0 0 6px rgba(226,237,122,0.6);
-    }
-    .focus-panel-month {
-      font-size: 10px; color: rgba(255,255,255,0.5);
-      font-weight: 500;
-    }
-    .focus-panel-body {
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
-      gap: 0;
-    }
-    .focus-cell {
-      padding: 16px 20px;
-      border-right: 1px solid var(--border);
-    }
-    .focus-cell:last-child { border-right: none; }
-    .focus-cell-label {
-      font-size: 9.5px; font-weight: 700;
-      letter-spacing: 0.9px; text-transform: uppercase;
-      color: var(--text-faint); margin-bottom: 6px;
-    }
-    .focus-cell-value {
-      font-size: 13px; font-weight: 700; color: var(--text);
-      margin-bottom: 4px;
-    }
-    .focus-cell-sub { font-size: 11px; color: var(--text-muted); line-height: 1.5; }
-    /* Editable fields */
-    .focus-editable {
-      background: none; border: none; outline: none;
-      font-family: inherit; font-size: 13px; font-weight: 700;
-      color: var(--text); width: 100%; cursor: text;
-      border-bottom: 1.5px dashed transparent;
-      transition: border-color 0.2s; padding: 0;
-    }
-    .focus-editable:hover { border-bottom-color: var(--border); }
-    .focus-editable:focus { border-bottom-color: var(--navy-mid); }
-    .focus-editable-sub {
-      background: none; border: none; outline: none;
-      font-family: inherit; font-size: 11px;
-      color: var(--text-muted); width: 100%; cursor: text;
-      border-bottom: 1.5px dashed transparent;
-      transition: border-color 0.2s; padding: 0;
-      line-height: 1.5; resize: none; overflow: hidden;
-    }
-    .focus-editable-sub:hover { border-bottom-color: var(--border); }
-    .focus-editable-sub:focus { border-bottom-color: var(--navy-mid); }
-    .focus-edit-hint {
-      font-size: 9px; color: var(--text-faint);
-      margin-top: 6px; font-style: italic;
-    }
-    .focus-save-btn {
-      display: none;
-      margin-top: 8px; padding: 4px 10px;
-      background: var(--navy-mid); color: #fff;
-      border: none; border-radius: 4px;
-      font-size: 10px; font-weight: 700; cursor: pointer;
-    }
-
-    /* ─── STRATEGIC DIRECTION ─────────────────────────────────────────── */
-    .strategy-block {
-      background: var(--white);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-md);
-      padding: 24px 28px;
-      box-shadow: var(--shadow-sm);
-    }
-    .strategy-block p {
-      font-size: 13.5px; line-height: 1.8;
-      color: var(--text-mid);
-    }
-    .strategy-block p + p { margin-top: 14px; }
-    .strategy-block strong { color: var(--text); }
-    .strategy-ig-role {
-      display: grid; grid-template-columns: repeat(3, 1fr);
-      gap: 12px; margin-top: 20px;
-    }
-    .ig-role-card {
-      background: var(--ghost);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-sm);
-      padding: 14px 16px;
-    }
-    .ig-role-num {
-      font-size: 22px; font-weight: 900;
-      color: var(--navy-mid); opacity: 0.25;
-      line-height: 1; margin-bottom: 4px;
-    }
-    .ig-role-text { font-size: 12px; color: var(--text-mid); line-height: 1.5; font-weight: 500; }
-
-    /* ─── CONTENT STRATEGY MAP ────────────────────────────────────────── */
-    .funnel-wrap {
-      display: flex; flex-direction: column; gap: 12px;
-    }
-    .funnel-row {
-      display: grid;
-      grid-template-columns: 120px 1fr 1fr 1fr;
-      gap: 0;
-      border-radius: var(--radius-md);
-      overflow: hidden;
-      border: 1px solid var(--border);
-      background: var(--white);
-      box-shadow: var(--shadow-sm);
-    }
-    .funnel-row-label {
-      display: flex; flex-direction: column;
-      align-items: center; justify-content: center;
-      padding: 20px 12px;
-      font-size: 9.5px; font-weight: 700;
-      letter-spacing: 1px; text-transform: uppercase;
-      color: var(--text-faint);
-      border-right: 1px solid var(--border);
-      text-align: center; gap: 6px;
-    }
-    .funnel-row-label svg { opacity: 0.4; }
-    .funnel-cell {
-      padding: 18px 20px;
-      border-right: 1px solid var(--border);
-    }
-    .funnel-cell:last-child { border-right: none; }
-    .funnel-cell-stage {
-      display: flex; align-items: center; gap: 7px;
-      margin-bottom: 8px;
-    }
-    .stage-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
-    .stage-dot.tofu { background: var(--tofu-accent); }
-    .stage-dot.mofu { background: var(--mofu-accent); }
-    .stage-dot.bofu { background: var(--bofu-accent); }
-    .stage-label { font-size: 10px; font-weight: 700; letter-spacing: 0.5px; text-transform: uppercase; }
-    .stage-label.tofu { color: var(--tofu-accent); }
-    .stage-label.mofu { color: var(--mofu-accent); }
-    .stage-label.bofu { color: var(--bofu-accent); }
-    .stage-mix {
-      margin-left: auto;
-      font-size: 10px; font-weight: 800;
-      padding: 2px 7px; border-radius: 20px;
-    }
-    .stage-mix.tofu { background: #dbeafe; color: var(--tofu-accent); }
-    .stage-mix.mofu { background: #dcfce7; color: var(--mofu-accent); }
-    .stage-mix.bofu { background: #f3e8ff; color: var(--bofu-accent); }
-
-    /* Goal row */
-    .funnel-goal-title {
-      font-size: 13px; font-weight: 800;
-      color: var(--text); line-height: 1.35;
-      margin-bottom: 6px;
-    }
-    .funnel-goal-desc {
-      font-size: 11.5px; color: var(--text-muted);
-      line-height: 1.6;
-    }
-
-    /* KPI row */
-    .funnel-kpi-row { display: flex; flex-wrap: wrap; gap: 5px; }
-    .kpi-chip {
-      padding: 3px 8px; border-radius: 4px;
-      font-size: 10px; font-weight: 600;
-    }
-    .kpi-chip.tofu { background: #dbeafe; color: var(--tofu-accent); }
-    .kpi-chip.mofu { background: #dcfce7; color: var(--mofu-accent); }
-    .kpi-chip.bofu { background: #f3e8ff; color: var(--bofu-accent); }
-
-    /* Formats row */
-    .format-row-label {
-      font-size: 9.5px; font-weight: 700;
-      letter-spacing: 0.7px; text-transform: uppercase;
-      color: var(--text-faint); margin-bottom: 5px;
-    }
-    .format-chips { display: flex; flex-wrap: wrap; gap: 4px; margin-bottom: 10px; }
-    .format-chip {
-      padding: 2px 7px; border-radius: 4px;
-      font-size: 10px; font-weight: 500;
-      background: var(--ghost); color: var(--text-mid);
-      border: 1px solid var(--border);
-    }
-
-    .funnel-row-label-text { writing-mode: vertical-rl; transform: rotate(180deg); }
-
-    /* ─── PERFORMANCE DASHBOARD ───────────────────────────────────────── */
-    .perf-header-row {
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
-      gap: 12px;
-      margin-bottom: 16px;
-    }
-    .perf-summary-card {
-      background: var(--white);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-md);
-      padding: 16px 20px;
-      box-shadow: var(--shadow-sm);
-    }
-    .perf-summary-label {
-      font-size: 9.5px; font-weight: 700;
-      letter-spacing: 0.9px; text-transform: uppercase;
-      color: var(--text-faint); margin-bottom: 6px;
-    }
-    .perf-summary-score {
-      font-size: 32px; font-weight: 900;
-      color: var(--text); letter-spacing: -1px; line-height: 1;
-    }
-    .perf-summary-sub { font-size: 11px; color: var(--text-muted); margin-top: 4px; }
-    .score-trend { display: flex; gap: 6px; margin-top: 8px; }
-    .score-dot {
-      width: 28px; height: 5px; border-radius: 3px;
-    }
-    .score-dot.building { background: #fbbf24; }
-    .score-dot.solid { background: #34d399; }
-    .score-dot.inactive { background: var(--border); }
-
-    .perf-table-wrap {
-      background: var(--white);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-md);
-      overflow: hidden;
-      box-shadow: var(--shadow-sm);
-    }
-    .perf-table { width: 100%; border-collapse: collapse; }
-    .perf-table thead { background: var(--navy); }
-    .perf-table thead th {
-      padding: 10px 14px;
-      text-align: left;
-      font-size: 9.5px; font-weight: 700;
-      letter-spacing: 0.8px; text-transform: uppercase;
-      color: rgba(255,255,255,0.55);
-      white-space: nowrap;
-    }
-    .perf-table thead th:first-child { color: rgba(255,255,255,0.8); }
-    .perf-table tbody tr { border-bottom: 1px solid var(--border); }
-    .perf-table tbody tr:last-child { border-bottom: none; }
-    .perf-table tbody tr:hover { background: #fafbfc; }
-    .perf-table tbody td {
-      padding: 11px 14px;
-      font-size: 12.5px; color: var(--text-mid);
-      white-space: nowrap;
-    }
-    .perf-table tbody td:first-child { font-weight: 700; color: var(--text); }
-    .metric-status {
-      display: inline-flex; align-items: center; gap: 4px;
-      padding: 2px 7px; border-radius: 4px;
-      font-size: 10px; font-weight: 700;
-    }
-    .ms-watch { background: #fef3c7; color: #92400e; }
-    .ms-ok { background: #d1fae5; color: #065f46; }
-    .ms-strong { background: #dbeafe; color: #1e40af; }
-    .score-badge {
-      display: inline-block; padding: 3px 8px;
-      border-radius: 5px; font-size: 11px; font-weight: 800;
-    }
-    .sb-building { background: #fef3c7; color: #92400e; }
-    .sb-solid { background: #d1fae5; color: #065f46; }
-    .perf-callout {
-      padding: 12px 18px;
-      background: rgba(12,51,135,0.04);
-      border-top: 1px solid var(--border);
-      font-size: 11.5px; color: var(--text-muted);
-      display: flex; align-items: flex-start; gap: 8px;
-    }
-    .perf-callout-icon {
-      width: 16px; height: 16px; flex-shrink: 0;
-      background: var(--navy-mid); border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      margin-top: 1px;
-    }
-    .perf-callout strong { color: var(--navy-mid); }
-
-    /* ─── IVP PROFILE ─────────────────────────────────────────────────── */
-    .ivp-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
-    }
-    .ivp-card {
-      background: var(--white);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-md);
-      padding: 18px 20px;
-      box-shadow: var(--shadow-sm);
-    }
-    .ivp-card.full-width { grid-column: 1 / -1; }
-    .ivp-card-title {
-      font-size: 11px; font-weight: 700;
-      letter-spacing: 0.5px; text-transform: uppercase;
-      color: var(--navy-mid); margin-bottom: 10px;
-      padding-bottom: 8px; border-bottom: 1px solid var(--border);
-    }
-    .ivp-card ul { list-style: none; display: flex; flex-direction: column; gap: 6px; }
-    .ivp-card ul li {
-      font-size: 12.5px; color: var(--text-mid);
-      display: flex; align-items: flex-start; gap: 7px; line-height: 1.5;
-    }
-    .ivp-card ul li::before {
-      content: ''; width: 5px; height: 5px;
-      border-radius: 50%; background: var(--navy-mid);
-      flex-shrink: 0; margin-top: 6px;
-    }
-    .ivp-card p { font-size: 12.5px; color: var(--text-mid); line-height: 1.65; }
-    .ivp-card p + p { margin-top: 8px; }
-    .ivp-card strong { color: var(--text); }
-    .counter-grid {
-      display: grid; grid-template-columns: repeat(3, 1fr);
-      gap: 12px; margin-top: 2px;
-    }
-    .counter-card {
-      background: var(--ghost);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-sm);
-      padding: 14px 16px;
-    }
-    .counter-card-vs {
-      font-size: 9.5px; font-weight: 700;
-      letter-spacing: 0.7px; text-transform: uppercase;
-      color: var(--text-faint); margin-bottom: 6px;
-    }
-    .counter-card p { font-size: 12px; color: var(--text-mid); line-height: 1.6; }
-
-    /* ─── CONTENT PILLARS ─────────────────────────────────────────────── */
-    .pillars-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
-    }
-    .pillar-card {
-      background: var(--white);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-md);
-      padding: 20px 22px;
-      box-shadow: var(--shadow-sm);
-      position: relative;
-      overflow: hidden;
-    }
-    .pillar-card::before {
-      content: '';
-      position: absolute; top: 0; left: 0;
-      width: 3px; height: 100%;
-      background: var(--navy-mid);
-    }
-    .pillar-num {
-      font-size: 9.5px; font-weight: 700;
-      letter-spacing: 1px; text-transform: uppercase;
-      color: var(--text-faint); margin-bottom: 4px;
-    }
-    .pillar-name {
-      font-size: 14px; font-weight: 800;
-      color: var(--text); margin-bottom: 4px; letter-spacing: -0.2px;
-    }
-    .pillar-intent {
-      font-size: 10.5px; color: var(--navy-mid);
-      font-weight: 600; margin-bottom: 10px;
-    }
-    .pillar-desc {
-      font-size: 12px; color: var(--text-muted);
-      line-height: 1.65; margin-bottom: 12px;
-    }
-    .pillar-funnel-tag {
-      display: inline-flex; align-items: center; gap: 5px;
-      padding: 3px 9px; border-radius: 20px;
-      font-size: 10px; font-weight: 600;
-      background: rgba(12,51,135,0.07); color: var(--navy-mid);
-    }
-
-    /* ─── POSTING SCHEDULE ────────────────────────────────────────────── */
-    .schedule-wrap {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
-    }
-    .schedule-card {
-      background: var(--white);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-md);
-      overflow: hidden;
-      box-shadow: var(--shadow-sm);
-    }
-    .schedule-card-hdr {
-      background: var(--navy);
-      padding: 12px 18px;
-      display: flex; align-items: center; justify-content: space-between;
-    }
-    .schedule-card-hdr-title {
-      font-size: 12px; font-weight: 700; color: #fff;
-    }
-    .schedule-card-hdr-days {
-      font-size: 10px; color: rgba(255,255,255,0.4);
-    }
-    .schedule-day {
-      padding: 12px 18px;
-      border-bottom: 1px solid var(--border);
-      display: grid; grid-template-columns: 80px 1fr;
-      gap: 12px; align-items: start;
-    }
-    .schedule-day:last-child { border-bottom: none; }
-    .schedule-day-name {
-      font-size: 11.5px; font-weight: 700; color: var(--text);
-      padding-top: 1px;
-    }
-    .schedule-day-pillar {
-      font-size: 9.5px; font-weight: 600;
-      color: var(--navy-mid); margin-top: 2px;
-    }
-    .schedule-formats-row { display: flex; flex-wrap: wrap; gap: 4px; margin-bottom: 5px; }
-    .sched-chip {
-      padding: 2px 7px; border-radius: 4px;
-      font-size: 10px; font-weight: 500;
-      background: var(--ghost); color: var(--text-mid);
-      border: 1px solid var(--border);
-    }
-    .schedule-intent { font-size: 11px; color: var(--text-muted); line-height: 1.5; }
-
-    /* ─── COMMAND CENTER ──────────────────────────────────────────────── */
-    .command-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 10px;
-    }
-    .cmd-card {
-      background: var(--white);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-md);
-      padding: 14px 16px;
-      text-decoration: none;
-      transition: border-color 0.2s, box-shadow 0.2s, transform 0.15s;
-      display: block;
-    }
-    .cmd-card:hover {
-      border-color: var(--navy-mid);
-      box-shadow: 0 2px 10px rgba(12,51,135,0.1);
-      transform: translateY(-1px);
-    }
-    .cmd-card-icon {
-      width: 30px; height: 30px;
-      background: var(--ghost);
-      border-radius: var(--radius-sm);
-      display: flex; align-items: center; justify-content: center;
-      margin-bottom: 8px;
-    }
-    .cmd-card-icon svg { width: 15px; height: 15px; color: var(--navy-mid); }
-    .cmd-card-label {
-      font-size: 9.5px; font-weight: 700;
-      letter-spacing: 0.8px; text-transform: uppercase;
-      color: var(--text-faint); margin-bottom: 3px;
-    }
-    .cmd-card-value {
-      font-size: 12.5px; font-weight: 700; color: var(--navy-mid);
-    }
-    .cmd-card-value.inactive { color: var(--text-faint); font-weight: 500; }
-    .cmd-card-sub { font-size: 10.5px; color: var(--text-faint); margin-top: 2px; }
-
-    /* ─── PAGE FOOTER ─────────────────────────────────────────────────── */
-    .page-footer {
-      text-align: center;
-      font-size: 11px; color: var(--text-faint);
-      padding: 20px 0 0;
-      border-top: 1px solid var(--border);
-    }
-
-    /* ─── SCROLLBAR ───────────────────────────────────────────────────── */
-    ::-webkit-scrollbar { width: 5px; }
-    ::-webkit-scrollbar-track { background: transparent; }
-    ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
-
-    /* ─── RESPONSIVE ──────────────────────────────────────────────────── */
-    @media (max-width: 960px) {
-      .sidebar { display: none; }
-      .main { margin-left: 0; padding: 20px 16px 48px; }
-      .account-health { grid-template-columns: repeat(3, 1fr); }
-      .funnel-row { grid-template-columns: 1fr; }
-      .funnel-row-label { display: none; }
-      .ivp-grid, .pillars-grid, .schedule-wrap, .command-grid, .perf-header-row { grid-template-columns: 1fr; }
-      .counter-grid { grid-template-columns: 1fr; }
-      .strategy-ig-role { grid-template-columns: 1fr; }
-      .focus-panel-body { grid-template-columns: 1fr; }
-      .focus-cell { border-right: none; border-bottom: 1px solid var(--border); }
-      .focus-cell:last-child { border-bottom: none; }
-      .client-hero { flex-direction: column; align-items: flex-start; }
-      .client-hero-actions { align-items: flex-start; flex-direction: row; flex-wrap: wrap; }
+      --navy:#0c1f4a;--navy-mid:#0c3387;--navy-light:#1a4db3;
+      --lucid:#cbe9ff;--lime:#e2ed7a;--lime-dark:#c8d94a;
+      --white:#ffffff;--ghost:#f7f8fa;--border:#e4e7ec;
+      --text:#111827;--text-mid:#374151;--text-muted:#6b7280;--text-faint:#9ca3af;
+      --tofu-bg:#eff6ff;--tofu-accent:#2563eb;
+      --mofu-bg:#f0fdf4;--mofu-accent:#16a34a;
+      --bofu-bg:#fdf4ff;--bofu-accent:#9333ea;
+      --sidebar-w:248px;--header-h:60px;
+      --radius-sm:8px;--radius-md:12px;--radius-lg:16px;
+      --shadow-sm:0 1px 3px rgba(0,0,0,0.08),0 1px 2px rgba(0,0,0,0.04);
+      --shadow-md:0 4px 12px rgba(0,0,0,0.08),0 2px 4px rgba(0,0,0,0.04);
+    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    html{scroll-behavior:smooth;}
+    body{font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;background:var(--ghost);color:var(--text);font-size:14px;line-height:1.6;-webkit-font-smoothing:antialiased;}
+    #pw-gate{position:fixed;inset:0;background:var(--navy);display:flex;align-items:center;justify-content:center;z-index:9999;flex-direction:column;gap:14px;}
+    #pw-gate::before{content:'';position:absolute;top:-200px;right:-200px;width:600px;height:600px;background:radial-gradient(circle,rgba(12,51,135,0.6) 0%,transparent 70%);pointer-events:none;}
+    #pw-gate img{width:130px;margin-bottom:6px;position:relative;}
+    #pw-gate h2{color:#fff;font-size:17px;font-weight:700;letter-spacing:-0.3px;position:relative;}
+    #pw-gate p{color:rgba(255,255,255,0.4);font-size:12px;position:relative;}
+    #pw-gate input{width:272px;padding:11px 16px;border-radius:var(--radius-sm);border:1.5px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.06);color:#fff;font-size:14px;outline:none;text-align:center;position:relative;transition:border-color 0.2s;}
+    #pw-gate input::placeholder{color:rgba(255,255,255,0.3);}
+    #pw-gate input:focus{border-color:rgba(203,233,255,0.5);}
+    #pw-gate button{width:272px;padding:11px;background:var(--navy-mid);color:#fff;border:none;border-radius:var(--radius-sm);font-size:14px;font-weight:700;cursor:pointer;transition:background 0.2s;position:relative;}
+    #pw-gate button:hover{background:var(--navy-light);}
+    #pw-error{color:#f87171;font-size:12px;display:none;position:relative;}
+    .pw-hidden{display:none!important;}
+    .top-header{position:fixed;top:0;left:0;right:0;height:var(--header-h);background:var(--navy);display:flex;align-items:center;justify-content:space-between;padding:0 20px;z-index:200;border-bottom:1px solid rgba(255,255,255,0.07);}
+    .top-header-left{display:flex;align-items:center;gap:14px;}
+    .top-header-left img{height:26px;}
+    .top-header-divider{width:1px;height:18px;background:rgba(255,255,255,0.15);}
+    .top-header-crumb{display:flex;align-items:center;gap:6px;font-size:12px;color:rgba(255,255,255,0.45);}
+    .top-header-crumb span{color:rgba(255,255,255,0.75);font-weight:500;}
+    .top-header-right{display:flex;align-items:center;gap:10px;}
+    .hdr-badge{padding:3px 9px;border-radius:20px;font-size:10px;font-weight:700;letter-spacing:0.6px;text-transform:uppercase;}
+    .hdr-badge-stage{background:rgba(203,233,255,0.12);color:var(--lucid);}
+    .hdr-badge-active{background:rgba(226,237,122,0.12);color:var(--lime);}
+    .hdr-back{color:rgba(255,255,255,0.4);font-size:12px;text-decoration:none;display:flex;align-items:center;gap:4px;transition:color 0.2s;}
+    .hdr-back:hover{color:rgba(255,255,255,0.8);}
+    .layout{display:flex;padding-top:var(--header-h);min-height:100vh;}
+    .sidebar{width:var(--sidebar-w);position:fixed;top:var(--header-h);left:0;bottom:0;overflow-y:auto;background:var(--white);border-right:1px solid var(--border);padding:20px 0 32px;z-index:100;}
+    .sidebar::-webkit-scrollbar{width:4px;}
+    .sidebar::-webkit-scrollbar-thumb{background:var(--border);border-radius:2px;}
+    .sidebar-group{margin-bottom:6px;}
+    .sidebar-group-label{padding:10px 18px 5px;font-size:9.5px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;color:var(--text-faint);}
+    .sidebar-nav{list-style:none;}
+    .sidebar-nav li a{display:flex;align-items:center;gap:9px;padding:8px 18px;text-decoration:none;color:var(--text-muted);font-size:12.5px;font-weight:500;border-left:2px solid transparent;transition:all 0.15s;}
+    .sidebar-nav li a:hover{color:var(--navy-mid);background:rgba(12,51,135,0.04);}
+    .sidebar-nav li a.active{color:var(--navy-mid);background:rgba(12,51,135,0.06);border-left-color:var(--navy-mid);font-weight:600;}
+    .nav-icon{width:14px;height:14px;flex-shrink:0;opacity:0.6;}
+    .sidebar-nav li a:hover .nav-icon,.sidebar-nav li a.active .nav-icon{opacity:1;}
+    .sidebar-footer{padding:16px 18px 0;border-top:1px solid var(--border);margin-top:16px;}
+    .sidebar-footer-label{font-size:10px;color:var(--text-faint);margin-bottom:4px;}
+    .sidebar-footer-am{font-size:12px;font-weight:600;color:var(--text-mid);}
+    .sidebar-footer-updated{font-size:10px;color:var(--text-faint);margin-top:2px;}
+    .main{margin-left:var(--sidebar-w);flex:1;padding:32px 40px 64px;max-width:calc(var(--sidebar-w) + 900px);}
+    .section{margin-bottom:48px;}
+    .section-header{display:flex;align-items:flex-start;gap:12px;margin-bottom:18px;}
+    .section-icon{width:34px;height:34px;flex-shrink:0;background:var(--navy);border-radius:var(--radius-sm);display:flex;align-items:center;justify-content:center;margin-top:1px;}
+    .section-icon svg{width:16px;height:16px;}
+    .section-title{font-size:17px;font-weight:800;color:var(--text);letter-spacing:-0.3px;}
+    .section-subtitle{font-size:12px;color:var(--text-faint);margin-top:1px;}
+    .client-hero{background:var(--navy);border-radius:var(--radius-lg);padding:28px 32px;margin-bottom:12px;display:flex;align-items:center;gap:24px;position:relative;overflow:hidden;}
+    .client-hero::before{content:'';position:absolute;top:-80px;right:-80px;width:320px;height:320px;background:radial-gradient(circle,rgba(12,51,135,0.7) 0%,transparent 70%);pointer-events:none;}
+    .client-hero::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--lime) 0%,transparent 60%);}
+    .client-logo-wrap{width:72px;height:72px;flex-shrink:0;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.1);border-radius:var(--radius-md);display:flex;align-items:center;justify-content:center;}
+    .client-logo-initials{font-size:22px;font-weight:900;color:var(--lime);letter-spacing:-1px;}
+    .client-hero-info{flex:1;position:relative;}
+    .client-hero-name{font-size:24px;font-weight:900;color:#fff;letter-spacing:-0.5px;margin-bottom:3px;}
+    .client-hero-sub{font-size:12px;color:rgba(255,255,255,0.45);margin-bottom:12px;}
+    .hero-tags{display:flex;flex-wrap:wrap;gap:7px;}
+    .hero-tag{padding:3px 10px;border-radius:20px;font-size:10px;font-weight:600;letter-spacing:0.3px;}
+    .ht-blue{background:rgba(203,233,255,0.12);color:var(--lucid);}
+    .ht-lime{background:rgba(226,237,122,0.12);color:var(--lime);}
+    .ht-white{background:rgba(255,255,255,0.08);color:rgba(255,255,255,0.6);}
+    .client-hero-actions{display:flex;flex-direction:column;gap:7px;align-items:flex-end;position:relative;}
+    .hero-action-btn{display:inline-flex;align-items:center;gap:6px;padding:7px 13px;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.1);border-radius:var(--radius-sm);color:rgba(255,255,255,0.75);text-decoration:none;font-size:11.5px;font-weight:600;transition:all 0.2s;white-space:nowrap;}
+    .hero-action-btn:hover{background:rgba(255,255,255,0.14);color:#fff;}
+    .account-health{display:grid;grid-template-columns:repeat(6,1fr);gap:1px;background:var(--border);border-radius:var(--radius-md);overflow:hidden;margin-bottom:40px;border:1px solid var(--border);}
+    .health-cell{background:var(--white);padding:14px 16px;}
+    .health-cell-label{font-size:9.5px;font-weight:700;letter-spacing:0.9px;text-transform:uppercase;color:var(--text-faint);margin-bottom:4px;}
+    .health-cell-value{font-size:13px;font-weight:700;color:var(--text);}
+    .health-cell-value.accent{color:var(--navy-mid);}
+    .health-cell-value.lime{color:#65a30d;}
+    .health-cell-value.warn{color:#d97706;}
+    .focus-panel{background:var(--white);border:1px solid var(--border);border-radius:var(--radius-md);overflow:hidden;margin-bottom:48px;box-shadow:var(--shadow-sm);}
+    .focus-panel-header{background:linear-gradient(135deg,var(--navy) 0%,var(--navy-mid) 100%);padding:14px 20px;display:flex;align-items:center;justify-content:space-between;}
+    .focus-panel-title{font-size:12px;font-weight:700;color:#fff;display:flex;align-items:center;gap:8px;letter-spacing:0.2px;}
+    .focus-panel-title .dot{width:7px;height:7px;border-radius:50%;background:var(--lime);flex-shrink:0;box-shadow:0 0 6px rgba(226,237,122,0.6);}
+    .focus-panel-month{font-size:10px;color:rgba(255,255,255,0.5);font-weight:500;}
+    .focus-panel-body{display:grid;grid-template-columns:1fr 1fr 1fr;gap:0;}
+    .focus-cell{padding:16px 20px;border-right:1px solid var(--border);}
+    .focus-cell:last-child{border-right:none;}
+    .focus-cell-label{font-size:9.5px;font-weight:700;letter-spacing:0.9px;text-transform:uppercase;color:var(--text-faint);margin-bottom:6px;}
+    .focus-editable{background:none;border:none;outline:none;font-family:inherit;font-size:13px;font-weight:700;color:var(--text);width:100%;cursor:text;border-bottom:1.5px dashed transparent;transition:border-color 0.2s;padding:0;}
+    .focus-editable:hover{border-bottom-color:var(--border);}
+    .focus-editable:focus{border-bottom-color:var(--navy-mid);}
+    .focus-editable-sub{background:none;border:none;outline:none;font-family:inherit;font-size:11px;color:var(--text-muted);width:100%;cursor:text;border-bottom:1.5px dashed transparent;transition:border-color 0.2s;padding:0;line-height:1.5;resize:none;overflow:hidden;}
+    .focus-editable-sub:hover{border-bottom-color:var(--border);}
+    .focus-editable-sub:focus{border-bottom-color:var(--navy-mid);}
+    .focus-edit-hint{font-size:9px;color:var(--text-faint);margin-top:6px;font-style:italic;}
+    .strategy-block{background:var(--white);border:1px solid var(--border);border-radius:var(--radius-md);padding:24px 28px;box-shadow:var(--shadow-sm);}
+    .strategy-block p{font-size:13.5px;line-height:1.8;color:var(--text-mid);}
+    .strategy-block p+p{margin-top:14px;}
+    .strategy-block strong{color:var(--text);}
+    .strategy-ig-role{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:20px;}
+    .ig-role-card{background:var(--ghost);border:1px solid var(--border);border-radius:var(--radius-sm);padding:14px 16px;}
+    .ig-role-num{font-size:22px;font-weight:900;color:var(--navy-mid);line-height:1;margin-bottom:6px;}
+    .ig-role-text{font-size:12px;color:var(--text-mid);line-height:1.5;}
+    .funnel-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+    .funnel-card{border-radius:var(--radius-md);padding:20px;border:1px solid;}
+    .funnel-card.tofu{background:var(--tofu-bg);border-color:#bfdbfe;}
+    .funnel-card.mofu{background:var(--mofu-bg);border-color:#bbf7d0;}
+    .funnel-card.bofu{background:var(--bofu-bg);border-color:#e9d5ff;}
+    .funnel-stage-label{font-size:9px;font-weight:800;letter-spacing:1.2px;text-transform:uppercase;margin-bottom:8px;}
+    .funnel-card.tofu .funnel-stage-label{color:var(--tofu-accent);}
+    .funnel-card.mofu .funnel-stage-label{color:var(--mofu-accent);}
+    .funnel-card.bofu .funnel-stage-label{color:var(--bofu-accent);}
+    .funnel-card-title{font-size:14px;font-weight:800;color:var(--text);margin-bottom:4px;}
+    .funnel-card-pct{font-size:11px;color:var(--text-muted);margin-bottom:12px;}
+    .funnel-kpi-list{list-style:none;}
+    .funnel-kpi-list li{font-size:11.5px;color:var(--text-mid);padding:3px 0;border-bottom:1px solid rgba(0,0,0,0.05);display:flex;align-items:center;gap:6px;}
+    .funnel-kpi-list li:last-child{border-bottom:none;}
+    .funnel-kpi-list li::before{content:'';width:5px;height:5px;border-radius:50%;flex-shrink:0;}
+    .funnel-card.tofu .funnel-kpi-list li::before{background:var(--tofu-accent);}
+    .funnel-card.mofu .funnel-kpi-list li::before{background:var(--mofu-accent);}
+    .funnel-card.bofu .funnel-kpi-list li::before{background:var(--bofu-accent);}
+    .funnel-formats{margin-top:12px;padding-top:12px;border-top:1px solid rgba(0,0,0,0.07);}
+    .funnel-formats-label{font-size:9px;font-weight:700;letter-spacing:0.8px;text-transform:uppercase;color:var(--text-faint);margin-bottom:6px;}
+    .format-tag{display:inline-block;padding:2px 8px;border-radius:20px;font-size:10px;font-weight:600;margin:2px 2px 2px 0;}
+    .funnel-card.tofu .format-tag{background:rgba(37,99,235,0.1);color:var(--tofu-accent);}
+    .funnel-card.mofu .format-tag{background:rgba(22,163,74,0.1);color:var(--mofu-accent);}
+    .funnel-card.bofu .format-tag{background:rgba(147,51,234,0.1);color:var(--bofu-accent);}
+    .pillars-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;}
+    .pillar-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius-md);padding:18px 20px;box-shadow:var(--shadow-sm);}
+    .pillar-num{font-size:11px;font-weight:800;color:var(--lime-dark);letter-spacing:0.5px;margin-bottom:6px;}
+    .pillar-name{font-size:14px;font-weight:800;color:var(--text);margin-bottom:4px;}
+    .pillar-intent{display:inline-block;padding:2px 8px;border-radius:20px;font-size:10px;font-weight:600;background:rgba(12,51,135,0.07);color:var(--navy-mid);margin-bottom:8px;}
+    .pillar-desc{font-size:12px;color:var(--text-muted);line-height:1.6;}
+    .ivp-block{background:var(--white);border:1px solid var(--border);border-radius:var(--radius-md);padding:24px 28px;box-shadow:var(--shadow-sm);}
+    .ivp-name{font-size:18px;font-weight:900;color:var(--navy);margin-bottom:16px;padding-bottom:12px;border-bottom:1px solid var(--border);}
+    .ivp-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;}
+    .ivp-section-title{font-size:9.5px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--text-faint);margin-bottom:10px;}
+    .ivp-item{margin-bottom:10px;}
+    .ivp-item-label{font-size:12px;font-weight:700;color:var(--text);margin-bottom:2px;}
+    .ivp-item-text{font-size:12px;color:var(--text-muted);line-height:1.5;}
+    .schedule-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+    .schedule-col-header{font-size:10px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:var(--text-faint);margin-bottom:10px;padding-bottom:8px;border-bottom:2px solid var(--navy);}
+    .schedule-day-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius-sm);padding:14px 16px;margin-bottom:10px;box-shadow:var(--shadow-sm);}
+    .schedule-day-label{font-size:11px;font-weight:800;color:var(--navy-mid);margin-bottom:6px;}
+    .schedule-formats{font-size:12px;color:var(--text-mid);line-height:1.6;}
+    .perf-table-wrap{background:var(--white);border:1px solid var(--border);border-radius:var(--radius-md);overflow:hidden;box-shadow:var(--shadow-sm);}
+    .perf-table{width:100%;border-collapse:collapse;}
+    .perf-table th{background:var(--navy);color:rgba(255,255,255,0.7);font-size:10px;font-weight:700;letter-spacing:0.8px;text-transform:uppercase;padding:10px 14px;text-align:left;white-space:nowrap;}
+    .perf-table th:first-child{color:#fff;}
+    .perf-table td{padding:11px 14px;font-size:12.5px;border-bottom:1px solid var(--border);color:var(--text-mid);}
+    .perf-table tr:last-child td{border-bottom:none;}
+    .perf-table tr:hover td{background:var(--ghost);}
+    .perf-table td:first-child{font-weight:700;color:var(--text);}
+    .score-badge{display:inline-block;padding:2px 8px;border-radius:20px;font-size:11px;font-weight:700;}
+    .score-high{background:#dcfce7;color:#15803d;}
+    .score-mid{background:#fef9c3;color:#854d0e;}
+    .score-low{background:#fee2e2;color:#b91c1c;}
+    .command-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;}
+    .command-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius-md);padding:18px 20px;box-shadow:var(--shadow-sm);text-decoration:none;transition:all 0.2s;display:block;}
+    .command-card:hover{border-color:var(--navy-mid);box-shadow:var(--shadow-md);transform:translateY(-1px);}
+    .command-card-icon{width:36px;height:36px;background:var(--ghost);border:1px solid var(--border);border-radius:var(--radius-sm);display:flex;align-items:center;justify-content:center;margin-bottom:10px;}
+    .command-card-label{font-size:12px;font-weight:700;color:var(--text);margin-bottom:3px;}
+    .command-card-sub{font-size:11px;color:var(--text-faint);}
+    .command-card.primary{background:var(--navy);border-color:var(--navy);}
+    .command-card.primary .command-card-icon{background:rgba(255,255,255,0.1);border-color:rgba(255,255,255,0.1);}
+    .command-card.primary .command-card-label{color:#fff;}
+    .command-card.primary .command-card-sub{color:rgba(255,255,255,0.5);}
+    .command-card.primary:hover{background:var(--navy-mid);}
+    @media(max-width:900px){
+      .funnel-grid{grid-template-columns:1fr;}
+    }
+    @media(max-width:768px){
+      .sidebar{display:none;}
+      .main{margin-left:0;padding:20px 16px 48px;}
+      .account-health{grid-template-columns:repeat(3,1fr);}
+      .pillars-grid,.ivp-grid,.schedule-grid,.command-grid{grid-template-columns:1fr;}
+      .focus-panel-body{grid-template-columns:1fr;}
+      .focus-cell{border-right:none;border-bottom:1px solid var(--border);}
+      .client-hero{flex-direction:column;align-items:flex-start;}
+      .client-hero-actions{align-items:flex-start;flex-direction:row;flex-wrap:wrap;}
+      .strategy-ig-role{grid-template-columns:1fr;}
+      .perf-table-wrap{overflow-x:auto;}
     }
   </style>
 </head>
 <body>
 
-<!-- ─── PASSWORD GATE ─────────────────────────────────────────────────── -->
 <div id="pw-gate">
   <img src="../../scroll-media-logo.svg" alt="Scroll Media" />
-  <h2>Account Homebase</h2>
+  <h2>DEFINE Oakley &mdash; Account Homebase</h2>
   <p>Scroll Media internal access only.</p>
   <input type="password" id="pwInput" placeholder="Enter password" autocomplete="off" />
   <button onclick="checkPassword()">Access Homebase</button>
   <span id="pw-error">Incorrect password. Try again.</span>
 </div>
 
-<!-- ─── APP ───────────────────────────────────────────────────────────── -->
 <div id="app" class="pw-hidden">
-
-  <!-- TOP HEADER -->
   <header class="top-header">
     <div class="top-header-left">
       <a href="../../index.html"><img src="../../scroll-media-logo.svg" alt="Scroll Media" /></a>
       <div class="top-header-divider"></div>
-      <div class="top-header-crumb">
-        Clients &rsaquo; <span>DEFINE Oakley</span>
-      </div>
+      <div class="top-header-crumb">Clients &rsaquo; <span>DEFINE Oakley</span></div>
     </div>
     <div class="top-header-right">
       <span class="hdr-badge hdr-badge-stage">Lift Stage</span>
@@ -826,92 +229,57 @@
     </div>
   </header>
 
-  <!-- LAYOUT -->
   <div class="layout">
-
-    <!-- SIDEBAR -->
     <nav class="sidebar">
       <div class="sidebar-group">
         <div class="sidebar-group-label">Overview</div>
         <ul class="sidebar-nav">
-          <li><a href="#overview" class="active">
-            <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
-            Account Overview
-          </a></li>
-          <li><a href="#focus">
-            <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg>
-            This Month's Focus
-          </a></li>
+          <li><a href="#overview" class="active"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>Account Overview</a></li>
+          <li><a href="#focus"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg>This Month's Focus</a></li>
         </ul>
       </div>
       <div class="sidebar-group">
         <div class="sidebar-group-label">Strategy</div>
         <ul class="sidebar-nav">
-          <li><a href="#strategy">
-            <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
-            Strategic Direction
-          </a></li>
-          <li><a href="#funnel">
-            <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/></svg>
-            Content Strategy Map
-          </a></li>
-          <li><a href="#pillars">
-            <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="6" height="18"/><rect x="9" y="3" width="6" height="18"/><rect x="16" y="3" width="6" height="18"/></svg>
-            Content Pillars
-          </a></li>
+          <li><a href="#strategy"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>Strategic Direction</a></li>
+          <li><a href="#funnel"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/></svg>Content Strategy Map</a></li>
+          <li><a href="#pillars"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="6" height="18"/><rect x="9" y="3" width="6" height="18"/><rect x="16" y="3" width="6" height="18"/></svg>Content Pillars</a></li>
         </ul>
       </div>
       <div class="sidebar-group">
         <div class="sidebar-group-label">Audience</div>
         <ul class="sidebar-nav">
-          <li><a href="#ivp">
-            <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
-            IVP Profile
-          </a></li>
+          <li><a href="#ivp"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>IVP Profile</a></li>
         </ul>
       </div>
       <div class="sidebar-group">
         <div class="sidebar-group-label">Operations</div>
         <ul class="sidebar-nav">
-          <li><a href="#schedule">
-            <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-            Posting Schedule
-          </a></li>
-          <li><a href="#performance">
-            <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
-            Performance
-          </a></li>
-          <li><a href="#command">
-            <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
-            Command Center
-          </a></li>
+          <li><a href="#schedule"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>Posting Schedule</a></li>
+          <li><a href="#performance"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>Performance</a></li>
+          <li><a href="#command"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>Command Center</a></li>
         </ul>
       </div>
       <div class="sidebar-footer">
         <div class="sidebar-footer-label">Account Manager</div>
-        <div class="sidebar-footer-am">Emily Krintz</div>
+        <div class="sidebar-footer-am">Emily</div>
         <div class="sidebar-footer-updated">Updated March 2026</div>
       </div>
     </nav>
 
-    <!-- MAIN CONTENT -->
     <main class="main">
-
-      <!-- ── ACCOUNT OVERVIEW ─────────────────────────────────────────── -->
       <div id="overview">
         <div class="client-hero">
-          <div class="client-logo-wrap">
-            <img src="../../logos/cl-define.png" alt="DEFINE Oakley" />
-          </div>
+          <div class="client-logo-wrap"><div class="client-logo-initials">DO</div></div>
           <div class="client-hero-info">
             <div class="client-hero-name">DEFINE Oakley</div>
-            <div class="client-hero-sub">Fitness Studios &middot; High-Energy, Low-Impact Group Fitness &middot; Cincinnati, OH</div>
+            <div class="client-hero-sub">Fitness Studios &middot; High-Energy, Low-Impact Group Fitness</div>
             <div class="hero-tags">
               <span class="hero-tag ht-blue">Lift Stage</span>
               <span class="hero-tag ht-lime">Active</span>
-              <span class="hero-tag ht-white">Since Feb 2025</span>
-              <span class="hero-tag ht-white">3,664 Followers</span>
-              <span class="hero-tag ht-white">AM: Emily Krintz</span>
+              <span class="hero-tag ht-white">Since February 2024</span>
+              <span class="hero-tag ht-white">3,655 Followers</span>
+              <span class="hero-tag ht-white">AM: Emily</span>
             </div>
           </div>
           <div class="client-hero-actions">
@@ -923,809 +291,291 @@
               <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
               defineoakley.com
             </a>
-            <a href="https://linktr.ee/defineoakley" target="_blank" class="hero-action-btn">
-              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
-              Linktree
+            <a href="https://reports.scrollmedia.co/defineoakley/" target="_blank" class="hero-action-btn">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+              Performance Reports
             </a>
           </div>
         </div>
-
-        <!-- ACCOUNT HEALTH STRIP -->
         <div class="account-health">
-          <div class="health-cell">
-            <div class="health-cell-label">Package Tier</div>
-            <div class="health-cell-value accent">Growth</div>
-          </div>
-          <div class="health-cell">
-            <div class="health-cell-label">Contract End</div>
-            <div class="health-cell-value">Aug 5, 2025</div>
-          </div>
-          <div class="health-cell">
-            <div class="health-cell-label">Primary CTA</div>
-            <div class="health-cell-value">Book a Class</div>
-          </div>
-          <div class="health-cell">
-            <div class="health-cell-label">Funnel Priority</div>
-            <div class="health-cell-value accent">TOFU (50%)</div>
-          </div>
-          <div class="health-cell">
-            <div class="health-cell-label">Current Phase</div>
-            <div class="health-cell-value">No Accordion</div>
-          </div>
-          <div class="health-cell">
-            <div class="health-cell-label">Latest Score</div>
-            <div class="health-cell-value warn">7.2 — Building</div>
-          </div>
+          <div class="health-cell"><div class="health-cell-label">Package</div><div class="health-cell-value accent">Signature</div></div>
+          <div class="health-cell"><div class="health-cell-label">Start Date</div><div class="health-cell-value">February 2024</div></div>
+          <div class="health-cell"><div class="health-cell-label">Primary CTA</div><div class="health-cell-value">Book a Class</div></div>
+          <div class="health-cell"><div class="health-cell-label">Posts / Week</div><div class="health-cell-value accent">2</div></div>
+          <div class="health-cell"><div class="health-cell-label">Current Phase</div><div class="health-cell-value">No Accordion</div></div>
+          <div class="health-cell"><div class="health-cell-label">Latest Score</div><div class="health-cell-value warn">7.2 — Building</div></div>
         </div>
       </div>
 
-      <!-- ── THIS MONTH'S FOCUS ───────────────────────────────────────── -->
       <div id="focus" class="section">
         <div class="section-header">
-          <div class="section-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg>
-          </div>
-          <div>
-            <div class="section-title">This Month's Focus</div>
-            <div class="section-subtitle">AM-updated each month — active CTA, content priority, and any running campaigns</div>
-          </div>
+          <div class="section-icon"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg></div>
+          <div><div class="section-title">This Month's Focus</div><div class="section-subtitle">AM-updated each month &mdash; active CTA, content priority, and any running campaigns</div></div>
         </div>
         <div class="focus-panel">
           <div class="focus-panel-header">
-            <div class="focus-panel-title">
-              <span class="dot"></span>
-              Monthly Focus — AM Managed
-            </div>
+            <div class="focus-panel-title"><span class="dot"></span>Monthly Focus &mdash; AM Managed</div>
             <div class="focus-panel-month">March 2026</div>
           </div>
           <div class="focus-panel-body">
             <div class="focus-cell">
               <div class="focus-cell-label">Active CTA</div>
-              <input class="focus-editable" id="fc-cta" value="Book a First Class — Free Trial" />
-              <textarea class="focus-editable-sub" id="fc-cta-sub" rows="2">Drive first-timer bookings via Linktree → defineoakley.com/book</textarea>
-              <div class="focus-edit-hint">Click to edit &middot; <span id="fc-save-hint-1" style="display:none;">Press Save when done</span></div>
-              <button class="focus-save-btn" id="fc-save-1" onclick="saveFocus()">Save</button>
+              <input class="focus-editable" value="Book a Class" />
+              <textarea class="focus-editable-sub" rows="2">Drive class bookings via bio link — Rev, Body, and Bounce format introductions.</textarea>
+              <div class="focus-edit-hint">Click to edit</div>
             </div>
             <div class="focus-cell">
               <div class="focus-cell-label">Content Priority</div>
-              <input class="focus-editable" id="fc-priority" value="TOFU — 30:30 Format Awareness" />
-              <textarea class="focus-editable-sub" id="fc-priority-sub" rows="2">High-reach B-roll reels showcasing the Rev + Body combo. Target cold audience in Cincinnati.</textarea>
+              <input class="focus-editable" value="TOFU — Community + Format Education" />
+              <textarea class="focus-editable-sub" rows="2">Class format explainer Reels and community culture content to drive new member discovery.</textarea>
               <div class="focus-edit-hint">Click to edit</div>
-              <button class="focus-save-btn" id="fc-save-2" onclick="saveFocus()">Save</button>
             </div>
             <div class="focus-cell">
               <div class="focus-cell-label">Active Campaigns / Notes</div>
-              <input class="focus-editable" id="fc-campaign" value="Spring Membership Push" />
-              <textarea class="focus-editable-sub" id="fc-campaign-sub" rows="2">Q1 new member drive. Childcare differentiator content + mom spotlight series launching this month.</textarea>
+              <input class="focus-editable" value="Spring Membership Push" />
+              <textarea class="focus-editable-sub" rows="2">Spring new member campaign. Format education + mom-friendly positioning + childcare highlight.</textarea>
               <div class="focus-edit-hint">Click to edit</div>
-              <button class="focus-save-btn" id="fc-save-3" onclick="saveFocus()">Save</button>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- ── STRATEGIC DIRECTION ─────────────────────────────────────── -->
       <div id="strategy" class="section">
         <div class="section-header">
-          <div class="section-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
-          </div>
-          <div>
-            <div class="section-title">Strategic Direction</div>
-            <div class="section-subtitle">Account narrative and Instagram's role for this client</div>
-          </div>
+          <div class="section-icon"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg></div>
+          <div><div class="section-title">Strategic Direction</div><div class="section-subtitle">Account narrative and Instagram's role for this client</div></div>
         </div>
-        <div class="strategy-block">
-          <p>DEFINE Oakley is a boutique fitness studio in Cincinnati's Oakley Square neighborhood, offering beat-based cycle (Rev), barre (Body), and trampoline HIIT (Bounce) classes. The studio's signature <strong>30:30 format</strong> — 30 minutes of Rev followed by 30 minutes of Body — is its primary differentiator: two full workouts in one 60-minute session, built for busy, time-conscious women who refuse to choose between cardio and toning.</p>
-          <p>The studio's second major differentiator is <strong>on-site childcare</strong>, which removes the single biggest barrier for its core audience: moms and expecting women who want to prioritize fitness but can't leave their kids. No other boutique studio in Cincinnati combines this level of format efficiency with childcare access.</p>
+        <div class="strategy-block"><p><strong>DEFINE Oakley</strong> is a boutique group fitness studio offering high-energy, low-impact classes — Rev (cycling), Body (barre/strength), and Bounce (trampoline) — designed for women who want to prioritize their health without sacrificing their schedule. The studio's key differentiator is its mom-friendly positioning: on-site childcare, flexible scheduling, and a community built around women who are ambitious about their fitness and their lives.</p>
+          <p>Instagram's role is to <strong>drive new member acquisition and community retention</strong> by educating on the class formats, showcasing the studio culture, and positioning DEFINE as the fitness home for the Ambitious Mom and Busy Professional.</p>
           <div class="strategy-ig-role">
-            <div class="ig-role-card">
-              <div class="ig-role-num">01</div>
-              <div class="ig-role-text">Drive new class bookings by showcasing the energy, community, and results of the studio experience</div>
-            </div>
-            <div class="ig-role-card">
-              <div class="ig-role-num">02</div>
-              <div class="ig-role-text">Retain existing members by reinforcing community identity and celebrating studio culture</div>
-            </div>
-            <div class="ig-role-card">
-              <div class="ig-role-num">03</div>
-              <div class="ig-role-text">Reduce churn by consistently demonstrating the value of the premium membership</div>
-            </div>
-          </div>
-        </div>
+            <div class="ig-role-card"><div class="ig-role-num">01</div><div class="ig-role-text"><strong>Drive class bookings</strong> — format education and direct response content that moves new prospects to book their first class</div></div>
+            <div class="ig-role-card"><div class="ig-role-num">02</div><div class="ig-role-text"><strong>Build community culture</strong> — behind-the-scenes energy, member spotlights, and instructor personalities that make the studio feel alive</div></div>
+            <div class="ig-role-card"><div class="ig-role-num">03</div><div class="ig-role-text"><strong>Mom-friendly authority</strong> — childcare access, flexible scheduling, and wellness education that speaks directly to the target IVP</div></div>
+          </div></div>
       </div>
 
-      <!-- ── CONTENT STRATEGY MAP ────────────────────────────────────── -->
       <div id="funnel" class="section">
         <div class="section-header">
-          <div class="section-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/></svg>
-          </div>
-          <div>
-            <div class="section-title">Content Strategy Map</div>
-            <div class="section-subtitle">TOFU / MOFU / BOFU — goals, descriptions, KPIs, and content formats</div>
-          </div>
+          <div class="section-icon"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/></svg></div>
+          <div><div class="section-title">Content Strategy Map</div><div class="section-subtitle">TOFU / MOFU / BOFU &mdash; goals, KPIs, and content formats per funnel stage</div></div>
         </div>
-
-        <div class="funnel-wrap">
-
-          <!-- GOALS ROW -->
-          <div class="funnel-row">
-            <div class="funnel-row-label">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 8 12 12 14 14"/></svg>
-              <span class="funnel-row-label-text">Goal</span>
-            </div>
-            <div class="funnel-cell">
-              <div class="funnel-cell-stage">
-                <span class="stage-dot tofu"></span>
-                <span class="stage-label tofu">Top of Funnel</span>
-                <span class="stage-mix tofu">50%</span>
-              </div>
-              <div class="funnel-goal-title">Drive New Audience Discovery & Brand Awareness</div>
-              <div class="funnel-goal-desc">Build awareness among Cincinnati's busy women, moms, and fitness-curious audience. Position Define Oakley as the most efficient, community-driven boutique fitness studio in the city. Introduce the 30:30 format, the Bounce class, and the childcare differentiator to cold audiences.</div>
-            </div>
-            <div class="funnel-cell">
-              <div class="funnel-cell-stage">
-                <span class="stage-dot mofu"></span>
-                <span class="stage-label mofu">Middle of Funnel</span>
-                <span class="stage-mix mofu">30%</span>
-              </div>
-              <div class="funnel-goal-title">Build Trust, Educate, & Deepen Community Connection</div>
-              <div class="funnel-goal-desc">Nurture the audience evaluating whether to book their first class or upgrade their membership. Demonstrate the value of the 30:30 format through education and social proof. Address objections around cost, intimidation, and childcare logistics.</div>
-            </div>
-            <div class="funnel-cell">
-              <div class="funnel-cell-stage">
-                <span class="stage-dot bofu"></span>
-                <span class="stage-label bofu">Bottom of Funnel</span>
-                <span class="stage-mix bofu">20%</span>
-              </div>
-              <div class="funnel-goal-title">Drive Class Bookings & New Member Sign-Ups</div>
-              <div class="funnel-goal-desc">Convert engaged followers and profile visitors into paying members. Drive clicks to the Define Oakley booking page through class-specific content, first-timer offers, and direct booking CTAs. Reduce friction by naming the specific class, time, and booking destination.</div>
-            </div>
+        <div class="funnel-grid">
+          <div class="funnel-card tofu">
+            <div class="funnel-stage-label">Top of Funnel &mdash; Awareness</div>
+            <div class="funnel-card-title">Reach New Audiences</div>
+            <div class="funnel-card-pct">50% of content</div>
+            <ul class="funnel-kpi-list"><li>Reach & Impressions</li><li>New Followers</li><li>Shares</li></ul>
+            <div class="funnel-formats"><div class="funnel-formats-label">Formats</div><span class="format-tag">Quick-Shot B-Roll</span><span class="format-tag">Founder POV</span><span class="format-tag">Before/After Transformation</span><span class="format-tag">Trending Hook</span></div>
           </div>
-
-          <!-- KPIs ROW -->
-          <div class="funnel-row">
-            <div class="funnel-row-label">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
-              <span class="funnel-row-label-text">KPIs</span>
-            </div>
-            <div class="funnel-cell">
-              <div class="funnel-kpi-row">
-                <span class="kpi-chip tofu">Views</span>
-                <span class="kpi-chip tofu">Reach</span>
-                <span class="kpi-chip tofu">New Followers</span>
-                <span class="kpi-chip tofu">Shares</span>
-              </div>
-            </div>
-            <div class="funnel-cell">
-              <div class="funnel-kpi-row">
-                <span class="kpi-chip mofu">Saves</span>
-                <span class="kpi-chip mofu">Comments</span>
-                <span class="kpi-chip mofu">Profile Visits</span>
-                <span class="kpi-chip mofu">Avg Watch Time</span>
-                <span class="kpi-chip mofu">Retention %</span>
-              </div>
-            </div>
-            <div class="funnel-cell">
-              <div class="funnel-kpi-row">
-                <span class="kpi-chip bofu">Link Taps</span>
-                <span class="kpi-chip bofu">CTR</span>
-                <span class="kpi-chip bofu">PCR</span>
-              </div>
-            </div>
+          <div class="funnel-card mofu">
+            <div class="funnel-stage-label">Middle of Funnel &mdash; Consideration</div>
+            <div class="funnel-card-title">Build Trust & Engagement</div>
+            <div class="funnel-card-pct">30% of content</div>
+            <ul class="funnel-kpi-list"><li>Saves & Comments</li><li>Profile Visits</li><li>Watch Time</li></ul>
+            <div class="funnel-formats"><div class="funnel-formats-label">Formats</div><span class="format-tag">Educational How-To</span><span class="format-tag">Do This Not That</span><span class="format-tag">Format Explainer</span><span class="format-tag">Member Spotlight</span></div>
           </div>
-
-          <!-- FORMATS ROW -->
-          <div class="funnel-row">
-            <div class="funnel-row-label">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 9h6M9 12h6M9 15h4"/></svg>
-              <span class="funnel-row-label-text">Formats</span>
-            </div>
-            <div class="funnel-cell">
-              <div class="format-row-label">Feed</div>
-              <div class="format-chips">
-                <span class="format-chip">Quick-Shot B-Roll</span>
-                <span class="format-chip">Founder POV</span>
-                <span class="format-chip">Silent Reels</span>
-                <span class="format-chip">Text-First Reel</span>
-                <span class="format-chip">Lesson-Learned Story</span>
-              </div>
-              <div class="format-row-label">Stories</div>
-              <div class="format-chips">
-                <span class="format-chip">Behind-the-Scenes</span>
-                <span class="format-chip">Poll / This or That</span>
-                <span class="format-chip">Day-in-the-Life</span>
-                <span class="format-chip">Countdown / Event Tease</span>
-              </div>
-            </div>
-            <div class="funnel-cell">
-              <div class="format-row-label">Feed</div>
-              <div class="format-chips">
-                <span class="format-chip">Educational How-To</span>
-                <span class="format-chip">Do This Not That</span>
-                <span class="format-chip">Authority Builder</span>
-                <span class="format-chip">Process Breakdown</span>
-                <span class="format-chip">Customer Testimonial</span>
-              </div>
-              <div class="format-row-label">Stories</div>
-              <div class="format-chips">
-                <span class="format-chip">Educational Tip Card</span>
-                <span class="format-chip">Question Box / AMA</span>
-                <span class="format-chip">Customer Spotlight</span>
-                <span class="format-chip">Before/After Reveal</span>
-              </div>
-            </div>
-            <div class="funnel-cell">
-              <div class="format-row-label">Feed</div>
-              <div class="format-chips">
-                <span class="format-chip">Before/After Transformation</span>
-                <span class="format-chip">Customer Testimonial</span>
-                <span class="format-chip">Offers & Promotions</span>
-                <span class="format-chip">Limited Time CTAs</span>
-              </div>
-              <div class="format-row-label">Stories</div>
-              <div class="format-chips">
-                <span class="format-chip">Direct Response / Link Story</span>
-                <span class="format-chip">Swipe-Up Promo</span>
-                <span class="format-chip">Countdown / Event Tease</span>
-              </div>
-            </div>
+          <div class="funnel-card bofu">
+            <div class="funnel-stage-label">Bottom of Funnel &mdash; Conversion</div>
+            <div class="funnel-card-title">Drive Class Bookings</div>
+            <div class="funnel-card-pct">20% of content</div>
+            <ul class="funnel-kpi-list"><li>Link Taps & CTR</li><li>Profile Conversion Rate</li><li>DM Inquiries</li></ul>
+            <div class="funnel-formats"><div class="funnel-formats-label">Formats</div><span class="format-tag">Customer Testimonial</span><span class="format-tag">Direct Response</span><span class="format-tag">Childcare Highlight</span><span class="format-tag">First Class CTA</span></div>
           </div>
-
         </div>
       </div>
 
-      <!-- ── CONTENT PILLARS ─────────────────────────────────────────── -->
       <div id="pillars" class="section">
         <div class="section-header">
-          <div class="section-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><rect x="2" y="3" width="6" height="18"/><rect x="9" y="3" width="6" height="18"/><rect x="16" y="3" width="6" height="18"/></svg>
-          </div>
-          <div>
-            <div class="section-title">Content Pillars</div>
-            <div class="section-subtitle">The 4 core themes every piece of content should align to</div>
-          </div>
+          <div class="section-icon"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><rect x="2" y="3" width="6" height="18"/><rect x="9" y="3" width="6" height="18"/><rect x="16" y="3" width="6" height="18"/></svg></div>
+          <div><div class="section-title">Content Pillars</div><div class="section-subtitle">Core content themes every post should align to</div></div>
         </div>
         <div class="pillars-grid">
           <div class="pillar-card">
-            <div class="pillar-num">Pillar 01</div>
+            <div class="pillar-num">PILLAR 01</div>
             <div class="pillar-name">Efficiency & Format Education</div>
-            <div class="pillar-intent">Education &middot; Authority &middot; Curiosity</div>
-            <div class="pillar-desc">Sell the Rev + Body 30:30 combo and the full class format lineup (Rev, Body, Bounce). Explain why the format works, who it's built for, and why it outperforms separate cardio and toning sessions. Position Define as the smart choice for busy women who refuse to compromise on results.</div>
-            <span class="pillar-funnel-tag">
-              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/></svg>
-              TOFU — Drive New Audience Discovery
-            </span>
+            <div class="pillar-intent">Education, Authority, Curiosity</div>
+            <div class="pillar-desc">Sell the Rev + Body 30:30 combo and the full class format lineup. Explain why the format works, who it's for, and what makes it different from a traditional gym — in a way that makes new prospects say 'I need to try this.'</div>
           </div>
           <div class="pillar-card">
-            <div class="pillar-num">Pillar 02</div>
+            <div class="pillar-num">PILLAR 02</div>
             <div class="pillar-name">Community & Culture</div>
-            <div class="pillar-intent">Connection &middot; Trust &middot; Social Proof</div>
-            <div class="pillar-desc">Show the human side of Define. Behind-the-scenes class energy, member spotlights, instructor personalities, milestone celebrations, and the moments that make Define feel like home. Retention content that keeps existing members emotionally invested and shows prospects what they're missing.</div>
-            <span class="pillar-funnel-tag">
-              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/></svg>
-              MOFU — Build Trust & Deepen Connection
-            </span>
+            <div class="pillar-intent">Connection, Trust, Social Proof</div>
+            <div class="pillar-desc">Show the human side of DEFINE. Behind-the-scenes class energy, member spotlights, instructor personalities, milestone celebrations, and the culture that makes members stay for years.</div>
           </div>
           <div class="pillar-card">
-            <div class="pillar-num">Pillar 03</div>
+            <div class="pillar-num">PILLAR 03</div>
             <div class="pillar-name">Mom-Friendly Positioning</div>
-            <div class="pillar-intent">Connection &middot; Trust &middot; Authority</div>
-            <div class="pillar-desc">Emphasize childcare access, flexible scheduling, and the fact that Define is built for women who want to prioritize themselves without sacrificing their family. Define's most powerful competitive differentiator — it directly removes the #1 barrier for the core IVP. Feature real mom members and childcare in action.</div>
-            <span class="pillar-funnel-tag">
-              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/></svg>
-              BOFU — Drive Class Bookings
-            </span>
+            <div class="pillar-intent">Connection, Trust, Authority</div>
+            <div class="pillar-desc">Emphasize childcare access, flexible scheduling, and the fact that DEFINE is built for women who want to prioritize themselves without sacrificing their family. Make the decision to join feel easy and guilt-free.</div>
           </div>
           <div class="pillar-card">
-            <div class="pillar-num">Pillar 04</div>
+            <div class="pillar-num">PILLAR 04</div>
             <div class="pillar-name">Authority & Wellness Perspective</div>
-            <div class="pillar-intent">Education &middot; Authority &middot; Trust</div>
-            <div class="pillar-desc">Build trust through education. Share insights on training principles, recovery, consistency, the psychology of sustainable fitness, and the science behind beat-based training. Position Define's instructors as credible experts, not just class leaders. Earns long-term trust and reduces cost-justification objections.</div>
-            <span class="pillar-funnel-tag">
-              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/></svg>
-              TOFU — Drive New Audience Discovery
-            </span>
-          </div>
-        </div>
+            <div class="pillar-intent">Education, Authority, Trust</div>
+            <div class="pillar-desc">Build trust through education. Share insights on training principles, recovery, consistency, and the psychology of sustainable fitness habits — positioning DEFINE as a wellness partner, not just a workout destination.</div>
+          </div></div>
       </div>
 
-      <!-- ── IVP PROFILE ─────────────────────────────────────────────── -->
       <div id="ivp" class="section">
         <div class="section-header">
-          <div class="section-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-          </div>
-          <div>
-            <div class="section-title">IVP Profile</div>
-            <div class="section-subtitle">Ideal Viewer / Prospect — who we're talking to and what they need</div>
-          </div>
+          <div class="section-icon"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg></div>
+          <div><div class="section-title">IVP Profile</div><div class="section-subtitle">Ideal Viewer / Prospect &mdash; who we are talking to and what they need</div></div>
         </div>
-        <div class="ivp-grid">
-          <div class="ivp-card">
-            <div class="ivp-card-title">Demographics</div>
-            <ul>
-              <li>Women, ages 25–45</li>
-              <li>Household income $75K–$150K+</li>
-              <li>Cincinnati metro area (Oakley, Hyde Park, Mariemont, Indian Hill)</li>
-              <li>Moms, expecting women, and career-driven professionals</li>
-              <li>Boutique fitness buyers — already spending on wellness</li>
-            </ul>
-          </div>
-          <div class="ivp-card">
-            <div class="ivp-card-title">Psychographics</div>
-            <ul>
-              <li>Time-conscious — efficiency is non-negotiable</li>
-              <li>Community-driven — wants belonging, not just a workout</li>
-              <li>Results-oriented — expects visible progress</li>
-              <li>Aesthetics-aware — cares about the environment and experience</li>
-              <li>Guilt-prone — struggles to prioritize herself without justification</li>
-            </ul>
-          </div>
-          <div class="ivp-card">
-            <div class="ivp-card-title">Core Pain Points</div>
-            <ul>
-              <li><strong>Time scarcity</strong> — can't spend 2 hours at a gym</li>
-              <li><strong>Childcare logistics</strong> — no studio = no workout</li>
-              <li><strong>Intimidation</strong> — fears being the "new person"</li>
-              <li><strong>Cost justification</strong> — boutique pricing needs proof of value</li>
-            </ul>
-          </div>
-          <div class="ivp-card">
-            <div class="ivp-card-title">Dream Outcome</div>
-            <p><strong>Tangible:</strong> Shows up 3–4x/week consistently. Completes the 30:30 without modifying. Feels physically stronger and more energized. Has a standing class time that's non-negotiable in her schedule.</p>
-            <p><strong>Emotional:</strong> Feels like she's finally carved out time for herself without guilt. Leaves every class feeling accomplished. Feels part of a community that knows her name.</p>
-          </div>
-          <div class="ivp-card full-width">
-            <div class="ivp-card-title">Counter-Positioning</div>
-            <div class="counter-grid">
-              <div class="counter-card">
-                <div class="counter-card-vs">vs. Big-Box Gyms</div>
-                <p>Expert-led, beat-based classes vs. machines and mirrors. Community culture — you know instructors by name. 30:30 delivers more in 60 min than a 2-hour gym session.</p>
-              </div>
-              <div class="counter-card">
-                <div class="counter-card-vs">vs. Other Boutique Studios</div>
-                <p>Only studio in Cincinnati offering Rev + Body 30:30 in one session. Only Bounce (trampoline HIIT) studio in Cincinnati. On-site childcare — no other boutique studio offers this.</p>
-              </div>
-              <div class="counter-card">
-                <div class="counter-card-vs">vs. At-Home Fitness</div>
-                <p>Accountability and community that at-home fitness can't replicate. Instructor energy and live music create an experience. Childcare on-site removes the "I can't leave the kids" excuse entirely.</p>
-              </div>
+        <div class="ivp-block">
+          <div class="ivp-name">The Ambitious Mom / Busy Professional</div>
+          <div class="ivp-grid"><div>
+              <div class="ivp-section-title">Core Motivators</div>
+              <div class="ivp-item"><div class="ivp-item-label">Efficiency Over Everything</div><div class="ivp-item-text">Wants maximum results in minimum time. The 30:30 format and low-impact approach speak directly to her — she can get a real workout without wrecking her body or her schedule.</div></div>
+              <div class="ivp-item"><div class="ivp-item-label">Community Without Judgment</div><div class="ivp-item-text">Wants to work out somewhere that feels welcoming, not intimidating. DEFINE's culture of encouragement and real-women energy is a major draw.</div></div>
+              <div class="ivp-item"><div class="ivp-item-label">Childcare Access</div><div class="ivp-item-text">The on-site childcare is often the deciding factor. It removes the last barrier between her and consistent fitness — and it needs to be front and center in the content.</div></div>
             </div>
-          </div>
+            <div>
+              <div class="ivp-section-title">Key Challenges</div>
+              <div class="ivp-item"><div class="ivp-item-label">Time Scarcity</div><div class="ivp-item-text">Genuinely doesn't have time for a long workout. Needs to know that 30-45 minutes at DEFINE is worth it — and that the format is designed for her reality, not a fitness influencer's.</div></div>
+              <div class="ivp-item"><div class="ivp-item-label">Format Confusion</div><div class="ivp-item-text">Doesn't know what Rev, Body, or Bounce are. Format education that makes the classes feel approachable and exciting — not intimidating — is the first conversion hurdle to clear.</div></div>
+            </div></div>
         </div>
       </div>
 
-      <!-- ── POSTING SCHEDULE ────────────────────────────────────────── -->
       <div id="schedule" class="section">
         <div class="section-header">
-          <div class="section-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+          <div class="section-icon"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></div>
+          <div><div class="section-title">Posting Schedule</div><div class="section-subtitle">Content cadence and format assignments by day</div></div>
+        </div>
+        <div class="schedule-grid">
+          <div>
+            <div class="schedule-col-header">Feed Posts</div>
+            
+            <div class="schedule-day-card">
+              <div class="schedule-day-label">Tuesday</div>
+              <div class="schedule-formats">Quick-Shot B-Roll, Founder POV, Before/After Transformation</div>
+            </div>
+            <div class="schedule-day-card">
+              <div class="schedule-day-label">Thursday</div>
+              <div class="schedule-formats">Educational (How-To), Do This Not That, Customer Testimonial</div>
+            </div>
           </div>
           <div>
-            <div class="section-title">Posting Schedule</div>
-            <div class="section-subtitle">Feed days, story days, pillar mapping, and format intent per slot</div>
-          </div>
-        </div>
-        <div class="schedule-wrap">
-          <div class="schedule-card">
-            <div class="schedule-card-hdr">
-              <span class="schedule-card-hdr-title">Feed Posts</span>
-              <span class="schedule-card-hdr-days">Tue &middot; Thu &middot; Fri</span>
-            </div>
-            <div class="schedule-day">
-              <div>
-                <div class="schedule-day-name">Tuesday</div>
-                <div class="schedule-day-pillar">Pillar 01 · TOFU</div>
-              </div>
-              <div>
-                <div class="schedule-formats-row">
-                  <span class="sched-chip">Quick-Shot B-Roll</span>
-                  <span class="sched-chip">Founder POV</span>
-                  <span class="sched-chip">Silent Reel</span>
-                </div>
-                <div class="schedule-intent">Class energy content, 30:30 format story, high-reach awareness reels. Goal: views + shares.</div>
-              </div>
-            </div>
-            <div class="schedule-day">
-              <div>
-                <div class="schedule-day-name">Thursday</div>
-                <div class="schedule-day-pillar">Pillar 02 + 04 · MOFU</div>
-              </div>
-              <div>
-                <div class="schedule-formats-row">
-                  <span class="sched-chip">Educational How-To</span>
-                  <span class="sched-chip">Do This Not That</span>
-                  <span class="sched-chip">Customer Testimonial</span>
-                </div>
-                <div class="schedule-intent">Format education, first-timer guides, member milestone celebrations. Goal: saves + comments.</div>
-              </div>
-            </div>
-            <div class="schedule-day">
-              <div>
-                <div class="schedule-day-name">Friday</div>
-                <div class="schedule-day-pillar">Pillar 03 · BOFU</div>
-              </div>
-              <div>
-                <div class="schedule-formats-row">
-                  <span class="sched-chip">Customer Spotlight</span>
-                  <span class="sched-chip">Before/After</span>
-                  <span class="sched-chip">Offers & Promos</span>
-                </div>
-                <div class="schedule-intent">Mom spotlights, booking CTA content, first-timer offers. Goal: link taps + PCR.</div>
-              </div>
-            </div>
-          </div>
-          <div class="schedule-card">
-            <div class="schedule-card-hdr">
-              <span class="schedule-card-hdr-title">Stories</span>
-              <span class="schedule-card-hdr-days">Mon &middot; Wed</span>
-            </div>
-            <div class="schedule-day">
-              <div>
-                <div class="schedule-day-name">Monday</div>
-                <div class="schedule-day-pillar">Pillar 02 · TOFU</div>
-              </div>
-              <div>
-                <div class="schedule-formats-row">
-                  <span class="sched-chip">Behind-the-Scenes</span>
-                  <span class="sched-chip">Poll / This or That</span>
-                </div>
-                <div class="schedule-intent">Studio setup, instructor prep, childcare room, Rev vs. Body polls. Goal: reach + engagement.</div>
-              </div>
-            </div>
-            <div class="schedule-day">
-              <div>
-                <div class="schedule-day-name">Wednesday</div>
-                <div class="schedule-day-pillar">Pillar 04 · MOFU</div>
-              </div>
-              <div>
-                <div class="schedule-formats-row">
-                  <span class="sched-chip">Educational Tip Card</span>
-                  <span class="sched-chip">Question Box / AMA</span>
-                </div>
-                <div class="schedule-intent">Pre-class tips, 30:30 science, open Q&amp;A for IVP data gathering. Goal: profile visits + saves.</div>
-              </div>
-            </div>
+            <div class="schedule-col-header">Stories</div>
+            <div class="schedule-day-card"><div class="schedule-day-label">Monday / Wednesday / Friday</div><div class="schedule-formats">Behind-the-scenes, polls, educational tip cards, customer spotlights, direct response story links</div></div>
           </div>
         </div>
       </div>
 
-      <!-- ── PERFORMANCE DASHBOARD ───────────────────────────────────── -->
       <div id="performance" class="section">
         <div class="section-header">
-          <div class="section-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
-          </div>
-          <div>
-            <div class="section-title">Performance Dashboard</div>
-            <div class="section-subtitle">Last 3 months — metrics mapped to funnel goals with health indicators</div>
-          </div>
+          <div class="section-icon"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></div>
+          <div><div class="section-title">Performance Dashboard</div><div class="section-subtitle">Last 3 months &mdash; key metrics by funnel stage</div></div>
         </div>
-
-        <div class="perf-header-row">
-          <div class="perf-summary-card">
-            <div class="perf-summary-label">Latest Score</div>
-            <div class="perf-summary-score">7.2</div>
-            <div class="perf-summary-sub">Building — Feb 2026</div>
-            <div class="score-trend">
-              <div class="score-dot building" title="Dec 2025: 7.4"></div>
-              <div class="score-dot building" title="Jan 2026: 7.3"></div>
-              <div class="score-dot building" title="Feb 2026: 7.2"></div>
-              <div class="score-dot inactive"></div>
-              <div class="score-dot inactive"></div>
-            </div>
-          </div>
-          <div class="perf-summary-card">
-            <div class="perf-summary-label">Stage Healthy Range</div>
-            <div class="perf-summary-score" style="font-size:22px;margin-top:4px;">7.5 – 8.5</div>
-            <div class="perf-summary-sub">Lift stage benchmark · Currently below floor</div>
-          </div>
-          <div class="perf-summary-card">
-            <div class="perf-summary-label">Primary Watch Item</div>
-            <div class="perf-summary-score" style="font-size:16px;margin-top:6px;color:#d97706;">Saves &amp; Follower Growth</div>
-            <div class="perf-summary-sub">Saves critically below floor (target 80–400). TOFU volume needs increase.</div>
-          </div>
-        </div>
-
-        <!-- Scrollable full-metric table -->
-        <div class="perf-table-wrap" style="overflow-x:auto;">
-          <table class="perf-table" style="min-width:1100px;">
+        <div class="perf-table-wrap">
+          <table class="perf-table">
             <thead>
-              <!-- Group headers -->
-              <tr style="background:#060f26;">
-                <th rowspan="2" style="min-width:90px;">Month</th>
-                <th colspan="1" style="text-align:center;color:rgba(255,255,255,0.35);font-size:8.5px;letter-spacing:1px;border-right:1px solid rgba(255,255,255,0.1);">BASELINE</th>
-                <th colspan="4" style="text-align:center;color:#93c5fd;font-size:8.5px;letter-spacing:1px;border-right:1px solid rgba(255,255,255,0.1);">TOP OF FUNNEL — AWARENESS</th>
-                <th colspan="5" style="text-align:center;color:#86efac;font-size:8.5px;letter-spacing:1px;border-right:1px solid rgba(255,255,255,0.1);">MIDDLE OF FUNNEL — ENGAGEMENT</th>
-                <th colspan="3" style="text-align:center;color:#d8b4fe;font-size:8.5px;letter-spacing:1px;border-right:1px solid rgba(255,255,255,0.1);">BOTTOM OF FUNNEL — CONVERSION</th>
-                <th rowspan="2" style="text-align:center;">Score</th>
-              </tr>
               <tr>
-                <th style="border-right:1px solid rgba(255,255,255,0.1);">Followers</th>
-                <th>Reach/Day</th>
-                <th>New Followers</th>
-                <th>Shares</th>
-                <th style="border-right:1px solid rgba(255,255,255,0.1);">Views</th>
-                <th>Profile Visits</th>
-                <th>Avg Watch Time</th>
-                <th>Retention %</th>
-                <th>Saves</th>
-                <th style="border-right:1px solid rgba(255,255,255,0.1);">Comments</th>
-                <th>CTR</th>
-                <th>Link Taps</th>
-                <th style="border-right:1px solid rgba(255,255,255,0.1);">PCR</th>
-              </tr>
-              <!-- Target ranges row -->
-              <tr style="background:#f0f4ff;">
-                <td style="font-size:9px;font-weight:700;color:#6b7280;padding:6px 14px;">Lift Target</td>
-                <td style="font-size:9px;color:#6b7280;padding:6px 10px;border-right:1px solid #e4e7ec;">2,500–10,000</td>
-                <td style="font-size:9px;color:#6b7280;padding:6px 10px;">1,500–5,000</td>
-                <td style="font-size:9px;color:#6b7280;padding:6px 10px;">100–270</td>
-                <td style="font-size:9px;color:#6b7280;padding:6px 10px;">60–300</td>
-                <td style="font-size:9px;color:#6b7280;padding:6px 10px;border-right:1px solid #e4e7ec;">40K–150K</td>
-                <td style="font-size:9px;color:#6b7280;padding:6px 10px;">300–2,000</td>
-                <td style="font-size:9px;color:#6b7280;padding:6px 10px;">6s–10s</td>
-                <td style="font-size:9px;color:#6b7280;padding:6px 10px;">50%–65%</td>
-                <td style="font-size:9px;color:#6b7280;padding:6px 10px;">80–400</td>
-                <td style="font-size:9px;color:#6b7280;padding:6px 10px;border-right:1px solid #e4e7ec;">75–250</td>
-                <td style="font-size:9px;color:#6b7280;padding:6px 10px;">3%–6%</td>
-                <td style="font-size:9px;color:#6b7280;padding:6px 10px;">30–180</td>
-                <td style="font-size:9px;color:#6b7280;padding:6px 10px;border-right:1px solid #e4e7ec;">10%–16%</td>
-                <td style="font-size:9px;color:#6b7280;padding:6px 10px;"></td>
+                <th>Month</th><th>Followers</th><th>Reach/Day</th><th>New Followers</th>
+                <th>Views</th><th>Profile Visits</th><th>Watch Time</th>
+                <th>Saves</th><th>Comments</th><th>Link Taps</th><th>Score</th>
               </tr>
             </thead>
             <tbody>
-              <!-- Oct 2025 -->
-              <tr>
-                <td>Oct 2025</td>
-                <td style="border-right:1px solid #e4e7ec;">3,614</td>
-                <td><span class="metric-status ms-watch">408 ↓</span></td>
-                <td><span class="metric-status ms-watch">27 ↓</span></td>
-                <td><span class="metric-status ms-watch">28 ↓</span></td>
-                <td style="border-right:1px solid #e4e7ec;"><span class="metric-status ms-ok">52,314 ✓</span></td>
-                <td><span class="metric-status ms-ok">512 ✓</span></td>
-                <td><span class="metric-status ms-watch">4.3s ↓</span></td>
-                <td>N/A</td>
-                <td><span class="metric-status ms-watch">5 ↓</span></td>
-                <td style="border-right:1px solid #e4e7ec;"><span class="metric-status ms-watch">20 ↓</span></td>
-                <td><span class="metric-status ms-ok">6.3% ✓</span></td>
-                <td><span class="metric-status ms-ok">32 ✓</span></td>
-                <td style="border-right:1px solid #e4e7ec;"><span class="metric-status ms-ok">5.3% ↓</span></td>
-                <td><span class="score-badge sb-solid">7.5</span></td>
-              </tr>
-              <!-- Nov 2025 -->
-              <tr>
-                <td>Nov 2025</td>
-                <td style="border-right:1px solid #e4e7ec;">3,640</td>
-                <td><span class="metric-status ms-watch">434 ↓</span></td>
-                <td><span class="metric-status ms-watch">48 ↓</span></td>
-                <td><span class="metric-status ms-watch">16 ↓</span></td>
-                <td style="border-right:1px solid #e4e7ec;"><span class="metric-status ms-ok">52,526 ✓</span></td>
-                <td><span class="metric-status ms-ok">681 ✓</span></td>
-                <td><span class="metric-status ms-watch">4.8s ↓</span></td>
-                <td>N/A</td>
-                <td><span class="metric-status ms-watch">6 ↓</span></td>
-                <td style="border-right:1px solid #e4e7ec;"><span class="metric-status ms-watch">26 ↓</span></td>
-                <td><span class="metric-status ms-strong">12.3% ↑</span></td>
-                <td><span class="metric-status ms-ok">84 ✓</span></td>
-                <td style="border-right:1px solid #e4e7ec;"><span class="metric-status ms-ok">7.0% ↓</span></td>
-                <td><span class="score-badge sb-solid">8.0</span></td>
-              </tr>
-              <!-- Dec 2025 -->
               <tr>
                 <td>Dec 2025</td>
-                <td style="border-right:1px solid #e4e7ec;">3,643</td>
-                <td><span class="metric-status ms-watch">897 ✓</span></td>
-                <td><span class="metric-status ms-watch">27 ↓</span></td>
-                <td><span class="metric-status ms-watch">25 ↓</span></td>
-                <td style="border-right:1px solid #e4e7ec;"><span class="metric-status ms-ok">91,774 ✓</span></td>
-                <td><span class="metric-status ms-ok">801 ✓</span></td>
-                <td><span class="metric-status ms-watch">4.8s ↓</span></td>
-                <td>N/A</td>
-                <td><span class="metric-status ms-watch">4 ↓</span></td>
-                <td style="border-right:1px solid #e4e7ec;"><span class="metric-status ms-ok">36 ↓</span></td>
-                <td><span class="metric-status ms-ok">6.0% ✓</span></td>
-                <td><span class="metric-status ms-ok">48 ✓</span></td>
-                <td style="border-right:1px solid #e4e7ec;"><span class="metric-status ms-watch">3.4% ↓</span></td>
-                <td><span class="score-badge sb-building">7.4</span></td>
+                <td>3,643</td>
+                <td>897</td>
+                <td>27</td>
+                <td>91,774</td>
+                <td>801</td>
+                <td>4.8s</td>
+                <td>4</td>
+                <td>36</td>
+                <td>48</td>
+                <td><span class="score-badge score-low">7.4</span></td>
               </tr>
-              <!-- Jan 2026 -->
               <tr>
                 <td>Jan 2026</td>
-                <td style="border-right:1px solid #e4e7ec;">3,652</td>
-                <td><span class="metric-status ms-watch">543 ↓</span></td>
-                <td><span class="metric-status ms-watch">42 ↓</span></td>
-                <td><span class="metric-status ms-ok">103 ✓</span></td>
-                <td style="border-right:1px solid #e4e7ec;"><span class="metric-status ms-watch">48,730 ✓</span></td>
-                <td><span class="metric-status ms-ok">767 ✓</span></td>
-                <td><span class="metric-status ms-watch">4.3s ↓</span></td>
-                <td><span class="metric-status ms-ok">61.3% ✓</span></td>
-                <td><span class="metric-status ms-ok">36 ↓</span></td>
-                <td style="border-right:1px solid #e4e7ec;"><span class="metric-status ms-watch">19 ↓</span></td>
-                <td><span class="metric-status ms-watch">2.7% ↓</span></td>
-                <td><span class="metric-status ms-watch">21 ↓</span></td>
-                <td style="border-right:1px solid #e4e7ec;"><span class="metric-status ms-ok">5.5% ↓</span></td>
-                <td><span class="score-badge sb-building">7.3</span></td>
+                <td>3,652</td>
+                <td>543</td>
+                <td>42</td>
+                <td>48,730</td>
+                <td>767</td>
+                <td>4.3s</td>
+                <td>36</td>
+                <td>19</td>
+                <td>21</td>
+                <td><span class="score-badge score-low">7.3</span></td>
               </tr>
-              <!-- Feb 2026 -->
               <tr>
                 <td>Feb 2026</td>
-                <td style="border-right:1px solid #e4e7ec;">3,655</td>
-                <td><span class="metric-status ms-watch">514 ↓</span></td>
-                <td><span class="metric-status ms-watch">31 ↓</span></td>
-                <td><span class="metric-status ms-watch">25 ↓</span></td>
-                <td style="border-right:1px solid #e4e7ec;"><span class="metric-status ms-ok">53,247 ✓</span></td>
-                <td><span class="metric-status ms-ok">584 ✓</span></td>
-                <td><span class="metric-status ms-watch">4.3s ↓</span></td>
-                <td><span class="metric-status ms-watch">47.8% ↓</span></td>
-                <td><span class="metric-status ms-watch">3 ↓</span></td>
-                <td style="border-right:1px solid #e4e7ec;"><span class="metric-status ms-ok">24 ↓</span></td>
-                <td><span class="metric-status ms-ok">4.1% ✓</span></td>
-                <td><span class="metric-status ms-watch">24 ↓</span></td>
-                <td style="border-right:1px solid #e4e7ec;"><span class="metric-status ms-ok">5.3% ↓</span></td>
-                <td><span class="score-badge sb-building">7.2</span></td>
-              </tr>
-            </tbody>
+                <td>3,655</td>
+                <td>514</td>
+                <td>31</td>
+                <td>53,247</td>
+                <td>584</td>
+                <td>4.3s</td>
+                <td>3</td>
+                <td>24</td>
+                <td>24</td>
+                <td><span class="score-badge score-low">7.2</span></td>
+              </tr></tbody>
           </table>
-          <!-- Legend -->
-          <div style="display:flex;gap:16px;padding:10px 18px;border-top:1px solid var(--border);background:#fafbfc;flex-wrap:wrap;">
-            <span style="font-size:10px;color:var(--text-muted);display:flex;align-items:center;gap:5px;"><span class="metric-status ms-strong" style="font-size:9px;">↑ Strong</span> Exceeds target range</span>
-            <span style="font-size:10px;color:var(--text-muted);display:flex;align-items:center;gap:5px;"><span class="metric-status ms-ok" style="font-size:9px;">✓ On Track</span> Within target range</span>
-            <span style="font-size:10px;color:var(--text-muted);display:flex;align-items:center;gap:5px;"><span class="metric-status ms-watch" style="font-size:9px;">↓ Watch</span> Below target range</span>
-          </div>
-          <div class="perf-callout">
-            <div class="perf-callout-icon">
-              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-            </div>
-            <div><strong>Strategic note:</strong> Saves are critically below floor (target: 80–400) across all 5 months. New followers and shares are consistently under target — TOFU content volume and reach need to increase. Watch time is below the 6s floor every month. CTR and PCR are consistently healthy. <strong>Priority actions:</strong> (1) Increase saveable MOFU content, (2) Push TOFU reach with higher-volume B-roll and format education reels, (3) Optimize reel hooks to extend watch time past 6s. Full data in Google Sheets.</div>
-          </div>
         </div>
       </div>
 
-      <!-- ── COMMAND CENTER ──────────────────────────────────────────── -->
       <div id="command" class="section">
         <div class="section-header">
-          <div class="section-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
-          </div>
-          <div>
-            <div class="section-title">Command Center</div>
-            <div class="section-subtitle">Quick access to all client-facing and internal resources</div>
-          </div>
+          <div class="section-icon"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg></div>
+          <div><div class="section-title">Command Center</div><div class="section-subtitle">Quick links for all account assets and resources</div></div>
         </div>
         <div class="command-grid">
-          <a href="https://www.instagram.com/defineoakley/" target="_blank" class="cmd-card">
-            <div class="cmd-card-icon">
-              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
-            </div>
-            <div class="cmd-card-label">Instagram</div>
-            <div class="cmd-card-value">@defineoakley</div>
-            <div class="cmd-card-sub">Open profile</div>
+          <a href="https://reports.scrollmedia.co/defineoakley/" target="_blank" class="command-card primary">
+            <div class="command-card-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></div>
+            <div class="command-card-label">Performance Reports</div>
+            <div class="command-card-sub">reports.scrollmedia.co/defineoakley</div>
           </a>
-          <a href="https://defineoakley.com/" target="_blank" class="cmd-card">
-            <div class="cmd-card-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
-            </div>
-            <div class="cmd-card-label">Website</div>
-            <div class="cmd-card-value">defineoakley.com</div>
-            <div class="cmd-card-sub">Primary booking destination</div>
+          <a href="https://www.instagram.com/defineoakley/" target="_blank" class="command-card">
+            <div class="command-card-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg></div>
+            <div class="command-card-label">Instagram Profile</div>
+            <div class="command-card-sub">@defineoakley</div>
           </a>
-          <a href="https://linktr.ee/defineoakley" target="_blank" class="cmd-card">
-            <div class="cmd-card-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
-            </div>
-            <div class="cmd-card-label">Link in Bio</div>
-            <div class="cmd-card-value">Linktree</div>
-            <div class="cmd-card-sub">linktr.ee/defineoakley</div>
+          <a href="https://defineoakley.com/" target="_blank" class="command-card">
+            <div class="command-card-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div>
+            <div class="command-card-label">Website</div>
+            <div class="command-card-sub">defineoakley.com</div>
           </a>
-          <a href="https://reports.scrollmedia.co/define/" target="_blank" class="cmd-card">
-            <div class="cmd-card-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
-            </div>
-            <div class="cmd-card-label">Performance Reports</div>
-            <div class="cmd-card-value">Report Archive</div>
-            <div class="cmd-card-sub">reports.scrollmedia.co/define</div>
-          </a>
-          <div class="cmd-card" style="cursor:default;">
-            <div class="cmd-card-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>
-            </div>
-            <div class="cmd-card-label">Google Drive</div>
-            <div class="cmd-card-value inactive">Add link</div>
-            <div class="cmd-card-sub">Client asset folder</div>
-          </div>
-          <div class="cmd-card" style="cursor:default;">
-            <div class="cmd-card-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 9h6M9 12h6M9 15h4"/></svg>
-            </div>
-            <div class="cmd-card-label">Strategy Deck</div>
-            <div class="cmd-card-value inactive">Not on file</div>
-            <div class="cmd-card-sub">Add when available</div>
-          </div>
         </div>
       </div>
-
-      <div class="page-footer">
-        DEFINE Oakley &middot; Account Homebase &middot; Scroll Media Internal Use Only &middot; Updated March 2026
-      </div>
-
     </main>
   </div>
 </div>
 
 <script>
-  // ── PASSWORD GATE ──────────────────────────────────────────────────────
-  document.getElementById('pwInput').addEventListener('keydown', e => {
-    if (e.key === 'Enter') checkPassword();
-  });
+  const PW = 'scroll2024';
   function checkPassword() {
-    const val = document.getElementById('pwInput').value.trim();
-    if (val === 'scrollies') {
+    const val = document.getElementById('pwInput').value;
+    if (val === PW) {
       document.getElementById('pw-gate').style.display = 'none';
       document.getElementById('app').classList.remove('pw-hidden');
-      localStorage.setItem('sm_homebase_auth', '1');
+      localStorage.setItem('sm_auth','1');
     } else {
       document.getElementById('pw-error').style.display = 'block';
     }
   }
-  if (localStorage.getItem('sm_homebase_auth') === '1') {
-    document.getElementById('pw-gate').style.display = 'none';
+  document.getElementById('pwInput').addEventListener('keydown', e => { if (e.key==='Enter') checkPassword(); });
+  if (localStorage.getItem('sm_auth')==='1') {
+    document.getElementById('pw-gate').style.display='none';
     document.getElementById('app').classList.remove('pw-hidden');
   }
-
-  // ── SIDEBAR ACTIVE STATE ───────────────────────────────────────────────
-  const sectionIds = ['overview','focus','strategy','funnel','pillars','ivp','schedule','performance','command'];
+  const sections = document.querySelectorAll('[id]');
   const navLinks = document.querySelectorAll('.sidebar-nav a');
-  window.addEventListener('scroll', () => {
-    let current = '';
-    sectionIds.forEach(id => {
-      const el = document.getElementById(id);
-      if (el && window.scrollY >= el.offsetTop - 80) current = id;
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        navLinks.forEach(l => l.classList.remove('active'));
+        const active = document.querySelector(`.sidebar-nav a[href="#${entry.target.id}"]`);
+        if (active) active.classList.add('active');
+      }
     });
-    navLinks.forEach(link => {
-      link.classList.remove('active');
-      if (link.getAttribute('href') === '#' + current) link.classList.add('active');
-    });
-  });
-
-  // ── THIS MONTH'S FOCUS — INLINE EDITING ───────────────────────────────
-  const focusFields = ['fc-cta','fc-cta-sub','fc-priority','fc-priority-sub','fc-campaign','fc-campaign-sub'];
-  const focusData = {};
-
-  // Load saved data from localStorage
-  focusFields.forEach(id => {
-    const el = document.getElementById(id);
-    if (!el) return;
-    const saved = localStorage.getItem('sm_focus_' + id);
-    if (saved) el.value = saved;
-    focusData[id] = el.value;
-
-    el.addEventListener('focus', () => {
-      el.style.borderBottomColor = '#0c3387';
-    });
-    el.addEventListener('blur', () => {
-      el.style.borderBottomColor = 'transparent';
-      localStorage.setItem('sm_focus_' + id, el.value);
-    });
-    // Auto-resize textareas
-    if (el.tagName === 'TEXTAREA') {
-      el.addEventListener('input', () => {
-        el.style.height = 'auto';
-        el.style.height = el.scrollHeight + 'px';
-      });
-      el.style.height = el.scrollHeight + 'px';
-    }
-  });
-
-  function saveFocus() {
-    focusFields.forEach(id => {
-      const el = document.getElementById(id);
-      if (el) localStorage.setItem('sm_focus_' + id, el.value);
-    });
-  }
+  }, { rootMargin: '-20% 0px -70% 0px' });
+  sections.forEach(s => observer.observe(s));
 </script>
-
 </body>
 </html>
