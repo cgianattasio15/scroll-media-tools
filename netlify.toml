@@ -42,6 +42,11 @@
   to = "/.netlify/functions/subscribe"
   status = 200
 
+[[redirects]]
+  from = "/api/check-subscriber"
+  to = "/.netlify/functions/check-subscriber"
+  status = 200
+
 # Security headers
 [[headers]]
   for = "/access/*"

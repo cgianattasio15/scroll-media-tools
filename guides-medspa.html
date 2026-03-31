@@ -3269,15 +3269,32 @@ async function handleGateSubmit() {
   var firstName = document.getElementById('gate-first-name').value.trim();
   var email = document.getElementById('gate-email').value.trim();
   var btn = document.getElementById('gate-btn');
-  
+
   if (!firstName) { document.getElementById('gate-first-name').focus(); return; }
   if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
     document.getElementById('gate-email').focus(); return;
   }
-  
+
   btn.disabled = true;
   btn.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-6.219-8.56"/></svg> Unlocking...';
-  
+
+  // Step 1: Check if subscriber already exists in Kit
+  var isExisting = false;
+  var currentTags = [];
+  try {
+    var checkRes = await fetch('/api/check-subscriber?email=' + encodeURIComponent(email));
+    if (checkRes.ok) {
+      var checkData = await checkRes.json();
+      isExisting = checkData.exists || false;
+      currentTags = checkData.tags || [];
+    }
+  } catch(e) {
+    // Fail open — treat as new subscriber
+    isExisting = false;
+    currentTags = [];
+  }
+
+  // Step 2: Subscribe with routing context
   try {
     await fetch('/api/subscribe', {
       method: 'POST',
@@ -3286,18 +3303,21 @@ async function handleGateSubmit() {
         first_name: firstName,
         email: email,
         guide: 'medspa-guide',
+        niche: 'medspa',
         utm_source: 'guide-gate',
-        utm_campaign: 'medspa-biz-dev'
+        utm_campaign: 'medspa-biz-dev',
+        is_existing: isExisting,
+        current_tags: currentTags
       })
     });
   } catch(e) {
     // Fail silently — always unlock
   }
-  
-  // Show success then unlock
+
+  // Step 3: Show success and unlock the guide
   document.getElementById('gate-form-state').style.display = 'none';
   document.getElementById('gate-success-state').style.display = 'block';
-  
+
   setTimeout(function() {
     sessionStorage.setItem('medspa-guide-unlocked', '1');
     var gate = document.getElementById('email-gate');
