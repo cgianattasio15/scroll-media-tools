@@ -21,19 +21,20 @@
     gtag('js', new Date());
     gtag('config', 'G-XXXXXXXXXX');
   </script> -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="The Med Spa Instagram Playbook — a complete Instagram strategy guide for med spas, aesthetic injectors, and clinical providers. Stop competing on price. Start converting on trust.">
   <meta property="og:title" content="The Med Spa Instagram Playbook | Scroll Media">
   <meta property="og:description" content="Stop competing on price. Start converting on trust. A complete Instagram strategy guide for med spas, aesthetic injectors, and clinical providers.">
-  <meta property="og:image" content="og-guides-medspa.png">
+  <meta property="og:image" content="https://tools.scrollmedia.co/og-guides-medspa.png">
   <meta property="og:type" content="website">
   <meta name="twitter:card" content="summary_large_image">
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>The Med Spa Instagram Playbook | Scroll Media</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="icon" href="scroll-favicon.svg" type="image/svg+xml">
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Source+Sans+3:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="icon" href="/favicon.png" type="image/png">
+  <link rel="icon" href="/scroll-favicon.svg" type="image/svg+xml">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Source+Sans+3:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
 /* ═══════════════════════════════════════════
    RESET & BASE
@@ -42,7 +43,7 @@
 html { scroll-behavior: smooth; }
 body {
   font-family: 'Source Sans 3', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  background: #0D1B2A;
+  background: #151516;
   color: #f2f3f4;
   line-height: 1.6;
   overflow-x: hidden;
@@ -52,27 +53,29 @@ body {
    CSS VARIABLES
 ═══════════════════════════════════════════ */
 :root {
-  --navy: #0D1B2A;
-  --navy-mid: #142233;
-  --navy-light: #1a2e42;
-  --navy-card: #1e3347;
-  --lime: #C8F135;
-  --lime-dim: rgba(200,241,53,0.15);
-  --lime-border: rgba(200,241,53,0.3);
-  --azure: #3A7BD5;
-  --azure-dim: rgba(58,123,213,0.15);
-  --azure-border: rgba(58,123,213,0.3);
+  /* ── Official Scroll Media Scheme A (Dark/Authority) ── */
+  --navy: #151516;
+  --navy-mid: #1a1a1b;
+  --navy-light: #222224;
+  --navy-card: #2a2a2c;
+  --lime: #e2ed7a;
+  --lime-dim: rgba(226,237,122,0.12);
+  --lime-border: rgba(226,237,122,0.28);
+  --azure: #0c3387;
+  --azure-dim: rgba(12,51,135,0.18);
+  --azure-border: rgba(12,51,135,0.35);
+  --azure-light: #1a4db8;
   --white: #ffffff;
   --off-white: #f2f3f4;
   --muted: rgba(242,243,244,0.55);
-  --border: rgba(255,255,255,0.08);
-  --tofu-color: #3A7BD5;
+  --border: rgba(255,255,255,0.09);
+  --tofu-color: #0c3387;
   --mofu-color: #f0a500;
-  --bofu-color: #C8F135;
+  --bofu-color: #e2ed7a;
   --text-primary: #f2f3f4;
   --text-secondary: rgba(242,243,244,0.75);
   --text-muted: rgba(242,243,244,0.55);
-  --card-bg: #1a2e42;
+  --card-bg: #222224;
   --font-mono: 'Source Code Pro', monospace;
 }
 
@@ -96,7 +99,7 @@ nav {
   position: fixed;
   top: 0; left: 0; right: 0;
   z-index: 1000;
-  background: rgba(13,27,42,0.92);
+  background: rgba(21,21,22,0.94);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   border-bottom: 1px solid var(--border);
@@ -170,7 +173,7 @@ section {
 }
 
 .section-title {
-  font-family: 'Playfair Display', serif;
+  font-family: 'DM Serif Display', serif;
   font-size: clamp(32px, 4vw, 48px);
   font-weight: 700;
   line-height: 1.15;
@@ -289,7 +292,7 @@ section {
 }
 
 .hero-title {
-  font-family: 'Playfair Display', serif;
+  font-family: 'DM Serif Display', serif;
   font-size: clamp(44px, 6vw, 76px);
   font-weight: 900;
   line-height: 1.05;
@@ -364,7 +367,7 @@ section {
 }
 
 .hero-stat-value {
-  font-family: 'Playfair Display', serif;
+  font-family: 'DM Serif Display', serif;
   font-size: 32px;
   font-weight: 700;
   color: var(--lime);
@@ -428,7 +431,7 @@ section {
 .gap-card.niche .gap-card-tag { color: var(--lime); }
 
 .gap-card-title {
-  font-family: 'Playfair Display', serif;
+  font-family: 'DM Serif Display', serif;
   font-size: 20px;
   font-weight: 700;
   color: var(--white);
@@ -511,7 +514,7 @@ section {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: 'Playfair Display', serif;
+  font-family: 'DM Serif Display', serif;
   font-size: 24px;
   font-weight: 700;
   color: var(--navy);
@@ -569,7 +572,7 @@ section {
 .tam-ladder { display: flex; flex-direction: column; gap: 0; margin-bottom: 48px; position: relative; }
 .tam-ladder::before { content: ''; position: absolute; left: 28px; top: 48px; bottom: 48px; width: 2px; background: linear-gradient(to bottom, var(--azure), var(--lime)); }
 .tam-rung { display: flex; align-items: flex-start; gap: 24px; padding: 24px 0; position: relative; }
-.tam-rung-num { width: 56px; height: 56px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 700; flex-shrink: 0; position: relative; z-index: 1; }
+.tam-rung-num { width: 56px; height: 56px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: 'DM Serif Display', serif; font-size: 20px; font-weight: 700; flex-shrink: 0; position: relative; z-index: 1; }
 .tam-rung:nth-child(1) .tam-rung-num { background: rgba(58,123,213,0.2); border: 2px solid var(--azure); color: var(--azure); }
 .tam-rung:nth-child(2) .tam-rung-num { background: rgba(58,123,213,0.3); border: 2px solid var(--azure); color: var(--azure); }
 .tam-rung:nth-child(3) .tam-rung-num { background: rgba(200,241,53,0.15); border: 2px solid var(--lime); color: var(--lime); }
@@ -644,7 +647,7 @@ section {
 #cta-system { background: var(--navy); }
 
 .cta-philosophy { background: var(--navy-light); border: 1px solid var(--border); border-radius: 16px; padding: 36px 40px; margin-bottom: 48px; display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; }
-.cta-philosophy-quote { font-family: 'Playfair Display', serif; font-size: 22px; font-style: italic; color: var(--white); line-height: 1.5; border-left: 4px solid var(--lime); padding-left: 24px; }
+.cta-philosophy-quote { font-family: 'DM Serif Display', serif; font-size: 22px; font-style: italic; color: var(--white); line-height: 1.5; border-left: 4px solid var(--lime); padding-left: 24px; }
 .cta-philosophy-points { display: flex; flex-direction: column; gap: 14px; }
 .cta-philosophy-point { display: flex; align-items: flex-start; gap: 12px; }
 .cta-point-icon { width: 28px; height: 28px; background: var(--lime-dim); border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 13px; flex-shrink: 0; margin-top: 1px; }
@@ -668,7 +671,7 @@ section {
 .cta-example-text { font-size: 12px; color: var(--off-white); font-style: italic; line-height: 1.45; }
 
 .link-in-bio-section { background: var(--navy-light); border: 1px solid var(--border); border-radius: 16px; padding: 36px 40px; }
-.lib-title { font-family: 'Playfair Display', serif; font-size: 24px; font-weight: 700; color: var(--white); margin-bottom: 8px; }
+.lib-title { font-family: 'DM Serif Display', serif; font-size: 24px; font-weight: 700; color: var(--white); margin-bottom: 8px; }
 .lib-subtitle { font-size: 15px; color: var(--muted); margin-bottom: 28px; line-height: 1.55; }
 .lib-rule { display: flex; align-items: center; gap: 12px; padding: 14px 0; border-bottom: 1px solid var(--border); }
 .lib-rule:last-child { border-bottom: none; }
@@ -688,7 +691,7 @@ section {
 .lm-intro-text strong { color: var(--white); }
 .lm-stat-stack { display: flex; flex-direction: column; gap: 16px; }
 .lm-stat { display: flex; align-items: center; gap: 16px; background: var(--navy-card); border-radius: 10px; padding: 14px 18px; border: 1px solid var(--border); }
-.lm-stat-num { font-family: 'Playfair Display', serif; font-size: 28px; font-weight: 700; color: var(--lime); line-height: 1; flex-shrink: 0; min-width: 70px; }
+.lm-stat-num { font-family: 'DM Serif Display', serif; font-size: 28px; font-weight: 700; color: var(--lime); line-height: 1; flex-shrink: 0; min-width: 70px; }
 .lm-stat-text { font-size: 13px; color: var(--muted); line-height: 1.45; }
 
 .lm-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-bottom: 40px; }
@@ -703,11 +706,11 @@ section {
 .lm-card-why-text { font-size: 12px; color: var(--muted); line-height: 1.45; }
 
 .lm-funnel-visual { background: var(--navy-light); border: 1px solid var(--border); border-radius: 16px; padding: 36px 40px; }
-.lm-funnel-title { font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 700; color: var(--white); margin-bottom: 8px; }
+.lm-funnel-title { font-family: 'DM Serif Display', serif; font-size: 22px; font-weight: 700; color: var(--white); margin-bottom: 8px; }
 .lm-funnel-subtitle { font-size: 14px; color: var(--muted); margin-bottom: 32px; }
 .lm-funnel-steps { display: flex; align-items: center; gap: 0; overflow-x: auto; }
 .lm-funnel-step { flex: 1; text-align: center; padding: 20px 12px; background: var(--navy-card); border-radius: 10px; min-width: 120px; }
-.lm-funnel-step-num { font-family: 'Playfair Display', serif; font-size: 28px; font-weight: 700; color: var(--lime); line-height: 1; margin-bottom: 6px; }
+.lm-funnel-step-num { font-family: 'DM Serif Display', serif; font-size: 28px; font-weight: 700; color: var(--lime); line-height: 1; margin-bottom: 6px; }
 .lm-funnel-step-label { font-size: 12px; font-weight: 600; color: var(--white); margin-bottom: 4px; }
 .lm-funnel-step-desc { font-size: 11px; color: var(--muted); line-height: 1.4; }
 .lm-funnel-arrow { font-size: 20px; color: var(--lime); padding: 0 8px; flex-shrink: 0; }
@@ -724,12 +727,12 @@ section {
 .result-card-challenge { font-size: 13px; color: var(--muted); line-height: 1.55; margin-bottom: 20px; padding-bottom: 16px; border-bottom: 1px solid var(--border); }
 .result-metrics { display: flex; flex-direction: column; gap: 12px; }
 .result-metric { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
-.result-metric-value { font-family: 'Playfair Display', serif; font-size: 24px; font-weight: 700; color: var(--lime); line-height: 1; flex-shrink: 0; }
+.result-metric-value { font-family: 'DM Serif Display', serif; font-size: 24px; font-weight: 700; color: var(--lime); line-height: 1; flex-shrink: 0; }
 .result-metric-label { font-size: 12px; color: var(--muted); line-height: 1.35; text-align: right; }
 
 .bridge-callout { background: linear-gradient(135deg, rgba(200,241,53,0.08), rgba(58,123,213,0.08)); border: 1px solid var(--lime-border); border-radius: 16px; padding: 36px 40px; }
 .bridge-callout-label { font-size: 10px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--lime); margin-bottom: 14px; }
-.bridge-callout-quote { font-family: 'Playfair Display', serif; font-size: 20px; font-style: italic; color: var(--white); line-height: 1.6; }
+.bridge-callout-quote { font-family: 'DM Serif Display', serif; font-size: 20px; font-style: italic; color: var(--white); line-height: 1.6; }
 
 /* ═══════════════════════════════════════════
    PRICING
@@ -745,9 +748,9 @@ section {
 .pricing-grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-bottom: 40px; }
 .pricing-entry { background: var(--navy-light); border: 1px solid var(--border); border-radius: 12px; padding: 28px; display: flex; flex-direction: column; gap: 0; }
 .pricing-card-label { font-size: 10px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--lime); margin-bottom: 8px; }
-.pricing-card-name { font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 700; color: var(--white); margin-bottom: 6px; }
+.pricing-card-name { font-family: 'DM Serif Display', serif; font-size: 22px; font-weight: 700; color: var(--white); margin-bottom: 6px; }
 .pricing-card-desc { font-size: 13px; color: var(--muted); line-height: 1.5; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
-.pricing-price { font-family: 'Playfair Display', serif; font-size: 36px; font-weight: 700; color: var(--lime); line-height: 1; margin-bottom: 4px; }
+.pricing-price { font-family: 'DM Serif Display', serif; font-size: 36px; font-weight: 700; color: var(--lime); line-height: 1; margin-bottom: 4px; }
 .pricing-period { font-size: 13px; color: var(--muted); margin-bottom: 20px; }
 .pricing-features { list-style: none; display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; }
 .pricing-features li { display: flex; align-items: flex-start; gap: 10px; font-size: 14px; color: var(--muted); line-height: 1.4; }
@@ -761,10 +764,10 @@ section {
 .signature-hero-badge { display: inline-block; background: var(--lime); color: var(--navy); font-size: 11px; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; padding: 5px 14px; border-radius: 20px; margin-bottom: 24px; }
 .signature-hero-header { display: flex; justify-content: space-between; align-items: flex-start; gap: 40px; margin-bottom: 32px; }
 .signature-hero-label { font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--lime); margin-bottom: 8px; }
-.signature-hero-title { font-family: 'Playfair Display', serif; font-size: 36px; font-weight: 900; color: var(--white); margin-bottom: 12px; }
+.signature-hero-title { font-family: 'DM Serif Display', serif; font-size: 36px; font-weight: 900; color: var(--white); margin-bottom: 12px; }
 .signature-hero-desc { font-size: 15px; color: var(--muted); line-height: 1.65; max-width: 520px; }
 .signature-hero-price-block { text-align: right; min-width: 200px; }
-.signature-hero-price { font-family: 'Playfair Display', serif; font-size: 40px; font-weight: 900; color: var(--lime); line-height: 1; }
+.signature-hero-price { font-family: 'DM Serif Display', serif; font-size: 40px; font-weight: 900; color: var(--lime); line-height: 1; }
 .signature-hero-period { font-size: 13px; color: var(--muted); margin-top: 4px; }
 .signature-included-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 10px; margin-bottom: 32px; padding: 24px; background: rgba(255,255,255,0.03); border-radius: 10px; border: 1px solid var(--border); }
 .signature-included-item { font-size: 13px; color: var(--off-white); padding-left: 18px; position: relative; }
@@ -774,7 +777,7 @@ section {
 .featured-tier { border-color: var(--lime-border); background: rgba(200,241,53,0.06); }
 .signature-tier-divider { font-size: 24px; color: var(--muted); flex-shrink: 0; }
 .signature-tier-name { font-size: 12px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--lime); margin-bottom: 6px; }
-.signature-tier-price { font-family: 'Playfair Display', serif; font-size: 28px; font-weight: 900; color: var(--white); margin-bottom: 6px; }
+.signature-tier-price { font-family: 'DM Serif Display', serif; font-size: 28px; font-weight: 900; color: var(--white); margin-bottom: 6px; }
 .signature-tier-price span { font-size: 14px; font-weight: 400; color: var(--muted); }
 .signature-tier-details { font-size: 12px; color: var(--muted); line-height: 1.5; }
 .signature-credit-callout { background: var(--azure-dim); border: 1px solid var(--azure-border); border-radius: 8px; padding: 16px 20px; font-size: 13px; color: var(--off-white); line-height: 1.6; }
@@ -787,7 +790,7 @@ section {
 .steps-timeline { display: flex; flex-direction: column; gap: 0; margin-bottom: 48px; position: relative; }
 .steps-timeline::before { content: ''; position: absolute; left: 27px; top: 56px; bottom: 56px; width: 2px; background: linear-gradient(to bottom, var(--azure), var(--lime)); }
 .step-item { display: flex; align-items: flex-start; gap: 24px; padding: 20px 0; position: relative; }
-.step-num { width: 56px; height: 56px; border-radius: 50%; background: var(--navy-card); border: 2px solid var(--border); display: flex; align-items: center; justify-content: center; font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 700; color: var(--lime); flex-shrink: 0; position: relative; z-index: 1; transition: border-color 0.3s, background 0.3s; }
+.step-num { width: 56px; height: 56px; border-radius: 50%; background: var(--navy-card); border: 2px solid var(--border); display: flex; align-items: center; justify-content: center; font-family: 'DM Serif Display', serif; font-size: 20px; font-weight: 700; color: var(--lime); flex-shrink: 0; position: relative; z-index: 1; transition: border-color 0.3s, background 0.3s; }
 .step-item:hover .step-num { border-color: var(--lime); background: var(--lime-dim); }
 .step-content { flex: 1; padding-top: 10px; }
 .step-title { font-size: 18px; font-weight: 700; color: var(--white); margin-bottom: 6px; }
@@ -796,7 +799,7 @@ section {
 .cta-final { background: linear-gradient(135deg, var(--navy-light), var(--navy-card)); border: 1px solid var(--lime-border); border-radius: 20px; padding: 56px 60px; text-align: center; position: relative; overflow: hidden; }
 .cta-final::before { content: ''; position: absolute; top: -100px; left: 50%; transform: translateX(-50%); width: 400px; height: 400px; background: radial-gradient(circle, rgba(200,241,53,0.08) 0%, transparent 70%); pointer-events: none; }
 .cta-final-label { font-size: 11px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--lime); margin-bottom: 16px; }
-.cta-final-title { font-family: 'Playfair Display', serif; font-size: 36px; font-weight: 700; color: var(--white); margin-bottom: 16px; line-height: 1.2; }
+.cta-final-title { font-family: 'DM Serif Display', serif; font-size: 36px; font-weight: 700; color: var(--white); margin-bottom: 16px; line-height: 1.2; }
 .cta-final-text { font-size: 17px; color: var(--muted); max-width: 560px; margin: 0 auto 36px; line-height: 1.65; }
 .cta-final-contact { display: flex; justify-content: center; gap: 32px; margin-top: 24px; }
 .cta-final-contact-item { font-size: 14px; color: var(--muted); }
@@ -1040,15 +1043,252 @@ footer { background: var(--navy-mid); border-top: 1px solid var(--border); paddi
   font-weight: 500;
   letter-spacing: 0.02em;
 }
+
+/* ═══════════════════════════════════════════
+   CHAPTER PROGRESS TRACKER
+═══════════════════════════════════════════ */
+.chapter-tracker {
+  position: fixed;
+  right: 24px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 900;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+.chapter-tracker.visible { opacity: 1; }
+.tracker-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.18);
+  border: 1px solid rgba(255,255,255,0.25);
+  cursor: pointer;
+  transition: all 0.25s ease;
+  position: relative;
+}
+.tracker-dot:hover,
+.tracker-dot.active {
+  background: var(--lime);
+  border-color: var(--lime);
+  transform: scale(1.35);
+}
+.tracker-dot .tracker-label {
+  position: absolute;
+  right: 18px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: var(--navy-card);
+  border: 1px solid var(--border);
+  color: var(--off-white);
+  font-size: 11px;
+  font-weight: 600;
+  white-space: nowrap;
+  padding: 4px 10px;
+  border-radius: 4px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s;
+  letter-spacing: 0.04em;
+}
+.tracker-dot:hover .tracker-label { opacity: 1; }
+@media (max-width: 1200px) { .chapter-tracker { display: none; } }
+
+
+/* ═══════════════════════════════════════════
+   EMAIL GATE OVERLAY
+═══════════════════════════════════════════ */
+#email-gate {
+  position: fixed;
+  inset: 0;
+  z-index: 9998;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background: rgba(21,21,22,0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+#email-gate.unlocked {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.5s ease;
+}
+.gate-card {
+  background: var(--navy-card);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 48px 52px;
+  max-width: 520px;
+  width: 100%;
+  text-align: center;
+  box-shadow: 0 32px 80px rgba(0,0,0,0.5);
+  position: relative;
+}
+.gate-logo {
+  margin-bottom: 28px;
+}
+.gate-logo img {
+  height: 28px;
+  width: auto;
+  display: block;
+  margin: 0 auto;
+}
+.gate-eyebrow {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--lime);
+  margin-bottom: 14px;
+}
+.gate-title {
+  font-family: 'DM Serif Display', serif;
+  font-size: clamp(26px, 4vw, 34px);
+  font-weight: 400;
+  line-height: 1.2;
+  color: var(--white);
+  margin-bottom: 14px;
+}
+.gate-subtitle {
+  font-size: 15px;
+  color: var(--muted);
+  line-height: 1.6;
+  margin-bottom: 32px;
+  max-width: 380px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.gate-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+.gate-input {
+  width: 100%;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 13px 16px;
+  font-size: 15px;
+  color: var(--white);
+  font-family: 'Source Sans 3', sans-serif;
+  transition: border-color 0.2s;
+  outline: none;
+}
+.gate-input::placeholder { color: var(--muted); }
+.gate-input:focus { border-color: rgba(226,237,122,0.5); }
+.gate-btn {
+  width: 100%;
+  background: var(--lime);
+  color: var(--navy);
+  font-weight: 700;
+  font-size: 15px;
+  padding: 14px 24px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  font-family: 'Source Sans 3', sans-serif;
+  letter-spacing: 0.01em;
+  transition: opacity 0.2s, transform 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+.gate-btn:hover { opacity: 0.9; transform: translateY(-1px); }
+.gate-btn:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
+.gate-note {
+  font-size: 12px;
+  color: var(--muted);
+  margin-top: 12px;
+}
+.gate-value-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+  margin-bottom: 28px;
+}
+.gate-pill {
+  background: var(--lime-dim);
+  border: 1px solid var(--lime-border);
+  color: var(--lime);
+  font-size: 11px;
+  font-weight: 600;
+  padding: 5px 12px;
+  border-radius: 100px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+@media (max-width: 600px) {
+  .gate-card { padding: 36px 28px; }
+}
+
 </style>
 </head>
 <body>
 
+<- Content Ideas: Behind the Scenes of a Consultation ( MOFU ) Email Gate Overlay -->
+<div id="email-gate">
+  <div class="gate-card">
+    <div class="gate-logo">
+      <img src="scroll-media-logo-white-transparent.png" alt="Scroll Media">
+    </div>
+    <div class="gate-eyebrow">Free Strategy Guide</div>
+    <h2 class="gate-title">The Med Spa Instagram Playbook</h2>
+    <p class="gate-subtitle">9 chapters. Real frameworks. The exact content system we build for med spa clients today.</p>
+    <div class="gate-value-pills">
+      <span class="gate-pill">Profile Optimization</span>
+      <span class="gate-pill">Content Strategy</span>
+      <span class="gate-pill">Social SEO</span>
+      <span class="gate-pill">Lead Magnets</span>
+      <span class="gate-pill">CTA System</span>
+    </div>
+    <div id="gate-form-state">
+      <div class="gate-form">
+        <input type="text" id="gate-first-name" class="gate-input" placeholder="First name" autocomplete="given-name">
+        <input type="email" id="gate-email" class="gate-input" placeholder="Work email" autocomplete="email">
+      </div>
+      <button class="gate-btn" id="gate-btn" onclick="handleGateSubmit()">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+        Get Instant Access
+      </button>
+      <p class="gate-note">No spam. Unsubscribe anytime.</p>
+    </div>
+    <div id="gate-success-state" style="display:none;">
+      <div style="width:48px;height:48px;background:var(--lime-dim);border:1px solid var(--lime-border);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 16px;">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--lime)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+      </div>
+      <p style="color:var(--white);font-weight:600;font-size:17px;margin-bottom:8px;">You&rsquo;re in.</p>
+      <p style="color:var(--muted);font-size:14px;">Loading your playbook now...</p>
+    </div>
+  </div>
+</div>
+
 <div id="progress-bar"></div>
+<!-- Chapter Progress Tracker -->
+<div class="chapter-tracker" id="chapter-tracker">
+  <div class="tracker-dot" data-target="gaps" onclick="document.getElementById('gaps').scrollIntoView({behavior:'smooth'})"><span class="tracker-label">The Gaps</span></div>
+  <div class="tracker-dot" data-target="profile" onclick="document.getElementById('profile').scrollIntoView({behavior:'smooth'})"><span class="tracker-label">Profile</span></div>
+  <div class="tracker-dot" data-target="seo" onclick="document.getElementById('seo').scrollIntoView({behavior:'smooth'})"><span class="tracker-label">Social SEO</span></div>
+  <div class="tracker-dot" data-target="content-ideas" onclick="document.getElementById('content-ideas').scrollIntoView({behavior:'smooth'})"><span class="tracker-label">Content Ideas</span></div>
+  <div class="tracker-dot" data-target="cta-system" onclick="document.getElementById('cta-system').scrollIntoView({behavior:'smooth'})"><span class="tracker-label">CTA System</span></div>
+  <div class="tracker-dot" data-target="lead-magnets" onclick="document.getElementById('lead-magnets').scrollIntoView({behavior:'smooth'})"><span class="tracker-label">Lead Magnets</span></div>
+  <div class="tracker-dot" data-target="results" onclick="document.getElementById('results').scrollIntoView({behavior:'smooth'})"><span class="tracker-label">Results</span></div>
+  <div class="tracker-dot" data-target="accounts" onclick="document.getElementById('accounts').scrollIntoView({behavior:'smooth'})"><span class="tracker-label">Accounts</span></div>
+  <div class="tracker-dot" data-target="pricing" onclick="document.getElementById('pricing').scrollIntoView({behavior:'smooth'})"><span class="tracker-label">Pricing</span></div>
+</div>
+
 
 <!-- Navigation -->
 <nav>
-  <a href="https://decks.scrollmedia.co/pitch/" class="nav-logo" target="_blank" rel="noopener">
+  <a href="https://decks.scrollmedia.co/pitch/" class="nav-logo">
     <img src="scroll-media-logo-white-transparent.png" alt="Scroll Media" style="height:32px;width:auto;display:block;">
   </a>
   <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
@@ -1064,7 +1304,7 @@ footer { background: var(--navy-mid); border-top: 1px solid var(--border); paddi
     <li><a href="#cta-system">CTAs</a></li>
     <li><a href="#lead-magnets">Lead Magnets</a></li>
     <li><a href="#results">Results</a></li>
-    <li><a href="#accounts">Accounts We're Loving</a></li>
+    <li><a href="#accounts">Accounts</a></li>
     <li><a href="#pricing">Pricing</a></li>
     <li><a href="https://calendly.com/scrollmedia/discovery" class="nav-cta" target="_blank" rel="noopener">Get Started</a></li>
   </ul>
@@ -1119,6 +1359,9 @@ footer { background: var(--navy-mid); border-top: 1px solid var(--border); paddi
       <div class="hero-badge fade-up">
         <div class="hero-badge-dot"></div>
         Med Spa &amp; Aesthetic Injectors — Instagram Strategy Guide
+        <span style="margin-left:10px;padding-left:10px;border-left:1px solid rgba(226,237,122,0.3);opacity:0.7;">
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:middle;margin-right:3px;"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>~15 min read
+        </span>
       </div>
       <h1 class="hero-title fade-up fade-up-delay-1">
         You're Posting.<br>Nobody's <span class="accent">Booking.</span>
@@ -1127,8 +1370,11 @@ footer { background: var(--navy-mid); border-top: 1px solid var(--border); paddi
         Most med spas are active on Instagram and getting nothing from it. The real problem isn't posting frequency — it's that their content positions them as an order taker, not a clinical authority. This guide breaks down exactly how to fix that, and what a content system built on expertise and patient trust actually looks like.
       </p>
       <div class="hero-ctas fade-up fade-up-delay-3">
-        <a href="#gaps" class="btn-primary">Read the Guide ↓</a>
-        <a href="#next-steps" class="btn-secondary">Work With Us</a>
+        <a href="#gaps" class="btn-primary">
+          Read the Guide
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><polyline points="19 12 12 19 5 12"/></svg>
+        </a>
+        <a href="https://calendly.com/scrollmedia/discovery" class="btn-secondary" target="_blank" rel="noopener">Book a Discovery Call →</a>
       </div>
       <div class="hero-stats fade-up fade-up-delay-4">
         <div>
@@ -1473,7 +1719,7 @@ footer { background: var(--navy-mid); border-top: 1px solid var(--border); paddi
       </div>
     </div>
 
-    <h3 style="font-family: 'Playfair Display', serif; font-size: 24px; font-weight: 700; color: var(--white); margin-bottom: 24px;" class="fade-up">Where to Embed Keywords</h3>
+    <h3 style="font-family: 'DM Serif Display', serif; font-size: 24px; font-weight: 700; color: var(--white); margin-bottom: 24px;" class="fade-up">Where to Embed Keywords</h3>
     <div class="seo-tips-grid">
       <div class="seo-tip-card fade-up">
         <span class="seo-tip-icon">👤</span>
@@ -1490,14 +1736,18 @@ footer { background: var(--navy-mid); border-top: 1px solid var(--border); paddi
       </div>
 
       <div class="seo-tip-card fade-up fade-up-delay-2">
-        <span class="seo-tip-icon">📝</span>
+        <span class="seo-tip-icon">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+      </span>
         <div class="seo-tip-title">Caption First Line</div>
         <div class="seo-tip-text">Instagram indexes the first 125 characters of your caption. Lead with your keyword-rich hook — it's both SEO and the hook that stops the scroll.</div>
         <div class="seo-tip-example">"If you're considering Botox for the first time, here's what your injector should tell you before you sit in the chair."</div>
       </div>
 
       <div class="seo-tip-card fade-up fade-up-delay-3">
-        <span class="seo-tip-icon">🎙️</span>
+        <span class="seo-tip-icon">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>
+      </span>
         <div class="seo-tip-title">Reel Audio (Voiceover)</div>
         <div class="seo-tip-text">Instagram auto-transcribes Reel audio and uses it for search indexing. Say your keywords out loud in your Reels — especially in the first 5 seconds.</div>
         <div class="seo-tip-example">Open with: "If you're looking for a med spa in [city], here's what separates a great injector from a dangerous one..."</div>
@@ -2224,7 +2474,9 @@ footer { background: var(--navy-mid); border-top: 1px solid var(--border); paddi
       <div class="cta-philosophy-quote">"The best CTA doesn't feel like marketing. It feels like the most logical next step for someone who just learned something valuable."</div>
       <div class="cta-philosophy-points">
         <div class="cta-philosophy-point">
-          <div class="cta-point-icon">🎯</div>
+          <div class="cta-point-icon">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+        </div>
           <div class="cta-point-text"><strong>One CTA per post.</strong> Multiple asks = zero action. Pick one thing you want them to do and make it obvious.</div>
         </div>
         <div class="cta-philosophy-point">
@@ -2232,7 +2484,9 @@ footer { background: var(--navy-mid); border-top: 1px solid var(--border); paddi
           <div class="cta-point-text"><strong>Match the CTA to the funnel stage.</strong> A TOFU post should ask for a save or follow — not a booking. Asking for too much too soon kills conversion.</div>
         </div>
         <div class="cta-philosophy-point">
-          <div class="cta-point-icon">🔑</div>
+          <div class="cta-point-icon">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 1 1-7.778 7.778 5.5 5.5 0 0 1 7.777-7.777zm0 0L15.5 7.5m0 0l3 3L22 7l-3-3m-3.5 3.5L19 4"/></svg>
+        </div>
           <div class="cta-point-text"><strong>Use keyword CTAs.</strong> "DM me 'CONSULT'" triggers Instagram's automation tools and creates a trackable, repeatable lead gen system.</div>
         </div>
       </div>
@@ -2359,7 +2613,7 @@ footer { background: var(--navy-mid); border-top: 1px solid var(--border); paddi
       </div>
     </div>
 
-    <h3 style="font-family: 'Playfair Display', serif; font-size: 24px; font-weight: 700; color: var(--white); margin-bottom: 24px;" class="fade-up">Lead Magnet Ideas for Med Spas</h3>
+    <h3 style="font-family: 'DM Serif Display', serif; font-size: 24px; font-weight: 700; color: var(--white); margin-bottom: 24px;" class="fade-up">Lead Magnet Ideas for Med Spas</h3>
 
     <div class="lm-grid">
       <div class="lm-card fade-up">
@@ -2461,7 +2715,7 @@ footer { background: var(--navy-mid); border-top: 1px solid var(--border); paddi
 <!-- ═══════════════════════════════════════════
      REAL RESULTS
 ═══════════════════════════════════════════ -->
-<section id="results">
+<section id="results" style="background: var(--navy-mid);">
   <div class="container">
     <span class="section-eyebrow fade-up">Chapter 07</span>
     <h2 class="section-title fade-up fade-up-delay-1">Real Results</h2>
@@ -2540,7 +2794,7 @@ footer { background: var(--navy-mid); border-top: 1px solid var(--border); paddi
 <section id="accounts" style="background: var(--navy-mid);">
   <div class="container">
     <span class="section-eyebrow fade-up">Chapter 08</span>
-    <h2 class="section-title fade-up fade-up-delay-1">Accounts We're Loving</h2>
+    <h2 class="section-title fade-up fade-up-delay-1">Accounts Doing It Right</h2>
     <div class="rule fade-up fade-up-delay-1"></div>
     <p class="section-subtitle fade-up fade-up-delay-2">These are the med spa and aesthetic injector accounts that are doing it right — building clinical authority, earning patient trust, and generating outlier content that performs 5–20x above their average. Here's what they're doing and why it works.</p>
 
@@ -2792,7 +3046,9 @@ footer { background: var(--navy-mid); border-top: 1px solid var(--border); paddi
     <div class="rule fade-up fade-up-delay-1"></div>
     <p class="section-subtitle fade-up fade-up-delay-2">Four ways to work with Scroll Media — from a $87 digital playbook to a full-service retainer. Every path is built to move the needle. Most med spa owners start with the Blueprint and move to Signature within 90 days.</p>
     <div class="pricing-roi-bar fade-up">
-      <div class="pricing-roi-icon">💡</div>
+      <div class="pricing-roi-icon">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+      </div>
       <div class="pricing-roi-text"><strong>The ROI math is simple:</strong> One new patient booking from a social-sourced lead pays for months of a full-service retainer. The question isn't whether it's worth it — it's whether you can afford to keep leaving those bookings to the practice down the street that's investing in their presence.</div>
     </div>
     <!-- Entry Points Row -->
@@ -2923,6 +3179,76 @@ footer { background: var(--navy-mid); border-top: 1px solid var(--border); paddi
   </div>
 </footer>
 
+
+<!-- Email Gate JS -->
+<script>
+(function() {
+  // Check if already unlocked this session
+  if (sessionStorage.getItem('medspa-guide-unlocked') === '1') {
+    var gate = document.getElementById('email-gate');
+    if (gate) {
+      gate.style.display = 'none';
+      document.body.style.overflow = '';
+    }
+    return;
+  }
+  // Lock scroll while gate is showing
+  document.body.style.overflow = 'hidden';
+})();
+
+async function handleGateSubmit() {
+  var firstName = document.getElementById('gate-first-name').value.trim();
+  var email = document.getElementById('gate-email').value.trim();
+  var btn = document.getElementById('gate-btn');
+  
+  if (!firstName) { document.getElementById('gate-first-name').focus(); return; }
+  if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    document.getElementById('gate-email').focus(); return;
+  }
+  
+  btn.disabled = true;
+  btn.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-6.219-8.56"/></svg> Unlocking...';
+  
+  try {
+    await fetch('/api/subscribe', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        first_name: firstName,
+        email: email,
+        guide: 'medspa-guide',
+        utm_source: 'guide-gate',
+        utm_campaign: 'medspa-biz-dev'
+      })
+    });
+  } catch(e) {
+    // Fail silently — always unlock
+  }
+  
+  // Show success then unlock
+  document.getElementById('gate-form-state').style.display = 'none';
+  document.getElementById('gate-success-state').style.display = 'block';
+  
+  setTimeout(function() {
+    sessionStorage.setItem('medspa-guide-unlocked', '1');
+    var gate = document.getElementById('email-gate');
+    gate.classList.add('unlocked');
+    document.body.style.overflow = '';
+    setTimeout(function() { gate.style.display = 'none'; }, 500);
+  }, 1200);
+}
+
+// Enter key support
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Enter') {
+    var active = document.activeElement;
+    if (active && (active.id === 'gate-first-name' || active.id === 'gate-email')) {
+      handleGateSubmit();
+    }
+  }
+});
+</script>
+
 <!-- UTM Pass-Through + Name Personalization -->
 <script>
 (function() {
@@ -2954,6 +3280,44 @@ footer { background: var(--navy-mid); border-top: 1px solid var(--border); paddi
       });
     });
   }
+})();
+</script>
+
+
+<!-- Chapter Tracker JS -->
+<script>
+(function() {
+  var tracker = document.getElementById('chapter-tracker');
+  var sections = ['gaps','profile','seo','content-ideas','cta-system','lead-magnets','results','accounts','pricing'];
+  var dots = document.querySelectorAll('.tracker-dot');
+  
+  function updateTracker() {
+    var scrollY = window.scrollY;
+    // Show tracker after hero
+    if (scrollY > 400) {
+      tracker.classList.add('visible');
+    } else {
+      tracker.classList.remove('visible');
+    }
+    // Highlight active section
+    var activeSection = null;
+    sections.forEach(function(id) {
+      var el = document.getElementById(id);
+      if (el && el.getBoundingClientRect().top <= 120) {
+        activeSection = id;
+      }
+    });
+    dots.forEach(function(dot) {
+      if (dot.getAttribute('data-target') === activeSection) {
+        dot.classList.add('active');
+      } else {
+        dot.classList.remove('active');
+      }
+    });
+  }
+  
+  window.addEventListener('scroll', updateTracker, { passive: true });
+  updateTracker();
 })();
 </script>
 
