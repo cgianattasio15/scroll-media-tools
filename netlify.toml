@@ -5,6 +5,12 @@
 [functions]
   node_bundler = "esbuild"
 
+# Checklist pages
+[[redirects]]
+  from = "/checklists/medspa"
+  to = "/checklists-medspa.html"
+  status = 200
+
 # Route API calls to serverless functions
 [[redirects]]
   from = "/api/stripe-webhook"
