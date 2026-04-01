@@ -5,6 +5,12 @@
 [functions]
   node_bundler = "esbuild"
 
+# Utility pages
+[[redirects]]
+  from = "/thanks"
+  to = "/thanks.html"
+  status = 200
+
 # Checklist pages
 [[redirects]]
   from = "/checklists/medspa"
