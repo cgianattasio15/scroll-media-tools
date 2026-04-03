@@ -632,29 +632,140 @@
     /* ── Divider ── */
     .divider { height: 1px; background: var(--border); }
 
-    /* ── Responsive ── */
-    @media (max-width: 900px) {
-      .stage-grid { grid-template-columns: 1fr 1fr; }
-      .status-grid { grid-template-columns: 1fr 1fr; }
-      .metric-tier-body { grid-template-columns: 1fr; }
-      .metric-tier-col:first-child { border-right: none; border-bottom: 1px solid var(--border); }
-      .protection-callout { padding: 40px 32px; }
-      .bottom-line { padding: 44px 32px; }
-      .input-card { flex-direction: column; gap: 16px; }
-      .score-visual { flex-direction: column; text-align: center; }
-      nav { padding: 0 20px; }
+    /* ── Responsive — Mobile-First ── */
+
+    /* Tablet: 768px and below */
+    @media (max-width: 768px) {
+      /* Nav */
+      nav { padding: 0 16px; height: 60px; }
       .nav-links { display: none; }
+      .nav-cta { display: none; }
       .nav-hamburger { display: flex; }
-      .footer-inner { flex-direction: column; align-items: flex-start; }
+      .nav-logo img { height: 24px; }
+      .mobile-menu { top: 60px; padding: 12px 16px 20px; }
+
+      /* Hero */
+      .hero { padding: 72px 20px 60px; }
+      .hero-meta { gap: 28px; flex-wrap: wrap; justify-content: center; }
+      .hero-meta-item { min-width: 120px; }
+      .hero-sub { margin-bottom: 40px; }
+
+      /* TOC */
+      .toc-inner { flex-wrap: nowrap; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+      .toc-item { min-width: 130px; padding: 14px 12px; font-size: 11px; }
+
+      /* Sections */
+      .section { padding: 60px 20px; }
+      .section-header-block { margin-bottom: 36px; }
+
+      /* Stage */
+      .stage-grid { grid-template-columns: 1fr 1fr; gap: 12px; }
+      .stage-card { padding: 22px 18px 20px; }
+
+      /* Protection callout */
+      .protection-callout { padding: 32px 24px; }
+
+      /* Input cards */
+      .input-card { flex-direction: column; gap: 14px; padding: 24px 20px; }
+      .input-num { width: 40px; height: 40px; font-size: 18px; flex-shrink: 0; }
+
+      /* Metric tiers */
+      .metric-tier-card { overflow: hidden; }
+      .metric-tier-header { padding: 18px 20px; gap: 10px; flex-wrap: wrap; }
+      .metric-tier-body { grid-template-columns: 1fr; }
+      .metric-tier-col { padding: 20px 20px; }
+      .metric-tier-col:first-child { border-right: none; border-bottom: 1px solid var(--border); }
+
+      /* Status grid */
+      .status-grid { grid-template-columns: 1fr 1fr; gap: 12px; }
+      .status-card { padding: 24px 20px; }
+
+      /* Score visual */
+      .score-visual { flex-direction: column; text-align: center; gap: 24px; padding: 28px 24px; }
+      .score-dial { width: 90px; height: 90px; }
+      .score-dial-value { font-size: 20px; }
+
+      /* Bottom line */
+      .bottom-line { padding: 36px 24px; border-radius: var(--radius); }
+
+      /* Footer */
+      footer { padding: 36px 20px 28px; }
+      .footer-inner { flex-direction: column; align-items: flex-start; gap: 16px; }
+      .footer-links { gap: 16px; }
     }
-    @media (max-width: 600px) {
-      .stage-grid { grid-template-columns: 1fr; }
-      .status-grid { grid-template-columns: 1fr; }
-      .hero { padding: 80px 20px 72px; }
-      .hero-meta { gap: 32px; }
-      .toc-inner { flex-wrap: nowrap; }
-      .section { padding: 64px 20px; }
-      .cta-btn-group { flex-direction: column; align-items: center; }
+
+    /* Mobile: 480px and below */
+    @media (max-width: 480px) {
+      /* Nav */
+      nav { padding: 0 14px; }
+
+      /* Hero */
+      .hero { padding: 64px 16px 52px; }
+      .hero-meta { gap: 20px; }
+      .hero-meta-item { width: 100%; text-align: center; }
+
+      /* TOC — horizontal scroll, compact */
+      .toc-item { min-width: 110px; padding: 12px 10px; font-size: 10px; }
+      .toc-num { font-size: 9px; }
+
+      /* Sections */
+      .section { padding: 48px 16px; }
+      .section-header-block { margin-bottom: 28px; }
+      .section-subtext { font-size: 15px; }
+
+      /* Stage — single column on small phones */
+      .stage-grid { grid-template-columns: 1fr; gap: 10px; }
+      .stage-card { padding: 20px 16px 18px; }
+      .stage-card-name { font-size: 20px; }
+
+      /* Protection callout */
+      .protection-callout { padding: 24px 18px; border-radius: var(--radius); }
+      .protection-callout h3 { font-size: 18px; }
+
+      /* Input cards */
+      .input-card { padding: 20px 16px; gap: 12px; }
+
+      /* Metric tiers */
+      .metric-tier-header { padding: 16px 16px; }
+      .metric-tier-col { padding: 16px 16px; }
+      .metric-pill { font-size: 12px; padding: 4px 10px; }
+
+      /* Status grid — single column */
+      .status-grid { grid-template-columns: 1fr; gap: 10px; }
+      .status-card { padding: 20px 18px; }
+
+      /* Score */
+      .score-visual { padding: 24px 18px; }
+      .score-info strong { font-size: 15px; }
+      .score-info p { font-size: 13px; }
+      .trend-note { padding: 16px 18px; font-size: 14px; }
+
+      /* Bottom line */
+      .bottom-line { padding: 28px 18px; margin-top: 32px; }
+      .bottom-line p { font-size: 15px; }
+
+      /* CTA section */
+      .cta-section { padding: 56px 16px; }
+      .cta-btn-group { flex-direction: column; align-items: stretch; gap: 10px; }
+      .btn-cta-primary, .btn-cta-secondary {
+        width: 100%; justify-content: center;
+        padding: 16px 20px;
+        min-height: 52px; /* minimum tap target */
+      }
+
+      /* Footer */
+      footer { padding: 28px 16px 24px; }
+      .footer-links { gap: 12px; }
+      .footer-copy { font-size: 11px; padding-top: 20px; margin-top: 20px; }
+    }
+
+    /* Tap target enforcement for all interactive elements on touch devices */
+    @media (hover: none) and (pointer: coarse) {
+      .nav-hamburger { min-width: 44px; min-height: 44px; display: flex; align-items: center; justify-content: center; }
+      .toc-item { min-height: 52px; }
+      .mobile-menu a { min-height: 48px; display: flex; align-items: center; }
+      .btn-cta-primary, .btn-cta-secondary { min-height: 52px; }
+      .nav-cta { min-height: 44px; display: flex; align-items: center; }
     }
   </style>
 </head>
