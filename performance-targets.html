@@ -13,7 +13,7 @@
   <style>
     /* ============================================================
        SCROLL MEDIA DESIGN SYSTEM — Scheme A (Dark / Authority)
-       performance-targets.html  v2.0
+       performance-targets.html  v3.0
        Logo rule: dark bg → scroll-media-logo-white-transparent.png
                   light bg → scroll-media-logo-navy.png
     ============================================================ */
@@ -629,6 +629,34 @@
       margin-top: 28px;
     }
 
+    /* ── Score Tables ── */
+    .score-table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+    .score-table {
+      width: 100%; border-collapse: collapse;
+      font-size: 14px; border-radius: var(--radius);
+      overflow: hidden;
+    }
+    .score-table thead tr {
+      background: var(--azure); color: var(--white);
+    }
+    .score-table th {
+      padding: 12px 18px; text-align: left;
+      font-size: 11px; font-weight: 700; letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .score-table tbody tr {
+      border-bottom: 1px solid var(--border);
+      background: var(--white);
+      transition: background 0.15s;
+    }
+    .score-table tbody tr:last-child { border-bottom: none; }
+    .score-table tbody tr:hover { background: var(--azure-light); }
+    .score-table td { padding: 11px 18px; color: var(--shadow); }
+    .score-adj { font-weight: 800; text-align: center; }
+    .score-adj.pos { color: #1a8a4a; }
+    .score-adj.neutral { color: var(--text-secondary); }
+    .score-adj.neg { color: #c0392b; }
+
     /* ── Divider ── */
     .divider { height: 1px; background: var(--border); }
 
@@ -776,7 +804,7 @@
 
   <!-- Nav — dark background: use white-transparent logo -->
   <nav>
-    <a href="https://tools.scrollmedia.co" class="nav-logo" aria-label="Scroll Media Tools">
+    <a href="https://scrollmedia.co" class="nav-logo" aria-label="Scroll Media">
       <img src="scroll-media-logo-white-transparent.png" alt="Scroll Media" />
     </a>
     <ul class="nav-links">
@@ -785,7 +813,7 @@
       <li><a href="#metrics">Metrics</a></li>
       <li><a href="#scoring">Scoring</a></li>
     </ul>
-    <a href="https://tools.scrollmedia.co" class="nav-cta">Back to Tools</a>
+    <a href="mailto:hello@scrollmedia.co" class="nav-cta">Get in Touch</a>
     <button class="nav-hamburger" aria-label="Open menu" onclick="document.getElementById('mobileMenu').classList.toggle('open')">
       <span></span><span></span><span></span>
     </button>
@@ -807,7 +835,7 @@
     <div class="hero-meta">
       <div class="hero-meta-item">
         <div class="hero-meta-label">Framework</div>
-        <div class="hero-meta-value">Weighted Performance System v2.1</div>
+        <div class="hero-meta-value">Weighted Performance System v3.0</div>
       </div>
       <div class="hero-meta-item">
         <div class="hero-meta-label">Applies To</div>
@@ -855,25 +883,25 @@
         <div class="stage-card">
           <div class="stage-card-num">Stage 01</div>
           <div class="stage-card-name">Spark</div>
-          <div class="stage-card-range">0 – 2,500 followers</div>
+          <div class="stage-card-range">0 – 1,500 followers</div>
           <div class="stage-card-focus">Building the foundation. Testing what resonates. Establishing a consistent content system.</div>
         </div>
         <div class="stage-card">
           <div class="stage-card-num">Stage 02</div>
           <div class="stage-card-name">Lift</div>
-          <div class="stage-card-range">2,500 – 10K followers</div>
+          <div class="stage-card-range">1,500 – 8,000 followers</div>
           <div class="stage-card-focus">Scaling what works. Building conversion paths. Growing a qualified audience.</div>
         </div>
         <div class="stage-card">
           <div class="stage-card-num">Stage 03</div>
           <div class="stage-card-name">Rise</div>
-          <div class="stage-card-range">10K – 100K followers</div>
+          <div class="stage-card-range">10,000 – 40,000 followers</div>
           <div class="stage-card-focus">Optimizing at scale. Building brand authority. Deepening audience trust.</div>
         </div>
         <div class="stage-card">
           <div class="stage-card-num">Stage 04</div>
           <div class="stage-card-name">Thrive</div>
-          <div class="stage-card-range">100K+ followers</div>
+          <div class="stage-card-range">50,000+ followers</div>
           <div class="stage-card-focus">Maximizing brand equity. Ecosystem building. Compounding long-term authority.</div>
         </div>
       </div>
@@ -931,7 +959,7 @@
       <div class="section-header-block">
         <div class="section-eyebrow">03 — Metric Weighting</div>
         <h2 class="section-heading">Not all metrics are equal.<br>Here's how we prioritize them.</h2>
-        <p class="section-subtext">We track 12 metrics across the full funnel, but they don't impact your score equally. We use a weighted tier system because volume metrics and intent metrics tell completely different stories. A post with 10,000 views and zero saves is not the same as a post with 2,000 views and 80 saves.</p>
+        <p class="section-subtext">We track 10 metrics across the full funnel, but they don't impact your score equally. We use a weighted tier system because volume metrics and intent metrics tell completely different stories. A post with 10,000 views and zero saves is not the same as a post with 2,000 views and 80 saves.</p>
       </div>
 
       <div class="metric-tiers">
@@ -947,15 +975,15 @@
               <div class="metric-col-label">Metrics Included</div>
               <div class="metric-pills">
                 <span class="metric-pill">Saves</span>
-                <span class="metric-pill">Shares</span>
                 <span class="metric-pill">Retention %</span>
+                <span class="metric-pill">Link Taps</span>
                 <span class="metric-pill">Click-Through Rate</span>
                 <span class="metric-pill">Profile Conversion Rate</span>
               </div>
             </div>
             <div class="metric-tier-col">
               <div class="metric-col-label">Why We Weight These Highest</div>
-              <p>High-intent actions. A save means someone found the content valuable enough to return to. A share means they trusted it enough to put their name on it. These are buying signals — not vanity metrics. Instagram also uses these signals to determine how widely to distribute content.</p>
+              <p>These are the only metrics that require a deliberate viewer decision. Saving a post, watching it to completion, tapping a link, or converting from a profile visit are all active choices that signal genuine interest — the kind that precedes a purchase inquiry. These are the behaviors that matter most for service-based businesses where trust drives buying decisions.</p>
             </div>
           </div>
         </div>
@@ -970,16 +998,15 @@
             <div class="metric-tier-col">
               <div class="metric-col-label">Metrics Included</div>
               <div class="metric-pills">
-                <span class="metric-pill">Avg. Reach/Day</span>
+                <span class="metric-pill">Profile Visits</span>
                 <span class="metric-pill">New Followers</span>
                 <span class="metric-pill">Total Views</span>
-                <span class="metric-pill">Profile Visits</span>
-                <span class="metric-pill">Link Taps</span>
+                <span class="metric-pill">Shares</span>
               </div>
             </div>
             <div class="metric-tier-col">
               <div class="metric-col-label">Why Standard Weight</div>
-              <p>Important growth indicators, but partially algorithm-dependent. Strong volume without strong Tier 1 signals usually means the content is reaching people — but not moving them. We track these closely, but they don't carry the same strategic weight.</p>
+              <p>Important growth and distribution signals, but quality-agnostic. A post can rack up views and shares without reaching a single potential buyer. We track these closely — they tell us about reach and distribution — but they don't carry the same strategic weight as the deliberate-action metrics above.</p>
             </div>
           </div>
         </div>
@@ -995,12 +1022,12 @@
               <div class="metric-col-label">Metrics Included</div>
               <div class="metric-pills">
                 <span class="metric-pill">Comments</span>
-                <span class="metric-pill">Avg. Watch Time</span>
+                <span class="metric-pill">Comments</span>
               </div>
             </div>
             <div class="metric-tier-col">
               <div class="metric-col-label">Why Supporting Weight</div>
-              <p>Valuable signals, but highly variable depending on content type and topic. A tutorial drives more comments than a brand post. A 30-second Reel has a different watch time benchmark than a 90-second one. We track them — they just don't carry the same weight as saves or shares.</p>
+              <p>Comments are the most variable metric in the framework. A milestone announcement drives hundreds of comments. A product post drives almost none. The signal is real, but it's too content-type-dependent to carry standard weight. We track it as a supporting signal — not a primary performance indicator.</p>
             </div>
           </div>
         </div>
@@ -1052,12 +1079,52 @@
         </div>
         <div class="score-info">
           <strong>Your score is a weighted composite — not a simple average.</strong>
-          <p>Tier 1 metrics (saves, shares, retention) carry 1.5× the weight of standard metrics. This means a strong month on the metrics that actually drive growth will lift your score more than hitting volume targets alone. The score also factors in month-over-month trend — consistent improvement is rewarded even when you haven't hit every target yet.</p>
+          <p>Tier 1 metrics — saves, retention rate, link taps, click-through rate, and profile conversion rate — carry 1.5× the weight of standard metrics. These are the deliberate-action signals that most directly indicate buyer intent. The score also factors in month-over-month trend — consistent improvement is rewarded even when you haven't hit every target yet.</p>
         </div>
       </div>
 
       <div class="trend-note">
         <strong>Trend matters.</strong> A client moving in the right direction across most metrics will score better than one who is flat — even if the flat client's raw numbers are higher. Progress is part of the score.
+      </div>
+
+      <div class="score-table-wrap" style="margin-top:32px;">
+        <table class="score-table">
+          <thead>
+            <tr>
+              <th>MoM Improvement Condition</th>
+              <th>Score Adjustment</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>8+ metrics improved month-over-month</td><td class="score-adj pos">+0.5</td></tr>
+            <tr><td>5–7 metrics improved month-over-month</td><td class="score-adj pos">+0.25</td></tr>
+            <tr><td>3–4 metrics improved month-over-month</td><td class="score-adj neutral">0</td></tr>
+            <tr><td>Fewer than 3 metrics improved</td><td class="score-adj neg">−0.25</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="score-table-wrap" style="margin-top:24px;">
+        <table class="score-table">
+          <thead>
+            <tr>
+              <th>Score Range</th>
+              <th>Label</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>9.5 – 10.0</td><td><strong>Breakthrough Month</strong></td></tr>
+            <tr><td>9.0 – 9.4</td><td><strong>Exceptional Month</strong></td></tr>
+            <tr><td>8.5 – 8.9</td><td><strong>Strong Month</strong></td></tr>
+            <tr><td>8.0 – 8.4</td><td><strong>Solid Month</strong></td></tr>
+            <tr><td>7.5 – 7.9</td><td><strong>Building Month</strong></td></tr>
+            <tr><td>7.0 – 7.4</td><td><strong>Progressing Month</strong></td></tr>
+            <tr><td>6.5 – 6.9</td><td><strong>Mixed Month</strong></td></tr>
+            <tr><td>6.0 – 6.4</td><td><strong>Foundation Month</strong></td></tr>
+            <tr><td>5.0 – 5.9</td><td><strong>Baseline Month</strong></td></tr>
+          </tbody>
+        </table>
+        <p style="font-size:12px;color:var(--text-secondary);margin-top:10px;">Minimum score is 5.0. Scores are reported on a 0.1 scale.</p>
       </div>
 
       <div class="bottom-line">
@@ -1074,8 +1141,8 @@
       <h2>Questions about your report?</h2>
       <p>Bring this to your next call and we'll walk through your specific targets, what they mean for your account, and what we're doing to move the needle.</p>
       <div class="cta-btn-group">
-        <a href="https://tools.scrollmedia.co" class="btn-cta-primary">Back to Tools</a>
-        <a href="https://scrollmedia.co" class="btn-cta-secondary">Visit Scroll Media</a>
+        <a href="mailto:hello@scrollmedia.co" class="btn-cta-primary">Email Us — hello@scrollmedia.co</a>
+        <a href="https://scrollmedia.co" class="btn-cta-secondary">Visit scrollmedia.co</a>
       </div>
     </div>
   </section>
@@ -1087,8 +1154,8 @@
         <img src="scroll-media-logo-white-transparent.png" alt="Scroll Media" />
       </a>
       <div class="footer-links">
-        <a href="https://tools.scrollmedia.co">Tools</a>
-        <a href="https://scrollmedia.co">Website</a>
+        <a href="mailto:hello@scrollmedia.co">hello@scrollmedia.co</a>
+        <a href="https://scrollmedia.co">scrollmedia.co</a>
       </div>
     </div>
     <div class="footer-inner">
