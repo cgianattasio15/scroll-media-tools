@@ -164,10 +164,8 @@
   /* ─── PAGE LAYOUT: SIDEBAR + CONTENT ───────────────────────── */
   .page-layout {
     display: flex; align-items: flex-start;
-    max-width: 1340px; margin: 0 auto;
-    padding: 0 48px;
+    width: 100%;
   }
-
   /* ─── SIDEBAR ───────────────────────────────────────────────── */
   .sidebar {
     width: var(--sidebar-w);
@@ -179,6 +177,7 @@
     border-right: 1px solid var(--border);
     scrollbar-width: thin;
     scrollbar-color: var(--border) transparent;
+    background: var(--white);
   }
   .sidebar::-webkit-scrollbar { width: 3px; }
   .sidebar::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
@@ -211,7 +210,8 @@
   /* ─── MAIN CONTENT ──────────────────────────────────────────── */
   .main {
     flex: 1; min-width: 0;
-    padding: 40px 0 96px 40px;
+    padding: 40px 48px 96px 40px;
+    max-width: calc(1340px - var(--sidebar-w));
   }
 
   /* ─── SEARCH BAR ────────────────────────────────────────────── */
@@ -444,8 +444,8 @@
   /* ─── RESPONSIVE ────────────────────────────────────────────── */
   @media (max-width: 960px) {
     .sidebar { display: none; }
-    .page-layout { padding: 0 20px; }
-    .main { padding: 28px 0 72px; }
+    .page-layout { padding: 0; }
+    .main { padding: 28px 20px 72px; max-width: 100%; }
     nav { padding: 0 20px; }
     .hamburger { display: flex; }
     .nav-right .nav-link, .nav-right .nav-cta { display: none; }
