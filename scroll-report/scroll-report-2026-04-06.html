@@ -946,6 +946,231 @@
     }
     .application-item:last-child { margin-bottom: 0; }
     .application-item strong { color: var(--text-primary); }
+
+    /* ============================================================
+       COMPREHENSIVE MOBILE OPTIMIZATION
+    ============================================================ */
+
+    /* Base mobile-first adjustments */
+    * { box-sizing: border-box; }
+
+    @media (max-width: 768px) {
+      /* Nav */
+      .nav-inner {
+        padding: 0 16px;
+        gap: 8px;
+      }
+      .nav-logo-text {
+        font-size: 11px;
+        letter-spacing: 0.08em;
+      }
+      .nav-links {
+        display: none;
+      }
+      .nav-date {
+        font-size: 11px;
+        margin-left: auto;
+      }
+
+      /* Hero */
+      .hero {
+        padding: 60px 16px 40px;
+      }
+      .hero-title {
+        font-size: clamp(36px, 10vw, 72px);
+        line-height: 1.1;
+      }
+      .hero-subtitle {
+        font-size: 15px;
+        padding: 0 8px;
+      }
+      .hero-meta {
+        flex-wrap: wrap;
+        gap: 8px;
+        justify-content: center;
+        font-size: 11px;
+      }
+      .hero-meta-dot {
+        display: none;
+      }
+
+      /* Section pill nav */
+      .section-nav {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        padding: 0 16px;
+        gap: 8px;
+        flex-wrap: nowrap;
+        justify-content: flex-start;
+      }
+      .section-nav::-webkit-scrollbar { display: none; }
+      .section-nav-item {
+        white-space: nowrap;
+        flex-shrink: 0;
+        font-size: 11px;
+        padding: 8px 12px;
+      }
+
+      /* Section container */
+      .section {
+        padding: 40px 16px;
+      }
+      .section-title {
+        font-size: clamp(22px, 6vw, 36px);
+      }
+      .section-subtitle {
+        font-size: 14px;
+      }
+      .section-label {
+        margin-bottom: 12px;
+      }
+
+      /* Cards grid — single column on mobile */
+      .cards-grid {
+        grid-template-columns: 1fr !important;
+        gap: 16px;
+      }
+
+      /* Featured card — remove 2-col layout on mobile */
+      .card.card-featured {
+        grid-template-columns: 1fr !important;
+      }
+
+      /* Individual cards */
+      .card {
+        padding: 20px 16px;
+      }
+      .card-title {
+        font-size: 16px;
+      }
+      .card-body {
+        font-size: 13px;
+      }
+
+      /* Takeaway items */
+      .takeaway-item {
+        font-size: 13px;
+      }
+
+      /* Article links */
+      .article-links {
+        flex-wrap: wrap;
+        gap: 6px;
+      }
+      .article-link {
+        font-size: 11px;
+        padding: 5px 10px;
+      }
+
+      /* Client cards */
+      .client-card {
+        padding: 20px 16px;
+      }
+      .client-name {
+        font-size: 14px;
+      }
+      .play-title {
+        font-size: 15px;
+      }
+      .play-why {
+        font-size: 13px;
+      }
+      .script-beat {
+        padding: 12px;
+      }
+      .beat-label {
+        font-size: 11px;
+      }
+      .beat-spoken {
+        font-size: 13px;
+      }
+      .beat-direction {
+        font-size: 12px;
+      }
+
+      /* AM section header */
+      .am-header {
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+      .am-name {
+        font-size: 16px;
+      }
+      .am-count {
+        font-size: 12px;
+      }
+
+      /* Format cards */
+      .format-card {
+        padding: 20px 16px;
+      }
+      .format-title {
+        font-size: 16px;
+      }
+      .format-why {
+        font-size: 13px;
+      }
+      .format-stats {
+        flex-wrap: wrap;
+        gap: 6px;
+      }
+      .format-stat {
+        font-size: 11px;
+        padding: 4px 8px;
+      }
+      .format-structure-step {
+        font-size: 13px;
+      }
+      .format-application-item {
+        font-size: 13px;
+      }
+
+      /* Subsection labels */
+      .formats-subsection-label {
+        gap: 10px;
+      }
+      .formats-subsection-badge {
+        font-size: 12px;
+        white-space: nowrap;
+      }
+
+      /* Footer */
+      .report-footer {
+        padding: 32px 16px 48px;
+      }
+      .report-footer-meta {
+        font-size: 11px;
+        flex-wrap: wrap;
+        gap: 4px;
+        line-height: 1.8;
+      }
+
+      /* Scroll to top */
+      .scroll-top-btn {
+        bottom: 16px;
+        right: 16px;
+        width: 40px;
+        height: 40px;
+        font-size: 16px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero-title {
+        font-size: 32px;
+      }
+      .hero-badge {
+        font-size: 10px;
+        padding: 5px 12px;
+      }
+      .section-num {
+        font-size: 12px;
+      }
+      .section-tag {
+        font-size: 10px;
+      }
+    }
   </style>
 </head>
 <body>
@@ -985,7 +1210,7 @@
     <div class="hero-meta-sep"></div>
     <span class="hero-meta-item"><strong>5</strong> Sections</span>
     <div class="hero-meta-sep"></div>
-    <span class="hero-meta-item"><strong>8</strong> Client Scripts</span>
+    <span class="hero-meta-item"><strong>9</strong> Client Scripts</span>
     <div class="hero-meta-sep"></div>
     <span class="hero-meta-item">Internal Use Only</span>
   </div>
@@ -1578,7 +1803,7 @@
           <div class="am-name">Rachel Dina</div>
           <div class="am-role">Account Manager</div>
         </div>
-        <div class="am-count"><strong>3</strong> Clients</div>
+        <div class="am-count"><strong>4</strong> Clients</div>
       </div>
       <div class="cards-grid">
 
@@ -1724,6 +1949,52 @@
         </div>
 
 
+        <!-- Scroll Media -->
+        <div class="client-card">
+          <div class="client-header">
+            <div class="client-meta">
+              <div class="client-name">SCROLL MEDIA</div>
+              <div class="client-handle">@getscrollmedia</div>
+            </div>
+            <span class="client-stage stage-tofu">TOFU</span>
+          </div>
+          <div class="client-play">
+            <div class="play-label">This Week's Play</div>
+            <div class="play-title">"Most Social Media Agencies Are Selling You the Wrong Thing"</div>
+            <div class="play-why">Direct, opinion-led hook that challenges the default assumption most founders have about social media. Positions Scroll Media as the agency that thinks differently — strategy-first, not content-first. High DM share potential because it validates what frustrated founders already feel but haven't heard articulated clearly.</div>
+          </div>
+          <button class="script-toggle" onclick="toggleScript(this)">
+            <span class="script-toggle-label">📋 View Full Script</span>
+            <span class="script-toggle-icon">▼</span>
+          </button>
+          <div class="script-content">
+            <div class="script-beat">
+              <div class="beat-label">🎣 Hook (0–3s)</div>
+              <div class="beat-spoken">"Most social media agencies are selling you followers, posts, and engagement. None of that is what you actually need."</div>
+              <div class="beat-direction"><strong>On-Screen:</strong> "Followers. Posts. Engagement. Wrong." | <strong>B-Roll:</strong> Generic social media metrics dashboard | <strong>Audio:</strong> Direct, confident</div>
+            </div>
+            <div class="script-beat">
+              <div class="beat-label">📍 Context (3–10s)</div>
+              <div class="beat-spoken">"The social media industry has trained founders to care about the wrong metrics. Follower count doesn't pay your rent. Post frequency doesn't close deals. Engagement rate doesn't build a business."</div>
+              <div class="beat-direction"><strong>On-Screen:</strong> "Wrong metrics. Wrong results." | <strong>B-Roll:</strong> Vanity metrics vs. revenue metrics | <strong>Audio:</strong> Continues direct</div>
+            </div>
+            <div class="script-beat">
+              <div class="beat-label">⚡ Conflict (10–20s)</div>
+              <div class="beat-spoken">"The problem is that vanity metrics are easy to sell. They look good in a report. They feel like progress. But if your social media isn't generating qualified leads, building real authority, or driving revenue — it's just content for content's sake."</div>
+              <div class="beat-direction"><strong>On-Screen:</strong> "Content for content's sake isn't a strategy" | <strong>B-Roll:</strong> Busy content calendar with no results | <strong>Audio:</strong> Tension builds</div>
+            </div>
+            <div class="script-beat">
+              <div class="beat-label">🔄 Turning Point (20–30s)</div>
+              <div class="beat-spoken">"Scroll Media is built around a different question: what does this content need to do for your business? Every piece of content we create is mapped to a real outcome — awareness, trust, or conversion. Not just output."</div>
+              <div class="beat-direction"><strong>On-Screen:</strong> "Strategy first. Content second." | <strong>B-Roll:</strong> Strategy session, content mapped to funnel | <strong>Audio:</strong> Confident, solution-focused</div>
+            </div>
+            <div class="script-beat">
+              <div class="beat-label">✅ Resolution + CTA (30–37s)</div>
+              <div class="beat-spoken">"If you're tired of paying for content that doesn't convert, let's talk. Book a discovery call — link in bio."</div>
+              <div class="beat-direction"><strong>On-Screen:</strong> "Book a discovery call — link in bio" | <strong>Audio:</strong> Direct, confident close</div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -1967,7 +2238,7 @@
     </div>
   </section>
 
-  < Footer -->
+  <!-- Footer -->
   <footer class="report-footer">
     <div class="report-footer-logo">Scroll Media</div>
     <div class="report-footer-meta">
@@ -1981,7 +2252,7 @@
     </div>
   </footer>
 
-  < Scroll to Top Button -->
+  <!-- Scroll to Top Button -->
   <button class="scroll-top-btn" id="scrollTopBtn" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="Back to top">↑</button>
 
   <script>
