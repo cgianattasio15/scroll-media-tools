@@ -784,6 +784,168 @@
       .section-nav { padding: 24px 20px 0; }
       .footer { padding: 36px 20px; }
     }
+
+    /* === DESIGN IMPROVEMENTS === */
+
+    /* Featured card spans full width in 3-col grid */
+    .card.card-featured {
+      grid-column: 1 / -1;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      align-items: start;
+    }
+    .card.card-featured .card-title {
+      font-size: 20px;
+    }
+    .card.card-featured .takeaways {
+      margin-top: 0;
+    }
+    @media (max-width: 768px) {
+      .card.card-featured {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Improved script toggle button */
+    .script-toggle {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 16px;
+      padding: 10px 16px;
+      background: rgba(226,237,122,0.07);
+      border: 1px solid rgba(226,237,122,0.18);
+      border-radius: 8px;
+      color: var(--highlight);
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background 0.15s, border-color 0.15s, transform 0.1s;
+      width: 100%;
+      justify-content: center;
+    }
+    .script-toggle:hover {
+      background: rgba(226,237,122,0.13);
+      border-color: rgba(226,237,122,0.35);
+      transform: translateY(-1px);
+    }
+    .script-toggle-icon {
+      font-size: 10px;
+      transition: transform 0.2s;
+    }
+    .script-toggle.open .script-toggle-icon {
+      transform: rotate(180deg);
+    }
+
+    /* Scroll-to-top button */
+    .scroll-top-btn {
+      position: fixed;
+      bottom: 28px;
+      right: 28px;
+      width: 44px;
+      height: 44px;
+      background: var(--highlight);
+      color: var(--navy);
+      border: none;
+      border-radius: 50%;
+      font-size: 18px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transform: translateY(10px);
+      transition: opacity 0.2s, transform 0.2s;
+      z-index: 999;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.3);
+      font-weight: 700;
+    }
+    .scroll-top-btn.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .scroll-top-btn:hover {
+      background: #d4e060;
+    }
+
+    /* Stronger section dividers */
+    .section-divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(226,237,122,0.2), transparent);
+      margin: 60px 0;
+    }
+
+    /* Better AM avatar */
+    .am-avatar {
+      background: linear-gradient(135deg, rgba(226,237,122,0.2), rgba(99,179,237,0.15));
+      border: 1px solid rgba(226,237,122,0.25);
+      font-weight: 700;
+      font-size: 16px;
+    }
+
+    /* Footer */
+    .report-footer {
+      text-align: center;
+      padding: 40px 24px 60px;
+      border-top: 1px solid var(--border);
+      margin-top: 0;
+    }
+    .report-footer-logo {
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--highlight);
+      margin-bottom: 8px;
+    }
+    .report-footer-meta {
+      font-size: 12px;
+      color: var(--text-muted);
+      letter-spacing: 0.04em;
+    }
+    .report-footer-divider {
+      display: inline-block;
+      margin: 0 10px;
+      opacity: 0.4;
+    }
+
+    /* Mobile nav improvements */
+    @media (max-width: 640px) {
+      .nav-links {
+        display: none;
+      }
+      .nav-date {
+        display: block;
+      }
+    }
+
+    /* Improved application block contrast */
+    .application-block {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 8px;
+      padding: 16px;
+      margin-top: 16px;
+    }
+    .application-label {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--azure);
+      margin-bottom: 10px;
+    }
+    .application-item {
+      font-size: 13px;
+      color: var(--text-secondary);
+      line-height: 1.6;
+      margin-bottom: 8px;
+    }
+    .application-item:last-child { margin-bottom: 0; }
+    .application-item strong { color: var(--text-primary); }
   </style>
 </head>
 <body>
@@ -917,7 +1079,7 @@
       </div>
 
       <!-- Card 4 -->
-      <div class="card">
+      <div class="card card-featured">
         <span class="card-tag">Creator Tools</span>
         <h3 class="card-title">Edits App — 11 New Effects, Teleprompter, and Freeze Frame</h3>
         <p class="card-body">Meta's Edits app shipped a significant update this week: 11 new visual effects, a built-in teleprompter for talking-head content, and a freeze frame tool for adding emphasis to specific moments in a Reel. All three features are available directly inside the app with no third-party tools required.</p>
@@ -1804,4 +1966,36 @@
 
     </div>
   </section>
->
+
+  < Footer -->
+  <footer class="report-footer">
+    <div class="report-footer-logo">Scroll Media</div>
+    <div class="report-footer-meta">
+      The Scroll Report
+      <span class="report-footer-divider">·</span>
+      Week of April 6, 2026
+      <span class="report-footer-divider">·</span>
+      Internal Use Only
+      <span class="report-footer-divider">·</span>
+      tools.scrollmedia.co
+    </div>
+  </footer>
+
+  < Scroll to Top Button -->
+  <button class="scroll-top-btn" id="scrollTopBtn" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="Back to top">↑</button>
+
+  <script>
+    const scrollBtn = document.getElementById('scrollTopBtn');
+    if (scrollBtn) {
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 600) {
+          scrollBtn.classList.add('visible');
+        } else {
+          scrollBtn.classList.remove('visible');
+        }
+      });
+    }
+  </script>
+
+</body>
+</html>
