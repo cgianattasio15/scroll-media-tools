@@ -1,0 +1,1099 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Scroll Media × Carl's Deli — Discovery Session</title>
+  <link rel="icon" type="image/svg+xml" href="https://tools.scrollmedia.co/scroll-favicon.svg" />
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,300;0,400;0,600;0,700;0,800;1,400;1,600&display=swap');
+
+    :root {
+      --shadow:      #151516;
+      --azure:       #0c3387;
+      --azure-lt:    rgba(12,51,135,0.09);
+      --azure-border:rgba(12,51,135,0.13);
+      --lucid:       #cbe9ff;
+      --hi:          #e2ed7a;
+      --porcelain:   #f2f3f4;
+      --ghost:       #fafdff;
+      --ink-mid:     #3d3d52;
+      --ink-soft:    #7a7a94;
+      --border:      rgba(12,51,135,0.11);
+      --radius:      12px;
+      --card-shadow: 0 2px 12px rgba(12,51,135,0.06);
+    }
+
+    *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body {
+      font-family:'Source Sans 3',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+      background:var(--ghost);
+      color:var(--shadow);
+      font-size:16px;
+      line-height:1.6;
+      -webkit-font-smoothing:antialiased;
+    }
+
+    /* ── PROGRESS BAR ── */
+    #prog {
+      position:fixed; top:0; left:0;
+      height:3px; width:0%;
+      background:linear-gradient(90deg,var(--azure),var(--hi));
+      z-index:1001;
+      transition:width .1s linear;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position:fixed; top:3px; left:0; right:0;
+      height:60px;
+      background:rgba(250,253,255,.94);
+      backdrop-filter:blur(14px);
+      -webkit-backdrop-filter:blur(14px);
+      border-bottom:1px solid var(--border);
+      z-index:1000;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding:0 40px;
+    }
+    .nav-logo img { height:26px; display:block; }
+    .nav-links {
+      list-style:none;
+      display:flex;
+      gap:6px;
+    }
+    .nav-links a {
+      display:block;
+      padding:6px 12px;
+      font-size:13px;
+      font-weight:600;
+      color:var(--ink-mid);
+      text-decoration:none;
+      letter-spacing:.01em;
+      border-radius:6px;
+      transition:color .2s, background .2s;
+    }
+    .nav-links a:hover { color:var(--azure); background:var(--azure-lt); }
+    .nav-links a.active { color:var(--azure); background:var(--azure-lt); }
+
+    @media(max-width:820px){ .nav-links{display:none;} nav{padding:0 20px;} }
+
+    /* ── LAYOUT ── */
+    .wrap {
+      max-width:920px;
+      margin:0 auto;
+      padding:80px 32px;
+    }
+    @media(max-width:640px){ .wrap{padding:56px 20px;} }
+
+    .divider {
+      height:1px;
+      background:var(--border);
+      max-width:920px;
+      margin:0 auto;
+    }
+
+    /* ── TYPOGRAPHY ── */
+    .eyebrow {
+      font-size:11px; font-weight:700;
+      letter-spacing:.12em; text-transform:uppercase;
+      color:var(--azure); margin-bottom:10px;
+    }
+    .section-title {
+      font-size:clamp(26px,4vw,38px); font-weight:800;
+      color:var(--shadow); letter-spacing:-.02em;
+      line-height:1.2; margin-bottom:8px;
+    }
+    .section-title em { font-style:italic; color:var(--azure); }
+    .section-sub {
+      font-size:15px; color:var(--ink-mid);
+      max-width:580px; margin-bottom:32px; line-height:1.65;
+    }
+
+    /* ── CARDS ── */
+    .card {
+      background:#fff;
+      border:1px solid var(--border);
+      border-radius:var(--radius);
+      box-shadow:var(--card-shadow);
+      padding:24px 26px;
+    }
+    .card-label {
+      font-size:11px; font-weight:700;
+      letter-spacing:.1em; text-transform:uppercase;
+      color:var(--ink-soft); margin-bottom:10px;
+    }
+
+    /* ── GRIDS ── */
+    .g2 { display:grid; grid-template-columns:1fr 1fr; gap:18px; }
+    .g3 { display:grid; grid-template-columns:repeat(3,1fr); gap:18px; }
+    @media(max-width:640px){ .g2,.g3{grid-template-columns:1fr;} }
+
+    /* ── LISTS ── */
+    .kv-list { list-style:none; display:flex; flex-direction:column; gap:7px; }
+    .kv-list li { font-size:14px; color:var(--ink-mid); line-height:1.45; }
+    .kv-list li strong { color:var(--shadow); }
+
+    .arrow-list { list-style:none; display:flex; flex-direction:column; gap:9px; }
+    .arrow-list li {
+      font-size:14px; color:var(--ink-mid);
+      padding-left:18px; position:relative; line-height:1.5;
+    }
+    .arrow-list li::before { content:'→'; color:var(--azure); font-weight:700; position:absolute; left:0; }
+
+    .dot-list { list-style:none; display:flex; flex-direction:column; gap:7px; }
+    .dot-list li {
+      font-size:13px; color:var(--ink-mid);
+      padding-left:14px; position:relative; line-height:1.45;
+    }
+    .dot-list li::before { content:'·'; position:absolute; left:0; color:var(--azure); font-size:18px; font-weight:900; line-height:1; top:1px; }
+
+    .tick-list { list-style:none; display:flex; flex-direction:column; gap:8px; flex:1; }
+    .tick-list li {
+      font-size:13px; color:var(--ink-mid);
+      padding-left:20px; position:relative; line-height:1.45;
+    }
+    .tick-list li::before { content:'✓'; color:var(--azure); position:absolute; left:0; font-weight:700; font-size:12px; top:1px; }
+
+    .check-list { list-style:none; display:flex; flex-direction:column; gap:8px; }
+    .check-list li {
+      font-size:14px; color:var(--ink-mid);
+      padding-left:18px; position:relative; line-height:1.5;
+    }
+    .good .check-list li::before { content:'✓'; color:#2a7a3a; position:absolute; left:0; font-weight:700; }
+    .gap  .check-list li::before { content:'✗'; color:#b83228; position:absolute; left:0; font-weight:700; }
+
+    /* ── FUNNEL TAGS ── */
+    .ftag {
+      display:inline-block; font-size:10px; font-weight:700;
+      letter-spacing:.07em; text-transform:uppercase;
+      padding:2px 9px; border-radius:4px; flex-shrink:0; margin-top:2px;
+    }
+    .ftag.tofu { background:rgba(203,233,255,.5); color:var(--azure); }
+    .ftag.mofu { background:rgba(226,237,122,.45); color:#4d5e00; }
+    .ftag.bofu { background:rgba(12,51,135,.09); color:var(--azure); }
+
+    .funnel-list { list-style:none; display:flex; flex-direction:column; gap:10px; }
+    .funnel-list li {
+      font-size:14px; color:var(--ink-mid);
+      line-height:1.5; display:flex; align-items:flex-start; gap:10px;
+    }
+
+    /* ── UTILITIES ── */
+    .mt-sm { margin-top:12px; }
+    .mt-md { margin-top:20px; }
+    .mt-lg { margin-top:28px; }
+
+    /* ══════════════════════════════════════
+       HERO
+    ══════════════════════════════════════ */
+    .hero {
+      padding:150px 32px 80px;
+      text-align:center;
+      max-width:920px;
+      margin:0 auto;
+    }
+    .hero-chip {
+      display:inline-block;
+      background:var(--azure-lt);
+      color:var(--azure);
+      font-size:12px; font-weight:700;
+      letter-spacing:.1em; text-transform:uppercase;
+      padding:6px 18px; border-radius:100px;
+      margin-bottom:24px;
+      border:1px solid var(--azure-border);
+    }
+    .hero h1 {
+      font-size:clamp(38px,5.5vw,60px); font-weight:800;
+      color:var(--shadow); letter-spacing:-.025em;
+      line-height:1.12; margin-bottom:20px;
+    }
+    .hero h1 em { font-style:italic; color:var(--azure); }
+    .hero-sub {
+      font-size:18px; color:var(--ink-mid);
+      max-width:520px; margin:0 auto 36px; line-height:1.65;
+    }
+    .hero-pills { display:flex; gap:10px; justify-content:center; flex-wrap:wrap; }
+    .hero-pills span {
+      background:var(--porcelain); border:1px solid var(--border);
+      border-radius:100px; padding:6px 16px;
+      font-size:13px; color:var(--ink-mid);
+    }
+    .hero-pills span strong { color:var(--shadow); }
+
+    /* ══════════════════════════════════════
+       PROFILE
+    ══════════════════════════════════════ */
+    .profile-card {
+      background:#fff;
+      border:1px solid var(--border);
+      border-radius:var(--radius);
+      box-shadow:var(--card-shadow);
+      padding:24px 26px;
+    }
+    .profile-card h3 { font-size:17px; font-weight:700; color:var(--shadow); margin-bottom:10px; }
+
+    /* ══════════════════════════════════════
+       AUDIT
+    ══════════════════════════════════════ */
+    .account-block {
+      background:#fff;
+      border:1px solid var(--border);
+      border-radius:var(--radius);
+      box-shadow:var(--card-shadow);
+      overflow:hidden;
+      margin-bottom:16px;
+    }
+    .account-head {
+      padding:16px 24px;
+      display:flex; align-items:center; justify-content:space-between; gap:16px;
+      cursor:pointer; user-select:none;
+      border-bottom:1px solid var(--border);
+      transition:background .15s;
+    }
+    .account-head:hover { background:var(--porcelain); }
+    .account-handle { font-size:15px; font-weight:700; color:var(--shadow); }
+    .account-stats  { font-size:13px; color:var(--ink-soft); margin-top:2px; }
+
+    .badge {
+      font-size:11px; font-weight:700; letter-spacing:.06em;
+      text-transform:uppercase; padding:4px 14px;
+      border-radius:100px; flex-shrink:0;
+    }
+    .badge-lift  { background:rgba(12,51,135,.1); color:var(--azure); }
+    .badge-spark { background:rgba(226,237,122,.45); color:#4d5e00; }
+
+    .account-body {
+      padding:22px 24px;
+      display:grid; grid-template-columns:1fr 1fr; gap:22px;
+    }
+    @media(max-width:640px){ .account-body{grid-template-columns:1fr;} }
+
+    .audit-col h4 {
+      font-size:12px; font-weight:700;
+      letter-spacing:.08em; text-transform:uppercase; margin-bottom:12px;
+    }
+    .audit-col.good h4 { color:#2a7a3a; }
+    .audit-col.gap  h4 { color:#b83228; }
+
+    .stage-row {
+      grid-column:1/-1;
+      display:flex; gap:4px; margin-top:4px;
+    }
+    .seg {
+      flex:1; text-align:center; padding:8px 6px;
+      border-radius:7px; font-size:10px; font-weight:700;
+      text-transform:uppercase; letter-spacing:.05em;
+      background:var(--porcelain); color:var(--ink-soft); line-height:1.4;
+    }
+    .seg.on-lift  { background:var(--azure); color:#fff; }
+    .seg.on-spark { background:#c8d600; color:#3a4200; }
+
+    /* ══════════════════════════════════════
+       OBSERVATIONS / OPPORTUNITY
+    ══════════════════════════════════════ */
+    .obs-stack { display:flex; flex-direction:column; gap:16px; }
+    .obs-card {
+      background:#fff;
+      border:1px solid var(--border);
+      border-left:4px solid var(--azure);
+      border-radius:var(--radius);
+      box-shadow:var(--card-shadow);
+      padding:24px 26px;
+      display:grid; grid-template-columns:44px 1fr; gap:18px; align-items:flex-start;
+    }
+    .obs-num {
+      width:44px; height:44px; background:var(--azure); color:#fff;
+      border-radius:50%; display:flex; align-items:center; justify-content:center;
+      font-size:16px; font-weight:800; flex-shrink:0;
+    }
+    .obs-card h3 { font-size:16px; font-weight:700; color:var(--shadow); margin-bottom:6px; line-height:1.35; }
+    .obs-card p  { font-size:14px; color:var(--ink-mid); line-height:1.6; }
+    .obs-tags { display:flex; gap:8px; flex-wrap:wrap; margin-top:10px; }
+    .obs-tag {
+      font-size:11px; font-weight:600;
+      padding:3px 11px; border-radius:100px;
+      background:var(--azure-lt); color:var(--azure);
+      letter-spacing:.03em; border:1px solid var(--azure-border);
+    }
+
+    .opp {
+      background:linear-gradient(135deg,var(--azure) 0%,#0a276a 100%);
+      border-radius:var(--radius); padding:34px 38px; color:#fff; margin-top:24px;
+    }
+    .opp h3 { font-size:20px; font-weight:800; margin-bottom:10px; line-height:1.3; }
+    .opp p  { font-size:15px; line-height:1.65; opacity:.88; max-width:680px; }
+    @media(max-width:640px){ .opp{padding:26px 22px;} }
+
+    /* ══════════════════════════════════════
+       HOW WE WORK (merged with Who We Are)
+    ══════════════════════════════════════ */
+    .cred-stat-row {
+      display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-bottom:32px;
+    }
+    @media(max-width:640px){ .cred-stat-row{grid-template-columns:1fr;} }
+    .stat-box {
+      background:#fff; border:1px solid var(--border);
+      border-radius:var(--radius); box-shadow:var(--card-shadow);
+      padding:22px; text-align:center;
+    }
+    .stat-num { font-size:40px; font-weight:800; color:var(--azure); line-height:1; margin-bottom:4px; }
+    .stat-lbl { font-size:13px; color:var(--ink-soft); font-weight:500; }
+
+    .phases { display:grid; grid-template-columns:repeat(3,1fr); gap:18px; }
+    @media(max-width:640px){ .phases{grid-template-columns:1fr;} }
+    .phase {
+      background:#fff; border:1px solid var(--border);
+      border-radius:var(--radius); box-shadow:var(--card-shadow); padding:24px;
+    }
+    .phase-n   { font-size:11px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--azure); margin-bottom:6px; }
+    .phase h3  { font-size:18px; font-weight:800; color:var(--shadow); margin-bottom:4px; }
+    .phase-sub { font-size:11px; font-weight:700; letter-spacing:.07em; text-transform:uppercase; color:var(--ink-soft); margin-bottom:14px; }
+
+    /* ══════════════════════════════════════
+       CONTENT IDEATION
+    ══════════════════════════════════════ */
+    .funnel-block { margin-bottom:0; }
+
+    .funnel-header {
+      border-radius:var(--radius) var(--radius) 0 0;
+      padding:16px 22px;
+      display:flex; align-items:flex-start;
+    }
+    .tofu-header { background:rgba(203,233,255,.35); border:1px solid rgba(12,51,135,.14); border-bottom:none; }
+    .mofu-header { background:rgba(226,237,122,.22); border:1px solid rgba(200,214,0,.22); border-bottom:none; }
+    .bofu-header { background:rgba(12,51,135,.07);   border:1px solid rgba(12,51,135,.14); border-bottom:none; }
+
+    .funnel-label-wrap { display:flex; align-items:flex-start; gap:12px; }
+    .funnel-pill {
+      font-size:11px; font-weight:700; letter-spacing:.09em;
+      text-transform:uppercase; padding:4px 12px;
+      border-radius:100px; flex-shrink:0; margin-top:2px;
+    }
+    .tofu-pill { background:rgba(12,51,135,.12); color:var(--azure); }
+    .mofu-pill { background:rgba(200,214,0,.3);  color:#3d4e00; }
+    .bofu-pill { background:rgba(12,51,135,.15); color:var(--azure); }
+
+    .funnel-title { font-size:15px; font-weight:700; color:var(--shadow); margin-bottom:3px; }
+    .funnel-desc  { font-size:13px; color:var(--ink-mid); line-height:1.5; }
+
+    .idea-grid {
+      display:grid; grid-template-columns:1fr 1fr; gap:0;
+      border:1px solid var(--border); border-top:none;
+      border-radius:0 0 var(--radius) var(--radius); overflow:hidden;
+    }
+    @media(max-width:640px){ .idea-grid{grid-template-columns:1fr;} }
+
+    .idea-card {
+      background:#fff; padding:20px 22px;
+      border-right:1px solid var(--border);
+      border-bottom:1px solid var(--border);
+    }
+    .idea-card:nth-child(even)      { border-right:none; }
+    .idea-card:nth-last-child(-n+2) { border-bottom:none; }
+    @media(max-width:640px){
+      .idea-card                      { border-right:none; }
+      .idea-card:nth-last-child(-n+2) { border-bottom:1px solid var(--border); }
+      .idea-card:last-child           { border-bottom:none; }
+    }
+
+    .idea-format-row { display:flex; gap:8px; align-items:center; margin-bottom:10px; }
+    .format-tag {
+      font-size:10px; font-weight:700; letter-spacing:.07em;
+      text-transform:uppercase; padding:3px 10px; border-radius:4px;
+    }
+    .reel     { background:rgba(12,51,135,.1);  color:var(--azure); }
+    .carousel { background:rgba(226,237,122,.45); color:#3d4e00; }
+    .stories  { background:rgba(255,190,80,.22); color:#7a4800; }
+
+    .pillar-tag-sm { font-size:11px; font-weight:600; color:var(--ink-soft); letter-spacing:.03em; }
+
+    .idea-hook {
+      font-size:14px; font-weight:700; color:var(--shadow);
+      line-height:1.4; margin-bottom:8px; font-style:italic;
+    }
+    .idea-body {
+      font-size:13px; color:var(--ink-mid);
+      line-height:1.6; margin-bottom:10px;
+    }
+    .idea-why {
+      font-size:12px; color:var(--ink-soft); line-height:1.55;
+      padding-top:10px; border-top:1px solid var(--border);
+    }
+    .idea-why strong { color:var(--azure); }
+
+    /* ══════════════════════════════════════
+       INVESTMENT
+    ══════════════════════════════════════ */
+    .invest-grid { display:grid; grid-template-columns:1fr 1fr; gap:20px; }
+    @media(max-width:640px){ .invest-grid{grid-template-columns:1fr;} }
+    .invest-card {
+      background:#fff; border:1px solid var(--border);
+      border-radius:var(--radius); box-shadow:var(--card-shadow);
+      padding:28px; position:relative; display:flex; flex-direction:column;
+    }
+    .invest-card.featured {
+      border-color:var(--azure);
+      box-shadow:0 0 0 2px rgba(12,51,135,.12),var(--card-shadow);
+    }
+    .inv-ribbon {
+      position:absolute; top:-13px; left:22px;
+      background:var(--azure); color:#fff;
+      font-size:11px; font-weight:700; letter-spacing:.06em;
+      text-transform:uppercase; padding:4px 14px; border-radius:100px;
+    }
+    .inv-type { font-size:11px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--azure); margin-top:10px; margin-bottom:6px; }
+    .invest-card h3 { font-size:20px; font-weight:800; color:var(--shadow); margin-bottom:4px; }
+    .inv-price { font-size:30px; font-weight:800; color:var(--azure); line-height:1; margin:14px 0; }
+    .inv-price span { font-size:14px; font-weight:500; color:var(--ink-soft); }
+    .inv-credit {
+      font-size:12px; color:#2a7a3a; font-weight:600;
+      background:rgba(42,122,58,.08); border:1px solid rgba(42,122,58,.2);
+      padding:6px 12px; border-radius:7px; margin-bottom:12px;
+    }
+    .inv-desc { font-size:13px; color:var(--ink-mid); line-height:1.6; margin-bottom:14px; }
+    .inv-btn {
+      display:block; margin-top:20px; padding:13px 20px;
+      border-radius:9px; font-size:14px; font-weight:700;
+      text-align:center; text-decoration:none; transition:opacity .18s;
+    }
+    .inv-btn:hover { opacity:.84; }
+    .inv-btn.primary { background:var(--azure); color:#fff; }
+    .inv-btn.outline { background:transparent; color:var(--azure); border:1.5px solid var(--azure); }
+
+    /* ══════════════════════════════════════
+       NEXT STEPS
+    ══════════════════════════════════════ */
+    .steps-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:18px; }
+    @media(max-width:640px){ .steps-grid{grid-template-columns:1fr;} }
+    .step {
+      background:#fff; border:1px solid var(--border);
+      border-radius:var(--radius); box-shadow:var(--card-shadow); padding:24px;
+    }
+    .step-n { font-size:11px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--azure); margin-bottom:10px; }
+    .step h3 { font-size:16px; font-weight:700; color:var(--shadow); margin-bottom:8px; }
+    .step p  { font-size:14px; color:var(--ink-mid); line-height:1.6; }
+
+    /* ══════════════════════════════════════
+       INSIGHT CALLOUT
+    ══════════════════════════════════════ */
+    .insight {
+      background:rgba(226,237,122,.1);
+      border:1px solid rgba(200,214,0,.3);
+      border-left:4px solid #c8d600;
+      border-radius:var(--radius);
+      padding:18px 22px;
+    }
+    .insight p { font-size:14px; color:var(--ink-mid); line-height:1.6; }
+    .insight p strong { color:var(--shadow); }
+
+    /* ══════════════════════════════════════
+       FOOTER
+    ══════════════════════════════════════ */
+    footer {
+      background:var(--shadow);
+      padding:36px 32px; text-align:center;
+    }
+    footer img {
+      height:22px; filter:brightness(0) invert(1);
+      opacity:.6; display:block; margin:0 auto 14px;
+    }
+    footer p   { font-size:13px; color:rgba(255,255,255,.4); }
+    footer a   { color:rgba(255,255,255,.4); text-decoration:none; transition:color .2s; }
+    footer a:hover { color:rgba(255,255,255,.8); }
+  </style>
+</head>
+<body>
+
+<div id="prog"></div>
+
+<!-- ── NAV ── -->
+<nav>
+  <div class="nav-logo">
+    <a href="https://decks.scrollmedia.co/pitch/">
+      <img src="https://tools.scrollmedia.co/scroll-media-logo.svg" alt="Scroll Media" />
+    </a>
+  </div>
+  <ul class="nav-links" id="nav-links">
+    <li><a href="#profile"      data-section="profile">Profile</a></li>
+    <li><a href="#audit"        data-section="audit">Audit</a></li>
+    <li><a href="#observations" data-section="observations">Observations</a></li>
+    <li><a href="#ideation"     data-section="ideation">Content Ideas</a></li>
+    <li><a href="#how-we-work"  data-section="how-we-work">How We Work</a></li>
+    <li><a href="#investment"   data-section="investment">Investment</a></li>
+  </ul>
+</nav>
+
+<!-- ══════════════════════════════════════
+     HERO
+══════════════════════════════════════ -->
+<div class="hero" id="top">
+  <div class="hero-chip">Scroll Media × Carl's Deli — Discovery Session</div>
+  <h1>This isn't a pitch.<br/>It's a <em>conversation.</em></h1>
+  <p class="hero-sub">We did our homework before this call. Here's what we found, how we think, and the questions we want to work through together.</p>
+  <div class="hero-pills">
+    <span><strong>Business</strong> Carl's Deli</span>
+    <span><strong>Market</strong> Cincinnati, OH</span>
+    <span><strong>Niche</strong> Deli · Food &amp; Bev</span>
+    <span><strong>Session</strong> Discovery Call</span>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ══════════════════════════════════════
+     CLIENT PROFILE
+══════════════════════════════════════ -->
+<div class="wrap" id="profile">
+  <div class="eyebrow">Client Profile</div>
+  <h2 class="section-title">Here's what we <em>know about you.</em></h2>
+  <p class="section-sub">We pulled this together before the call. If anything's off, correct us.</p>
+
+  <div class="g2">
+    <div class="profile-card">
+      <div class="card-label">Business Overview</div>
+      <h3>Carl's Deli</h3>
+      <ul class="kv-list mt-sm">
+        <li><strong>Owners:</strong> Sydney Turnbull &amp; Cameron Kurz</li>
+        <li><strong>Took Over:</strong> April 2022</li>
+        <li><strong>History:</strong> Cincinnati staple for 80+ years</li>
+        <li><strong>Locations:</strong> Hyde Park · Findlay Market (OTR)</li>
+        <li><strong>Model:</strong> Carry-out, online ordering, catering</li>
+        <li><strong>Background:</strong> Women-owned; family roots in The Honey Baked Ham Co.</li>
+      </ul>
+    </div>
+
+    <div class="profile-card">
+      <div class="card-label">What Makes Carl's Different</div>
+      <ul class="arrow-list mt-sm">
+        <li>80+ years of Cincinnati history — multi-generational customer base</li>
+        <li>Meats sliced in-house daily, house-made salads, fresh-to-order</li>
+        <li>Women-owned and community-rooted with deep Hyde Park identity</li>
+        <li>Founders grew up as customers — the story is authentic, not manufactured</li>
+        <li>Expanded to Findlay Market — one of Cincinnati's highest foot-traffic destinations</li>
+      </ul>
+    </div>
+
+    <div class="profile-card">
+      <div class="card-label">Current Pain Points</div>
+      <ul class="arrow-list mt-sm">
+        <li>Two separate Instagram accounts — split effort, split audience, double the workload</li>
+        <li>Managing social while running two locations isn't sustainable</li>
+        <li>Posting without a system — no funnel, no IVP, no strategic purpose</li>
+        <li>The brand story — 80 years, sisters who grew up here — isn't being told</li>
+        <li>Catering and online ordering not being driven through content</li>
+      </ul>
+    </div>
+
+    <div class="profile-card">
+      <div class="card-label">Primary Goals</div>
+      <ul class="funnel-list mt-sm">
+        <li><span class="ftag tofu">TOFU</span>Build awareness for both locations — especially Findlay Market</li>
+        <li><span class="ftag mofu">MOFU</span>Tell the founder story in a way that builds loyalty and connection</li>
+        <li><span class="ftag bofu">BOFU</span>Drive catering inquiries, online orders, and foot traffic</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ══════════════════════════════════════
+     SOCIAL AUDIT
+══════════════════════════════════════ -->
+<div class="wrap" id="audit">
+  <div class="eyebrow">Social Media Audit</div>
+  <h2 class="section-title">Where you are today <em>on Instagram.</em></h2>
+  <p class="section-sub">We mapped both accounts — what's working, what isn't, and where the opportunity lives.</p>
+
+  <div class="account-block">
+    <div class="account-head" onclick="toggleBody(this)">
+      <div>
+        <div class="account-handle">@carlsdelihydepark</div>
+        <div class="account-stats">7,310 followers &nbsp;·&nbsp; 559 posts &nbsp;·&nbsp; 686 following &nbsp;·&nbsp; Hyde Park</div>
+      </div>
+      <span class="badge badge-lift">Lift Stage</span>
+    </div>
+    <div class="account-body">
+      <div class="audit-col good">
+        <h4>What's Working</h4>
+        <ul class="check-list">
+          <li>7,310 followers for a local deli — a real, established audience</li>
+          <li>559 posts shows years of consistent presence</li>
+          <li>Strong brand recognition and loyal Hyde Park community</li>
+        </ul>
+      </div>
+      <div class="audit-col gap">
+        <h4>Where to Improve</h4>
+        <ul class="check-list">
+          <li>Bio reads like a listing — no story, no CTA, no personality</li>
+          <li>No Reels strategy — the biggest growth lever is untapped</li>
+          <li>No content funnel, no social SEO, no IVP behind the posting</li>
+          <li>The founder story is completely invisible</li>
+        </ul>
+      </div>
+      <div class="stage-row">
+        <div class="seg">Spark<br/><span style="font-size:9px;opacity:.6;">0–2.5K</span></div>
+        <div class="seg on-lift">← Lift<br/><span style="font-size:9px;opacity:.85;">2.5K–10K</span></div>
+        <div class="seg">Rise<br/><span style="font-size:9px;opacity:.6;">10K–50K</span></div>
+        <div class="seg">Thrive<br/><span style="font-size:9px;opacity:.6;">50K+</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="account-block">
+    <div class="account-head" onclick="toggleBody(this)">
+      <div>
+        <div class="account-handle">@carlsdelifindlaymarket</div>
+        <div class="account-stats">2,551 followers &nbsp;·&nbsp; 121 posts &nbsp;·&nbsp; Findlay Market, OTR</div>
+      </div>
+      <span class="badge badge-spark">Spark Stage</span>
+    </div>
+    <div class="account-body">
+      <div class="audit-col good">
+        <h4>The Opportunity</h4>
+        <ul class="check-list">
+          <li>Findlay Market is one of Cincinnati's highest foot-traffic destinations</li>
+          <li>OTR audience is younger, discovery-driven, and highly social-native</li>
+          <li>Expansion is a natural content story arc — new chapter, new audience</li>
+        </ul>
+      </div>
+      <div class="audit-col gap">
+        <h4>The Challenge</h4>
+        <ul class="check-list">
+          <li>Two accounts = split effort, split audience, harder to grow either</li>
+          <li>No strategy for how both accounts work together — or whether they should</li>
+          <li>Starting small while Hyde Park sits underleveraged</li>
+        </ul>
+      </div>
+      <div class="stage-row">
+        <div class="seg on-spark">← Spark<br/><span style="font-size:9px;opacity:.85;">0–2.5K</span></div>
+        <div class="seg">Lift<br/><span style="font-size:9px;opacity:.6;">2.5K–10K</span></div>
+        <div class="seg">Rise<br/><span style="font-size:9px;opacity:.6;">10K–50K</span></div>
+        <div class="seg">Thrive<br/><span style="font-size:9px;opacity:.6;">50K+</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="insight mt-md">
+    <p><strong>Our take:</strong> The two-account question has to be answered before anything else. One of the first deliverables of a Blueprint engagement is a clear recommendation on how to handle both accounts without doubling the workload.</p>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ══════════════════════════════════════
+     OBSERVATIONS
+══════════════════════════════════════ -->
+<div class="wrap" id="observations">
+  <div class="eyebrow">What We Saw</div>
+  <h2 class="section-title">Three things that <em>stood out immediately.</em></h2>
+  <p class="section-sub">The strengths, the gaps, and where the real opportunity lives.</p>
+
+  <div class="obs-stack">
+    <div class="obs-card">
+      <div class="obs-num">01</div>
+      <div>
+        <h3>The story is the biggest asset — and it's completely invisible on Instagram.</h3>
+        <p>Two sisters who grew up eating at this deli, bought it to preserve it, and are now expanding it across Cincinnati. That's a founder story most local brands can't manufacture. It isn't in the bio. It isn't in the content. It isn't being told anywhere.</p>
+        <div class="obs-tags">
+          <span class="obs-tag">Founder Content</span>
+          <span class="obs-tag">MOFU Trust</span>
+          <span class="obs-tag">Brand Differentiation</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="obs-card">
+      <div class="obs-num">02</div>
+      <div>
+        <h3>7,300 followers is a real asset that's being underleveraged.</h3>
+        <p>Most local delis would trade anything for a 7K-follower Instagram. The base is there. The problem is there's no system behind it — no funnel, no Reels engine, no keyword strategy. The Hyde Park account isn't broken. It just has no strategy.</p>
+        <div class="obs-tags">
+          <span class="obs-tag">Existing Audience</span>
+          <span class="obs-tag">Content System</span>
+          <span class="obs-tag">Lift Stage Growth</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="obs-card">
+      <div class="obs-num">03</div>
+      <div>
+        <h3>Catering and online ordering are buried. They should be driving the content.</h3>
+        <p>The bio says "catering available" — and that's it. For a deli with an 80-year reputation, catering is a meaningful revenue line that gets zero content attention. A dedicated content pillar for catering alone could materially move that needle.</p>
+        <div class="obs-tags">
+          <span class="obs-tag">Revenue Driver</span>
+          <span class="obs-tag">BOFU Content</span>
+          <span class="obs-tag">CTA Strategy</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="opp">
+    <h3>🎯 The Real Opportunity</h3>
+    <p>Carl's has three things most local brands can't build from scratch: an 80-year legacy, a genuine founder story, and a loyal existing audience. The brand isn't the problem. The system is. Build the system and the content practically writes itself.</p>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ══════════════════════════════════════
+     CONTENT IDEATION
+══════════════════════════════════════ -->
+<div class="wrap" id="ideation">
+  <div class="eyebrow">Content Ideation</div>
+  <h2 class="section-title">What your content <em>could look like.</em></h2>
+  <p class="section-sub">A sample of how we'd approach Carl's Deli across all three funnel stages — built around your story, your audience, and what performs in this niche.</p>
+
+  <!-- TOFU -->
+  <div class="funnel-block">
+    <div class="funnel-header tofu-header">
+      <div class="funnel-label-wrap">
+        <span class="funnel-pill tofu-pill">TOFU</span>
+        <div>
+          <div class="funnel-title">Top of Funnel — Reach &amp; Discovery</div>
+          <div class="funnel-desc">Stop the scroll. Reach people who don't know Carl's yet. Saves and shares are the signal.</div>
+        </div>
+      </div>
+    </div>
+    <div class="idea-grid">
+      <div class="idea-card">
+        <div class="idea-format-row">
+          <span class="format-tag reel">Reel</span>
+          <span class="pillar-tag-sm">The Craft</span>
+        </div>
+        <div class="idea-hook">"We slice every piece of meat in-house. Every single day."</div>
+        <div class="idea-body">Slow-motion close-up of the slicer in action — the sound, the texture, the precision. Natural ASMR audio. No voiceover. Ends on the finished sandwich.</div>
+        <div class="idea-why"><strong>Why it works:</strong> Process content is the highest-performing format in the food niche. Sensory footage drives saves and replays — both Tier 1 signals for algorithmic distribution.</div>
+      </div>
+      <div class="idea-card">
+        <div class="idea-format-row">
+          <span class="format-tag reel">Reel</span>
+          <span class="pillar-tag-sm">The Story</span>
+        </div>
+        <div class="idea-hook">"This deli has been here for 80 years. We grew up eating here. Now we own it."</div>
+        <div class="idea-body">Sydney or Cameron to camera — 20–30 seconds. The origin story in their own words. No script. Honest, direct, real. Ends on the counter, the chalkboard, the place.</div>
+        <div class="idea-why"><strong>Why it works:</strong> Founder-on-camera Reels outperform product content significantly in local food. The emotional hook earns shares from people who root for Cincinnati businesses.</div>
+      </div>
+      <div class="idea-card">
+        <div class="idea-format-row">
+          <span class="format-tag reel">Reel</span>
+          <span class="pillar-tag-sm">The Community</span>
+        </div>
+        <div class="idea-hook">"What to eat at Findlay Market if you only have 20 minutes."</div>
+        <div class="idea-body">Quick walkthrough Reel featuring Carl's alongside neighboring Findlay Market vendors. Tags them, builds goodwill, taps into their audiences organically.</div>
+        <div class="idea-why"><strong>Why it works:</strong> Local collab content is the highest-reach TOFU format for neighborhood brands. Every vendor tagged brings their own audience into your reach.</div>
+      </div>
+      <div class="idea-card">
+        <div class="idea-format-row">
+          <span class="format-tag carousel">Carousel</span>
+          <span class="pillar-tag-sm">The Menu</span>
+        </div>
+        <div class="idea-hook">"80 years of the same chalkboard. Here's what's actually on it."</div>
+        <div class="idea-body">Visual carousel walking through the most iconic menu items — Curry Chicken Salad, the Pastrami, the classics. Each slide is one item with a two-line description worth ordering.</div>
+        <div class="idea-why"><strong>Why it works:</strong> Menu discovery carousels drive saves from people planning their first visit. High save rate = algorithmic push to non-followers.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MOFU -->
+  <div class="funnel-block mt-lg">
+    <div class="funnel-header mofu-header">
+      <div class="funnel-label-wrap">
+        <span class="funnel-pill mofu-pill">MOFU</span>
+        <div>
+          <div class="funnel-title">Middle of Funnel — Trust &amp; Connection</div>
+          <div class="funnel-desc">Deepen the relationship with people who already know Carl's. Build loyalty and keep the brand top of mind.</div>
+        </div>
+      </div>
+    </div>
+    <div class="idea-grid">
+      <div class="idea-card">
+        <div class="idea-format-row">
+          <span class="format-tag reel">Reel</span>
+          <span class="pillar-tag-sm">The Story</span>
+        </div>
+        <div class="idea-hook">"We almost didn't buy it. Here's what made us say yes."</div>
+        <div class="idea-body">Sydney tells the moment she and Cameron decided to take over. Personal, specific, real. Not polished — raw and direct is the point.</div>
+        <div class="idea-why"><strong>Why it works:</strong> Decision-moment storytelling creates emotional investment that product content never can. People who connect with a founder story become regulars, not just customers.</div>
+      </div>
+      <div class="idea-card">
+        <div class="idea-format-row">
+          <span class="format-tag carousel">Carousel</span>
+          <span class="pillar-tag-sm">The Craft</span>
+        </div>
+        <div class="idea-hook">"What 'house-made' actually means at a deli that's been doing it for 80 years."</div>
+        <div class="idea-body">Education carousel breaking down the salads, how the meat gets sourced, what "fresh-to-order" looks like in practice. Specificity builds credibility.</div>
+        <div class="idea-why"><strong>Why it works:</strong> Authority-building carousels earn saves from people who value quality. Positions Carl's as the standard against fast-casual alternatives.</div>
+      </div>
+      <div class="idea-card">
+        <div class="idea-format-row">
+          <span class="format-tag stories">Stories</span>
+          <span class="pillar-tag-sm">The Community</span>
+        </div>
+        <div class="idea-hook">Behind-the-counter Story series — "Wednesday prep day at Carl's."</div>
+        <div class="idea-body">3–5 frame Story sequence showing real prep: the walk-in, the slicing station, the salad line. Phone camera, natural light, real moments. Polls and questions invite interaction.</div>
+        <div class="idea-why"><strong>Why it works:</strong> Unedited Stories build daily intimacy with your existing audience. Story completion is a Tier 1 signal. Regulars become loyalists when they feel like insiders.</div>
+      </div>
+      <div class="idea-card">
+        <div class="idea-format-row">
+          <span class="format-tag reel">Reel</span>
+          <span class="pillar-tag-sm">The Community</span>
+        </div>
+        <div class="idea-hook">"We've had customers come in for 40 years. We asked one of them why."</div>
+        <div class="idea-body">Short, candid interview with a multi-generational regular. Their words, their face, their story. Real customer explaining why they keep coming back.</div>
+        <div class="idea-why"><strong>Why it works:</strong> Social proof from real customers outperforms any brand claim. Long-time regulars signal legacy to new audiences in a way advertising never could.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- BOFU -->
+  <div class="funnel-block mt-lg">
+    <div class="funnel-header bofu-header">
+      <div class="funnel-label-wrap">
+        <span class="funnel-pill bofu-pill">BOFU</span>
+        <div>
+          <div class="funnel-title">Bottom of Funnel — Action &amp; Conversion</div>
+          <div class="funnel-desc">Drive a specific outcome — a catering inquiry, an online order, a first visit. Every post has one job and one CTA.</div>
+        </div>
+      </div>
+    </div>
+    <div class="idea-grid">
+      <div class="idea-card">
+        <div class="idea-format-row">
+          <span class="format-tag reel">Reel</span>
+          <span class="pillar-tag-sm">The CTA</span>
+        </div>
+        <div class="idea-hook">"This is what a Carl's Deli catering spread looks like."</div>
+        <div class="idea-body">15-second Reel showing a real catering setup — the trays, the meats, the sides. Ends with a direct CTA: "Order link in bio. Minimum 10 people." No fluff.</div>
+        <div class="idea-why"><strong>Why it works:</strong> Catering consideration is high-intent but low-awareness — most people don't think of a deli first. Showing the product in context closes that gap and drives DMs.</div>
+      </div>
+      <div class="idea-card">
+        <div class="idea-format-row">
+          <span class="format-tag carousel">Carousel</span>
+          <span class="pillar-tag-sm">The CTA</span>
+        </div>
+        <div class="idea-hook">"Planning an event in Cincinnati? Here's why Carl's is the easiest catering decision you'll make."</div>
+        <div class="idea-body">5-slide carousel: what's included, how ordering works, price range, lead time, final CTA slide with the link. Answers every question. Removes the friction to say yes.</div>
+        <div class="idea-why"><strong>Why it works:</strong> Decision-stage buyers need clarity, not convincing. A carousel that answers every objection converts hesitation into action.</div>
+      </div>
+      <div class="idea-card">
+        <div class="idea-format-row">
+          <span class="format-tag stories">Stories</span>
+          <span class="pillar-tag-sm">The CTA</span>
+        </div>
+        <div class="idea-hook">"Online ordering is live. Here's the link."</div>
+        <div class="idea-body">Single-frame Story with a strong food photo and a clear link sticker. Posted Tue–Thu at 11am when lunch decisions are being made. Runs weekly. The food and the link do the work.</div>
+        <div class="idea-why"><strong>Why it works:</strong> Link sticker taps in Stories are the most direct conversion event on Instagram. Timing to lunch consideration windows maximizes intent-to-click.</div>
+      </div>
+      <div class="idea-card">
+        <div class="idea-format-row">
+          <span class="format-tag reel">Reel</span>
+          <span class="pillar-tag-sm">The CTA</span>
+        </div>
+        <div class="idea-hook">"We're at Findlay Market Tuesday through Friday. Here's how to find us."</div>
+        <div class="idea-body">10-second location Reel — the Findlay entrance, the Carl's sign, the counter. Ends with hours and "see you there." Tagged with Cincinnati + Findlay Market for local search.</div>
+        <div class="idea-why"><strong>Why it works:</strong> Foot traffic conversion depends on people knowing you're there. Local SEO on Reels surfaces this content to nearby users exploring OTR.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="insight mt-lg">
+    <p><strong>This is a sample — not the full strategy.</strong> A Blueprint engagement builds this out across 90 days, mapped to your IVP, your seasonal calendar, and what the data tells us is working. These 12 ideas represent the direction. The full system is what makes it compound.</p>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ══════════════════════════════════════
+     HOW WE WORK (merged with Who We Are)
+══════════════════════════════════════ -->
+<div class="wrap" id="how-we-work">
+  <div class="eyebrow">How We Work</div>
+  <h2 class="section-title">Cincinnati-based. <em>Instagram-first. Data-driven.</em></h2>
+  <p class="section-sub">Scroll Media specializes on one channel — because mastery beats mediocrity. Locally rooted and recognized by the OTR Chamber of Commerce.</p>
+
+  <div class="cred-stat-row">
+    <div class="stat-box">
+      <div class="stat-num">30+</div>
+      <div class="stat-lbl">Brands Served</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-num">100%</div>
+      <div class="stat-lbl">5-Star Rated</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-num">2+ yrs</div>
+      <div class="stat-lbl">Avg. Client Relationship</div>
+    </div>
+  </div>
+
+  <div class="phases">
+    <div class="phase">
+      <div class="phase-n">Month 1</div>
+      <h3>Foundation</h3>
+      <div class="phase-sub">Strategy Month</div>
+      <ul class="dot-list">
+        <li>Ideal Viewer Profile (IVP)</li>
+        <li>Content pillars + formats</li>
+        <li>Social SEO keyword bank</li>
+        <li>90-day content calendar</li>
+        <li>Brand voice + visual direction</li>
+        <li>Two-account architecture answer</li>
+      </ul>
+    </div>
+    <div class="phase">
+      <div class="phase-n">Months 2–3</div>
+      <h3>Execution</h3>
+      <div class="phase-sub">Build &amp; Test</div>
+      <ul class="dot-list">
+        <li>Monthly content creation</li>
+        <li>Reels + carousels + Stories</li>
+        <li>Format and hook testing</li>
+        <li>Caption writing + SEO</li>
+        <li>Monthly performance report</li>
+      </ul>
+    </div>
+    <div class="phase">
+      <div class="phase-n">Month 4+</div>
+      <h3>Optimization</h3>
+      <div class="phase-sub">Refine &amp; Convert</div>
+      <ul class="dot-list">
+        <li>Double down on what works</li>
+        <li>Catering and ordering focus</li>
+        <li>Audience quality optimization</li>
+        <li>Monthly attribution reporting</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ══════════════════════════════════════
+     INVESTMENT
+══════════════════════════════════════ -->
+<div class="wrap" id="investment">
+  <div class="eyebrow">Investment</div>
+  <h2 class="section-title">Two ways to <em>start working together.</em></h2>
+  <p class="section-sub">The right starting point depends on where you are and what you need most right now.</p>
+
+  <div class="invest-grid">
+    <div class="invest-card featured">
+      <div class="inv-ribbon">Recommended Starting Point</div>
+      <div class="inv-type" style="margin-top:18px;">Done-With-You</div>
+      <h3>Instagram Growth Blueprint</h3>
+      <div class="inv-price">$997 <span>· one-time</span></div>
+      <div class="inv-credit">★ $997 fully credited to your first month of Signature</div>
+      <p class="inv-desc">A complete 90-day Instagram strategy built for Carl's in 3 weeks. IVP, content pillars, keyword strategy, profile optimization, and a definitive answer on both accounts.</p>
+      <ul class="tick-list">
+        <li>60-min onboarding strategy call</li>
+        <li>Brand + competitor audit</li>
+        <li>Ideal Viewer Profile (IVP)</li>
+        <li>TAM Ladder keyword bank</li>
+        <li>Content pillar framework (TOFU/MOFU/BOFU)</li>
+        <li>Profile optimization plan</li>
+        <li>Two-account architecture recommendation</li>
+        <li>Complete 90-day strategy document</li>
+      </ul>
+      <a href="https://tools.scrollmedia.co/instagram-growth-blueprint" class="inv-btn primary" target="_blank">View Blueprint Details →</a>
+    </div>
+
+    <div class="invest-card">
+      <div class="inv-type">Done-For-You</div>
+      <h3>Signature Package</h3>
+      <div class="inv-price">$2,975+ <span>· /month</span></div>
+      <p class="inv-desc">Full-service Instagram management. Strategy, content creation, execution, and reporting — all handled. Blueprint is Month 1. We execute every month after.</p>
+      <ul class="tick-list">
+        <li>Everything in the Blueprint, plus full execution</li>
+        <li>Monthly content creation and posting</li>
+        <li>Professional Reels, carousels + Stories</li>
+        <li>Community management</li>
+        <li>Monthly performance reporting</li>
+        <li>Dedicated account strategist</li>
+      </ul>
+      <a href="https://tools.scrollmedia.co/signature-package" class="inv-btn outline" target="_blank">View Signature Details →</a>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ══════════════════════════════════════
+     NEXT STEPS
+══════════════════════════════════════ -->
+<div class="wrap" id="next-steps">
+  <div class="eyebrow">Next Steps</div>
+  <h2 class="section-title">Here's what the path <em>forward looks like.</em></h2>
+  <p class="section-sub">If there's a fit, the process is simple.</p>
+
+  <div class="steps-grid">
+    <div class="step">
+      <div class="step-n">Step 01</div>
+      <h3>Custom Proposal</h3>
+      <p>Based on what we cover today, we'll put together a clear recommendation — with the right starting point and investment options built around Carl's goals.</p>
+    </div>
+    <div class="step">
+      <div class="step-n">Step 02</div>
+      <h3>Proposal Review</h3>
+      <p>We'll walk through it together, answer questions, and make sure we're fully aligned before anything moves forward.</p>
+    </div>
+    <div class="step">
+      <div class="step-n">Step 03</div>
+      <h3>Contract &amp; Kickoff</h3>
+      <p>Once aligned, we sort the paperwork and schedule the onboarding call. Strategy Month kicks off and we start building the foundation.</p>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <img src="https://tools.scrollmedia.co/scroll-media-logo.svg" alt="Scroll Media" />
+  <p>
+    <a href="https://decks.scrollmedia.co/pitch/">scrollmedia.co</a>
+    &nbsp;·&nbsp;
+    <a href="mailto:hello@scrollmedia.co">hello@scrollmedia.co</a>
+  </p>
+  <p style="margin-top:8px;">© 2026 Scroll Media · Cincinnati, OH · Simplifying Social Media</p>
+</footer>
+
+<script>
+  // ── Progress bar
+  window.addEventListener('scroll', () => {
+    const pct = window.scrollY / (document.body.scrollHeight - window.innerHeight) * 100;
+    document.getElementById('prog').style.width = Math.min(pct, 100) + '%';
+  });
+
+  // ── Account body toggle (open by default)
+  function toggleBody(header) {
+    const body = header.nextElementSibling;
+    body.style.display = body.style.display === 'none' ? 'grid' : 'none';
+  }
+
+  // ── Scroll-spy: active nav link
+  const sections = ['profile','audit','observations','ideation','how-we-work','investment'];
+  const links    = document.querySelectorAll('.nav-links a[data-section]');
+
+  function onScroll() {
+    const scrollY   = window.scrollY + 80;
+    let   active    = sections[0];
+
+    sections.forEach(id => {
+      const el = document.getElementById(id);
+      if (el && el.offsetTop <= scrollY) active = id;
+    });
+
+    links.forEach(a => {
+      a.classList.toggle('active', a.dataset.section === active);
+    });
+  }
+
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+</script>
+</body>
+</html>
