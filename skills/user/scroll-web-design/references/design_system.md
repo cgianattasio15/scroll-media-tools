@@ -371,3 +371,42 @@ COPYWRITING RULES:
 
 Apply these guidelines to create [DESCRIBE THE SPECIFIC DELIVERABLE YOU NEED].
 ```
+---
+## 12. Proposal System & Build Standards
+**Last updated:** April 2026
+**Canonical example:** carlsdeli-proposal-final.html (decks.scrollmedia.co/carlsdeli/april2026/)
+### Template Location
+- Repo: cgianattasio15/scroll-proposals
+- Path: _template/proposal-template.html
+- Clone this for every new client. Never rebuild from scratch.
+### Required Proposal Section Order (9 sections)
+Hero → What We Heard → Strategy → Social SEO → Content Ideas → Scope → Timeline → What We Need From You → Investment/Next Steps
+### Non-Negotiable Rules
+- All 9 sections must be in BOTH nav links AND scroll-spy sections array
+- Brand Inspiration is NEVER a standalone section — fold into Content Ideas as "Content Inspiration" subsection
+- "What We Need From You" is required on every proposal and must be navigable
+- Footer: always var(--porcelain) background, var(--ink-soft) text. Never dark.
+- Cross-links: hero pill → how-we-work; ideation callout → how-we-work; framework CTA → pitch page
+### Mobile Standards (apply to ALL HTML pages)
+- Tables: wrap in overflow-x:auto container, min-width set on table element
+- Calendars: wrap in overflow-x:auto container, min-width:480px on inner element
+- Grids (3+ col): @media(max-width:640px) + @media(max-width:480px) rules required
+- Nav breakpoint: 900px for ≤8 items, 1020px for 9+ items
+- Minimum font: 16px body, 11px labels
+- Minimum tap target: 44px
+- Test breakpoints: 360px, 375px, 768px, 1280px
+### Div Balance Check (required before every deploy)
+python3 -c "c=open('file.html').read(); print(c.count('<div'), c.count('</div>'))"
+Both numbers must match. If they don't, find and fix before deploying.
+### Framework Page
+- URL: decks.scrollmedia.co/how-we-work/
+- Generic and reusable — never client-specific content or URLs
+- CTA always points to: decks.scrollmedia.co/pitch/
+- 9 nav items, 1020px mobile breakpoint
+### Cross-System Update Protocol
+After every completed deliverable:
+1. Update Claude memory in Scroll Media Chief Strategist project
+2. Update Scroll Media Knowledge Base in Scroll Media Notion workspace
+3. Update relevant skill files in this repo
+All three are required. Manus executes steps 2 and 3.
+Commit message: "skill update: proposal system, mobile standards, cross-system protocol — April 2026"
