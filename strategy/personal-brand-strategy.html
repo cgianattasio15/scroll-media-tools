@@ -1,0 +1,2738 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Personal Brand + Agency Strategy — Scroll Media</title>
+<link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+/* ── SCROLL MEDIA DESIGN SYSTEM — SCHEME B (LIGHT) ── */
+:root {
+  --ghost: #fafdff;
+  --shadow: #151516;
+  --azure: #0c3387;
+  --azure-mid: #1042a8;
+  --azure-light: #e8eef8;
+  --azure-pale: #f0f4fb;
+  --lucid: #cbe9ff;
+  --lucid-light: #e8f5ff;
+  --highlighter: #e2ed7a;
+  --highlighter-dark: #c8d85c;
+  --porcelain: #f2f3f4;
+  --porcelain-dark: #e6e8ea;
+  --text-primary: #151516;
+  --text-secondary: #4a5568;
+  --text-muted: #8a9ab5;
+  --border: rgba(12,51,135,0.10);
+  --border-strong: rgba(12,51,135,0.20);
+  --shadow-sm: 0 1px 3px rgba(12,51,135,0.08), 0 1px 2px rgba(12,51,135,0.06);
+  --shadow-md: 0 4px 16px rgba(12,51,135,0.10), 0 2px 6px rgba(12,51,135,0.06);
+  --shadow-lg: 0 12px 40px rgba(12,51,135,0.12), 0 4px 12px rgba(12,51,135,0.08);
+
+  /* Platform colors */
+  --c-ig: #e2ed7a;
+  --c-ig-text: #5a6800;
+  --c-ig-bg: #f9fbdf;
+  --c-tt: #ff4d6d;
+  --c-tt-bg: #fff0f3;
+  --c-th: #151516;
+  --c-th-bg: #f2f3f4;
+  --c-x: #6b7280;
+  --c-x-bg: #f4f5f6;
+  --c-li: #0077b5;
+  --c-li-bg: #e8f3fa;
+  --c-sc: #0c3387;
+  --c-sc-bg: #e8eef8;
+}
+
+* { margin:0; padding:0; box-sizing:border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--ghost);
+  color: var(--text-primary);
+  font-family: 'Source Sans 3', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-size: 16px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── PROGRESS BAR ── */
+#progress-bar {
+  position: fixed; top:0; left:0; height:3px; width:0%;
+  background: linear-gradient(90deg, var(--azure), var(--azure-mid));
+  z-index: 1000;
+  transition: width 0.1s linear;
+}
+
+/* ── STICKY NAV ── */
+.nav {
+  position: fixed; top:3px; left:0; right:0; z-index:999;
+  background: rgba(250,253,255,0.88);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  padding: 0 40px;
+  display: flex;
+  align-items: center;
+  height: 54px;
+  gap: 32px;
+}
+.nav-logo {
+  font-family: 'Source Sans 3', sans-serif;
+  font-weight: 700;
+  font-size: 15px;
+  color: var(--azure);
+  letter-spacing: -0.02em;
+  flex-shrink: 0;
+  text-decoration: none;
+}
+.nav-links {
+  display: flex;
+  gap: 24px;
+  list-style: none;
+  flex: 1;
+}
+.nav-links a {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  text-decoration: none;
+  transition: color 0.2s;
+  white-space: nowrap;
+}
+.nav-links a:hover { color: var(--azure); }
+.nav-badge {
+  background: var(--azure);
+  color: white;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 4px 12px;
+  border-radius: 4px;
+  letter-spacing: 0.02em;
+  flex-shrink: 0;
+}
+
+/* ── LAYOUT ── */
+.container { max-width: 1000px; margin: 0 auto; padding: 0 40px; }
+.section { padding: 64px 0; border-bottom: 1px solid var(--border); }
+.section:last-of-type { border-bottom: none; }
+
+/* ── HERO ── */
+.hero {
+  padding: 96px 0 72px;
+  background: linear-gradient(160deg, var(--azure-pale) 0%, var(--ghost) 60%);
+  border-bottom: 1px solid var(--border);
+  position: relative;
+  overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute;
+  top: -80px; right: -80px;
+  width: 400px; height: 400px;
+  background: radial-gradient(circle, rgba(203,233,255,0.5) 0%, transparent 70%);
+  pointer-events: none;
+}
+.hero::after {
+  content: '';
+  position: absolute;
+  bottom: -60px; left: 10%;
+  width: 300px; height: 300px;
+  background: radial-gradient(circle, rgba(226,237,122,0.2) 0%, transparent 70%);
+  pointer-events: none;
+}
+.hero-inner { position: relative; z-index: 1; }
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--azure);
+  color: white;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 5px 12px;
+  border-radius: 4px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+.hero-badge-dot {
+  width: 6px; height: 6px;
+  background: var(--highlighter);
+  border-radius: 50%;
+  animation: pulse 2s ease-in-out infinite;
+}
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.6; transform: scale(0.85); }
+}
+.hero-title {
+  font-size: 52px;
+  font-weight: 700;
+  line-height: 1.05;
+  color: var(--shadow);
+  letter-spacing: -0.03em;
+  margin-bottom: 16px;
+  max-width: 720px;
+}
+.hero-title span { color: var(--azure); }
+.hero-sub {
+  font-size: 18px;
+  color: var(--text-secondary);
+  font-weight: 300;
+  max-width: 580px;
+  line-height: 1.6;
+  margin-bottom: 32px;
+}
+.hero-meta {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.hero-chip {
+  background: white;
+  border: 1px solid var(--border-strong);
+  border-radius: 6px;
+  padding: 6px 14px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--azure);
+  box-shadow: var(--shadow-sm);
+}
+
+/* ── SECTION HEADERS ── */
+.sec-ey {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--azure);
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.sec-ey::before {
+  content: '';
+  display: block;
+  width: 20px;
+  height: 2px;
+  background: var(--azure);
+  border-radius: 1px;
+}
+.sec-h {
+  font-size: 34px;
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  color: var(--shadow);
+  margin-bottom: 8px;
+  line-height: 1.15;
+}
+.sec-sub {
+  font-size: 16px;
+  color: var(--text-secondary);
+  font-weight: 300;
+  max-width: 680px;
+  line-height: 1.65;
+  margin-bottom: 36px;
+}
+
+/* ── PLATFORM SYSTEM CARDS ── */
+.platform-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  margin-bottom: 36px;
+}
+.plat-card {
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.2s, box-shadow 0.2s;
+  position: relative;
+  overflow: hidden;
+}
+.plat-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+.plat-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+}
+.plat-card.chase-primary::before { background: var(--azure); }
+.plat-card.chase-mirror::before { background: #e0e3e8; }
+.plat-card.chase-written::before { background: var(--shadow); }
+.plat-card.chase-authority::before { background: var(--c-li); }
+.plat-card.agency-primary::before { background: var(--azure); }
+.plat-card.agency-mirror::before { background: var(--c-tt); }
+.plat-card.agency-linkedin::before { background: var(--c-li); }
+.plat-dot {
+  width: 10px; height: 10px;
+  border-radius: 50%;
+  margin-bottom: 12px;
+}
+.plat-name {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--shadow);
+  margin-bottom: 2px;
+}
+.plat-handle {
+  font-family: 'SFMono-Regular', 'Consolas', monospace;
+  font-size: 11px;
+  color: var(--text-muted);
+  margin-bottom: 12px;
+}
+.plat-role-label {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--azure);
+  margin-bottom: 4px;
+}
+.plat-role-desc {
+  font-size: 12px;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+.plat-stats {
+  display: flex;
+  gap: 8px;
+  margin-top: 12px;
+  flex-wrap: wrap;
+}
+.plat-stat {
+  background: var(--porcelain);
+  border-radius: 4px;
+  padding: 3px 8px;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+/* ── FLOW DIAGRAM (STATIC VISUAL) ── */
+.flow-visual {
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 32px;
+  margin-bottom: 28px;
+  box-shadow: var(--shadow-sm);
+}
+.flow-title {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  text-align: center;
+  margin-bottom: 28px;
+}
+.flow-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  margin-bottom: 8px;
+}
+.flow-node {
+  background: var(--azure-pale);
+  border: 1.5px solid var(--border-strong);
+  border-radius: 8px;
+  padding: 10px 18px;
+  text-align: center;
+  min-width: 140px;
+}
+.flow-node.primary { border-color: var(--azure); background: var(--azure-light); }
+.flow-node-label {
+  font-family: 'SFMono-Regular', monospace;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--azure);
+  margin-bottom: 2px;
+}
+.flow-node-sub { font-size: 11px; color: var(--text-muted); }
+.flow-arrow {
+  color: var(--text-muted);
+  font-size: 16px;
+  padding: 0 10px;
+}
+.flow-arrow-v {
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 14px;
+  margin: 4px 0;
+}
+
+/* ── RESEARCH CARDS ── */
+.research-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin-bottom: 16px;
+}
+.research-item {
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 16px;
+  box-shadow: var(--shadow-sm);
+}
+.research-stat {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--azure);
+  letter-spacing: -0.03em;
+  margin-bottom: 4px;
+}
+.research-desc {
+  font-size: 12px;
+  color: var(--text-secondary);
+  line-height: 1.45;
+}
+
+/* ── PLATFORM STRATEGY BLOCKS ── */
+.plat-block {
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  overflow: hidden;
+  margin-bottom: 20px;
+  box-shadow: var(--shadow-sm);
+}
+.plat-block-hdr {
+  padding: 18px 24px;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: var(--azure-pale);
+}
+.plat-block-title { font-size: 16px; font-weight: 700; color: var(--shadow); }
+.plat-block-role { font-size: 12px; color: var(--text-secondary); margin-left: auto; }
+.plat-block-body { padding: 22px 24px; }
+
+/* ── INFO BOX ── */
+.ib {
+  background: var(--porcelain);
+  border-radius: 8px;
+  padding: 14px 16px;
+  margin-bottom: 12px;
+}
+.ib-label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--azure);
+  margin-bottom: 7px;
+}
+.ib-text { font-size: 13px; color: var(--text-secondary); line-height: 1.6; }
+.ib-text strong { color: var(--shadow); }
+
+/* ── FORMAT CARDS ── */
+.fmt-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+.fmt-card {
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 14px 16px;
+  box-shadow: var(--shadow-sm);
+  position: relative;
+  overflow: hidden;
+}
+.fmt-card::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0;
+  height: 2px;
+  width: 100%;
+}
+.fmt-card.core::after { background: var(--azure); }
+.fmt-card.test::after { background: var(--highlighter-dark); }
+.fmt-card.bdv::after { background: var(--c-li); }
+.fmt-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 7px;
+}
+.fmt-name { font-size: 13px; font-weight: 700; color: var(--shadow); }
+.fmt-badge {
+  font-size: 9px;
+  font-weight: 700;
+  padding: 2px 7px;
+  border-radius: 3px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  flex-shrink: 0;
+}
+.fb-core { background: var(--azure-light); color: var(--azure); }
+.fb-test { background: #f7f9d8; color: #6a7a00; }
+.fb-bdv { background: var(--c-li-bg); color: var(--c-li); }
+.fmt-desc { font-size: 12px; color: var(--text-secondary); line-height: 1.45; margin-bottom: 7px; }
+.fmt-hook { font-size: 11px; color: var(--azure); font-style: italic; line-height: 1.4; padding: 5px 8px; background: var(--azure-pale); border-radius: 4px; }
+.fmt-tags { display: flex; gap: 6px; margin-top: 8px; }
+.fmt-tag { font-size: 10px; font-weight: 600; padding: 2px 7px; border-radius: 3px; }
+.t-tofu { background: #f7f9d8; color: #5a6800; }
+.t-mofu { background: var(--lucid-light); color: #0a4a70; }
+.t-bofu { background: var(--azure-light); color: var(--azure); }
+
+/* ── CONTENT MIX BAR ── */
+.mix-wrap {
+  background: var(--porcelain);
+  border-radius: 10px;
+  padding: 16px 18px;
+  margin-bottom: 20px;
+}
+.mix-label { font-size: 12px; font-weight: 600; color: var(--text-secondary); margin-bottom: 8px; }
+.mix-bar {
+  height: 10px;
+  border-radius: 5px;
+  background: var(--porcelain-dark);
+  overflow: hidden;
+  display: flex;
+  margin-bottom: 10px;
+}
+.mix-seg { height: 100%; }
+.ms-tofu { background: var(--highlighter-dark); }
+.ms-mofu { background: var(--azure-mid); }
+.ms-bofu { background: var(--azure); }
+.mix-legend { display: flex; gap: 20px; font-size: 12px; flex-wrap: wrap; }
+.mix-item { color: var(--text-secondary); display: flex; align-items: center; gap: 5px; }
+.mix-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+.mix-pct { font-weight: 700; color: var(--shadow); }
+
+/* ── TABLE ── */
+.tbl {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  margin-bottom: 20px;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+}
+.tbl th {
+  background: var(--azure);
+  color: white;
+  padding: 10px 14px;
+  text-align: left;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+}
+.tbl td {
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--border);
+  color: var(--text-secondary);
+  vertical-align: top;
+  background: white;
+}
+.tbl tr:last-child td { border-bottom: none; }
+.tbl tr:nth-child(even) td { background: var(--azure-pale); }
+.tbl td strong { color: var(--shadow); }
+
+/* ── PLATFORM BADGES ── */
+.pb {
+  display: inline-block;
+  font-size: 10px;
+  font-weight: 700;
+  padding: 2px 7px;
+  border-radius: 3px;
+  font-family: 'SFMono-Regular', monospace;
+  letter-spacing: 0.04em;
+  vertical-align: middle;
+}
+.pb-ig { background: var(--c-ig-bg); color: var(--c-ig-text); }
+.pb-tt { background: var(--c-tt-bg); color: var(--c-tt); }
+.pb-th { background: var(--c-th-bg); color: var(--c-th); }
+.pb-x { background: var(--c-x-bg); color: var(--c-x); }
+.pb-li { background: var(--c-li-bg); color: var(--c-li); }
+.pb-sc { background: var(--c-sc-bg); color: var(--c-sc); }
+.pb-rachel {
+  background: #fff0e8;
+  color: #b84d00;
+  border: 1px solid #f5c4a0;
+}
+
+/* ── CALLOUT ── */
+.callout {
+  border-radius: 10px;
+  padding: 16px 20px;
+  font-size: 13px;
+  line-height: 1.6;
+  margin-bottom: 20px;
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+}
+.callout-icon {
+  font-size: 16px;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+.callout-text { color: var(--text-secondary); }
+.callout-text strong { color: var(--shadow); }
+.callout.azure { background: var(--azure-pale); border: 1px solid var(--border-strong); }
+.callout.lime { background: #f7f9d8; border: 1px solid #d0db5a; }
+.callout.neutral { background: var(--porcelain); border: 1px solid var(--border); }
+.callout.orange { background: #fff5ec; border: 1px solid #f5c4a0; }
+
+/* ── SIGNAL METHOD BLOCKS ── */
+.signal-block {
+  background: white;
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--azure);
+  border-radius: 0 10px 10px 0;
+  padding: 14px 18px;
+  margin-bottom: 10px;
+  box-shadow: var(--shadow-sm);
+}
+.signal-phase {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--azure);
+  margin-bottom: 5px;
+}
+.signal-title { font-size: 14px; font-weight: 700; color: var(--shadow); margin-bottom: 4px; }
+.signal-desc { font-size: 13px; color: var(--text-secondary); line-height: 1.5; }
+
+/* ── TWO / THREE COL ── */
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 20px; }
+.three-col { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; margin-bottom: 20px; }
+
+/* ── ACCORDION (30-DAY CALENDAR) ── */
+.accordion { margin-bottom: 16px; }
+.accordion-item {
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+  margin-bottom: 10px;
+  box-shadow: var(--shadow-sm);
+  transition: box-shadow 0.2s;
+}
+.accordion-item.open { box-shadow: var(--shadow-md); }
+.accordion-trigger {
+  width: 100%;
+  background: none;
+  border: none;
+  padding: 18px 24px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  cursor: pointer;
+  text-align: left;
+  transition: background 0.15s;
+}
+.accordion-trigger:hover { background: var(--azure-pale); }
+.acc-week-badge {
+  background: var(--azure);
+  color: white;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 4px 12px;
+  border-radius: 4px;
+  font-family: 'SFMono-Regular', monospace;
+  flex-shrink: 0;
+}
+.acc-week-theme { font-size: 15px; font-weight: 700; color: var(--shadow); }
+.acc-week-focus { font-size: 12px; color: var(--text-secondary); margin-left: auto; font-style: italic; }
+.acc-chevron {
+  width: 20px; height: 20px;
+  border-radius: 50%;
+  background: var(--porcelain);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: transform 0.25s, background 0.2s;
+  font-size: 10px;
+  color: var(--azure);
+}
+.accordion-item.open .acc-chevron { transform: rotate(180deg); background: var(--azure-light); }
+.accordion-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s cubic-bezier(0.4,0,0.2,1);
+}
+.accordion-inner { padding: 0 24px 24px; }
+
+/* ── DAY CARDS (CALENDAR VIEW) ── */
+.day-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 8px;
+  margin-bottom: 8px;
+}
+.day-card {
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  background: white;
+  box-shadow: var(--shadow-sm);
+  min-height: 240px;
+}
+.day-card.weekend { opacity: 0.8; }
+.day-hdr {
+  padding: 7px 10px;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--azure-pale);
+}
+.day-num {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--shadow);
+}
+.day-name { font-size: 10px; color: var(--text-muted); font-weight: 500; }
+.day-body { padding: 8px; display: flex; flex-direction: column; gap: 5px; }
+
+/* ── DAY POST ITEM ── */
+.dp {
+  border-radius: 6px;
+  padding: 6px 8px;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+.dp:hover { transform: translateY(-1px); box-shadow: var(--shadow-sm); }
+.dp-plats { display: flex; gap: 3px; margin-bottom: 4px; flex-wrap: wrap; }
+.dp-title { font-size: 11px; font-weight: 600; color: var(--shadow); line-height: 1.3; margin-bottom: 2px; }
+.dp-note { font-size: 10px; color: var(--text-muted); line-height: 1.3; }
+.dp-check {
+  width: 12px; height: 12px;
+  border-radius: 2px;
+  border: 1.5px solid var(--border-strong);
+  display: inline-block;
+  vertical-align: middle;
+  margin-left: auto;
+}
+
+/* Day post color coding by account */
+.dp.chase-post {
+  background: var(--azure-pale);
+  border-color: rgba(12,51,135,0.12);
+}
+.dp.rachel-post {
+  background: #fff5ec;
+  border-color: #f5c4a0;
+}
+.dp.written-post {
+  background: var(--porcelain);
+  border-color: var(--border-strong);
+}
+.dp.linkedin-post {
+  background: var(--c-li-bg);
+  border-color: rgba(0,119,181,0.2);
+}
+
+/* ── LEGEND ── */
+.legend {
+  display: flex;
+  gap: 14px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  color: var(--text-secondary);
+}
+.legend-dot {
+  width: 10px; height: 10px;
+  border-radius: 3px;
+  flex-shrink: 0;
+}
+.ld-chase { background: var(--azure-pale); border: 1.5px solid rgba(12,51,135,0.2); }
+.ld-rachel { background: #fff5ec; border: 1.5px solid #f5c4a0; }
+.ld-written { background: var(--porcelain); border: 1.5px solid var(--border-strong); }
+.ld-linkedin { background: var(--c-li-bg); border: 1.5px solid rgba(0,119,181,0.2); }
+
+/* ── RULE LIST ── */
+.rule-list { display: flex; flex-direction: column; gap: 8px; margin-bottom: 20px; }
+.rule-item {
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 11px 14px;
+  font-size: 13px;
+  color: var(--text-secondary);
+  line-height: 1.5;
+  box-shadow: var(--shadow-sm);
+}
+.rule-item strong { color: var(--shadow); }
+
+/* ── METRICS TABLE ── */
+.metric-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-bottom: 20px;
+}
+.metric-card {
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 18px;
+  box-shadow: var(--shadow-sm);
+}
+.mc-platform { display: flex; align-items: center; gap: 8px; margin-bottom: 12px; }
+.mc-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+.mc-name { font-size: 13px; font-weight: 700; color: var(--shadow); }
+.mc-north-label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--azure); margin-bottom: 4px; }
+.mc-north-value { font-size: 14px; font-weight: 700; color: var(--shadow); margin-bottom: 10px; }
+.mc-target-label { font-size: 10px; color: var(--text-muted); margin-bottom: 3px; }
+.mc-target-value { font-size: 12px; color: var(--text-secondary); line-height: 1.4; }
+
+/* ── SPACER / DIVIDER ── */
+.sp { height: 20px; }
+.hr { height: 1px; background: var(--border); margin: 24px 0; }
+
+/* ── MANUS SECTION ── */
+.manus-block {
+  background: var(--shadow);
+  color: white;
+  border-radius: 14px;
+  padding: 28px 32px;
+  margin-top: 48px;
+}
+.manus-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--highlighter);
+  margin-bottom: 6px;
+}
+.manus-sub {
+  font-size: 13px;
+  color: rgba(255,255,255,0.6);
+  margin-bottom: 20px;
+}
+.manus-prompt {
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 8px;
+  padding: 16px 18px;
+  font-family: 'SFMono-Regular', 'Consolas', monospace;
+  font-size: 12px;
+  line-height: 1.7;
+  color: rgba(255,255,255,0.85);
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+.manus-prompt .cmd-comment { color: rgba(226,237,122,0.7); }
+.manus-prompt .cmd-key { color: var(--lucid); }
+
+/* ── FOOTER ── */
+.footer {
+  background: var(--shadow);
+  padding: 36px 0;
+  text-align: center;
+}
+.footer-logo {
+  font-size: 18px;
+  font-weight: 700;
+  color: white;
+  letter-spacing: -0.02em;
+  margin-bottom: 6px;
+}
+.footer-sub { font-size: 12px; color: rgba(255,255,255,0.35); }
+
+/* ── ANIMATIONS ── */
+.fade-up {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+.fade-up.visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* ── HAMBURGER NAV ── */
+.nav-hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 36px;
+  height: 36px;
+  background: none;
+  border: 1px solid var(--border-strong);
+  border-radius: 6px;
+  cursor: pointer;
+  padding: 0 8px;
+  flex-shrink: 0;
+}
+.nav-hamburger span {
+  display: block;
+  height: 2px;
+  background: var(--azure);
+  border-radius: 1px;
+  transition: all 0.2s;
+}
+.mobile-nav-drawer {
+  display: none;
+  position: fixed;
+  top: 57px;
+  left: 0; right: 0;
+  background: rgba(250,253,255,0.97);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border);
+  z-index: 998;
+  padding: 12px 20px 16px;
+  box-shadow: 0 8px 24px rgba(12,51,135,0.08);
+}
+.mobile-nav-drawer.open { display: block; }
+.mobile-nav-drawer a {
+  display: block;
+  padding: 10px 12px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  text-decoration: none;
+  border-radius: 6px;
+  transition: background 0.15s, color 0.15s;
+}
+.mobile-nav-drawer a:hover { background: var(--azure-pale); color: var(--azure); }
+
+/* ── RESPONSIVE — TABLET (≤960px) ── */
+@media (max-width: 960px) {
+  .container { padding: 0 24px; }
+  .section { padding: 48px 0; }
+  .platform-grid { grid-template-columns: repeat(2, 1fr) !important; }
+  .research-grid { grid-template-columns: repeat(2, 1fr); }
+  .three-col { grid-template-columns: repeat(2, 1fr); }
+  .metric-cards { grid-template-columns: repeat(2, 1fr); }
+  .day-grid { grid-template-columns: repeat(3, 1fr); }
+  .hero-title { font-size: 40px; }
+  .sec-h { font-size: 28px; }
+  .nav-links { display: none; }
+  .nav-hamburger { display: flex; }
+  .acc-week-focus { display: none; }
+  /* Table overflow wrappers */
+  .tbl-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  .tbl-wrap table { min-width: 540px; }
+  /* Flow diagram mobile */
+  .flow-row { flex-wrap: wrap; justify-content: center; }
+  .flow-node { min-width: 120px; }
+}
+
+/* ── RESPONSIVE — MOBILE (≤640px) ── */
+@media (max-width: 640px) {
+  .container { padding: 0 16px; }
+  .section { padding: 36px 0; }
+  .hero { padding: 56px 0 44px; }
+  .hero-title { font-size: 30px; letter-spacing: -0.02em; }
+  .hero-sub { font-size: 15px; }
+  .hero-meta { gap: 8px; }
+  .hero-chip { font-size: 11px; padding: 5px 10px; }
+  .sec-h { font-size: 24px; }
+  .sec-sub { font-size: 14px; margin-bottom: 24px; }
+  .platform-grid { grid-template-columns: 1fr !important; }
+  .research-grid { grid-template-columns: 1fr 1fr; }
+  .research-stat { font-size: 18px; }
+  .two-col { grid-template-columns: 1fr !important; }
+  .three-col { grid-template-columns: 1fr !important; }
+  .fmt-grid { grid-template-columns: 1fr !important; }
+  .metric-cards { grid-template-columns: 1fr !important; }
+  .day-grid { grid-template-columns: repeat(2, 1fr); }
+  .plat-block-hdr { flex-wrap: wrap; gap: 8px; }
+  .plat-block-role { margin-left: 0; }
+  .plat-block-body { padding: 16px; }
+  .callout { flex-direction: column; gap: 6px; }
+  .nav { padding: 0 16px; height: 52px; }
+  .nav-badge { display: none; }
+  .manus-block { padding: 20px; }
+  .manus-prompt { font-size: 10.5px; }
+  /* Carousel slides — 2 col on mobile */
+  .carousel-slides { grid-template-columns: 1fr 1fr !important; }
+  /* Inline 3-col grids */
+  div[style*="grid-template-columns:1fr 1fr"] { grid-template-columns: 1fr !important; }
+  /* Step flow on mobile */
+  .flow-row { flex-direction: column; align-items: center; gap: 4px; }
+  .flow-arrow { transform: rotate(90deg); display: inline-block; }
+  /* Accordion */
+  .acc-week-badge { font-size: 10px; }
+  .acc-week-theme { font-size: 13px; }
+  /* Tables */
+  .tbl { font-size: 12px; }
+  .tbl th, .tbl td { padding: 8px 10px; }
+}
+
+/* ── RESPONSIVE — SMALL MOBILE (≤375px) ── */
+@media (max-width: 375px) {
+  .hero-title { font-size: 26px; }
+  .container { padding: 0 14px; }
+  .day-grid { grid-template-columns: 1fr 1fr; }
+  .research-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<div id="progress-bar"></div>
+
+<!-- NAV -->
+<nav class="nav">
+  <a href="#top" class="nav-logo">scroll media</a>
+  <ul class="nav-links">
+    <li><a href="#research">Research</a></li>
+    <li><a href="#voice">Voice</a></li>
+    <li><a href="#scripting">Scripting</a></li>
+    <li><a href="#ideation">Ideation</a></li>
+    <li><a href="#chase">chase.scrolls</a></li>
+    <li><a href="#agency">scrollmedia.co</a></li>
+    <li><a href="#written">Written</a></li>
+    <li><a href="#calendar">30-Day</a></li>
+    <li><a href="#metrics">Metrics</a></li>
+  </ul>
+  <div class="nav-badge">Strategy v3 — April 2026</div>
+  <button class="nav-hamburger" onclick="toggleMobileNav()" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+<div class="mobile-nav-drawer" id="mobile-nav">
+  <a href="#research" onclick="closeMobileNav()">01 — Research</a>
+  <a href="#voice" onclick="closeMobileNav()">02 — Voice System</a>
+  <a href="#scripting" onclick="closeMobileNav()">03 — Scripting</a>
+  <a href="#ideation" onclick="closeMobileNav()">04 — Ideation</a>
+  <a href="#chase" onclick="closeMobileNav()">05 — chase.scrolls</a>
+  <a href="#agency" onclick="closeMobileNav()">06 — scrollmedia.co</a>
+  <a href="#written" onclick="closeMobileNav()">07 — Written Platforms</a>
+  <a href="#integration" onclick="closeMobileNav()">08 — Integration</a>
+  <a href="#calendar" onclick="closeMobileNav()">09 — 30-Day Calendar</a>
+  <a href="#metrics" onclick="closeMobileNav()">10 — Metrics</a>
+</div>
+
+<!-- HERO -->
+<div class="hero" id="top">
+  <div class="container hero-inner">
+    <div class="hero-badge">
+      <div class="hero-badge-dot"></div>
+      Personal Brand + Agency Strategy
+    </div>
+    <h1 class="hero-title">The System That <span>Drives</span><br>New Clients to Scroll Media</h1>
+    <p class="hero-sub">Six accounts. Five platforms. One outcome. Every post by Chase and every post by Rachel exists to generate qualified inbound leads for the agency.</p>
+    <div class="hero-meta">
+      <div class="hero-chip">Research-Backed Formats</div>
+      <div class="hero-chip">Signal Method Integrated</div>
+      <div class="hero-chip">6 Accounts · 5 Platforms</div>
+      <div class="hero-chip">30-Day Execution Plan</div>
+      <div class="hero-chip">Rachel Brief Included</div>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 0: SYSTEM OVERVIEW -->
+<div class="section">
+  <div class="container fade-up">
+    <div class="sec-ey">The System</div>
+    <h2 class="sec-h">Two Accounts. One Goal.</h2>
+    <p class="sec-sub">chase.scrolls builds trust at scale. scrollmedia.co captures intent when it's hot. The handoff between them is where leads come from.</p>
+
+    <!-- Platform Overview Grid -->
+    <div style="margin-bottom:14px;"><strong style="font-size:13px;color:var(--text-secondary);">Chase's Accounts</strong></div>
+    <div class="platform-grid" style="grid-template-columns: repeat(4,1fr); margin-bottom:28px;" data-mobile-cols="2">
+      <div class="plat-card chase-primary">
+        <div class="plat-dot" style="background:var(--azure)"></div>
+        <div class="plat-name">Instagram</div>
+        <div class="plat-handle">@chase.scrolls</div>
+        <div class="plat-role-label">Primary</div>
+        <div class="plat-role-desc">Home base. All original content lives here first. Lofi Reels, 5x/week.</div>
+        <div class="plat-stats"><span class="plat-stat">5x/week</span><span class="plat-stat">Original</span></div>
+      </div>
+      <div class="plat-card chase-mirror">
+        <div class="plat-dot" style="background:var(--c-tt)"></div>
+        <div class="plat-name">TikTok</div>
+        <div class="plat-handle">@chase.scrolls</div>
+        <div class="plat-role-label">Mirror</div>
+        <div class="plat-role-desc">Every IG Reel drag-and-dropped. Same video, same caption. Zero extra effort.</div>
+        <div class="plat-stats"><span class="plat-stat">5x/week</span><span class="plat-stat">Mirror only</span></div>
+      </div>
+      <div class="plat-card chase-written">
+        <div class="plat-dot" style="background:var(--shadow)"></div>
+        <div class="plat-name">Threads + X</div>
+        <div class="plat-handle">@chase.scrolls</div>
+        <div class="plat-role-label">Written · Daily</div>
+        <div class="plat-role-desc">Threads is optimized daily. X is a direct mirror. Same post, zero extra work.</div>
+        <div class="plat-stats"><span class="plat-stat">Daily</span><span class="plat-stat">X mirrors</span></div>
+      </div>
+      <div class="plat-card chase-authority">
+        <div class="plat-dot" style="background:var(--c-li)"></div>
+        <div class="plat-name">LinkedIn</div>
+        <div class="plat-handle">Chase (Personal)</div>
+        <div class="plat-role-label">B2B Authority</div>
+        <div class="plat-role-desc">Targets business owners and decision-makers. 3x/week, PDF carousels + text.</div>
+        <div class="plat-stats"><span class="plat-stat">3x/week</span><span class="plat-stat">Carousels</span></div>
+      </div>
+    </div>
+
+    <div style="margin-bottom:14px;"><strong style="font-size:13px;color:var(--text-secondary);">Rachel's Accounts (scrollmedia.co)</strong></div>
+    <div class="platform-grid" style="grid-template-columns: repeat(3,1fr); margin-bottom:28px;">
+      <div class="plat-card agency-primary">
+        <div class="plat-dot" style="background:var(--azure)"></div>
+        <div class="plat-name">Instagram</div>
+        <div class="plat-handle">@scrollmedia.co</div>
+        <div class="plat-role-label">Primary · Lead Gen</div>
+        <div class="plat-role-desc">3 feed posts + 2 story days/week. Proof, culture, education, BOFU conversion.</div>
+        <div class="plat-stats"><span class="plat-stat">3x feed</span><span class="plat-stat">2 story days</span></div>
+      </div>
+      <div class="plat-card agency-mirror">
+        <div class="plat-dot" style="background:var(--c-tt)"></div>
+        <div class="plat-name">TikTok</div>
+        <div class="plat-handle">@scrollmedia.co</div>
+        <div class="plat-role-label">Mirror · Reels Only</div>
+        <div class="plat-role-desc">Every IG Reel cross-posted. Rachel manages autonomously. No extra editing.</div>
+        <div class="plat-stats"><span class="plat-stat">Auto-mirror</span><span class="plat-stat">Rachel</span></div>
+      </div>
+      <div class="plat-card agency-linkedin">
+        <div class="plat-dot" style="background:var(--c-li)"></div>
+        <div class="plat-name">LinkedIn</div>
+        <div class="plat-handle">scrollmedia.co</div>
+        <div class="plat-role-label">Carousels Only</div>
+        <div class="plat-role-desc">Every educational carousel cross-posted as PDF. Rachel manages. Highest-leverage format on LinkedIn.</div>
+        <div class="plat-stats"><span class="plat-stat">Carousels only</span><span class="plat-stat">Rachel</span></div>
+      </div>
+    </div>
+
+    <!-- Flow Diagram -->
+    <div class="flow-visual">
+      <div class="flow-title">Content Flow — How It All Connects</div>
+      <div class="flow-row">
+        <div class="flow-node primary">
+          <div class="flow-node-label">IG Reel</div>
+          <div class="flow-node-sub">chase.scrolls</div>
+          <div class="flow-node-sub" style="font-size:10px;margin-top:2px;">Original content</div>
+        </div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-node">
+          <div class="flow-node-label" style="color:var(--c-tt)">TikTok</div>
+          <div class="flow-node-sub">Drag + drop</div>
+        </div>
+      </div>
+      <div class="flow-arrow-v">↓</div>
+      <div class="flow-row" style="gap:8px;">
+        <div class="flow-node">
+          <div class="flow-node-label" style="color:var(--shadow)">Threads Post</div>
+          <div class="flow-node-sub">Daily, original</div>
+        </div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-node">
+          <div class="flow-node-label" style="color:var(--c-x)">X Post</div>
+          <div class="flow-node-sub">Mirror</div>
+        </div>
+        <div class="flow-arrow">+</div>
+        <div class="flow-node">
+          <div class="flow-node-label" style="color:var(--c-li)">LinkedIn</div>
+          <div class="flow-node-sub">3x/week, adapted</div>
+        </div>
+      </div>
+      <div class="flow-arrow-v">↓</div>
+      <div class="flow-row">
+        <div class="flow-node primary" style="min-width:280px;">
+          <div class="flow-node-label">scrollmedia.co Instagram</div>
+          <div class="flow-node-sub">Proof + conversion → TikTok (Reels) + LinkedIn (Carousels)</div>
+        </div>
+      </div>
+      <div style="text-align:center;margin-top:20px;">
+        <span style="background:var(--azure-pale);border:1px solid var(--border-strong);border-radius:6px;padding:7px 16px;font-size:12px;font-weight:600;color:var(--azure);">All roads lead to one outcome → inbound leads for Scroll Media</span>
+      </div>
+    </div>
+
+    <div class="callout azure">
+      <div class="callout-icon">💡</div>
+      <div class="callout-text"><strong>Core principle:</strong> Create once on Instagram. Distribute everywhere. The only platforms that get original optimized content beyond IG are Threads (written) and LinkedIn (adapted). TikTok and X are pure mirrors. This keeps the lift sustainable and the focus where it belongs — on Instagram quality and signal discovery.</div>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 1: RESEARCH -->
+<div class="section" id="research">
+  <div class="container fade-up">
+    <div class="sec-ey">Section 1</div>
+    <h2 class="sec-h">What the Data Says (2026)</h2>
+    <p class="sec-sub">Research from 35M+ Instagram posts, 1.3M LinkedIn posts, and Threads/Buffer platform analyses. These findings drive every format and cadence decision below.</p>
+
+    <!-- IG Research -->
+    <div class="plat-block">
+      <div class="plat-block-hdr">
+        <div style="width:10px;height:10px;border-radius:50%;background:var(--highlighter-dark);flex-shrink:0;"></div>
+        <div class="plat-block-title">Instagram — 2026 Key Findings</div>
+      </div>
+      <div class="plat-block-body">
+        <div class="research-grid">
+          <div class="research-item"><div class="research-stat">2×</div><div class="research-desc">Reels achieve 2× the reach rate of all other formats — still the primary discovery engine in 2026</div></div>
+          <div class="research-item"><div class="research-stat">Carousel #1</div><div class="research-desc">Carousels lead in engagement depth and saves — most resilient format year-over-year</div></div>
+          <div class="research-item"><div class="research-stat">50%</div><div class="research-desc">Up to 50% of viewers drop off in the first 3 seconds. Hook rate above 60% outperforms weak hooks by 5–10× in reach</div></div>
+          <div class="research-item"><div class="research-stat">15–30s</div><div class="research-desc">Sweet spot for Reel length — highest completion rates, algorithm rewards completion over length</div></div>
+          <div class="research-item"><div class="research-stat">60–70%</div><div class="research-desc">Optimal 2026 content mix: 60–70% Reels for discovery, 20–30% Carousels for depth and trust</div></div>
+          <div class="research-item"><div class="research-stat">Saves = Signal</div><div class="research-desc">Saves and shares are the algorithm's top quality signals — saves indicate reference value, shares trigger amplification</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Threads + LinkedIn side by side -->
+    <div class="two-col">
+      <div class="plat-block" style="margin-bottom:0">
+        <div class="plat-block-hdr">
+          <div style="width:10px;height:10px;border-radius:50%;background:var(--shadow);flex-shrink:0;"></div>
+          <div class="plat-block-title">Threads — Key Findings</div>
+        </div>
+        <div class="plat-block-body">
+          <div class="research-grid" style="grid-template-columns:1fr 1fr;">
+            <div class="research-item"><div class="research-stat">5.55%</div><div class="research-desc">Video engagement — nearly double text posts at 2.79%</div></div>
+            <div class="research-item"><div class="research-stat">42%</div><div class="research-desc">Engagement boost from replying to comments within 60 minutes</div></div>
+            <div class="research-item"><div class="research-stat">100–280</div><div class="research-desc">Character sweet spot — long enough to make a point, short enough to read fast</div></div>
+            <div class="research-item"><div class="research-stat">−30–50%</div><div class="research-desc">Engagement penalty for posts with outbound links. Never link in the post body.</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="plat-block" style="margin-bottom:0">
+        <div class="plat-block-hdr">
+          <div style="width:10px;height:10px;border-radius:50%;background:var(--c-li);flex-shrink:0;"></div>
+          <div class="plat-block-title">LinkedIn — Key Findings</div>
+        </div>
+        <div class="plat-block-body">
+          <div class="research-grid" style="grid-template-columns:1fr 1fr;">
+            <div class="research-item"><div class="research-stat">21.77%</div><div class="research-desc">PDF carousel engagement — #1 format on any platform by a massive margin</div></div>
+            <div class="research-item"><div class="research-stat">8×</div><div class="research-desc">Personal profiles outperform company pages. Chase posting as himself wins every time.</div></div>
+            <div class="research-item"><div class="research-stat">Dwell Time</div><div class="research-desc">Algorithm ranks by time spent reading — a 45-sec read beats a quick like algorithmically</div></div>
+            <div class="research-item"><div class="research-stat">5×</div><div class="research-desc">Story-driven posts get 5× more comments than generic advice. Use the Stakes Open format.</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION: VOICE SYSTEM -->
+<div class="section" id="voice">
+  <div class="container fade-up">
+    <div class="sec-ey">Voice System</div>
+    <h2 class="sec-h">Two Voices. Never Mixed.</h2>
+    <p class="sec-sub">chase.scrolls sounds like Chase — a sharper version of how he actually talks. scrollmedia.co sounds like a sharp agency showing its work. These are not the same voice and every piece of content must be written with one of them explicitly in mind before a word is written.</p>
+
+    <div class="two-col" style="margin-bottom:24px;">
+      <div style="background:white;border:1px solid var(--border);border-radius:12px;padding:20px;box-shadow:var(--shadow-sm);border-top:3px solid var(--azure);">
+        <div style="font-size:11px;font-weight:700;color:var(--azure);text-transform:uppercase;letter-spacing:.08em;margin-bottom:12px;">● Chase Voice — chase.scrolls</div>
+        <div style="font-size:13px;color:var(--text-secondary);line-height:1.7;margin-bottom:12px;">Context first, punchline second. Punchy hook, then builds into thinking. Confident and direct — no hedging. Specific numbers always. Signature phrases used naturally once per script: <em>"Here's the thing,"</em> <em>"The reality is,"</em> <em>"And here's why that matters."</em></div>
+        <div style="background:var(--azure-pale);border-radius:6px;padding:10px 12px;font-size:12px;color:var(--azure);margin-bottom:10px;"><strong>Cut always:</strong> "like" (filler) · "in terms of" · "basically" · "kind of" · "super" · "at the end of the day"</div>
+        <div style="background:var(--porcelain);border-radius:6px;padding:10px 12px;font-size:12px;color:var(--text-secondary);">
+          <strong style="color:var(--shadow);">✗ Wrong:</strong> "Running an agency is really challenging, but with the right mindset you can definitely achieve some really remarkable results."<br><br>
+          <strong style="color:var(--shadow);">✓ Chase voice:</strong> "Running an agency is harder than I expected. Here's the specific thing I got wrong in year one — and the 30-day fix."
+        </div>
+      </div>
+      <div style="background:white;border:1px solid var(--border);border-radius:12px;padding:20px;box-shadow:var(--shadow-sm);border-top:3px solid #b84d00;">
+        <div style="font-size:11px;font-weight:700;color:#b84d00;text-transform:uppercase;letter-spacing:.08em;margin-bottom:12px;">● Scroll Media Voice — scrollmedia.co</div>
+        <div style="font-size:13px;color:var(--text-secondary);line-height:1.7;margin-bottom:12px;">Always "we" — never "I." Lead with results, then explain the mechanism. Every point connects to a specific business outcome. No buzzwords. CTAs are direct and functional: "DM us," "Link in bio," "Save this."</div>
+        <div style="background:#fff5ec;border-radius:6px;padding:10px 12px;font-size:12px;color:#b84d00;margin-bottom:10px;"><strong>Never say:</strong> "passionate about" · "dedicated to" · "amazing results" · "game-changer" · "elevate" · "holistic"</div>
+        <div style="background:var(--porcelain);border-radius:6px;padding:10px 12px;font-size:12px;color:var(--text-secondary);">
+          <strong style="color:var(--shadow);">✗ Wrong:</strong> "We're passionate about helping service businesses grow their Instagram and reach their full potential!"<br><br>
+          <strong style="color:var(--shadow);">✓ Scroll Media voice:</strong> "We build the strategy that connects content to revenue. Service businesses only."
+        </div>
+      </div>
+    </div>
+
+    <div class="ib">
+      <div class="ib-label">Platform Tone Adjustments — Chase</div>
+      <div class="ib-text">
+        <strong>IG Reels:</strong> Raw, direct, conversational. Drop in mid-thought — no intro required.<br>
+        <strong>Threads / X:</strong> Sharpest version. No setup. Drop straight into the point. Under 220 characters ideal.<br>
+        <strong>LinkedIn:</strong> Slightly more strategic framing. Still unmistakably Chase. CTAs always "DM me." No external links in the post body.<br>
+        <strong>Captions:</strong> Extends the Reel — never summarizes or repeats it. Ends with weight, not a question.
+      </div>
+    </div>
+
+    <div class="callout azure">
+      <div class="callout-icon">📋</div>
+      <div class="callout-text"><strong>QA before publishing — Chase:</strong> Does it sound like Chase, not a copywriter writing as Chase? Is there at least one specific number or timeframe? Are all filler words removed? Does the hook land in the first sentence with no warm-up? Does it build context before the punchline? Does it end with one hard-closing sentence?<br><br><strong>QA before publishing — Scroll Media:</strong> Is "we" used throughout? Does every point connect to a business outcome? Is there at least one real stat or proof point? Are all buzzwords removed? Is the CTA specific and functional?</div>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 8: SCRIPTING FRAMEWORKS -->
+<div class="section" id="scripting">
+  <div class="container fade-up">
+    <div class="sec-ey">Section 8 — Scripting</div>
+    <h2 class="sec-h">Scripting Frameworks</h2>
+    <p class="sec-sub">Not every Reel uses the same script. Format drives structure. A founder POV Reel on camera is a completely different animal than a 6-second b-roll text post. Both have frameworks. Use the right one.</p>
+
+    <!-- REEL TYPE SELECTOR OVERVIEW -->
+    <div class="callout azure" style="margin-bottom:32px;">
+      <div class="callout-icon">📋</div>
+      <div class="callout-text"><strong>How to use this section:</strong> First identify the Reel format type. Then apply the corresponding scripting framework. The Attention Psychology Toolkit applies to all formats — layer those tactics into every script regardless of type. The Carousel Framework is separate and follows at the end.</div>
+    </div>
+
+    <!-- REEL FORMAT TYPE CARDS -->
+    <h3 style="font-size:16px;font-weight:700;color:var(--shadow);margin-bottom:14px;">Three Reel Format Types</h3>
+    <div class="three-col" style="margin-bottom:32px;">
+      <div style="background:white;border:1px solid var(--border);border-radius:12px;padding:20px;box-shadow:var(--shadow-sm);border-top:3px solid var(--azure);">
+        <div style="font-size:13px;font-weight:700;color:var(--azure);margin-bottom:4px;text-transform:uppercase;letter-spacing:.06em;">Type 01</div>
+        <div style="font-size:16px;font-weight:700;color:var(--shadow);margin-bottom:8px;">Founder POV Reel</div>
+        <div style="font-size:12px;color:var(--text-secondary);line-height:1.55;margin-bottom:10px;">You on camera. Talking to a person, not at a lens. Lofi, direct, unscripted energy. The primary format for personal brand building. Uses the 5-Part Story Arc.</div>
+        <div style="display:flex;flex-wrap:wrap;gap:5px;">
+          <span class="fmt-tag t-tofu">TOFU</span><span class="fmt-tag t-mofu">MOFU</span>
+          <span style="background:#f0f4fb;color:var(--azure);font-size:10px;font-weight:600;padding:2px 7px;border-radius:3px;">30–90s</span>
+        </div>
+      </div>
+      <div style="background:white;border:1px solid var(--border);border-radius:12px;padding:20px;box-shadow:var(--shadow-sm);border-top:3px solid var(--highlighter-dark);">
+        <div style="font-size:13px;font-weight:700;color:var(--highlighter-dark);margin-bottom:4px;text-transform:uppercase;letter-spacing:.06em;">Type 02</div>
+        <div style="font-size:16px;font-weight:700;color:var(--shadow);margin-bottom:8px;">Short-Form Text Reel</div>
+        <div style="font-size:12px;color:var(--text-secondary);line-height:1.55;margin-bottom:10px;">5–15 seconds. On-screen text does the heavy lifting. Minimal or no voiceover. Punchy copy, visual hook, fast payoff. Uses the Quick Strike Framework.</div>
+        <div style="display:flex;flex-wrap:wrap;gap:5px;">
+          <span class="fmt-tag t-tofu">TOFU</span>
+          <span style="background:#f7f9d8;color:#5a6800;font-size:10px;font-weight:600;padding:2px 7px;border-radius:3px;">5–15s</span>
+        </div>
+      </div>
+      <div style="background:white;border:1px solid var(--border);border-radius:12px;padding:20px;box-shadow:var(--shadow-sm);border-top:3px solid var(--c-li);">
+        <div style="font-size:13px;font-weight:700;color:var(--c-li);margin-bottom:4px;text-transform:uppercase;letter-spacing:.06em;">Type 03</div>
+        <div style="font-size:16px;font-weight:700;color:var(--shadow);margin-bottom:8px;">B-Roll + Voiceover Reel</div>
+        <div style="font-size:12px;color:var(--text-secondary);line-height:1.55;margin-bottom:10px;">Footage of work, process, or environment with narration layered over. Visual momentum carries the story. Uses the Narrative-Visual Bridge Framework.</div>
+        <div style="display:flex;flex-wrap:wrap;gap:5px;">
+          <span class="fmt-tag t-mofu">MOFU</span>
+          <span style="background:#e8f3fa;color:var(--c-li);font-size:10px;font-weight:600;padding:2px 7px;border-radius:3px;">20–60s</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- FRAMEWORK 1: FOUNDER POV — 5-PART STORY ARC -->
+    <div class="plat-block" style="margin-bottom:24px;">
+      <div class="plat-block-hdr" style="background:var(--azure-pale);">
+        <div style="background:var(--azure);color:white;font-size:11px;font-weight:700;padding:3px 10px;border-radius:4px;flex-shrink:0;">FRAMEWORK 01</div>
+        <div class="plat-block-title">Founder POV Reel — 5-Part Story Arc</div>
+        <div class="plat-block-role">For storytelling, lessons, failures, milestones, founder moments</div>
+      </div>
+      <div class="plat-block-body">
+        <div class="callout neutral" style="margin-bottom:20px;">
+          <div class="callout-icon">📖</div>
+          <div class="callout-text">The 5-Part Story Arc ensures every spoken Reel has a beginning that earns attention, a middle that builds tension, and an end that pays off. The key requirement: every arc must include a <strong>re-hook in the middle</strong> — a moment that gives viewers who are already watching a new reason to stay until the end.</div>
+        </div>
+
+        <!-- The 5 Parts -->
+        <div style="display:flex;flex-direction:column;gap:0;margin-bottom:24px;">
+          <!-- Part 1 -->
+          <div style="display:flex;gap:0;position:relative;">
+            <div style="display:flex;flex-direction:column;align-items:center;margin-right:16px;">
+              <div style="width:32px;height:32px;border-radius:50%;background:var(--azure);color:white;font-size:13px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;">1</div>
+              <div style="width:2px;flex:1;background:var(--border);margin:4px 0;"></div>
+            </div>
+            <div style="background:white;border:1px solid var(--border);border-radius:10px;padding:14px 16px;margin-bottom:8px;flex:1;box-shadow:var(--shadow-sm);">
+              <div style="font-size:13px;font-weight:700;color:var(--azure);margin-bottom:4px;">THE HOOK (0–3 seconds)</div>
+              <div style="font-size:13px;color:var(--text-secondary);line-height:1.55;margin-bottom:8px;">The single most important moment in the entire Reel. Drop into the tension, the contradiction, the unexpected fact, or the dramatic moment — before any context. Never introduce yourself. Never say "so today I want to talk about." Drop. In.</div>
+              <div style="background:var(--azure-pale);border-radius:6px;padding:8px 12px;font-size:12px;color:var(--azure);font-style:italic;">Hook types: Contrarian claim · Specific number or stat · Open question · Stakes-first drop-in · Bold declarative statement<br><span style="font-style:normal;font-weight:600;">Example:</span> "I almost walked away from Scroll Media 4 months ago. Here's what stopped me."</div>
+            </div>
+          </div>
+          <!-- Part 2 -->
+          <div style="display:flex;gap:0;position:relative;">
+            <div style="display:flex;flex-direction:column;align-items:center;margin-right:16px;">
+              <div style="width:32px;height:32px;border-radius:50%;background:var(--azure);color:white;font-size:13px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;">2</div>
+              <div style="width:2px;flex:1;background:var(--border);margin:4px 0;"></div>
+            </div>
+            <div style="background:white;border:1px solid var(--border);border-radius:10px;padding:14px 16px;margin-bottom:8px;flex:1;box-shadow:var(--shadow-sm);">
+              <div style="font-size:13px;font-weight:700;color:var(--azure);margin-bottom:4px;">THE CONTEXT (3–8 seconds)</div>
+              <div style="font-size:13px;color:var(--text-secondary);line-height:1.55;margin-bottom:8px;">Just enough backstory to make the hook make sense. Not a biography. One or two sentences that orient the viewer in the story. Keep it tight — this is the bridge between "what?" and "tell me more."</div>
+              <div style="background:var(--azure-pale);border-radius:6px;padding:8px 12px;font-size:12px;color:var(--azure);font-style:italic;"><span style="font-style:normal;font-weight:600;">Example:</span> "We'd been running for 14 months. Had 7 clients. Revenue was growing. But I was working 60-hour weeks and burning out fast."</div>
+            </div>
+          </div>
+          <!-- Part 3 -->
+          <div style="display:flex;gap:0;position:relative;">
+            <div style="display:flex;flex-direction:column;align-items:center;margin-right:16px;">
+              <div style="width:32px;height:32px;border-radius:50%;background:var(--azure);color:white;font-size:13px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;">3</div>
+              <div style="width:2px;flex:1;background:var(--border);margin:4px 0;"></div>
+            </div>
+            <div style="background:white;border:1px solid var(--border);border-radius:10px;padding:14px 16px;margin-bottom:8px;flex:1;box-shadow:var(--shadow-sm);">
+              <div style="font-size:13px;font-weight:700;color:var(--azure);margin-bottom:4px;">THE TENSION + RE-HOOK (8–20 seconds)</div>
+              <div style="font-size:13px;color:var(--text-secondary);line-height:1.55;margin-bottom:8px;">The core of the story. This is where most creators lose their audience — they dump information instead of building tension. Your job is to raise the stakes, then plant the re-hook: a question, a tease, or a statement that makes the viewer need to see where this ends. The re-hook is not optional.</div>
+              <div style="background:#fff8e0;border:1px solid #e2d060;border-radius:6px;padding:8px 12px;font-size:12px;color:#6b5800;margin-bottom:6px;"><strong>The Re-Hook Rule:</strong> Somewhere between 8–20 seconds, plant a line that creates a new reason to stay. "And what happened next changed how I think about building an agency forever." "The thing I found out the next morning broke me." The viewer's brain registers the open loop and physically resists scrolling away.</div>
+              <div style="background:var(--azure-pale);border-radius:6px;padding:8px 12px;font-size:12px;color:var(--azure);font-style:italic;"><span style="font-style:normal;font-weight:600;">Example:</span> "I sat down and looked at our numbers. We had the revenue. We had the clients. But I was the bottleneck in everything — and I didn't know how to get out of my own way. And then one conversation changed everything."</div>
+            </div>
+          </div>
+          <!-- Part 4 -->
+          <div style="display:flex;gap:0;position:relative;">
+            <div style="display:flex;flex-direction:column;align-items:center;margin-right:16px;">
+              <div style="width:32px;height:32px;border-radius:50%;background:var(--azure);color:white;font-size:13px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;">4</div>
+              <div style="width:2px;flex:1;background:var(--border);margin:4px 0;"></div>
+            </div>
+            <div style="background:white;border:1px solid var(--border);border-radius:10px;padding:14px 16px;margin-bottom:8px;flex:1;box-shadow:var(--shadow-sm);">
+              <div style="font-size:13px;font-weight:700;color:var(--azure);margin-bottom:4px;">THE RESOLUTION (20–35 seconds)</div>
+              <div style="font-size:13px;color:var(--text-secondary);line-height:1.55;margin-bottom:8px;">What happened. What you learned. What changed. Be specific — not "I figured it out" but what exactly you did differently. Specificity is what separates a real story from a motivational speech. This is where the viewer's save decision is made.</div>
+              <div style="background:var(--azure-pale);border-radius:6px;padding:8px 12px;font-size:12px;color:var(--azure);font-style:italic;"><span style="font-style:normal;font-weight:600;">Example:</span> "That conversation was with my co-founder. She told me the problem wasn't my team — it was that I hadn't built a system they could run without me. So we spent two weeks building that system. It was uncomfortable. But within 30 days I had 20 hours back."</div>
+            </div>
+          </div>
+          <!-- Part 5 -->
+          <div style="display:flex;gap:0;">
+            <div style="display:flex;flex-direction:column;align-items:center;margin-right:16px;">
+              <div style="width:32px;height:32px;border-radius:50%;background:var(--azure);color:white;font-size:13px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;">5</div>
+            </div>
+            <div style="background:var(--azure-pale);border:1.5px solid var(--border-strong);border-radius:10px;padding:14px 16px;flex:1;box-shadow:var(--shadow-sm);">
+              <div style="font-size:13px;font-weight:700;color:var(--azure);margin-bottom:4px;">THE GUT-PUNCH CLOSE (last 3–5 seconds)</div>
+              <div style="font-size:13px;color:var(--text-secondary);line-height:1.55;margin-bottom:8px;">The last thing they hear should land. Not summarize — land. One sentence that reframes the whole story as a transferable truth. No "thanks for watching." No trailing off. Finish with weight. This is the line they quote when they share it.</div>
+              <div style="background:white;border-radius:6px;padding:8px 12px;font-size:12px;color:var(--azure);font-style:italic;"><span style="font-style:normal;font-weight:600;">Example:</span> "The bottleneck in your business is almost never what you think it is. It's usually you — and the system you haven't built yet."</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Applied to Chase -->
+        <div class="callout lime">
+          <div class="callout-icon">▶</div>
+          <div class="callout-text"><strong>Applied to chase.scrolls — Dispatch No.11:</strong> Hook: "We underpriced every client for 6 months. Here's the actual damage." → Context: "When we launched Scroll Media we were just trying to get clients in the door — price didn't matter." → Tension + Re-Hook: "And the damage wasn't just revenue. It was the type of clients we were attracting, the expectations we were setting, and what it was costing us operationally every single month. What I didn't realize until we did the math..." → Resolution: "...was that we were essentially paying to work. For every $1,500 client we had to spend $1,200 in delivery costs. That's not a business. That's a job." → Gut-Punch: "Underpricing doesn't just hurt your bank account. It slowly destroys your standards."</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FRAMEWORK 2: SHORT-FORM TEXT REEL -->
+    <div class="plat-block" style="margin-bottom:24px;">
+      <div class="plat-block-hdr" style="background:#f7f9d8;">
+        <div style="background:#8a9a00;color:white;font-size:11px;font-weight:700;padding:3px 10px;border-radius:4px;flex-shrink:0;">FRAMEWORK 02</div>
+        <div class="plat-block-title">Short-Form Text Reel — The Quick Strike</div>
+        <div class="plat-block-role">5–15 seconds · On-screen text primary · High TOFU reach</div>
+      </div>
+      <div class="plat-block-body">
+        <div class="two-col" style="margin-bottom:16px;">
+          <div class="ib">
+            <div class="ib-label">Structure (3 Elements Only)</div>
+            <div class="ib-text">
+              <strong>1. Visual Hook (Frame 1):</strong> The very first frame must stop the scroll visually — an unusual setting, a prop, an expression, or a sharp graphic. No slow intros.<br><br>
+              <strong>2. The Statement (on-screen text):</strong> One line. 5–8 words max. Contrarian, specific, or provocative. This is what gets shared. Write it as if it's a tweet that would get quote-tweeted.<br><br>
+              <strong>3. The Proof or Payoff:</strong> 1–2 seconds of visual confirmation. Say the statement out loud or show the thing that proves it. Done.
+            </div>
+          </div>
+          <div class="ib">
+            <div class="ib-label">On-Screen Text Rules</div>
+            <div class="ib-text">
+              <strong>No filler words.</strong> Every word earns its place or gets cut.<br><br>
+              <strong>No adjectives without evidence.</strong> "Amazing results" = cut. "400 followers in 30 days" = keep.<br><br>
+              <strong>Contrarian > positive.</strong> "Posting daily is wrong" outperforms "here's how to grow" every time.<br><br>
+              <strong>Incomplete thoughts pull.</strong> "The mistake I made..." stops the scroll. The brain can't rest on an unfinished idea.
+            </div>
+          </div>
+        </div>
+        <div class="callout lime">
+          <div class="callout-icon">▶</div>
+          <div class="callout-text"><strong>Applied to chase.scrolls:</strong> Frame 1: Chase picks up phone with a slightly confused expression. On-screen text appears: <em>"Nobody told me running an agency looks like this."</em> Chase says it out loud. Cut. 8 seconds total.<br><br><strong>Applied to scrollmedia.co:</strong> Frame 1: Quick cut to a clean stat graphic. On-screen text: <em>"400 → 1,200 followers. 60 days. No ads."</em> 5 seconds. No voiceover needed.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FRAMEWORK 3: B-ROLL + VOICEOVER -->
+    <div class="plat-block" style="margin-bottom:32px;">
+      <div class="plat-block-hdr" style="background:var(--c-li-bg);">
+        <div style="background:var(--c-li);color:white;font-size:11px;font-weight:700;padding:3px 10px;border-radius:4px;flex-shrink:0;">FRAMEWORK 03</div>
+        <div class="plat-block-title">B-Roll + Voiceover Reel — Narrative-Visual Bridge</div>
+        <div class="plat-block-role">20–60 seconds · Process, BTS, culture · Agency account primary</div>
+      </div>
+      <div class="plat-block-body">
+        <div class="ib" style="margin-bottom:16px;">
+          <div class="ib-label">Core Principle</div>
+          <div class="ib-text">The visuals and the narration should never say the same thing at the same time. They should work in counterpoint — the visuals show one layer, the voice delivers another layer. When they sync on the same point, you're wasting one of your two channels.</div>
+        </div>
+        <div class="tbl-wrap">
+        <table class="tbl">
+          <thead><tr><th>Beat</th><th>Visual</th><th>Voiceover Says</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Open</strong></td><td>Show the environment or process mid-action</td><td>State the tension or outcome first — not what you're doing</td></tr>
+            <tr><td><strong>Build</strong></td><td>Sequence of process shots — the work happening</td><td>Narrate the thinking, not the doing. What are you deciding? What's the risk?</td></tr>
+            <tr><td><strong>Re-Hook</strong></td><td>A moment of pause — pick up the phone, look at screen</td><td>Plant the question that makes them stay: "And the number I saw stopped me."</td></tr>
+            <tr><td><strong>Payoff</strong></td><td>Result shot or reaction</td><td>The specific insight or lesson. One sentence. No padding.</td></tr>
+            <tr><td><strong>Close</strong></td><td>Return to face or a clean final frame</td><td>The gut-punch line. What's the transferable truth?</td></tr>
+          </tbody>
+        </table>
+        </div>
+        <div class="callout lime">
+          <div class="callout-icon">▶</div>
+          <div class="callout-text"><strong>Applied to scrollmedia.co — Culture Reel:</strong> Visual: Team on a strategy call, laptops open, notes being taken. Voice: "Most people think running a social media agency means spending your days making content." Cut to AM reviewing analytics. Voice: "What it actually looks like is this — reviewing data, rewriting strategy, and trying to understand why a post that should have worked, didn't." Cut to whiteboard. Voice: "Because the content is never really the problem." Final frame: clean cut to logo. Voice: "The strategy is."</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ATTENTION PSYCHOLOGY TOOLKIT -->
+    <h3 style="font-size:16px;font-weight:700;color:var(--shadow);margin-bottom:8px;">Attention Psychology Toolkit</h3>
+    <p style="font-size:13px;color:var(--text-secondary);margin-bottom:16px;">These tactics apply across all three Reel formats. Layer them into every script intentionally — not as decoration, but as engineered attention architecture.</p>
+
+    <div class="fmt-grid" style="grid-template-columns:1fr 1fr 1fr;">
+      <div class="fmt-card core" style="grid-column:span 1;">
+        <div class="fmt-top"><div class="fmt-name">Open Loop</div><div class="fmt-badge fb-core">HIGH RETENTION</div></div>
+        <div class="fmt-desc">Plant a question or statement that cannot be resolved without watching to the end. The brain physically resists closing an unresolved loop. Best placed at seconds 8–20 as a mid-video re-hook.</div>
+        <div class="fmt-hook">"What I found out the next morning is something I haven't told anyone yet."</div>
+      </div>
+      <div class="fmt-card core">
+        <div class="fmt-top"><div class="fmt-name">Contrarian Take</div><div class="fmt-badge fb-core">HIGH SHARE</div></div>
+        <div class="fmt-desc">Challenge a widely-held belief in your niche in the first sentence. The brain registers disagreement as a threat and pauses to evaluate. Works as both a hook and a mid-video tension tool.</div>
+        <div class="fmt-hook">"Posting consistently is the worst advice anyone ever gave a service business."</div>
+      </div>
+      <div class="fmt-card core">
+        <div class="fmt-top"><div class="fmt-name">Pattern Interrupt</div><div class="fmt-badge fb-core">HIGH HOOK RATE</div></div>
+        <div class="fmt-desc">A deliberate visual, audio, or copy element that breaks the viewer's scrolling rhythm. Could be an unusual prop in frame, a sudden jump cut, an unexpected first line, or starting mid-sentence with no intro. Goal: force a double-take.</div>
+        <div class="fmt-hook">Start mid-sentence: "...and that's when I realized we'd been doing it wrong for a year." No intro. No context. Just drop in.</div>
+      </div>
+      <div class="fmt-card test">
+        <div class="fmt-top"><div class="fmt-name">Specificity Anchoring</div><div class="fmt-badge fb-test">HIGH TRUST</div></div>
+        <div class="fmt-desc">Replace vague language with exact numbers, names, dates, and details. Specificity signals truth — the brain trusts precise claims more than general ones. "3 clients" is more believable than "several clients."</div>
+        <div class="fmt-hook">"We lost our 6th client in March 2025. It was a $1,930/month account. We had them for 11 weeks."</div>
+      </div>
+      <div class="fmt-card test">
+        <div class="fmt-top"><div class="fmt-name">Framework / List Hook</div><div class="fmt-badge fb-test">HIGH SAVE</div></div>
+        <div class="fmt-desc">Number your content ("3 things," "the 5-step system") to activate the brain's organizational drive. Lists feel completable — viewers stay to finish collecting all the items. Drives saves because people reference lists later.</div>
+        <div class="fmt-hook">"There are 4 things I check before we take on any new Scroll Media client. Most agencies skip all four."</div>
+      </div>
+      <div class="fmt-card test">
+        <div class="fmt-top"><div class="fmt-name">Metaphor / Analogy</div><div class="fmt-badge fb-test">HIGH SHARE</div></div>
+        <div class="fmt-desc">Make complex or abstract ideas feel tangible by cross-referencing them with something familiar. Metaphors collapse comprehension time and make content feel original even when the underlying idea is familiar.</div>
+        <div class="fmt-hook">"A content strategy without data is like a map with no street names. You can see the destination. You just have no idea how to get there."</div>
+      </div>
+    </div>
+
+    <div class="ib" style="margin-bottom:32px;">
+      <div class="ib-label">On-Screen Text Standard (All Reel Types)</div>
+      <div class="ib-text">
+        <strong>Rule 1:</strong> On-screen text and spoken copy should never say the same thing simultaneously — they occupy different attention channels.<br>
+        <strong>Rule 2:</strong> On-screen text should be shorter than spoken copy. If your spoken line is 10 words, your on-screen text should be 5.<br>
+        <strong>Rule 3:</strong> Use on-screen text to handle objections the viewer hasn't voiced yet. If someone watching might think "but that only works for big accounts" — put that objection on screen and address it before they can think it.<br>
+        <strong>Rule 4:</strong> Every on-screen word must earn its place. Cut every adjective that doesn't add specificity. Cut every adverb. Cut every filler.
+      </div>
+    </div>
+
+    <!-- CAROUSEL SCRIPTING FRAMEWORK -->
+    <h3 style="font-size:16px;font-weight:700;color:var(--shadow);margin-bottom:8px;">Carousel Scripting Framework</h3>
+    <p style="font-size:13px;color:var(--text-secondary);margin-bottom:16px;">Research confirms carousels drive the highest saves and sustained engagement of any format. Every swipe signals quality to the algorithm. The goal: build each carousel so the viewer feels compelled to swipe AND save.</p>
+
+    <div class="plat-block" style="margin-bottom:24px;">
+      <div class="plat-block-hdr" style="background:var(--azure-pale);">
+        <div style="background:var(--azure);color:white;font-size:11px;font-weight:700;padding:3px 10px;border-radius:4px;flex-shrink:0;">CAROUSEL FRAMEWORK</div>
+        <div class="plat-block-title">The Save-First Carousel System</div>
+        <div class="plat-block-role">6–10 slides · Primary goal: saves · Secondary: shares + profile visits</div>
+      </div>
+      <div class="plat-block-body">
+        <!-- Slide Structure -->
+        <div class="carousel-slides" style="display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-bottom:20px;">
+          <div style="background:var(--azure);color:white;border-radius:10px;padding:14px 12px;text-align:center;">
+            <div style="font-size:20px;font-weight:700;margin-bottom:4px;">01</div>
+            <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px;opacity:.8;">Hook Slide</div>
+            <div style="font-size:11px;opacity:.85;line-height:1.4;">Pattern-interrupt visual + 5–7 word contrarian or promise statement. Must make them swipe.</div>
+          </div>
+          <div style="background:var(--azure-pale);border:1px solid var(--border-strong);border-radius:10px;padding:14px 12px;text-align:center;">
+            <div style="font-size:20px;font-weight:700;color:var(--azure);margin-bottom:4px;">02</div>
+            <div style="font-size:11px;font-weight:700;color:var(--azure);text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px;">Re-Hook / Promise</div>
+            <div style="font-size:11px;color:var(--text-secondary);line-height:1.4;">Confirm what they're about to get. Tease the payoff. Plant the reason to reach slide 10.</div>
+          </div>
+          <div style="background:var(--azure-pale);border:1px solid var(--border-strong);border-radius:10px;padding:14px 12px;text-align:center;">
+            <div style="font-size:20px;font-weight:700;color:var(--azure);margin-bottom:4px;">03–07</div>
+            <div style="font-size:11px;font-weight:700;color:var(--azure);text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px;">Value Body</div>
+            <div style="font-size:11px;color:var(--text-secondary);line-height:1.4;">1 idea per slide. Short headline + 1–2 supporting lines max. Each slide must be standalone-worthy and swipe-worthy.</div>
+          </div>
+          <div style="background:var(--azure-pale);border:1px solid var(--border-strong);border-radius:10px;padding:14px 12px;text-align:center;">
+            <div style="font-size:20px;font-weight:700;color:var(--azure);margin-bottom:4px;">08–09</div>
+            <div style="font-size:11px;font-weight:700;color:var(--azure);text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px;">Proof / Example</div>
+            <div style="font-size:11px;color:var(--text-secondary);line-height:1.4;">A real example, case study, stat, or client result that validates the body content. Specificity here is what separates credible from generic.</div>
+          </div>
+          <div style="background:var(--azure);color:white;border-radius:10px;padding:14px 12px;text-align:center;">
+            <div style="font-size:20px;font-weight:700;margin-bottom:4px;">10</div>
+            <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px;opacity:.8;">CTA Slide</div>
+            <div style="font-size:11px;opacity:.85;line-height:1.4;">Save prompt first. Then share. Then follow/DM. Never lead with follow — save-first CTAs perform higher.</div>
+          </div>
+        </div>
+
+        <div class="two-col">
+          <div class="ib">
+            <div class="ib-label">Hook Slide Rules</div>
+            <div class="ib-text">
+              <strong>5–7 words maximum</strong> on the hook slide. Anything more dilutes it.<br><br>
+              <strong>Contrarian hooks outperform positive hooks</strong> — "Everyone gets this wrong" beats "Here's how to grow."<br><br>
+              <strong>Visual contrast matters.</strong> Bold text on clean background. High contrast. Easy to read in 0.5 seconds while scrolling.<br><br>
+              Pattern interrupt hooks that work for this account: "The thing nobody says about agency life," "I tracked every client's data for 6 months. Here's what I found," "Most service businesses are wasting their Instagram budget."
+            </div>
+          </div>
+          <div class="ib">
+            <div class="ib-label">Save-Optimization Rules</div>
+            <div class="ib-text">
+              <strong>Make it a reference resource.</strong> Checklists, frameworks, numbered systems — these get saved because people know they'll need to return to them.<br><br>
+              <strong>Last slide save prompt is mandatory:</strong> "Save this before your next strategy session." Not "follow for more" — save-first.<br><br>
+              <strong>Screenshot-worthy slides</strong> (clean stat graphics, simple frameworks, quotes) drive saves independently of the full carousel view.<br><br>
+              <strong>Design consistency:</strong> Same font, same layout grid, same color system across all slides. Visual coherence signals professionalism and increases time spent per slide.
+            </div>
+          </div>
+        </div>
+
+        <!-- Applied -->
+        <div class="callout lime">
+          <div class="callout-icon">▶</div>
+          <div class="callout-text"><strong>Applied to chase.scrolls:</strong> Slide 01: "Most agencies don't fail because of bad content." Slide 02: "They fail because of this one strategic gap." Slides 03–07: Each slide = one gap (no IVP, no content mix system, no testing framework, no CTA strategy, no performance measurement). Slide 08: "Here's what a client account looked like before and after fixing each of these." Slide 09: Real anonymized stat from a client. Slide 10: "Save this. You'll use it. → Follow for more systems like this."<br><br><strong>Applied to scrollmedia.co (Rachel):</strong> Slide 01: "How we build a content strategy for a new client in 30 days." → 6 slides walking through the Scroll Media methodology → Slide 9: Client result with real number → Slide 10: "DM us if you want this applied to your account."</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 9: IDEATION SYSTEM -->
+<div class="section" id="ideation">
+  <div class="container fade-up">
+    <div class="sec-ey">Section 9 — Ideation</div>
+    <h2 class="sec-h">Ideation System</h2>
+    <p class="sec-sub">Two distinct ideation paths. Both are valid. Both have different purposes. The best content calendars pull from both each month.</p>
+
+    <div class="two-col" style="margin-bottom:32px;">
+      <div style="background:white;border:1px solid var(--border);border-radius:12px;padding:20px;box-shadow:var(--shadow-sm);border-left:4px solid var(--azure);">
+        <div style="font-size:11px;font-weight:700;color:var(--azure);text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px;">Path A — Outlier Replication</div>
+        <div style="font-size:15px;font-weight:700;color:var(--shadow);margin-bottom:8px;">Study what already works. Steal the signal, not the content.</div>
+        <div style="font-size:13px;color:var(--text-secondary);line-height:1.55;">Identify top-performing content in your niche over the last 3–6 months. Find the outliers — posts that massively overperformed. Reverse-engineer why. Then replicate the structure, angle, and format for your specific context. You're not copying content — you're learning what the audience has already demonstrated it values.</div>
+      </div>
+      <div style="background:white;border:1px solid var(--border);border-radius:12px;padding:20px;box-shadow:var(--shadow-sm);border-left:4px solid var(--highlighter-dark);">
+        <div style="font-size:11px;font-weight:700;color:var(--highlighter-dark);text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px;">Path B — Format Invention</div>
+        <div style="font-size:15px;font-weight:700;color:var(--shadow);margin-bottom:8px;">Invent new formats. Cross-reference your niche with the unexpected.</div>
+        <div style="font-size:13px;color:var(--text-secondary);line-height:1.55;">Either create formats that don't exist yet in your niche, or take something people broadly love (pop culture, everyday objects, universal experiences) and cross-reference it with social media or agency life. The unexpected cross-reference is what creates the "I've never seen it put that way" reaction — which is what drives shares.</div>
+      </div>
+    </div>
+
+    <!-- PATH A: OUTLIER REPLICATION PROCESS -->
+    <div class="plat-block" style="margin-bottom:24px;">
+      <div class="plat-block-hdr" style="background:var(--azure-pale);">
+        <div style="background:var(--azure);color:white;font-size:11px;font-weight:700;padding:3px 10px;border-radius:4px;flex-shrink:0;">PATH A</div>
+        <div class="plat-block-title">Outlier Replication — 5-Step Process</div>
+        <div class="plat-block-role">Use monthly · 60% of content ideas should come from this path</div>
+      </div>
+      <div class="plat-block-body">
+        <div class="tbl-wrap">
+        <table class="tbl" style="margin-bottom:20px;">
+          <thead><tr><th style="width:50px;">Step</th><th>Action</th><th>Where</th><th>What to Look For</th></tr></thead>
+          <tbody>
+            <tr><td><strong>1</strong></td><td>Collect the top 10 performing posts in your niche from the last 90 days</td><td>Instagram search, competitor profiles, Save folders</td><td>Posts with view:save ratios above 2%, or shares above 0.5% of reach</td></tr>
+            <tr><td><strong>2</strong></td><td>Identify the true outliers — 2–3 posts that radically overperformed the rest</td><td>Your collected list</td><td>What was the hook? What was the angle? Was it the format or the topic?</td></tr>
+            <tr><td><strong>3</strong></td><td>Reverse-engineer why they performed: topic, format, hook type, angle, or timing</td><td>Caleb Ralston's principle: isolate the variable</td><td>Run the Topic-Format-Illustration-Hook hierarchy — which factor drove it?</td></tr>
+            <tr><td><strong>4</strong></td><td>Map that insight to your niche and IVP</td><td>Scroll Media IVP document</td><td>Would your audience (agency owners, service business owners) care about this framing?</td></tr>
+            <tr><td><strong>5</strong></td><td>Write 3 post ideas using the same structural signal — different content</td><td>Content calendar</td><td>Aim: same format and angle, completely original content and perspective</td></tr>
+          </tbody>
+        </table>
+        </div>
+        <div class="callout azure">
+          <div class="callout-icon">🔍</div>
+          <div class="callout-text"><strong>Monthly niche research targets:</strong> Check accounts like @nealschaffer, @nathanperdriau, @garyvee, and any high-performing agency founder accounts. Also check Reddit threads (r/marketing, r/socialmedia) — the questions people ask publicly are the content ideas that will get saves.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PATH B: FORMAT INVENTION PROCESS -->
+    <div class="plat-block" style="margin-bottom:32px;">
+      <div class="plat-block-hdr" style="background:#f7f9d8;">
+        <div style="background:#8a9a00;color:white;font-size:11px;font-weight:700;padding:3px 10px;border-radius:4px;flex-shrink:0;">PATH B</div>
+        <div class="plat-block-title">Format Invention — The Cross-Reference Method</div>
+        <div class="plat-block-role">Use monthly · 40% of content ideas · Highest share potential</div>
+      </div>
+      <div class="plat-block-body">
+        <div class="ib" style="margin-bottom:16px;">
+          <div class="ib-label">The Core Mechanism</div>
+          <div class="ib-text">Take something universally relatable — a pop culture moment, an everyday object, a shared experience, a consumer category everyone knows — and cross-reference it with your niche or content pillar. The gap between the familiar (pop culture) and the unexpected application (your niche) is where the "I've never seen this before" reaction comes from. That reaction is what drives shares.</div>
+        </div>
+
+        <h4 style="font-size:13px;font-weight:700;color:var(--shadow);margin-bottom:12px;">3 Cross-Reference Formulas</h4>
+        <div class="three-col">
+          <div style="background:white;border:1px solid var(--border);border-radius:10px;padding:16px;box-shadow:var(--shadow-sm);">
+            <div style="font-size:12px;font-weight:700;color:var(--azure);text-transform:uppercase;letter-spacing:.07em;margin-bottom:6px;">Formula 1: Category as Metaphor</div>
+            <div style="font-size:12px;color:var(--text-secondary);line-height:1.55;margin-bottom:8px;">Take a consumer category (coffee, dogs, cars, fitness, astrology) and map your niche concepts onto it. The viewer's familiarity with the category makes the niche concept instantly accessible.</div>
+            <div style="background:var(--azure-pale);border-radius:6px;padding:8px;font-size:11px;color:var(--azure);font-style:italic;">"Social media metrics as coffee orders. Reach is a long black — simple, direct. Saves are a flat white — refined, intentional. Comments are a frappuccino — loud, sweet, doesn't actually do much."</div>
+          </div>
+          <div style="background:white;border:1px solid var(--border);border-radius:10px;padding:16px;box-shadow:var(--shadow-sm);">
+            <div style="font-size:12px;font-weight:700;color:var(--azure);text-transform:uppercase;letter-spacing:.07em;margin-bottom:6px;">Formula 2: Pop Culture Parallel</div>
+            <div style="font-size:12px;color:var(--text-secondary);line-height:1.55;margin-bottom:8px;">Take a trending show, movie, sporting event, or cultural moment and map your niche onto it. Timeliness is the fuel — the pop culture moment is already top of mind, you're just adding the unexpected angle.</div>
+            <div style="background:var(--azure-pale);border-radius:6px;padding:8px;font-size:11px;color:var(--azure);font-style:italic;">"Social media strategy types as Succession characters. Roman is your account with zero consistency but occasionally genius. Kendall is the brand that overthinks every post. Tom is the AM who does everything right but gets no credit."</div>
+          </div>
+          <div style="background:white;border:1px solid var(--border);border-radius:10px;padding:16px;box-shadow:var(--shadow-sm);">
+            <div style="font-size:12px;font-weight:700;color:var(--azure);text-transform:uppercase;letter-spacing:.07em;margin-bottom:6px;">Formula 3: Universal Experience</div>
+            <div style="font-size:12px;color:var(--text-secondary);line-height:1.55;margin-bottom:8px;">Take a relatable human moment (first day at a job, moving to a new city, learning to drive) and use it as a metaphor for an agency or social media concept. The emotional resonance of the familiar experience amplifies the niche insight.</div>
+            <div style="background:var(--azure-pale);border-radius:6px;padding:8px;font-size:11px;color:var(--azure);font-style:italic;">"Starting an Instagram account is exactly like moving to a new city. Month 1: you don't know anyone. Month 3: you've found your spots. Month 6: you have regulars. The problem is most brands give up in month 2."</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- IDEATION APPLIED: CHASE.SCROLLS -->
+    <div class="plat-block" style="margin-bottom:20px;">
+      <div class="plat-block-hdr" style="background:var(--azure-pale);">
+        <div style="width:10px;height:10px;border-radius:50%;background:var(--azure);flex-shrink:0;"></div>
+        <div class="plat-block-title">Ideation Applied — chase.scrolls (Month 1 Bank)</div>
+        <div class="plat-block-role">20 ideas · Mix of Path A + Path B · Assigned to pillars</div>
+      </div>
+      <div class="plat-block-body">
+        <div style="margin-bottom:8px;font-size:12px;font-weight:700;color:var(--azure);">PATH A — Outlier Replication Ideas</div>
+        <div style="display:flex;flex-direction:column;gap:7px;margin-bottom:20px;">
+          <div style="background:white;border:1px solid var(--border);border-radius:8px;padding:11px 14px;box-shadow:var(--shadow-sm);display:flex;gap:12px;">
+            <span style="background:var(--azure-light);color:var(--azure);font-size:10px;font-weight:700;padding:2px 8px;border-radius:3px;flex-shrink:0;align-self:flex-start;margin-top:1px;">THE CRAFT</span>
+            <div><div style="font-size:13px;font-weight:600;color:var(--shadow);margin-bottom:2px;">"I analyzed 8 client accounts for 6 months. Here's the #1 thing that predicted growth every single time."</div><div style="font-size:11px;color:var(--text-muted);">Outlier signal: data-backed framework with specific timeframe + contrarian reveal. Founder POV Reel → 5-Part Story Arc.</div></div>
+          </div>
+          <div style="background:white;border:1px solid var(--border);border-radius:8px;padding:11px 14px;box-shadow:var(--shadow-sm);display:flex;gap:12px;">
+            <span style="background:var(--azure-light);color:var(--azure);font-size:10px;font-weight:700;padding:2px 8px;border-radius:3px;flex-shrink:0;align-self:flex-start;margin-top:1px;">THE BUILD</span>
+            <div><div style="font-size:13px;font-weight:600;color:var(--shadow);margin-bottom:2px;">"What nobody tells you about getting your first 5 clients." (3 things, fast-paced, numbered list)</div><div style="font-size:11px;color:var(--text-muted);">Outlier signal: "nobody tells you" framing + founder credibility + list structure. Numbered List Reel.</div></div>
+          </div>
+          <div style="background:white;border:1px solid var(--border);border-radius:8px;padding:11px 14px;box-shadow:var(--shadow-sm);display:flex;gap:12px;">
+            <span style="background:var(--azure-light);color:var(--azure);font-size:10px;font-weight:700;padding:2px 8px;border-radius:3px;flex-shrink:0;align-self:flex-start;margin-top:1px;">THE CRAFT</span>
+            <div><div style="font-size:13px;font-weight:600;color:var(--shadow);margin-bottom:2px;">"The Instagram metric nobody talks about — and why it's the only one that actually matters." (Save rate deep-dive)</div><div style="font-size:11px;color:var(--text-muted);">Outlier signal: "nobody talks about" + contrarian take on common metric hierarchy. Founder POV Reel.</div></div>
+          </div>
+          <div style="background:white;border:1px solid var(--border);border-radius:8px;padding:11px 14px;box-shadow:var(--shadow-sm);display:flex;gap:12px;">
+            <span style="background:var(--azure-light);color:var(--azure);font-size:10px;font-weight:700;padding:2px 8px;border-radius:3px;flex-shrink:0;align-self:flex-start;margin-top:1px;">THE OPERATION</span>
+            <div><div style="font-size:13px;font-weight:600;color:var(--shadow);margin-bottom:2px;">"The exact onboarding process we use for every new Scroll Media client." (Carousel: 8 slides)</div><div style="font-size:11px;color:var(--text-muted);">Outlier signal: "exact process" + behind-the-curtain agency transparency. Framework Carousel → Save-First system.</div></div>
+          </div>
+          <div style="background:white;border:1px solid var(--border);border-radius:8px;padding:11px 14px;box-shadow:var(--shadow-sm);display:flex;gap:12px;">
+            <span style="background:var(--azure-light);color:var(--azure);font-size:10px;font-weight:700;padding:2px 8px;border-radius:3px;flex-shrink:0;align-self:flex-start;margin-top:1px;">THE BUILD</span>
+            <div><div style="font-size:13px;font-weight:600;color:var(--shadow);margin-bottom:2px;">"I almost shut down Scroll Media. Here's the 48 hours that changed my mind." (Stakes-first failure story)</div><div style="font-size:11px;color:var(--text-muted);">Outlier signal: near-failure founder story + specific timeframe. 5-Part Story Arc with strong re-hook at the crisis moment.</div></div>
+          </div>
+        </div>
+
+        <div style="margin-bottom:8px;font-size:12px;font-weight:700;color:var(--highlighter-dark);">PATH B — Format Invention Ideas</div>
+        <div style="display:flex;flex-direction:column;gap:7px;">
+          <div style="background:white;border:1px solid var(--border);border-radius:8px;padding:11px 14px;box-shadow:var(--shadow-sm);display:flex;gap:12px;">
+            <span style="background:#f7f9d8;color:#6b7a00;font-size:10px;font-weight:700;padding:2px 8px;border-radius:3px;flex-shrink:0;align-self:flex-start;margin-top:1px;">CATEGORY</span>
+            <div><div style="font-size:13px;font-weight:600;color:var(--shadow);margin-bottom:2px;">"Social media metrics as dog breeds. Reach is a golden retriever. Saves are a German shepherd. Comments are a chihuahua."</div><div style="font-size:11px;color:var(--text-muted);">Quick Strike format. On-screen text per breed + one-line voiceover. 15 seconds max. High share bait.</div></div>
+          </div>
+          <div style="background:white;border:1px solid var(--border);border-radius:8px;padding:11px 14px;box-shadow:var(--shadow-sm);display:flex;gap:12px;">
+            <span style="background:#f7f9d8;color:#6b7a00;font-size:10px;font-weight:700;padding:2px 8px;border-radius:3px;flex-shrink:0;align-self:flex-start;margin-top:1px;">CATEGORY</span>
+            <div><div style="font-size:13px;font-weight:600;color:var(--shadow);margin-bottom:2px;">"My content calendar as a coffee order. Monday is a double espresso — educational, no fluff. Wednesday is a flat white — strategic, refined. Sunday is a cold brew — no structure, just vibes."</div><div style="font-size:11px;color:var(--text-muted);">Quick Strike or short POV. Universally relatable category. Makes the content calendar concept feel accessible and fun.</div></div>
+          </div>
+          <div style="background:white;border:1px solid var(--border);border-radius:8px;padding:11px 14px;box-shadow:var(--shadow-sm);display:flex;gap:12px;">
+            <span style="background:#f7f9d8;color:#6b7a00;font-size:10px;font-weight:700;padding:2px 8px;border-radius:3px;flex-shrink:0;align-self:flex-start;margin-top:1px;">POP CULTURE</span>
+            <div><div style="font-size:13px;font-weight:600;color:var(--shadow);margin-bottom:2px;">"Running a social media agency as a Netflix series. Season 1 is getting your first clients. Season 2 is realizing your systems are broken. Season 3 is figuring out delegation. I'm in season 3."</div><div style="font-size:11px;color:var(--text-muted);">POV Reel. Casual and self-aware. Pop culture framing makes the founder journey feel like shared entertainment.</div></div>
+          </div>
+          <div style="background:white;border:1px solid var(--border);border-radius:8px;padding:11px 14px;box-shadow:var(--shadow-sm);display:flex;gap:12px;">
+            <span style="background:#f7f9d8;color:#6b7a00;font-size:10px;font-weight:700;padding:2px 8px;border-radius:3px;flex-shrink:0;align-self:flex-start;margin-top:1px;">UNIVERSAL</span>
+            <div><div style="font-size:13px;font-weight:600;color:var(--shadow);margin-bottom:2px;">"Building a personal brand on Instagram is exactly like being the new person at a job. Month 1 nobody knows you exist. Month 3 people start noticing. Month 6 you're the one they come to. Most people quit in month 2."</div><div style="font-size:11px;color:var(--text-muted);">Founder POV Reel. The "new job" metaphor is universally felt — emotional resonance drives saves.</div></div>
+          </div>
+          <div style="background:white;border:1px solid var(--border);border-radius:8px;padding:11px 14px;box-shadow:var(--shadow-sm);display:flex;gap:12px;">
+            <span style="background:#f7f9d8;color:#6b7a00;font-size:10px;font-weight:700;padding:2px 8px;border-radius:3px;flex-shrink:0;align-self:flex-start;margin-top:1px;">FORMAT INVENTION</span>
+            <div><div style="font-size:13px;font-weight:600;color:var(--shadow);margin-bottom:2px;">"A day in the life — but narrated as if it were a nature documentary. 'And here we see the agency founder in his natural habitat, opening a Metricool report at 7am.'"</div><div style="font-size:11px;color:var(--text-muted);">B-Roll + Voiceover. Deadpan documentary tone. Highly shareable because of the novelty. Pattern interrupt on the format itself.</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- IDEATION APPLIED: SCROLLMEDIA.CO -->
+    <div class="plat-block">
+      <div class="plat-block-hdr" style="background:rgba(203,233,255,0.3);">
+        <div style="width:10px;height:10px;border-radius:50%;background:var(--c-sc);flex-shrink:0;"></div>
+        <div class="plat-block-title">Ideation Applied — scrollmedia.co (Rachel's Account — Month 1 Bank)</div>
+        <div class="plat-block-role">12 ideas · BD-first filter applied to every idea · Path A + Path B</div>
+      </div>
+      <div class="plat-block-body">
+        <div class="callout orange" style="margin-bottom:16px;">
+          <div class="callout-icon">🎯</div>
+          <div class="callout-text"><strong>Rachel's BD filter:</strong> Before any idea makes the agency calendar, ask — how does this create a path to a qualified lead? Entertainment content on this account must still have a strategic anchor that positions Scroll Media as the expert partner.</div>
+        </div>
+
+        <div style="margin-bottom:8px;font-size:12px;font-weight:700;color:var(--azure);">PATH A — Outlier Replication (Agency Account)</div>
+        <div style="display:flex;flex-direction:column;gap:7px;margin-bottom:20px;">
+          <div style="background:white;border:1px solid var(--border);border-radius:8px;padding:11px 14px;box-shadow:var(--shadow-sm);display:flex;gap:12px;">
+            <span style="background:var(--azure-light);color:var(--azure);font-size:10px;font-weight:700;padding:2px 8px;border-radius:3px;flex-shrink:0;align-self:flex-start;margin-top:1px;">PROOF</span>
+            <div><div style="font-size:13px;font-weight:600;color:var(--shadow);margin-bottom:2px;">"We ran the same content strategy on 3 different service businesses. Here's what happened." (Result breakdown carousel)</div><div style="font-size:11px;color:var(--text-muted);">Outlier signal: direct result comparison across multiple accounts. Carousel → Save-First system. LinkedIn cross-post.</div></div>
+          </div>
+          <div style="background:white;border:1px solid var(--border);border-radius:8px;padding:11px 14px;box-shadow:var(--shadow-sm);display:flex;gap:12px;">
+            <span style="background:var(--azure-light);color:var(--azure);font-size:10px;font-weight:700;padding:2px 8px;border-radius:3px;flex-shrink:0;align-self:flex-start;margin-top:1px;">EDUCATION</span>
+            <div><div style="font-size:13px;font-weight:600;color:var(--shadow);margin-bottom:2px;">"The content mix formula we use for every service business client." (40/35/25 breakdown — carousel)</div><div style="font-size:11px;color:var(--text-muted);">Frames Scroll Media as a system-driven agency, not a freelancer-level operation. High save potential. LinkedIn cross-post.</div></div>
+          </div>
+          <div style="background:white;border:1px solid var(--border);border-radius:8px;padding:11px 14px;box-shadow:var(--shadow-sm);display:flex;gap:12px;">
+            <span style="background:var(--azure-light);color:var(--azure);font-size:10px;font-weight:700;padding:2px 8px;border-radius:3px;flex-shrink:0;align-self:flex-start;margin-top:1px;">CULTURE</span>
+            <div><div style="font-size:13px;font-weight:600;color:var(--shadow);margin-bottom:2px;">"What a Scroll Media strategy session actually looks like." (Behind the scenes B-Roll + Voiceover Reel)</div><div style="font-size:11px;color:var(--text-muted);">Humanizes the team. Shows the work. Differentiates from faceless agencies. Plays directly into "fun startup" brand positioning.</div></div>
+          </div>
+          <div style="background:white;border:1px solid var(--border);border-radius:8px;padding:11px 14px;box-shadow:var(--shadow-sm);display:flex;gap:12px;">
+            <span style="background:var(--azure-light);color:var(--azure);font-size:10px;font-weight:700;padding:2px 8px;border-radius:3px;flex-shrink:0;align-self:flex-start;margin-top:1px;">EDUCATION</span>
+            <div><div style="font-size:13px;font-weight:600;color:var(--shadow);margin-bottom:2px;">"Why your service business Instagram isn't converting — and it has nothing to do with your content." (Reel + carousel follow-up)</div><div style="font-size:11px;color:var(--text-muted);">Contrarian hook that speaks directly to Scroll Media's ICP. Positions the strategy gap as the problem — which is what Scroll Media solves.</div></div>
+          </div>
+        </div>
+
+        <div style="margin-bottom:8px;font-size:12px;font-weight:700;color:var(--highlighter-dark);">PATH B — Format Invention (Agency Account)</div>
+        <div style="display:flex;flex-direction:column;gap:7px;">
+          <div style="background:white;border:1px solid var(--border);border-radius:8px;padding:11px 14px;box-shadow:var(--shadow-sm);display:flex;gap:12px;">
+            <span style="background:#f7f9d8;color:#6b7a00;font-size:10px;font-weight:700;padding:2px 8px;border-radius:3px;flex-shrink:0;align-self:flex-start;margin-top:1px;">CATEGORY</span>
+            <div><div style="font-size:13px;font-weight:600;color:var(--shadow);margin-bottom:2px;">"Social media strategy types as gym personalities. The one who shows up every day with no plan (the inconsistent poster). The one who only does cardio (only posts Reels). The one actually hitting PRs (our clients)."</div><div style="font-size:11px;color:var(--text-muted);">Quick Strike Reel. Highly relatable. Positions Scroll Media implicitly as the personal trainer equivalent without saying it directly.</div></div>
+          </div>
+          <div style="background:white;border:1px solid var(--border);border-radius:8px;padding:11px 14px;box-shadow:var(--shadow-sm);display:flex;gap:12px;">
+            <span style="background:#f7f9d8;color:#6b7a00;font-size:10px;font-weight:700;padding:2px 8px;border-radius:3px;flex-shrink:0;align-self:flex-start;margin-top:1px;">POP CULTURE</span>
+            <div><div style="font-size:13px;font-weight:600;color:var(--shadow);margin-bottom:2px;">"Content strategy stages as Taylor Swift eras. The 'posting random stuff' era. The 'aesthetic-only' era. The 'strategy-first' era. We help brands get to the good era faster."</div><div style="font-size:11px;color:var(--text-muted);">Trending/pop culture Reel. Highly shareable among the target demographic. Self-aware and fun without losing the strategic point.</div></div>
+          </div>
+          <div style="background:white;border:1px solid var(--border);border-radius:8px;padding:11px 14px;box-shadow:var(--shadow-sm);display:flex;gap:12px;">
+            <span style="background:#f7f9d8;color:#6b7a00;font-size:10px;font-weight:700;padding:2px 8px;border-radius:3px;flex-shrink:0;align-self:flex-start;margin-top:1px;">FORMAT INVENTION</span>
+            <div><div style="font-size:13px;font-weight:600;color:var(--shadow);margin-bottom:2px;">"We let our clients rate us. Here's what they said — unfiltered." (Real testimonial compilation with honest quotes, not just praise)</div><div style="font-size:11px;color:var(--text-muted);">Honesty-first format that almost no agencies do. The authenticity of including a constructive comment alongside praise makes all the positive ones more credible.</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 2: CHASE.SCROLLS -->
+<div class="section" id="chase">
+  <div class="container fade-up">
+    <div class="sec-ey">Section 2 — Personal Brand</div>
+    <h2 class="sec-h">chase.scrolls — Instagram Strategy</h2>
+    <p class="sec-sub">5x/week. Lofi talking head Reels. Dispatches from the Build. Every post must answer: why stop scrolling? Why keep watching? Why save or share?</p>
+
+    <!-- Content Mix -->
+    <div class="mix-wrap">
+      <div class="mix-label">Monthly feed mix target</div>
+      <div class="mix-bar">
+        <div class="mix-seg ms-tofu" style="width:50%"></div>
+        <div class="mix-seg ms-mofu" style="width:35%"></div>
+        <div class="mix-seg ms-bofu" style="width:15%"></div>
+      </div>
+      <div class="mix-legend">
+        <div class="mix-item"><span class="mix-dot" style="background:var(--highlighter-dark)"></span><span class="mix-pct">50%</span>&nbsp;TOFU — Reach &amp; discovery</div>
+        <div class="mix-item"><span class="mix-dot" style="background:var(--azure-mid)"></span><span class="mix-pct">35%</span>&nbsp;MOFU — Trust &amp; saves</div>
+        <div class="mix-item"><span class="mix-dot" style="background:var(--azure)"></span><span class="mix-pct">15%</span>&nbsp;BOFU — Soft agency conversion</div>
+      </div>
+    </div>
+
+    <!-- Cadence table -->
+    <h3 style="font-size:16px;font-weight:700;color:var(--shadow);margin-bottom:14px;">Weekly Cadence (5x/week)</h3>
+    <div class="tbl-wrap">
+    <table class="tbl">
+      <thead><tr><th>Day</th><th>Pillar</th><th>Episode Type</th><th>Scripting Structure</th><th>Funnel</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Monday</strong></td><td>The Craft</td><td>Hot take / counter-position</td><td>The Counter-Position</td><td><span class="fmt-tag t-tofu">TOFU</span></td></tr>
+        <tr><td><strong>Tuesday</strong></td><td>The Build</td><td>Founder moment / milestone</td><td>The Stakes Open</td><td><span class="fmt-tag t-tofu">TOFU</span></td></tr>
+        <tr><td><strong>Wednesday</strong></td><td>The Craft</td><td>Framework or system reveal</td><td>The Earned Insight</td><td><span class="fmt-tag t-mofu">MOFU</span></td></tr>
+        <tr><td><strong>Thursday</strong></td><td>The Operation</td><td>Client work / behind the scenes</td><td>The Earned Insight</td><td><span class="fmt-tag t-mofu">MOFU</span></td></tr>
+        <tr><td><strong>Sunday</strong></td><td>The Person</td><td>Raw / unscripted moment</td><td>No script — just talk</td><td><span class="fmt-tag t-mofu">MOFU</span></td></tr>
+      </tbody>
+    </table>
+    </div>
+
+    <!-- Formats -->
+    <h3 style="font-size:16px;font-weight:700;color:var(--shadow);margin-bottom:8px;">Top Formats — Research-Backed for Personal Brand / Agency Founder</h3>
+    <p style="font-size:13px;color:var(--text-secondary);margin-bottom:14px;">Based on 2026 data for social media and entrepreneurship niche accounts.</p>
+    <div class="fmt-grid">
+      <div class="fmt-card core">
+        <div class="fmt-top"><div class="fmt-name">Lofi Talking Head</div><div class="fmt-badge fb-core">CORE</div></div>
+        <div class="fmt-desc">Single camera, natural setting, no b-roll. The format that builds deepest trust because it can't be faked at scale. Research confirms UGC-style talking heads are among top-performing formats for personal brands in 2026.</div>
+        <div class="fmt-hook">"I lost a $2,500 client in 30 days. Here's the exact mistake." — drop into stakes first</div>
+        <div class="fmt-tags"><span class="fmt-tag t-tofu">TOFU</span><span class="fmt-tag t-mofu">MOFU</span></div>
+      </div>
+      <div class="fmt-card core">
+        <div class="fmt-top"><div class="fmt-name">Framework Reveal</div><div class="fmt-badge fb-core">CORE</div></div>
+        <div class="fmt-desc">One Scroll Media framework or process in 30–60 seconds. Opens with a specific problem → pivots to the system → closes with one action. Drives consistent saves as reference content.</div>
+        <div class="fmt-hook">"We use a 3-part system for every new client. Here's exactly how it works."</div>
+        <div class="fmt-tags"><span class="fmt-tag t-mofu">MOFU</span></div>
+      </div>
+      <div class="fmt-card core">
+        <div class="fmt-top"><div class="fmt-name">Counter-Position</div><div class="fmt-badge fb-core">CORE</div></div>
+        <div class="fmt-desc">State the common belief. Challenge it immediately. Make the case with real data. Close with the reframe. Briar Cochran principle: defining what you're against is more powerful than what you're for. High shareability.</div>
+        <div class="fmt-hook">"Everyone says post consistently. I disagree. Here's what actually matters."</div>
+        <div class="fmt-tags"><span class="fmt-tag t-tofu">TOFU</span></div>
+      </div>
+      <div class="fmt-card core">
+        <div class="fmt-top"><div class="fmt-name">Failure / Stakes Story</div><div class="fmt-badge fb-core">CORE</div></div>
+        <div class="fmt-desc">Drop into the most dramatic moment first. Rewind. Tell it straight. One earned takeaway at the close. Research: story-driven posts get 5× more comments. Failure stories outperform success stories on trust.</div>
+        <div class="fmt-hook">"We underpriced every client for 6 months. Here's the damage."</div>
+        <div class="fmt-tags"><span class="fmt-tag t-tofu">TOFU</span><span class="fmt-tag t-mofu">MOFU</span></div>
+      </div>
+      <div class="fmt-card test">
+        <div class="fmt-top"><div class="fmt-name">Day-in-the-Life</div><div class="fmt-badge fb-test">TEST</div></div>
+        <div class="fmt-desc">Candid, unstructured look at a real workday. No script. Research identifies "over the shoulder process" as an emerging high-performance format for 2026. Builds parasocial connection faster than any scripted format.</div>
+        <div class="fmt-hook">"What running a social media agency actually looks like on a Tuesday."</div>
+        <div class="fmt-tags"><span class="fmt-tag t-mofu">MOFU</span></div>
+      </div>
+      <div class="fmt-card test">
+        <div class="fmt-top"><div class="fmt-name">Numbered List Reel</div><div class="fmt-badge fb-test">TEST</div></div>
+        <div class="fmt-desc">5 things, 3 mistakes, 4 signs — structured list as a fast-paced talking head. Research confirms educational listicles consistently perform for marketing accounts. High save rate when the list is genuinely specific.</div>
+        <div class="fmt-hook">"5 things I wish I knew before starting a social media agency."</div>
+        <div class="fmt-tags"><span class="fmt-tag t-tofu">TOFU</span></div>
+      </div>
+    </div>
+
+    <!-- Signal Method -->
+    <h3 style="font-size:16px;font-weight:700;color:var(--shadow);margin-bottom:14px;">Signal Method — Applied to chase.scrolls</h3>
+    <div class="signal-block">
+      <div class="signal-phase">Phase 1 — Month 1–2: Expand</div>
+      <div class="signal-title">Test all 6 formats. Find the winners.</div>
+      <div class="signal-desc">Post all six format types. Track which 2–3 generate consistent saves, shares, and profile visits. Give each format 4+ posts before judging. Goal is signal discovery, not perfection.</div>
+    </div>
+    <div class="signal-block">
+      <div class="signal-phase">Phase 2 — Month 3: Contract</div>
+      <div class="signal-title">Cut the losers. Double down on the top 2–3.</div>
+      <div class="signal-desc">Save and share data will reveal 2–3 formats that consistently work. Shift 80% of content to those formats. Keep 1 slot/week for testing variations of proven winners.</div>
+    </div>
+    <div class="signal-block">
+      <div class="signal-phase">Phase 3+ — Month 4+: Compound</div>
+      <div class="signal-title">Scale what works. Introduce variations.</div>
+      <div class="signal-desc">The two proven CORE formats anchor every week. Variations — different hook styles, different angles within the same format — prevent creative fatigue without abandoning what the algorithm distributes.</div>
+    </div>
+
+    <!-- CTA Strategy -->
+    <div class="sp"></div>
+    <h3 style="font-size:16px;font-weight:700;color:var(--shadow);margin-bottom:14px;">CTA Strategy</h3>
+    <div class="tbl-wrap">
+    <table class="tbl">
+      <thead><tr><th>Stage</th><th>CTA Type</th><th>Example</th><th>Frequency</th></tr></thead>
+      <tbody>
+        <tr><td><span class="fmt-tag t-tofu">TOFU</span></td><td>Save prompt</td><td>"Save this if you're building something."</td><td>Every TOFU post</td></tr>
+        <tr><td><span class="fmt-tag t-mofu">MOFU</span></td><td>Bridge to agency</td><td>"We document all of this over at scrollmedia.co — follow along."</td><td>1–2x/week</td></tr>
+        <tr><td><span class="fmt-tag t-bofu">BOFU</span></td><td>Soft agency CTA</td><td>"If this is your business's problem — link in bio, free audit checklist."</td><td>Max 1x/week</td></tr>
+      </tbody>
+    </table>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 3: scrollmedia.co -->
+<div class="section" id="agency">
+  <div class="container fade-up">
+    <div class="sec-ey">Section 3 — Agency Account</div>
+    <h2 class="sec-h">scrollmedia.co — Rachel's Strategy</h2>
+    <p class="sec-sub">3 feed posts + 2 story days/week. Every Reel → TikTok. Every educational carousel → LinkedIn PDF. Primary objective: qualified inbound leads.</p>
+
+    <div class="callout orange">
+      <div class="callout-icon">🎯</div>
+      <div class="callout-text"><strong>BD filter for every post:</strong> Before scheduling anything on the agency account, ask: <em>How does this specific piece of content create a path to a qualified lead?</em> If the answer isn't clear, reframe it or replace it. This is what separates a lead-generation account from a client showcase account.</div>
+    </div>
+
+    <!-- Mix -->
+    <div class="mix-wrap">
+      <div class="mix-label">Monthly feed mix target</div>
+      <div class="mix-bar">
+        <div class="mix-seg ms-tofu" style="width:35%"></div>
+        <div class="mix-seg ms-mofu" style="width:40%"></div>
+        <div class="mix-seg ms-bofu" style="width:25%"></div>
+      </div>
+      <div class="mix-legend">
+        <div class="mix-item"><span class="mix-dot" style="background:var(--highlighter-dark)"></span><span class="mix-pct">35%</span>&nbsp;TOFU — Education, reach, discovery</div>
+        <div class="mix-item"><span class="mix-dot" style="background:var(--azure-mid)"></span><span class="mix-pct">40%</span>&nbsp;MOFU — Proof, culture, process</div>
+        <div class="mix-item"><span class="mix-dot" style="background:var(--azure)"></span><span class="mix-pct">25%</span>&nbsp;BOFU — Lead capture, discovery CTA</div>
+      </div>
+    </div>
+
+    <!-- Cadence table -->
+    <h3 style="font-size:16px;font-weight:700;color:var(--shadow);margin-bottom:14px;">Weekly Cadence (3 feed + 2 story days)</h3>
+    <div class="tbl-wrap">
+    <table class="tbl">
+      <thead><tr><th>Day</th><th>Type</th><th>Pillar</th><th>Format</th><th>Cross-post</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Tuesday</strong></td><td>Feed</td><td>Education — tip or framework for service business owners</td><td>Reel</td><td><span class="pb pb-tt">TT</span></td></tr>
+        <tr><td>Wednesday</td><td>Stories (2)</td><td>Amplify Tuesday's Reel. 1 poll. 1 BTS frame.</td><td>Stories</td><td>—</td></tr>
+        <tr><td><strong>Thursday</strong></td><td>Feed</td><td>Proof / Culture — result, BTS, or team content</td><td>Reel or Carousel</td><td><span class="pb pb-tt">TT</span> if Reel</td></tr>
+        <tr><td>Friday</td><td>Stories (2)</td><td>Amplify Thursday. 1 testimonial. 1 link/swipe-up.</td><td>Stories</td><td>—</td></tr>
+        <tr><td><strong>Saturday</strong></td><td>Feed</td><td>Process / BOFU — how we work, or lead capture</td><td>Carousel or Static</td><td><span class="pb pb-li">LI</span> if Carousel</td></tr>
+      </tbody>
+    </table>
+    </div>
+
+    <!-- Formats -->
+    <h3 style="font-size:16px;font-weight:700;color:var(--shadow);margin-bottom:14px;">Format Strategy</h3>
+    <div class="fmt-grid">
+      <div class="fmt-card core">
+        <div class="fmt-top"><div class="fmt-name">Result Reel</div><div class="fmt-badge fb-core">CORE + TT</div></div>
+        <div class="fmt-desc">Open with the number. One client metric in the first line. 2–3 lines of what drove it. Close: "This is what a strategy behind the content looks like." Never name the client unless approved.</div>
+        <div class="fmt-hook">"This account went from 400 to 1,200 followers in 60 days. Here's what changed."</div>
+        <div class="fmt-tags"><span class="fmt-tag t-mofu">MOFU</span><span class="fmt-tag t-bofu">BOFU</span></div>
+      </div>
+      <div class="fmt-card core">
+        <div class="fmt-top"><div class="fmt-name">Education Reel</div><div class="fmt-badge fb-core">CORE + TT</div></div>
+        <div class="fmt-desc">One social media concept explained for a service business owner in 30–60 seconds. Position Scroll Media as the intelligent guide — not the salesperson. Research confirms agency educational content averages 3.4% IG engagement.</div>
+        <div class="fmt-hook">"The metric most service businesses ignore on Instagram — and why it matters most."</div>
+        <div class="fmt-tags"><span class="fmt-tag t-tofu">TOFU</span></div>
+      </div>
+      <div class="fmt-card bdv">
+        <div class="fmt-top"><div class="fmt-name">Framework Carousel</div><div class="fmt-badge fb-bdv">CORE + LI</div></div>
+        <div class="fmt-desc">Scroll Media process broken into 5–7 slides. Each slide = one clear idea. Research: carousels lead IG engagement resilience and saves. Cross-post every educational carousel to LinkedIn as PDF — 21.77% engagement, highest on any platform.</div>
+        <div class="fmt-hook">Slide 1: "How we build a content strategy for a new client in 30 days."</div>
+        <div class="fmt-tags"><span class="fmt-tag t-mofu">MOFU</span></div>
+      </div>
+      <div class="fmt-card core">
+        <div class="fmt-top"><div class="fmt-name">Culture / BTS Reel</div><div class="fmt-badge fb-core">CORE + TT</div></div>
+        <div class="fmt-desc">What has historically performed best on this account. Team, process, real agency life. Humanizes the service business. Keep it unpolished — the authenticity is the point. Pop culture / trending content lives here too.</div>
+        <div class="fmt-hook">"A week inside the Scroll Media team."</div>
+        <div class="fmt-tags"><span class="fmt-tag t-mofu">MOFU</span></div>
+      </div>
+      <div class="fmt-card test">
+        <div class="fmt-top"><div class="fmt-name">Pop Culture / Trending</div><div class="fmt-badge fb-test">TEST + TT</div></div>
+        <div class="fmt-desc">Trending audio or relatable marketing moments — always tied back to a real insight. The "fun startup" positioning requires this to feel genuine, not forced. Rule: adapt the trend to Scroll Media's niche, never just copy it directly.</div>
+        <div class="fmt-hook">Trending sound + social media pain point overlay. Agency humor. Keep it sharp and on-brand.</div>
+        <div class="fmt-tags"><span class="fmt-tag t-tofu">TOFU</span></div>
+      </div>
+      <div class="fmt-card bdv">
+        <div class="fmt-top"><div class="fmt-name">Lead Capture Post</div><div class="fmt-badge fb-bdv">BOFU + LI</div></div>
+        <div class="fmt-desc">Direct offer. Clean design. One headline. One CTA. Links to audit checklist or discovery call. Max 1x/week — used sparingly so it feels earned. Cross-post to LinkedIn when carousel format (PDF avoids external link suppression).</div>
+        <div class="fmt-hook">"Free: 27-point Instagram audit for service businesses. Tap the link in bio."</div>
+        <div class="fmt-tags"><span class="fmt-tag t-bofu">BOFU</span></div>
+      </div>
+    </div>
+
+    <!-- Stories -->
+    <h3 style="font-size:16px;font-weight:700;color:var(--shadow);margin-bottom:14px;">Stories Strategy (Wednesday + Friday)</h3>
+    <div class="two-col">
+      <div class="ib">
+        <div class="ib-label">Wednesday Stories</div>
+        <div class="ib-text"><strong>Frame 1:</strong> Reshare Tuesday's Reel with a 5-word text overlay — "Did you catch this?" or the key takeaway.<br><br><strong>Frame 2:</strong> Poll tied to the topic. "Biggest challenge right now?" Simple binary. Surfaces interested prospects and drives algorithm signals.<br><br><em>Goal: Push the Reel to more profile visitors. Warm audience for Thursday.</em></div>
+      </div>
+      <div class="ib">
+        <div class="ib-label">Friday Stories</div>
+        <div class="ib-text"><strong>Frame 1:</strong> A real result or proof screenshot — anonymized client stat, DM testimonial, or key win. Not designed — real.<br><br><strong>Frame 2:</strong> Soft CTA frame. "One client spot opening in [Month]. Tap below." Link to discovery call or audit checklist.<br><br><em>Goal: Convert warm story viewers who have been watching the week's content into inbound leads.</em></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 4: THREADS + LINKEDIN -->
+<div class="section" id="written">
+  <div class="container fade-up">
+    <div class="sec-ey">Section 4 — Written Platforms</div>
+    <h2 class="sec-h">Threads + LinkedIn (Chase Only)</h2>
+    <p class="sec-sub">Daily on Threads, mirrored to X. 3x/week on LinkedIn. Both platforms optimized around the research findings above.</p>
+
+    <!-- Threads -->
+    <div class="plat-block">
+      <div class="plat-block-hdr">
+        <div style="width:10px;height:10px;border-radius:50%;background:var(--shadow);flex-shrink:0;"></div>
+        <div class="plat-block-title">Threads — Daily + Mirror to X</div>
+        <div class="plat-block-role">100–280 chars · No links · Reply within 1hr</div>
+      </div>
+      <div class="plat-block-body">
+        <div class="two-col">
+          <div class="ib">
+            <div class="ib-label">Core Principle</div>
+            <div class="ib-text">Threads rewards <strong>conversation and replies</strong> over passive likes. Write to create dialogue, not to broadcast. A post that sparks 10 genuine replies outperforms one with 200 likes algorithmically.</div>
+          </div>
+          <div class="ib">
+            <div class="ib-label">Hard Rules (Research-Backed)</div>
+            <div class="ib-text">
+              <strong>No outbound links</strong> in post body — 30–50% penalty<br>
+              <strong>Length sweet spot:</strong> 100–280 characters<br>
+              <strong>Reply within 60 min</strong> — 42% engagement boost<br>
+              <strong>No hashtags</strong> — Threads uses topic tags<br>
+              <strong>Never start with "I"</strong> — lead with the idea
+            </div>
+          </div>
+        </div>
+
+        <h4 style="font-size:13px;font-weight:700;color:var(--shadow);margin-bottom:12px;">5 Post Types — Rotate Daily</h4>
+        <div class="fmt-grid">
+          <div class="fmt-card core">
+            <div class="fmt-top"><div class="fmt-name">The Sharp Take</div><div class="fmt-badge fb-core">HIGH REPLY</div></div>
+            <div class="fmt-desc">One strong opinion. No hedging. 3–6 lines. Designed to spark agreement or pushback — both win. Counter-positioning drives more replies than positive takes.</div>
+            <div class="fmt-hook">"Most agencies sell content. The good ones sell strategy. Most clients can't tell the difference until month 3."</div>
+          </div>
+          <div class="fmt-card core">
+            <div class="fmt-top"><div class="fmt-name">The Open Loop</div><div class="fmt-badge fb-core">HIGH REPLY</div></div>
+            <div class="fmt-desc">Start a thought. Don't finish it. Create a gap the reader feels compelled to fill by replying or by following. One of the highest-performing Threads structures under 10K followers.</div>
+            <div class="fmt-hook">"There's one thing I'd tell every new agency owner before they sign their first client. It's not pricing or positioning."</div>
+          </div>
+          <div class="fmt-card core">
+            <div class="fmt-top"><div class="fmt-name">The Useful Tip</div><div class="fmt-badge fb-core">HIGH SAVE</div></div>
+            <div class="fmt-desc">One specific, actionable thing pulled from active client work or agency ops. Specificity is the differentiator — "save rate" beats "engagement" as a topic every time because it's concrete.</div>
+            <div class="fmt-hook">"First thing we check when auditing a service business IG: save rate. Not followers. Not reach. Saves."</div>
+          </div>
+          <div class="fmt-card core">
+            <div class="fmt-top"><div class="fmt-name">The Contrary Take</div><div class="fmt-badge fb-core">HIGH SHARE</div></div>
+            <div class="fmt-desc">Challenge a widely-held belief. State the common wisdom in line 1, dismantle it in lines 2–4, close with the reframe. Research: stark contrasts drive highest shareability on Threads.</div>
+            <div class="fmt-hook">"Consistency is not the key to Instagram growth. Consistency without strategy is expensive noise."</div>
+          </div>
+          <div class="fmt-card test">
+            <div class="fmt-top"><div class="fmt-name">The Real Moment</div><div class="fmt-badge fb-test">HIGH TRUST</div></div>
+            <div class="fmt-desc">One honest sentence or two from inside the build. Brief. Raw. No agenda. Builds parasocial loyalty faster than any other type — humanizes the account completely.</div>
+            <div class="fmt-hook">"The hardest part of running an agency isn't the work. It's trusting your team enough to let go."</div>
+          </div>
+          <div class="fmt-card bdv">
+            <div class="fmt-top"><div class="fmt-name">The Soft CTA</div><div class="fmt-badge fb-bdv">BOFU</div></div>
+            <div class="fmt-desc">Max 2x/week. Always "DM me" or "reply below" — never a link in the post. Used sparingly so it feels earned. Threads users disengage from accounts that CTA too frequently.</div>
+            <div class="fmt-hook">"We have one client spot opening in May. Service business, serious about IG. DM me if that's you."</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- LinkedIn -->
+    <div class="plat-block">
+      <div class="plat-block-hdr">
+        <div style="width:10px;height:10px;border-radius:50%;background:var(--c-li);flex-shrink:0;"></div>
+        <div class="plat-block-title">LinkedIn — 3x/Week (Chase Personal)</div>
+        <div class="plat-block-role">Carousels 21.77% engagement · No external links · Personal 8× company page</div>
+      </div>
+      <div class="plat-block-body">
+        <div class="two-col">
+          <div class="ib">
+            <div class="ib-label">Format Mix (Research-Backed)</div>
+            <div class="ib-text">
+              <strong>40% Native PDF Carousels</strong> — 21.77% engagement, #1 format on any platform. 5–8 slides. Framework or process breakdown.<br><br>
+              <strong>40% Text Posts</strong> — 800–1,300 characters. 1–2 sentence paragraphs. Story-driven opener. Hook must work in first 150 chars.<br><br>
+              <strong>20% Repurposed Reels</strong> — Best IG Reels uploaded natively. Add a 2-line B2B reframe intro.
+            </div>
+          </div>
+          <div class="ib">
+            <div class="ib-label">Non-Negotiable Rules</div>
+            <div class="ib-text">
+              <strong>No external links in post body</strong> — LinkedIn suppresses them. Put the link in the first comment.<br><br>
+              <strong>All CTAs are "DM me" or "reply below"</strong> — direct outreach performs 3× better than link-click CTAs.<br><br>
+              <strong>Max 1 direct CTA per week</strong> — the other two posts are pure value. Scarcity of the ask makes it feel earned.<br><br>
+              <strong>Upload videos natively</strong> — external links get suppressed.
+            </div>
+          </div>
+        </div>
+        <div class="tbl-wrap">
+        <table class="tbl">
+          <thead><tr><th>Day</th><th>Format</th><th>Content Type</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Monday</strong></td><td>Text post</td><td>Agency insight or contrary take. Hook in first 150 chars. Story-driven structure.</td></tr>
+            <tr><td><strong>Wednesday</strong></td><td>PDF Carousel</td><td>Scroll Media framework. 5–8 slides. Last slide: "DM me if you want this applied to your account."</td></tr>
+            <tr><td><strong>Friday</strong></td><td>Text or Native Reel</td><td>Founder POV or repurposed IG Reel with B2B reframe. DM invitation if appropriate.</td></tr>
+          </tbody>
+        </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 5: INTEGRATION -->
+<div class="section" id="integration">
+  <div class="container fade-up">
+    <div class="sec-ey">Section 5 — Integration</div>
+    <h2 class="sec-h">How the Two Accounts Connect</h2>
+    <p class="sec-sub">The accounts are a system, not two separate content efforts. Every pairing below is intentional — Chase builds the trust, Rachel captures the conversion.</p>
+
+    <div class="tbl-wrap">
+    <table class="tbl">
+      <thead><tr><th>When Chase posts...</th><th>Rachel responds with...</th><th>Timing</th></tr></thead>
+      <tbody>
+        <tr><td><strong>A framework or system Reel</strong></td><td>A client application of that framework — the proof to his theory</td><td>1–2 days later</td></tr>
+        <tr><td><strong>A client insight or win story</strong></td><td>The result post with the data — numbers behind the story</td><td>Same week, different day</td></tr>
+        <tr><td><strong>A counter-position take</strong></td><td>An education post reinforcing the right way — from the agency POV</td><td>1–3 days later</td></tr>
+        <tr><td><strong>A founder personal/raw moment</strong></td><td>Nothing — agency account stays quiet. Don't piggyback personal content.</td><td>—</td></tr>
+        <tr><td><strong>A BOFU post or agency mention</strong></td><td>The discovery CTA or lead capture post within 48 hours</td><td>Within 48hrs</td></tr>
+      </tbody>
+    </table>
+    </div>
+
+    <div class="two-col">
+      <div class="ib">
+        <div class="ib-label">Chase — Every Sunday/Monday</div>
+        <div class="ib-text">Send Rachel a 2-line Slack or voice note: <em>"This week: [Wed topic] + [Thu topic]. Anything on the agency side that pairs?"</em><br><br>That's it. Keep it under 30 seconds. Rachel handles the rest.</div>
+      </div>
+      <div class="ib">
+        <div class="ib-label">Rachel — Every Monday</div>
+        <div class="ib-text">Review Chase's note. Identify one complementary post from the week's schedule. Never post same day as Chase's IG Reel unless planned campaign. Post 1–2 days after to let his content breathe.<br><br>Flag any Chase content creating a natural BOFU moment for the agency account.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 6: 30-DAY CALENDAR -->
+<div class="section" id="calendar">
+  <div class="container fade-up">
+    <div class="sec-ey">Section 6 — 30-Day Execution</div>
+    <h2 class="sec-h">30-Day Integrated Content Calendar</h2>
+    <p class="sec-sub">Four weekly themes. All platforms coordinated. Click any week to expand. Rachel's scrollmedia.co posts are highlighted in orange.</p>
+
+    <!-- Legend -->
+    <div class="legend">
+      <div class="legend-item"><span class="legend-dot ld-chase"></span>Chase — IG Reel (+ TikTok mirror)</div>
+      <div class="legend-item"><span class="legend-dot ld-written"></span>Chase — Threads + X (daily written)</div>
+      <div class="legend-item"><span class="legend-dot ld-linkedin"></span>Chase — LinkedIn</div>
+      <div class="legend-item"><span class="legend-dot ld-rachel"></span>Rachel — scrollmedia.co</div>
+    </div>
+
+    <!-- WEEK 1 ACCORDION -->
+    <div class="accordion">
+      <div class="accordion-item open" id="week1">
+        <button class="accordion-trigger" onclick="toggleAccordion('week1')">
+          <div class="acc-week-badge">Week 1 · Days 1–7</div>
+          <div class="acc-week-theme">Establish the Presence — Introduce the Build</div>
+          <div class="acc-week-focus">Who Chase is, what Scroll Media does, why this is worth following</div>
+          <div class="acc-chevron">▼</div>
+        </button>
+        <div class="accordion-content" id="week1-content">
+          <div class="accordion-inner">
+            <div class="day-grid">
+              <!-- Day 1 Mon -->
+              <div class="day-card">
+                <div class="day-hdr"><span class="day-num">1</span><span class="day-name">Mon</span></div>
+                <div class="day-body">
+                  <div class="dp chase-post">
+                    <div class="dp-plats"><span class="pb pb-ig">IG</span><span class="pb pb-tt">TT</span></div>
+                    <div class="dp-title">Dispatch No.1 — "The thing nobody tells you when you start an agency."</div>
+                    <div class="dp-note">Stakes Open. Set account tone on Day 1.</div>
+                  </div>
+                  <div class="dp written-post">
+                    <div class="dp-plats"><span class="pb pb-th">TH</span><span class="pb pb-x">X</span></div>
+                    <div class="dp-title">"I'm starting to document building Scroll Media publicly. Not the highlight reel."</div>
+                    <div class="dp-note">Brief direct intro. Max 5 lines.</div>
+                  </div>
+                  <div class="dp linkedin-post">
+                    <div class="dp-plats"><span class="pb pb-li">LI</span></div>
+                    <div class="dp-title">Founder intro text post. Who Chase is, what Scroll Media does, why documenting publicly.</div>
+                    <div class="dp-note">200 words. Strong hook in first 150 chars.</div>
+                  </div>
+                </div>
+              </div>
+              <!-- Day 2 Tue -->
+              <div class="day-card">
+                <div class="day-hdr"><span class="day-num">2</span><span class="day-name">Tue</span></div>
+                <div class="day-body">
+                  <div class="dp chase-post">
+                    <div class="dp-plats"><span class="pb pb-ig">IG</span><span class="pb pb-tt">TT</span></div>
+                    <div class="dp-title">Dispatch No.2 — "We got our 8th client. Here's what I actually felt."</div>
+                    <div class="dp-note">Earned Insight. Honest milestone — not a flex.</div>
+                  </div>
+                  <div class="dp written-post">
+                    <div class="dp-plats"><span class="pb pb-th">TH</span><span class="pb pb-x">X</span></div>
+                    <div class="dp-title">Sharp Take: "Most agencies sell content. The good ones sell strategy."</div>
+                  </div>
+                  <div class="dp" style="background:#fff5ec;border:1px solid #f5c4a0;">
+                    <div class="dp-plats"><span class="pb pb-rachel">RACHEL</span></div>
+                    <div class="dp-title">Agency intro culture Reel. Who Scroll Media is, who we work with, what makes us different.</div>
+                    <div class="dp-note">Behind the scenes of the team. → TikTok</div>
+                  </div>
+                </div>
+              </div>
+              <!-- Day 3 Wed -->
+              <div class="day-card">
+                <div class="day-hdr"><span class="day-num">3</span><span class="day-name">Wed</span></div>
+                <div class="day-body">
+                  <div class="dp chase-post">
+                    <div class="dp-plats"><span class="pb pb-ig">IG</span><span class="pb pb-tt">TT</span></div>
+                    <div class="dp-title">Dispatch No.3 — "Posting more is not the strategy. Here's what is."</div>
+                    <div class="dp-note">Counter-Position. Anchor in client data.</div>
+                  </div>
+                  <div class="dp written-post">
+                    <div class="dp-plats"><span class="pb pb-th">TH</span><span class="pb pb-x">X</span></div>
+                    <div class="dp-title">Open Loop: "There's a metric most service businesses completely ignore on Instagram."</div>
+                  </div>
+                  <div class="dp linkedin-post">
+                    <div class="dp-plats"><span class="pb pb-li">LI</span></div>
+                    <div class="dp-title">PDF Carousel: "How we build a content strategy for a new client in 30 days." 6 slides. DM CTA.</div>
+                  </div>
+                </div>
+              </div>
+              <!-- Day 4 Thu -->
+              <div class="day-card">
+                <div class="day-hdr"><span class="day-num">4</span><span class="day-name">Thu</span></div>
+                <div class="day-body">
+                  <div class="dp chase-post">
+                    <div class="dp-plats"><span class="pb pb-ig">IG</span><span class="pb pb-tt">TT</span></div>
+                    <div class="dp-title">Dispatch No.4 — "What I actually do all day running a social media agency."</div>
+                    <div class="dp-note">Day-in-the-life. Behind the screens.</div>
+                  </div>
+                  <div class="dp written-post">
+                    <div class="dp-plats"><span class="pb pb-th">TH</span><span class="pb pb-x">X</span></div>
+                    <div class="dp-title">Useful Tip: "First thing we look at when auditing a service business IG: save rate. Not followers."</div>
+                  </div>
+                  <div class="dp" style="background:#fff5ec;border:1px solid #f5c4a0;">
+                    <div class="dp-plats"><span class="pb pb-rachel">RACHEL</span></div>
+                    <div class="dp-title">Education Reel: "3 things every service business gets wrong on Instagram."</div>
+                    <div class="dp-note">Pairs with Chase Day 3. → TikTok</div>
+                  </div>
+                </div>
+              </div>
+              <!-- Day 5 Fri -->
+              <div class="day-card">
+                <div class="day-hdr"><span class="day-num">5</span><span class="day-name">Fri</span></div>
+                <div class="day-body">
+                  <div class="dp written-post">
+                    <div class="dp-plats"><span class="pb pb-th">TH</span><span class="pb pb-x">X</span></div>
+                    <div class="dp-title">Contrary Take: "Consistency is not the key to Instagram growth. Consistency without strategy is expensive noise."</div>
+                  </div>
+                  <div class="dp linkedin-post">
+                    <div class="dp-plats"><span class="pb pb-li">LI</span></div>
+                    <div class="dp-title">Agency insight text: "What running 8 client accounts teaches you about what service businesses actually need."</div>
+                    <div class="dp-note">250 words. Pure value — no CTA this week.</div>
+                  </div>
+                </div>
+              </div>
+              <!-- Day 6 Sat -->
+              <div class="day-card weekend">
+                <div class="day-hdr"><span class="day-num">6</span><span class="day-name">Sat</span></div>
+                <div class="day-body">
+                  <div class="dp written-post">
+                    <div class="dp-plats"><span class="pb pb-th">TH</span><span class="pb pb-x">X</span></div>
+                    <div class="dp-title">Real Moment: "Week 1 of posting publicly about building Scroll Media. One thing I didn't expect."</div>
+                    <div class="dp-note">2–3 lines. Genuine. No agenda.</div>
+                  </div>
+                </div>
+              </div>
+              <!-- Day 7 Sun -->
+              <div class="day-card weekend">
+                <div class="day-hdr"><span class="day-num">7</span><span class="day-name">Sun</span></div>
+                <div class="day-body">
+                  <div class="dp chase-post">
+                    <div class="dp-plats"><span class="pb pb-ig">IG</span><span class="pb pb-tt">TT</span></div>
+                    <div class="dp-title">Dispatch No.5 — Sunday unscripted. One honest observation from week one.</div>
+                    <div class="dp-note">Casual Reel. No structure. Raw.</div>
+                  </div>
+                  <div class="dp written-post">
+                    <div class="dp-plats"><span class="pb pb-th">TH</span><span class="pb pb-x">X</span></div>
+                    <div class="dp-title">End-of-week reflection. One thing the week revealed. 2 lines max.</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- WEEK 2 -->
+      <div class="accordion-item" id="week2">
+        <button class="accordion-trigger" onclick="toggleAccordion('week2')">
+          <div class="acc-week-badge">Week 2 · Days 8–14</div>
+          <div class="acc-week-theme">The Craft — Prove the Expertise</div>
+          <div class="acc-week-focus">Social media frameworks, what actually works, the thinking behind strategy</div>
+          <div class="acc-chevron">▼</div>
+        </button>
+        <div class="accordion-content" id="week2-content">
+          <div class="accordion-inner">
+            <div class="day-grid">
+              <div class="day-card"><div class="day-hdr"><span class="day-num">8</span><span class="day-name">Mon</span></div><div class="day-body">
+                <div class="dp chase-post"><div class="dp-plats"><span class="pb pb-ig">IG</span><span class="pb pb-tt">TT</span></div><div class="dp-title">Dispatch No.6 — "The hook is the only thing that matters. Here's why."</div><div class="dp-note">Counter-Position. Client retention data.</div></div>
+                <div class="dp written-post"><div class="dp-plats"><span class="pb pb-th">TH</span><span class="pb pb-x">X</span></div><div class="dp-title">Sharp Take: "The first two seconds are the entire game on Instagram."</div></div>
+                <div class="dp linkedin-post"><div class="dp-plats"><span class="pb pb-li">LI</span></div><div class="dp-title">PDF Carousel: "3 metrics that actually predict if your social media strategy is working." DM CTA.</div></div>
+              </div></div>
+              <div class="day-card"><div class="day-hdr"><span class="day-num">9</span><span class="day-name">Tue</span></div><div class="day-body">
+                <div class="dp chase-post"><div class="dp-plats"><span class="pb pb-ig">IG</span><span class="pb pb-tt">TT</span></div><div class="dp-title">Dispatch No.7 — "3 questions we ask every new client before we write a single post."</div><div class="dp-note">Earned Insight. IVP thinking without naming it.</div></div>
+                <div class="dp written-post"><div class="dp-plats"><span class="pb pb-th">TH</span><span class="pb pb-x">X</span></div><div class="dp-title">Useful Tip: "The question that unlocks every content strategy: 'Who is this for and what do they believe before they see this?'"</div></div>
+                <div class="dp" style="background:#fff5ec;border:1px solid #f5c4a0;"><div class="dp-plats"><span class="pb pb-rachel">RACHEL</span></div><div class="dp-title">Process Reel: "How we build strategy for a new client — what the first 30 days look like."</div><div class="dp-note">Pairs with Chase Day 9. → TikTok</div></div>
+              </div></div>
+              <div class="day-card"><div class="day-hdr"><span class="day-num">10</span><span class="day-name">Wed</span></div><div class="day-body">
+                <div class="dp chase-post"><div class="dp-plats"><span class="pb pb-ig">IG</span><span class="pb pb-tt">TT</span></div><div class="dp-title">Dispatch No.8 — "I built a system for this. Here's how it works."</div><div class="dp-note">Earned Insight. One Scroll Media internal framework.</div></div>
+                <div class="dp written-post"><div class="dp-plats"><span class="pb pb-th">TH</span><span class="pb pb-x">X</span></div><div class="dp-title">Open Loop: "We have a framework for deciding what to post for every client. Took 2 years to build."</div></div>
+              </div></div>
+              <div class="day-card"><div class="day-hdr"><span class="day-num">11</span><span class="day-name">Thu</span></div><div class="day-body">
+                <div class="dp chase-post"><div class="dp-plats"><span class="pb pb-ig">IG</span><span class="pb pb-tt">TT</span></div><div class="dp-title">Dispatch No.9 — "The client meeting that rewired how I think about content strategy."</div><div class="dp-note">Stakes Open. One specific conversation.</div></div>
+                <div class="dp written-post"><div class="dp-plats"><span class="pb pb-th">TH</span><span class="pb pb-x">X</span></div><div class="dp-title">Contrary Take: "Engagement rate is a vanity metric. Here's the number that actually tells you if content is working."</div></div>
+                <div class="dp" style="background:#fff5ec;border:1px solid #f5c4a0;"><div class="dp-plats"><span class="pb pb-rachel">RACHEL</span></div><div class="dp-title">Client result post. One account, one metric. "This is what Month [X] looks like."</div><div class="dp-note">Proof for Chase's Week 2 frameworks. → TikTok</div></div>
+              </div></div>
+              <div class="day-card"><div class="day-hdr"><span class="day-num">12</span><span class="day-name">Fri</span></div><div class="day-body">
+                <div class="dp written-post"><div class="dp-plats"><span class="pb pb-th">TH</span><span class="pb pb-x">X</span></div><div class="dp-title">Real Moment: "Had a client ask me something I didn't have a good answer to. That's usually when the best strategy gets built."</div></div>
+                <div class="dp linkedin-post"><div class="dp-plats"><span class="pb pb-li">LI</span></div><div class="dp-title">Founder POV: "The hardest part of running a content agency isn't the content. It's convincing clients to trust the process before they see results."</div><div class="dp-note">200–250 words. Story-driven.</div></div>
+              </div></div>
+              <div class="day-card weekend"><div class="day-hdr"><span class="day-num">13</span><span class="day-name">Sat</span></div><div class="day-body">
+                <div class="dp written-post"><div class="dp-plats"><span class="pb pb-th">TH</span><span class="pb pb-x">X</span></div><div class="dp-title">Useful Tip: "Fastest way to improve a service business's IG: stop talking about features. Start talking about outcomes."</div></div>
+              </div></div>
+              <div class="day-card weekend"><div class="day-hdr"><span class="day-num">14</span><span class="day-name">Sun</span></div><div class="day-body">
+                <div class="dp chase-post"><div class="dp-plats"><span class="pb pb-ig">IG</span><span class="pb pb-tt">TT</span></div><div class="dp-title">Dispatch No.10 — Sunday unscripted. End of Week 2 reflection.</div><div class="dp-note">Brief and real.</div></div>
+                <div class="dp written-post"><div class="dp-plats"><span class="pb pb-th">TH</span><span class="pb pb-x">X</span></div><div class="dp-title">Short observation from the week. 1–3 lines. No agenda.</div></div>
+              </div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- WEEK 3 -->
+      <div class="accordion-item" id="week3">
+        <button class="accordion-trigger" onclick="toggleAccordion('week3')">
+          <div class="acc-week-badge">Week 3 · Days 15–21</div>
+          <div class="acc-week-theme">The Operation — Pull Back the Curtain</div>
+          <div class="acc-week-focus">How Scroll Media actually runs — team, systems, real agency life</div>
+          <div class="acc-chevron">▼</div>
+        </button>
+        <div class="accordion-content" id="week3-content">
+          <div class="accordion-inner">
+            <div class="day-grid">
+              <div class="day-card"><div class="day-hdr"><span class="day-num">15</span><span class="day-name">Mon</span></div><div class="day-body">
+                <div class="dp chase-post"><div class="dp-plats"><span class="pb pb-ig">IG</span><span class="pb pb-tt">TT</span></div><div class="dp-title">Dispatch No.11 — "We underpriced every client for 6 months. Here's the actual damage."</div><div class="dp-note">Stakes Open. Real numbers if possible.</div></div>
+                <div class="dp written-post"><div class="dp-plats"><span class="pb pb-th">TH</span><span class="pb pb-x">X</span></div><div class="dp-title">Sharp Take: "Underpricing doesn't just hurt revenue. It attracts the wrong clients and creates the wrong culture."</div></div>
+                <div class="dp linkedin-post"><div class="dp-plats"><span class="pb pb-li">LI</span></div><div class="dp-title">Agency insight: "What running 8 client accounts simultaneously teaches you about building scalable systems."</div><div class="dp-note">200 words. Specific lesson.</div></div>
+              </div></div>
+              <div class="day-card"><div class="day-hdr"><span class="day-num">16</span><span class="day-name">Tue</span></div><div class="day-body">
+                <div class="dp chase-post"><div class="dp-plats"><span class="pb pb-ig">IG</span><span class="pb pb-tt">TT</span></div><div class="dp-title">Dispatch No.12 — "What running a social media agency actually looks like on a Tuesday."</div><div class="dp-note">Day-in-the-life. Candid, unstructured.</div></div>
+                <div class="dp written-post"><div class="dp-plats"><span class="pb pb-th">TH</span><span class="pb pb-x">X</span></div><div class="dp-title">Useful Tip: "How we structure client check-ins: 30 min, biweekly, always data-first. Here's the 3-question agenda."</div></div>
+                <div class="dp" style="background:#fff5ec;border:1px solid #f5c4a0;"><div class="dp-plats"><span class="pb pb-rachel">RACHEL</span></div><div class="dp-title">Culture Reel: "A week inside the Scroll Media team." AMs working, strategy prep, client calls.</div><div class="dp-note">Real, not staged. → TikTok</div></div>
+              </div></div>
+              <div class="day-card"><div class="day-hdr"><span class="day-num">17</span><span class="day-name">Wed</span></div><div class="day-body">
+                <div class="dp chase-post"><div class="dp-plats"><span class="pb pb-ig">IG</span><span class="pb pb-tt">TT</span></div><div class="dp-title">Dispatch No.13 — "The hire that changed how Scroll Media operates."</div><div class="dp-note">Earned Insight. Human, specific, real.</div></div>
+                <div class="dp written-post"><div class="dp-plats"><span class="pb pb-th">TH</span><span class="pb pb-x">X</span></div><div class="dp-title">Open Loop: "Most people think running a social media agency means writing captions. The reality is almost nothing like that."</div></div>
+                <div class="dp linkedin-post"><div class="dp-plats"><span class="pb pb-li">LI</span></div><div class="dp-title">PDF Carousel: "Why most agencies are selling content, not strategy — how to tell the difference." DM CTA on last slide.</div></div>
+              </div></div>
+              <div class="day-card"><div class="day-hdr"><span class="day-num">18</span><span class="day-name">Thu</span></div><div class="day-body">
+                <div class="dp chase-post"><div class="dp-plats"><span class="pb pb-ig">IG</span><span class="pb pb-tt">TT</span></div><div class="dp-title">Dispatch No.14 — "The one thing Scroll Media does differently that most agencies skip."</div><div class="dp-note">Earned Insight. Show the proprietary thinking.</div></div>
+                <div class="dp written-post"><div class="dp-plats"><span class="pb pb-th">TH</span><span class="pb pb-x">X</span></div><div class="dp-title">Contrary Take: "Hiring fast is one of the worst things a growing agency can do. The bottleneck is almost never headcount."</div></div>
+                <div class="dp" style="background:#fff5ec;border:1px solid #f5c4a0;"><div class="dp-plats"><span class="pb pb-rachel">RACHEL</span></div><div class="dp-title">Lead Capture: Free 27-point Instagram Audit. Clean static or Reel. One CTA. BOFU moment for Week 3.</div><div class="dp-note">→ TikTok (Reel) + LinkedIn (Carousel version)</div></div>
+              </div></div>
+              <div class="day-card"><div class="day-hdr"><span class="day-num">19</span><span class="day-name">Fri</span></div><div class="day-body">
+                <div class="dp written-post"><div class="dp-plats"><span class="pb pb-th">TH</span><span class="pb pb-x">X</span></div><div class="dp-title">Real Moment: One honest observation about building a team or delegating. 2–3 lines.</div></div>
+                <div class="dp linkedin-post"><div class="dp-plats"><span class="pb pb-li">LI</span></div><div class="dp-title">Repurposed Reel: Upload Dispatch No.11 or 12 natively. Add 2-line B2B reframe: "For founders spending on social without a strategy."</div></div>
+              </div></div>
+              <div class="day-card weekend"><div class="day-hdr"><span class="day-num">20</span><span class="day-name">Sat</span></div><div class="day-body">
+                <div class="dp written-post"><div class="dp-plats"><span class="pb pb-th">TH</span><span class="pb pb-x">X</span></div><div class="dp-title">Useful Tip: "One thing we do with every new Scroll Media client: a deep-dive into who they're talking to before a single post goes live."</div></div>
+              </div></div>
+              <div class="day-card weekend"><div class="day-hdr"><span class="day-num">21</span><span class="day-name">Sun</span></div><div class="day-body">
+                <div class="dp chase-post"><div class="dp-plats"><span class="pb pb-ig">IG</span><span class="pb pb-tt">TT</span></div><div class="dp-title">Dispatch No.15 — Sunday unscripted. Week 3 honest reflection.</div></div>
+                <div class="dp written-post"><div class="dp-plats"><span class="pb pb-th">TH</span><span class="pb pb-x">X</span></div><div class="dp-title">End-of-week. One thing revealed. No agenda.</div></div>
+              </div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- WEEK 4 -->
+      <div class="accordion-item" id="week4">
+        <button class="accordion-trigger" onclick="toggleAccordion('week4')">
+          <div class="acc-week-badge">Week 4 · Days 22–30</div>
+          <div class="acc-week-theme">The Proof + The Ask — Convert the Audience</div>
+          <div class="acc-week-focus">Results, authority, and the first direct BD push across all platforms</div>
+          <div class="acc-chevron">▼</div>
+        </button>
+        <div class="accordion-content" id="week4-content">
+          <div class="accordion-inner">
+            <div class="callout lime" style="margin-bottom:16px;">
+              <div class="callout-icon">🎯</div>
+              <div class="callout-text"><strong>Week 4 shift:</strong> The first direct BD ask doesn't land until Day 27 on Threads and Day 30 on LinkedIn. Three weeks of trust-building first. That sequencing is intentional — the ask feels earned, not desperate, because the audience has had 21 days of value before being asked for anything.</div>
+            </div>
+            <div class="day-grid">
+              <div class="day-card"><div class="day-hdr"><span class="day-num">22</span><span class="day-name">Mon</span></div><div class="day-body">
+                <div class="dp chase-post"><div class="dp-plats"><span class="pb pb-ig">IG</span><span class="pb pb-tt">TT</span></div><div class="dp-title">Dispatch No.16 — "Why most agencies are selling you content, not strategy." Agency thesis post.</div><div class="dp-note">Counter-Position. Most direct differentiation post.</div></div>
+                <div class="dp written-post"><div class="dp-plats"><span class="pb pb-th">TH</span><span class="pb pb-x">X</span></div><div class="dp-title">Sharp Take: "Content without strategy is noise with a budget. Most agencies won't say that because content is what they're selling."</div></div>
+                <div class="dp linkedin-post"><div class="dp-plats"><span class="pb pb-li">LI</span></div><div class="dp-title">PDF Carousel: "Content vendor vs strategy partner — how to tell which one you're hiring." DM CTA on last slide.</div></div>
+              </div></div>
+              <div class="day-card"><div class="day-hdr"><span class="day-num">23</span><span class="day-name">Tue</span></div><div class="day-body">
+                <div class="dp chase-post"><div class="dp-plats"><span class="pb pb-ig">IG</span><span class="pb pb-tt">TT</span></div><div class="dp-title">Dispatch No.17 — "What 8 clients taught me about what service businesses actually need from social media."</div><div class="dp-note">Earned Insight. The thesis Reel — real data.</div></div>
+                <div class="dp written-post"><div class="dp-plats"><span class="pb pb-th">TH</span><span class="pb pb-x">X</span></div><div class="dp-title">Open Loop: "We have one client spot opening in May. The type of business we're looking for is pretty specific..."</div><div class="dp-note">2 lines of ICP. Stop. Drive replies.</div></div>
+                <div class="dp" style="background:#fff5ec;border:1px solid #f5c4a0;"><div class="dp-plats"><span class="pb pb-rachel">RACHEL</span></div><div class="dp-title">Best result of the month. "This is what Month [X] looks like with a strategy behind it."</div><div class="dp-note">Proof for Chase's thesis Reel. → TikTok</div></div>
+              </div></div>
+              <div class="day-card"><div class="day-hdr"><span class="day-num">24</span><span class="day-name">Wed</span></div><div class="day-body">
+                <div class="dp chase-post"><div class="dp-plats"><span class="pb pb-ig">IG</span><span class="pb pb-tt">TT</span></div><div class="dp-title">Dispatch No.18 — "The one question we ask before taking on any new client."</div><div class="dp-note">Earned Insight. Positions agency as selective.</div></div>
+                <div class="dp written-post"><div class="dp-plats"><span class="pb pb-th">TH</span><span class="pb pb-x">X</span></div><div class="dp-title">Useful Tip: "One question determines whether any social strategy will work: Does this business have something genuinely worth saying?"</div></div>
+              </div></div>
+              <div class="day-card"><div class="day-hdr"><span class="day-num">25</span><span class="day-name">Thu</span></div><div class="day-body">
+                <div class="dp chase-post"><div class="dp-plats"><span class="pb pb-ig">IG</span><span class="pb pb-tt">TT</span></div><div class="dp-title">Dispatch No.19 — "The biggest lie in social media marketing." Daily posting myth dismantled.</div><div class="dp-note">Counter-Position. Retention data + client examples.</div></div>
+                <div class="dp written-post"><div class="dp-plats"><span class="pb pb-th">TH</span><span class="pb pb-x">X</span></div><div class="dp-title">Contrary Take: "The biggest lie: that you need to post every day to grow. You need to post with intention."</div></div>
+                <div class="dp" style="background:#fff5ec;border:1px solid #f5c4a0;"><div class="dp-plats"><span class="pb pb-rachel">RACHEL</span></div><div class="dp-title">"How We Work" Carousel: onboarding → strategy → delivery → results. Last slide: discovery call CTA.</div><div class="dp-note">→ TikTok (if Reel) + LinkedIn (PDF)</div></div>
+              </div></div>
+              <div class="day-card"><div class="day-hdr"><span class="day-num">26</span><span class="day-name">Fri</span></div><div class="day-body">
+                <div class="dp written-post"><div class="dp-plats"><span class="pb pb-th">TH</span><span class="pb pb-x">X</span></div><div class="dp-title">Real Moment: Honest reflection on 30 days of building publicly. What was harder than expected. 3–4 lines.</div></div>
+                <div class="dp linkedin-post"><div class="dp-plats"><span class="pb pb-li">LI</span></div><div class="dp-title">30-day retrospective: "What 30 days of documenting the Scroll Media build publicly taught me." 250 words. Soft DM CTA at end.</div></div>
+              </div></div>
+              <div class="day-card weekend"><div class="day-hdr"><span class="day-num">27</span><span class="day-name">Sat</span></div><div class="day-body">
+                <div class="dp written-post" style="border-color:var(--azure);border-width:1.5px;"><div class="dp-plats"><span class="pb pb-th">TH</span><span class="pb pb-x">X</span></div><div class="dp-title">⭐ First direct BD post: "If you're a service business owner who wants an honest look at your Instagram — DM me."</div><div class="dp-note">Simple. Low friction. High intent filter.</div></div>
+              </div></div>
+              <div class="day-card"><div class="day-hdr"><span class="day-num">28</span><span class="day-name">Sun</span></div><div class="day-body">
+                <div class="dp chase-post"><div class="dp-plats"><span class="pb pb-ig">IG</span><span class="pb pb-tt">TT</span></div><div class="dp-title">Dispatch No.20 — Month one retrospective Reel. "30 days of building in public. Here's what I learned."</div><div class="dp-note">Earned Insight. Honest. Strong close.</div></div>
+                <div class="dp written-post"><div class="dp-plats"><span class="pb pb-th">TH</span><span class="pb pb-x">X</span></div><div class="dp-title">End-of-month reflection. What moved the needle. What surprised you.</div></div>
+              </div></div>
+            </div>
+            <div class="day-grid" style="grid-template-columns:repeat(3,1fr);margin-top:8px;">
+              <div class="day-card"><div class="day-hdr"><span class="day-num">29</span><span class="day-name">Mon</span></div><div class="day-body">
+                <div class="dp chase-post"><div class="dp-plats"><span class="pb pb-ig">IG</span><span class="pb pb-tt">TT</span></div><div class="dp-title">Dispatch No.21 — "Month two starts now. The one thing I'm focused on for Scroll Media next."</div></div>
+                <div class="dp written-post"><div class="dp-plats"><span class="pb pb-th">TH</span><span class="pb pb-x">X</span></div><div class="dp-title">Open Loop: "Month two of building publicly begins. The thing I'm most focused on for Scroll Media next 30 days is..."</div></div>
+                <div class="dp" style="background:#fff5ec;border:1px solid #f5c4a0;"><div class="dp-plats"><span class="pb pb-rachel">RACHEL</span></div><div class="dp-title">Month-end BOFU: "One client spot opening in May. Link in bio to book a 30-min discovery call." Timed to Chase Day 27 CTA.</div><div class="dp-note">→ LinkedIn</div></div>
+              </div></div>
+              <div class="day-card"><div class="day-hdr"><span class="day-num">30</span><span class="day-name">Tue</span></div><div class="day-body">
+                <div class="dp chase-post"><div class="dp-plats"><span class="pb pb-ig">IG</span><span class="pb pb-tt">TT</span></div><div class="dp-title">Dispatch No.22 — "The metric I'll be watching most in Month 2. And why it's not what most people think."</div><div class="dp-note">Counter-Position. Sets up Month 2 narrative.</div></div>
+                <div class="dp linkedin-post" style="border-color:var(--c-li);border-width:1.5px;"><div class="dp-plats"><span class="pb pb-li">LI</span></div><div class="dp-title">⭐ Agency CTA: "One client spot opening in May — a service business serious about IG as a growth channel. DM me if that's you."</div><div class="dp-note">No external link.</div></div>
+                <div class="dp written-post"><div class="dp-plats"><span class="pb pb-th">TH</span><span class="pb pb-x">X</span></div><div class="dp-title">Sharp close: "Month one done. Here's what actually moved the needle." 3–4 lines. Data-grounded.</div></div>
+              </div></div>
+              <div class="day-card" style="background:var(--azure-pale);border-color:var(--border-strong);">
+                <div class="day-hdr" style="background:var(--azure-light);"><span class="day-num" style="color:var(--azure)">→</span><span class="day-name" style="color:var(--azure)">Review</span></div>
+                <div class="day-body">
+                  <div style="font-size:12px;font-weight:700;color:var(--azure);margin-bottom:8px;">Day 30 Review</div>
+                  <div style="font-size:12px;color:var(--text-secondary);line-height:1.5;">Pull top 5 posts by saves/replies/DMs. Find the pattern. That pattern = Month 2 strategy. Cut what didn't work. Double what did. Apply Signal Method: contract to winners.</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 7: METRICS -->
+<div class="section" id="metrics">
+  <div class="container fade-up">
+    <div class="sec-ey">Section 7 — Measurement</div>
+    <h2 class="sec-h">30-Day Success Metrics</h2>
+    <p class="sec-sub">North Star per platform. Pull these at Day 30. The patterns in your top-performing posts become Month 2 strategy.</p>
+
+    <div class="metric-cards">
+      <div class="metric-card">
+        <div class="mc-platform"><div class="mc-dot" style="background:var(--azure)"></div><div class="mc-name">IG — chase.scrolls</div></div>
+        <div class="mc-north-label">North Star</div>
+        <div class="mc-north-value">Saves per Reel</div>
+        <div class="mc-target-label">30-Day Target</div>
+        <div class="mc-target-value">Consistent saves on Craft + Operation posts. 2–3 formats showing clear signal over others.</div>
+      </div>
+      <div class="metric-card">
+        <div class="mc-platform"><div class="mc-dot" style="background:var(--c-tt)"></div><div class="mc-name">TikTok — chase.scrolls</div></div>
+        <div class="mc-north-label">North Star</div>
+        <div class="mc-north-value">Views + Completion</div>
+        <div class="mc-target-label">30-Day Target</div>
+        <div class="mc-target-value">Baseline established. No hard target Month 1 — this is pure discovery.</div>
+      </div>
+      <div class="metric-card">
+        <div class="mc-platform"><div class="mc-dot" style="background:var(--shadow)"></div><div class="mc-name">Threads + X</div></div>
+        <div class="mc-north-label">North Star</div>
+        <div class="mc-north-value">Replies per Post</div>
+        <div class="mc-target-label">30-Day Target</div>
+        <div class="mc-target-value">At least 5 posts generating genuine replies. 1 post sparking a real conversation thread.</div>
+      </div>
+      <div class="metric-card">
+        <div class="mc-platform"><div class="mc-dot" style="background:var(--c-li)"></div><div class="mc-name">LinkedIn</div></div>
+        <div class="mc-north-label">North Star</div>
+        <div class="mc-north-value">Profile Views + DMs</div>
+        <div class="mc-target-label">30-Day Target</div>
+        <div class="mc-target-value">1–3 genuine DMs from business owners by Day 30. PDF carousels generating saves.</div>
+      </div>
+      <div class="metric-card">
+        <div class="mc-platform"><div class="mc-dot" style="background:var(--c-sc)"></div><div class="mc-name">IG — scrollmedia.co</div></div>
+        <div class="mc-north-label">North Star</div>
+        <div class="mc-north-value">Inbound DMs</div>
+        <div class="mc-target-label">30-Day Target</div>
+        <div class="mc-target-value">3–5 qualified inbound inquiries. At least 1 discovery call booked from organic social.</div>
+      </div>
+      <div class="metric-card">
+        <div class="mc-platform"><div class="mc-dot" style="background:var(--c-tt)"></div><div class="mc-name">TikTok — scrollmedia.co</div></div>
+        <div class="mc-north-label">North Star</div>
+        <div class="mc-north-value">Views + Follows</div>
+        <div class="mc-target-label">30-Day Target</div>
+        <div class="mc-target-value">Distribution channel established. Assess whether any organic traction warrants Month 2 attention.</div>
+      </div>
+    </div>
+
+    <div class="callout lime">
+      <div class="callout-icon">📊</div>
+      <div class="callout-text"><strong>End-of-month review protocol (Day 30–31):</strong> Pull the top 5 posts by saves/replies/DMs across all platforms. Find the pattern — topic, format, or scripting structure. That pattern anchors Month 2. Apply the Signal Method: test wide in Month 1, contract to winners in Month 2, compound in Month 3+.</div>
+    </div>
+  </div>
+</div>
+
+<!-- MANUS DEPLOYMENT PROMPTS -->
+<div class="section" style="background:var(--porcelain);border-bottom:none;">
+  <div class="container fade-up">
+    <div class="sec-ey">Deployment</div>
+    <h2 class="sec-h">Master Deployment Prompts</h2>
+    <p class="sec-sub">Four tasks. Run them in order. Each prompt is self-contained — copy and send directly to Manus.</p>
+
+    <!-- TASK 1 -->
+    <div class="manus-block" style="margin-bottom:16px;">
+      <div class="manus-title">Task 1 — Deploy Strategy HTML to GitHub</div>
+      <div class="manus-sub">Deploys the strategy reference page to tools.scrollmedia.co and adds a dashboard card.</div>
+      <div class="manus-prompt"><span class="cmd-comment"># MANUS TASK 1: Deploy Personal Brand Strategy HTML</span>
+
+<span class="cmd-key">Repo:</span> cgianattasio15/scroll-media-tools
+<span class="cmd-key">File path:</span> /strategy/personal-brand-strategy.html
+<span class="cmd-key">Source file:</span> personal_brand_strategy_v3_final.html (from Claude session)
+
+<span class="cmd-key">Steps:</span>
+1. Connect to GitHub repo: cgianattasio15/scroll-media-tools
+2. Place file at: /strategy/personal-brand-strategy.html
+3. Update root index.html — add card under "Internal Resources" section:
+   Title: "Personal Brand + Agency Strategy"
+   Description: "Full platform strategy for chase.scrolls + scrollmedia.co. Voice system, scripting frameworks, ideation system, 30-day calendar."
+   URL: /strategy/personal-brand-strategy.html
+   Badge: "Strategy v3"
+4. Commit message: "Add personal brand strategy v3 — mobile-optimized, voice system, April 2026"
+5. Push to main — Netlify auto-deploys
+6. Confirm live: tools.scrollmedia.co/strategy/personal-brand-strategy.html</div>
+    </div>
+
+    <!-- TASK 2 -->
+    <div class="manus-block" style="margin-bottom:16px;">
+      <div class="manus-title">Task 2 — Update Voice Guidelines Skill</div>
+      <div class="manus-sub">Replaces the voice-guidelines skill with v2.0 — Chase's direct calibration plus updated Scroll Media brand voice rules.</div>
+      <div class="manus-prompt"><span class="cmd-comment"># MANUS TASK 2: Update Voice Guidelines Skill to v2.0</span>
+
+<span class="cmd-key">File to replace:</span> /mnt/skills/user/voice-guidelines/SKILL.md
+<span class="cmd-key">Source:</span> voice_guidelines_skill_v2.md (from Claude session)
+
+<span class="cmd-key">Key updates in v2.0:</span>
+- Chase's direct voice calibration: speaks fast, context-first then punchline
+- Punchy hook then builds into thinking — Chase's natural structure
+- Signature phrases locked: "Here's the thing," "The reality is," "And here's why that matters"
+- Complete filler word cut list: "like" (filler), "in terms of", "basically", "kind of", "super", "at the end of the day"
+- Tone-by-platform table for all 5 platforms
+- Scroll Media voice: "we" always, result-first structure, no buzzwords list
+- QA checklist expanded with 9 Chase-specific checks + 6 Scroll Media checks
+
+<span class="cmd-key">After updating:</span>
+Add note to Manus knowledge base: "voice-guidelines v2.0 active as of April 2026.
+Load this skill before writing ANY content for chase.scrolls or scrollmedia.co.
+Two voices — never mix them. Always identify the account before writing."</div>
+    </div>
+
+    <!-- TASK 3 -->
+    <div class="manus-block" style="margin-bottom:16px;">
+      <div class="manus-title">Task 3 — Build Notion Content System</div>
+      <div class="manus-sub">Three databases. 28 post records with linked script pages. Ideas Bank. 2-week renewal cadence built in.</div>
+      <div class="manus-prompt"><span class="cmd-comment"># MANUS TASK 3: Build Scroll Media Content System in Notion</span>
+
+<span class="cmd-key">Workspace:</span> Scroll Media Knowledge Base
+<span class="cmd-key">Location:</span> Content Systems → Personal Brand + Agency System
+<span class="cmd-key">Source:</span> scripted_calendar_weeks_1_2_v2.html (from Claude session)
+
+<span class="cmd-comment">## DATABASE 1: Ideas Bank</span>
+<span class="cmd-key">Name:</span> "chase.scrolls — Ideas Bank"
+<span class="cmd-key">Properties:</span> Idea (Title), Pillar (Select: The Build/The Craft/The Operation/The Person/Education/Proof/Culture), Format Type (Select: Founder POV Reel/Short-Form Text Reel/B-Roll Voiceover/Carousel/Text Post/Green Screen), Path (Select: Path A — Outlier Replication/Path B — Format Invention), Priority (High/Medium/Low), Status (Raw/Developing/Scheduled/Published/Archived), Notes (Text), Scheduled Date (Date)
+
+<span class="cmd-key">Populate with all 16 ideas from Chase's list.</span> Mark 7 as Scheduled, rest as Raw Idea.
+Ideas marked Scheduled: AI era, Intro video, Biggest bottleneck + AI efficiency, IG brainwashed us/HQ audience, Tracking IG metrics/green screen KPI, Founder doubt/comparing yourself, What is organic social.
+
+<span class="cmd-comment">## DATABASE 2: Content Calendar</span>
+<span class="cmd-key">Name:</span> "Content Calendar — chase.scrolls + scrollmedia.co"
+<span class="cmd-key">Properties:</span> Post Title (Title), Day Number (Number), Post Date (Date), Account (Select: chase.scrolls/scrollmedia.co), Platform (Multi-select: IG/TikTok/Threads/X/LinkedIn), Format (Select: Founder POV Reel/Short-Form Text Reel/B-Roll Voiceover/Carousel/Text Post/Green Screen Reel/Unscripted Reel), Pillar (Select), Funnel Stage (TOFU/MOFU/BOFU), Status (To Do/Script In Progress/Approved/Filmed/Edited/Scheduled/Published), Owner (Chase/Rachel), Voice (Select: Chase Voice/Scroll Media Voice), Cross-Post To (Multi-select), Script (linked Notion page), Source Idea (Relation → Ideas Bank), Performance Notes (Text)
+
+<span class="cmd-key">Views:</span>
+1. "Full Calendar" — Calendar by Post Date
+2. "Chase — Active" — Filter: Owner=Chase, Status≠Published, sorted by Day
+3. "Rachel — Active" — Filter: Owner=Rachel, Status≠Published, sorted by Day
+4. "By Status" — Board grouped by Status
+5. "By Platform" — Board grouped by Platform
+
+<span class="cmd-key">Populate all 28 posts</span> from the v2 scripted calendar document.
+One record per post. For each, create a linked Notion script page titled:
+"Day [X] — [Platform] — [Post Title]"
+
+Each script page must include:
+→ Metadata (Day, Date, Platform, Format, Framework, Voice: Chase or Scroll Media)
+→ Full script by beat (Hook/Context/Tension/Resolve/Close — or slide scripts for carousels)
+→ On-Screen Text section (Reels only)
+→ Caption
+→ Production notes (where flagged in source doc)
+→ Cross-post instructions
+
+<span class="cmd-comment">## DATABASE 3: 2-Week Review Log</span>
+<span class="cmd-key">Name:</span> "2-Week Performance Reviews"
+<span class="cmd-key">Properties:</span> Block (Text), Date (Date), Top Performers (Text), Key Signals (Text), Format Changes for Next Block (Text), Notes (Text)
+<span class="cmd-key">Create one record:</span> "Block 1 — April 2026" Status = In Progress
+
+<span class="cmd-key">Final step:</span> Create "Content System Hub" page linking all three databases with a description of the two-week renewal cadence:
+"Every 2 weeks: pull ideas from Ideas Bank → assign to calendar slots → script each post (one Notion page per post) → deploy. At end of block, fill 2-Week Review Log with performance signals. Use those signals to guide the next block."</div>
+    </div>
+
+    <!-- TASK 4 -->
+    <div class="manus-block">
+      <div class="manus-title">Task 4 — Update Scroll Strategist Skill</div>
+      <div class="manus-sub">Adds the personal brand system, two-week cadence, and voice reference to the scroll-strategist skill.</div>
+      <div class="manus-prompt"><span class="cmd-comment"># MANUS TASK 4: Update Scroll Strategist Skill</span>
+
+<span class="cmd-key">File:</span> /mnt/skills/user/scroll-strategist/SKILL.md
+
+<span class="cmd-key">Add the following section</span> after the existing Core Workflow:
+
+---
+## Personal Brand + Agency Content System
+
+### Active Accounts
+- chase.scrolls (Chase personal brand) — 5 platforms, Chase owns execution
+- scrollmedia.co (agency brand) — 3 platforms, Rachel owns execution
+
+### Voice System
+Always load /mnt/skills/user/voice-guidelines/SKILL.md before writing content.
+Two voices — Chase Voice and Scroll Media Voice — never mixed.
+See voice-guidelines skill v2.0 for full rules, QA checklists, and before/after examples.
+
+### Two-Week Scripting Cadence
+Content is scripted 2 weeks at a time, not 4. Weeks 3–4 scripts are written after Week 1–2 performance signals come in. This keeps content responsive to what the audience is actually engaging with.
+
+Renewal process:
+1. At end of each 2-week block, complete the 2-Week Review Log in Notion
+2. Pull highest-signal ideas from the Ideas Bank
+3. Assign to calendar slots for the next 14 days
+4. Script each post (one Notion page per post)
+5. Brief Rachel on her posts via Slack voice note every Monday
+
+### Scripting Frameworks
+Three Reel format types — each uses a different framework:
+- Founder POV Reel → 5-Part Story Arc (Hook/Context/Tension+Re-Hook/Resolve/Close)
+- Short-Form Text Reel → Quick Strike (Visual hook / 5–8 word statement / payoff)
+- B-Roll + Voiceover → Narrative-Visual Bridge (visuals and narration in counterpoint)
+
+Carousel format: Save-First System (10 slides — Hook/Re-Hook/Value Body/Proof/CTA)
+
+### Ideation System
+Path A (60% of ideas): Outlier Replication — identify top performers in niche, reverse-engineer format/hook/angle, replicate with original content
+Path B (40% of ideas): Format Invention — Category as Metaphor / Pop Culture Parallel / Universal Experience cross-referenced with niche
+
+### Ideas Bank
+All raw ideas go to Notion "chase.scrolls — Ideas Bank" database first.
+Never script an idea that isn't in the bank. Never pull from memory — pull from the bank.
+---
+
+<span class="cmd-key">Commit message:</span> "Update scroll-strategist skill with personal brand system — April 2026"</div>
+    </div>
+  </div>
+</div>
+
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-logo">scroll media</div>
+  <div class="footer-sub">Personal Brand + Agency Strategy v3 · April 2026 · Internal Use Only</div>
+</footer>
+
+<script>
+// Progress bar
+window.addEventListener('scroll', () => {
+  const doc = document.documentElement;
+  const scrolled = doc.scrollTop;
+  const total = doc.scrollHeight - doc.clientHeight;
+  document.getElementById('progress-bar').style.width = (scrolled / total * 100) + '%';
+});
+
+// Mobile nav
+function toggleMobileNav() {
+  const drawer = document.getElementById('mobile-nav');
+  drawer.classList.toggle('open');
+}
+function closeMobileNav() {
+  document.getElementById('mobile-nav').classList.remove('open');
+}
+// Close mobile nav on outside click
+document.addEventListener('click', (e) => {
+  const drawer = document.getElementById('mobile-nav');
+  const hamburger = document.querySelector('.nav-hamburger');
+  if (drawer.classList.contains('open') && !drawer.contains(e.target) && !hamburger.contains(e.target)) {
+    drawer.classList.remove('open');
+  }
+});
+
+// Accordion
+function toggleAccordion(id) {
+  const item = document.getElementById(id);
+  const content = document.getElementById(id + '-content');
+  const isOpen = item.classList.contains('open');
+
+  if (isOpen) {
+    item.classList.remove('open');
+    content.style.maxHeight = '0';
+  } else {
+    item.classList.add('open');
+    content.style.maxHeight = content.scrollHeight + 'px';
+    setTimeout(() => { content.style.maxHeight = 'none'; }, 400);
+  }
+}
+
+// Set initial state for open accordions
+document.addEventListener('DOMContentLoaded', () => {
+  const week1Content = document.getElementById('week1-content');
+  if (week1Content) {
+    week1Content.style.maxHeight = 'none';
+  }
+});
+
+// Fade-up animation on scroll
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
