@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>How to Read Your Performance Report — Scroll Media</title>
+  <link rel="icon" type="image/svg+xml" href="/scroll-favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    :root{
+      --shadow:#151516;--azure:#0c3387;--lucid:#cbe9ff;--hl:#e2ed7a;
+      --porc:#f2f3f4;--ghost:#fafdff;
+      --a15:rgba(12,51,135,.15);--a25:rgba(12,51,135,.25);
+      --exceed:#1a7a3f;--exceed-bg:#d4edda;
+      --track-col:#0c3387;--track-bg:#dce6f9;
+      --watch:#856404;--watch-bg:#fff3cd;
+    }
+    html{scroll-behavior:smooth}
+    body{font-family:'Source Sans Pro',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--ghost);color:var(--shadow);font-size:16px;line-height:1.65;-webkit-font-smoothing:antialiased}
+    #pb{position:fixed;top:0;left:0;height:3px;width:0%;background:linear-gradient(90deg,var(--azure),var(--hl));z-index:1000;transition:width .1s linear}
+
+    /* NAV */
+    nav{position:sticky;top:0;background:rgba(250,253,255,.94);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--a15);padding:0 32px;height:56px;display:flex;align-items:center;justify-content:space-between;z-index:900}
+    .nl{display:flex;align-items:center;gap:10px;text-decoration:none}
+    .nl img{height:26px;width:auto}
+    .nlt{font-size:17px;font-weight:700;color:var(--azure);letter-spacing:-.4px;line-height:1}
+    .nlt span{font-weight:300;color:var(--shadow)}
+    .nlb{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:1.4px;color:#777}
+
+    /* LAYOUT */
+    .pw{max-width:760px;margin:0 auto;padding:0 32px 96px}
+
+    /* HERO */
+    .hero{padding:52px 0 40px;border-bottom:2px solid var(--azure)}
+    .hb{display:inline-block;background:var(--azure);color:#fff;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;padding:4px 10px;border-radius:3px;margin-bottom:16px}
+    .hero h1{font-size:clamp(24px,4vw,38px);font-weight:700;line-height:1.15;margin-bottom:14px;letter-spacing:-.5px}
+    .hero p{font-size:16px;color:#444;max-width:560px;line-height:1.7}
+    .nav-pills{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px}
+    .np{display:inline-block;font-size:12px;font-weight:600;color:var(--azure);background:rgba(12,51,135,.07);border-radius:20px;padding:5px 14px;text-decoration:none;transition:background .15s}
+    .np:hover{background:rgba(12,51,135,.14)}
+
+    /* SECTION */
+    .div{height:1px;background:linear-gradient(90deg,var(--a25),transparent);margin-top:48px}
+    .sec{padding:48px 0 0}
+    .sl{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1.8px;color:var(--azure);margin-bottom:8px}
+    .sec h2{font-size:clamp(19px,2.8vw,25px);font-weight:700;margin-bottom:14px;letter-spacing:-.3px;line-height:1.2}
+    .sec h3{font-size:17px;font-weight:700;margin:24px 0 10px;color:var(--shadow)}
+    .sec p{color:#3a3a3a;font-size:15px;margin-bottom:12px;line-height:1.7}
+    .sec p:last-child{margin-bottom:0}
+
+    /* CALLOUTS */
+    .ca{background:rgba(12,51,135,.06);border-left:4px solid var(--azure);border-radius:0 8px 8px 0;padding:14px 18px;margin:18px 0}
+    .ca p{margin:0!important;font-size:14px;color:var(--shadow);line-height:1.65}
+    .ca strong{color:var(--azure)}
+
+    /* STATUS BADGES */
+    .badge-row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin:18px 0}
+    .badge-card{background:#fff;border:1px solid #e0e4ee;border-radius:10px;padding:16px 18px}
+    .badge{display:inline-flex;align-items:center;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.8px;padding:4px 10px;border-radius:4px;white-space:nowrap;margin-bottom:10px}
+    .be{background:var(--exceed-bg);color:var(--exceed)}
+    .bt{background:var(--track-bg);color:var(--track-col)}
+    .bw{background:var(--watch-bg);color:var(--watch)}
+    .badge-title{font-size:13px;font-weight:700;color:var(--shadow);margin-bottom:4px}
+    .badge-desc{font-size:13px;color:#555;line-height:1.55}
+
+    /* TABLES */
+    .tw{overflow-x:auto;-webkit-overflow-scrolling:touch;margin-top:18px;border-radius:8px;border:1px solid #dde1ee}
+    table.mt{width:100%;border-collapse:collapse;font-size:14px;min-width:480px}
+    table.mt th{background:var(--azure);color:#fff;padding:11px 16px;text-align:left;font-weight:600;font-size:13px}
+    table.mt td{padding:11px 16px;border-bottom:1px solid #eaecf4;vertical-align:top;color:#3a3a3a;font-size:14px;line-height:1.55}
+    table.mt tr:last-child td{border-bottom:none}
+    table.mt tr:nth-child(even) td{background:var(--porc)}
+    .mn{font-weight:700;color:var(--shadow)}
+    .tier-hd{background:rgba(12,51,135,.88)!important;color:#fff!important;font-size:11px!important;font-weight:700!important;text-transform:uppercase;letter-spacing:.8px;padding:7px 16px!important}
+
+    /* SCORE */
+    .score-block{background:#fff;border:1px solid #e0e4ee;border-radius:10px;padding:22px 26px;margin-top:18px;position:relative;overflow:hidden}
+    .score-block::before{content:'';position:absolute;top:0;left:0;width:4px;height:100%;background:var(--azure)}
+    .score-ex{display:flex;align-items:center;gap:20px;margin-top:14px;flex-wrap:wrap}
+    .score-num{font-size:52px;font-weight:700;color:var(--azure);line-height:1;letter-spacing:-2px}
+    .score-lbl{font-size:13px;color:#666;line-height:1.6}
+    .score-lbl strong{display:block;font-size:15px;color:var(--shadow);margin-bottom:2px}
+
+    /* SCORE TABLE */
+    .stw{overflow-x:auto;margin-top:16px;border-radius:8px;border:1px solid #dde1ee}
+    table.st{width:100%;border-collapse:collapse;font-size:14px;min-width:360px}
+    table.st th{background:var(--azure);color:#fff;padding:10px 16px;text-align:left;font-weight:600;font-size:13px}
+    table.st td{padding:10px 16px;border-bottom:1px solid #eaecf4;color:#3a3a3a;font-size:14px}
+    table.st tr:last-child td{border-bottom:none}
+    table.st tr:nth-child(even) td{background:var(--porc)}
+
+    /* STAGE GRID */
+    .stage-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:18px}
+    .stage-card{background:#fff;border:1px solid #e0e4ee;border-radius:10px;padding:18px 20px;position:relative;overflow:hidden}
+    .stage-card::before{content:'';position:absolute;top:0;left:0;width:4px;height:100%;background:var(--azure)}
+    .stage-num{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1.4px;color:var(--azure);margin-bottom:4px}
+    .stage-name{font-size:18px;font-weight:700;margin-bottom:4px}
+    .stage-range{font-size:12px;color:#888;margin-bottom:8px}
+    .stage-desc{font-size:13px;color:#555;line-height:1.55}
+
+    /* TIER CARDS */
+    .tier-grid{display:grid;gap:12px;margin-top:18px}
+    .tier-card{background:#fff;border:1px solid #e0e4ee;border-radius:10px;padding:18px 20px}
+    .tier-badge{display:inline-block;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1.2px;padding:3px 10px;border-radius:4px;margin-bottom:10px}
+    .t1{background:rgba(12,51,135,.12);color:var(--azure)}
+    .t2{background:rgba(12,51,135,.06);color:#4a5580}
+    .t3{background:var(--porc);color:#666}
+    .tier-title{font-size:15px;font-weight:700;margin-bottom:6px}
+    .tier-metrics{font-size:13px;color:var(--azure);font-weight:600;margin-bottom:8px}
+    .tier-why{font-size:13px;color:#555;line-height:1.6}
+
+    /* FUNNEL */
+    .funnel-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-top:18px}
+    .funnel-card{background:#fff;border:1px solid #e0e4ee;border-radius:8px;padding:16px;text-align:center}
+    .funnel-pct{font-size:30px;font-weight:700;color:var(--azure);line-height:1;margin-bottom:4px}
+    .funnel-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.8px;color:#888;margin-bottom:6px}
+    .funnel-desc{font-size:12px;color:#555;line-height:1.55}
+
+    /* BENCHMARK STEPS */
+    .bm-grid{display:grid;gap:12px;margin-top:18px}
+    .bm-card{background:#fff;border:1px solid #e0e4ee;border-radius:10px;padding:18px 20px;display:flex;gap:16px}
+    .bm-num{font-size:22px;font-weight:700;color:var(--azure);flex-shrink:0;line-height:1;margin-top:2px}
+    .bm-content{}
+    .bm-title{font-size:14px;font-weight:700;color:var(--shadow);margin-bottom:4px}
+    .bm-desc{font-size:13px;color:#555;line-height:1.6}
+
+    /* FAQ */
+    .faq-item{border-bottom:1px solid #eee;padding:18px 0}
+    .faq-item:last-child{border-bottom:none}
+    .faq-q{font-weight:700;font-size:15px;color:var(--shadow);margin-bottom:6px}
+    .faq-a{font-size:14px;color:#3a3a3a;line-height:1.7}
+
+    /* CONTACT */
+    .cb{background:#fff;border:1px solid #e0e4ee;border-radius:10px;padding:20px 24px;margin-top:18px}
+    .cb p{margin:0;font-size:15px;color:#3a3a3a}
+    .cb a{color:var(--azure);text-decoration:none;font-weight:600}
+    .cb a:hover{text-decoration:underline}
+
+    /* FOOTER */
+    footer{background:var(--porc);border-top:1px solid #dde0e8;padding:36px 32px;margin-top:72px;text-align:center}
+    .fl{display:flex;align-items:center;justify-content:center;gap:10px;margin-bottom:10px}
+    .fl img{height:26px;width:auto}
+    .flt{font-size:19px;font-weight:700;color:var(--azure);letter-spacing:-.4px}
+    .flt span{font-weight:300;color:var(--shadow)}
+    footer p{font-size:13px;color:#888;margin-bottom:3px}
+    footer a{color:var(--azure);text-decoration:none}
+    footer a:hover{text-decoration:underline}
+
+    /* RESPONSIVE */
+    @media(max-width:640px){
+      nav{padding:0 16px}.nlb{display:none}
+      .pw{padding:0 16px 72px}
+      .hero{padding:36px 0 28px}.hero h1{font-size:22px}
+      .sec{padding:36px 0 0}
+      .badge-row,.stage-grid,.funnel-grid{grid-template-columns:1fr}
+      footer{padding:28px 16px}
+    }
+    @media(max-width:480px){
+      .sec h2{font-size:18px}
+      table.mt th,table.mt td,table.st th,table.st td{padding:9px 11px;font-size:13px}
+    }
+  </style>
+</head>
+<body>
+<div id="pb"></div>
+
+<nav>
+  <a class="nl" href="#">
+    <img src="/scroll-media-logo.svg" alt="Scroll Media" onerror="this.style.display='none';document.getElementById('nfl').style.display='block';" />
+    <div id="nfl" class="nlt" style="display:none;">Scroll<span> Media</span></div>
+  </a>
+  <span class="nlb">Report Guide</span>
+</nav>
+
+<div class="pw">
+
+  <!-- HERO -->
+  <div class="hero">
+    <span class="hb">Scroll Media — Client Resource</span>
+    <h1>How to Read Your<br>Performance Report</h1>
+    <p>Everything you need to understand your monthly report — what's in it, what the numbers mean, how targets are set, and how to use it.</p>
+    <div class="nav-pills">
+      <a class="np" href="#structure">Report Structure</a>
+      <a class="np" href="#status">Status Labels</a>
+      <a class="np" href="#metrics">Metrics</a>
+      <a class="np" href="#score">Monthly Score</a>
+      <a class="np" href="#targets">Target Ranges</a>
+      <a class="np" href="#funnel">Content Funnel</a>
+      <a class="np" href="#strategy">Strategy Adjustments</a>
+      <a class="np" href="#faq">FAQ</a>
+    </div>
+  </div>
+
+  <!-- OVERVIEW -->
+  <div class="sec">
+    <div class="sl">Overview</div>
+    <h2>What your monthly report is</h2>
+    <p>Every month, Scroll Media sends you a performance report covering the prior month's Instagram activity. It's built from real platform data and shows you what happened, how it performed against your targets, and what we're focusing on next.</p>
+    <p>Reports arrive in the first week of each month with a short plain-English summary. You don't need a separate meeting to read it — any questions you have are addressed at your next biweekly check-in.</p>
+    <div class="ca"><p><strong>This guide is your permanent reference.</strong> Bookmark it. Come back any time something in the report isn't clear.</p></div>
+  </div>
+
+  <!-- REPORT STRUCTURE -->
+  <div class="div"></div>
+  <div class="sec" id="structure">
+    <div class="sl">Report Structure</div>
+    <h2>What's inside</h2>
+    <p>Every monthly report follows the same structure:</p>
+    <div class="tw">
+      <table class="mt">
+        <thead><tr><th>Section</th><th>What it covers</th></tr></thead>
+        <tbody>
+          <tr><td><span class="mn">Executive Summary</span></td><td>A short plain-English summary of the month — what moved, what to watch, and the strategic takeaway</td></tr>
+          <tr><td><span class="mn">Monthly Score</span></td><td>A single number out of 10 summarizing overall account performance for the month</td></tr>
+          <tr><td><span class="mn">Performance Dashboard</span></td><td>11 key metrics organized by funnel level — each with your actual result, target range, and status label</td></tr>
+          <tr><td><span class="mn">Performance Insights</span></td><td>4–6 insight cards explaining the story behind the data — what's working, what isn't, and why</td></tr>
+          <tr><td><span class="mn">Top 3 Posts</span></td><td>Best-performing content from the month with context on why it worked</td></tr>
+          <tr><td><span class="mn">Format Analysis</span></td><td>Which content formats are driving results vs. underperforming</td></tr>
+          <tr><td><span class="mn">Month Ahead Strategy</span></td><td>What we're doubling down on, what we're testing, and any strategy adjustments — max 3 per month</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- STATUS LABELS -->
+  <div class="div"></div>
+  <div class="sec" id="status">
+    <div class="sl">Status Labels</div>
+    <h2>What the status labels mean</h2>
+    <p>Each metric in the Performance Dashboard carries one of three status labels:</p>
+    <div class="badge-row">
+      <div class="badge-card">
+        <div><span class="badge be">Exceeding</span></div>
+        <div class="badge-title">Above target</div>
+        <div class="badge-desc">Performing above the expected range for your stage. Strong signal — we lean into whatever's driving it.</div>
+      </div>
+      <div class="badge-card">
+        <div><span class="badge bt">On Track</span></div>
+        <div class="badge-title">Within target</div>
+        <div class="badge-desc">Within the healthy range for your stage. Consistent On Track performance is the goal — and it's not easy to maintain.</div>
+      </div>
+      <div class="badge-card">
+        <div><span class="badge bw">Watch</span></div>
+        <div class="badge-title">Below target</div>
+        <div class="badge-desc">Underperforming vs. the target range. A real signal — not an alarm. Every Watch area comes with a clear action plan.</div>
+      </div>
+    </div>
+    <div class="ca"><p><strong>One month of Watch is normal.</strong> It becomes a focus item when it persists for two or more months — at which point you'll see it addressed directly in the Month Ahead Strategy section.</p></div>
+  </div>
+
+  <!-- METRICS -->
+  <div class="div"></div>
+  <div class="sec" id="metrics">
+    <div class="sl">Metrics Glossary</div>
+    <h2>What each metric means</h2>
+    <p>Your Performance Dashboard tracks 11 metrics across the full funnel. Not all metrics carry equal weight in your score — more on that in the <a href="#score" style="color:var(--azure);font-weight:600;">Monthly Score section</a>.</p>
+    <div class="tw">
+      <table class="mt">
+        <thead><tr><th>Metric</th><th>What it measures</th><th>Why it matters</th></tr></thead>
+        <tbody>
+          <tr><td colspan="3" class="tier-hd">Awareness — Top of Funnel</td></tr>
+          <tr>
+            <td><span class="mn">Avg Reach / Day</span></td>
+            <td>Average unique accounts reached per day across the month</td>
+            <td>Shows how consistently your content spreads beyond existing followers</td>
+          </tr>
+          <tr>
+            <td><span class="mn">Total Views</span></td>
+            <td>Total views across all content in the month</td>
+            <td>Measures raw content consumption — how much your content is actually being watched</td>
+          </tr>
+          <tr>
+            <td><span class="mn">New Followers</span></td>
+            <td>Net new followers gained in the month</td>
+            <td>Shows whether content is converting viewers into followers</td>
+          </tr>
+          <tr><td colspan="3" class="tier-hd">Engagement — Middle of Funnel</td></tr>
+          <tr>
+            <td><span class="mn">Saves</span></td>
+            <td>Times users saved content to revisit later</td>
+            <td>One of the strongest platform signals — tells the algorithm your content has lasting value and drives distribution</td>
+          </tr>
+          <tr>
+            <td><span class="mn">Shares</span></td>
+            <td>Times content was shared to Stories or DMs</td>
+            <td>Organic distribution — shares put your content in front of new audiences without paid spend</td>
+          </tr>
+          <tr>
+            <td><span class="mn">Retention %</span></td>
+            <td>Average percentage of a Reel watched before dropping off</td>
+            <td>Higher retention signals to the algorithm the content is worth pushing further. Under 30% is a cue to tighten hooks and pacing.</td>
+          </tr>
+          <tr>
+            <td><span class="mn">Comments</span></td>
+            <td>Total comments on feed posts</td>
+            <td>Indicates content is sparking conversation. Volume varies by content type — treated as a supporting signal, not a primary one.</td>
+          </tr>
+          <tr><td colspan="3" class="tier-hd">Conversion — Bottom of Funnel</td></tr>
+          <tr>
+            <td><span class="mn">Profile Visits</span></td>
+            <td>How many times your profile was viewed</td>
+            <td>Signals that content created enough curiosity to drive a profile click — the first step toward a follow or inquiry</td>
+          </tr>
+          <tr>
+            <td><span class="mn">Link Taps</span></td>
+            <td>Clicks on the link in your bio or Stories</td>
+            <td>Measures whether Instagram is driving traffic to your website, booking page, or product</td>
+          </tr>
+          <tr>
+            <td><span class="mn">CTR</span></td>
+            <td>Percentage of viewers who clicked through to your profile or link</td>
+            <td>Measures how effectively content drives the next action</td>
+          </tr>
+          <tr>
+            <td><span class="mn">Profile Conversion Rate</span></td>
+            <td>Percentage of profile visitors who followed</td>
+            <td>Shows how compelling your profile is at converting curiosity into followers</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- MONTHLY SCORE -->
+  <div class="div"></div>
+  <div class="sec" id="score">
+    <div class="sl">Monthly Score</div>
+    <h2>How your monthly score works</h2>
+    <p>Your monthly score is a single number out of 10. It's a weighted composite of all 11 metrics — not a simple average. Metrics that most directly predict buying decisions carry more weight than volume metrics.</p>
+
+    <div class="score-block">
+      <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1.2px;color:var(--azure);margin-bottom:8px;">Example Score</div>
+      <div class="score-ex">
+        <div class="score-num">7.2</div>
+        <div class="score-lbl"><strong>Progressing Month</strong>Strong quality signals alongside some volume gaps. Strategy is working — refining distribution.</div>
+      </div>
+    </div>
+
+    <h3>Metric tiers — why some metrics carry more weight</h3>
+    <div class="tier-grid">
+      <div class="tier-card">
+        <span class="tier-badge t1">Tier 1 — 1.5× Weight</span>
+        <div class="tier-title">Quality &amp; Conversion Signals</div>
+        <div class="tier-metrics">Saves · Shares · Retention % · CTR · Profile Conversion Rate</div>
+        <div class="tier-why">These metrics require a deliberate viewer decision. Saving a post, watching it to completion, or clicking through to your profile are all active choices that signal genuine interest — the kind that precedes a booking or purchase inquiry. These are the behaviors that matter most for service-based businesses, and the ones the Instagram algorithm rewards most heavily.</div>
+      </div>
+      <div class="tier-card">
+        <span class="tier-badge t2">Tier 2 — 1.0× Weight</span>
+        <div class="tier-title">Volume &amp; Distribution Signals</div>
+        <div class="tier-metrics">Avg Reach / Day · New Followers · Total Views · Profile Visits · Link Taps</div>
+        <div class="tier-why">Important growth and distribution indicators, but partially subject to platform algorithm variability. Strong content helps, but these metrics have factors outside anyone's direct control. They tell us about reach and momentum — they don't carry the same signal of deliberate audience intent.</div>
+      </div>
+      <div class="tier-card">
+        <span class="tier-badge t3">Tier 3 — 0.75× Weight</span>
+        <div class="tier-title">Context &amp; Community Signals</div>
+        <div class="tier-metrics">Comments</div>
+        <div class="tier-why">A real signal, but highly variable by content type. A milestone post drives hundreds of comments. A service feature post drives almost none. That variability means it's tracked as a supporting signal — not a primary performance indicator.</div>
+      </div>
+    </div>
+
+    <h3>Score range reference</h3>
+    <div class="stw">
+      <table class="st">
+        <thead><tr><th>Score</th><th>Label</th><th>What it means</th></tr></thead>
+        <tbody>
+          <tr><td><strong>9.5 – 10.0</strong></td><td>Breakthrough Month</td><td>Extraordinary performance across all tiers. Rare — happens 1–2× per year per account.</td></tr>
+          <tr><td><strong>9.0 – 9.4</strong></td><td>Exceptional Month</td><td>High performance across the board. Multiple quality signals exceeding.</td></tr>
+          <tr><td><strong>8.5 – 8.9</strong></td><td>Strong Month</td><td>Majority of metrics exceeding or on track. Clear momentum.</td></tr>
+          <tr><td><strong>8.0 – 8.4</strong></td><td>Solid Month</td><td>Clear wins with manageable gaps. Positive direction.</td></tr>
+          <tr><td><strong>7.5 – 7.9</strong></td><td>Building Month</td><td>Clear positives alongside gaps. Progress visible.</td></tr>
+          <tr><td><strong>7.0 – 7.4</strong></td><td>Progressing Month</td><td>Wins and gaps balanced. Normal for testing phases.</td></tr>
+          <tr><td><strong>6.5 – 6.9</strong></td><td>Mixed Month</td><td>More gaps than wins but momentum is there.</td></tr>
+          <tr><td><strong>6.0 – 6.4</strong></td><td>Foundation Month</td><td>Early-stage execution. Strategy forming. Normal for first months.</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="ca" style="margin-top:16px;"><p><strong>The score is a trend tool, not a grade.</strong> One month's number means less than how it moves over 3–6 months. Consistent improvement is the goal — not perfection in any single month. The score also factors in month-over-month momentum: consistent improvement across metrics is rewarded even when you haven't hit every target yet.</p></div>
+  </div>
+
+  <!-- TARGET RANGES -->
+  <div class="div"></div>
+  <div class="sec" id="targets">
+    <div class="sl">Target Ranges</div>
+    <h2>How your targets are set</h2>
+    <p>Your performance targets are specific to your account stage — not generic benchmarks pulled from a social media blog. Here's exactly how they're built.</p>
+
+    <h3>Your stage determines your targets</h3>
+    <p>Every Scroll Media account is assigned a maturity stage. Follower count is the starting point, but your actual stage is determined by engagement quality, content system maturity, and how your key metrics compare to what's expected at each level.</p>
+
+    <div class="stage-grid">
+      <div class="stage-card">
+        <div class="stage-num">Stage 01</div>
+        <div class="stage-name">Spark</div>
+        <div class="stage-range">0 – 1,500 followers</div>
+        <div class="stage-desc">Building the foundation. Testing what resonates. Establishing a consistent content system.</div>
+      </div>
+      <div class="stage-card">
+        <div class="stage-num">Stage 02</div>
+        <div class="stage-name">Lift</div>
+        <div class="stage-range">1,500 – 8,000 followers</div>
+        <div class="stage-desc">Scaling what works. Building conversion paths. Growing a qualified audience.</div>
+      </div>
+      <div class="stage-card">
+        <div class="stage-num">Stage 03</div>
+        <div class="stage-name">Rise</div>
+        <div class="stage-range">10,000 – 40,000 followers</div>
+        <div class="stage-desc">Optimizing at scale. Building brand authority. Deepening audience trust.</div>
+      </div>
+      <div class="stage-card">
+        <div class="stage-num">Stage 04</div>
+        <div class="stage-name">Thrive</div>
+        <div class="stage-range">50,000+ followers</div>
+        <div class="stage-desc">Maximizing brand equity. Ecosystem building. Compounding long-term authority.</div>
+      </div>
+    </div>
+
+    <div class="ca" style="margin-top:16px;"><p><strong>Stage assignment is a protection mechanism.</strong> If we measured you against the wrong stage's targets, we'd be setting expectations you can't realistically reach yet — or setting the bar so low the data tells you nothing. Your stage is validated against your actual engagement signals and reviewed every 60–90 days. When your account is ready to advance, we'll reach out directly before anything changes in your report.</p></div>
+
+    <h3>How benchmark ranges are built</h3>
+    <div class="bm-grid">
+      <div class="bm-card">
+        <div class="bm-num">1</div>
+        <div class="bm-content">
+          <div class="bm-title">Industry data from your niche</div>
+          <div class="bm-desc">We analyzed performance across the service-based businesses we work with — med spas, coaching, fitness, real estate, home services — to understand what normal, strong, and exceptional performance looks like at each stage. These aren't averages from a generic marketing blog. They reflect what actually happens inside accounts in the niches we operate in.</div>
+        </div>
+      </div>
+      <div class="bm-card">
+        <div class="bm-num">2</div>
+        <div class="bm-content">
+          <div class="bm-title">Instagram algorithm priority signals</div>
+          <div class="bm-desc">The metrics we track — especially the ones weighted most heavily — reflect what Instagram demonstrably rewards right now. Saves and Shares tell the algorithm the content is worth distributing further. Retention % tells us whether content is holding attention long enough to matter. These choices are grounded in how the platform actually works, not how it worked two years ago.</div>
+        </div>
+      </div>
+      <div class="bm-card">
+        <div class="bm-num">3</div>
+        <div class="bm-content">
+          <div class="bm-title">Intentionally calibrated above easy</div>
+          <div class="bm-desc">Targets are set above what's easy to hit consistently. A benchmark you hit effortlessly every month tells you nothing useful. Targets are built to push performance forward — so when you score On Track, you know you're genuinely building momentum. When something shows as Watch, it's a real signal worth addressing, not a technicality.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CONTENT FUNNEL -->
+  <div class="div"></div>
+  <div class="sec" id="funnel">
+    <div class="sl">Content Strategy</div>
+    <h2>The content funnel mix</h2>
+    <p>Your content is intentionally distributed across three funnel levels. The target mix is:</p>
+    <div class="funnel-grid">
+      <div class="funnel-card">
+        <div class="funnel-pct">40%</div>
+        <div class="funnel-label">Top of Funnel</div>
+        <div class="funnel-desc">Reach and awareness content. Designed to attract new viewers who don't know you yet.</div>
+      </div>
+      <div class="funnel-card">
+        <div class="funnel-pct">35%</div>
+        <div class="funnel-label">Middle of Funnel</div>
+        <div class="funnel-desc">Engagement and trust content. Deepens the relationship with existing followers.</div>
+      </div>
+      <div class="funnel-card">
+        <div class="funnel-pct">25%</div>
+        <div class="funnel-label">Bottom of Funnel</div>
+        <div class="funnel-desc">Conversion content. Moves followers toward a specific action — booking, buying, or inquiring.</div>
+      </div>
+    </div>
+    <p style="margin-top:16px;">The Format Analysis section of your report shows how last month's content performed across each level — and whether any adjustments to the mix are recommended.</p>
+  </div>
+
+  <!-- STRATEGY ADJUSTMENTS -->
+  <div class="div"></div>
+  <div class="sec" id="strategy">
+    <div class="sl">Strategy Adjustments</div>
+    <h2>How we handle Watch areas</h2>
+    <p>Every Watch metric comes with a response. Strategy adjustments are documented at the end of the Month Ahead Strategy section — always a maximum of three per month.</p>
+    <p>Three is the limit by design. More than that is unrealistic to execute well in a single month. We prioritize the highest-leverage adjustments and address everything else in subsequent cycles.</p>
+    <div class="ca"><p><strong>If something is materially underperforming</strong> — not just Watch, but significantly below expectations — we'll reach out directly rather than waiting for the monthly report. That kind of signal warrants a dedicated conversation, not a footnote.</p></div>
+  </div>
+
+  <!-- FAQ -->
+  <div class="div"></div>
+  <div class="sec" id="faq">
+    <div class="sl">FAQ</div>
+    <h2>Common questions</h2>
+
+    <div class="faq-item">
+      <div class="faq-q">My score went down from last month. Should I be worried?</div>
+      <div class="faq-a">Not necessarily. Month-to-month fluctuation is normal — algorithm shifts, seasonal patterns, and content mix transitions all play a role. Look at the trend over 3+ months, not a single data point. If the score drops two months in a row, the Month Ahead Strategy section will address it directly. If it drops significantly, we'll reach out proactively.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">Why are my targets set where they are? They seem high.</div>
+      <div class="faq-a">They're meant to be. Targets that are easy to hit every month tell you nothing useful. Yours are built from real performance data across service-based businesses in your niche, calibrated to reflect what healthy, compounding growth actually looks like at your stage. See the Target Ranges section above for the full methodology.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">What does my account stage mean and when does it change?</div>
+      <div class="faq-a">Your stage — Spark, Lift, Rise, or Thrive — determines what targets you're measured against. It's based primarily on follower count, but also takes into account your engagement quality and how your key metrics have been trending. When your account is ready to advance to the next stage, we'll reach out directly with a formal conversation before anything changes in your report. Stage advancements are communicated proactively — they don't just show up.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">Why are Saves and Shares weighted more heavily than Views?</div>
+      <div class="faq-a">Saves and Shares require a deliberate viewer decision. When someone saves a post, they're signaling intent to act on it later. When they share it, they're voluntarily distributing your content to new people. Both directly influence how broadly Instagram pushes your content. Views and Reach matter, but they're more subject to platform variability and don't carry the same signal of genuine interest.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">My follower count didn't grow much. Does that mean the strategy isn't working?</div>
+      <div class="faq-a">Follower growth is one signal among many. A month with slow follower growth but strong Saves, Shares, Reach, and Link Taps is often a better month than one with high follower growth and low engagement. We focus on building an audience that converts — not just a large one. The score reflects that weighting.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">What's the difference between Reach and Views?</div>
+      <div class="faq-a">Reach counts unique accounts — each person counted once regardless of how many times they saw your content. Views count total plays, including repeat views from the same person. Reach tells you how wide your content spread. Views tell you how much total consumption happened. Both tell different parts of the story.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">I see a Watch on a metric I thought was doing well. What happened?</div>
+      <div class="faq-a">Watch means performance fell below the target floor for your current stage. It's possible a metric improved month-over-month but is still below the stage target — which is why trend and status can point in different directions. The Month Ahead Strategy section will explain what's behind it and what we're doing about it.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">I have a question not covered here. How do I get it answered?</div>
+      <div class="faq-a">Bring it to your next biweekly check-in. If it's time-sensitive, reach out to your Account Manager directly. For anything beyond your AM: <a href="mailto:help@scrollmedia.co">help@scrollmedia.co</a></div>
+    </div>
+
+  </div>
+
+  <!-- CONTACT -->
+  <div class="div"></div>
+  <div class="sec">
+    <div class="sl">Questions</div>
+    <h2>Still need help?</h2>
+    <p>Your Account Manager is your first call. For anything beyond that:</p>
+    <div class="cb"><p><a href="mailto:help@scrollmedia.co">help@scrollmedia.co</a></p></div>
+  </div>
+
+</div>
+
+<footer>
+  <div class="fl">
+    <img src="/scroll-media-logo.svg" alt="Scroll Media" onerror="this.style.display='none';document.getElementById('ffl').style.display='block';" />
+    <div id="ffl" class="flt" style="display:none;">Scroll<span> Media</span></div>
+  </div>
+  <p>Scroll Media Report Guide — Permanent Client Reference</p>
+  <p>Questions? <a href="mailto:help@scrollmedia.co">help@scrollmedia.co</a></p>
+  <p style="margin-top:12px;font-size:11px;color:#bbb;">© 2026 Scroll Media. All rights reserved.</p>
+</footer>
+
+<script>
+window.addEventListener('scroll',function(){var d=document.documentElement;document.getElementById('pb').style.width=(d.scrollTop/(d.scrollHeight-d.clientHeight)*100)+'%'});
+</script>
+</body>
+</html>
