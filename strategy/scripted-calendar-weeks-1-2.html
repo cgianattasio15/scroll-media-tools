@@ -1,0 +1,1800 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Weeks 1–2 Scripted Content Calendar — Scroll Media</title>
+<link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ghost:#fafdff; --shadow:#151516; --azure:#0c3387; --azure-mid:#1042a8;
+  --azure-light:#e8eef8; --azure-pale:#f0f4fb; --lucid:#cbe9ff;
+  --highlighter:#e2ed7a; --highlighter-dark:#c8d85c;
+  --porcelain:#f2f3f4; --porcelain-dark:#e6e8ea;
+  --text-primary:#151516; --text-secondary:#4a5568; --text-muted:#8a9ab5;
+  --border:rgba(12,51,135,0.10); --border-strong:rgba(12,51,135,0.20);
+  --shadow-sm:0 1px 3px rgba(12,51,135,0.08);
+  --shadow-md:0 4px 16px rgba(12,51,135,0.10);
+  --c-rachel:#fff5ec; --c-rachel-border:#f5c4a0; --c-rachel-text:#b84d00;
+  --c-chase:#f0f4fb; --c-chase-border:rgba(12,51,135,0.2);
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:var(--ghost);color:var(--text-primary);font-family:'Source Sans 3',sans-serif;font-size:15px;line-height:1.65;-webkit-font-smoothing:antialiased;}
+
+/* NAV */
+.nav{position:sticky;top:0;z-index:100;background:rgba(250,253,255,.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:0 40px;height:52px;display:flex;align-items:center;gap:24px;}
+.nav-logo{font-weight:700;font-size:14px;color:var(--azure);letter-spacing:-.02em;flex-shrink:0;}
+.nav-links{display:flex;gap:20px;list-style:none;flex:1;overflow-x:auto;}
+.nav-links a{font-size:12px;font-weight:500;color:var(--text-secondary);text-decoration:none;white-space:nowrap;}
+.nav-links a:hover{color:var(--azure);}
+.nav-badge{background:var(--azure);color:white;font-size:10px;font-weight:700;padding:4px 10px;border-radius:4px;flex-shrink:0;}
+
+/* LAYOUT */
+.wrap{max-width:1000px;margin:0 auto;padding:0 40px;}
+.section{padding:52px 0;border-bottom:1px solid var(--border);}
+
+/* HERO */
+.hero{background:linear-gradient(150deg,var(--azure-pale) 0%,var(--ghost) 55%);padding:64px 0 52px;border-bottom:1px solid var(--border);}
+.hero-label{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--azure);margin-bottom:12px;display:flex;align-items:center;gap:8px;}
+.hero-label::before{content:'';display:block;width:16px;height:2px;background:var(--azure);border-radius:1px;}
+.hero-title{font-size:40px;font-weight:700;letter-spacing:-.025em;color:var(--shadow);line-height:1.1;margin-bottom:10px;}
+.hero-title span{color:var(--azure);}
+.hero-sub{font-size:16px;color:var(--text-secondary);font-weight:300;max-width:600px;line-height:1.6;margin-bottom:24px;}
+.hero-chips{display:flex;gap:8px;flex-wrap:wrap;}
+.chip{background:white;border:1px solid var(--border-strong);border-radius:5px;padding:5px 12px;font-size:11px;font-weight:600;color:var(--azure);box-shadow:var(--shadow-sm);}
+.chip.rachel{background:#fff5ec;border-color:var(--c-rachel-border);color:var(--c-rachel-text);}
+
+/* SECTION HEADERS */
+.sec-ey{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--azure);margin-bottom:8px;display:flex;align-items:center;gap:8px;}
+.sec-ey::before{content:'';display:block;width:16px;height:2px;background:var(--azure);border-radius:1px;}
+.sec-h{font-size:28px;font-weight:700;letter-spacing:-.02em;color:var(--shadow);margin-bottom:8px;}
+.sec-sub{font-size:14px;color:var(--text-secondary);font-weight:300;max-width:680px;line-height:1.6;margin-bottom:32px;}
+
+/* OWNER TOGGLE */
+.owner-tabs{display:flex;gap:0;background:var(--porcelain-dark);border-radius:8px;padding:3px;margin-bottom:32px;width:fit-content;}
+.owner-tab{padding:8px 20px;border-radius:6px;font-size:13px;font-weight:600;cursor:pointer;transition:all .2s;color:var(--text-muted);}
+.owner-tab.active{background:white;color:var(--azure);box-shadow:var(--shadow-sm);}
+.chase-only,.rachel-only{display:block;}
+.rachel-only{display:none;}
+
+/* DAY BLOCK */
+.day-block{margin-bottom:24px;border-radius:14px;overflow:hidden;box-shadow:var(--shadow-md);border:1px solid var(--border);}
+.day-block-hdr{padding:16px 24px;display:flex;align-items:center;gap:14px;background:var(--azure);color:white;}
+.day-num{font-size:22px;font-weight:700;line-height:1;}
+.day-info{flex:1;}
+.day-name{font-size:14px;font-weight:700;}
+.day-date{font-size:12px;opacity:.7;margin-top:1px;}
+.day-theme{margin-left:auto;font-size:11px;font-weight:600;opacity:.8;text-align:right;}
+
+/* POST SCRIPT CARD */
+.post-card{background:white;border-bottom:1px solid var(--border);}
+.post-card:last-child{border-bottom:none;}
+.post-card-hdr{padding:14px 24px;display:flex;align-items:center;gap:10px;background:var(--azure-pale);border-bottom:1px solid var(--border);}
+.post-card-hdr.rachel-hdr{background:var(--c-rachel);}
+.post-card-body{padding:20px 24px;}
+
+/* BADGES */
+.pb{display:inline-block;font-size:10px;font-weight:700;padding:2px 8px;border-radius:3px;font-family:'SFMono-Regular',monospace;letter-spacing:.04em;vertical-align:middle;}
+.pb-ig{background:rgba(226,237,122,.2);color:#5a6800;}
+.pb-tt{background:rgba(255,77,109,.12);color:#cc2244;}
+.pb-th{background:var(--porcelain-dark);color:var(--shadow);}
+.pb-x{background:#f0f1f2;color:#5a6070;}
+.pb-li{background:#e8f3fa;color:#0077b5;}
+.pb-sc{background:var(--azure-light);color:var(--azure);}
+.pb-rachel{background:#fff0e8;color:var(--c-rachel-text);border:1px solid var(--c-rachel-border);}
+.post-type-badge{font-size:10px;font-weight:700;padding:2px 8px;border-radius:3px;text-transform:uppercase;letter-spacing:.06em;}
+.pt-reel{background:var(--azure-light);color:var(--azure);}
+.pt-carousel{background:#f7f9d8;color:#5a6800;}
+.pt-text{background:var(--porcelain-dark);color:var(--shadow);}
+.pt-linkedin{background:#e8f3fa;color:#0077b5;}
+.pt-stories{background:#fff0e8;color:var(--c-rachel-text);}
+
+.post-title{font-size:15px;font-weight:700;color:var(--shadow);}
+.post-owner{font-size:11px;font-weight:600;color:var(--text-muted);}
+
+/* SCRIPT SECTIONS */
+.script-section{margin-bottom:20px;}
+.script-label{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--azure);margin-bottom:8px;display:flex;align-items:center;gap:6px;}
+.script-label::before{content:'';display:block;width:12px;height:2px;background:var(--azure);border-radius:1px;}
+.script-label.rachel-label{color:var(--c-rachel-text);}
+.script-label.rachel-label::before{background:var(--c-rachel-text);}
+
+/* SCRIPT BOX */
+.script-box{background:var(--azure-pale);border:1px solid var(--border-strong);border-radius:8px;padding:16px 18px;font-size:13px;color:var(--text-secondary);line-height:1.7;}
+.script-box.spoken{border-left:4px solid var(--azure);}
+.script-box.onscreen{border-left:4px solid var(--highlighter-dark);background:#f9fbdf;}
+.script-box.caption{border-left:4px solid #c8d85c;background:#f9fbdf;}
+.script-box.threads{border-left:4px solid var(--shadow);background:var(--porcelain);}
+.script-box.linkedin{border-left:4px solid #0077b5;background:#f0f8ff;}
+.script-box.rachel-box{border-left:4px solid var(--c-rachel-text);background:var(--c-rachel);}
+.script-box p{margin-bottom:10px;}
+.script-box p:last-child{margin-bottom:0;}
+.script-box strong{color:var(--shadow);}
+.script-note{font-size:11px;color:var(--text-muted);font-style:italic;margin-top:6px;line-height:1.4;}
+
+/* BEAT LABELS */
+.beat{display:inline-block;background:var(--azure);color:white;font-size:9px;font-weight:700;padding:1px 7px;border-radius:3px;margin-right:6px;letter-spacing:.06em;text-transform:uppercase;vertical-align:middle;}
+.beat.hook{background:#0c3387;}
+.beat.context{background:#1042a8;}
+.beat.tension{background:#8a2be2;}
+.beat.resolve{background:#0a6e3f;}
+.beat.close{background:#151516;}
+.beat.slide{background:var(--highlighter-dark);color:var(--shadow);}
+.beat.threads-beat{background:var(--shadow);}
+.beat.li-beat{background:#0077b5;}
+
+/* META ROW */
+.meta-row{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:16px;align-items:center;}
+.meta-item{font-size:12px;color:var(--text-secondary);display:flex;align-items:center;gap:4px;}
+.meta-item strong{color:var(--shadow);}
+.meta-sep{color:var(--text-muted);}
+
+/* CROSS-POST NOTE */
+.crosspost-note{background:var(--porcelain);border-radius:6px;padding:8px 12px;font-size:11px;color:var(--text-secondary);margin-top:12px;display:flex;align-items:center;gap:8px;}
+.crosspost-note::before{content:'↗';color:var(--azure);font-size:12px;flex-shrink:0;}
+
+/* TWO COL */
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px;}
+
+/* CALLOUT */
+.callout{border-radius:8px;padding:14px 18px;font-size:13px;line-height:1.6;margin-bottom:16px;display:flex;gap:10px;}
+.callout.azure{background:var(--azure-pale);border:1px solid var(--border-strong);}
+.callout.lime{background:#f7f9d8;border:1px solid #d0db5a;}
+.callout.orange{background:var(--c-rachel);border:1px solid var(--c-rachel-border);}
+.callout-text{color:var(--text-secondary);}
+.callout-text strong{color:var(--shadow);}
+
+/* WEEK DIVIDER */
+.week-divider{background:var(--shadow);color:white;padding:20px 24px;border-radius:12px;margin-bottom:20px;display:flex;align-items:center;gap:16px;}
+.wd-num{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;opacity:.5;}
+.wd-theme{font-size:18px;font-weight:700;}
+.wd-focus{font-size:13px;opacity:.6;margin-left:auto;font-style:italic;}
+
+/* IDEA BANK */
+.idea-bank{background:white;border:1px solid var(--border);border-radius:12px;padding:20px 24px;margin-bottom:20px;box-shadow:var(--shadow-sm);}
+.idea-item{display:flex;gap:10px;align-items:flex-start;padding:8px 0;border-bottom:1px solid var(--border);font-size:13px;color:var(--text-secondary);}
+.idea-item:last-child{border-bottom:none;padding-bottom:0;}
+.idea-status{flex-shrink:0;width:14px;height:14px;border-radius:50%;border:1.5px solid var(--border-strong);margin-top:2px;}
+.idea-status.used{background:var(--azure);border-color:var(--azure);}
+.idea-text{line-height:1.5;}
+
+/* MANUS BLOCK */
+.manus-block{background:var(--shadow);border-radius:14px;padding:28px 32px;margin-top:48px;}
+.manus-title{font-size:15px;font-weight:700;color:var(--highlighter);margin-bottom:6px;}
+.manus-sub{font-size:12px;color:rgba(255,255,255,.5);margin-bottom:20px;}
+.manus-prompt{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:8px;padding:16px 18px;font-family:'SFMono-Regular',monospace;font-size:11.5px;line-height:1.8;color:rgba(255,255,255,.82);white-space:pre-wrap;word-break:break-word;}
+.cmd-key{color:var(--lucid);}
+.cmd-comment{color:rgba(226,237,122,.65);}
+
+/* FOOTER */
+.footer{background:var(--shadow);padding:32px 0;text-align:center;}
+.footer-logo{font-size:16px;font-weight:700;color:white;}
+.footer-sub{font-size:11px;color:rgba(255,255,255,.3);margin-top:4px;}
+
+@media(max-width:700px){
+  .wrap{padding:0 20px;}
+  .nav{padding:0 20px;}
+  .two-col{grid-template-columns:1fr;}
+  .hero-title{font-size:28px;}
+}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-logo">scroll media</div>
+  <ul class="nav-links">
+    <li><a href="#system">System</a></li>
+    <li><a href="#ideas-bank">Ideas Bank</a></li>
+    <li><a href="#week1">Week 1 Scripts</a></li>
+    <li><a href="#week2">Week 2 Scripts</a></li>
+    <li><a href="#rachel">Rachel — Week 1–2</a></li>
+    <li><a href="#linkedin-rachel">Rachel — LinkedIn</a></li>
+    <li><a href="#manus">Manus Deploy</a></li>
+  </ul>
+  <div class="nav-badge">Weeks 1–2 · v2 · April 2026</div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="wrap">
+    <div class="hero-label">Scripted Content Calendar</div>
+    <h1 class="hero-title">Weeks 1–2 <span>Scripts</span></h1>
+    <p class="hero-sub">Every post scripted. Every platform covered. Chase's content and Rachel's content separated and clearly labeled. Renew every two weeks using the Ideas Bank.</p>
+    <div class="hero-chips">
+      <div class="chip">Days 1–14 Scripted</div>
+      <div class="chip">IG · TikTok · Threads · X · LinkedIn</div>
+      <div class="chip rachel">Rachel — scrollmedia.co included</div>
+      <div class="chip" style="background:#e8f3fa;border-color:rgba(0,119,181,0.3);color:#0077b5;">LinkedIn Strategy Added — v2</div>
+      <div class="chip">Notion Deploy Prompt Included</div>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION: SYSTEM OVERVIEW -->
+<div class="section" id="system">
+  <div class="wrap">
+    <div class="sec-ey">How This Works</div>
+    <h2 class="sec-h">The Two-Week System</h2>
+    <p class="sec-sub">This document covers the first scripting block (Days 1–14). At the end of Week 2, review performance signals and build the next block using the same process.</p>
+
+    <div class="two-col">
+      <div style="background:white;border:1px solid var(--border);border-radius:12px;padding:20px;box-shadow:var(--shadow-sm);">
+        <div style="font-size:11px;font-weight:700;color:var(--azure);text-transform:uppercase;letter-spacing:.08em;margin-bottom:10px;">Cadence</div>
+        <div style="font-size:13px;color:var(--text-secondary);line-height:1.7;">
+          <strong style="color:var(--shadow);">Every 2 weeks:</strong> Pull top ideas from the Bank → assign to calendar slots → script each post → deploy to Notion → execute.<br><br>
+          <strong style="color:var(--shadow);">At the 2-week review:</strong> Check saves, shares, and replies. Identify the 2–3 posts that outperformed. Use that signal to guide the next block's format and topic choices.
+        </div>
+      </div>
+      <div style="background:white;border:1px solid var(--border);border-radius:12px;padding:20px;box-shadow:var(--shadow-sm);">
+        <div style="font-size:11px;font-weight:700;color:var(--azure);text-transform:uppercase;letter-spacing:.08em;margin-bottom:10px;">Script Format Key</div>
+        <div style="font-size:12px;color:var(--text-secondary);line-height:1.8;">
+          <span class="beat hook">HOOK</span> First 0–3 seconds spoken<br>
+          <span class="beat context">CONTEXT</span> Background / setup<br>
+          <span class="beat tension">TENSION</span> Stakes + re-hook<br>
+          <span class="beat resolve">RESOLVE</span> Payoff / lesson<br>
+          <span class="beat close">CLOSE</span> Gut-punch last line<br>
+          <span class="beat slide">SLIDE #</span> Carousel slides<br>
+          <span class="beat threads-beat">THREADS</span> Written post copy<br>
+          <span class="beat li-beat">LINKEDIN</span> LinkedIn post copy
+        </div>
+      </div>
+    </div>
+
+    <div class="callout azure">
+      <div>💡</div>
+      <div class="callout-text"><strong>On-Screen Text rule:</strong> Never repeat your spoken line on screen. On-screen text handles objections, adds specificity, or teases what's coming. If you're saying it, the screen should be showing something different. Both channels are active simultaneously — use them.</div>
+    </div>
+  </div>
+</div>
+
+<!-- IDEAS BANK -->
+<div class="section" id="ideas-bank">
+  <div class="wrap">
+    <div class="sec-ey">Running Ideas Bank</div>
+    <h2 class="sec-h">Chase's Content Ideas</h2>
+    <p class="sec-sub">Every idea Chase generates lives here first. Ideas marked as used are scheduled in this block. Add new ideas any time — pull from here when building the next 2-week block.</p>
+
+    <div class="idea-bank">
+      <div style="font-size:12px;font-weight:700;color:var(--text-muted);text-transform:uppercase;letter-spacing:.08em;margin-bottom:12px;">From Chase's List — April 2026</div>
+      <div class="idea-item"><div class="idea-status used"></div><div class="idea-text"><strong>AI era + how it's affecting our business / what the future looks like</strong> — Used: Day 2 IG Reel</div></div>
+      <div class="idea-item"><div class="idea-status used"></div><div class="idea-text"><strong>Intro video — who are you</strong> — Used: Day 1 IG Reel (launch post)</div></div>
+      <div class="idea-item"><div class="idea-status used"></div><div class="idea-text"><strong>Biggest bottleneck in business + how to use AI to maximize efficiency</strong> — Used: Day 8 IG Reel</div></div>
+      <div class="idea-item"><div class="idea-status used"></div><div class="idea-text"><strong>IG has brainwashed us to focus on views and followers — HQ audience vs low quality audience</strong> — Used: Day 3 IG Reel (Counter-Position)</div></div>
+      <div class="idea-item"><div class="idea-status used"></div><div class="idea-text"><strong>Tracking IG metrics that actually matter — green screen KPI cheat sheet</strong> — Used: Day 10 IG Reel</div></div>
+      <div class="idea-item"><div class="idea-status used"></div><div class="idea-text"><strong>Founder struggles — questioning yourself, comparing to others, wondering if you're ever doing enough</strong> — Used: Day 7 Sunday Reel</div></div>
+      <div class="idea-item"><div class="idea-status used"></div><div class="idea-text"><strong>What is organic social actually meant to do</strong> — Used: Day 11 LinkedIn carousel</div></div>
+      <div class="idea-item"><div class="idea-status"></div><div class="idea-text"><strong>How to use AI to write bomb scripts</strong> — Queued for Week 3</div></div>
+      <div class="idea-item"><div class="idea-status"></div><div class="idea-text"><strong>How to use IG algo to maximize performance — retention, shares, saves</strong> — Queued for Week 3</div></div>
+      <div class="idea-item"><div class="idea-status"></div><div class="idea-text"><strong>Power of perspective — AI era, mini commercials, leveling up in real time</strong> — Queued for Week 3+</div></div>
+      <div class="idea-item"><div class="idea-status"></div><div class="idea-text"><strong>Humanity goes in cycles — too far into digital age, humans will starve for IRL connections</strong> — Queued for Week 3+</div></div>
+      <div class="idea-item"><div class="idea-status"></div><div class="idea-text"><strong>Power of fundamentals — sports analogy (bball), back to basics when overwhelmed</strong> — Queued for Week 3</div></div>
+      <div class="idea-item"><div class="idea-status"></div><div class="idea-text"><strong>What is an IVP</strong> — Queued for Week 3 (carousel format)</div></div>
+      <div class="idea-item"><div class="idea-status"></div><div class="idea-text"><strong>Power of outliers — how to ideate with AI tools (Sandcastles, green screen)</strong> — Queued for Week 4</div></div>
+      <div class="idea-item"><div class="idea-status"></div><div class="idea-text"><strong>Ranking tiers series — social media KPIs, CTAs, etc — build authority</strong> — Series format, Week 4+</div></div>
+      <div class="idea-item"><div class="idea-status"></div><div class="idea-text"><strong>Social media formats as dog breeds — first-person POV shot, manual cutout mix and match</strong> — Queued for Week 3 (Format Invention path)</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- WEEK 1 SCRIPTS -->
+<div class="section" id="week1">
+  <div class="wrap">
+    <div class="week-divider">
+      <div>
+        <div class="wd-num">Week 1 · Days 1–7</div>
+        <div class="wd-theme">Establish the Presence — Introduce the Build</div>
+      </div>
+      <div class="wd-focus">Theme: Who Chase is, what Scroll Media does, why this is worth following</div>
+    </div>
+
+    <!-- ── DAY 1 ── -->
+    <div class="day-block" id="day1">
+      <div class="day-block-hdr">
+        <div>
+          <div class="day-num">01</div>
+        </div>
+        <div class="day-info">
+          <div class="day-name">Monday</div>
+          <div class="day-date">Week 1, Day 1 — Launch Day</div>
+        </div>
+        <div class="day-theme">Intro + AI Era + Threads Launch</div>
+      </div>
+
+      <!-- POST 1: IG REEL -->
+      <div class="post-card">
+        <div class="post-card-hdr">
+          <span class="pb pb-ig">IG</span><span class="pb pb-tt">TT</span>
+          <span class="post-type-badge pt-reel" style="margin-left:6px;">Founder POV Reel</span>
+          <div class="post-title" style="margin-left:10px;">Dispatch No.1 — The Intro</div>
+          <div class="post-owner" style="margin-left:auto;">Chase</div>
+        </div>
+        <div class="post-card-body">
+          <div class="meta-row">
+            <div class="meta-item"><strong>Pillar:</strong> The Build</div>
+            <div class="meta-sep">·</div>
+            <div class="meta-item"><strong>Framework:</strong> 5-Part Story Arc</div>
+            <div class="meta-sep">·</div>
+            <div class="meta-item"><strong>Length:</strong> 45–60s</div>
+            <div class="meta-sep">·</div>
+            <div class="meta-item"><strong>Funnel:</strong> TOFU</div>
+          </div>
+
+          <div class="script-section">
+            <div class="script-label">Spoken Script</div>
+            <div class="script-box spoken">
+              <p><span class="beat hook">HOOK</span> "I've been building a social media agency for the past two years. And I've never talked about it publicly. Until now."</p>
+              <p><span class="beat context">CONTEXT</span> "My name's Chase. I'm the co-founder of Scroll Media — we run Instagram strategy for service businesses across the country. Eight clients, a small team, and a real business with real problems."</p>
+              <p><span class="beat tension">TENSION</span> "I'm starting to document all of it. Not the highlight reel. The actual thing — the wins, the failures, the systems, the moments where I had no idea what I was doing. And the one thing I've learned that I wish someone had told me when I started."</p>
+              <p><span class="beat resolve">RESOLVE</span> "This account is called chase.scrolls. And if you're building something — an agency, a business, a personal brand — or if you want to understand what social media actually does for a service business, stick around."</p>
+              <p><span class="beat close">CLOSE</span> "Building in public is scary. But hiding what you're building is scarier."</p>
+            </div>
+          </div>
+
+          <div class="script-section">
+            <div class="script-label">On-Screen Text</div>
+            <div class="script-box onscreen">
+              <p><strong>Frame 1 (Hook):</strong> "2 years. 8 clients. Finally talking about it."</p>
+              <p><strong>Frame 2 (Context):</strong> "Scroll Media — social media strategy for service businesses"</p>
+              <p><strong>Frame 3 (Close):</strong> "follow if you're building something"</p>
+            </div>
+            <div class="script-note">Keep on-screen text minimal — lofi vibe. Plain white text, no effects. Appears at the beginning of each beat, disappears before the next line starts.</div>
+          </div>
+
+          <div class="script-section">
+            <div class="script-label">Caption</div>
+            <div class="script-box caption">
+              <p>Two years of building Scroll Media without talking about it publicly.</p>
+              <p>That changes now.</p>
+              <p>I'm Chase — co-founder of Scroll Media, a social media strategy agency for service businesses. We work with med spas, fitness studios, jewelry brands, and more.</p>
+              <p>This account is where I document the build. The strategy behind it, the team, the systems, the failures, and the things that actually work.</p>
+              <p>If you're building something or want to understand what real social media strategy looks like behind the scenes — follow along.</p>
+            </div>
+          </div>
+          <div class="crosspost-note">Cross-posts to TikTok — same video, same caption. Remove IG watermark before uploading.</div>
+        </div>
+      </div>
+
+      <!-- POST 2: LINKEDIN -->
+      <div class="post-card">
+        <div class="post-card-hdr">
+          <span class="pb pb-li">LINKEDIN</span>
+          <span class="post-type-badge pt-linkedin" style="margin-left:6px;">Text Post</span>
+          <div class="post-title" style="margin-left:10px;">Founder Intro — Why Building Publicly</div>
+          <div class="post-owner" style="margin-left:auto;">Chase</div>
+        </div>
+        <div class="post-card-body">
+          <div class="meta-row">
+            <div class="meta-item"><strong>Length:</strong> 200 words</div>
+            <div class="meta-sep">·</div>
+            <div class="meta-item"><strong>CTA:</strong> Connection invite / follow</div>
+            <div class="meta-sep">·</div>
+            <div class="meta-item"><strong>No external links in body</strong></div>
+          </div>
+          <div class="script-section">
+            <div class="script-label">LinkedIn Post</div>
+            <div class="script-box linkedin">
+              <p><span class="beat li-beat">HOOK</span> Two years building Scroll Media. Never talked about it.</p>
+              <p>That changes this week.</p>
+              <p>I'm Chase — co-founder and Chief Strategist at Scroll Media, a social media strategy agency built around one belief: that most service businesses are leaving serious revenue on the table because they're treating Instagram like a content channel instead of a growth channel.</p>
+              <p>We work with med spas, fitness studios, jewelry brands, running retailers — businesses where trust and authority actually drive buying decisions.</p>
+              <p>Starting this week I'm documenting the build. The real version — pricing decisions, team structure, what's working in our client accounts, and what we've gotten wrong.</p>
+              <p>If you run a service business and want to understand what a real social media strategy looks like — or if you're building an agency yourself — follow along.</p>
+              <p>DM me if you want to talk strategy. Always happy to connect.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- POST 3: THREADS -->
+      <div class="post-card">
+        <div class="post-card-hdr">
+          <span class="pb pb-th">THREADS</span><span class="pb pb-x" style="margin-left:4px;">X</span>
+          <span class="post-type-badge pt-text" style="margin-left:6px;">Written Post</span>
+          <div class="post-title" style="margin-left:10px;">Account Launch Announcement</div>
+          <div class="post-owner" style="margin-left:auto;">Chase</div>
+        </div>
+        <div class="post-card-body">
+          <div class="script-section">
+            <div class="script-label">Threads / X Post</div>
+            <div class="script-box threads">
+              <p><span class="beat threads-beat">COPY</span> Starting to document building Scroll Media publicly.</p>
+              <p>Not the highlight reel. The actual thing.</p>
+              <p>8 clients. A small team. A real agency with real problems. And a lot of things I've never said out loud about what this process actually looks like.</p>
+              <p>Follow if you're building something.</p>
+            </div>
+            <div class="script-note">Mirror to X — exact same copy, no edits. Target: 180–220 characters. Reply to first comment within 60 minutes of posting.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── DAY 2 ── -->
+    <div class="day-block" id="day2">
+      <div class="day-block-hdr">
+        <div><div class="day-num">02</div></div>
+        <div class="day-info">
+          <div class="day-name">Tuesday</div>
+          <div class="day-date">Week 1, Day 2</div>
+        </div>
+        <div class="day-theme">AI Era Reel + Sharp Take</div>
+      </div>
+
+      <!-- IG REEL: AI ERA -->
+      <div class="post-card">
+        <div class="post-card-hdr">
+          <span class="pb pb-ig">IG</span><span class="pb pb-tt">TT</span>
+          <span class="post-type-badge pt-reel" style="margin-left:6px;">Founder POV Reel</span>
+          <div class="post-title" style="margin-left:10px;">Dispatch No.2 — The AI Era</div>
+          <div class="post-owner" style="margin-left:auto;">Chase</div>
+        </div>
+        <div class="post-card-body">
+          <div class="meta-row">
+            <div class="meta-item"><strong>Pillar:</strong> The Build</div>
+            <div class="meta-sep">·</div>
+            <div class="meta-item"><strong>Framework:</strong> 5-Part Story Arc</div>
+            <div class="meta-sep">·</div>
+            <div class="meta-item"><strong>Source idea:</strong> Chase's list — AI era</div>
+          </div>
+          <div class="script-section">
+            <div class="script-label">Spoken Script</div>
+            <div class="script-box spoken">
+              <p><span class="beat hook">HOOK</span> "We're in the most disruptive era in the history of business. And most agency owners I talk to are terrified of it. I'm not."</p>
+              <p><span class="beat context">CONTEXT</span> "AI is changing everything about how we run Scroll Media. How we build strategy. How we write scripts. How we report to clients. We've built an entire AI stack into our operations."</p>
+              <p><span class="beat tension">TENSION</span> "But here's the thing nobody's saying. AI doesn't replace good strategy. It amplifies it. If your strategy is weak, AI makes your bad content faster. And that's exactly where I see agencies going wrong right now."</p>
+              <p><span class="beat resolve">RESOLVE</span> "The way we think about it at Scroll Media: AI handles the execution layer. Humans own the thinking layer. The moment you flip that — the moment AI is making your strategic decisions — you've lost the one thing your clients are actually paying for."</p>
+              <p><span class="beat close">CLOSE</span> "The agencies that figure this out in the next 12 months are going to be unstoppable. The ones that don't won't exist."</p>
+            </div>
+          </div>
+          <div class="script-section">
+            <div class="script-label">On-Screen Text</div>
+            <div class="script-box onscreen">
+              <p><strong>Frame 1:</strong> "AI won't kill your agency. Bad strategy will."</p>
+              <p><strong>Frame 2:</strong> "AI = execution layer. Humans = thinking layer."</p>
+              <p><strong>Frame 3:</strong> "The agencies that figure this out are going to be unstoppable."</p>
+            </div>
+          </div>
+          <div class="script-section">
+            <div class="script-label">Caption</div>
+            <div class="script-box caption">
+              <p>Most agency owners I talk to are scared of AI. I'm not.</p>
+              <p>At Scroll Media we've built AI into almost every part of our operations — scripting, reporting, strategy research, content ideation. It's made us significantly more efficient.</p>
+              <p>But the one thing AI can't do? Think for your client. Understand their audience. Make the strategic call that turns a good account into a great one.</p>
+              <p>AI amplifies your strategy. It doesn't replace it. If your strategy is weak, AI just makes your bad decisions faster.</p>
+              <p>The agencies that understand this in the next 12 months are going to be in a completely different category.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- THREADS: SHARP TAKE -->
+      <div class="post-card">
+        <div class="post-card-hdr">
+          <span class="pb pb-th">THREADS</span><span class="pb pb-x" style="margin-left:4px;">X</span>
+          <span class="post-type-badge pt-text" style="margin-left:6px;">Sharp Take</span>
+          <div class="post-title" style="margin-left:10px;">AI Amplifies Strategy</div>
+          <div class="post-owner" style="margin-left:auto;">Chase</div>
+        </div>
+        <div class="post-card-body">
+          <div class="script-section">
+            <div class="script-label">Threads / X Post</div>
+            <div class="script-box threads">
+              <p><span class="beat threads-beat">COPY</span> AI doesn't replace good strategy.</p>
+              <p>It amplifies it.</p>
+              <p>Which means if your strategy is weak, AI just makes your bad content faster. Most agencies are learning this the hard way right now.</p>
+              <p>The execution layer belongs to AI. The thinking layer belongs to humans. Flip that and you've lost the only thing your clients are actually paying for.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── DAY 3 ── -->
+    <div class="day-block" id="day3">
+      <div class="day-block-hdr">
+        <div><div class="day-num">03</div></div>
+        <div class="day-info">
+          <div class="day-name">Wednesday</div>
+          <div class="day-date">Week 1, Day 3</div>
+        </div>
+        <div class="day-theme">Counter-Position + Open Loop + LinkedIn Carousel</div>
+      </div>
+
+      <!-- IG REEL: IG BRAINWASHED -->
+      <div class="post-card">
+        <div class="post-card-hdr">
+          <span class="pb pb-ig">IG</span><span class="pb pb-tt">TT</span>
+          <span class="post-type-badge pt-reel" style="margin-left:6px;">Founder POV Reel</span>
+          <div class="post-title" style="margin-left:10px;">Dispatch No.3 — Instagram Has Brainwashed Us</div>
+          <div class="post-owner" style="margin-left:auto;">Chase</div>
+        </div>
+        <div class="post-card-body">
+          <div class="meta-row">
+            <div class="meta-item"><strong>Framework:</strong> Counter-Position</div>
+            <div class="meta-sep">·</div>
+            <div class="meta-item"><strong>Source idea:</strong> Chase's list — HQ audience vs low quality audience</div>
+          </div>
+          <div class="script-section">
+            <div class="script-label">Spoken Script</div>
+            <div class="script-box spoken">
+              <p><span class="beat hook">HOOK</span> "Instagram has been lying to you about what actually matters. And it's costing you real money."</p>
+              <p><span class="beat context">CONTEXT</span> "For years the platform has pushed one metric in front of your face: views and followers. More views. More followers. Grow grow grow."</p>
+              <p><span class="beat tension">TENSION</span> "Here's the problem. Views tell you how many people scrolled past your content. They don't tell you how many people wanted to buy from you. I've seen accounts with 50,000 followers that couldn't book a client call. And I've seen accounts with 3,000 followers that were printing revenue. The difference has nothing to do with reach."</p>
+              <p><span class="beat resolve">RESOLVE</span> "The metric that actually predicts business outcomes? Save rate. The percentage of people who saved your content. That's your HQ audience — the people who found your content valuable enough to come back to. One save from a potential client is worth more than a thousand views from someone who'll never buy."</p>
+              <p><span class="beat close">CLOSE</span> "Stop chasing the audience that scrolls. Start building the audience that saves."</p>
+            </div>
+          </div>
+          <div class="script-section">
+            <div class="script-label">On-Screen Text</div>
+            <div class="script-box onscreen">
+              <p><strong>Frame 1:</strong> "Views ≠ revenue"</p>
+              <p><strong>Frame 2:</strong> "50K followers. Zero clients. This is a real story."</p>
+              <p><strong>Frame 3:</strong> "Save rate = your actual audience quality"</p>
+            </div>
+          </div>
+          <div class="script-section">
+            <div class="script-label">Caption</div>
+            <div class="script-box caption">
+              <p>Instagram has brainwashed service businesses into chasing the wrong metric.</p>
+              <p>Views are not revenue. Followers are not clients. Reach is not trust.</p>
+              <p>The metric that actually predicts whether Instagram is working for your business: save rate. The percentage of viewers who saved your content. Those are the people who found it valuable enough to come back.</p>
+              <p>One save from the right person is worth more than 10,000 views from the wrong audience.</p>
+              <p>Stop building for reach. Start building for retention.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- THREADS: OPEN LOOP -->
+      <div class="post-card">
+        <div class="post-card-hdr">
+          <span class="pb pb-th">THREADS</span><span class="pb pb-x" style="margin-left:4px;">X</span>
+          <span class="post-type-badge pt-text" style="margin-left:6px;">Open Loop</span>
+          <div class="post-title" style="margin-left:10px;">The Metric Nobody Talks About</div>
+          <div class="post-owner" style="margin-left:auto;">Chase</div>
+        </div>
+        <div class="post-card-body">
+          <div class="script-section">
+            <div class="script-label">Threads / X Post</div>
+            <div class="script-box threads">
+              <p><span class="beat threads-beat">COPY</span> There's one Instagram metric that predicts business outcomes better than views, followers, or engagement rate.</p>
+              <p>Most service businesses have never heard of it.</p>
+              <p>Most agencies never track it.</p>
+              <p>We look at it first on every single account we manage.</p>
+            </div>
+            <div class="script-note">Leave it open. Do not reveal the metric. The goal is replies asking "what is it?" — then respond and drive the conversation.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- LINKEDIN CAROUSEL -->
+      <div class="post-card">
+        <div class="post-card-hdr">
+          <span class="pb pb-li">LINKEDIN</span>
+          <span class="post-type-badge pt-linkedin" style="margin-left:6px;">PDF Carousel</span>
+          <div class="post-title" style="margin-left:10px;">How We Build a Content Strategy in 30 Days</div>
+          <div class="post-owner" style="margin-left:auto;">Chase</div>
+        </div>
+        <div class="post-card-body">
+          <div class="meta-row">
+            <div class="meta-item"><strong>Slides:</strong> 7</div>
+            <div class="meta-sep">·</div>
+            <div class="meta-item"><strong>Goal:</strong> Saves + DMs</div>
+            <div class="meta-sep">·</div>
+            <div class="meta-item"><strong>No external links in post body</strong></div>
+          </div>
+          <div class="script-section">
+            <div class="script-label">Slide Scripts</div>
+            <div class="script-box linkedin">
+              <p><span class="beat slide">SLIDE 1</span> <strong>"Most agencies start with content. We start with strategy. Here's the exact 30-day process we use for every new client."</strong></p>
+              <p><span class="beat slide">SLIDE 2</span> <strong>Week 1: The IVP Deep-Dive</strong><br>Before a single post goes live, we spend an entire week understanding exactly who we're talking to. Not demographics — psychology. What does this person believe before they see our client's content? What are they afraid of? What does success look and feel like for them?</p>
+              <p><span class="beat slide">SLIDE 3</span> <strong>Week 2: Content Architecture</strong><br>We build the content system — pillars, mix (40% TOFU / 35% MOFU / 25% BOFU), posting cadence, and format assignments per day. Every post has a job before it's created.</p>
+              <p><span class="beat slide">SLIDE 4</span> <strong>Week 3: SEO + Profile Optimization</strong><br>Instagram is a search engine. We optimize the bio, highlights, and keyword structure before the first post goes live. Most brands skip this entirely.</p>
+              <p><span class="beat slide">SLIDE 5</span> <strong>Week 4: Format Testing Launch</strong><br>We launch 4–6 different format types simultaneously to gather signal data. We're not trying to go viral — we're trying to understand which formats the algorithm responds to for this specific account.</p>
+              <p><span class="beat slide">SLIDE 6</span> <strong>The Result</strong><br>By Day 30, we have real performance data, a proven format stack, and a content calendar built on signal — not guesswork. That's what the next 5 months are built on.</p>
+              <p><span class="beat slide">SLIDE 7</span> <strong>Save this for your next strategy review.</strong><br>If you're a service business owner evaluating your social media approach — DM me. I'll tell you exactly what I'd do differently with your account.</p>
+            </div>
+          </div>
+          <div class="script-section">
+            <div class="script-label">LinkedIn Post Copy (above carousel)</div>
+            <div class="script-box linkedin">
+              <p><span class="beat li-beat">COPY</span> Most agencies pitch strategy. Most agencies start with content.</p>
+              <p>Here's the actual 30-day onboarding process we run for every new Scroll Media client — and why the order of operations matters more than the content itself.</p>
+              <p>[Swipe through]</p>
+              <p>If you run a service business and want to understand what a real social media strategy looks like before a single post goes live — DM me.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── DAY 4 ── -->
+    <div class="day-block" id="day4">
+      <div class="day-block-hdr">
+        <div><div class="day-num">04</div></div>
+        <div class="day-info">
+          <div class="day-name">Thursday</div>
+          <div class="day-date">Week 1, Day 4</div>
+        </div>
+        <div class="day-theme">Operation Reel + Useful Tip</div>
+      </div>
+
+      <div class="post-card">
+        <div class="post-card-hdr">
+          <span class="pb pb-ig">IG</span><span class="pb pb-tt">TT</span>
+          <span class="post-type-badge pt-reel" style="margin-left:6px;">Founder POV Reel</span>
+          <div class="post-title" style="margin-left:10px;">Dispatch No.4 — What Running an Agency Actually Looks Like</div>
+          <div class="post-owner" style="margin-left:auto;">Chase</div>
+        </div>
+        <div class="post-card-body">
+          <div class="meta-row">
+            <div class="meta-item"><strong>Pillar:</strong> The Operation</div>
+            <div class="meta-sep">·</div>
+            <div class="meta-item"><strong>Framework:</strong> Earned Insight</div>
+            <div class="meta-sep">·</div>
+            <div class="meta-item"><strong>Length:</strong> 30–45s</div>
+          </div>
+          <div class="script-section">
+            <div class="script-label">Spoken Script</div>
+            <div class="script-box spoken">
+              <p><span class="beat hook">HOOK</span> "Most people think running a social media agency means spending your days making content. That's the smallest part of the job."</p>
+              <p><span class="beat context">CONTEXT</span> "A typical week at Scroll Media looks like this: Monday is strategy reviews — pulling performance data, identifying what's working and what needs to change for each client account."</p>
+              <p><span class="beat tension">TENSION</span> "Tuesday and Wednesday is AM syncs, content approval calls, and adjusting strategies based on real-time signals from the algorithm. And then somewhere in between all of that, there's the actual content creation — scripting, reviewing edits, writing captions. What I didn't expect when I started this agency was how much of the job is communicating and thinking — not creating."</p>
+              <p><span class="beat resolve">RESOLVE</span> "The content is maybe 20% of the work. The strategy, the data analysis, the client communication, and the system maintenance — that's the other 80%. And that 80% is what clients are actually paying for, even if they think they're paying for posts."</p>
+              <p><span class="beat close">CLOSE</span> "If you're building an agency, build the 80% first. The content will follow."</p>
+            </div>
+          </div>
+          <div class="script-section">
+            <div class="script-label">On-Screen Text</div>
+            <div class="script-box onscreen">
+              <p><strong>Frame 1:</strong> "Content creation = 20% of the job"</p>
+              <p><strong>Frame 2:</strong> "Strategy + data + systems = the other 80%"</p>
+            </div>
+          </div>
+          <div class="script-section">
+            <div class="script-label">Caption</div>
+            <div class="script-box caption">
+              <p>The thing nobody tells you about running a social media agency: the content is the smallest part of the job.</p>
+              <p>The actual work is strategy, data analysis, client communication, and building systems that scale. Content creation is maybe 20% of what we do at Scroll Media.</p>
+              <p>Which means if you're evaluating a social media agency based on their content output alone, you're measuring the wrong thing.</p>
+              <p>Ask them about their process. Their reporting. How they make decisions. That's where the real value is.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="post-card">
+        <div class="post-card-hdr">
+          <span class="pb pb-th">THREADS</span><span class="pb pb-x" style="margin-left:4px;">X</span>
+          <span class="post-type-badge pt-text" style="margin-left:6px;">Useful Tip</span>
+          <div class="post-title" style="margin-left:10px;">The First Thing We Check</div>
+          <div class="post-owner" style="margin-left:auto;">Chase</div>
+        </div>
+        <div class="post-card-body">
+          <div class="script-section">
+            <div class="script-label">Threads / X Post</div>
+            <div class="script-box threads">
+              <p><span class="beat threads-beat">COPY</span> First thing we look at when auditing a service business Instagram account: save rate.</p>
+              <p>Not followers. Not reach. Not engagement rate.</p>
+              <p>Save rate tells you how many people found the content valuable enough to return to. That's your actual audience. The rest are scrollers.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── DAY 5 ── -->
+    <div class="day-block" id="day5">
+      <div class="day-block-hdr">
+        <div><div class="day-num">05</div></div>
+        <div class="day-info"><div class="day-name">Friday</div><div class="day-date">Week 1, Day 5</div></div>
+        <div class="day-theme">Contrary Take + LinkedIn Text</div>
+      </div>
+
+      <div class="post-card">
+        <div class="post-card-hdr">
+          <span class="pb pb-th">THREADS</span><span class="pb pb-x" style="margin-left:4px;">X</span>
+          <span class="post-type-badge pt-text" style="margin-left:6px;">Contrary Take</span>
+          <div class="post-title" style="margin-left:10px;">Consistency Is Not the Strategy</div>
+          <div class="post-owner" style="margin-left:auto;">Chase</div>
+        </div>
+        <div class="post-card-body">
+          <div class="script-section">
+            <div class="script-label">Threads / X Post</div>
+            <div class="script-box threads">
+              <p><span class="beat threads-beat">COPY</span> Consistency is not the key to Instagram growth.</p>
+              <p>Consistency without strategy is just expensive noise.</p>
+              <p>Posting every day with no clear audience, no content system, and no performance feedback loop is not a strategy. It's an activity that feels like work.</p>
+              <p>The accounts that grow consistently are the ones with a system — not the ones with a schedule.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="post-card">
+        <div class="post-card-hdr">
+          <span class="pb pb-li">LINKEDIN</span>
+          <span class="post-type-badge pt-linkedin" style="margin-left:6px;">Text Post</span>
+          <div class="post-title" style="margin-left:10px;">What 8 Client Accounts Teach You</div>
+          <div class="post-owner" style="margin-left:auto;">Chase</div>
+        </div>
+        <div class="post-card-body">
+          <div class="script-section">
+            <div class="script-label">LinkedIn Post</div>
+            <div class="script-box linkedin">
+              <p><span class="beat li-beat">HOOK</span> Running 8 client accounts simultaneously forces you to see patterns that are invisible when you're managing just one.</p>
+              <p>The biggest one: most service businesses are posting content that speaks to everyone and converts no one.</p>
+              <p>The reason isn't bad content. It's a missing IVP — an Ideal Viewer Profile. A specific understanding of the exact person you're creating for, what they believe before they see your post, and what outcome they're actually hoping for.</p>
+              <p>The accounts in our portfolio that are growing fastest all have one thing in common: every piece of content is built for one person, not for an audience.</p>
+              <p>The content that speaks to everyone is the content no one saves, shares, or acts on.</p>
+              <p>Build for one person. Distribute to thousands. That's the model.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── DAY 6 ── -->
+    <div class="day-block" id="day6">
+      <div class="day-block-hdr" style="background:#4a5568;">
+        <div><div class="day-num">06</div></div>
+        <div class="day-info"><div class="day-name">Saturday</div><div class="day-date">Week 1, Day 6</div></div>
+        <div class="day-theme">Real Moment (Threads only)</div>
+      </div>
+
+      <div class="post-card">
+        <div class="post-card-hdr">
+          <span class="pb pb-th">THREADS</span><span class="pb pb-x" style="margin-left:4px;">X</span>
+          <span class="post-type-badge pt-text" style="margin-left:6px;">Real Moment</span>
+          <div class="post-title" style="margin-left:10px;">Week 1 Reflection</div>
+          <div class="post-owner" style="margin-left:auto;">Chase</div>
+        </div>
+        <div class="post-card-body">
+          <div class="script-section">
+            <div class="script-label">Threads / X Post</div>
+            <div class="script-box threads">
+              <p><span class="beat threads-beat">COPY</span> Week 1 of posting publicly about building Scroll Media.</p>
+              <p>The thing I didn't expect: how uncomfortable it is to say things you've been thinking privately for two years.</p>
+              <p>Worth it anyway.</p>
+            </div>
+            <div class="script-note">Keep it short and human. This is the authenticity post — no agenda, no CTA, no insight to deliver. Just real.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── DAY 7 ── -->
+    <div class="day-block" id="day7">
+      <div class="day-block-hdr" style="background:#4a5568;">
+        <div><div class="day-num">07</div></div>
+        <div class="day-info"><div class="day-name">Sunday</div><div class="day-date">Week 1, Day 7</div></div>
+        <div class="day-theme">Unscripted Reel + Sunday Reflection</div>
+      </div>
+
+      <div class="post-card">
+        <div class="post-card-hdr">
+          <span class="pb pb-ig">IG</span><span class="pb pb-tt">TT</span>
+          <span class="post-type-badge pt-reel" style="margin-left:6px;">Sunday Unscripted</span>
+          <div class="post-title" style="margin-left:10px;">Dispatch No.5 — The Founder Doubt</div>
+          <div class="post-owner" style="margin-left:auto;">Chase</div>
+        </div>
+        <div class="post-card-body">
+          <div class="meta-row">
+            <div class="meta-item"><strong>Pillar:</strong> The Person</div>
+            <div class="meta-sep">·</div>
+            <div class="meta-item"><strong>Framework:</strong> Unscripted — talking points only</div>
+            <div class="meta-sep">·</div>
+            <div class="meta-item"><strong>Source idea:</strong> Chase's list — questioning yourself, comparing to others</div>
+          </div>
+          <div class="script-section">
+            <div class="script-label">Talking Points (not a full script — riff from these)</div>
+            <div class="script-box spoken" style="border-left-color:var(--highlighter-dark);">
+              <p>This is the unscripted Sunday post. Don't rehearse. Use these as mental anchors only.</p>
+              <p>• The founder doubt thing is real — the constant questioning whether you're doing enough, moving fast enough, making the right decisions</p>
+              <p>• Talk about a specific moment from this week where you felt it — not in general terms, in a specific one</p>
+              <p>• The thing that helps: coming back to what actually moved the needle this week, not what didn't happen yet</p>
+              <p>• End on something honest — not motivational. Real.</p>
+            </div>
+            <div class="script-note">No structure required. No on-screen text needed. Record once, don't re-record. The raw quality is the point.</div>
+          </div>
+          <div class="script-section">
+            <div class="script-label">Caption</div>
+            <div class="script-box caption">
+              <p>Something nobody talks about in founder content: the part where you question everything.</p>
+              <p>Whether you're moving fast enough. Whether your decisions are right. Whether what you're building is actually what you think it is.</p>
+              <p>That feeling doesn't go away when you hit your first client, or your fifth, or your eighth. You just get better at sitting with it.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="post-card">
+        <div class="post-card-hdr">
+          <span class="pb pb-th">THREADS</span><span class="pb pb-x" style="margin-left:4px;">X</span>
+          <span class="post-type-badge pt-text" style="margin-left:6px;">Real Moment</span>
+          <div class="post-title" style="margin-left:10px;">End of Week 1</div>
+          <div class="post-owner" style="margin-left:auto;">Chase</div>
+        </div>
+        <div class="post-card-body">
+          <div class="script-section">
+            <div class="script-label">Threads / X Post</div>
+            <div class="script-box threads">
+              <p><span class="beat threads-beat">COPY</span> Week 1 done.</p>
+              <p>The founder doubt is loud some days. That's fine.</p>
+              <p>You don't build something worth building by feeling certain about it the whole time.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- WEEK 2 SCRIPTS -->
+<div class="section" id="week2">
+  <div class="wrap">
+    <div class="week-divider">
+      <div>
+        <div class="wd-num">Week 2 · Days 8–14</div>
+        <div class="wd-theme">The Craft — Prove the Expertise</div>
+      </div>
+      <div class="wd-focus">Theme: Frameworks, systems, what actually works, the thinking behind strategy</div>
+    </div>
+
+    <!-- DAY 8 -->
+    <div class="day-block" id="day8">
+      <div class="day-block-hdr">
+        <div><div class="day-num">08</div></div>
+        <div class="day-info"><div class="day-name">Monday</div><div class="day-date">Week 2, Day 8</div></div>
+        <div class="day-theme">Bottleneck + AI Efficiency + LinkedIn Carousel</div>
+      </div>
+
+      <div class="post-card">
+        <div class="post-card-hdr">
+          <span class="pb pb-ig">IG</span><span class="pb pb-tt">TT</span>
+          <span class="post-type-badge pt-reel" style="margin-left:6px;">Founder POV Reel</span>
+          <div class="post-title" style="margin-left:10px;">Dispatch No.6 — The Bottleneck</div>
+          <div class="post-owner" style="margin-left:auto;">Chase</div>
+        </div>
+        <div class="post-card-body">
+          <div class="meta-row">
+            <div class="meta-item"><strong>Pillar:</strong> The Craft</div>
+            <div class="meta-sep">·</div>
+            <div class="meta-item"><strong>Framework:</strong> Counter-Position + 5-Part Arc</div>
+            <div class="meta-sep">·</div>
+            <div class="meta-item"><strong>Source idea:</strong> Chase's list — #1 bottleneck + AI efficiency</div>
+          </div>
+          <div class="script-section">
+            <div class="script-label">Spoken Script</div>
+            <div class="script-box spoken">
+              <p><span class="beat hook">HOOK</span> "The number one bottleneck in most service businesses right now has nothing to do with clients, revenue, or even team. It's the founder — and specifically how they're spending their time."</p>
+              <p><span class="beat context">CONTEXT</span> "I spent a whole year at Scroll Media doing work that I should have either delegated or automated. Strategy reviews, report formatting, research pulls — things that felt like they needed me but actually just needed a system."</p>
+              <p><span class="beat tension">TENSION</span> "The shift started when I started treating AI like a team member instead of a tool. Not 'how do I use AI to write this?' but 'what tasks am I doing this week that AI should own?' That reframe changed everything. And what I found surprised me."</p>
+              <p><span class="beat resolve">RESOLVE</span> "Most of the work that was keeping me stuck wasn't strategic at all. It was operational. And almost all of it could be handled — better, faster, more consistently — by an AI-assisted system. Which freed me to do the one thing that actually moves the needle: thinking clearly about our clients' strategy."</p>
+              <p><span class="beat close">CLOSE</span> "The bottleneck in your business is almost always you. And almost always fixable."</p>
+            </div>
+          </div>
+          <div class="script-section">
+            <div class="script-label">On-Screen Text</div>
+            <div class="script-box onscreen">
+              <p><strong>Frame 1:</strong> "The bottleneck is you. Fix the system."</p>
+              <p><strong>Frame 2:</strong> "AI as a team member, not a tool"</p>
+              <p><strong>Frame 3:</strong> "Operational work ≠ strategic work"</p>
+            </div>
+          </div>
+          <div class="script-section">
+            <div class="script-label">Caption</div>
+            <div class="script-box caption">
+              <p>The #1 bottleneck in most service businesses: the founder spending time on work that should either be delegated or automated.</p>
+              <p>The reframe that changed how I run Scroll Media: instead of asking "how do I use AI to help with this task?" I started asking "what work am I doing this week that AI should own entirely?"</p>
+              <p>The answer was uncomfortable. Most of my operational work — research, report formatting, scheduling, data pulls — didn't need me. It needed a system.</p>
+              <p>Once that work moved to AI-assisted systems, I got my thinking time back. And that's the only time that actually builds the business.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="post-card">
+        <div class="post-card-hdr">
+          <span class="pb pb-th">THREADS</span><span class="pb pb-x" style="margin-left:4px;">X</span>
+          <span class="post-type-badge pt-text" style="margin-left:6px;">Sharp Take</span>
+          <div class="post-title" style="margin-left:10px;">The Bottleneck Is You</div>
+          <div class="post-owner" style="margin-left:auto;">Chase</div>
+        </div>
+        <div class="post-card-body">
+          <div class="script-section">
+            <div class="script-label">Threads / X Post</div>
+            <div class="script-box threads">
+              <p><span class="beat threads-beat">COPY</span> The number one bottleneck in most service businesses isn't clients, revenue, or headcount.</p>
+              <p>It's the founder doing operational work that should be automated.</p>
+              <p>The shift: stop asking "how do I use AI to help with this?" Start asking "what am I doing this week that AI should own entirely?"</p>
+              <p>The answer is almost always more uncomfortable than you expect.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="post-card">
+        <div class="post-card-hdr">
+          <span class="pb pb-li">LINKEDIN</span>
+          <span class="post-type-badge pt-linkedin" style="margin-left:6px;">PDF Carousel</span>
+          <div class="post-title" style="margin-left:10px;">The 3 Metrics That Actually Predict IG Performance</div>
+          <div class="post-owner" style="margin-left:auto;">Chase</div>
+        </div>
+        <div class="post-card-body">
+          <div class="script-section">
+            <div class="script-label">Slide Scripts</div>
+            <div class="script-box linkedin">
+              <p><span class="beat slide">SLIDE 1</span> <strong>"Instagram gives you 13 metrics to track. Three of them actually predict whether your strategy is working."</strong></p>
+              <p><span class="beat slide">SLIDE 2</span> <strong>Metric 1: Save Rate</strong><br>Saves ÷ Total Views. Target: 2%+. This tells you how many people found your content valuable enough to return to. It's your highest-quality audience signal on the platform.</p>
+              <p><span class="beat slide">SLIDE 3</span> <strong>Metric 2: Share Rate</strong><br>Shares ÷ Total Views. Target: 0.5%+. This is the organic distribution signal. Every share puts your content in front of an audience you didn't pay for. Instagram's algorithm treats shares as the strongest quality signal.</p>
+              <p><span class="beat slide">SLIDE 4</span> <strong>Metric 3: Profile Conversion Rate</strong><br>Link Taps ÷ Profile Visits. Target: 15%+. This tells you what percentage of people who came to your profile actually took action. It's your conversion signal — the bridge between content and business outcome.</p>
+              <p><span class="beat slide">SLIDE 5</span> <strong>The other 10 metrics?</strong><br>Track them. But don't optimize for them. Views, reach, and follower count are outputs of a good strategy — not inputs. Build for saves, shares, and profile conversion. The rest follows.</p>
+              <p><span class="beat slide">SLIDE 6</span> <strong>Save this. Audit your account against these three benchmarks this week.</strong><br>If you want a full account audit — DM me.</p>
+            </div>
+          </div>
+          <div class="script-section">
+            <div class="script-label">LinkedIn Post Copy</div>
+            <div class="script-box linkedin">
+              <p><span class="beat li-beat">COPY</span> Instagram gives service businesses 13 metrics to track.</p>
+              <p>Most teams spend their time on the wrong 10.</p>
+              <p>Here are the three that actually predict whether your social media strategy is working — and the benchmarks we use at Scroll Media across 8 client accounts.</p>
+              <p>[Swipe]</p>
+              <p>Save this before your next marketing review. DM me if you want to run the audit on your account.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- DAY 9 -->
+    <div class="day-block" id="day9">
+      <div class="day-block-hdr">
+        <div><div class="day-num">09</div></div>
+        <div class="day-info"><div class="day-name">Tuesday</div><div class="day-date">Week 2, Day 9</div></div>
+        <div class="day-theme">3 Questions Reel + Useful Tip</div>
+      </div>
+
+      <div class="post-card">
+        <div class="post-card-hdr">
+          <span class="pb pb-ig">IG</span><span class="pb pb-tt">TT</span>
+          <span class="post-type-badge pt-reel" style="margin-left:6px;">Founder POV Reel</span>
+          <div class="post-title" style="margin-left:10px;">Dispatch No.7 — 3 Questions Before We Write Anything</div>
+          <div class="post-owner" style="margin-left:auto;">Chase</div>
+        </div>
+        <div class="post-card-body">
+          <div class="meta-row">
+            <div class="meta-item"><strong>Pillar:</strong> The Craft</div>
+            <div class="meta-sep">·</div>
+            <div class="meta-item"><strong>Framework:</strong> Earned Insight + Framework List</div>
+          </div>
+          <div class="script-section">
+            <div class="script-label">Spoken Script</div>
+            <div class="script-box spoken">
+              <p><span class="beat hook">HOOK</span> "Before we write a single piece of content for a new client, we ask three questions. Most agencies never ask any of them."</p>
+              <p><span class="beat context">CONTEXT</span> "Every new Scroll Media client goes through what we call an IVP session — Ideal Viewer Profile. And these three questions are the core of it."</p>
+              <p><span class="beat tension">TENSION</span> "Question one: what does this person believe about this topic before they ever see our content? Not what we want them to believe — what do they currently believe? Because if you don't know that, you're writing into a vacuum. Question two: what are they afraid of? Not in general — about this specific product or service. And question three — and this one changes everything — what does success actually look and feel like for them the day after they buy? Not features. Outcomes."</p>
+              <p><span class="beat resolve">RESOLVE</span> "When you have answers to all three, content strategy becomes almost obvious. You're not guessing at what to post — you're solving a specific problem for a specific person. Every post has a job."</p>
+              <p><span class="beat close">CLOSE</span> "Most content fails because it was created before these questions were answered."</p>
+            </div>
+          </div>
+          <div class="script-section">
+            <div class="script-label">On-Screen Text</div>
+            <div class="script-box onscreen">
+              <p><strong>Frame 1:</strong> "3 questions. Most agencies ask zero."</p>
+              <p><strong>Frame 2:</strong> "Q1: What do they currently believe? Q2: What are they afraid of? Q3: What does success feel like?"</p>
+              <p><strong>Frame 3:</strong> "When you have these answers, strategy becomes obvious."</p>
+            </div>
+          </div>
+          <div class="script-section">
+            <div class="script-label">Caption</div>
+            <div class="script-box caption">
+              <p>The three questions we ask before writing a single piece of content for a new client:</p>
+              <p>1. What does this person currently believe about this topic — before they see our content?</p>
+              <p>2. What are they afraid of?</p>
+              <p>3. What does success look and feel like for them the day after they buy?</p>
+              <p>When you have genuine answers to all three, content strategy stops being guesswork. Every post has a specific job. Every piece of content is built for a real person, not a demographic.</p>
+              <p>Most content fails because these questions were never answered.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="post-card">
+        <div class="post-card-hdr">
+          <span class="pb pb-th">THREADS</span><span class="pb pb-x" style="margin-left:4px;">X</span>
+          <span class="post-type-badge pt-text" style="margin-left:6px;">Useful Tip</span>
+          <div class="post-title" style="margin-left:10px;">The Question That Unlocks Strategy</div>
+          <div class="post-owner" style="margin-left:auto;">Chase</div>
+        </div>
+        <div class="post-card-body">
+          <div class="script-section">
+            <div class="script-label">Threads / X Post</div>
+            <div class="script-box threads">
+              <p><span class="beat threads-beat">COPY</span> The question that unlocks every content strategy:</p>
+              <p>"What does this person believe before they ever see this content?"</p>
+              <p>Not what you want them to believe. Not your product's features. What they already believe — right now — before you say a word.</p>
+              <p>When you can answer that honestly, strategy becomes obvious.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- DAY 10 -->
+    <div class="day-block" id="day10">
+      <div class="day-block-hdr">
+        <div><div class="day-num">10</div></div>
+        <div class="day-info"><div class="day-name">Wednesday</div><div class="day-date">Week 2, Day 10</div></div>
+        <div class="day-theme">KPI Green Screen Reel + Open Loop</div>
+      </div>
+
+      <div class="post-card">
+        <div class="post-card-hdr">
+          <span class="pb pb-ig">IG</span><span class="pb pb-tt">TT</span>
+          <span class="post-type-badge pt-reel" style="margin-left:6px;">Green Screen Reel</span>
+          <div class="post-title" style="margin-left:10px;">Dispatch No.8 — The KPI Cheat Sheet</div>
+          <div class="post-owner" style="margin-left:auto;">Chase</div>
+        </div>
+        <div class="post-card-body">
+          <div class="meta-row">
+            <div class="meta-item"><strong>Pillar:</strong> The Craft</div>
+            <div class="meta-sep">·</div>
+            <div class="meta-item"><strong>Format:</strong> Green screen — Chase in front of a clean KPI graphic</div>
+            <div class="meta-sep">·</div>
+            <div class="meta-item"><strong>Source idea:</strong> Chase's list — tracking IG metrics that actually matter</div>
+          </div>
+          <div class="callout lime" style="margin-bottom:16px;">
+            <div>🎬</div>
+            <div class="callout-text"><strong>Production note:</strong> Use green screen or CapCut background swap. Behind Chase: a clean, simple graphic showing 3 metrics — Save Rate, Share Rate, Profile Conversion Rate — with target percentages. Keep the graphic minimal. Black text on white or navy background.</div>
+          </div>
+          <div class="script-section">
+            <div class="script-label">Spoken Script</div>
+            <div class="script-box spoken">
+              <p><span class="beat hook">HOOK</span> "Here's the KPI cheat sheet I use every single month across every Scroll Media client account. Three numbers. That's it."</p>
+              <p><span class="beat context">CONTEXT</span> "Instagram gives you 13 metrics. Most of them are noise. These three are signal."</p>
+              <p><span class="beat tension">TENSION</span> "Save rate — you want 2% or higher. That's the percentage of viewers who saved your content. Those are your best potential clients. Share rate — 0.5% or higher. Every share is organic distribution you didn't pay for. And Profile Conversion Rate — link taps divided by profile visits. Target 15% or above. That's how many people who came to your profile actually took action."</p>
+              <p><span class="beat resolve">RESOLVE</span> "If all three of these are healthy, your Instagram is working for your business — regardless of what your follower count looks like. If any of them are below these benchmarks, that's where your strategy needs to focus."</p>
+              <p><span class="beat close">CLOSE</span> "Save this. Run the audit on your own account this week."</p>
+            </div>
+          </div>
+          <div class="script-section">
+            <div class="script-label">On-Screen Text</div>
+            <div class="script-box onscreen">
+              <p><strong>Persistent overlay (throughout):</strong> The KPI graphic stays on screen the whole time — save rate, share rate, PCR with targets.</p>
+              <p><strong>Frame 1 text:</strong> "Stop tracking the wrong 10."</p>
+              <p><strong>Final frame:</strong> "Save this cheat sheet."</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="post-card">
+        <div class="post-card-hdr">
+          <span class="pb pb-th">THREADS</span><span class="pb pb-x" style="margin-left:4px;">X</span>
+          <span class="post-type-badge pt-text" style="margin-left:6px;">Open Loop</span>
+          <div class="post-title" style="margin-left:10px;">The System We Built</div>
+          <div class="post-owner" style="margin-left:auto;">Chase</div>
+        </div>
+        <div class="post-card-body">
+          <div class="script-section">
+            <div class="script-label">Threads / X Post</div>
+            <div class="script-box threads">
+              <p><span class="beat threads-beat">COPY</span> We have a framework for deciding exactly what to post for every client, in every niche, at every stage of their account.</p>
+              <p>It took two years to build.</p>
+              <p>Here's the short version: before we decide what to create, we know exactly who we're creating for, what they believe, and what action they need to take next.</p>
+              <p>Everything else follows from that. Format, frequency, hook style, CTA — all of it is downstream of those three things.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- DAY 11 -->
+    <div class="day-block" id="day11">
+      <div class="day-block-hdr">
+        <div><div class="day-num">11</div></div>
+        <div class="day-info"><div class="day-name">Thursday</div><div class="day-date">Week 2, Day 11</div></div>
+        <div class="day-theme">Client Meeting Reel + Contrary Take + LinkedIn</div>
+      </div>
+
+      <div class="post-card">
+        <div class="post-card-hdr">
+          <span class="pb pb-ig">IG</span><span class="pb pb-tt">TT</span>
+          <span class="post-type-badge pt-reel" style="margin-left:6px;">Founder POV Reel</span>
+          <div class="post-title" style="margin-left:10px;">Dispatch No.9 — The Conversation That Changed My Thinking</div>
+          <div class="post-owner" style="margin-left:auto;">Chase</div>
+        </div>
+        <div class="post-card-body">
+          <div class="meta-row">
+            <div class="meta-item"><strong>Pillar:</strong> The Build</div>
+            <div class="meta-sep">·</div>
+            <div class="meta-item"><strong>Framework:</strong> Stakes Open / Story Arc</div>
+          </div>
+          <div class="script-section">
+            <div class="script-label">Spoken Script</div>
+            <div class="script-box spoken">
+              <p><span class="beat hook">HOOK</span> "A client asked me a question last year that I didn't have a good answer to. And the fact that I couldn't answer it changed the entire way I think about content strategy."</p>
+              <p><span class="beat context">CONTEXT</span> "We were in a quarterly review. Account was performing — follower growth was up, engagement was solid. She looked at the report and asked: 'But where are the leads?'"</p>
+              <p><span class="beat tension">TENSION</span> "I had every metric I could pull. Views up. Saves up. Reach up. And I couldn't tell her where the leads were coming from because we hadn't built the system to track them. That was a failure — not of the content, but of the strategy. We had built a great content machine and forgotten to attach a business outcome to it. That question kept me up for three days."</p>
+              <p><span class="beat resolve">RESOLVE</span> "What came out of that conversation was the ROI system we now build into every account from day one. Every content pillar has a defined conversion path. Every CTA points to a trackable action. Before we go live, the client and the team both know exactly how social connects to revenue for their specific business."</p>
+              <p><span class="beat close">CLOSE</span> "Great content without a conversion path isn't a strategy. It's a portfolio."</p>
+            </div>
+          </div>
+          <div class="script-section">
+            <div class="script-label">On-Screen Text</div>
+            <div class="script-box onscreen">
+              <p><strong>Frame 1:</strong> "She asked 'where are the leads?' I had no answer."</p>
+              <p><strong>Frame 2:</strong> "Content without a conversion path = a portfolio, not a strategy"</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="post-card">
+        <div class="post-card-hdr">
+          <span class="pb pb-th">THREADS</span><span class="pb pb-x" style="margin-left:4px;">X</span>
+          <span class="post-type-badge pt-text" style="margin-left:6px;">Contrary Take</span>
+          <div class="post-title" style="margin-left:10px;">Engagement Rate Is Overrated</div>
+          <div class="post-owner" style="margin-left:auto;">Chase</div>
+        </div>
+        <div class="post-card-body">
+          <div class="script-section">
+            <div class="script-label">Threads / X Post</div>
+            <div class="script-box threads">
+              <p><span class="beat threads-beat">COPY</span> Engagement rate is overrated.</p>
+              <p>It tells you how many people tapped the like button. It tells you almost nothing about whether your social media is building your business.</p>
+              <p>The metric that actually matters for service businesses: Profile Conversion Rate. How many of the people who visited your profile took a real action.</p>
+              <p>Likes are easy. Action is the signal.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="post-card">
+        <div class="post-card-hdr">
+          <span class="pb pb-li">LINKEDIN</span>
+          <span class="post-type-badge pt-linkedin" style="margin-left:6px;">Text Post</span>
+          <div class="post-title" style="margin-left:10px;">What Organic Social Is Actually Meant to Do</div>
+          <div class="post-owner" style="margin-left:auto;">Chase</div>
+        </div>
+        <div class="post-card-body">
+          <div class="script-section">
+            <div class="script-label">LinkedIn Post</div>
+            <div class="script-box linkedin">
+              <p><span class="beat li-beat">HOOK</span> Most service businesses treat Instagram as a content channel. The ones growing revenue treat it as a trust channel.</p>
+              <p>The difference is a different definition of what organic social is actually supposed to do.</p>
+              <p>Organic social has four jobs, in this order:</p>
+              <p>1. Get in front of the highest-quality audience — not the largest audience</p>
+              <p>2. Signal to the algorithm that your content is worth distributing</p>
+              <p>3. Build genuine brand trust over time through consistent, valuable, specific content</p>
+              <p>4. Create conversion pathways that connect content to real business outcomes</p>
+              <p>Most brands are optimizing for job 1 (reach) and ignoring jobs 2, 3, and 4 entirely. That's why they're posting consistently and seeing nothing change in their business.</p>
+              <p>Social media that doesn't serve all four jobs isn't a strategy. It's a content calendar.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- DAY 12 -->
+    <div class="day-block" id="day12">
+      <div class="day-block-hdr">
+        <div><div class="day-num">12</div></div>
+        <div class="day-info"><div class="day-name">Friday</div><div class="day-date">Week 2, Day 12</div></div>
+        <div class="day-theme">Real Moment (Threads) + LinkedIn Founder POV</div>
+      </div>
+
+      <div class="post-card">
+        <div class="post-card-hdr">
+          <span class="pb pb-th">THREADS</span><span class="pb pb-x" style="margin-left:4px;">X</span>
+          <span class="post-type-badge pt-text" style="margin-left:6px;">Real Moment</span>
+          <div class="post-title" style="margin-left:10px;">The Question You Don't Have an Answer To</div>
+          <div class="post-owner" style="margin-left:auto;">Chase</div>
+        </div>
+        <div class="post-card-body">
+          <div class="script-section">
+            <div class="script-label">Threads / X Post</div>
+            <div class="script-box threads">
+              <p><span class="beat threads-beat">COPY</span> Had a client ask me something this week I didn't have a clean answer to.</p>
+              <p>That's usually the most valuable kind of question.</p>
+              <p>The times I've been most certain about something have almost never been the times I've learned the most. The uncertainty is where the real strategy gets built.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="post-card">
+        <div class="post-card-hdr">
+          <span class="pb pb-li">LINKEDIN</span>
+          <span class="post-type-badge pt-linkedin" style="margin-left:6px;">Founder POV Text</span>
+          <div class="post-title" style="margin-left:10px;">The Trust Problem</div>
+          <div class="post-owner" style="margin-left:auto;">Chase</div>
+        </div>
+        <div class="post-card-body">
+          <div class="script-section">
+            <div class="script-label">LinkedIn Post</div>
+            <div class="script-box linkedin">
+              <p><span class="beat li-beat">HOOK</span> The hardest part of running a content agency has nothing to do with content.</p>
+              <p>It's convincing business owners to trust a process before they see results.</p>
+              <p>Month one of any engagement looks like a lot of strategy work and not a lot of visible output. IVP development, content architecture, profile optimization, format testing. None of that shows up as a viral post.</p>
+              <p>But it's the foundation that determines whether month three and month six perform. Skip it and you get content that looks good and does nothing.</p>
+              <p>The clients who get the best results from Scroll Media are the ones who trusted the process in months one and two before they had data to justify that trust.</p>
+              <p>That trust is hard to earn. But it's the most valuable thing in a long-term agency relationship.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- DAY 13 -->
+    <div class="day-block" id="day13">
+      <div class="day-block-hdr" style="background:#4a5568;">
+        <div><div class="day-num">13</div></div>
+        <div class="day-info"><div class="day-name">Saturday</div><div class="day-date">Week 2, Day 13</div></div>
+        <div class="day-theme">Useful Tip (Threads only)</div>
+      </div>
+
+      <div class="post-card">
+        <div class="post-card-hdr">
+          <span class="pb pb-th">THREADS</span><span class="pb pb-x" style="margin-left:4px;">X</span>
+          <span class="post-type-badge pt-text" style="margin-left:6px;">Useful Tip</span>
+          <div class="post-title" style="margin-left:10px;">Features vs Outcomes</div>
+          <div class="post-owner" style="margin-left:auto;">Chase</div>
+        </div>
+        <div class="post-card-body">
+          <div class="script-section">
+            <div class="script-label">Threads / X Post</div>
+            <div class="script-box threads">
+              <p><span class="beat threads-beat">COPY</span> Fastest way to improve a service business's Instagram:</p>
+              <p>Stop talking about what you do. Start talking about what changes for the client after they hire you.</p>
+              <p>Features: "We offer 3 posts per week, monthly reporting, and a dedicated account manager."</p>
+              <p>Outcomes: "Your potential clients will stop scrolling and start trusting you — before they ever speak to you."</p>
+              <p>One of these gets saved. One gets skipped.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- DAY 14 -->
+    <div class="day-block" id="day14">
+      <div class="day-block-hdr" style="background:#4a5568;">
+        <div><div class="day-num">14</div></div>
+        <div class="day-info"><div class="day-name">Sunday</div><div class="day-date">Week 2, Day 14</div></div>
+        <div class="day-theme">Unscripted Reel + End of Week Reflection</div>
+      </div>
+
+      <div class="post-card">
+        <div class="post-card-hdr">
+          <span class="pb pb-ig">IG</span><span class="pb pb-tt">TT</span>
+          <span class="post-type-badge pt-reel" style="margin-left:6px;">Sunday Unscripted</span>
+          <div class="post-title" style="margin-left:10px;">Dispatch No.10 — End of Week 2</div>
+          <div class="post-owner" style="margin-left:auto;">Chase</div>
+        </div>
+        <div class="post-card-body">
+          <div class="script-section">
+            <div class="script-label">Talking Points (not a script)</div>
+            <div class="script-box spoken" style="border-left-color:var(--highlighter-dark);">
+              <p>• Something specific that happened this week in the business — one real moment</p>
+              <p>• One thing you learned or re-learned about building an agency or creating content</p>
+              <p>• Where your head is at going into week three — honest, not polished</p>
+              <p>• Option: reference one post from this week that got a response you didn't expect — what did people connect with?</p>
+            </div>
+            <div class="script-note">No structure. No on-screen text required. Record once, don't re-record. If it feels a little rough, that's correct.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="post-card">
+        <div class="post-card-hdr">
+          <span class="pb pb-th">THREADS</span><span class="pb pb-x" style="margin-left:4px;">X</span>
+          <span class="post-type-badge pt-text" style="margin-left:6px;">Real Moment</span>
+          <div class="post-title" style="margin-left:10px;">End of Week 2</div>
+          <div class="post-owner" style="margin-left:auto;">Chase</div>
+        </div>
+        <div class="post-card-body">
+          <div class="script-section">
+            <div class="script-label">Threads / X Post</div>
+            <div class="script-box threads">
+              <p><span class="beat threads-beat">COPY</span> Two weeks in.</p>
+              <p>The thing nobody tells you about posting publicly: the posts you're most uncertain about are usually the ones that resonate.</p>
+              <p>The ones you think are too obvious, too basic, or too personal — those are the ones people save.</p>
+              <p>Week 3 starts Monday.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- RACHEL SECTION -->
+<div class="section" id="rachel">
+  <div class="wrap">
+    <div class="sec-ey" style="color:var(--c-rachel-text);">Rachel — scrollmedia.co</div>
+    <h2 class="sec-h">Rachel's Posts — Weeks 1–2</h2>
+    <p class="sec-sub">4 posts for the agency account. Each one paired to complement Chase's content without duplicating it. Rachel owns execution and cross-posting.</p>
+
+    <div class="callout orange">
+      <div>📌</div>
+      <div class="callout-text"><strong>Coordination protocol:</strong> Rachel receives Chase's weekly plan every Monday. Her posts are scheduled 1–2 days after the Chase post they pair with. Never same day unless planned. Every Reel → TikTok. Every educational Carousel → LinkedIn PDF.</div>
+    </div>
+
+    <!-- RACHEL POST 1 -->
+    <div class="day-block">
+      <div class="day-block-hdr" style="background:#b84d00;">
+        <div><div class="day-num">D2</div></div>
+        <div class="day-info"><div class="day-name">Tuesday Week 1</div><div class="day-date">Agency intro — pairs with Chase Day 1</div></div>
+        <div class="day-theme" style="color:rgba(255,255,255,.8);">Reel → TikTok</div>
+      </div>
+      <div class="post-card">
+        <div class="post-card-hdr rachel-hdr">
+          <span class="pb pb-sc">IG</span><span class="pb pb-tt" style="margin-left:4px;">TT</span>
+          <span class="pb pb-rachel" style="margin-left:4px;">RACHEL</span>
+          <span class="post-type-badge pt-reel" style="margin-left:6px;">Culture Reel</span>
+          <div class="post-title" style="margin-left:10px;">Who Is Scroll Media</div>
+        </div>
+        <div class="post-card-body">
+          <div class="meta-row">
+            <div class="meta-item"><strong>Pairs with:</strong> Chase Day 1 launch post</div>
+            <div class="meta-sep">·</div>
+            <div class="meta-item"><strong>Pillar:</strong> Culture</div>
+            <div class="meta-sep">·</div>
+            <div class="meta-item"><strong>Length:</strong> 20–30s</div>
+          </div>
+          <div class="script-section">
+            <div class="script-label rachel-label">Spoken Script / Direction</div>
+            <div class="script-box rachel-box">
+              <p><span class="beat" style="background:#b84d00;">DIRECTION</span> B-Roll + Voiceover or short talking head. Show the team working — real, not staged. Laptops, strategy calls, content reviews.</p>
+              <p><span class="beat hook">VO / HOOK</span> "Most people think social media agencies spend their days making content. We spend ours making strategy."</p>
+              <p><span class="beat context">VO / BODY</span> "Scroll Media is a social-first agency built for service businesses. We work with med spas, fitness studios, jewelry brands, and more — and we build every strategy from scratch around one question: who is this content actually for?"</p>
+              <p><span class="beat close">VO / CLOSE</span> "If you're a service business trying to figure out what Instagram is actually supposed to do for you — that's exactly what we do."</p>
+            </div>
+          </div>
+          <div class="script-section">
+            <div class="script-label rachel-label">Caption</div>
+            <div class="script-box rachel-box">
+              <p>Social media strategy for service businesses — built around audience psychology, not just content output.</p>
+              <p>We work with med spas, fitness studios, jewelry brands, running retailers, and more. Strategy-first. Data-backed. Always.</p>
+              <p>If you want to know what Instagram can actually do for your service business — link in bio.</p>
+            </div>
+          </div>
+          <div class="crosspost-note" style="background:var(--c-rachel);border:1px solid var(--c-rachel-border);">Cross-posts to TikTok — same video, same caption.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- RACHEL POST 2 -->
+    <div class="day-block">
+      <div class="day-block-hdr" style="background:#b84d00;">
+        <div><div class="day-num">D4</div></div>
+        <div class="day-info"><div class="day-name">Thursday Week 1</div><div class="day-date">Education Reel — pairs with Chase Day 3</div></div>
+        <div class="day-theme" style="color:rgba(255,255,255,.8);">Reel → TikTok</div>
+      </div>
+      <div class="post-card">
+        <div class="post-card-hdr rachel-hdr">
+          <span class="pb pb-sc">IG</span><span class="pb pb-tt" style="margin-left:4px;">TT</span>
+          <span class="pb pb-rachel" style="margin-left:4px;">RACHEL</span>
+          <span class="post-type-badge pt-reel" style="margin-left:6px;">Education Reel</span>
+          <div class="post-title" style="margin-left:10px;">3 Things Every Service Business Gets Wrong on Instagram</div>
+        </div>
+        <div class="post-card-body">
+          <div class="crosspost-note" style="background:#e8f3fa;border:1px solid rgba(0,119,181,0.25);">&#128279; <strong>LinkedIn cross-post:</strong> This is an educational carousel candidate. After IG publish, export as PDF and post to scrollmedia.co LinkedIn with rewritten caption (see LinkedIn Strategy section). Lead caption with outcome: "3 mistakes we fix on almost every service business account we audit." DM us CTA on last slide.</div>
+          <div class="script-section">
+            <div class="script-label rachel-label">Spoken Script</div>
+            <div class="script-box rachel-box">
+              <p><span class="beat hook">HOOK</span> "Three mistakes we see on almost every service business Instagram account we audit."</p>
+              <p><span class="beat" style="background:#b84d00;">POINT 1</span> "Optimizing for followers instead of saves. Followers are a vanity number. Saves tell you who actually found your content valuable."</p>
+              <p><span class="beat" style="background:#b84d00;">POINT 2</span> "Talking about features instead of outcomes. Your audience doesn't care what you offer — they care what changes for them after they hire you."</p>
+              <p><span class="beat" style="background:#b84d00;">POINT 3</span> "Posting without a strategy. Consistency is not a strategy. A system is."</p>
+              <p><span class="beat close">CLOSE</span> "Fix any one of these and your Instagram will work harder for your business immediately."</p>
+            </div>
+          </div>
+          <div class="script-section">
+            <div class="script-label rachel-label">Caption</div>
+            <div class="script-box rachel-box">
+              <p>Three Instagram mistakes we see on almost every service business account we audit:</p>
+              <p>1. Tracking followers instead of saves<br>2. Talking about features instead of outcomes<br>3. Posting without a strategic system behind it</p>
+              <p>Fix one of these this week. The results will be noticeable.</p>
+              <p>Want to know which one is hurting your account most? Link in bio for a free audit checklist.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- RACHEL POST 3 -->
+    <div class="day-block">
+      <div class="day-block-hdr" style="background:#b84d00;">
+        <div><div class="day-num">D9</div></div>
+        <div class="day-info"><div class="day-name">Tuesday Week 2</div><div class="day-date">Process Reel — pairs with Chase Day 9</div></div>
+        <div class="day-theme" style="color:rgba(255,255,255,.8);">Reel → TikTok</div>
+      </div>
+      <div class="post-card">
+        <div class="post-card-hdr rachel-hdr">
+          <span class="pb pb-sc">IG</span><span class="pb pb-tt" style="margin-left:4px;">TT</span>
+          <span class="pb pb-rachel" style="margin-left:4px;">RACHEL</span>
+          <span class="post-type-badge pt-reel" style="margin-left:6px;">Process Reel</span>
+          <div class="post-title" style="margin-left:10px;">What the First 30 Days With a New Client Looks Like</div>
+        </div>
+        <div class="post-card-body">
+          <div class="meta-row">
+            <div class="meta-item"><strong>Pairs with:</strong> Chase Day 9 "3 questions" Reel</div>
+            <div class="meta-sep">·</div>
+            <div class="meta-item"><strong>Pillar:</strong> Process / Proof</div>
+          </div>
+          <div class="script-section">
+            <div class="script-label rachel-label">Script / Direction</div>
+            <div class="script-box rachel-box">
+              <p><span class="beat hook">HOOK</span> "Here's what the first 30 days with a new Scroll Media client actually looks like — before a single post goes live."</p>
+              <p><span class="beat" style="background:#b84d00;">WEEK 1</span> "Week one is entirely strategy. IVP deep-dive, content architecture, platform optimization. No content yet — just understanding."</p>
+              <p><span class="beat" style="background:#b84d00;">WEEK 2</span> "Week two is the build — content calendar, format assignments, hook library. By the end of week two, we know exactly what we're creating and why."</p>
+              <p><span class="beat" style="background:#b84d00;">WEEKS 3–4</span> "Weeks three and four: first content goes live, format testing begins, data starts coming in."</p>
+              <p><span class="beat close">CLOSE</span> "By day 30 we have real signal data and a strategy built on evidence — not guesswork."</p>
+            </div>
+          </div>
+          <div class="script-section">
+            <div class="script-label rachel-label">Caption</div>
+            <div class="script-box rachel-box">
+              <p>The first 30 days of a Scroll Media engagement — before a single post goes live.</p>
+              <p>Week 1: Strategy only. IVP, content architecture, profile optimization.<br>Week 2: Calendar build, format testing plan, hook library.<br>Weeks 3–4: First content live, format testing, data collection.</p>
+              <p>By day 30 we have evidence-based strategy — not guesses.</p>
+              <p>Interested in what this looks like for your business? Link in bio to learn more.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- RACHEL POST 4 -->
+    <div class="day-block">
+      <div class="day-block-hdr" style="background:#b84d00;">
+        <div><div class="day-num">D11</div></div>
+        <div class="day-info"><div class="day-name">Thursday Week 2</div><div class="day-date">Client Result — pairs with Chase Day 11</div></div>
+        <div class="day-theme" style="color:rgba(255,255,255,.8);">Reel or Static → TikTok</div>
+      </div>
+      <div class="post-card">
+        <div class="post-card-hdr rachel-hdr">
+          <span class="pb pb-sc">IG</span><span class="pb pb-tt" style="margin-left:4px;">TT</span>
+          <span class="pb pb-rachel" style="margin-left:4px;">RACHEL</span>
+          <span class="post-type-badge pt-reel" style="margin-left:6px;">Result Post</span>
+          <div class="post-title" style="margin-left:10px;">Client Result — Month [X] Numbers</div>
+        </div>
+        <div class="post-card-body">
+          <div class="meta-row">
+            <div class="meta-item"><strong>Pairs with:</strong> Chase Day 11 — conversion path lesson</div>
+            <div class="meta-sep">·</div>
+            <div class="meta-item"><strong>Pillar:</strong> Proof</div>
+          </div>
+          <div class="callout orange">
+            <div>📋</div>
+            <div class="callout-text"><strong>Rachel's job:</strong> Pull the best-performing metric from any current client account from the past 30 days. Use an anonymized niche reference ("a med spa client," "a fitness studio we manage"). Lead with the number.</div>
+          </div>
+          <div class="script-section">
+            <div class="script-label rachel-label">Script Template (fill in the real number)</div>
+            <div class="script-box rachel-box">
+              <p><span class="beat hook">HOOK</span> "[Real metric] in [timeframe]. Here's what drove it."</p>
+              <p><span class="beat" style="background:#b84d00;">CONTEXT</span> "[Client niche] — Month [X] of our engagement. [Brief account context — where they started, what stage they're at]."</p>
+              <p><span class="beat resolve">WHAT DROVE IT</span> "[The 1–2 specific strategic decisions that produced the result — format change, new hook approach, content mix adjustment]."</p>
+              <p><span class="beat close">CLOSE</span> "This is what Month [X] looks like when there's a strategy behind the content."</p>
+            </div>
+          </div>
+          <div class="script-section">
+            <div class="script-label rachel-label">Caption Template</div>
+            <div class="script-box rachel-box">
+              <p>[Real metric]. [Timeframe]. [Client niche, anonymized].</p>
+              <p>What drove it: [the strategic shift in 1 sentence].</p>
+              <p>This is what Month [X] looks like when the content is built on a strategy — not a calendar.</p>
+              <p>If you want to see what this looks like for your business — link in bio.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- RACHEL LINKEDIN SECTION -->
+<div class="section" id="linkedin-rachel" style="background:var(--c-li-bg, #e8f3fa);">
+  <div class="wrap">
+    <div class="sec-ey" style="color:#0077b5;">scrollmedia.co &#8212; LinkedIn</div>
+    <h2 class="sec-h">Rachel&#8217;s LinkedIn Posts &#8212; Weeks 1&#8211;2</h2>
+    <p class="sec-sub">3 LinkedIn posts for the agency account across the two-week block. These are adaptations from IG content &#8212; not net-new production. Rachel adapts, rewrites the caption, and cross-posts. Every post uses Scroll Media voice: always &#8220;we,&#8221; outcome-led, no buzzwords.</p>
+
+    <div class="callout" style="background:white;border:1px solid rgba(0,119,181,0.2);margin-bottom:32px;">
+      <div>&#128279;</div>
+      <div class="callout-text"><strong>LinkedIn operating rules for Rachel:</strong> No external links in post body &#8212; link in first comment only. Always rewrite the IG caption for a professional, operator-minded LinkedIn audience. Never copy IG caption verbatim. Hashtags: 3&#8211;5 max at the bottom. All CTAs use &#8220;DM us&#8221; &#8212; never &#8220;link in bio.&#8221; Agency voice is always &#8220;we.&#8221;</div>
+    </div>
+
+    <!-- LI POST 1: Adapted from Rachel D4 Education Reel -->
+    <div class="day-block" style="border-color:rgba(0,119,181,0.3);">
+      <div class="day-block-hdr" style="background:#0077b5;">
+        <div><div class="day-num" style="font-size:16px;">LI&#8202;1</div></div>
+        <div class="day-info">
+          <div class="day-name">Friday Week 1 &#8212; Day 5</div>
+          <div class="day-date">Adapted from Rachel D4 Education Reel &#8212; 1 day after IG publish</div>
+        </div>
+        <div class="day-theme" style="color:rgba(255,255,255,.8);">PDF Carousel &#8212; Educational</div>
+      </div>
+      <div class="post-card">
+        <div class="post-card-hdr" style="background:#e8f3fa;">
+          <span class="pb pb-li">LINKEDIN</span>
+          <span class="post-type-badge pt-linkedin" style="margin-left:6px;">PDF Carousel</span>
+          <span class="pb pb-rachel" style="margin-left:6px;">RACHEL</span>
+          <div class="post-title" style="margin-left:10px;">3 Instagram Mistakes We Fix on Every Service Business We Audit</div>
+        </div>
+        <div class="post-card-body">
+          <div class="meta-row">
+            <div class="meta-item"><strong>Source:</strong> Rachel D4 Education Reel (export slides as PDF)</div>
+            <div class="meta-sep">&#183;</div>
+            <div class="meta-item"><strong>Format:</strong> PDF carousel &#8212; native upload to LinkedIn</div>
+            <div class="meta-sep">&#183;</div>
+            <div class="meta-item"><strong>CTA:</strong> DM us</div>
+          </div>
+          <div class="script-section">
+            <div class="script-label" style="color:#0077b5;">LinkedIn Post Caption (rewritten for professional audience)</div>
+            <div class="script-box linkedin">
+              <p><span class="beat li-beat">HOOK</span> Three Instagram mistakes we fix on almost every service business account we audit.</p>
+              <p>Most of them aren&#8217;t content problems.</p>
+              <p>They&#8217;re strategy problems.</p>
+              <p>Mistake 1: Tracking followers instead of saves. Saves tell you who actually found value &#8212; followers tell you almost nothing about content quality.</p>
+              <p>Mistake 2: Talking about features instead of outcomes. Your audience doesn&#8217;t care what you offer. They care what changes for them after they hire you.</p>
+              <p>Mistake 3: Posting without a strategic system. Consistency without strategy is expensive noise.</p>
+              <p>The PDF breaks down all three with what to do instead.</p>
+              <p>If you want to know which one is hurting your account most &#8212; DM us.</p>
+              <p style="color:#0077b5;font-size:12px;">#socialmedia #instagramstrategy #servicebusiness #contentmarketing #agencylife</p>
+            </div>
+          </div>
+          <div class="script-section">
+            <div class="script-label" style="color:#0077b5;">Carousel Slide Structure (export from IG design)</div>
+            <div class="script-box linkedin">
+              <p><span class="beat li-beat">SLIDE 1</span> <strong>Hook slide:</strong> &#8220;3 Instagram mistakes we fix on every service business account we audit.&#8221;</p>
+              <p><span class="beat li-beat">SLIDE 2</span> <strong>Mistake 1:</strong> Tracking followers instead of saves. [Brief explanation]</p>
+              <p><span class="beat li-beat">SLIDE 3</span> <strong>Mistake 2:</strong> Features over outcomes. [Brief explanation]</p>
+              <p><span class="beat li-beat">SLIDE 4</span> <strong>Mistake 3:</strong> Posting without a system. [Brief explanation]</p>
+              <p><span class="beat li-beat">SLIDE 5</span> <strong>CTA:</strong> &#8220;DM us if you want to know which of these is costing you the most.&#8221;</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- LI POST 2: Adapted from Rachel D9 Process Reel -->
+    <div class="day-block" style="border-color:rgba(0,119,181,0.3);">
+      <div class="day-block-hdr" style="background:#0077b5;">
+        <div><div class="day-num" style="font-size:16px;">LI&#8202;2</div></div>
+        <div class="day-info">
+          <div class="day-name">Wednesday Week 2 &#8212; Day 10</div>
+          <div class="day-date">Adapted from Rachel D9 Process Reel &#8212; 1 day after IG publish</div>
+        </div>
+        <div class="day-theme" style="color:rgba(255,255,255,.8);">PDF Carousel &#8212; Process</div>
+      </div>
+      <div class="post-card">
+        <div class="post-card-hdr" style="background:#e8f3fa;">
+          <span class="pb pb-li">LINKEDIN</span>
+          <span class="post-type-badge pt-linkedin" style="margin-left:6px;">PDF Carousel</span>
+          <span class="pb pb-rachel" style="margin-left:6px;">RACHEL</span>
+          <div class="post-title" style="margin-left:10px;">What the First 30 Days With a New Client Actually Looks Like</div>
+        </div>
+        <div class="post-card-body">
+          <div class="meta-row">
+            <div class="meta-item"><strong>Source:</strong> Rachel D9 Process Reel (adapt into carousel PDF or repurpose existing slides)</div>
+            <div class="meta-sep">&#183;</div>
+            <div class="meta-item"><strong>Format:</strong> PDF carousel &#8212; native upload</div>
+            <div class="meta-sep">&#183;</div>
+            <div class="meta-item"><strong>CTA:</strong> DM us</div>
+          </div>
+          <div class="script-section">
+            <div class="script-label" style="color:#0077b5;">LinkedIn Post Caption</div>
+            <div class="script-box linkedin">
+              <p><span class="beat li-beat">HOOK</span> Most agencies start posting on day one.</p>
+              <p>We don&#8217;t post a single piece of content until day 28.</p>
+              <p>Here&#8217;s what we do instead &#8212; and why it produces better results long-term.</p>
+              <p>Week 1: Strategy only. We map the audience, define the content architecture, and optimize the profile. No content yet &#8212; just understanding.</p>
+              <p>Week 2: Calendar and format plan. We build the testing framework and hook library before anything is produced.</p>
+              <p>Weeks 3&#8211;4: First content live, format testing begins, data starts coming in.</p>
+              <p>By day 30 we have evidence-based strategy. Most agencies start with guesses and never stop.</p>
+              <p>The full breakdown is in the PDF. DM us if you want to see what this looks like for your business.</p>
+              <p style="color:#0077b5;font-size:12px;">#socialmediaagency #contentmarketing #instagramstrategy #servicebusiness #agencygrowth</p>
+            </div>
+          </div>
+          <div class="script-section">
+            <div class="script-label" style="color:#0077b5;">Carousel Slide Structure</div>
+            <div class="script-box linkedin">
+              <p><span class="beat li-beat">SLIDE 1</span> <strong>Hook:</strong> &#8220;What the first 30 days with a Scroll Media client looks like &#8212; before a single post goes live.&#8221;</p>
+              <p><span class="beat li-beat">SLIDE 2</span> <strong>Week 1:</strong> Strategy only. IVP, content architecture, profile optimization.</p>
+              <p><span class="beat li-beat">SLIDE 3</span> <strong>Week 2:</strong> Calendar build, format testing plan, hook library.</p>
+              <p><span class="beat li-beat">SLIDE 4</span> <strong>Weeks 3&#8211;4:</strong> First content live. Format testing. Real data.</p>
+              <p><span class="beat li-beat">SLIDE 5</span> <strong>The result:</strong> Evidence-based strategy by day 30 &#8212; not guesses.</p>
+              <p><span class="beat li-beat">SLIDE 6</span> <strong>CTA:</strong> &#8220;Interested in what this looks like for your service business? DM us.&#8221;</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- LI POST 3: Agency Proof Post -->
+    <div class="day-block" style="border-color:rgba(0,119,181,0.3);">
+      <div class="day-block-hdr" style="background:#0077b5;">
+        <div><div class="day-num" style="font-size:16px;">LI&#8202;3</div></div>
+        <div class="day-info">
+          <div class="day-name">Friday Week 2 &#8212; Day 12</div>
+          <div class="day-date">Agency Proof Post &#8212; pairs with Rachel D11 result post</div>
+        </div>
+        <div class="day-theme" style="color:rgba(255,255,255,.8);">Text Post &#8212; Proof</div>
+      </div>
+      <div class="post-card">
+        <div class="post-card-hdr" style="background:#e8f3fa;">
+          <span class="pb pb-li">LINKEDIN</span>
+          <span class="post-type-badge pt-linkedin" style="margin-left:6px;">Text Post</span>
+          <span class="pb pb-rachel" style="margin-left:6px;">RACHEL</span>
+          <div class="post-title" style="margin-left:10px;">Client Win Story &#8212; [Anonymized Result]</div>
+        </div>
+        <div class="post-card-body">
+          <div class="meta-row">
+            <div class="meta-item"><strong>Source:</strong> Rachel D11 result post &#8212; adapt as LinkedIn text post</div>
+            <div class="meta-sep">&#183;</div>
+            <div class="meta-item"><strong>Format:</strong> Text post &#8212; result-first structure</div>
+            <div class="meta-sep">&#183;</div>
+            <div class="meta-item"><strong>CTA:</strong> DM us</div>
+          </div>
+          <div class="callout" style="background:white;border:1px solid rgba(0,119,181,0.2);">
+            <div>&#128203;</div>
+            <div class="callout-text"><strong>Rachel&#8217;s job:</strong> Pull the same client result used in D11. Reframe as a strategic story for a professional LinkedIn audience. Lead with the number. Work backward to the one strategic decision that drove it. Do not name the client. Structure: result &#8594; mechanism &#8594; implication.</div>
+          </div>
+          <div class="script-section">
+            <div class="script-label" style="color:#0077b5;">LinkedIn Post Template (fill in real numbers)</div>
+            <div class="script-box linkedin">
+              <p><span class="beat li-beat">HOOK</span> [Real metric] in [timeframe]. Zero paid ads.</p>
+              <p>Here&#8217;s the one strategic decision that drove it.</p>
+              <p>[2&#8211;3 sentences: what the account looked like before &#8212; where they started, what wasn&#8217;t working]</p>
+              <p>[The specific strategic shift we made &#8212; format change, content mix adjustment, new hook approach. One sentence, specific.]</p>
+              <p>[What changed as a result. Specific metric, not vague outcome.]</p>
+              <p>This is what Month [X] looks like when there&#8217;s a strategy behind the content &#8212; not just a calendar.</p>
+              <p>If you want to see what this looks like for your service business &#8212; DM us.</p>
+              <p style="color:#0077b5;font-size:12px;">#instagrammarketing #servicebusiness #socialmediastrategy #agencyresults #contentmarketing</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- MANUS DEPLOYMENT -->
+<div class="section" id="manus" style="background:var(--porcelain);border-bottom:none;">
+  <div class="wrap">
+    <div class="sec-ey">Deploy to Notion</div>
+    <h2 class="sec-h">Manus Deployment Prompt</h2>
+    <p class="sec-sub">Send this to Manus to build the full Notion system — two databases, script pages per post, and the Ideas Bank.</p>
+
+    <div class="manus-block">
+      <div class="manus-title">Manus &#8212; Update Scroll Media Content System in Notion (v2 &#8212; LinkedIn Added)</div>
+      <div class="manus-sub">Update existing databases with LinkedIn fields, add 3 new scrollmedia.co LinkedIn records, update script pages, and update the Content System Hub.</div>
+      <div class="manus-prompt"><span class="cmd-comment"># MANUS TASK: Update Notion Content System &#8212; LinkedIn Strategy v2</span>
+
+<span class="cmd-key">Workspace:</span> Scroll Media Knowledge Base
+<span class="cmd-key">Location:</span> Content Systems &#8594; Personal Brand + Agency System
+
+<span class="cmd-comment">## STEP 1: Add LinkedIn fields to Content Calendar database</span>
+Open the existing "Content Calendar &#8212; chase.scrolls + scrollmedia.co" database.
+Add or confirm the following properties exist:
+- Voice (Select: Chase Voice / Scroll Media Voice) &#8212; add if missing
+- LinkedIn Adapted (Checkbox) &#8212; add new field to flag posts with LinkedIn adaptations
+- LinkedIn Caption (Text) &#8212; add new field to store rewritten LinkedIn caption
+- LinkedIn Format (Select: Text Post / PDF Carousel / Native Reel) &#8212; add new field
+
+<span class="cmd-comment">## STEP 2: Update existing Chase LinkedIn records</span>
+The following Day records already exist in the calendar. Update each one:
+- Day 1: LinkedIn = Text Post &#183; Voice = Chase Voice &#183; LinkedIn Adapted = checked
+- Day 3: LinkedIn = PDF Carousel &#183; Voice = Chase Voice &#183; LinkedIn Adapted = checked
+- Day 5: LinkedIn = Text Post &#183; Voice = Chase Voice &#183; LinkedIn Adapted = checked
+- Day 8: LinkedIn = PDF Carousel &#183; Voice = Chase Voice &#183; LinkedIn Adapted = checked
+- Day 11: LinkedIn = Text Post &#183; Voice = Chase Voice &#183; LinkedIn Adapted = checked
+- Day 12: LinkedIn = Text Post &#183; Voice = Chase Voice &#183; LinkedIn Adapted = checked
+
+<span class="cmd-comment">## STEP 3: Add 3 new scrollmedia.co LinkedIn records</span>
+Create three new calendar records:
+
+RECORD 1:
+- Post Title: "LI1 &#8212; 3 Instagram Mistakes We Fix on Every Service Business We Audit"
+- Day Number: 5 (Friday Week 1)
+- Account: scrollmedia.co
+- Platform: LinkedIn
+- Format: PDF Carousel
+- Pillar: Education
+- Funnel Stage: MOFU
+- Status: To Do
+- Owner: Rachel
+- Voice: Scroll Media Voice
+- LinkedIn Format: PDF Carousel
+- LinkedIn Adapted: checked
+- Create linked script page titled: "Day 5 &#8212; LinkedIn &#8212; 3 Instagram Mistakes (scrollmedia.co)"
+  Script page content:
+  Metadata: Day 5 &#183; Friday Week 1 &#183; scrollmedia.co &#183; LinkedIn &#183; PDF Carousel &#183; Voice: Scroll Media
+  Source: Adapted from Rachel D4 Education Reel &#8212; export as PDF
+  Post Caption: [full caption from LI Post 1 in scripted calendar v2]
+  Slide Structure: Hook / Mistake 1 / Mistake 2 / Mistake 3 / CTA
+  CTA: "DM us if you want to know which of these is costing you the most."
+  Hashtags: #socialmedia #instagramstrategy #servicebusiness #contentmarketing #agencylife
+  Production note: Export Rachel D4 slides as PDF. Upload natively to LinkedIn. No external links in post body &#8212; first comment only if linking.
+
+RECORD 2:
+- Post Title: "LI2 &#8212; What the First 30 Days With a New Client Actually Looks Like"
+- Day Number: 10 (Wednesday Week 2)
+- Account: scrollmedia.co
+- Platform: LinkedIn
+- Format: PDF Carousel
+- Pillar: Process / Proof
+- Funnel Stage: MOFU
+- Status: To Do
+- Owner: Rachel
+- Voice: Scroll Media Voice
+- LinkedIn Format: PDF Carousel
+- LinkedIn Adapted: checked
+- Create linked script page titled: "Day 10 &#8212; LinkedIn &#8212; First 30 Days Process (scrollmedia.co)"
+  Script page content:
+  Metadata: Day 10 &#183; Wednesday Week 2 &#183; scrollmedia.co &#183; LinkedIn &#183; PDF Carousel &#183; Voice: Scroll Media
+  Source: Adapted from Rachel D9 Process Reel &#8212; adapt into carousel PDF
+  Post Caption: [full caption from LI Post 2 in scripted calendar v2]
+  Slide Structure: Hook / Week 1 / Week 2 / Weeks 3-4 / Result / CTA
+  CTA: "Interested in what this looks like for your service business? DM us."
+  Hashtags: #socialmediaagency #contentmarketing #instagramstrategy #servicebusiness #agencygrowth
+
+RECORD 3:
+- Post Title: "LI3 &#8212; Client Win Story &#8212; [Fill Real Metric]"
+- Day Number: 12 (Friday Week 2)
+- Account: scrollmedia.co
+- Platform: LinkedIn
+- Format: Text Post
+- Pillar: Proof
+- Funnel Stage: BOFU
+- Status: To Do
+- Owner: Rachel
+- Voice: Scroll Media Voice
+- LinkedIn Format: Text Post
+- LinkedIn Adapted: checked
+- Create linked script page titled: "Day 12 &#8212; LinkedIn &#8212; Client Win Story (scrollmedia.co)"
+  Script page content:
+  Metadata: Day 12 &#183; Friday Week 2 &#183; scrollmedia.co &#183; LinkedIn &#183; Text Post &#183; Voice: Scroll Media
+  Source: Same client result as Rachel D11 &#8212; reframe for LinkedIn audience
+  Post Template: [full template from LI Post 3 in scripted calendar v2]
+  Rachel note: Pull real metric from active client account. Anonymize. Lead with number. One strategic decision = the mechanism. Do not name client.
+  CTA: "DM us."
+  Hashtags: #instagrammarketing #servicebusiness #socialmediastrategy #agencyresults
+
+<span class="cmd-comment">## STEP 4: Update Content System Hub page</span>
+Open the "Content System Hub" Notion page.
+Add a LinkedIn Strategy section with the following content:
+
+"LinkedIn Strategy (Added April 2026 &#8212; v2)
+
+Chase LinkedIn: 3x/week &#8212; Mon/Wed/Fri. Text posts + PDF carousels. Same Chase voice, more strategic B2B framing. No external links in post body. All CTAs: DM me.
+
+scrollmedia.co LinkedIn: As relevant &#8212; not a daily engine. Educational carousels cross-posted as PDFs. Select BOFU proof posts adapted. Always Scroll Media voice (we). No external links in post body. CTA: DM us.
+
+Sequencing rule: IG publishes first. LinkedIn adapts 24&#8211;48h later. Never reverse.
+
+LinkedIn records in Content Calendar: Filter 'By Platform' view &#8594; select LinkedIn to see all scheduled LinkedIn posts for both accounts."
+
+<span class="cmd-comment">## STEP 5: Update 2-Week Review Log</span>
+Open "2-Week Performance Reviews" database.
+Update Block 1 &#8212; April 2026 record to include this note in the Notes field:
+"LinkedIn strategy added in v2 (April 2026). Weeks 1&#8211;2 include 6 Chase LinkedIn posts + 3 Rachel LinkedIn posts. Track: profile views, DMs generated, saves on PDF carousels. Review at end of block."</div>
+    </div>
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="footer-logo">scroll media</div>
+  <div class="footer-sub">Weeks 1–2 Scripted Calendar · April 2026 · Internal Use Only</div>
+</footer>
+
+</body>
+</html>
