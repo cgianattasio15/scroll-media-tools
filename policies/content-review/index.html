@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Client Policy & Communication Guide — Scroll Media</title>
+  <link rel="icon" type="image/svg+xml" href="/scroll-favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    :root{--shadow:#151516;--azure:#0c3387;--lucid:#cbe9ff;--hl:#e2ed7a;--porc:#f2f3f4;--ghost:#fafdff;--a15:rgba(12,51,135,.15);--a25:rgba(12,51,135,.25)}
+    html{scroll-behavior:smooth}
+    body{font-family:'Source Sans Pro',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--ghost);color:var(--shadow);font-size:16px;line-height:1.65;-webkit-font-smoothing:antialiased}
+    #pb{position:fixed;top:0;left:0;height:3px;width:0%;background:linear-gradient(90deg,var(--azure),var(--hl));z-index:1000;transition:width .1s linear}
+    nav{position:sticky;top:0;background:rgba(250,253,255,.94);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--a15);padding:0 32px;height:56px;display:flex;align-items:center;justify-content:space-between;z-index:900}
+    .nl{display:flex;align-items:center;gap:10px;text-decoration:none}
+    .nl img{height:28px;width:auto}
+    .nlt{font-size:18px;font-weight:700;color:var(--azure);letter-spacing:-.4px;line-height:1}
+    .nlt span{font-weight:300;color:var(--shadow)}
+    .nlb{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:1.4px;color:#777}
+    .pw{max-width:780px;margin:0 auto;padding:0 32px 96px}
+    /* HERO */
+    .hero{padding:56px 0 44px;border-bottom:2px solid var(--azure)}
+    .he{display:inline-flex;align-items:center;gap:8px;margin-bottom:18px}
+    .hb{display:inline-block;background:var(--azure);color:#fff;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;padding:4px 10px;border-radius:3px}
+    .ht{font-size:12px;color:#888}
+    .hero h1{font-size:clamp(26px,4vw,40px);font-weight:700;line-height:1.15;margin-bottom:16px;letter-spacing:-.6px}
+    .hero p{font-size:16px;color:#444;max-width:580px;line-height:1.7}
+    .hm{margin-top:24px;display:flex;flex-wrap:wrap;gap:18px}
+    .mi{font-size:13px;color:#666;display:flex;align-items:center;gap:7px}
+    .md{width:6px;height:6px;border-radius:50%;background:var(--azure);flex-shrink:0}
+    /* NAV PILLS */
+    .nav-pills{display:flex;flex-wrap:wrap;gap:8px;margin-top:28px}
+    .nav-pill{display:inline-block;font-size:12px;font-weight:600;color:var(--azure);background:rgba(12,51,135,.07);border-radius:20px;padding:5px 14px;text-decoration:none;transition:background .15s}
+    .nav-pill:hover{background:rgba(12,51,135,.14)}
+    /* LAYOUT */
+    .div{height:1px;background:linear-gradient(90deg,var(--a25),transparent);margin-top:52px}
+    .sec{padding:52px 0 0}
+    .sl{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1.8px;color:var(--azure);margin-bottom:10px}
+    .sec h2{font-size:clamp(20px,3vw,26px);font-weight:700;margin-bottom:16px;letter-spacing:-.3px;line-height:1.2}
+    .sec p{color:#3a3a3a;font-size:16px;margin-bottom:14px}
+    .sec p:last-child{margin-bottom:0}
+    /* CALLOUTS */
+    .ca{background:rgba(12,51,135,.06);border-left:4px solid var(--azure);border-radius:0 8px 8px 0;padding:16px 20px;margin:22px 0}
+    .ca p{margin:0!important;color:var(--shadow);font-size:15px}
+    .ca strong{color:var(--azure)}
+    .cy{background:#fefce8;border-left:4px solid #c8a900;border-radius:0 8px 8px 0;padding:16px 20px;margin:22px 0}
+    .cy p{margin:0!important;font-size:15px;color:#3a3000}
+    /* TABLES */
+    .tw{overflow-x:auto;-webkit-overflow-scrolling:touch;margin-top:24px;border-radius:8px;border:1px solid #dde1ee}
+    table.st{width:100%;border-collapse:collapse;font-size:15px;min-width:460px}
+    table.st th{background:var(--azure);color:#fff;padding:11px 16px;text-align:left;font-weight:600;font-size:13px}
+    table.st td{padding:11px 16px;border-bottom:1px solid #eaecf4;vertical-align:top;color:#3a3a3a;font-size:15px}
+    table.st tr:last-child td{border-bottom:none}
+    table.st tr:nth-child(even) td{background:var(--porc)}
+    .tag{display:inline-block;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;padding:3px 9px;border-radius:4px;white-space:nowrap}
+    .ty{background:#d4edda;color:#1a7a3f}
+    .tn{background:#fde8e8;color:#c0392b}
+    .tl{background:#fff3cd;color:#856404}
+    /* POLICY CARDS */
+    .pg{display:grid;gap:18px;margin-top:24px}
+    .pc{background:#fff;border:1px solid #e0e4ee;border-radius:10px;padding:24px 26px;position:relative;overflow:hidden}
+    .pc::before{content:'';position:absolute;top:0;left:0;width:4px;height:100%;background:var(--azure)}
+    .ct{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:var(--azure);margin-bottom:5px}
+    .ctt{font-size:17px;font-weight:700;margin-bottom:10px;letter-spacing:-.2px}
+    .cb p{color:#3a3a3a;font-size:15px;margin-bottom:9px}
+    .cb p:last-child{margin-bottom:0}
+    /* RULES LIST */
+    ul.rl{list-style:none;margin-top:18px}
+    ul.rl li{display:flex;align-items:flex-start;gap:12px;padding:12px 0;border-bottom:1px solid #eee;font-size:15px;color:#3a3a3a;line-height:1.55}
+    ul.rl li:last-child{border-bottom:none}
+    .ri{width:22px;height:22px;border-radius:50%;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px}
+    .ri.g{background:var(--azure);color:#fff}
+    .ri.w{background:#d45c00;color:#fff}
+    /* TIMELINE */
+    .tl2{margin-top:28px;position:relative;padding-left:50px}
+    .tl2::before{content:'';position:absolute;left:17px;top:0;bottom:0;width:2px;background:var(--lucid)}
+    .ts{position:relative;margin-bottom:28px}
+    .sn{position:absolute;left:-50px;top:2px;width:36px;height:36px;border-radius:50%;background:var(--azure);color:#fff;font-weight:700;font-size:14px;display:flex;align-items:center;justify-content:center;z-index:1}
+    .stitle{font-weight:700;font-size:15px;margin-bottom:3px}
+    .sdet{font-size:14px;color:#555;line-height:1.6}
+    /* COMMUNICATION SCHEDULE — VISUAL CARDS */
+    .cadence-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:24px}
+    .cadence-card{background:#fff;border:1px solid #e0e4ee;border-radius:10px;overflow:hidden}
+    .cadence-header{background:var(--azure);color:#fff;padding:14px 18px}
+    .cadence-freq{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1.4px;opacity:.8;margin-bottom:4px}
+    .cadence-title{font-size:16px;font-weight:700}
+    .cadence-body{padding:16px 18px}
+    .cadence-body p{font-size:14px;color:#3a3a3a;margin-bottom:8px}
+    .cadence-body p:last-child{margin-bottom:0}
+    .agenda-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1.2px;color:#888;margin-bottom:8px;margin-top:12px}
+    .agenda-item{display:flex;align-items:flex-start;gap:10px;margin-bottom:6px;font-size:13px;color:#444}
+    .agenda-time{font-size:11px;font-weight:700;color:var(--azure);background:rgba(12,51,135,.08);border-radius:3px;padding:2px 6px;white-space:nowrap;flex-shrink:0;margin-top:1px}
+    /* QUICK REF */
+    .rw{overflow-x:auto;-webkit-overflow-scrolling:touch;margin-top:22px;border-radius:8px;border:1px solid #dde1ee}
+    table.rt{width:100%;border-collapse:collapse;font-size:15px;min-width:400px}
+    table.rt th{background:var(--azure);color:#fff;padding:11px 16px;text-align:left;font-size:13px;font-weight:600}
+    table.rt td{padding:11px 16px;border-bottom:1px solid #eaecf4;color:#3a3a3a;font-size:15px}
+    table.rt tr:last-child td{border-bottom:none}
+    table.rt tr:nth-child(even) td{background:var(--porc)}
+    /* CONTACT */
+    .cb2{background:#fff;border:1px solid #e0e4ee;border-radius:10px;padding:22px 26px;margin-top:24px}
+    .cb2 p{margin:0;font-size:15px;color:#3a3a3a}
+    .cb2 a{color:var(--azure);text-decoration:none;font-weight:600}
+    .cb2 a:hover{text-decoration:underline}
+    /* FOOTER */
+    footer{background:var(--porc);border-top:1px solid #dde0e8;padding:40px 32px;margin-top:72px;text-align:center}
+    .fl{display:flex;align-items:center;justify-content:center;gap:10px;margin-bottom:10px}
+    .fl img{height:28px;width:auto}
+    .flt{font-size:20px;font-weight:700;color:var(--azure);letter-spacing:-.4px}
+    .flt span{font-weight:300;color:var(--shadow)}
+    footer p{font-size:13px;color:#888;margin-bottom:3px}
+    footer a{color:var(--azure);text-decoration:none}
+    footer a:hover{text-decoration:underline}
+    /* RESPONSIVE */
+    @media(max-width:640px){
+      nav{padding:0 16px}.nlb{display:none}
+      .pw{padding:0 16px 72px}
+      .hero{padding:36px 0 28px}.hero h1{font-size:24px}
+      .sec{padding:36px 0 0}
+      .cadence-grid{grid-template-columns:1fr}
+      .pc{padding:18px 16px}
+      footer{padding:28px 16px}
+    }
+    @media(max-width:480px){
+      .hero h1{font-size:21px}.sec h2{font-size:18px}
+      table.st,table.rt{font-size:13px}
+      table.st th,table.st td,table.rt th,table.rt td{padding:9px 11px}
+    }
+  </style>
+</head>
+<body>
+<div id="pb"></div>
+<nav>
+  <a class="nl" href="#">
+    <img src="/scroll-media-logo.svg" alt="Scroll Media" onerror="this.style.display='none';document.getElementById('nfl').style.display='block';" />
+    <div id="nfl" class="nlt" style="display:none;">Scroll<span> Media</span></div>
+  </a>
+  <span class="nlb">Client Policy Document</span>
+</nav>
+
+<div class="pw">
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="he">
+      <span class="hb">Policy Update — April 2026</span>
+      <span class="ht">All Active Clients</span>
+    </div>
+    <h1>How We Work Together</h1>
+    <p>Scroll Media's updated policies for content production, approvals, Stories, and client communication. One place to understand the rhythm and what to expect.</p>
+    <div class="hm">
+      <div class="mi"><div class="md"></div>Effective: April 2026</div>
+      <div class="mi"><div class="md"></div>All Active Clients</div>
+      <div class="mi"><div class="md"></div>Instagram</div>
+    </div>
+    <div class="nav-pills">
+      <a class="nav-pill" href="#production">Content Shoots</a>
+      <a class="nav-pill" href="#approvals">Approvals</a>
+      <a class="nav-pill" href="#stories">Stories</a>
+      <a class="nav-pill" href="#communication">Communication</a>
+      <a class="nav-pill" href="#reference">Quick Reference</a>
+    </div>
+  </div>
+
+  <!-- WHY -->
+  <div class="sec">
+    <div class="sl">Context</div>
+    <h2>Why we're formalizing this</h2>
+    <p>Clear structure protects everyone. It keeps content on schedule, gives you a predictable window to weigh in, and lets our team execute without last-minute scrambles.</p>
+    <p>These policies aren't about limiting your involvement. They're about making your involvement count — focused input at the right moment, through the right channel.</p>
+    <div class="ca"><p><strong>The principle:</strong> Scroll Media leads strategy and execution. Your job is to review, approve, and flag anything promotional. Everything else is our call to make on your behalf.</p></div>
+  </div>
+
+  <!-- CONTENT SHOOTS -->
+  <div class="div"></div>
+  <div class="sec" id="production">
+    <div class="sl">Content Production</div>
+    <h2>Content shoot schedule</h2>
+    <p>Shoot frequency is tied to your posting plan. This is the standard we'll operate on:</p>
+    <div class="tw">
+      <table class="st">
+        <thead><tr><th>Posts per week</th><th>Shoot frequency</th><th>Shoot duration</th></tr></thead>
+        <tbody>
+          <tr><td><strong>3 posts/week</strong></td><td>Every 3 weeks</td><td>~3–4 hours</td></tr>
+          <tr><td><strong>2 posts/week</strong></td><td>Every 4 weeks</td><td>~2–3 hours</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p style="margin-top:18px;">Shoots are pre-scheduled for your full engagement term. Your Account Manager keeps upcoming shoot dates on your content calendar.</p>
+
+    <h2 style="margin-top:36px;">Shot list timeline</h2>
+    <p>Your Account Manager owns the shot list. It's built around your approved strategy — not improvised on the day.</p>
+    <div class="tl2">
+      <div class="ts"><div class="sn">1</div><div class="stitle">Shot list sent — 7 days before shoot</div><div class="sdet">Enough lead time to review it properly before your next check-in.</div></div>
+      <div class="ts"><div class="sn">2</div><div class="stitle">Review &amp; feedback — biweekly check-in</div><div class="sdet">Your check-in (~5 days before the shoot) is the dedicated window for questions and adjustments. Review the list before the meeting — don't use meeting time for a cold read.</div></div>
+      <div class="ts"><div class="sn">3</div><div class="stitle">Shot list locked — 3 days before shoot</div><div class="sdet">No structural additions or concept changes after this point. Minor swaps within existing planned shots are fine at your AM's discretion.</div></div>
+      <div class="ts"><div class="sn">4</div><div class="stitle">Shoot day — planned shots only</div><div class="sdet">New ideas that come up on the day get documented and added to the next shoot. They don't replace what's planned.</div></div>
+    </div>
+    <div class="cy"><p><strong>Why the lock matters:</strong> When shoots go off-plan, we miss shots that were needed for the next few weeks of content. Gaps in posting affect consistency — and consistency directly affects performance. The lock protects your results.</p></div>
+  </div>
+
+  <!-- APPROVALS -->
+  <div class="div"></div>
+  <div class="sec" id="approvals">
+    <div class="sl">Content Approvals</div>
+    <h2>How content review works</h2>
+    <p>Content is batched and submitted in <strong>Plann</strong> every two weeks. Here's the timeline from submission to publish:</p>
+    <div class="tl2">
+      <div class="ts"><div class="sn">1</div><div class="stitle">Content submitted in Plann</div><div class="sdet">At least 5 business days before the first publish date in that batch.</div></div>
+      <div class="ts"><div class="sn">2</div><div class="stitle">You review in Plann</div><div class="sdet">3 business days to leave notes. Do this before your check-in so you bring specific questions — not a first look.</div></div>
+      <div class="ts"><div class="sn">3</div><div class="stitle">Biweekly check-in — Q&amp;A</div><div class="sdet">We answer questions on content you've already reviewed. Not a review session.</div></div>
+      <div class="ts"><div class="sn">4</div><div class="stitle">Revisions applied</div><div class="sdet">Your AM turns around feedback within 24 hours. One more review round if needed — still within the 3-day window.</div></div>
+      <div class="ts"><div class="sn">5</div><div class="stitle">Hard lock — 48 hours before publish</div><div class="sdet">Content is locked. Changes after this point move to the next cycle.</div></div>
+      <div class="ts"><div class="sn">6</div><div class="stitle">Content goes live</div><div class="sdet">Published on schedule. Stories tied to feed posts follow the production calendar.</div></div>
+    </div>
+
+    <div class="pg" style="margin-top:28px;">
+      <div class="pc">
+        <div class="ct">Standard</div>
+        <div class="ctt">2 revision rounds per batch</div>
+        <div class="cb">
+          <p>Two rounds of revisions per biweekly batch. Feedback must be consolidated — one set of notes, one point of contact, submitted in Plann.</p>
+          <p>Feedback outside Plann — via text, email, or verbally — doesn't count. Plann is the only official channel.</p>
+        </div>
+      </div>
+    </div>
+
+    <ul class="rl" style="margin-top:20px;">
+      <li><div class="ri g">✓</div><div>All feedback goes in <strong>Plann</strong>.</div></li>
+      <li><div class="ri g">✓</div><div>Content submitted at least <strong>5 business days</strong> before first publish date.</div></li>
+      <li><div class="ri g">✓</div><div>Your review deadline: <strong>3 business days before publish</strong>.</div></li>
+      <li><div class="ri g">✓</div><div>Final lock: <strong>48 hours before publish</strong>. No changes after.</div></li>
+      <li><div class="ri w">!</div><div>Verbal approvals aren't approvals. A post isn't approved until it's approved in Plann.</div></li>
+      <li><div class="ri w">!</div><div>No response by the deadline means content publishes as planned. We're not responsible for delays caused by missed approval windows.</div></li>
+    </ul>
+
+    <div class="ca"><p><strong>During your first two months:</strong> We give more flexibility on revisions while we dial in the creative direction together. After that, the standard two-round policy applies.</p></div>
+
+    <h2 style="margin-top:36px;">What's outside the revision policy</h2>
+    <p>These requests fall outside standard revisions and become separate scope conversations:</p>
+    <ul class="rl">
+      <li><div class="ri w">!</div><div>Complete creative overhaul after the strategy is approved and in execution</div></li>
+      <li><div class="ri w">!</div><div>Additional shoots outside the standard cadence</div></li>
+      <li><div class="ri w">!</div><div>Net-new deliverables not included in your current package</div></li>
+      <li><div class="ri w">!</div><div>Changes to content that's already been approved and locked</div></li>
+      <li><div class="ri w">!</div><div>Feedback submitted outside Plann</div></li>
+    </ul>
+  </div>
+
+  <!-- STORIES -->
+  <div class="div"></div>
+  <div class="sec" id="stories">
+    <div class="sl">Stories</div>
+    <h2>Instagram Stories policy</h2>
+    <p>Scroll Media leads all Stories. They're not subject to the content approval workflow above.</p>
+    <div class="tw">
+      <table class="st">
+        <thead><tr><th>Stories type</th><th>Review</th><th>Who leads</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Organic / engagement Stories</strong></td><td><span class="tag tn">No review</span></td><td>Scroll Media</td></tr>
+          <tr><td><strong>Feed post promotion Stories</strong></td><td><span class="tag tn">No review</span></td><td>Scroll Media</td></tr>
+          <tr><td><strong>Promotional Stories</strong> — events, offers, product features</td><td><span class="tag tl">Promo brief</span></td><td>Scroll Media — you provide the details</td></tr>
+          <tr><td><strong>Factual corrections</strong> — wrong price, date, or claim</td><td><span class="tag tl">Flag in Plann</span></td><td>Flag at least 24 hrs before publish</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="pg" style="margin-top:24px;">
+      <div class="pc">
+        <div class="ct">Your input channel for Stories</div>
+        <div class="ctt">The promotional brief</div>
+        <div class="cb">
+          <p>At each check-in, your AM asks: <em>"Anything coming up in the next two weeks we should feature in Stories — promotions, events, product highlights, announcements?"</em></p>
+          <p>That's your window. Format, design, engagement strategy, and timing are Scroll Media's call.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="cy"><p><strong>During your first two months:</strong> We work more collaboratively on Stories to learn your brand voice. After that, we lead independently. Your input stays focused on what to promote — not how to execute it.</p></div>
+  </div>
+
+  <!-- COMMUNICATION SCHEDULE -->
+  <div class="div"></div>
+  <div class="sec" id="communication">
+    <div class="sl">Communication</div>
+    <h2>Your communication schedule</h2>
+    <p>One meeting every two weeks. One monthly report. That's the rhythm. Here's exactly what each touchpoint covers:</p>
+
+    <div class="cadence-grid" style="margin-top:28px;">
+
+      <!-- BIWEEKLY CHECK-IN -->
+      <div class="cadence-card">
+        <div class="cadence-header">
+          <div class="cadence-freq">Every other week</div>
+          <div class="cadence-title">30-Minute Check-In</div>
+        </div>
+        <div class="cadence-body">
+          <p>Your primary touchpoint. Come prepared — content and shot lists are shared in advance so we can use the time on decisions, not catch-up.</p>
+          <div class="agenda-label">Example Agenda</div>
+          <div class="agenda-item"><span class="agenda-time">0–5 min</span>Quick wins — what's performing</div>
+          <div class="agenda-item"><span class="agenda-time">5–15 min</span>Content in Plann — questions and approvals</div>
+          <div class="agenda-item"><span class="agenda-time">15–25 min</span>Shot list review (on shoot weeks) or strategy alignment</div>
+          <div class="agenda-item"><span class="agenda-time">25–28 min</span>Stories promo brief — what's coming up</div>
+          <div class="agenda-item"><span class="agenda-time">28–30 min</span>Open items and next steps</div>
+        </div>
+      </div>
+
+      <!-- MONTHLY REPORT -->
+      <div class="cadence-card">
+        <div class="cadence-header">
+          <div class="cadence-freq">First week of every month</div>
+          <div class="cadence-title">Performance Report</div>
+        </div>
+        <div class="cadence-body">
+          <p>Your monthly performance report lands in your inbox with a plain-English summary and a short walkthrough video. No separate meeting.</p>
+          <div class="agenda-label">What's included</div>
+          <div class="agenda-item"><span class="agenda-time">Email</span>3–4 sentence summary of what moved and what's next</div>
+          <div class="agenda-item"><span class="agenda-time">Video</span>Brief Loom walkthrough of how to read the report</div>
+          <div class="agenda-item"><span class="agenda-time">Report</span>Full performance data for the prior month</div>
+          <div class="agenda-item"><span class="agenda-time">Q&amp;A</span>Questions addressed at your next check-in</div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="ca" style="margin-top:24px;"><p><strong>One point of contact:</strong> All feedback, approvals, and check-in attendance should flow through a single designated person on your team. Multiple voices routing feedback through different channels creates confusion and slows delivery.</p></div>
+
+    <h2 style="margin-top:36px;">What to expect from your AM</h2>
+    <ul class="rl">
+      <li><div class="ri g">✓</div><div>Shot list in your hands <strong>7 days before every shoot</strong></div></li>
+      <li><div class="ri g">✓</div><div>Content in Plann <strong>5 business days before first publish date</strong></div></li>
+      <li><div class="ri g">✓</div><div>Revisions turned around <strong>within 24 hours</strong> of receiving feedback</div></li>
+      <li><div class="ri g">✓</div><div>Performance report delivered <strong>first week of every month</strong></div></li>
+      <li><div class="ri g">✓</div><div>Meeting agenda or prep materials sent <strong>before every check-in</strong></div></li>
+    </ul>
+  </div>
+
+  <!-- QUICK REFERENCE -->
+  <div class="div"></div>
+  <div class="sec" id="reference">
+    <div class="sl">Quick Reference</div>
+    <h2>Policy summary</h2>
+    <div class="rw">
+      <table class="rt">
+        <thead><tr><th>Policy</th><th>Standard</th></tr></thead>
+        <tbody>
+          <tr><td>Shot list sent</td><td>7 days before shoot</td></tr>
+          <tr><td>Shot list review window</td><td>Biweekly check-in (~5 days before shoot)</td></tr>
+          <tr><td>Shot list lock</td><td>3 days before shoot</td></tr>
+          <tr><td>Content submitted in Plann</td><td>5 business days before first publish date</td></tr>
+          <tr><td>Client review deadline</td><td>3 business days before publish</td></tr>
+          <tr><td>Revision rounds included</td><td>2 per biweekly batch</td></tr>
+          <tr><td>Content hard lock</td><td>48 hours before scheduled publish time</td></tr>
+          <tr><td>Approval platform</td><td>Plann — all feedback submitted here</td></tr>
+          <tr><td>Stories — promotional input</td><td>Promo brief at each biweekly check-in</td></tr>
+          <tr><td>Stories — factual corrections</td><td>Flag in Plann 24+ hours before publish</td></tr>
+          <tr><td>Stories — organic / reactive</td><td>No client approval required</td></tr>
+          <tr><td>Performance reports</td><td>First week of month — async, no separate meeting</td></tr>
+          <tr><td>Client check-ins</td><td>30 minutes, every other week</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- QUESTIONS -->
+  <div class="div"></div>
+  <div class="sec">
+    <div class="sl">Questions</div>
+    <h2>Something unclear?</h2>
+    <p>Bring it to your next check-in or reach out to your Account Manager directly. For anything beyond your AM:</p>
+    <div class="cb2"><p><a href="mailto:help@scrollmedia.co">help@scrollmedia.co</a></p></div>
+  </div>
+
+</div>
+
+<footer>
+  <div class="fl">
+    <img src="/scroll-media-logo.svg" alt="Scroll Media" onerror="this.style.display='none';document.getElementById('ffl').style.display='block';" />
+    <div id="ffl" class="flt" style="display:none;">Scroll<span> Media</span></div>
+  </div>
+  <p>Client Policy & Communication Guide — April 2026</p>
+  <p>Questions? <a href="mailto:help@scrollmedia.co">help@scrollmedia.co</a></p>
+  <p style="margin-top:14px;font-size:11px;color:#bbb;">© 2026 Scroll Media. All rights reserved.</p>
+</footer>
+
+<script>
+window.addEventListener('scroll',function(){var d=document.documentElement;document.getElementById('pb').style.width=(d.scrollTop/(d.scrollHeight-d.clientHeight)*100)+'%'});
+</script>
+</body>
+</html>
