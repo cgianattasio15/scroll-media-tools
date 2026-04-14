@@ -457,15 +457,110 @@
     .footer-legal { max-width: 860px; margin: 20px auto 0; padding: 0 24px; font-size: 12px; color: var(--mid); }
     @media (max-width: 640px) { .footer-inner { flex-direction: column; } }
 
+    /* ══ EMAIL GATE OVERLAY ══ */
+    #gate-overlay {
+      position: fixed; inset: 0; z-index: 500;
+      background: rgba(21,21,22,0.72);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      display: flex; align-items: center; justify-content: center;
+      padding: 24px;
+      opacity: 1; transition: opacity 0.45s var(--ease);
+    }
+    #gate-overlay.hiding { opacity: 0; pointer-events: none; }
+    #gate-overlay.hidden { display: none; }
+
+    body.gated main { filter: blur(3px); pointer-events: none; user-select: none; }
+
+    .gate-card {
+      background: #fff; border-radius: 16px;
+      padding: 44px 40px; max-width: 480px; width: 100%;
+      box-shadow: 0 24px 80px rgba(0,0,0,0.3);
+      text-align: center;
+    }
+    .gate-logo { height: 22px; width: auto; margin: 0 auto 28px; display: block; }
+    .gate-badge {
+      display: inline-block; padding: 4px 12px;
+      background: var(--lucid); color: var(--azure);
+      font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+      border-radius: 4px; margin-bottom: 18px;
+    }
+    .gate-headline {
+      font-size: 22px; font-weight: 800; line-height: 1.2;
+      letter-spacing: -0.02em; color: var(--shadow); margin-bottom: 10px;
+    }
+    .gate-sub { font-size: 15px; color: var(--text-body); line-height: 1.6; margin-bottom: 28px; }
+    .gate-form { display: flex; flex-direction: column; gap: 12px; }
+    .gate-input {
+      width: 100%; padding: 13px 16px;
+      border: 1.5px solid var(--border); border-radius: 8px;
+      font-size: 15px; color: var(--shadow); background: var(--ghost);
+      outline: none; transition: border-color 0.2s var(--ease); font-family: inherit;
+    }
+    .gate-input:focus { border-color: var(--azure); background: #fff; }
+    .gate-input::placeholder { color: var(--mid); }
+    .gate-btn {
+      width: 100%; padding: 14px;
+      background: var(--azure); color: #fff;
+      font-size: 15px; font-weight: 700; border: none; border-radius: 8px;
+      cursor: pointer; font-family: inherit;
+      transition: opacity 0.2s var(--ease), transform 0.15s var(--ease);
+    }
+    .gate-btn:hover:not(:disabled) { opacity: 0.87; transform: translateY(-1px); }
+    .gate-btn:disabled { opacity: 0.55; cursor: not-allowed; transform: none; }
+    .gate-privacy { font-size: 12px; color: var(--mid); margin-top: 6px; line-height: 1.5; }
+    .gate-error { font-size: 13px; color: #dc2626; text-align: left; display: none; margin-top: -4px; }
+    .gate-error.visible { display: block; }
+    .gate-form-wrap { display: block; }
+    .gate-success { display: none; text-align: center; padding: 8px 0; }
+    .gate-success.visible { display: block; }
+    .gate-success-icon { font-size: 40px; margin-bottom: 16px; }
+    .gate-success h3 { font-size: 20px; font-weight: 800; color: var(--shadow); margin-bottom: 8px; }
+    .gate-success p { font-size: 15px; color: var(--text-body); line-height: 1.6; }
+    @media (max-width: 480px) { .gate-card { padding: 32px 24px; } .gate-headline { font-size: 19px; } }
+
   </style>
 </head>
 <body>
+
+  <!-- ══ EMAIL GATE OVERLAY ══
+       Hidden automatically when ?preview=true is in URL.
+       External URL (gated):  tools.scrollmedia.co/scroll-funnel-system/
+       Internal URL (bypass): tools.scrollmedia.co/scroll-funnel-system/?preview=true
+  ══ -->
+  <div id="gate-overlay" role="dialog" aria-modal="true" aria-labelledby="gate-title">
+    <div class="gate-card">
+      <img src="/scroll-media-logo.svg" alt="Scroll Media" class="gate-logo" />
+      <div class="gate-badge">Inside the Build — Vol. 01</div>
+      <h2 class="gate-headline" id="gate-title">Get The Scroll Funnel System</h2>
+      <p class="gate-sub">The three-layer system behind every Scroll Media strategy. Formats, hooks, CTAs, and metrics — free, no pitch.</p>
+
+      <div class="gate-form-wrap">
+        <form class="gate-form" id="gate-form" novalidate>
+          <input type="text" class="gate-input" id="gate-fname" name="first_name" placeholder="First name" autocomplete="given-name" required />
+          <p class="gate-error" id="fname-error">Please enter your first name.</p>
+          <input type="email" class="gate-input" id="gate-email" name="email" placeholder="Work email" autocomplete="email" required />
+          <p class="gate-error" id="email-error">Please enter a valid email address.</p>
+          <button type="submit" class="gate-btn" id="gate-submit">Send Me the Guide</button>
+          <p class="gate-privacy">No spam. Unsubscribe anytime. By submitting you agree to receive emails from Scroll Media.</p>
+        </form>
+      </div>
+
+      <div class="gate-success" id="gate-success">
+        <div class="gate-success-icon">✓</div>
+        <h3>You're in.</h3>
+        <p>Check your inbox — we also sent you a copy of the guide. Unlocking now...</p>
+      </div>
+    </div>
+  </div>
+
+  <main id="page-main">
 
   <div id="progress-bar"></div>
 
   <!-- ══ NAV ══ -->
   <nav role="navigation" aria-label="Main navigation">
-    <a href="https://decks.scrollmedia.co/pitch/" class="nav-logo" aria-label="Scroll Media — Learn More">
+    <a href="https://tools.scrollmedia.co" class="nav-logo" aria-label="Scroll Media — Home">
       <img src="/scroll-media-logo.svg" alt="Scroll Media" />
     </a>
     <div class="nav-links" role="menubar">
@@ -948,7 +1043,99 @@
     <p class="footer-legal">© 2026 Scroll Media. All rights reserved. Free to use and share — the system is ours.</p>
   </footer>
 
+  </main>
+
   <script>
+    /* ══════════════════════════════════════════
+       EMAIL GATE — PREVIEW BYPASS + KIT INTEGRATION
+       External URL (gated):  /scroll-funnel-system/
+       Internal URL (bypass): /scroll-funnel-system/?preview=true
+    ══════════════════════════════════════════ */
+
+    const KIT_FORM_ID = '2670738';    // ← Manus: replace with Authority Engine quiz form ID from Kit
+    const KIT_TAG    = 'quiz-lead';              // Existing tag that triggers Authority Engine nurture sequence
+
+    const overlay  = document.getElementById('gate-overlay');
+    const pageMain = document.getElementById('page-main');
+    const params   = new URLSearchParams(window.location.search);
+    const isPreview = params.get('preview') === 'true';
+
+    /* ── PREVIEW BYPASS ── */
+    if (isPreview) {
+      overlay.classList.add('hidden');
+    } else {
+      /* Check if already unlocked this session */
+      if (sessionStorage.getItem('sfs_unlocked') === '1') {
+        overlay.classList.add('hidden');
+      } else {
+        document.body.classList.add('gated');
+        document.documentElement.style.overflow = 'hidden'; /* prevent scroll behind gate */
+      }
+    }
+
+    /* ── FORM SUBMISSION → KIT API ── */
+    document.getElementById('gate-form').addEventListener('submit', async function(e) {
+      e.preventDefault();
+
+      const fname  = document.getElementById('gate-fname').value.trim();
+      const email  = document.getElementById('gate-email').value.trim();
+      const fnErr  = document.getElementById('fname-error');
+      const emErr  = document.getElementById('email-error');
+      const btn    = document.getElementById('gate-submit');
+
+      /* Clear previous errors */
+      fnErr.classList.remove('visible');
+      emErr.classList.remove('visible');
+
+      /* Validate */
+      let valid = true;
+      if (!fname) { fnErr.classList.add('visible'); valid = false; }
+      if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { emErr.classList.add('visible'); valid = false; }
+      if (!valid) return;
+
+      /* Disable button while submitting */
+      btn.disabled = true;
+      btn.textContent = 'Sending...';
+
+      try {
+        /* Subscribe to Kit form — adds quiz-lead tag which triggers Authority Engine sequence */
+        const res = await fetch(`https://api.convertkit.com/v3/forms/${KIT_FORM_ID}/subscribe`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            api_key: 'PNXDUxp8mJTSLZTK_LIIOQ',   // Kit public API key
+            email: email,
+            first_name: fname,
+            tags: [KIT_TAG]
+          })
+        });
+
+        if (!res.ok) throw new Error('Kit API error');
+
+        /* Show success state */
+        document.querySelector('.gate-form-wrap').style.display = 'none';
+        document.getElementById('gate-success').classList.add('visible');
+
+        /* Unlock after 2 seconds — smooth UX */
+        setTimeout(() => {
+          sessionStorage.setItem('sfs_unlocked', '1');
+          overlay.classList.add('hiding');
+          document.body.classList.remove('gated');
+          document.documentElement.style.overflow = '';
+          setTimeout(() => overlay.classList.add('hidden'), 460);
+        }, 2000);
+
+      } catch (err) {
+        /* Fallback: unlock anyway so user isn't blocked if Kit has issues */
+        console.error('Kit subscription error:', err);
+        sessionStorage.setItem('sfs_unlocked', '1');
+        overlay.classList.add('hiding');
+        document.body.classList.remove('gated');
+        document.documentElement.style.overflow = '';
+        setTimeout(() => overlay.classList.add('hidden'), 460);
+      }
+    });
+
     /* ── PROGRESS BAR ── */
     window.addEventListener('scroll', () => {
       const pct = window.scrollY / (document.body.scrollHeight - window.innerHeight) * 100;
@@ -980,8 +1167,7 @@
       const card = document.getElementById(id);
       const isOpen = card.classList.contains('open');
       card.classList.toggle('open', !isOpen);
-      const btn = card.querySelector('.fc-header');
-      btn.setAttribute('aria-expanded', String(!isOpen));
+      card.querySelector('.fc-header').setAttribute('aria-expanded', String(!isOpen));
     }
     function keyToggle(e, id) {
       if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggleCard(id); }
@@ -1003,26 +1189,27 @@
       if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); switchTab(stage); }
       if (e.key === 'ArrowRight') {
         const idx = stages.indexOf(stage);
-        if (idx < stages.length - 1) { switchTab(stages[idx + 1]); document.querySelectorAll('.idea-tab')[idx + 1].focus(); }
+        if (idx < stages.length - 1) { switchTab(stages[idx+1]); document.querySelectorAll('.idea-tab')[idx+1].focus(); }
       }
       if (e.key === 'ArrowLeft') {
         const idx = stages.indexOf(stage);
-        if (idx > 0) { switchTab(stages[idx - 1]); document.querySelectorAll('.idea-tab')[idx - 1].focus(); }
+        if (idx > 0) { switchTab(stages[idx-1]); document.querySelectorAll('.idea-tab')[idx-1].focus(); }
       }
     }
 
     /* ── MOBILE MENU ── */
     function toggleMenu() {
       const menu = document.getElementById('mobile-menu');
-      const btn = document.querySelector('.nav-hamburger');
+      const btn  = document.querySelector('.nav-hamburger');
       const isOpen = menu.classList.toggle('open');
       btn.classList.toggle('open', isOpen);
       btn.setAttribute('aria-expanded', String(isOpen));
     }
     function closeMenu() {
       document.getElementById('mobile-menu').classList.remove('open');
-      document.querySelector('.nav-hamburger').classList.remove('open');
-      document.querySelector('.nav-hamburger').setAttribute('aria-expanded', 'false');
+      const btn = document.querySelector('.nav-hamburger');
+      btn.classList.remove('open');
+      btn.setAttribute('aria-expanded', 'false');
     }
   </script>
 </body>
