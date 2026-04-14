@@ -532,7 +532,7 @@
     <div class="gate-card">
       <img src="/scroll-media-logo.svg" alt="Scroll Media" class="gate-logo" />
       <div class="gate-badge">Inside the Build — Vol. 01</div>
-      <h2 class="gate-headline" id="gate-title">Get The Scroll Funnel System</h2>
+      <h2 class="gate-headline" id="gate-title">Get Instant Access to The Scroll Funnel System</h2>
       <p class="gate-sub">The three-layer system behind every Scroll Media strategy. Formats, hooks, CTAs, and metrics — free, no pitch.</p>
 
       <div class="gate-form-wrap">
@@ -540,16 +540,16 @@
           <input type="text" class="gate-input" id="gate-fname" name="first_name" placeholder="First name" autocomplete="given-name" required />
           <p class="gate-error" id="fname-error">Please enter your first name.</p>
           <input type="email" class="gate-input" id="gate-email" name="email" placeholder="Work email" autocomplete="email" required />
-          <p class="gate-error" id="email-error">Please enter a valid email address.</p>
-          <button type="submit" class="gate-btn" id="gate-submit">Send Me the Guide</button>
+          <p class="gate-error" id="email-error">Please enter a valid work email.</p>
+          <button type="submit" class="gate-btn" id="gate-submit">Get Instant Access</button>
           <p class="gate-privacy">No spam. Unsubscribe anytime. By submitting you agree to receive emails from Scroll Media.</p>
         </form>
       </div>
 
       <div class="gate-success" id="gate-success">
         <div class="gate-success-icon">✓</div>
-        <h3>You're in.</h3>
-        <p>Check your inbox — we also sent you a copy of the guide. Unlocking now...</p>
+        <h3>Access unlocked.</h3>
+        <p>You now have instant access to the guide. We also sent a copy to your inbox.</p>
       </div>
     </div>
   </div>
@@ -1052,87 +1052,145 @@
        Internal URL (bypass): /scroll-funnel-system/?preview=true
     ══════════════════════════════════════════ */
 
-    const KIT_FORM_ID = '2670738';    // ← Manus: replace with Authority Engine quiz form ID from Kit
-    const KIT_TAG    = 'quiz-lead';              // Existing tag that triggers Authority Engine nurture sequence
+    const KIT_FORM_ID = '2670738';
+    const KIT_API_KEY = 'PNXDUxp8mJTSLZTK_LIIOQ';
+    const KIT_TAG = 'quiz-lead';
+    const SESSION_KEY = 'sfs_unlocked';
+    const EMAIL_PATTERN = /^[A-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[A-Z0-9](?:[A-Z0-9-]{0,61}[A-Z0-9])?(?:\.[A-Z0-9](?:[A-Z0-9-]{0,61}[A-Z0-9])?)+$/i;
+    const DISPOSABLE_DOMAINS = new Set([
+      '10minutemail.com',
+      'discard.email',
+      'emailondeck.com',
+      'fakeinbox.com',
+      'getairmail.com',
+      'guerrillamail.com',
+      'maildrop.cc',
+      'mailinator.com',
+      'sharklasers.com',
+      'temp-mail.org',
+      'tempmail.com',
+      'tempmail.email',
+      'yopmail.com'
+    ]);
 
-    const overlay  = document.getElementById('gate-overlay');
+    const overlay = document.getElementById('gate-overlay');
     const pageMain = document.getElementById('page-main');
-    const params   = new URLSearchParams(window.location.search);
+    const gateForm = document.getElementById('gate-form');
+    const gateFormWrap = document.querySelector('.gate-form-wrap');
+    const gateSuccess = document.getElementById('gate-success');
+    const fnameInput = document.getElementById('gate-fname');
+    const emailInput = document.getElementById('gate-email');
+    const fnErr = document.getElementById('fname-error');
+    const emErr = document.getElementById('email-error');
+    const btn = document.getElementById('gate-submit');
+    const params = new URLSearchParams(window.location.search);
     const isPreview = params.get('preview') === 'true';
+
+    function showGateError(element, message) {
+      element.textContent = message;
+      element.classList.add('visible');
+    }
+
+    function clearGateErrors() {
+      fnErr.classList.remove('visible');
+      emErr.classList.remove('visible');
+    }
+
+    function lockPage() {
+      document.body.classList.add('gated');
+      document.documentElement.style.overflow = 'hidden';
+    }
+
+    function unlockPage() {
+      sessionStorage.setItem(SESSION_KEY, '1');
+      overlay.classList.add('hiding');
+      document.body.classList.remove('gated');
+      document.documentElement.style.overflow = '';
+      setTimeout(() => overlay.classList.add('hidden'), 460);
+    }
+
+    function normalizeEmail(value) {
+      return value.trim().toLowerCase();
+    }
+
+    function validateGateForm(firstName, email) {
+      let valid = true;
+
+      if (!firstName) {
+        showGateError(fnErr, 'Please enter your first name.');
+        valid = false;
+      }
+
+      if (!email || !EMAIL_PATTERN.test(email) || email.includes('..')) {
+        showGateError(emErr, 'Please enter a valid email address.');
+        valid = false;
+        return valid;
+      }
+
+      const [, domain = ''] = email.split('@');
+      if (!domain || DISPOSABLE_DOMAINS.has(domain)) {
+        showGateError(emErr, 'Please use your real email so we can send your access and follow-up resources.');
+        valid = false;
+      }
+
+      return valid;
+    }
 
     /* ── PREVIEW BYPASS ── */
     if (isPreview) {
       overlay.classList.add('hidden');
+    } else if (sessionStorage.getItem(SESSION_KEY) === '1') {
+      overlay.classList.add('hidden');
     } else {
-      /* Check if already unlocked this session */
-      if (sessionStorage.getItem('sfs_unlocked') === '1') {
-        overlay.classList.add('hidden');
-      } else {
-        document.body.classList.add('gated');
-        document.documentElement.style.overflow = 'hidden'; /* prevent scroll behind gate */
-      }
+      lockPage();
     }
 
     /* ── FORM SUBMISSION → KIT API ── */
-    document.getElementById('gate-form').addEventListener('submit', async function(e) {
+    gateForm.addEventListener('submit', async function(e) {
       e.preventDefault();
 
-      const fname  = document.getElementById('gate-fname').value.trim();
-      const email  = document.getElementById('gate-email').value.trim();
-      const fnErr  = document.getElementById('fname-error');
-      const emErr  = document.getElementById('email-error');
-      const btn    = document.getElementById('gate-submit');
+      const fname = fnameInput.value.trim();
+      const email = normalizeEmail(emailInput.value);
+      emailInput.value = email;
 
-      /* Clear previous errors */
-      fnErr.classList.remove('visible');
-      emErr.classList.remove('visible');
+      clearGateErrors();
 
-      /* Validate */
-      let valid = true;
-      if (!fname) { fnErr.classList.add('visible'); valid = false; }
-      if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { emErr.classList.add('visible'); valid = false; }
-      if (!valid) return;
+      if (!validateGateForm(fname, email)) {
+        return;
+      }
 
-      /* Disable button while submitting */
       btn.disabled = true;
-      btn.textContent = 'Sending...';
+      btn.textContent = 'Unlocking...';
 
       try {
-        /* Subscribe to Kit form — adds quiz-lead tag which triggers Authority Engine sequence */
         const res = await fetch(`https://api.convertkit.com/v3/forms/${KIT_FORM_ID}/subscribe`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
-            api_key: 'PNXDUxp8mJTSLZTK_LIIOQ',   // Kit public API key
-            email: email,
+            api_key: KIT_API_KEY,
+            email,
             first_name: fname,
             tags: [KIT_TAG]
           })
         });
 
-        if (!res.ok) throw new Error('Kit API error');
+        const data = await res.json().catch(() => null);
 
-        /* Show success state */
-        document.querySelector('.gate-form-wrap').style.display = 'none';
-        document.getElementById('gate-success').classList.add('visible');
+        if (!res.ok || !data || data.subscription === undefined) {
+          throw new Error('Kit API error');
+        }
 
-        /* Unlock after 2 seconds — smooth UX */
+        gateFormWrap.style.display = 'none';
+        gateSuccess.classList.add('visible');
+
         setTimeout(() => {
-          sessionStorage.setItem('sfs_unlocked', '1');
-          overlay.classList.add('hiding');
-          document.body.classList.remove('gated');
-          document.documentElement.style.overflow = '';
-          setTimeout(() => overlay.classList.add('hidden'), 460);
-        }, 2000);
-
+          unlockPage();
+        }, 700);
       } catch (err) {
-        /* Fallback: unlock anyway so user isn't blocked if Kit has issues */
         console.error('Kit subscription error:', err);
-        sessionStorage.setItem('sfs_unlocked', '1');
-        overlay.classList.add('hiding');
-        document.body.classList.remove('gated');
-        document.documentElement.style.overflow = '';
-        setTimeout(() => overlay.classList.add('hidden'), 460);
+        showGateError(emErr, 'Something went wrong submitting your access request. Please try again in a moment.');
+        btn.disabled = false;
+        btn.textContent = 'Get Instant Access';
       }
     });
 
