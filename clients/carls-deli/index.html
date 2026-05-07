@@ -1,0 +1,3762 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Carl's Deli &middot; Account Homebase | Scroll Media</title>
+  <link rel="icon" type="image/svg+xml" href="../../scroll-favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      /* Brand tokens (from brand_system.md §5) */
+      --ghost: #FAFDFF;
+      --azure: #0C3387;
+      --azure-900: #071d4f;
+      --azure-800: #0c3387;
+      --azure-600: #254fb0;
+      --azure-400: #7a9ad8;
+      --azure-200: #b9cdee;
+      --lucid: #CBE9FF;
+      --lucid-deep: #9ecee8;
+      --lucid-soft: #e4f3ff;
+      --highlighter: #E2ED7A;
+      --highlighter-dark: #c8d94a;
+      --shadow: #151516;
+      --white: #ffffff;
+      --border: #e4e7ec;
+
+      /* Semantic */
+      --bg: var(--ghost);
+      --bg-alt: #f7f8fa;
+      --bg-panel: var(--white);
+      --fg: var(--shadow);
+      --fg-heading: var(--azure);
+      --fg-muted: #5a6070;
+      --fg-subtle: #9097a6;
+      --fg-on-azure: var(--white);
+      --rule: rgba(12, 51, 135, 0.20);
+      --rule-strong: rgba(12, 51, 135, 0.40);
+      --rule-faint: rgba(12, 51, 135, 0.08);
+
+      /* Funnel semantic (functional colors for IVP/Funnel cards) */
+      --tofu-bg: #eff6ff;
+      --tofu-accent: #2563eb;
+      --mofu-bg: #f0fdf4;
+      --mofu-accent: #16a34a;
+      --bofu-bg: #fdf4ff;
+      --bofu-accent: #9333ea;
+
+      /* Typography scale */
+      --fs-xs: 11px;
+      --fs-sm: 13px;
+      --fs-base: 15px;
+      --fs-md: 17px;
+      --fs-lg: 20px;
+      --fs-xl: 24px;
+      --fs-2xl: 32px;
+
+      /* Spacing */
+      --sp-1: 4px;
+      --sp-2: 8px;
+      --sp-3: 12px;
+      --sp-4: 16px;
+      --sp-5: 24px;
+      --sp-6: 32px;
+      --sp-7: 40px;
+
+      /* Layout */
+      --sidebar-w: 260px;
+      --header-h: 60px;
+      --content-max: 1080px;
+
+      /* Radii (brand: hard corners default; rounded earns its place) */
+      --r-sm: 8px;
+      --r-md: 12px;
+      --r-lg: 16px;
+
+      /* Shadows (editorial, almost none) */
+      --sh-sm: 0 1px 2px rgba(12, 51, 135, .06);
+      --sh-md: 0 6px 24px rgba(12, 51, 135, .08);
+    }
+
+    * , *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Source Sans 3', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg);
+      color: var(--fg);
+      font-size: var(--fs-base);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Password gate */
+    #pw-gate {
+      position: fixed; inset: 0;
+      background: var(--azure-900);
+      display: flex; align-items: center; justify-content: center;
+      z-index: 9999; flex-direction: column; gap: 14px;
+    }
+    #pw-gate::before {
+      content: ''; position: absolute;
+      top: -200px; right: -200px;
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(12, 51, 135, 0.6) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    #pw-gate img { width: 130px; margin-bottom: 6px; position: relative; }
+    #pw-gate h2 { color: #fff; font-size: var(--fs-md); font-weight: 700; letter-spacing: -0.3px; position: relative; }
+    #pw-gate p { color: rgba(255, 255, 255, 0.4); font-size: var(--fs-sm); position: relative; }
+    #pw-gate input {
+      width: 272px; padding: 11px 16px;
+      border-radius: var(--r-sm);
+      border: 1.5px solid rgba(255, 255, 255, 0.12);
+      background: rgba(255, 255, 255, 0.06);
+      color: #fff; font-size: var(--fs-base);
+      outline: none; text-align: center;
+      position: relative; transition: border-color 0.2s;
+      font-family: inherit;
+    }
+    #pw-gate input::placeholder { color: rgba(255, 255, 255, 0.3); }
+    #pw-gate input:focus { border-color: rgba(203, 233, 255, 0.5); }
+    #pw-gate button {
+      width: 272px; padding: 11px;
+      background: var(--azure);
+      color: #fff; border: none;
+      border-radius: var(--r-sm);
+      font-size: var(--fs-base); font-weight: 700;
+      cursor: pointer; transition: background 0.2s;
+      position: relative; font-family: inherit;
+    }
+    #pw-gate button:hover { background: var(--azure-600); }
+    #pw-error { color: #f87171; font-size: var(--fs-sm); display: none; position: relative; }
+    .pw-hidden { display: none !important; }
+
+    /* Header */
+    .top-header {
+      position: fixed; top: 0; left: 0; right: 0;
+      height: var(--header-h);
+      background: var(--azure-900);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 24px;
+      z-index: 200;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+    }
+    .top-header-left { display: flex; align-items: center; gap: 16px; }
+    .top-header-left img { height: 26px; }
+    .top-header-divider { width: 1px; height: 18px; background: rgba(255, 255, 255, 0.15); }
+    .top-header-crumb {
+      display: flex; align-items: center; gap: 6px;
+      font-size: var(--fs-sm); color: rgba(255, 255, 255, 0.45);
+    }
+    .top-header-crumb span { color: rgba(255, 255, 255, 0.78); font-weight: 500; }
+    .top-header-right { display: flex; align-items: center; gap: 10px; }
+    .hdr-badge {
+      padding: 3px 10px; border-radius: 20px;
+      font-size: 10px; font-weight: 700;
+      letter-spacing: 0.6px; text-transform: uppercase;
+    }
+    .hdr-badge-stage { background: rgba(203, 233, 255, 0.12); color: var(--lucid); }
+    .hdr-badge-active { background: rgba(226, 237, 122, 0.14); color: var(--highlighter); }
+    .hdr-badge-phase { background: rgba(255, 255, 255, 0.08); color: rgba(255, 255, 255, 0.7); }
+    .hdr-back {
+      color: rgba(255, 255, 255, 0.4); font-size: var(--fs-sm);
+      text-decoration: none; display: flex; align-items: center; gap: 4px;
+      transition: color 0.2s;
+    }
+    .hdr-back:hover { color: rgba(255, 255, 255, 0.85); }
+
+    /* Layout */
+    .layout { display: flex; padding-top: var(--header-h); min-height: 100vh; }
+
+    /* Sidebar */
+    .sidebar {
+      width: var(--sidebar-w);
+      position: fixed;
+      top: var(--header-h); left: 0; bottom: 0;
+      overflow-y: auto;
+      background: var(--white);
+      border-right: 1px solid var(--border);
+      padding: 20px 0 32px;
+      z-index: 100;
+    }
+    .sidebar::-webkit-scrollbar { width: 4px; }
+    .sidebar::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+    .sidebar-group { margin-bottom: 6px; }
+    .sidebar-group-label {
+      padding: 12px 22px 6px;
+      font-size: 9.5px; font-weight: 700;
+      letter-spacing: 1.2px; text-transform: uppercase;
+      color: var(--fg-subtle);
+    }
+    .sidebar-nav { list-style: none; }
+    .sidebar-nav li a {
+      display: flex; align-items: center; gap: 9px;
+      padding: 8px 22px;
+      text-decoration: none;
+      color: var(--fg-muted); font-size: 13px; font-weight: 500;
+      border-left: 2px solid transparent;
+      transition: all 0.15s;
+    }
+    .sidebar-nav li a:hover { color: var(--azure); background: rgba(12, 51, 135, 0.04); }
+    .sidebar-nav li a.active {
+      color: var(--azure); background: rgba(12, 51, 135, 0.06);
+      border-left-color: var(--azure); font-weight: 600;
+    }
+    .nav-icon { width: 14px; height: 14px; flex-shrink: 0; opacity: 0.6; }
+    .sidebar-nav li a:hover .nav-icon, .sidebar-nav li a.active .nav-icon { opacity: 1; }
+    .sidebar-footer {
+      padding: 16px 22px 0;
+      border-top: 1px solid var(--border);
+      margin-top: 16px;
+    }
+    .sidebar-footer-label { font-size: 10px; color: var(--fg-subtle); margin-bottom: 4px; }
+    .sidebar-footer-am { font-size: var(--fs-sm); font-weight: 600; color: var(--fg); }
+    .sidebar-footer-updated { font-size: 10px; color: var(--fg-subtle); margin-top: 2px; }
+
+    /* Main */
+    .main {
+      margin-left: var(--sidebar-w);
+      flex: 1;
+      padding: 32px 40px 80px;
+      max-width: calc(var(--sidebar-w) + var(--content-max));
+    }
+
+    /* Section */
+    .section { margin-bottom: 56px; }
+    .section-header {
+      display: flex; align-items: flex-start; gap: 12px;
+      margin-bottom: 20px;
+    }
+    .section-icon {
+      width: 36px; height: 36px;
+      flex-shrink: 0;
+      background: var(--azure);
+      border-radius: var(--r-sm);
+      display: flex; align-items: center; justify-content: center;
+      margin-top: 1px;
+    }
+    .section-icon svg { width: 16px; height: 16px; }
+    .section-title {
+      font-size: var(--fs-lg); font-weight: 800;
+      color: var(--fg); letter-spacing: -0.3px;
+    }
+    .section-subtitle {
+      font-size: var(--fs-sm); color: var(--fg-subtle); margin-top: 2px;
+    }
+    .section-conditional-tag {
+      display: inline-block; margin-left: 8px;
+      padding: 2px 8px; border-radius: 20px;
+      background: rgba(226, 237, 122, 0.18);
+      color: var(--azure); font-size: 10px; font-weight: 700;
+      letter-spacing: 0.5px; text-transform: uppercase;
+      vertical-align: middle;
+    }
+
+    /* Hero */
+    .client-hero {
+      background: linear-gradient(135deg, var(--azure-900) 0%, var(--azure) 100%);
+      border-radius: var(--r-lg);
+      padding: 32px;
+      margin-bottom: 16px;
+      display: flex; align-items: center; gap: 24px;
+      position: relative; overflow: hidden;
+    }
+    .client-hero::before {
+      content: ''; position: absolute;
+      top: -80px; right: -80px;
+      width: 320px; height: 320px;
+      background: radial-gradient(circle, rgba(12, 51, 135, 0.7) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .client-hero::after {
+      content: ''; position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--highlighter) 0%, transparent 60%);
+    }
+    .client-logo-wrap {
+      width: 76px; height: 76px;
+      flex-shrink: 0;
+      background: rgba(255, 255, 255, 0.07);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: var(--r-md);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .client-logo-initials {
+      font-size: var(--fs-xl); font-weight: 900;
+      color: var(--highlighter); letter-spacing: -1px;
+    }
+    .client-hero-info { flex: 1; position: relative; }
+    .client-hero-name {
+      font-size: var(--fs-2xl); font-weight: 900;
+      color: #fff; letter-spacing: -0.5px;
+      margin-bottom: 4px;
+    }
+    .client-hero-sub {
+      font-size: var(--fs-sm);
+      color: rgba(255, 255, 255, 0.52);
+      margin-bottom: 14px;
+    }
+    .hero-tags { display: flex; flex-wrap: wrap; gap: 7px; }
+    .hero-tag {
+      padding: 4px 11px; border-radius: 20px;
+      font-size: 10.5px; font-weight: 600;
+      letter-spacing: 0.3px;
+    }
+    .ht-blue { background: rgba(203, 233, 255, 0.14); color: var(--lucid); }
+    .ht-lime { background: rgba(226, 237, 122, 0.14); color: var(--highlighter); }
+    .ht-white { background: rgba(255, 255, 255, 0.08); color: rgba(255, 255, 255, 0.66); }
+    .client-hero-actions {
+      display: flex; flex-direction: column; gap: 7px;
+      align-items: flex-end; position: relative;
+    }
+    .hero-action-btn {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 7px 13px;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: var(--r-sm);
+      color: rgba(255, 255, 255, 0.78);
+      text-decoration: none;
+      font-size: 11.5px; font-weight: 600;
+      transition: all 0.2s; white-space: nowrap;
+    }
+    .hero-action-btn:hover { background: rgba(255, 255, 255, 0.16); color: #fff; }
+
+    /* Account health */
+    .account-health {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 1px;
+      background: var(--border);
+      border-radius: var(--r-md);
+      overflow: hidden;
+      margin-bottom: 48px;
+      border: 1px solid var(--border);
+    }
+    .health-cell { background: var(--white); padding: 14px 16px; }
+    .health-cell-label {
+      font-size: 9.5px; font-weight: 700;
+      letter-spacing: 0.9px; text-transform: uppercase;
+      color: var(--fg-subtle); margin-bottom: 4px;
+    }
+    .health-cell-value { font-size: var(--fs-sm); font-weight: 700; color: var(--fg); }
+    .health-cell-value.accent { color: var(--azure); }
+    .health-cell-value.lime { color: var(--highlighter-dark); }
+    .health-cell-value.warn { color: #d97706; }
+    .health-cell-value.pending { color: var(--fg-subtle); font-weight: 600; font-style: italic; font-size: 12px; }
+
+    /* Performance Snapshot row */
+    .perf-snapshot {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      background: var(--border);
+      border-radius: var(--r-md);
+      overflow: hidden;
+      margin-top: -32px;
+      margin-bottom: 16px;
+      border: 1px solid var(--border);
+      position: relative;
+    }
+    .perf-snapshot-header {
+      grid-column: 1 / -1;
+      background: linear-gradient(135deg, var(--azure-900) 0%, var(--azure) 100%);
+      padding: 11px 18px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .perf-snapshot-eyebrow {
+      font-size: 9.5px; font-weight: 800;
+      letter-spacing: 1.2px; text-transform: uppercase;
+      color: var(--highlighter);
+      display: flex; align-items: center; gap: 8px;
+    }
+    .perf-snapshot-eyebrow::before {
+      content: ''; width: 6px; height: 6px;
+      border-radius: 50%; background: var(--highlighter);
+    }
+    .perf-snapshot-meta {
+      font-size: 10.5px; font-weight: 600;
+      color: rgba(255, 255, 255, 0.55);
+      letter-spacing: 0.3px;
+    }
+    .perf-snapshot-meta a {
+      color: var(--lucid); text-decoration: none;
+      border-bottom: 1px dotted rgba(203, 233, 255, 0.4);
+    }
+    .perf-snapshot-meta a:hover { color: var(--highlighter); border-bottom-color: var(--highlighter); }
+    .perf-cell {
+      background: var(--white);
+      padding: 16px 18px;
+      display: flex; flex-direction: column;
+      gap: 4px;
+    }
+    .perf-cell-label {
+      font-size: 9.5px; font-weight: 800;
+      letter-spacing: 0.9px; text-transform: uppercase;
+      color: var(--fg-subtle);
+    }
+    .perf-cell-value {
+      font-size: var(--fs-md); font-weight: 800;
+      color: var(--fg); letter-spacing: -0.2px;
+    }
+    .perf-cell-value.accent { color: var(--azure); }
+    .perf-cell-value.up { color: #16a34a; }
+    .perf-cell-value.up::before { content: '↑ '; font-weight: 900; }
+    .perf-cell-value.down { color: #dc2626; }
+    .perf-cell-value.down::before { content: '↓ '; font-weight: 900; }
+    .perf-cell-meta {
+      font-size: 11px; font-weight: 500;
+      color: var(--fg-muted); line-height: 1.4;
+    }
+    .perf-cell-pending {
+      font-size: 12px; font-weight: 600;
+      color: var(--fg-subtle); font-style: italic;
+    }
+
+    /* Instagram Maturity Ladder */
+    .maturity-ladder {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--r-md);
+      padding: 22px 26px;
+      margin-bottom: 20px;
+      box-shadow: var(--sh-sm);
+    }
+    .maturity-ladder-header {
+      display: flex; align-items: baseline; justify-content: space-between;
+      gap: 16px; flex-wrap: wrap; margin-bottom: 16px;
+    }
+    .maturity-ladder-eyebrow {
+      font-size: 10px; font-weight: 800;
+      letter-spacing: 1.2px; text-transform: uppercase;
+      color: var(--azure);
+    }
+    .maturity-ladder-status {
+      font-size: 12px; color: var(--fg-muted); font-weight: 500;
+    }
+    .maturity-ladder-status strong { color: var(--azure); font-weight: 800; }
+    .maturity-ladder-status .arrow {
+      color: var(--fg-subtle); margin: 0 6px;
+    }
+    .maturity-stages {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+    }
+    .maturity-stage {
+      padding: 14px 14px 12px;
+      border: 1px solid var(--border);
+      border-radius: var(--r-sm);
+      background: var(--bg-alt);
+      opacity: 0.55;
+      transition: all 0.2s;
+      position: relative;
+    }
+    .maturity-stage.past { opacity: 0.7; }
+    .maturity-stage.current {
+      background: var(--lucid-soft);
+      border: 2px solid var(--azure);
+      padding: 13px 13px 11px;
+      opacity: 1;
+    }
+    .maturity-stage.next {
+      background: rgba(226, 237, 122, 0.22);
+      border-color: var(--highlighter-dark);
+      opacity: 1;
+    }
+    .maturity-stage.future { opacity: 0.5; }
+    .maturity-stage-num {
+      font-size: 9.5px; font-weight: 800;
+      letter-spacing: 0.9px;
+      color: var(--fg-subtle);
+      margin-bottom: 4px;
+    }
+    .maturity-stage-name {
+      font-size: 16px; font-weight: 800;
+      color: var(--fg-heading);
+      margin-bottom: 2px;
+      letter-spacing: -0.2px;
+    }
+    .maturity-stage-range {
+      font-size: 10.5px; font-weight: 700;
+      color: var(--fg-muted); margin-bottom: 8px;
+      letter-spacing: 0.2px;
+    }
+    .maturity-stage-desc {
+      font-size: 11.5px; color: var(--fg-muted);
+      line-height: 1.45;
+    }
+    .maturity-stage-marker {
+      display: inline-block; margin-top: 10px;
+      padding: 3px 8px; font-size: 9px; font-weight: 800;
+      letter-spacing: 0.7px; text-transform: uppercase;
+      border-radius: 4px;
+    }
+    .maturity-stage.current .maturity-stage-marker {
+      background: var(--azure); color: var(--white);
+    }
+    .maturity-stage.next .maturity-stage-marker {
+      background: var(--highlighter-dark); color: var(--azure-900);
+    }
+
+    /* Strategic block */
+    .strategy-block {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--r-md);
+      padding: 28px 32px;
+      box-shadow: var(--sh-sm);
+    }
+    .strategy-block p {
+      font-size: 13.5px; line-height: 1.75;
+      color: var(--fg-muted);
+    }
+    .strategy-block p + p { margin-top: 14px; }
+    .strategy-block strong { color: var(--fg); }
+    .strategy-ig-role {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 12px; margin-top: 22px;
+    }
+    .ig-role-card {
+      background: var(--bg-alt);
+      border: 1px solid var(--border);
+      border-radius: var(--r-sm);
+      padding: 16px 18px;
+    }
+    .ig-role-num {
+      font-size: var(--fs-xl); font-weight: 900;
+      color: var(--azure); line-height: 1;
+      margin-bottom: 8px;
+    }
+    .ig-role-text { font-size: 12.5px; color: var(--fg-muted); line-height: 1.55; }
+
+    /* Differentiation pillars list */
+    .diff-pillars {
+      display: grid; grid-template-columns: repeat(2, 1fr);
+      gap: 10px; margin-top: 22px;
+    }
+    .diff-pillar {
+      display: flex; align-items: flex-start; gap: 8px;
+      padding: 10px 14px;
+      background: var(--lucid-soft);
+      border-left: 3px solid var(--azure);
+      border-radius: 0 var(--r-sm) var(--r-sm) 0;
+    }
+    .diff-pillar-num {
+      font-size: 11px; font-weight: 800;
+      color: var(--azure); flex-shrink: 0;
+      letter-spacing: 0.5px;
+    }
+    .diff-pillar-text { font-size: 12px; color: var(--fg); line-height: 1.5; }
+
+    /* Goals grid */
+    .goals-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 14px;
+    }
+    .goal-col {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--r-md);
+      padding: 22px 22px;
+      display: flex; flex-direction: column;
+      box-shadow: var(--sh-sm);
+    }
+    .goal-col.priority { border-left: 4px solid var(--highlighter); }
+    .goal-col.priority::after {
+      content: 'PRIORITY LEVER';
+      display: inline-block;
+      background: var(--highlighter);
+      color: var(--azure);
+      font-size: 9.5px; font-weight: 800;
+      padding: 3px 8px; border-radius: 20px;
+      letter-spacing: 0.7px; text-transform: uppercase;
+      margin-top: 12px; align-self: flex-start;
+    }
+    .goal-stage {
+      font-size: 9.5px; font-weight: 800;
+      letter-spacing: 1.2px; text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+    .goal-stage.tofu { color: var(--tofu-accent); }
+    .goal-stage.mofu { color: var(--mofu-accent); }
+    .goal-stage.bofu { color: var(--bofu-accent); }
+    .goal-title {
+      font-size: var(--fs-md); font-weight: 800;
+      color: var(--fg); margin-bottom: 6px;
+      line-height: 1.25;
+    }
+    .goal-focus {
+      font-size: 12.5px; color: var(--fg-muted);
+      margin-bottom: 12px; line-height: 1.5;
+    }
+    .goal-how-list { list-style: none; }
+    .goal-how-list li {
+      font-size: 12px; line-height: 1.5;
+      padding: 4px 0 4px 14px;
+      position: relative;
+      color: var(--fg-muted);
+    }
+    .goal-how-list li::before {
+      content: ''; position: absolute;
+      left: 0; top: 11px;
+      width: 6px; height: 1px;
+      background: var(--azure);
+    }
+
+    /* IVP cards */
+    .ivp-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+    .ivp-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--r-md);
+      padding: 24px 28px;
+      box-shadow: var(--sh-sm);
+    }
+    .ivp-card-tag {
+      display: inline-block;
+      font-size: 9.5px; font-weight: 800;
+      letter-spacing: 1px; text-transform: uppercase;
+      padding: 3px 9px; border-radius: 20px;
+      margin-bottom: 8px;
+    }
+    .ivp-card-tag.b2c { background: var(--tofu-bg); color: var(--tofu-accent); }
+    .ivp-card-tag.b2b { background: var(--bofu-bg); color: var(--bofu-accent); }
+    .ivp-name {
+      font-size: var(--fs-md); font-weight: 900;
+      color: var(--azure);
+      padding-bottom: 12px; margin-bottom: 16px;
+      border-bottom: 1px solid var(--border);
+    }
+    .ivp-section-title {
+      font-size: 9.5px; font-weight: 700;
+      letter-spacing: 1px; text-transform: uppercase;
+      color: var(--fg-subtle);
+      margin-bottom: 10px; margin-top: 14px;
+    }
+    .ivp-section-title:first-child { margin-top: 0; }
+    .ivp-item { margin-bottom: 12px; }
+    .ivp-item-label { font-size: 12.5px; font-weight: 700; color: var(--fg); margin-bottom: 3px; }
+    .ivp-item-text { font-size: 12px; color: var(--fg-muted); line-height: 1.55; }
+    .ivp-meta-row {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 10px 0;
+      border-top: 1px solid var(--border);
+      margin-top: 12px;
+    }
+    .ivp-meta-label { font-size: 11px; color: var(--fg-subtle); }
+    .ivp-meta-value { font-size: 12px; font-weight: 600; color: var(--azure); }
+
+    /* Pillars */
+    .pillars-grid {
+      display: grid; grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+    }
+    .pillar-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--r-md);
+      padding: 22px 24px;
+      box-shadow: var(--sh-sm);
+    }
+    .pillar-num {
+      font-size: 11px; font-weight: 800;
+      color: var(--highlighter-dark); letter-spacing: 0.6px;
+      margin-bottom: 6px;
+    }
+    .pillar-name {
+      font-size: var(--fs-md); font-weight: 800; color: var(--fg);
+      margin-bottom: 6px;
+    }
+    .pillar-intent {
+      display: inline-block; padding: 2px 10px;
+      border-radius: 20px; font-size: 10px; font-weight: 600;
+      background: rgba(12, 51, 135, 0.07); color: var(--azure);
+      margin-bottom: 10px;
+    }
+    .pillar-desc { font-size: 12.5px; color: var(--fg-muted); line-height: 1.6; margin-bottom: 12px; }
+    .pillar-formats {
+      padding-top: 10px;
+      border-top: 1px solid var(--border);
+    }
+    .pillar-formats-label {
+      font-size: 9px; font-weight: 700;
+      letter-spacing: 0.8px; text-transform: uppercase;
+      color: var(--fg-subtle); margin-bottom: 6px;
+    }
+    .format-tag {
+      display: inline-block;
+      padding: 2px 9px; border-radius: 20px;
+      font-size: 10px; font-weight: 600;
+      margin: 2px 2px 2px 0;
+      background: rgba(12, 51, 135, 0.06);
+      color: var(--azure);
+    }
+    .format-tag.path2 { background: rgba(226, 237, 122, 0.25); color: var(--azure); }
+
+
+    /* Feed strategy day rhythm */
+    .day-rhythm-grid {
+      display: grid; grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+      gap: 8px; margin-top: 18px;
+    }
+    .day-rhythm-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--r-sm);
+      padding: 14px 14px;
+    }
+    .day-rhythm-card.feed { border-top: 3px solid var(--azure); }
+    .day-rhythm-card.story { border-top: 3px solid var(--lucid-deep); }
+    .day-rhythm-card.feed.bofu { border-top: 3px solid var(--highlighter); }
+    .day-rhythm-day {
+      font-size: 11px; font-weight: 800;
+      color: var(--azure); letter-spacing: 0.5px;
+      margin-bottom: 4px;
+    }
+    .day-rhythm-type { font-size: 10px; color: var(--fg-subtle); margin-bottom: 8px; }
+    .day-rhythm-formats { font-size: 11px; color: var(--fg-muted); line-height: 1.5; }
+
+    /* Hooks library */
+    .hooks-grid {
+      display: grid; grid-template-columns: repeat(2, 1fr);
+      gap: 10px; margin-top: 14px;
+    }
+    .hook-card {
+      background: var(--bg-alt);
+      border: 1px solid var(--border);
+      border-radius: var(--r-sm);
+      padding: 14px 16px;
+    }
+    .hook-name {
+      font-size: 12px; font-weight: 800;
+      color: var(--azure); margin-bottom: 4px;
+    }
+    .hook-desc { font-size: 11px; color: var(--fg-muted); line-height: 1.55; margin-bottom: 6px; }
+    .hook-example {
+      font-size: 11.5px; font-style: italic;
+      color: var(--fg); padding: 6px 8px;
+      background: var(--white); border-radius: 4px;
+      border-left: 2px solid var(--lucid-deep);
+    }
+
+    /* SEO Tier table */
+    .seo-tier-table {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--r-md);
+      overflow: hidden;
+      box-shadow: var(--sh-sm);
+    }
+    .seo-tier-row {
+      display: grid; grid-template-columns: 120px 1fr;
+      border-bottom: 1px solid var(--border);
+    }
+    .seo-tier-row:last-child { border-bottom: none; }
+    .seo-tier-label {
+      padding: 16px 20px;
+      background: var(--bg-alt);
+      border-right: 1px solid var(--border);
+    }
+    .seo-tier-name {
+      font-size: 11px; font-weight: 800;
+      color: var(--azure); letter-spacing: 0.6px;
+      text-transform: uppercase; margin-bottom: 4px;
+    }
+    .seo-tier-purpose { font-size: 11px; color: var(--fg-muted); line-height: 1.45; }
+    .seo-tier-content { padding: 16px 20px; }
+    .seo-hashtag {
+      display: inline-block;
+      padding: 3px 10px; margin: 2px 3px 2px 0;
+      background: rgba(12, 51, 135, 0.06);
+      color: var(--azure);
+      font-size: 11.5px; font-weight: 600;
+      border-radius: 4px;
+    }
+
+    /* KPI grid */
+    .kpi-tier-grid {
+      display: grid; grid-template-columns: 1fr 1fr 1fr;
+      gap: 14px;
+    }
+    .kpi-tier-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--r-md);
+      padding: 22px 24px;
+      box-shadow: var(--sh-sm);
+    }
+    .kpi-tier-header {
+      display: flex; justify-content: space-between; align-items: baseline;
+      margin-bottom: 14px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--border);
+    }
+    .kpi-tier-name { font-size: var(--fs-sm); font-weight: 800; color: var(--azure); }
+    .kpi-tier-weight {
+      font-size: 10px; font-weight: 700;
+      color: var(--fg-subtle); letter-spacing: 0.5px;
+    }
+    .kpi-list { list-style: none; }
+    .kpi-list li {
+      font-size: 12px;
+      padding: 6px 0;
+      border-bottom: 1px dashed var(--border);
+      display: flex; justify-content: space-between;
+    }
+    .kpi-list li:last-child { border-bottom: none; }
+    .kpi-list .kpi-name { color: var(--fg); font-weight: 600; }
+    .kpi-list .kpi-mult {
+      font-size: 11px; color: var(--azure); font-weight: 700;
+      padding: 1px 6px; background: var(--lucid-soft); border-radius: 3px;
+    }
+    .kpi-list .kpi-meta {
+      display: flex; align-items: center; gap: 6px;
+    }
+    .kpi-list .kpi-funnel {
+      font-size: 9.5px; font-weight: 800;
+      letter-spacing: 0.6px; text-transform: uppercase;
+      padding: 1px 6px; border-radius: 3px;
+    }
+    .kpi-list .kpi-funnel.tofu { background: var(--tofu-bg); color: var(--tofu-accent); }
+    .kpi-list .kpi-funnel.mofu { background: var(--mofu-bg); color: var(--mofu-accent); }
+    .kpi-list .kpi-funnel.bofu { background: var(--bofu-bg); color: var(--bofu-accent); }
+
+    /* Score progression */
+    .score-progression {
+      background: var(--bg-alt);
+      border: 1px solid var(--border);
+      border-radius: var(--r-md);
+      padding: 18px 22px;
+      margin-top: 18px;
+    }
+    .score-progression-title {
+      font-size: 11px; font-weight: 800;
+      color: var(--azure); letter-spacing: 0.7px;
+      text-transform: uppercase; margin-bottom: 12px;
+    }
+    .score-progression-row {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 6px 0;
+      border-bottom: 1px dashed var(--border);
+    }
+    .score-progression-row:last-child { border-bottom: none; }
+    .score-month { font-size: 12px; color: var(--fg-muted); font-weight: 600; }
+    .score-target {
+      font-size: 13px; color: var(--azure); font-weight: 800;
+      padding: 2px 8px; background: var(--white); border-radius: 4px;
+    }
+
+    /* Profile optimization grid */
+    .po-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+    .po-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--r-md);
+      padding: 22px 24px;
+      box-shadow: var(--sh-sm);
+    }
+    .po-card.full { grid-column: 1 / -1; }
+    .po-card-title {
+      font-size: 11px; font-weight: 800;
+      color: var(--azure); letter-spacing: 0.7px;
+      text-transform: uppercase; margin-bottom: 12px;
+    }
+    .po-bio-preview {
+      background: var(--azure-900); color: var(--white);
+      padding: 18px 22px; border-radius: var(--r-md);
+      font-size: 13.5px; line-height: 1.7;
+      font-family: 'Source Sans 3', sans-serif;
+      margin-bottom: 12px;
+    }
+    .po-bio-preview .bio-handle {
+      color: var(--highlighter); font-weight: 800;
+      margin-bottom: 6px; display: block; font-size: 12px;
+    }
+    .po-pin {
+      padding: 14px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .po-pin:last-child { border-bottom: none; }
+    .po-pin-label {
+      font-size: 10px; font-weight: 800;
+      color: var(--azure); letter-spacing: 0.6px;
+      text-transform: uppercase; margin-bottom: 6px;
+    }
+    .po-pin-name { font-size: 13px; font-weight: 700; color: var(--fg); margin-bottom: 4px; }
+    .po-pin-desc { font-size: 11.5px; color: var(--fg-muted); line-height: 1.5; }
+    .po-highlight-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 10px; margin-top: 6px;
+    }
+    .po-highlight-bubble {
+      text-align: center;
+      padding: 12px 8px;
+      background: var(--bg-alt);
+      border: 1px solid var(--border);
+      border-radius: var(--r-sm);
+    }
+    .po-highlight-bubble-num { font-size: 10px; color: var(--fg-subtle); font-weight: 700; }
+    .po-highlight-bubble-name { font-size: 11.5px; font-weight: 700; color: var(--azure); margin-top: 4px; }
+
+    /* Consolidation visualization */
+    .consol-visual {
+      background: var(--lucid-soft);
+      border: 1px solid var(--border);
+      border-radius: var(--r-md);
+      padding: 22px 24px;
+      display: flex; flex-direction: column; gap: 12px;
+    }
+    .consol-account-row {
+      display: flex; align-items: center; gap: 12px;
+      padding: 10px 14px;
+      background: var(--white);
+      border-radius: var(--r-sm);
+      border: 1px solid var(--border);
+    }
+    .consol-account-row.primary { border-left: 3px solid var(--azure); }
+    .consol-account-row.secondary { opacity: 0.72; }
+    .consol-account-row.result {
+      background: var(--highlighter);
+      border: 2px solid var(--azure);
+    }
+    .consol-circle {
+      width: 36px; height: 36px;
+      border-radius: 50%;
+      background: var(--lucid);
+      border: 2px solid var(--azure);
+      flex-shrink: 0;
+    }
+    .consol-info { flex: 1; }
+    .consol-handle { font-size: 12.5px; font-weight: 700; color: var(--azure); display: block; }
+    .consol-meta { font-size: 11px; color: var(--fg-muted); }
+    .consol-tag {
+      font-size: 9px; font-weight: 800;
+      letter-spacing: 0.6px;
+      padding: 3px 8px; border-radius: 4px;
+      white-space: nowrap;
+    }
+    .consol-tag.primary { background: var(--azure); color: var(--white); }
+    .consol-tag.secondary { background: rgba(12, 51, 135, 0.1); color: var(--fg-muted); }
+    .consol-arrow { text-align: center; color: var(--azure); font-size: 1.2rem; opacity: 0.5; }
+
+    .consol-phases {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      gap: 10px; margin-top: 18px;
+    }
+    .consol-phase-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--r-sm);
+      padding: 12px 14px;
+    }
+    .consol-phase-num {
+      font-size: 10px; font-weight: 800; color: var(--azure);
+      letter-spacing: 0.5px; margin-bottom: 4px;
+    }
+    .consol-phase-name { font-size: 12px; font-weight: 700; color: var(--fg); margin-bottom: 4px; }
+    .consol-phase-window { font-size: 10.5px; color: var(--fg-subtle); margin-bottom: 6px; }
+    .consol-phase-desc { font-size: 10.5px; color: var(--fg-muted); line-height: 1.5; }
+
+    /* Brand assets / vendor grid */
+    .vendor-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+    }
+    .vendor-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--r-sm);
+      padding: 12px 14px;
+    }
+    .vendor-name { font-size: 12.5px; font-weight: 700; color: var(--fg); margin-bottom: 4px; }
+    .vendor-desc { font-size: 10.5px; color: var(--fg-muted); line-height: 1.5; }
+
+    .proof-points-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 10px;
+    }
+    .proof-card {
+      padding: 14px 16px;
+      background: var(--bg-alt);
+      border: 1px solid var(--border);
+      border-radius: var(--r-sm);
+      border-left: 3px solid var(--highlighter);
+    }
+    .proof-name { font-size: 12.5px; font-weight: 800; color: var(--azure); margin-bottom: 4px; }
+    .proof-desc { font-size: 11.5px; color: var(--fg-muted); line-height: 1.55; }
+
+    /* Voice library quotes */
+    .voice-quotes {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 12px;
+    }
+    .voice-quote {
+      padding: 14px 18px;
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--azure);
+      border-radius: 0 var(--r-sm) var(--r-sm) 0;
+      font-size: 12.5px;
+      color: var(--fg);
+      line-height: 1.55;
+      font-style: italic;
+    }
+
+    /* Command center */
+    .command-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px;
+    }
+    .command-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--r-md);
+      padding: 18px 20px;
+      box-shadow: var(--sh-sm);
+      text-decoration: none;
+      transition: all 0.2s;
+      display: block;
+    }
+    .command-card:hover {
+      border-color: var(--azure);
+      box-shadow: var(--sh-md);
+      transform: translateY(-1px);
+    }
+    .command-card-icon {
+      width: 36px; height: 36px;
+      background: var(--bg-alt);
+      border: 1px solid var(--border);
+      border-radius: var(--r-sm);
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 10px;
+    }
+    .command-card-label { font-size: 12px; font-weight: 700; color: var(--fg); margin-bottom: 3px; }
+    .command-card-sub { font-size: 11px; color: var(--fg-subtle); }
+    .command-card.primary { background: var(--azure); border-color: var(--azure); }
+    .command-card.primary .command-card-icon { background: rgba(255, 255, 255, 0.1); border-color: rgba(255, 255, 255, 0.1); }
+    .command-card.primary .command-card-label { color: #fff; }
+    .command-card.primary .command-card-sub { color: rgba(255, 255, 255, 0.6); }
+    .command-card.primary:hover { background: var(--azure-600); }
+
+    /* Stories formats summary */
+    .stories-summary-grid {
+      display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px;
+    }
+    .story-format-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--r-sm);
+      padding: 14px 16px;
+    }
+    .story-format-status {
+      display: inline-block;
+      font-size: 9px; font-weight: 800;
+      padding: 2px 6px; border-radius: 3px;
+      letter-spacing: 0.5px;
+      margin-bottom: 6px;
+    }
+    .story-format-status.core { background: rgba(22, 163, 74, 0.12); color: var(--mofu-accent); }
+    .story-format-status.test { background: rgba(245, 158, 11, 0.15); color: #d97706; }
+    .story-format-status.seasonal { background: rgba(147, 51, 234, 0.12); color: var(--bofu-accent); }
+    .story-format-name { font-size: 12.5px; font-weight: 700; color: var(--fg); margin-bottom: 4px; }
+    .story-format-cadence { font-size: 11px; color: var(--fg-muted); line-height: 1.5; }
+
+    /* Executive Summary */
+    .exec-summary {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--r-lg);
+      padding: 40px 44px;
+      margin-bottom: 28px;
+      position: relative;
+      overflow: hidden;
+    }
+    .exec-summary::before {
+      content: ''; position: absolute;
+      top: 0; left: 0;
+      width: 4px; height: 100%;
+      background: linear-gradient(180deg, var(--azure) 0%, var(--highlighter) 100%);
+    }
+    .exec-summary-eyebrow {
+      font-size: 10.5px; font-weight: 800;
+      letter-spacing: 1.4px; text-transform: uppercase;
+      color: var(--azure); margin-bottom: 14px;
+    }
+    .exec-summary-headline {
+      font-size: 30px; font-weight: 900;
+      letter-spacing: -0.6px; line-height: 1.18;
+      color: var(--fg-heading); margin-bottom: 18px;
+      max-width: 640px;
+    }
+    .exec-summary-lede {
+      font-size: 15px; line-height: 1.65;
+      color: var(--fg-muted);
+      max-width: 720px;
+    }
+    .exec-summary-lede strong { color: var(--fg); font-weight: 700; }
+    .exec-summary-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+      margin-top: 32px;
+      padding-top: 28px;
+      border-top: 1px solid var(--rule-faint);
+    }
+    .exec-pillar {
+      padding-right: 22px;
+      border-right: 1px solid var(--rule-faint);
+    }
+    .exec-pillar:not(:first-child) { padding-left: 22px; }
+    .exec-pillar:last-child { border-right: none; padding-right: 0; }
+    .exec-pillar-num {
+      font-size: 10.5px; font-weight: 800;
+      color: var(--azure); letter-spacing: 1.2px;
+      margin-bottom: 8px; text-transform: uppercase;
+    }
+    .exec-pillar-title {
+      font-size: 13.5px; font-weight: 800;
+      color: var(--fg); margin-bottom: 8px;
+      letter-spacing: -0.1px;
+    }
+    .exec-pillar-body {
+      font-size: 12.5px; line-height: 1.6;
+      color: var(--fg-muted);
+    }
+    .exec-summary-arc {
+      margin-top: 32px;
+      padding-top: 26px;
+      border-top: 1px solid var(--rule-faint);
+    }
+    .exec-arc-label {
+      font-size: 10.5px; font-weight: 800;
+      letter-spacing: 1.2px; text-transform: uppercase;
+      color: var(--fg-subtle); margin-bottom: 14px;
+    }
+    .exec-arc-bar {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      background: var(--bg-alt);
+      border-radius: var(--r-sm);
+      overflow: hidden;
+      border: 1px solid var(--border);
+    }
+    .exec-arc-step {
+      padding: 16px 20px;
+      border-right: 1px solid var(--border);
+      position: relative;
+    }
+    .exec-arc-step:last-child { border-right: none; }
+    .exec-arc-step.current {
+      background: linear-gradient(135deg, var(--azure-900) 0%, var(--azure) 100%);
+    }
+    .exec-arc-step-phase {
+      font-size: 12.5px; font-weight: 800;
+      color: var(--azure); margin-bottom: 3px;
+      letter-spacing: -0.1px;
+    }
+    .exec-arc-step.current .exec-arc-step-phase { color: var(--highlighter); }
+    .exec-arc-step-months {
+      font-size: 10px; font-weight: 800;
+      color: var(--fg-subtle); letter-spacing: 0.5px;
+      text-transform: uppercase; margin-bottom: 7px;
+    }
+    .exec-arc-step.current .exec-arc-step-months { color: rgba(255, 255, 255, 0.55); }
+    .exec-arc-step-desc {
+      font-size: 11.5px; color: var(--fg-muted);
+      line-height: 1.5;
+    }
+    .exec-arc-step.current .exec-arc-step-desc { color: rgba(255, 255, 255, 0.78); }
+
+    /* Engagement Timeline */
+    .timeline-wrap {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+    .timeline-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--r-md);
+      overflow: hidden;
+      position: relative;
+      display: flex; flex-direction: column;
+    }
+    .timeline-card-header {
+      padding: 18px 22px 14px;
+      background: var(--bg-alt);
+      border-bottom: 1px solid var(--border);
+    }
+    .timeline-card.current .timeline-card-header {
+      background: linear-gradient(135deg, var(--azure-900) 0%, var(--azure) 100%);
+      border-bottom-color: var(--azure);
+    }
+    .timeline-card-phase {
+      font-size: 10.5px; font-weight: 800;
+      color: var(--azure); letter-spacing: 1.2px;
+      text-transform: uppercase; margin-bottom: 8px;
+      display: flex; align-items: center; gap: 8px;
+    }
+    .timeline-card.current .timeline-card-phase { color: var(--highlighter); }
+    .timeline-card-phase-tag {
+      padding: 2px 8px; border-radius: 20px;
+      background: rgba(226, 237, 122, 0.22);
+      color: var(--azure-900); font-size: 9.5px; font-weight: 800;
+      letter-spacing: 0.6px;
+    }
+    .timeline-card.current .timeline-card-phase-tag {
+      background: var(--highlighter);
+      color: var(--azure-900);
+    }
+    .timeline-card-title {
+      font-size: var(--fs-md); font-weight: 800;
+      color: var(--fg); letter-spacing: -0.2px;
+      margin-bottom: 4px;
+    }
+    .timeline-card.current .timeline-card-title { color: #fff; }
+    .timeline-card-window {
+      font-size: 11px; font-weight: 600;
+      color: var(--fg-subtle); letter-spacing: 0.3px;
+    }
+    .timeline-card.current .timeline-card-window { color: rgba(255, 255, 255, 0.55); }
+    .timeline-card-body { padding: 16px 22px 20px; flex: 1; }
+    .timeline-block { margin-bottom: 14px; }
+    .timeline-block:last-child { margin-bottom: 0; }
+    .timeline-block-label {
+      font-size: 9.5px; font-weight: 800;
+      letter-spacing: 1px; text-transform: uppercase;
+      color: var(--fg-subtle); margin-bottom: 6px;
+    }
+    .timeline-block-text {
+      font-size: 12.5px; line-height: 1.55;
+      color: var(--fg-muted);
+    }
+    .timeline-block-list {
+      list-style: none; padding: 0; margin: 0;
+    }
+    .timeline-block-list li {
+      font-size: 12px; line-height: 1.5;
+      color: var(--fg-muted);
+      padding: 4px 0 4px 14px;
+      position: relative;
+    }
+    .timeline-block-list li::before {
+      content: ''; position: absolute;
+      left: 0; top: 10px;
+      width: 4px; height: 4px;
+      background: var(--azure);
+      border-radius: 50%;
+    }
+    .timeline-cadence {
+      margin-top: 14px;
+      padding: 14px 18px;
+      background: var(--bg-alt);
+      border: 1px solid var(--border);
+      border-radius: var(--r-sm);
+      display: flex; align-items: center; gap: 10px;
+      font-size: 12px; color: var(--fg-muted);
+    }
+    .timeline-cadence svg { width: 14px; height: 14px; color: var(--azure); flex-shrink: 0; }
+    .timeline-cadence strong { color: var(--fg); font-weight: 700; }
+
+    /* Operating Rhythm subsection */
+    .rhythm-block {
+      margin-top: 28px;
+      padding-top: 26px;
+      border-top: 1px solid var(--rule-faint);
+    }
+    .rhythm-block-eyebrow {
+      font-size: 10.5px; font-weight: 800;
+      letter-spacing: 1.4px; text-transform: uppercase;
+      color: var(--azure); margin-bottom: 6px;
+    }
+    .rhythm-block-headline {
+      font-size: var(--fs-lg); font-weight: 800;
+      color: var(--fg); letter-spacing: -0.3px;
+      margin-bottom: 6px;
+    }
+    .rhythm-block-lede {
+      font-size: 13px; color: var(--fg-muted);
+      line-height: 1.6; margin-bottom: 22px;
+      max-width: 720px;
+    }
+    .rhythm-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+    }
+    .rhythm-cell {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--r-sm);
+      padding: 16px 18px;
+      display: flex; flex-direction: column;
+    }
+    .rhythm-cell-cadence {
+      font-size: 9.5px; font-weight: 800;
+      letter-spacing: 1px; text-transform: uppercase;
+      color: var(--azure); margin-bottom: 8px;
+      display: flex; align-items: center; gap: 6px;
+    }
+    .rhythm-cell-cadence::before {
+      content: ''; width: 6px; height: 6px;
+      border-radius: 50%; background: var(--highlighter);
+    }
+    .rhythm-cell-title {
+      font-size: 12.5px; font-weight: 800;
+      color: var(--fg); margin-bottom: 6px;
+      letter-spacing: -0.1px;
+    }
+    .rhythm-cell-body {
+      font-size: 11.5px; line-height: 1.55;
+      color: var(--fg-muted);
+    }
+
+    /* Cycle loop indicator */
+    .cycle-loop {
+      margin-top: 20px;
+      padding: 22px 26px;
+      background: linear-gradient(135deg, var(--azure-900) 0%, var(--azure) 100%);
+      border-radius: var(--r-md);
+      color: var(--white);
+      display: flex; align-items: center; gap: 18px;
+      position: relative; overflow: hidden;
+    }
+    .cycle-loop::after {
+      content: ''; position: absolute;
+      top: 0; right: 0; width: 240px; height: 100%;
+      background: radial-gradient(circle at right, rgba(226, 237, 122, 0.10) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .cycle-loop-arrow {
+      flex-shrink: 0;
+      width: 44px; height: 44px;
+      background: rgba(226, 237, 122, 0.14);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      position: relative;
+    }
+    .cycle-loop-arrow svg { width: 22px; height: 22px; color: var(--highlighter); }
+    .cycle-loop-text {
+      flex: 1;
+      font-size: 13px; line-height: 1.55;
+      color: rgba(255, 255, 255, 0.78);
+      position: relative;
+    }
+    .cycle-loop-text strong { color: var(--highlighter); font-weight: 800; }
+
+    /* Plan reference card (replaces 30-day calendar) */
+    .plan-reference {
+      background: linear-gradient(135deg, var(--azure-900) 0%, var(--azure) 100%);
+      border-radius: var(--r-md);
+      padding: 26px 30px;
+      color: var(--white);
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 24px;
+      position: relative; overflow: hidden;
+    }
+    .plan-reference::after {
+      content: ''; position: absolute;
+      top: 0; right: 0; width: 220px; height: 100%;
+      background: radial-gradient(circle at right, rgba(226, 237, 122, 0.08) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .plan-ref-content { flex: 1; position: relative; }
+    .plan-ref-eyebrow {
+      font-size: 10px; font-weight: 800;
+      color: var(--lucid); letter-spacing: 1.2px;
+      text-transform: uppercase; margin-bottom: 6px;
+    }
+    .plan-ref-title {
+      font-size: var(--fs-md); font-weight: 800;
+      margin-bottom: 6px; letter-spacing: -0.2px;
+    }
+    .plan-ref-desc {
+      font-size: 12.5px; color: rgba(255, 255, 255, 0.7);
+      line-height: 1.55; max-width: 620px;
+    }
+    .plan-ref-btn {
+      padding: 11px 20px;
+      background: var(--highlighter);
+      color: var(--azure-900);
+      font-weight: 800; font-size: 12px;
+      border-radius: var(--r-sm);
+      text-decoration: none;
+      white-space: nowrap;
+      letter-spacing: 0.2px;
+      position: relative;
+    }
+    .plan-ref-btn:hover { background: var(--highlighter-dark); }
+
+    /* Simplified Format Test Log */
+    .format-funnel-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      margin-bottom: 18px;
+    }
+    .format-funnel-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--r-md);
+      overflow: hidden;
+      display: flex; flex-direction: column;
+    }
+    .format-funnel-header {
+      padding: 14px 18px;
+      border-bottom: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .format-funnel-header.tofu { background: var(--tofu-bg); }
+    .format-funnel-header.mofu { background: var(--mofu-bg); }
+    .format-funnel-header.bofu { background: var(--bofu-bg); }
+    .format-funnel-stage {
+      font-size: 12px; font-weight: 800;
+      letter-spacing: 0.4px;
+    }
+    .format-funnel-header.tofu .format-funnel-stage { color: var(--tofu-accent); }
+    .format-funnel-header.mofu .format-funnel-stage { color: var(--mofu-accent); }
+    .format-funnel-header.bofu .format-funnel-stage { color: var(--bofu-accent); }
+    .format-funnel-purpose {
+      font-size: 9.5px; font-weight: 700;
+      color: var(--fg-subtle); letter-spacing: 0.4px;
+      text-transform: uppercase;
+    }
+    .format-funnel-body { padding: 8px 18px 14px; }
+    .format-row {
+      padding: 10px 0;
+      border-bottom: 1px solid var(--rule-faint);
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 12px;
+    }
+    .format-row:last-child { border-bottom: none; }
+    .format-row-info { flex: 1; min-width: 0; }
+    .format-row-name {
+      font-size: 12.5px; font-weight: 700;
+      color: var(--fg); margin-bottom: 2px;
+    }
+    .format-row-pillar {
+      font-size: 10.5px; color: var(--fg-subtle);
+      letter-spacing: 0.2px;
+    }
+    .format-status {
+      flex-shrink: 0;
+      padding: 3px 9px; border-radius: 20px;
+      font-size: 9.5px; font-weight: 800;
+      letter-spacing: 0.7px; text-transform: uppercase;
+    }
+    .format-status.test {
+      background: rgba(226, 237, 122, 0.30);
+      color: var(--azure-900);
+    }
+    .format-status.core {
+      background: rgba(12, 51, 135, 0.10);
+      color: var(--azure);
+    }
+
+    .format-mix-bar {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--r-md);
+      padding: 18px 22px;
+      margin-bottom: 16px;
+    }
+    .format-mix-label {
+      font-size: 10.5px; font-weight: 800;
+      letter-spacing: 1.2px; text-transform: uppercase;
+      color: var(--fg-subtle); margin-bottom: 12px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .format-mix-label-meta { color: var(--fg-muted); font-size: 11px; letter-spacing: 0.3px; text-transform: none; font-weight: 600; }
+    .format-mix-track {
+      display: flex;
+      height: 30px;
+      border-radius: var(--r-sm);
+      overflow: hidden;
+      border: 1px solid var(--border);
+    }
+    .format-mix-segment {
+      display: flex; align-items: center; justify-content: center;
+      font-size: 11px; font-weight: 800;
+      color: #fff; letter-spacing: 0.4px;
+    }
+    .format-mix-segment.reels { background: var(--azure); flex: 65; }
+    .format-mix-segment.carousels { background: var(--azure-600); flex: 30; }
+    .format-mix-segment.static { background: var(--azure-400); flex: 5; color: var(--azure-900); }
+    .format-mix-legend {
+      display: flex; gap: 22px; margin-top: 12px;
+      font-size: 11px; color: var(--fg-muted);
+    }
+    .format-mix-legend-dot {
+      display: inline-block; width: 8px; height: 8px;
+      border-radius: 2px; margin-right: 6px;
+      vertical-align: middle;
+    }
+    .format-mix-legend-dot.reels { background: var(--azure); }
+    .format-mix-legend-dot.carousels { background: var(--azure-600); }
+    .format-mix-legend-dot.static { background: var(--azure-400); }
+
+    .format-source-card {
+      background: var(--bg-alt);
+      border: 1px solid var(--border);
+      border-radius: var(--r-md);
+      padding: 16px 22px;
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 16px;
+    }
+    .format-source-info { flex: 1; }
+    .format-source-eyebrow {
+      font-size: 10px; font-weight: 800;
+      color: var(--azure); letter-spacing: 1.2px;
+      text-transform: uppercase; margin-bottom: 4px;
+    }
+    .format-source-text {
+      font-size: 12.5px; color: var(--fg-muted);
+      line-height: 1.55;
+    }
+    .format-source-text strong { color: var(--fg); font-weight: 700; }
+
+    /* Community Management */
+    .cm-coverage-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 14px; margin-bottom: 20px;
+    }
+    .cm-coverage-card {
+      border-radius: var(--r-md);
+      padding: 22px 24px;
+      border: 1px solid;
+      display: flex; flex-direction: column;
+    }
+    .cm-coverage-card.cm-rachel { background: var(--tofu-bg); border-color: #bfdbfe; }
+    .cm-coverage-card.cm-owner { background: rgba(226, 237, 122, 0.20); border-color: var(--highlighter); }
+    .cm-coverage-card.cm-joint { background: var(--lucid-soft); border-color: var(--lucid); }
+    .cm-coverage-tag {
+      font-size: 9.5px; font-weight: 800;
+      letter-spacing: 1.2px; text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+    .cm-coverage-card.cm-rachel .cm-coverage-tag { color: var(--tofu-accent); }
+    .cm-coverage-card.cm-owner .cm-coverage-tag { color: var(--azure-900); }
+    .cm-coverage-card.cm-joint .cm-coverage-tag { color: var(--azure); }
+    .cm-coverage-pct {
+      font-size: 12.5px; font-weight: 700;
+      color: var(--fg); margin-bottom: 8px;
+      letter-spacing: -0.1px;
+    }
+    .cm-coverage-body {
+      font-size: 12px; color: var(--fg-muted);
+      line-height: 1.6;
+    }
+
+    .cm-frame-block {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--r-md);
+      padding: 28px 32px 26px 38px;
+      box-shadow: var(--sh-sm);
+      margin-bottom: 20px;
+      position: relative;
+      overflow: hidden;
+    }
+    .cm-frame-block::before {
+      content: ''; position: absolute;
+      top: 0; left: 0;
+      width: 4px; height: 100%;
+      background: linear-gradient(180deg, var(--azure) 0%, var(--highlighter) 100%);
+    }
+    .cm-frame-eyebrow {
+      font-size: 10.5px; font-weight: 800;
+      letter-spacing: 1.4px; text-transform: uppercase;
+      color: var(--azure); margin-bottom: 12px;
+    }
+    .cm-frame-headline {
+      font-size: 22px; font-weight: 900;
+      letter-spacing: -0.4px; line-height: 1.25;
+      color: var(--fg-heading); margin-bottom: 14px;
+      max-width: 640px;
+    }
+    .cm-frame-body p {
+      font-size: 13.5px; line-height: 1.7;
+      color: var(--fg-muted);
+      max-width: 720px;
+    }
+    .cm-frame-body p + p { margin-top: 12px; }
+    .cm-frame-body strong { color: var(--fg); font-weight: 700; }
+
+    .cm-block-title {
+      font-size: 11px; font-weight: 800;
+      color: var(--azure); letter-spacing: 0.7px;
+      text-transform: uppercase; margin-bottom: 14px;
+    }
+    .cm-approach-block { margin-bottom: 20px; }
+
+    .cm-voice-block {
+      background: var(--bg-alt);
+      border: 1px solid var(--border);
+      border-radius: var(--r-md);
+      padding: 24px 28px;
+      margin-bottom: 20px;
+    }
+    .cm-voice-title {
+      font-size: 11px; font-weight: 800;
+      color: var(--azure); letter-spacing: 0.7px;
+      text-transform: uppercase; margin-bottom: 8px;
+    }
+    .cm-voice-lede {
+      font-size: 13px; color: var(--fg-muted);
+      line-height: 1.6; margin-bottom: 16px;
+      max-width: 720px;
+    }
+
+    .cm-preserved-callout {
+      background: linear-gradient(135deg, var(--azure-900) 0%, var(--azure) 100%);
+      border-radius: var(--r-md);
+      padding: 24px 28px;
+      display: flex; align-items: flex-start; gap: 18px;
+      position: relative; overflow: hidden;
+    }
+    .cm-preserved-callout::after {
+      content: ''; position: absolute;
+      top: 0; right: 0; width: 240px; height: 100%;
+      background: radial-gradient(circle at right, rgba(226, 237, 122, 0.12) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .cm-preserved-icon {
+      flex-shrink: 0;
+      width: 44px; height: 44px;
+      background: rgba(226, 237, 122, 0.14);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--highlighter);
+      position: relative;
+    }
+    .cm-preserved-icon svg { width: 22px; height: 22px; }
+    .cm-preserved-text { position: relative; flex: 1; }
+    .cm-preserved-eyebrow {
+      font-size: 10.5px; font-weight: 800;
+      letter-spacing: 1.4px; text-transform: uppercase;
+      color: var(--highlighter); margin-bottom: 6px;
+    }
+    .cm-preserved-headline {
+      font-size: 16px; font-weight: 800;
+      color: #fff; letter-spacing: -0.2px;
+      line-height: 1.35; margin-bottom: 8px;
+    }
+    .cm-preserved-body {
+      font-size: 12.5px; line-height: 1.6;
+      color: rgba(255, 255, 255, 0.78);
+    }
+
+    /* Trends + Cultural Moments */
+    .trends-filter-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+    .trends-filter-card {
+      background: var(--bg-alt);
+      border: 1px solid var(--border);
+      border-radius: var(--r-md);
+      padding: 22px 24px;
+      display: flex; flex-direction: column;
+    }
+    .trends-filter-num {
+      font-size: 9.5px; font-weight: 800;
+      letter-spacing: 1.2px; text-transform: uppercase;
+      color: var(--azure); margin-bottom: 8px;
+    }
+    .trends-filter-q {
+      font-size: 14px; font-weight: 700;
+      color: var(--fg); letter-spacing: -0.2px;
+      line-height: 1.35; margin-bottom: 10px;
+    }
+    .trends-filter-body {
+      font-size: 12px; color: var(--fg-muted);
+      line-height: 1.6;
+    }
+    .trends-calendar-block { margin-bottom: 20px; }
+    .trends-calendar-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+    }
+    .trends-quarter {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--r-sm);
+      padding: 18px 18px 16px;
+      display: flex; flex-direction: column;
+    }
+    .trends-quarter-label {
+      font-size: 10.5px; font-weight: 800;
+      color: var(--azure); letter-spacing: 1.2px;
+      text-transform: uppercase; margin-bottom: 4px;
+    }
+    .trends-quarter-window {
+      font-size: 10.5px; color: var(--fg-subtle);
+      margin-bottom: 14px; letter-spacing: 0.2px;
+    }
+    .trends-moment-list {
+      list-style: none; padding: 0; margin: 0;
+      display: flex; flex-direction: column; gap: 10px;
+    }
+    .trends-moment {
+      font-size: 12px; color: var(--fg-muted);
+      line-height: 1.55;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--rule-faint);
+    }
+    .trends-moment:last-child { border-bottom: none; padding-bottom: 0; }
+    .trends-moment-name {
+      font-weight: 700; color: var(--fg);
+      display: block; margin-bottom: 3px;
+      letter-spacing: -0.1px;
+    }
+    .trends-moment.anchor {
+      background: rgba(226, 237, 122, 0.10);
+      margin: 0 -10px;
+      padding: 8px 10px 10px;
+      border-radius: 4px;
+      border-bottom: 1px solid var(--rule-faint);
+    }
+    .trends-moment.anchor:last-child { border-bottom: none; }
+    .trends-moment.anchor .trends-moment-name { color: var(--azure-900); }
+
+    /* Conversion Strategy */
+    .conversion-metrics-block { margin-bottom: 22px; }
+    .conversion-metrics-lede {
+      font-size: 12.5px; color: var(--fg-muted);
+      line-height: 1.65;
+      max-width: 760px;
+      margin-bottom: 14px;
+    }
+    .conversion-metrics-grid {
+      display: grid; grid-template-columns: repeat(5, 1fr);
+      gap: 10px;
+    }
+    .conversion-metric-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--r-sm);
+      padding: 18px 18px 16px;
+      display: flex; flex-direction: column;
+    }
+    .conversion-metric-card.is-priority {
+      background: rgba(226, 237, 122, 0.10);
+      border-color: var(--highlighter);
+    }
+    .conversion-metric-name {
+      font-size: 13px; font-weight: 800;
+      color: var(--fg-heading);
+      letter-spacing: -0.2px;
+      line-height: 1.3;
+      margin-bottom: 8px;
+    }
+    .conversion-metric-card.is-priority .conversion-metric-name { color: var(--azure-900); }
+    .conversion-metric-signal {
+      font-size: 11.5px; color: var(--fg-muted);
+      line-height: 1.55;
+    }
+
+    .conversion-upgrade-block { margin-bottom: 22px; }
+    .conversion-upgrade-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+    .conversion-upgrade-card {
+      background: var(--lucid-soft);
+      border: 1px solid var(--lucid);
+      border-radius: var(--r-md);
+      padding: 24px 28px 22px;
+      display: flex; flex-direction: column;
+    }
+    .conversion-upgrade-eyebrow {
+      font-size: 9.5px; font-weight: 800;
+      letter-spacing: 1.2px; text-transform: uppercase;
+      color: var(--azure); margin-bottom: 10px;
+    }
+    .conversion-upgrade-question {
+      font-size: 14px; font-weight: 800;
+      color: var(--azure-900);
+      background: var(--white);
+      border-left: 3px solid var(--highlighter);
+      padding: 11px 13px;
+      border-radius: 4px;
+      margin-bottom: 12px;
+      font-style: italic;
+      line-height: 1.4;
+    }
+    .conversion-upgrade-body {
+      font-size: 12.5px; color: var(--fg-muted);
+      line-height: 1.65;
+      max-width: 720px;
+    }
+    .conversion-upgrade-body p + p { margin-top: 10px; }
+    .conversion-upgrade-status {
+      margin-top: 14px;
+      font-size: 10px; font-weight: 800;
+      letter-spacing: 1px; text-transform: uppercase;
+      color: var(--fg-subtle);
+    }
+    .conversion-upgrade-status .status-dot-build {
+      display: inline-block; width: 6px; height: 6px;
+      background: var(--highlighter); border-radius: 50%;
+      margin-right: 6px; vertical-align: 1px;
+    }
+
+    .conversion-considering-block { margin-bottom: 0; }
+    .conversion-considering-lede {
+      font-size: 12.5px; color: var(--fg-muted);
+      line-height: 1.65;
+      max-width: 760px;
+      margin-bottom: 14px;
+    }
+    .conversion-considering-grid {
+      display: grid; grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+    }
+    .conversion-considering-card {
+      background: var(--bg-alt);
+      border: 1px solid var(--border);
+      border-radius: var(--r-md);
+      padding: 22px 24px;
+      display: flex; flex-direction: column;
+    }
+    .conversion-considering-card.is-active {
+      background: rgba(226, 237, 122, 0.10);
+      border-color: var(--highlighter);
+    }
+    .conversion-considering-num {
+      font-size: 9.5px; font-weight: 800;
+      letter-spacing: 1.2px; text-transform: uppercase;
+      color: var(--azure); margin-bottom: 8px;
+    }
+    .conversion-considering-card.is-active .conversion-considering-num { color: var(--azure-900); }
+    .conversion-considering-title {
+      font-size: 14px; font-weight: 700;
+      color: var(--fg); letter-spacing: -0.2px;
+      line-height: 1.35; margin-bottom: 10px;
+    }
+    .conversion-considering-body {
+      font-size: 12px; color: var(--fg-muted);
+      line-height: 1.6;
+    }
+
+    /* Mobile responsive */
+    @media (max-width: 1100px) {
+      .goals-grid, .ivp-grid, .pillars-grid, .po-grid, .kpi-tier-grid {
+        grid-template-columns: 1fr;
+      }
+      .day-rhythm-grid { grid-template-columns: 1fr 1fr; }
+      .vendor-grid { grid-template-columns: 1fr 1fr; }
+      .command-grid { grid-template-columns: 1fr 1fr; }
+      .voice-quotes, .stories-summary-grid, .hooks-grid, .proof-points-grid { grid-template-columns: 1fr; }
+      .diff-pillars { grid-template-columns: 1fr; }
+      .consol-phases { grid-template-columns: 1fr 1fr; }
+      .exec-summary-grid { grid-template-columns: 1fr 1fr; gap: 24px 0; }
+      .exec-pillar:nth-child(2) { border-right: none; padding-right: 0; }
+      .exec-pillar:nth-child(3) { padding-left: 0; padding-top: 24px; border-top: 1px solid var(--rule-faint); }
+      .exec-pillar:nth-child(4) { padding-top: 24px; border-top: 1px solid var(--rule-faint); }
+      .timeline-wrap { grid-template-columns: 1fr; }
+      .format-funnel-grid { grid-template-columns: 1fr; }
+      .rhythm-grid { grid-template-columns: 1fr 1fr; }
+      .cm-coverage-grid { grid-template-columns: 1fr; }
+      .trends-filter-grid { grid-template-columns: 1fr; }
+      .trends-calendar-grid { grid-template-columns: 1fr 1fr; }
+      .conversion-metrics-grid { grid-template-columns: 1fr 1fr; }
+      .conversion-upgrade-grid { grid-template-columns: 1fr; }
+      .conversion-considering-grid { grid-template-columns: 1fr; }
+      .maturity-stages { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 900px) {
+      .exec-arc-bar { grid-template-columns: 1fr; }
+      .exec-arc-step { border-right: none; border-bottom: 1px solid var(--border); }
+      .exec-arc-step:last-child { border-bottom: none; }
+      .plan-reference { flex-direction: column; align-items: flex-start; }
+      .format-source-card { flex-direction: column; align-items: flex-start; }
+      .cycle-loop { flex-direction: column; align-items: flex-start; gap: 12px; }
+      .rhythm-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 768px) {
+      .sidebar { display: none; }
+      .main { margin-left: 0; padding: 20px 16px 48px; }
+      .account-health { grid-template-columns: repeat(3, 1fr); }
+      .perf-snapshot { grid-template-columns: 1fr 1fr; }
+      .client-hero { flex-direction: column; align-items: flex-start; }
+      .client-hero-actions { align-items: flex-start; flex-direction: row; flex-wrap: wrap; }
+      .strategy-ig-role { grid-template-columns: 1fr; }
+      .day-rhythm-grid, .vendor-grid, .command-grid, .consol-phases { grid-template-columns: 1fr; }
+      .cm-frame-block { padding: 24px 22px 22px 28px; }
+      .cm-frame-headline { font-size: 19px; }
+      .cm-preserved-callout { flex-direction: column; gap: 14px; }
+      .trends-calendar-grid { grid-template-columns: 1fr; }
+      .conversion-metrics-grid { grid-template-columns: 1fr; }
+      .maturity-stages { grid-template-columns: 1fr; }
+      .exec-summary { padding: 28px 22px; }
+      .exec-summary-headline { font-size: 24px; }
+      .exec-summary-grid { grid-template-columns: 1fr; }
+      .exec-pillar { border-right: none; padding-right: 0; padding-left: 0 !important; padding-top: 18px; border-top: 1px solid var(--rule-faint); }
+      .exec-pillar:first-child { padding-top: 0; border-top: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Password Gate -->
+<div id="pw-gate">
+  <img src="../../scroll-media-logo.svg" alt="Scroll Media" />
+  <h2>Carl's Deli &middot; Account Homebase</h2>
+  <p>Scroll Media internal access only.</p>
+  <input type="password" id="pwInput" placeholder="Enter password" autocomplete="off" />
+  <button onclick="checkPassword()">Access Homebase</button>
+  <span id="pw-error">Incorrect password. Try again.</span>
+</div>
+
+<div id="app" class="pw-hidden">
+
+  <!-- Top Header -->
+  <header class="top-header">
+    <div class="top-header-left">
+      <a href="/"><img src="../../scroll-media-logo.svg" alt="Scroll Media" /></a>
+      <div class="top-header-divider"></div>
+      <div class="top-header-crumb">Clients &rsaquo; <span>Carl's Deli</span></div>
+    </div>
+    <div class="top-header-right">
+      <span class="hdr-badge hdr-badge-phase">Phase 1: Testing</span>
+      <span class="hdr-badge hdr-badge-active">Active</span>
+      <a class="hdr-back" href="/">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
+        Dashboard
+      </a>
+    </div>
+  </header>
+
+  <div class="layout">
+
+    <!-- Sidebar -->
+    <nav class="sidebar">
+      <div class="sidebar-group">
+        <div class="sidebar-group-label">Overview</div>
+        <ul class="sidebar-nav">
+          <li><a href="#summary" class="active">
+            <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+            Executive Summary
+          </a></li>
+          <li><a href="#overview">
+            <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+            Account Overview
+          </a></li>
+          <li><a href="#timeline">
+            <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12a9 9 0 1 1-9-9c2.5 0 4.8 1 6.5 2.7L21 8"/><polyline points="21 3 21 8 16 8"/></svg>
+            The Signal Method
+          </a></li>
+          <li><a href="#rhythm">
+            <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            Operating Rhythm
+          </a></li>
+        </ul>
+      </div>
+      <div class="sidebar-group">
+        <div class="sidebar-group-label">Strategy</div>
+        <ul class="sidebar-nav">
+          <li><a href="#strategy">
+            <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+            Strategic Direction
+          </a></li>
+          <li><a href="#goals">
+            <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+            Three Goals
+          </a></li>
+          <li><a href="#ivp">
+            <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+            IVP Profiles
+          </a></li>
+          <li><a href="#proof">
+            <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg>
+            Brand Proof Points
+          </a></li>
+          <li><a href="#trends">
+            <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 17 9 11 13 15 21 7"/><polyline points="14 7 21 7 21 14"/></svg>
+            Trends + Moments
+          </a></li>
+          <li><a href="#consolidation">
+            <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            Account Consolidation
+          </a></li>
+        </ul>
+      </div>
+      <div class="sidebar-group">
+        <div class="sidebar-group-label">Content</div>
+        <ul class="sidebar-nav">
+          <li><a href="#pillars">
+            <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="6" height="18"/><rect x="9" y="3" width="6" height="18"/><rect x="16" y="3" width="6" height="18"/></svg>
+            Pillars + Formats
+          </a></li>
+          <li><a href="#feed">
+            <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/></svg>
+            Feed Strategy
+          </a></li>
+          <li><a href="#stories">
+            <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/></svg>
+            Stories Strategy
+          </a></li>
+          <li><a href="#profile">
+            <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+            Profile Optimization
+          </a></li>
+          <li><a href="#community">
+            <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+            Community Management
+          </a></li>
+          <li><a href="#seo">
+            <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+            SEO Keyword Bank
+          </a></li>
+        </ul>
+      </div>
+      <div class="sidebar-group">
+        <div class="sidebar-group-label">Measurement</div>
+        <ul class="sidebar-nav">
+          <li><a href="#kpi">
+            <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+            KPI Framework
+          </a></li>
+          <li><a href="#testlog">
+            <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+            Format Test Log
+          </a></li>
+          <li><a href="#conversion">
+            <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3h18l-7 9v7l-4-2v-5z"/></svg>
+            Conversion Strategy
+          </a></li>
+        </ul>
+      </div>
+      <div class="sidebar-group">
+        <div class="sidebar-group-label">Resources</div>
+        <ul class="sidebar-nav">
+          <li><a href="#calendar">
+            <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            Content Calendar
+          </a></li>
+          <li><a href="#command">
+            <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+            Command Center
+          </a></li>
+        </ul>
+      </div>
+      <div class="sidebar-footer">
+        <div class="sidebar-footer-label">Account Manager</div>
+        <div class="sidebar-footer-am">Rachel</div>
+        <div class="sidebar-footer-updated">Updated May 2026</div>
+      </div>
+    </nav>
+
+    <main class="main">
+
+      <!-- ============================================ -->
+      <!-- 0. Executive Summary -->
+      <!-- ============================================ -->
+      <div id="summary">
+        <div class="exec-summary">
+          <div class="exec-summary-eyebrow">Strategy Overview</div>
+          <div class="exec-summary-headline">Carl's Deli on Instagram. Built around what Carl's already does best.</div>
+          <div class="exec-summary-lede">
+            Local sandwich craft. Sister-owned story. Cincinnati cultural fluency. This Homebase is the operating layer that turns those three things into measurable account growth. <strong>Catering pipeline. New walk-ins. Local cultural equity.</strong> Strategy is locked. Execution adapts based on what the audience signals back.
+          </div>
+
+          <div class="exec-summary-grid">
+            <div class="exec-pillar">
+              <div class="exec-pillar-num">01 &middot; What this is</div>
+              <div class="exec-pillar-title">A strategic framework, not a static plan</div>
+              <div class="exec-pillar-body">Anchored on three goals, four content pillars, two ideal viewer profiles (B2C and catering), and one measurement scorecard. Strategy stays directionally locked. Tactics evolve as Carl's audience and the platform evolve.</div>
+            </div>
+            <div class="exec-pillar">
+              <div class="exec-pillar-num">02 &middot; Why we built it this way</div>
+              <div class="exec-pillar-title">Lead with simplicity</div>
+              <div class="exec-pillar-body">Win at the intersection of what Carl's already does best and what Cincinnati actually wants. Show real progress in a 10-point monthly score, not vanity metrics. Every move documented, every decision data-backed.</div>
+            </div>
+            <div class="exec-pillar">
+              <div class="exec-pillar-num">03 &middot; The process</div>
+              <div class="exec-pillar-title">The Signal Method</div>
+              <div class="exec-pillar-body">Our continuous improvement cycle. Test, execute, refine. Then iterate again. The platform moves fast, so the strategy adapts every quarter. Format prioritization adjusts based on the metrics we weight most, never vibes.</div>
+            </div>
+            <div class="exec-pillar">
+              <div class="exec-pillar-num">04 &middot; What to expect</div>
+              <div class="exec-pillar-title">The metrics that matter most trend up</div>
+              <div class="exec-pillar-body">Account score climbs from baseline toward 8.0+ at maturity. Catering inquiries scale. Followers compound steadily. Reports land the first week of every month.</div>
+            </div>
+          </div>
+
+          <div class="exec-summary-arc">
+            <div class="exec-arc-label">The Signal Method cycle &middot; runs on a quarterly cadence</div>
+            <div class="exec-arc-bar">
+              <div class="exec-arc-step current">
+                <div class="exec-arc-step-phase">Testing</div>
+                <div class="exec-arc-step-months">Quarter 1</div>
+                <div class="exec-arc-step-desc">Discover which formats this audience actually responds to. Strategy stays locked, formats earn their spots.</div>
+              </div>
+              <div class="exec-arc-step">
+                <div class="exec-arc-step-phase">Executing</div>
+                <div class="exec-arc-step-months">Quarter 2</div>
+                <div class="exec-arc-step-desc">Lock validated formats into a stable rotation. Cadence stabilizes. Pipeline compounds.</div>
+              </div>
+              <div class="exec-arc-step">
+                <div class="exec-arc-step-phase">Refining &rsaquo; Iterating</div>
+                <div class="exec-arc-step-months">Quarter 3 &middot; Cycle continues</div>
+                <div class="exec-arc-step-desc">Quarterly review identifies what to test next. Cycle restarts. The strategy never stops evolving.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ============================================ -->
+      <!-- 1. Account Overview -->
+      <!-- ============================================ -->
+      <div id="overview">
+        <div class="client-hero">
+          <div class="client-logo-wrap">
+            <div class="client-logo-initials">CD</div>
+          </div>
+          <div class="client-hero-info">
+            <div class="client-hero-name">Carl's Deli</div>
+            <div class="client-hero-sub">Cincinnati Deli &middot; Hyde Park + Findlay Market &middot; Sister-Owned Since 2024</div>
+            <div class="hero-tags">
+              <span class="hero-tag ht-lime">Best Deli 2026</span>
+              <span class="hero-tag ht-white">Since April 2026</span>
+              <span class="hero-tag ht-white">7,400 Followers</span>
+              <span class="hero-tag ht-white">AM: Rachel</span>
+            </div>
+          </div>
+          <div class="client-hero-actions">
+            <a href="https://www.instagram.com/carlsdelihydepark/" target="_blank" class="hero-action-btn">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+              @carlsdelihydepark
+            </a>
+            <a href="https://www.instagram.com/carlsdelifindlaymarket/" target="_blank" class="hero-action-btn">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+              @carlsdelifindlaymarket
+            </a>
+            <a href="https://reports.scrollmedia.co/carlsdeli/" target="_blank" class="hero-action-btn">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+              Performance Reports
+            </a>
+          </div>
+        </div>
+        <div class="account-health">
+          <div class="health-cell"><div class="health-cell-label">Package</div><div class="health-cell-value accent">Signature Growth</div></div>
+          <div class="health-cell"><div class="health-cell-label">Start Date</div><div class="health-cell-value">April 23, 2026</div></div>
+          <div class="health-cell"><div class="health-cell-label">Primary CTA</div><div class="health-cell-value">Catering + Menu</div></div>
+          <div class="health-cell"><div class="health-cell-label">Posts / Week</div><div class="health-cell-value accent">3</div></div>
+          <div class="health-cell"><div class="health-cell-label">Current Phase</div><div class="health-cell-value">Testing Phase</div></div>
+          <div class="health-cell"><div class="health-cell-label">Cycle Position</div><div class="health-cell-value accent">Month 1 of Testing</div></div>
+        </div>
+
+        <!-- Instagram Maturity Ladder -->
+        <div class="maturity-ladder">
+          <div class="maturity-ladder-header">
+            <div class="maturity-ladder-eyebrow">Instagram Maturity Stage</div>
+            <div class="maturity-ladder-status">Carl's is at <strong>Lift</strong>.<span class="arrow">&rsaquo;</span>The goal is to level up to <strong>Rise</strong>.</div>
+          </div>
+          <div class="maturity-stages">
+            <div class="maturity-stage past">
+              <div class="maturity-stage-num">01</div>
+              <div class="maturity-stage-name">Spark</div>
+              <div class="maturity-stage-range">1K&ndash;5K followers</div>
+              <div class="maturity-stage-desc">Foundation building. Account fundamentals + first signal.</div>
+            </div>
+            <div class="maturity-stage current">
+              <div class="maturity-stage-num">02</div>
+              <div class="maturity-stage-name">Lift</div>
+              <div class="maturity-stage-range">5K&ndash;25K followers</div>
+              <div class="maturity-stage-desc">Growth and audience expansion. Where Carl's is today.</div>
+              <div class="maturity-stage-marker">Carl's is here</div>
+            </div>
+            <div class="maturity-stage next">
+              <div class="maturity-stage-num">03</div>
+              <div class="maturity-stage-name">Rise</div>
+              <div class="maturity-stage-range">10K&ndash;100K followers</div>
+              <div class="maturity-stage-desc">Mature growth. Multiple targets exceeded consistently.</div>
+              <div class="maturity-stage-marker">Next stage</div>
+            </div>
+            <div class="maturity-stage future">
+              <div class="maturity-stage-num">04</div>
+              <div class="maturity-stage-name">Thrive</div>
+              <div class="maturity-stage-range">100K+ followers</div>
+              <div class="maturity-stage-desc">Sustained performance. Brand authority at scale.</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Performance Snapshot row (updated monthly with each report) -->
+        <div class="perf-snapshot">
+          <div class="perf-snapshot-header">
+            <div class="perf-snapshot-eyebrow">Performance Snapshot</div>
+            <div class="perf-snapshot-meta">From latest monthly report &middot; <a href="https://reports.scrollmedia.co/carlsdeli/" target="_blank">View full report</a></div>
+          </div>
+          <div class="perf-cell">
+            <div class="perf-cell-label">Account Score</div>
+            <div class="perf-cell-pending">Pending Month 1</div>
+            <div class="perf-cell-meta">Targets 7.0+ early cycle, 8.0+ at maturity.</div>
+          </div>
+          <div class="perf-cell">
+            <div class="perf-cell-label">Saves + Link Taps</div>
+            <div class="perf-cell-pending">Pending Month 1</div>
+            <div class="perf-cell-meta">Strongest signals of return and conversion. Link taps break out by surface.</div>
+          </div>
+          <div class="perf-cell">
+            <div class="perf-cell-label">Top Format Last 30</div>
+            <div class="perf-cell-pending">Pending Month 1</div>
+            <div class="perf-cell-meta">The format that drove the strongest engagement this period.</div>
+          </div>
+          <div class="perf-cell">
+            <div class="perf-cell-label">Catering Inquiries</div>
+            <div class="perf-cell-pending">Pending Month 1</div>
+            <div class="perf-cell-meta">Volume plus source breakdown once the catering intake question goes live.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ============================================ -->
+      <!-- 2. The Signal Method (cyclical framework) -->
+      <!-- ============================================ -->
+      <div id="timeline" class="section">
+        <div class="section-header">
+          <div class="section-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M21 12a9 9 0 1 1-9-9c2.5 0 4.8 1 6.5 2.7L21 8"/><polyline points="21 3 21 8 16 8"/></svg>
+          </div>
+          <div>
+            <div class="section-title">The Signal Method</div>
+            <div class="section-subtitle">Our framework for testing formats and finding what drives the strongest results for Carl's audience. Test, execute, refine. Then iterate.</div>
+          </div>
+        </div>
+
+        <div class="timeline-wrap">
+          <!-- Phase 1: Testing -->
+          <div class="timeline-card current">
+            <div class="timeline-card-header">
+              <div class="timeline-card-phase">
+                Phase 1
+                <span class="timeline-card-phase-tag">Active</span>
+              </div>
+              <div class="timeline-card-title">Testing</div>
+              <div class="timeline-card-window">First quarter of cycle &middot; ~90 days</div>
+            </div>
+            <div class="timeline-card-body">
+              <div class="timeline-block">
+                <div class="timeline-block-label">Focus</div>
+                <div class="timeline-block-text">Discover which formats Carl's audience actually responds to. Proven formats from adjacent niches and original formats built around Carl's uncopyable assets run side by side. Pillars, audience profiles, and content mix stay locked.</div>
+              </div>
+              <div class="timeline-block">
+                <div class="timeline-block-label">What gets locked in</div>
+                <ul class="timeline-block-list">
+                  <li>Day-by-day cadence rhythm operationalized</li>
+                  <li>Dual-account consolidation completed</li>
+                  <li>Profile, bio, and highlights fully optimized</li>
+                  <li>Format Test Log baselined with first signal data</li>
+                </ul>
+              </div>
+              <div class="timeline-block">
+                <div class="timeline-block-label">Expected outcomes</div>
+                <ul class="timeline-block-list">
+                  <li>Account score climbs from baseline toward 7.5+</li>
+                  <li>Catering inquiry attribution working end-to-end</li>
+                  <li>1 to 2 original formats validated for the proven rotation</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- Phase 2: Executing -->
+          <div class="timeline-card">
+            <div class="timeline-card-header">
+              <div class="timeline-card-phase">
+                Phase 2
+                <span class="timeline-card-phase-tag">Next</span>
+              </div>
+              <div class="timeline-card-title">Executing</div>
+              <div class="timeline-card-window">Second quarter of cycle &middot; ~90 days</div>
+            </div>
+            <div class="timeline-card-body">
+              <div class="timeline-block">
+                <div class="timeline-block-label">Focus</div>
+                <div class="timeline-block-text">Lock the winners from Testing into the proven rotation. New original formats can run alongside as the next test slate. Catering pipeline becomes the primary catering-conversion surface.</div>
+              </div>
+              <div class="timeline-block">
+                <div class="timeline-block-label">What gets locked in</div>
+                <ul class="timeline-block-list">
+                  <li>Promoted formats become the core rotation</li>
+                  <li>Audience profile refinements (if Testing data justified them)</li>
+                  <li>Stories link mechanic discipline operationalized</li>
+                  <li>Quarterly Strategic Refresh at end of phase</li>
+                </ul>
+              </div>
+              <div class="timeline-block">
+                <div class="timeline-block-label">Expected outcomes</div>
+                <ul class="timeline-block-list">
+                  <li>Account score steady at 7.5+</li>
+                  <li>Compounding follower growth at the current stage</li>
+                  <li>Catering inquiries trending month-over-month</li>
+                  <li>Best Deli 2026 fully integrated as authority anchor</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- Phase 3: Refining + Iterating -->
+          <div class="timeline-card">
+            <div class="timeline-card-header">
+              <div class="timeline-card-phase">
+                Phase 3
+                <span class="timeline-card-phase-tag">Ongoing</span>
+              </div>
+              <div class="timeline-card-title">Refining &rsaquo; Iterating</div>
+              <div class="timeline-card-window">Third quarter onward &middot; cycle continues</div>
+            </div>
+            <div class="timeline-card-body">
+              <div class="timeline-block">
+                <div class="timeline-block-label">Focus</div>
+                <div class="timeline-block-text">Mature account behavior. Quarterly strategic reviews replace monthly format testing as the adjustment mechanism. Refining surfaces the next test cohort. The cycle restarts.</div>
+              </div>
+              <div class="timeline-block">
+                <div class="timeline-block-label">What gets locked in</div>
+                <ul class="timeline-block-list">
+                  <li>Quarterly review cadence as default</li>
+                  <li>Next Testing window scoped from refining signal</li>
+                  <li>Annual positioning review (does the audience profile still hold?)</li>
+                  <li>Cross-platform expansion considerations (if relevant)</li>
+                </ul>
+              </div>
+              <div class="timeline-block">
+                <div class="timeline-block-label">Expected outcomes</div>
+                <ul class="timeline-block-list">
+                  <li>Account score steady at 8.0+</li>
+                  <li>Sister-owned story established as Cincinnati cultural fixture</li>
+                  <li>Catering pipeline measurably contributing to revenue</li>
+                  <li>New formats and platform shifts continuously absorbed</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Cycle loop indicator -->
+        <div class="cycle-loop">
+          <div class="cycle-loop-arrow">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M21 12a9 9 0 1 1-9-9c2.5 0 4.8 1 6.5 2.7L21 8"/><polyline points="21 3 21 8 16 8"/></svg>
+          </div>
+          <div class="cycle-loop-text">
+            <strong>The cycle continues.</strong> Each refining phase surfaces a new test cohort, which opens the next testing window. The platform never stops evolving, so neither does the strategy. We absorb new signals on a quarterly rhythm rather than reacting weekly.
+          </div>
+        </div>
+
+      </div>
+
+      <!-- ============================================ -->
+      <!-- 3. Operating Rhythm -->
+      <!-- ============================================ -->
+      <div id="rhythm" class="section">
+        <div class="section-header">
+          <div class="section-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          </div>
+          <div>
+            <div class="section-title">Operating Rhythm</div>
+            <div class="section-subtitle">How we work together. Six overlapping cadences. Every touchpoint has a defined output and a defined owner.</div>
+          </div>
+        </div>
+
+        <div class="rhythm-grid">
+          <div class="rhythm-cell">
+            <div class="rhythm-cell-cadence">Daily</div>
+            <div class="rhythm-cell-title">Content production &amp; publishing</div>
+            <div class="rhythm-cell-body">Rachel manages content drafts, scheduling, and publishing through Plan. Sydney approves content as it lands in her queue.</div>
+          </div>
+          <div class="rhythm-cell">
+            <div class="rhythm-cell-cadence">Weekly</div>
+            <div class="rhythm-cell-title">Mon / Wed / Fri feed cadence</div>
+            <div class="rhythm-cell-body">Three feed posts per week (Mon discovery / Wed authority / Fri catering). Two story days (Tue / Thu). Reshares Mon / Wed / Fri.</div>
+          </div>
+          <div class="rhythm-cell">
+            <div class="rhythm-cell-cadence">Bi-weekly</div>
+            <div class="rhythm-cell-title">30-min check-in with Sydney &amp; Rachel</div>
+            <div class="rhythm-cell-body">Approvals batched. Performance signals reviewed. Catering pipeline discussed. Any cultural moments to plug into get scoped here.</div>
+          </div>
+          <div class="rhythm-cell">
+            <div class="rhythm-cell-cadence">Monthly</div>
+            <div class="rhythm-cell-title">Performance report + Homebase snapshot</div>
+            <div class="rhythm-cell-body">First week of every month. Full HTML report at <code style="font-size: 10.5px; padding: 1px 4px; background: var(--bg-alt); border-radius: 3px;">reports.scrollmedia.co/carlsdeli/</code>. Headline numbers also flow into the Performance Snapshot in Account Overview.</div>
+          </div>
+          <div class="rhythm-cell">
+            <div class="rhythm-cell-cadence">Quarterly</div>
+            <div class="rhythm-cell-title">Strategic Refresh + phase transition</div>
+            <div class="rhythm-cell-body">Format Test Log reviewed. Winning formats promoted into the proven rotation, underperformers retired. Next quarter scope locked. The cycle resets if a phase exit gate is hit.</div>
+          </div>
+          <div class="rhythm-cell">
+            <div class="rhythm-cell-cadence">Annual</div>
+            <div class="rhythm-cell-title">Positioning review</div>
+            <div class="rhythm-cell-body">Does the IVP still map to who's actually driving catering revenue? Does the strategic direction still hold? Major refinements live here, not in monthly cycles.</div>
+          </div>
+        </div>
+
+        <div class="timeline-cadence" style="margin-top: 22px;">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+          <span><strong>Approval discipline.</strong> Content lands in Plan five business days before publish. Maximum two rounds of edits per cycle. All approvals tracked in Plan, batched at bi-weekly check-ins.</span>
+        </div>
+      </div>
+
+      <!-- ============================================ -->
+      <!-- 4. Strategic Direction + Brand & Competitive Review -->
+      <!-- ============================================ -->
+      <div id="strategy" class="section">
+        <div class="section-header">
+          <div class="section-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+          </div>
+          <div>
+            <div class="section-title">Strategic Direction + Brand &amp; Competitive Review</div>
+            <div class="section-subtitle">Account narrative, Instagram's role, the differentiation moat.</div>
+          </div>
+        </div>
+        <div class="strategy-block">
+          <p><strong>Carl's Deli</strong> is a Cincinnati institution. 80 years on the same Hyde Park corner. Sister-owned by Sydney and Cameron Turnbull, who grew up two blocks away and bought the deli to preserve it. Best Deli in Cincinnati 2026. Now expanding through Findlay Market with real catering capacity.</p>
+          <p>Instagram's role is to <strong>drive new customer acquisition (the 22-40 transplant cohort), build the Findlay audience, and grow catering revenue</strong>. Catering is the priority lever. Content positions Carl's as the Cincinnati deli with sister-led authenticity, uncopyable craft (28-32 pieces of meat sliced in-house every Friday), and the catering operation Cincinnati companies trust at scale (Sam Adams 300+ sandwiches).</p>
+          <div class="strategy-ig-role">
+            <div class="ig-role-card"><div class="ig-role-num">01</div><div class="ig-role-text"><strong>Build Cincinnati awareness.</strong> Pattern Break series, sister narrative, neighborhood-coded content for the 22-40 acquisition cohort.</div></div>
+            <div class="ig-role-card"><div class="ig-role-num">02</div><div class="ig-role-text"><strong>Engage the community.</strong> Vendor stack spotlights, Sydney's voice content, save-worthy education that earns the metrics we weight most.</div></div>
+            <div class="ig-role-card"><div class="ig-role-num">03</div><div class="ig-role-text"><strong>Drive catering revenue.</strong> Capacity proof, process clarity, Direct Response Stories with Metricool-tracked links to catering inquiry.</div></div>
+          </div>
+
+          <div style="margin-top: 24px;">
+            <div class="ivp-section-title">7 Differentiation Pillars Carl's Owns</div>
+            <div class="diff-pillars">
+              <div class="diff-pillar"><span class="diff-pillar-num">01</span><span class="diff-pillar-text">Sister-owner narrative (Sydney + Cameron, Honey-Baked Ham grandmother lineage)</span></div>
+              <div class="diff-pillar"><span class="diff-pillar-num">02</span><span class="diff-pillar-text">80-year institutional legacy + Best Deli 2026 + 3rd Best Sandwiches award</span></div>
+              <div class="diff-pillar"><span class="diff-pillar-num">03</span><span class="diff-pillar-text">Cincinnati vendor stack of 8 named partners (Triple R Cookies, 16 Bricks, Mom and 'Em, +5)</span></div>
+              <div class="diff-pillar"><span class="diff-pillar-num">04</span><span class="diff-pillar-text">Findlay Market expansion + walk-in cooler that unlocked catering operation</span></div>
+              <div class="diff-pillar"><span class="diff-pillar-num">05</span><span class="diff-pillar-text">FC Cincinnati players eat at Carl's organically (uncopyable earned media)</span></div>
+              <div class="diff-pillar"><span class="diff-pillar-num">06</span><span class="diff-pillar-text">The Country Club (#23) ritual. 13,000 sold in one year</span></div>
+              <div class="diff-pillar"><span class="diff-pillar-num">07</span><span class="diff-pillar-text">Sydney's personal voice and owner-led DM relationships (verbatim phrases plus DM thank-yous to story-share customers)</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ============================================ -->
+      <!-- 5. The Three Goals -->
+      <!-- ============================================ -->
+      <div id="goals" class="section">
+        <div class="section-header">
+          <div class="section-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+          </div>
+          <div>
+            <div class="section-title">Three Goals. One System.</div>
+            <div class="section-subtitle">One overarching objective. Three sub-goals (one per funnel stage) that guide the content we create. Revisited and refined throughout the engagement.</div>
+          </div>
+        </div>
+
+        <div class="strategy-block" style="margin-bottom: 18px;">
+          <p><strong>The overarching objective:</strong> more qualified lead generation for Carl's, regardless of where the lead comes from. The three sub-goals below split the work across each stage of the funnel so every post serves a defined role. Each goal carries equal weight. The funnel mix (40% discovery / 35% consideration / 25% catering conversion) reflects how we allocate content volume, not how we rank goal importance.</p>
+        </div>
+
+        <div class="goals-grid">
+          <div class="goal-col">
+            <div class="goal-stage tofu">Top of Funnel &middot; Discovery</div>
+            <div class="goal-title">Brand Awareness in Cincinnati</div>
+            <div class="goal-focus">The right local audience knowing who Carl's is. Acquisition priority: 22-40 cohort.</div>
+            <div class="goal-how-list-wrap">
+              <ul class="goal-how-list">
+                <li>One unified consolidated account</li>
+                <li>Pattern Break series + reach formats</li>
+                <li>Local visibility, neighborhood storytelling</li>
+              </ul>
+            </div>
+          </div>
+          <div class="goal-col">
+            <div class="goal-stage mofu">Middle of Funnel &middot; Consideration</div>
+            <div class="goal-title">Engage the Current Community</div>
+            <div class="goal-focus">Education and engagement that builds trust and authority with the existing audience.</div>
+            <div class="goal-how-list-wrap">
+              <ul class="goal-how-list">
+                <li>Saves, shares, comments</li>
+                <li>Authority Builder Carousels</li>
+                <li>Sydney's voice content + vendor stories</li>
+              </ul>
+            </div>
+          </div>
+          <div class="goal-col">
+            <div class="goal-stage bofu">Bottom of Funnel &middot; Catering Conversion</div>
+            <div class="goal-title">Grow Catering Revenue</div>
+            <div class="goal-focus">Catering is the priority revenue lever. Corporate, schools, personal events, bridal.</div>
+            <div class="goal-how-list-wrap">
+              <ul class="goal-how-list">
+                <li>Catering capacity proof (Sam Adams 300+)</li>
+                <li>Direct Response Stories (Metricool tracked)</li>
+                <li>Catering Inquiry Reminder weekly</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ============================================ -->
+      <!-- 6. IVP Profiles (dual) -->
+      <!-- ============================================ -->
+      <div id="ivp" class="section">
+        <div class="section-header">
+          <div class="section-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+          </div>
+          <div>
+            <div class="section-title">IVP Profiles &middot; Dual Audience</div>
+            <div class="section-subtitle">B2C primary plus a B2B and personal-event conversion layer. Catering conversion path overweighted at this growth stage.</div>
+          </div>
+        </div>
+        <div class="ivp-grid">
+          <div class="ivp-card">
+            <span class="ivp-card-tag b2c">IVP 1 &middot; B2C Primary</span>
+            <div class="ivp-name">The Cincinnati Deli Customer</div>
+            <div class="ivp-section-title">Demographics</div>
+            <div class="ivp-item-text">Bimodal age. <strong>Acquisition priority 22-40</strong> (Cincinnati transplants, young professionals, IG-discovery cohort) plus retention base 40-65 (multigenerational regulars). Hyde Park, Oakley, OTR, Findlay Market neighborhoods. Slight female skew. Middle to upper-middle income ($55-120K).</div>
+
+            <div class="ivp-section-title">Core Motivators</div>
+            <div class="ivp-item">
+              <div class="ivp-item-label">1. Craft &amp; Quality Certainty</div>
+              <div class="ivp-item-text">Burned by places that look good but taste average. Carl's removes uncertainty. 80 years of consistency is the product.</div>
+            </div>
+            <div class="ivp-item">
+              <div class="ivp-item-label">2. Cincinnati Identity &amp; Pride</div>
+              <div class="ivp-item-text">Eating at Carl's is a civic act. Loves Cincinnati actively. Buys local before national.</div>
+            </div>
+            <div class="ivp-item">
+              <div class="ivp-item-label">3. The Craving</div>
+              <div class="ivp-item-text">The #23 isn't an abstract idea. It's a pull. Walks in with the order already decided.</div>
+            </div>
+            <div class="ivp-item">
+              <div class="ivp-item-label">4. Experience: "Wonky Wood Floors"</div>
+              <div class="ivp-item-text">Sydney verbatim: "We are not high and tight." The unpolished texture IS the brand.</div>
+            </div>
+
+            <div class="ivp-section-title">Top Customer FAQs</div>
+            <div class="ivp-item-text">
+              "What sandwich would you recommend?" &middot; "Are you Carl?" &middot; "What's the sandwich of the day?" &middot; "Where can I get the merch?" &middot; "Is it dog-friendly?"
+            </div>
+
+            <div class="ivp-meta-row">
+              <span class="ivp-meta-label">Primary CTA</span>
+              <span class="ivp-meta-value">Order a Sandwich / View Menu</span>
+            </div>
+          </div>
+
+          <div class="ivp-card">
+            <span class="ivp-card-tag b2b">IVP 2 &middot; B2B + Personal Event Conversion</span>
+            <div class="ivp-name">The Catering Buyer</div>
+            <div class="ivp-section-title">Demographics</div>
+            <div class="ivp-item-text">Office managers, EAs, HR coordinators, marketing managers, event planners (B2B corporate). Plus brides, baptism hosts, milestone planners (personal events). 28-50 age range. Cincinnati metro: Downtown, Blue Ash, Kenwood, Rookwood, OTR. Companies 15-250 employees.</div>
+
+            <div class="ivp-section-title">Core Motivators</div>
+            <div class="ivp-item">
+              <div class="ivp-item-label">1. Reliability Above All</div>
+              <div class="ivp-item-text">Not picking catering because they love food. Picking it because they need the event to go well and not embarrass the team.</div>
+            </div>
+            <div class="ivp-item">
+              <div class="ivp-item-label">2. Capacity Proof</div>
+              <div class="ivp-item-text">Need to see Carl's can handle 75+ people. Sam Adams 300+ is the canonical capacity-proof anchor.</div>
+            </div>
+            <div class="ivp-item">
+              <div class="ivp-item-label">3. Process Clarity</div>
+              <div class="ivp-item-text">Lead time, delivery vs pickup, dietary options. Logistics remove friction.</div>
+            </div>
+            <div class="ivp-item">
+              <div class="ivp-item-label">4. Personal Event Recognition (Sub-segment 2B)</div>
+              <div class="ivp-item-text">Personal event hosts (bridal, baptism, milestone) need to see themselves represented in catering content.</div>
+            </div>
+
+            <div class="ivp-section-title">Top Catering FAQs</div>
+            <div class="ivp-item-text">
+              "How many people can you handle?" &middot; "How far in advance do I need to order?" &middot; "What's the price for X people?" &middot; "Do you deliver or do I pick up?" &middot; "What's the minimum order?" &middot; "Can you do dietary restrictions?"
+            </div>
+
+            <div class="ivp-meta-row">
+              <span class="ivp-meta-label">Primary CTA</span>
+              <span class="ivp-meta-value">Inquire About Catering</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- ============================================ -->
+      <!-- 7. Brand Proof Points + Vendor Stack -->
+      <!-- ============================================ -->
+      <div id="proof" class="section">
+        <div class="section-header">
+          <div class="section-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg>
+          </div>
+          <div>
+            <div class="section-title">Brand Proof Points + Vendor Stack</div>
+            <div class="section-subtitle">The uncopyable inventory. Every piece of content earns its slot by activating one of these.</div>
+          </div>
+        </div>
+
+        <div style="margin-bottom: 18px;">
+          <div class="ivp-section-title">Operational Proof Points</div>
+          <div class="proof-points-grid">
+            <div class="proof-card">
+              <div class="proof-name">Sam Adams 300+ Sandwiches</div>
+              <div class="proof-desc">Canonical capacity-proof case. The #1 catering conversion asset for content. Anchors Sam Adams Case Study Reel + every Catering Inquiry Reminder.</div>
+            </div>
+            <div class="proof-card">
+              <div class="proof-name">Best Deli in Cincinnati 2026</div>
+              <div class="proof-desc">Won April 2026 (~2 weeks before kickoff). Current credibility anchor. Bio + Highlight 6 + Authority Builder Carousel content.</div>
+            </div>
+            <div class="proof-card">
+              <div class="proof-name">28-32 Pieces of Meat / 7-8 lbs Each</div>
+              <div class="proof-desc">In-house slicing volume every Friday. Quantitative craft proof. Anchors Top Down + Authority Builder formats.</div>
+            </div>
+            <div class="proof-card">
+              <div class="proof-name">13,000 #23 Country Clubs Sold/Year</div>
+              <div class="proof-desc">~250 per week / 35 per day. The flagship sandwich ritual. Pattern Break Sandwich x Dog Breed leads here (Country Club = Golden Retriever).</div>
+            </div>
+            <div class="proof-card">
+              <div class="proof-name">May 8 School Box Lunch x2 (60 boxes each)</div>
+              <div class="proof-desc">Real-time current proof. Multiple jobs same day. Volume + dietary capacity proof.</div>
+            </div>
+            <div class="proof-card">
+              <div class="proof-name">FC Cincinnati Players Eat Organically</div>
+              <div class="proof-desc">Earned media most local food brands cannot access. Phase 2: branded gift box outreach activates this.</div>
+            </div>
+          </div>
+        </div>
+
+        <div style="margin-bottom: 18px;">
+          <div class="ivp-section-title">The Cincinnati Vendor Stack (8 Named Partners)</div>
+          <div class="vendor-grid">
+            <div class="vendor-card">
+              <div class="vendor-name">Triple R Cookies</div>
+              <div class="vendor-desc">Union, KY (Heather + husband). 300 cookies/week. Carl's = top wholesale account. <em>Vendor Spotlight Series Episode 1.</em></div>
+            </div>
+            <div class="vendor-card">
+              <div class="vendor-name">16 Bricks</div>
+              <div class="vendor-desc">Bread in every sandwich. Carl's = one of largest wholesale accounts. Story focuses on the bread, not the owner.</div>
+            </div>
+            <div class="vendor-card">
+              <div class="vendor-name">Mom and 'Em Cold Brew</div>
+              <div class="vendor-desc">Cincinnati-coded brand. Personal connection (Chase). Cross-promotion opportunity.</div>
+            </div>
+            <div class="vendor-card">
+              <div class="vendor-name">Nate's Hot Sauce</div>
+              <div class="vendor-desc">Northern Kentucky. NKY angle interesting for cross-river audience.</div>
+            </div>
+            <div class="vendor-card">
+              <div class="vendor-name">Amy's Pickles</div>
+              <div class="vendor-desc">Pickle-specific content moments. Sandwich accompaniment features.</div>
+            </div>
+            <div class="vendor-card">
+              <div class="vendor-name">Blondie Brewer</div>
+              <div class="vendor-desc">Cincinnati craft-coffee adjacent. Vendor Spotlight when seasonal.</div>
+            </div>
+            <div class="vendor-card">
+              <div class="vendor-name">Roaming Joe</div>
+              <div class="vendor-desc">Coffee shop pop-ups. Findlay Neighbor Series adjacent if presence at Findlay.</div>
+            </div>
+            <div class="vendor-card">
+              <div class="vendor-name">Proud Hound</div>
+              <div class="vendor-desc">Coffee shop pop-ups. Vendor Spotlight rotation candidate.</div>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <div class="ivp-section-title">Sydney's Voice Library (Verbatim Phrases)</div>
+          <div class="voice-quotes">
+            <div class="voice-quote">"We are not high and tight."</div>
+            <div class="voice-quote">"Wonky wood floors. The paint's chipping. That's part of the vibe."</div>
+            <div class="voice-quote">"Two sisters who own a deli named Carl's. Neither of us is named Carl. There's a story."</div>
+            <div class="voice-quote">"I grew up two blocks from this deli with my allowance money. Now my sister and I own it."</div>
+            <div class="voice-quote">"My grandma inherited Honey-Baked Ham. We bought a corner deli. Same energy, different sandwich."</div>
+            <div class="voice-quote">"On a Friday we slice for the weekend. 28 to 32 pieces of meat. 7 to 8 pounds each."</div>
+            <div class="voice-quote">"It's so neighborhoody."</div>
+            <div class="voice-quote">"Last-minute catering orders are our specialty."</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ============================================ -->
+      <!-- 8. Trends + Cultural Moments -->
+      <!-- ============================================ -->
+      <div id="trends" class="section">
+        <div class="section-header">
+          <div class="section-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><polyline points="3 17 9 11 13 15 21 7"/><polyline points="14 7 21 7 21 14"/></svg>
+          </div>
+          <div>
+            <div class="section-title">Trends + Cultural Moments</div>
+            <div class="section-subtitle">Lives in the Cincinnati at the Counter pillar. The reactive lane. Played selectively, never chased.</div>
+          </div>
+        </div>
+
+        <div class="cm-frame-block">
+          <div class="cm-frame-eyebrow">Why Carl's Plays Selectively</div>
+          <div class="cm-frame-headline">Carl's earns attention through specificity. Trend participation has to clear three filters before it ships.</div>
+          <div class="cm-frame-body">
+            <p>The brand is an 80-year institution selling reliability. Most trends fail the brand voice test on contact. The ones that pass (Cincinnati moments where Sydney's voice has a real claim, vendor cross-promotions tied to a season, FC Cincinnati earned-media moments) compound. The rest are noise the calendar protects against.</p>
+          </div>
+        </div>
+
+        <div class="cm-approach-block">
+          <div class="cm-block-title">The Decision Filter</div>
+          <div class="trends-filter-grid">
+            <div class="trends-filter-card">
+              <div class="trends-filter-num">Question 01</div>
+              <div class="trends-filter-q">Does it pass the Sydney filter?</div>
+              <div class="trends-filter-body">Wonky wood floors, mom-and-pop confidence, neighborhood-coded humor, hot takes from a deli owner's lens. If the trend would require a voice Sydney wouldn't deliver in person, pass.</div>
+            </div>
+            <div class="trends-filter-card">
+              <div class="trends-filter-num">Question 02</div>
+              <div class="trends-filter-q">Does it have a Cincinnati anchor?</div>
+              <div class="trends-filter-body">A named Cincinnati moment, a vendor in the stack, a neighborhood signal (Hyde Park dog culture, Findlay Market, OTR food cohort), or a Cincinnati-coded debate. National food trends without a local lens pass by default.</div>
+            </div>
+            <div class="trends-filter-card">
+              <div class="trends-filter-num">Question 03</div>
+              <div class="trends-filter-q">Can Carl's ship within the trend window?</div>
+              <div class="trends-filter-body">Trends peak inside 24 to 72 hours. If the response would need new shooting or owner approval that can't realistically happen inside the window, pass. The calendar holds a small reactive lane to ship fast when the answer is yes.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="trends-calendar-block">
+          <div class="cm-block-title">Cincinnati Moment Calendar</div>
+          <div class="trends-calendar-grid">
+            <div class="trends-quarter">
+              <div class="trends-quarter-label">Q1</div>
+              <div class="trends-quarter-window">January &middot; February &middot; March</div>
+              <ul class="trends-moment-list">
+                <li class="trends-moment"><span class="trends-moment-name">Bengals playoff run</span>Game-day catering + Sunday lunch reactivation. If applicable.</li>
+                <li class="trends-moment"><span class="trends-moment-name">Findlay winter rhythm</span>Counter-positioning to "everyone goes in summer." Aesthetic Truth + Findlay Neighbor.</li>
+                <li class="trends-moment"><span class="trends-moment-name">Bockfest (OTR)</span>First weekend of March. Findlay vendor cohort adjacency.</li>
+              </ul>
+            </div>
+            <div class="trends-quarter">
+              <div class="trends-quarter-label">Q2</div>
+              <div class="trends-quarter-window">April &middot; May &middot; June</div>
+              <ul class="trends-moment-list">
+                <li class="trends-moment anchor"><span class="trends-moment-name">Reds Opening Day + Findlay Parade</span>The single largest Cincinnati moment of the year. Findlay's parade morning is uncopyable for Carl's.</li>
+                <li class="trends-moment anchor"><span class="trends-moment-name">FC Cincinnati home matches</span>Recurring trend moments March through October. The FCC Order Reveal lives here.</li>
+                <li class="trends-moment anchor"><span class="trends-moment-name">Pride + Queen City Charities</span>June. Annual donation already in motion. Brand-values content beat.</li>
+              </ul>
+            </div>
+            <div class="trends-quarter">
+              <div class="trends-quarter-label">Q3</div>
+              <div class="trends-quarter-window">July &middot; August &middot; September</div>
+              <ul class="trends-moment-list">
+                <li class="trends-moment"><span class="trends-moment-name">ATP Cincinnati Open</span>Mid-August. Press-box catering angle if booked.</li>
+                <li class="trends-moment anchor"><span class="trends-moment-name">Oktoberfest Zinzinnati</span>Mid to late September. Second-largest Oktoberfest in the world. Adjacent food cohort.</li>
+                <li class="trends-moment"><span class="trends-moment-name">Bengals season opener</span>Late August / early September. Sunday lunch + game-day catering reactivates.</li>
+              </ul>
+            </div>
+            <div class="trends-quarter">
+              <div class="trends-quarter-label">Q4</div>
+              <div class="trends-quarter-window">October &middot; November &middot; December</div>
+              <ul class="trends-moment-list">
+                <li class="trends-moment anchor"><span class="trends-moment-name">Holiday catering season</span>October through mid-December. The priority revenue lever. Calendar-wide motion.</li>
+                <li class="trends-moment anchor"><span class="trends-moment-name">Thanksgiving + Christmas waves</span>Highest-pressure catering windows of the year. Holiday Catering Urgency runs hot.</li>
+                <li class="trends-moment"><span class="trends-moment-name">Findlay Holiday Market</span>Late November through December. Findlay seasonal traffic spike. Vendor Spotlight rotation.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="cm-approach-block">
+          <div class="cm-block-title">Approval + Coverage</div>
+          <div class="cm-coverage-grid">
+            <div class="cm-coverage-card cm-rachel">
+              <div class="cm-coverage-tag">Pre-scoped</div>
+              <div class="cm-coverage-pct">Bi-weekly check-in scopes two cycles out</div>
+              <div class="cm-coverage-body">Anchored Cincinnati moments (Reds opening day, FC Cincinnati matches, Pride, Oktoberfest, holiday catering) get pre-scoped at the bi-weekly. Once approved, they ship on the standard content cadence.</div>
+            </div>
+            <div class="cm-coverage-card cm-joint">
+              <div class="cm-coverage-tag">Rachel ships</div>
+              <div class="cm-coverage-pct">Real-time judgment, filter-aware</div>
+              <div class="cm-coverage-body">Trending audio applied to already-approved Carl's footage, Findlay BTS during a scoped event, neighborhood / weather Quick-Shot B-Roll. Story-day reactive moments default to Rachel.</div>
+            </div>
+            <div class="cm-coverage-card cm-owner">
+              <div class="cm-coverage-tag">Sydney decides</div>
+              <div class="cm-coverage-pct">The moments only the owner can carry</div>
+              <div class="cm-coverage-body">Honey-Baked Ham lineage, FC Cincinnati player sightings, Reaction + Commentary on named locals, ranking content with competitive edge, owner-led DM relationships. Rachel surfaces. Sydney decides direction.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ============================================ -->
+      <!-- 9. Account Consolidation (Conditional) -->
+      <!-- ============================================ -->
+      <div id="consolidation" class="section">
+        <div class="section-header">
+          <div class="section-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          <div>
+            <div class="section-title">Account Consolidation Plan<span class="section-conditional-tag">Carl's-Specific Module</span></div>
+            <div class="section-subtitle">Two accounts becoming one unified @carls_deli. 4-phase transition with full audience continuity.</div>
+          </div>
+        </div>
+        <div class="consol-visual">
+          <div class="consol-account-row primary">
+            <div class="consol-circle"></div>
+            <div class="consol-info">
+              <span class="consol-handle">@carlsdelihydepark</span>
+              <span class="consol-meta">7,400 followers &middot; established &middot; SURVIVING ACCOUNT</span>
+            </div>
+            <span class="consol-tag primary">PRIMARY</span>
+          </div>
+          <div class="consol-account-row secondary">
+            <div class="consol-circle"></div>
+            <div class="consol-info">
+              <span class="consol-handle">@carlsdelifindlaymarket</span>
+              <span class="consol-meta">smaller, newer &middot; 3-week migration arc</span>
+            </div>
+            <span class="consol-tag secondary">SUNSET</span>
+          </div>
+          <div class="consol-arrow">↓</div>
+          <div class="consol-account-row result">
+            <div class="consol-circle"></div>
+            <div class="consol-info">
+              <span class="consol-handle">@carls_deli</span>
+              <span class="consol-meta">one unified account &middot; both locations &middot; new bio + image + pins</span>
+            </div>
+          </div>
+        </div>
+        <div class="consol-phases">
+          <div class="consol-phase-card">
+            <div class="consol-phase-num">PHASE 1</div>
+            <div class="consol-phase-name">Pre-Launch</div>
+            <div class="consol-phase-window">May 8-14</div>
+            <div class="consol-phase-desc">Strategy locked + handle confirmed + asset prep. Both accounts active.</div>
+          </div>
+          <div class="consol-phase-card">
+            <div class="consol-phase-num">PHASE 2</div>
+            <div class="consol-phase-name">Rebrand Week</div>
+            <div class="consol-phase-window">May 15-21</div>
+            <div class="consol-phase-desc">Hyde Park renamed → @carls_deli. Profile updated. Findlay begins transition messaging.</div>
+          </div>
+          <div class="consol-phase-card">
+            <div class="consol-phase-num">PHASE 3</div>
+            <div class="consol-phase-name">Transition Arc</div>
+            <div class="consol-phase-window">May 25 - June 14</div>
+            <div class="consol-phase-desc">Findlay account runs 3-week migration content. Primary publishes per calendar.</div>
+          </div>
+          <div class="consol-phase-card">
+            <div class="consol-phase-num">PHASE 4</div>
+            <div class="consol-phase-name">Findlay Sunset</div>
+            <div class="consol-phase-window">June 15+</div>
+            <div class="consol-phase-desc">Findlay account archived (not deleted). Permanent redirect surface to @carls_deli.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ============================================ -->
+      <!-- 10. Pillars + Format Library -->
+      <!-- ============================================ -->
+      <div id="pillars" class="section">
+        <div class="section-header">
+          <div class="section-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><rect x="2" y="3" width="6" height="18"/><rect x="9" y="3" width="6" height="18"/><rect x="16" y="3" width="6" height="18"/></svg>
+          </div>
+          <div>
+            <div class="section-title">Content Pillars + Format Library</div>
+            <div class="section-subtitle">4 pillars mapped to IVP motivators. 21 formats curated. 14 Path 1 (Proven &amp; Adapted) plus 7 Path 2 (Original &amp; Invented).</div>
+          </div>
+        </div>
+        <div class="pillars-grid">
+          <div class="pillar-card">
+            <div class="pillar-num">PILLAR 01</div>
+            <div class="pillar-name">Carl's Craft</div>
+            <div class="pillar-intent">Authority &middot; Education &middot; Trust</div>
+            <div class="pillar-desc">80-year institution + in-house slicing (28-32 pieces of meat / 7-8 lbs each every Friday) + Country Club ritual + Best Deli 2026. The pillar that owns the craft + heritage moat.</div>
+            <div class="pillar-formats">
+              <div class="pillar-formats-label">Format Anchors</div>
+              <span class="format-tag">Top Down</span>
+              <span class="format-tag">Authority Builder Carousel</span>
+              <span class="format-tag">Quick-Shot B-Roll</span>
+              <span class="format-tag path2">80-Year Archive Series</span>
+            </div>
+          </div>
+          <div class="pillar-card">
+            <div class="pillar-num">PILLAR 02</div>
+            <div class="pillar-name">The Sisters Behind the Counter</div>
+            <div class="pillar-intent">Connection &middot; Trust &middot; Authority</div>
+            <div class="pillar-desc">Sydney + Cameron founder narrative. Honey-Baked Ham grandmother lineage. Working-mom + entrepreneur authenticity. Sydney's verbatim voice ("we are not high and tight"). The personality differentiator.</div>
+            <div class="pillar-formats">
+              <div class="pillar-formats-label">Format Anchors</div>
+              <span class="format-tag">Notes App Green Screen</span>
+              <span class="format-tag">Founder POV Reel</span>
+              <span class="format-tag">Split Screen</span>
+              <span class="format-tag">Lesson-Learned Story</span>
+            </div>
+          </div>
+          <div class="pillar-card">
+            <div class="pillar-num">PILLAR 03</div>
+            <div class="pillar-name">Sandwiches at Scale</div>
+            <div class="pillar-intent">Conversion &middot; Authority</div>
+            <div class="pillar-desc">Catering operation + capacity proof + Sam Adams 300+ case + Findlay walk-in unlock. The pillar that owns catering conversion and the priority revenue lever. Process clarity for B2B + personal event buyers.</div>
+            <div class="pillar-formats">
+              <div class="pillar-formats-label">Format Anchors</div>
+              <span class="format-tag">Educational Carousel</span>
+              <span class="format-tag">Catering Feature Reel</span>
+              <span class="format-tag">Direct Response Story</span>
+              <span class="format-tag path2">Sam Adams Case Study</span>
+              <span class="format-tag path2">Personal Event Spotlight</span>
+            </div>
+          </div>
+          <div class="pillar-card">
+            <div class="pillar-num">PILLAR 04</div>
+            <div class="pillar-name">Cincinnati at the Counter</div>
+            <div class="pillar-intent">Connection &middot; Community &middot; Awareness</div>
+            <div class="pillar-desc">Vendor stack + Findlay Market neighborhood + Hyde Park dog culture + FC Cincinnati earned media + Pride/Queen City Charities. The differentiation pillar. Carries both evergreen Path 2 originals (Pattern Break, Findlay Neighbor) and the reactive lane (Cincinnati moments, cultural hooks). See Trends + Cultural Moments for the moment-by-moment scoping.</div>
+            <div class="pillar-formats">
+              <div class="pillar-formats-label">Format Anchors</div>
+              <span class="format-tag path2">Sandwich x Dog Breed Pattern Break</span>
+              <span class="format-tag path2">Vendor Spotlight Series</span>
+              <span class="format-tag path2">Findlay Neighbor Series</span>
+              <span class="format-tag path2">The Aesthetic Truth Series</span>
+              <span class="format-tag">Reaction + Commentary</span>
+              <span class="format-tag">Ranking / Tier-List</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="strategy-block" style="margin-top: 18px;">
+          <p style="font-size: 12px;"><strong>Two-Path Format Philosophy:</strong> <strong>Path 1 (Proven &amp; Adapted)</strong> draws from Scroll's canonical formats library, what's already working in adjacent niches. <strong>Path 2 (Original &amp; Invented)</strong> builds new formats around Carl's uncopyable assets. Every pillar runs both. The Sandwich x Dog Breed Pattern Break, mapping Carl's 50+ sandwiches to Hyde Park dog breeds, is the flagship Path 2 original.</p>
+        </div>
+      </div>
+
+      <!-- ============================================ -->
+      <!-- 11. Feed Post Strategy -->
+      <!-- ============================================ -->
+      <div id="feed" class="section">
+        <div class="section-header">
+          <div class="section-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/></svg>
+          </div>
+          <div>
+            <div class="section-title">Feed Post Strategy</div>
+            <div class="section-subtitle">Mon/Wed/Fri cadence. Day-by-day funnel role. First-3-second hook discipline. Save-First content design.</div>
+          </div>
+        </div>
+        <div class="day-rhythm-grid">
+          <div class="day-rhythm-card feed">
+            <div class="day-rhythm-day">MON</div>
+            <div class="day-rhythm-type">Discovery Lead</div>
+            <div class="day-rhythm-formats">Pattern Break + Notes App Green Screen + Founder POV. Reach + discovery play.</div>
+          </div>
+          <div class="day-rhythm-card story">
+            <div class="day-rhythm-day">TUE</div>
+            <div class="day-rhythm-type">Story Day</div>
+            <div class="day-rhythm-formats">Daily Special + Direct Response + Educational Tip. Mon-feed reshare.</div>
+          </div>
+          <div class="day-rhythm-card feed">
+            <div class="day-rhythm-day">WED</div>
+            <div class="day-rhythm-type">Trust Lead</div>
+            <div class="day-rhythm-formats">Top Down + Authority Builder + Educational Carousel. Trust &amp; authority.</div>
+          </div>
+          <div class="day-rhythm-card story">
+            <div class="day-rhythm-day">THU</div>
+            <div class="day-rhythm-type">Story Day</div>
+            <div class="day-rhythm-formats">Behind-the-Counter + Catering Inquiry Reminder + Poll. Wed-feed reshare.</div>
+          </div>
+          <div class="day-rhythm-card feed bofu">
+            <div class="day-rhythm-day">FRI</div>
+            <div class="day-rhythm-type">Catering Lead</div>
+            <div class="day-rhythm-formats">Catering Feature Reel + Sam Adams Case + Educational Catering Carousel. Conversion play.</div>
+          </div>
+        </div>
+
+        <div class="strategy-block" style="margin-top: 22px;">
+          <p style="font-size: 12.5px;"><strong>First-3-Second Hook Discipline.</strong> Every Reel hook engineered against one of six hook types. Generic openers (&quot;Have you ever...&quot;, &quot;Today I want to talk about...&quot;) are explicit failure conditions per Signal Method Standard 3.</p>
+          <div class="hooks-grid">
+            <div class="hook-card">
+              <div class="hook-name">1. Curiosity Gap</div>
+              <div class="hook-desc">"The thing most [X] never know about [Y]."</div>
+              <div class="hook-example">"The thing most Cincinnati offices get wrong about lunch catering. It costs them 45 minutes every time."</div>
+            </div>
+            <div class="hook-card">
+              <div class="hook-name">2. Bold Claim</div>
+              <div class="hook-desc">Specific, surprising, provable claim.</div>
+              <div class="hook-example">"We've sold 13,000 of the same sandwich. Here's the one."</div>
+            </div>
+            <div class="hook-card">
+              <div class="hook-name">3. Contrarian</div>
+              <div class="hook-desc">"[Common belief] is wrong. Here's why."</div>
+              <div class="hook-example">"More sandwich options don't make ordering easier. They make it harder. Here's the fix."</div>
+            </div>
+            <div class="hook-card">
+              <div class="hook-name">4. Specific Result</div>
+              <div class="hook-desc">"[Specific outcome] in [specific timeframe]."</div>
+              <div class="hook-example">"13,000 #23 Country Clubs in one year. 250 a week. Here's why."</div>
+            </div>
+            <div class="hook-card">
+              <div class="hook-name">5. Pattern Interrupt</div>
+              <div class="hook-desc">Visual or verbal break from expected.</div>
+              <div class="hook-example">Open on bread being sliced, no intro, then: "This is why we only toast it once."</div>
+            </div>
+            <div class="hook-card">
+              <div class="hook-name">6. Direct Address</div>
+              <div class="hook-desc">"If you [specific situation], this is for you."</div>
+              <div class="hook-example">"If you're ordering lunch for 30+ people in Cincinnati, save this."</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ============================================ -->
+      <!-- 12. Stories Strategy -->
+      <!-- ============================================ -->
+      <div id="stories" class="section">
+        <div class="section-header">
+          <div class="section-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/></svg>
+          </div>
+          <div>
+            <div class="section-title">Stories Strategy</div>
+            <div class="section-subtitle">Tue/Thu story days. Mon/Wed/Fri reshares. The conversion surface for catering inquiries.</div>
+          </div>
+        </div>
+
+        <div class="strategy-block">
+          <p><strong>Stories are the conversion surface.</strong> Per Scroll Stories Library: <em>"Use a specific destination URL. Never the homepage."</em> This rule is the foundation of Carl's Stories Strategy. Every story link sticker routes through Metricool smart-links to a specific destination (catering inquiry, menu, location page). That gives us link tap data specific enough to learn from, surface by surface.</p>
+        </div>
+
+        <div class="stories-summary-grid" style="margin-top: 18px;">
+          <div class="story-format-card">
+            <span class="story-format-status core">CORE</span>
+            <div class="story-format-name">Behind-the-Counter (BTS)</div>
+            <div class="story-format-cadence">1-2x weekly &middot; Thursday primary &middot; Sydney POV + slicing + neighborhood texture</div>
+          </div>
+          <div class="story-format-card">
+            <span class="story-format-status core">CORE</span>
+            <div class="story-format-name">Direct Response Story</div>
+            <div class="story-format-cadence">Tue + Fri minimum &middot; Catering conversion &middot; Catering inquiry link, Metricool tracked</div>
+          </div>
+          <div class="story-format-card">
+            <span class="story-format-status core">CORE</span>
+            <div class="story-format-name">Educational Tip Card</div>
+            <div class="story-format-cadence">2-3x weekly &middot; Trust-building &middot; Single-tip stories that drive saves</div>
+          </div>
+          <div class="story-format-card">
+            <span class="story-format-status core">CORE</span>
+            <div class="story-format-name">Daily Special</div>
+            <div class="story-format-cadence">Tuesday primary &middot; Recurring signature arc &middot; Sandwich + price + menu link</div>
+          </div>
+          <div class="story-format-card">
+            <span class="story-format-status core">CORE</span>
+            <div class="story-format-name">Poll / This or That</div>
+            <div class="story-format-cadence">1-2x weekly &middot; Highest-engagement story format &middot; Algorithm-priming for distribution</div>
+          </div>
+          <div class="story-format-card">
+            <span class="story-format-status core">CORE</span>
+            <div class="story-format-name">Question Box / AMA</div>
+            <div class="story-format-cadence">Monthly minimum &middot; Content ideation engine. Q&amp;A becomes feed post seeds</div>
+          </div>
+          <div class="story-format-card">
+            <span class="story-format-status core">CORE</span>
+            <div class="story-format-name">Catering Inquiry Reminder</div>
+            <div class="story-format-cadence">Weekly recurring &middot; Thursday &middot; The catering conversion heartbeat. Specific URL + proof point rotation</div>
+          </div>
+          <div class="story-format-card">
+            <span class="story-format-status core">CORE</span>
+            <div class="story-format-name">Customer Spotlight / UGC</div>
+            <div class="story-format-cadence">When customers share &middot; Rachel surfaces, Sydney decides repost or personal thanks</div>
+          </div>
+          <div class="story-format-card">
+            <span class="story-format-status core">CORE</span>
+            <div class="story-format-name">Countdown / Event Tease</div>
+            <div class="story-format-cadence">Event-driven &middot; Best Deli 2026 activation, FCC home matches, holiday catering deadlines</div>
+          </div>
+          <div class="story-format-card">
+            <span class="story-format-status core">CORE</span>
+            <div class="story-format-name">Feed Reshare (with framing)</div>
+            <div class="story-format-cadence">Mon/Wed/Fri &middot; Leading frame + post + closing CTA with link sticker</div>
+          </div>
+          <div class="story-format-card">
+            <span class="story-format-status test">TEST</span>
+            <div class="story-format-name">Before / After Reveal</div>
+            <div class="story-format-cadence">When testimonials land &middot; Phase 2 priority &middot; 2-frame setup + reveal + link</div>
+          </div>
+          <div class="story-format-card">
+            <span class="story-format-status test">TEST</span>
+            <div class="story-format-name">Quiz Sticker</div>
+            <div class="story-format-cadence">1-2x monthly &middot; Cincinnati food trivia &middot; Non-obvious answers required</div>
+          </div>
+          <div class="story-format-card">
+            <span class="story-format-status seasonal">SEASONAL</span>
+            <div class="story-format-name">Seasonal / Holiday</div>
+            <div class="story-format-cadence">Sparingly &middot; Bengals games, Findlay events, Pride Month, FCC matches, Q4 holidays</div>
+          </div>
+          <div class="story-format-card">
+            <span class="story-format-status test">TEST</span>
+            <div class="story-format-name">Slider / New Arrival</div>
+            <div class="story-format-cadence">When validating ideas or new menu items &middot; Quick pulse check format</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ============================================ -->
+      <!-- 13. Profile Optimization -->
+      <!-- ============================================ -->
+      <div id="profile" class="section">
+        <div class="section-header">
+          <div class="section-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          </div>
+          <div>
+            <div class="section-title">Profile Optimization</div>
+            <div class="section-subtitle">Bio, link strategy, profile image, pinned posts, highlights. Locked recommendations.</div>
+          </div>
+        </div>
+        <div class="po-grid">
+          <div class="po-card full">
+            <div class="po-card-title">Bio &middot; Locked Recommendation (124 chars)</div>
+            <div class="po-bio-preview">
+              <span class="bio-handle">@carls_deli</span>
+              Cincinnati's Best Deli 2026 🏆<br/>
+              80 years &middot; Sister-owned<br/>
+              Hyde Park &middot; Findlay Market<br/>
+              50+ sandwiches + catering<br/>
+              👇 order + inquire
+            </div>
+            <div style="font-size: 11.5px; color: var(--fg-muted); line-height: 1.6;">
+              <strong>IG name field:</strong> "Carl's Deli &middot; Cincinnati" &middot; <strong>Category:</strong> Deli + Catering Service &middot; <strong>Bio link:</strong> Metricool smart-links page with dual-audience routing. "Order a Sandwich" path (B2C audience) plus "Inquire About Catering" path (B2B audience).
+            </div>
+          </div>
+
+          <div class="po-card">
+            <div class="po-card-title">Pinned Posts</div>
+            <div class="po-pin">
+              <div class="po-pin-label">Pin 01 &middot; Locked</div>
+              <div class="po-pin-name">The Founder Story</div>
+              <div class="po-pin-desc">Founder POV Reel or Notes App Green Screen. Sydney delivers the sister narrative + Honey-Baked Ham lineage. Authenticity + trust anchor for cold visitors.</div>
+            </div>
+            <div class="po-pin">
+              <div class="po-pin-label">Pin 02 &middot; Locked</div>
+              <div class="po-pin-name">How to Carl's</div>
+              <div class="po-pin-desc">Educational Carousel. Action menu with every customer path: walk in, view menu, find at Findlay Market, inquire about catering, personal events.</div>
+            </div>
+            <div class="po-pin">
+              <div class="po-pin-label">Pin 03 &middot; Dynamic</div>
+              <div class="po-pin-name">Reserved for Viral / Standout</div>
+              <div class="po-pin-desc">Rotating slot. Earned by hitting top-weighted breakout signals (100+ shares, 75+ saves, debate-driving comments). Reviewed monthly during performance reporting.</div>
+            </div>
+          </div>
+
+          <div class="po-card">
+            <div class="po-card-title">Highlights &middot; 6 Buckets</div>
+            <div class="po-highlight-grid">
+              <div class="po-highlight-bubble">
+                <div class="po-highlight-bubble-num">01</div>
+                <div class="po-highlight-bubble-name">Catering</div>
+              </div>
+              <div class="po-highlight-bubble">
+                <div class="po-highlight-bubble-num">02</div>
+                <div class="po-highlight-bubble-name">Sandwiches</div>
+              </div>
+              <div class="po-highlight-bubble">
+                <div class="po-highlight-bubble-num">03</div>
+                <div class="po-highlight-bubble-name">Findlay</div>
+              </div>
+              <div class="po-highlight-bubble">
+                <div class="po-highlight-bubble-num">04</div>
+                <div class="po-highlight-bubble-name">Hyde Park</div>
+              </div>
+              <div class="po-highlight-bubble">
+                <div class="po-highlight-bubble-num">05</div>
+                <div class="po-highlight-bubble-name">Vendors</div>
+              </div>
+              <div class="po-highlight-bubble">
+                <div class="po-highlight-bubble-num">06</div>
+                <div class="po-highlight-bubble-name">Press</div>
+              </div>
+            </div>
+            <div style="font-size: 11px; color: var(--fg-muted); line-height: 1.55; margin-top: 14px;">Cover treatment: wood-grain or cream background, single bold subject anchor (sandwich, sister portrait, location storefront, vendor product, award), bold sans-serif caps text, brand color discipline. First-frame-of-each-highlight design consistent across all 6.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ============================================ -->
+      <!-- 14. Community Management -->
+      <!-- ============================================ -->
+      <div id="community" class="section">
+        <div class="section-header">
+          <div class="section-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          </div>
+          <div>
+            <div class="section-title">Community Management</div>
+            <div class="section-subtitle">The non-content layer. Where attention turns into relationship.</div>
+          </div>
+        </div>
+
+        <div class="cm-frame-block">
+          <div class="cm-frame-eyebrow">How We Look At It</div>
+          <div class="cm-frame-headline">Comments and DMs aren't a checklist task. They're the second half of the strategy.</div>
+          <div class="cm-frame-body">
+            <p>The content brings the audience in. The conversation surfaces decide what happens next. We treat this layer as strategy, not plumbing.</p>
+          </div>
+        </div>
+
+        <div class="cm-approach-block">
+          <div class="cm-block-title">How We Approach Coverage</div>
+          <div class="cm-coverage-grid">
+            <div class="cm-coverage-card cm-rachel">
+              <div class="cm-coverage-tag">Rachel default</div>
+              <div class="cm-coverage-pct">The day-to-day brand voice</div>
+              <div class="cm-coverage-body">Most engagement is generic and positive. Hours, locations, sandwich-of-the-day, dietary asks, praise. Rachel responds in Carl's voice, with specifics, consistent with strategy.</div>
+            </div>
+            <div class="cm-coverage-card cm-owner">
+              <div class="cm-coverage-tag">Sydney owns</div>
+              <div class="cm-coverage-pct">The moments only the owner can carry</div>
+              <div class="cm-coverage-body">Catering inquiries, press, vendor pitches, complaints, regulars she'd recognize, anything tied to the Honey-Baked Ham lineage. Sydney's voice is the asset that can't be delegated.</div>
+            </div>
+            <div class="cm-coverage-card cm-joint">
+              <div class="cm-coverage-tag">Coordinate</div>
+              <div class="cm-coverage-pct">The gray zone</div>
+              <div class="cm-coverage-body">Customer story-shares, influencer outreach, food blogger features, complex catering specs. Rachel surfaces with context. Sydney decides direction.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="cm-voice-block">
+          <div class="cm-voice-title">Carl's Voice in Replies</div>
+          <div class="cm-voice-lede">Warm, local, specific. The Sydney filter: wonky wood floors, not high and tight. Mom-and-pop confidence, never corporate gloss.</div>
+          <div class="voice-quotes">
+            <div class="voice-quote">Today it's the Tuna Melt, perfect for this kind of weather. Story has the price plus how to grab it.</div>
+            <div class="voice-quote">13,000 of those went out last year. You've got good taste.</div>
+            <div class="voice-quote">Yes, Findlay is open Sunday 10 to 4. Hyde Park's open 10 to 6.</div>
+            <div class="voice-quote">Hot take from us, the Heidi is the underrated one.</div>
+          </div>
+        </div>
+
+        <div class="cm-preserved-callout">
+          <div class="cm-preserved-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+          </div>
+          <div class="cm-preserved-text">
+            <div class="cm-preserved-eyebrow">Preserved by design</div>
+            <div class="cm-preserved-headline">Sydney's DM thank-you to story-share customers stays Sydney-owned.</div>
+            <div class="cm-preserved-body">It's the relational compounding loop that drives repeat shares, and one of Carl's seven differentiation pillars. Rachel surfaces tagged stories with brief context. Sydney decides whether to reply personally or elevate to a Customer Spotlight repost. Scroll's default instinct is to systemize the personal touch. The strategic call here is the opposite: keep it human, keep it Sydney. (Automated catering-inquiry DMs via ManyChat, if Carl's activates that capability in Conversion Strategy, run on a separate lane and never touch this practice.)</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ============================================ -->
+      <!-- 15. SEO Keyword Bank -->
+      <!-- ============================================ -->
+      <div id="seo" class="section">
+        <div class="section-header">
+          <div class="section-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          </div>
+          <div>
+            <div class="section-title">SEO Keyword Bank &middot; 4-Tier Architecture</div>
+            <div class="section-subtitle">Cincinnati-anchored. Dual deli + catering keyword stacks. Embedded across bio, captions, on-screen text, alt text.</div>
+          </div>
+        </div>
+        <div class="seo-tier-table">
+          <div class="seo-tier-row">
+            <div class="seo-tier-label">
+              <div class="seo-tier-name">Tier 1</div>
+              <div class="seo-tier-purpose">Broad Discovery. Every awareness post.</div>
+            </div>
+            <div class="seo-tier-content">
+              <span class="seo-hashtag">#cincinnatifood</span>
+              <span class="seo-hashtag">#cincinnatieats</span>
+              <span class="seo-hashtag">#cincinnati</span>
+              <span class="seo-hashtag">#cincyfoodie</span>
+              <span class="seo-hashtag">#foodporn</span>
+            </div>
+          </div>
+          <div class="seo-tier-row">
+            <div class="seo-tier-label">
+              <div class="seo-tier-name">Tier 2</div>
+              <div class="seo-tier-purpose">Niche Specific. Rotate 3-5 per post.</div>
+            </div>
+            <div class="seo-tier-content">
+              <span class="seo-hashtag">#cincinnatideli</span>
+              <span class="seo-hashtag">#cincinnatisandwich</span>
+              <span class="seo-hashtag">#cincinnatilunch</span>
+              <span class="seo-hashtag">#hydeparkcincinnati</span>
+              <span class="seo-hashtag">#findlaymarket</span>
+              <span class="seo-hashtag">#findlaymarketcincy</span>
+              <span class="seo-hashtag">#womenowned</span>
+              <span class="seo-hashtag">#sisterowned</span>
+              <span class="seo-hashtag">#supportlocal</span>
+              <span class="seo-hashtag">#shoplocal</span>
+              <span class="seo-hashtag">#handsliced</span>
+              <span class="seo-hashtag">#deliartisan</span>
+            </div>
+          </div>
+          <div class="seo-tier-row">
+            <div class="seo-tier-label">
+              <div class="seo-tier-name">Tier 3</div>
+              <div class="seo-tier-purpose">Service + Location. Catering posts only (1-3).</div>
+            </div>
+            <div class="seo-tier-content">
+              <span class="seo-hashtag">#cincinnaticatering</span>
+              <span class="seo-hashtag">#hydeparkcatering</span>
+              <span class="seo-hashtag">#cincinnatiofficecatering</span>
+              <span class="seo-hashtag">#cincinnaticorporatecatering</span>
+              <span class="seo-hashtag">#cincinnatieventcatering</span>
+              <span class="seo-hashtag">#cincinnatibridalcatering</span>
+              <span class="seo-hashtag">#cincinnatischoolcatering</span>
+              <span class="seo-hashtag">#cincinnatisandwichcatering</span>
+              <span class="seo-hashtag">#cincinnatiboxlunch</span>
+            </div>
+          </div>
+          <div class="seo-tier-row">
+            <div class="seo-tier-label">
+              <div class="seo-tier-name">Tier 4</div>
+              <div class="seo-tier-purpose">High-Intent Buyer. Caption + on-screen text. Brand check only.</div>
+            </div>
+            <div class="seo-tier-content">
+              <span class="seo-hashtag">#carlsdeli</span>
+              <span class="seo-hashtag">#cincinnatibestdeli</span>
+              <span class="seo-hashtag">#cincinnatibestsandwich2026</span>
+              <div style="margin-top: 8px; font-size: 11.5px; color: var(--fg-muted); line-height: 1.55;">
+                Search-phrase anchors for caption + on-screen text: "Best deli Cincinnati" &middot; "Best catering in Cincinnati" &middot; "Last-minute catering Cincinnati" &middot; "Cincinnati Best Deli 2026" &middot; "80-year-old Cincinnati deli" &middot; "Where to get catering in Cincinnati" (voice search anchor)
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ============================================ -->
+      <!-- 16. KPI Framework -->
+      <!-- ============================================ -->
+      <div id="kpi" class="section">
+        <div class="section-header">
+          <div class="section-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+          </div>
+          <div>
+            <div class="section-title">KPI Framework + Reports</div>
+            <div class="section-subtitle">Metrics weighted by buyer intent. Scored on a 10-point scale with a 6.0 baseline. Saves and CTR carry the highest weight. Each metric maps to the funnel stage it predicts. Benchmarks calibrated to Carl's growth stage.</div>
+          </div>
+        </div>
+        <div class="kpi-tier-grid">
+          <div class="kpi-tier-card">
+            <div class="kpi-tier-header">
+              <div class="kpi-tier-name">Tier 1</div>
+              <div class="kpi-tier-weight">Quality &amp; Conversion</div>
+            </div>
+            <ul class="kpi-list">
+              <li><span class="kpi-name">Saves</span><span class="kpi-meta"><span class="kpi-funnel mofu">Mid</span><span class="kpi-mult">2.0x</span></span></li>
+              <li><span class="kpi-name">CTR</span><span class="kpi-meta"><span class="kpi-funnel bofu">Bot</span><span class="kpi-mult">2.0x</span></span></li>
+              <li><span class="kpi-name">Retention %</span><span class="kpi-meta"><span class="kpi-funnel mofu">Mid</span><span class="kpi-mult">1.5x</span></span></li>
+              <li><span class="kpi-name">Profile Conversion Rate</span><span class="kpi-meta"><span class="kpi-funnel bofu">Bot</span><span class="kpi-mult">1.5x</span></span></li>
+              <li><span class="kpi-name">Link Taps</span><span class="kpi-meta"><span class="kpi-funnel bofu">Bot</span><span class="kpi-mult">1.5x</span></span></li>
+            </ul>
+          </div>
+          <div class="kpi-tier-card">
+            <div class="kpi-tier-header">
+              <div class="kpi-tier-name">Tier 2</div>
+              <div class="kpi-tier-weight">Volume &amp; Community</div>
+            </div>
+            <ul class="kpi-list">
+              <li><span class="kpi-name">Total Views</span><span class="kpi-meta"><span class="kpi-funnel tofu">Top</span><span class="kpi-mult">1.0x</span></span></li>
+              <li><span class="kpi-name">New Followers</span><span class="kpi-meta"><span class="kpi-funnel tofu">Top</span><span class="kpi-mult">1.0x</span></span></li>
+              <li><span class="kpi-name">Profile Visits</span><span class="kpi-meta"><span class="kpi-funnel mofu">Mid</span><span class="kpi-mult">1.0x</span></span></li>
+              <li><span class="kpi-name">Comments</span><span class="kpi-meta"><span class="kpi-funnel mofu">Mid</span><span class="kpi-mult">1.0x</span></span></li>
+            </ul>
+          </div>
+          <div class="kpi-tier-card">
+            <div class="kpi-tier-header">
+              <div class="kpi-tier-name">Tier 3</div>
+              <div class="kpi-tier-weight">Awareness Amplification</div>
+            </div>
+            <ul class="kpi-list">
+              <li><span class="kpi-name">Shares</span><span class="kpi-meta"><span class="kpi-funnel tofu">Top</span><span class="kpi-mult">0.75x</span></span></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="score-progression">
+          <div class="score-progression-title">Score Progression Targets</div>
+          <div class="score-progression-row">
+            <div class="score-month">Cycle Month 1</div>
+            <div class="score-target">Building. Trend direction over score.</div>
+          </div>
+          <div class="score-progression-row">
+            <div class="score-month">Cycle Month 2</div>
+            <div class="score-target">7.0+</div>
+          </div>
+          <div class="score-progression-row">
+            <div class="score-month">Testing Phase exit</div>
+            <div class="score-target">7.5+</div>
+          </div>
+          <div class="score-progression-row">
+            <div class="score-month">Executing Phase</div>
+            <div class="score-target">7.8+</div>
+          </div>
+          <div class="score-progression-row">
+            <div class="score-month">Refining Phase &amp; beyond</div>
+            <div class="score-target">8.0+</div>
+          </div>
+        </div>
+
+        <div class="strategy-block" style="margin-top: 18px;">
+          <p style="font-size: 12.5px;"><strong>Monthly performance report:</strong> Delivered the first week of each month at <code style="font-size: 11px; padding: 2px 5px; background: var(--bg-alt); border-radius: 3px;">reports.scrollmedia.co/carlsdeli/</code>. Covers Final Score, Top 3 and Bottom 3 Posts, goal-specific tracking, format performance, and strategic adjustments for the next month.</p>
+        </div>
+      </div>
+
+      <!-- ============================================ -->
+      <!-- 17. Format Test Log -->
+      <!-- ============================================ -->
+      <div id="testlog" class="section">
+        <div class="section-header">
+          <div class="section-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+          </div>
+          <div>
+            <div class="section-title">Format Test Log</div>
+            <div class="section-subtitle">2 to 3 primary formats per funnel stage. New formats validate over 3+ executions before earning the proven rotation.</div>
+          </div>
+        </div>
+
+        <div class="format-funnel-grid">
+          <div class="format-funnel-card">
+            <div class="format-funnel-header tofu">
+              <div class="format-funnel-stage">Top of Funnel &middot; Discovery</div>
+              <div class="format-funnel-purpose">Reach</div>
+            </div>
+            <div class="format-funnel-body">
+              <div class="format-row">
+                <div class="format-row-info">
+                  <div class="format-row-name">Pattern Break Sandwich x Dog Breed</div>
+                  <div class="format-row-pillar">Cincinnati at the Counter &middot; Path 2 Original</div>
+                </div>
+                <div class="format-status test">Test</div>
+              </div>
+              <div class="format-row">
+                <div class="format-row-info">
+                  <div class="format-row-name">Notes App Green Screen</div>
+                  <div class="format-row-pillar">The Sisters Behind the Counter</div>
+                </div>
+                <div class="format-status test">Test</div>
+              </div>
+              <div class="format-row">
+                <div class="format-row-info">
+                  <div class="format-row-name">Reaction + Commentary</div>
+                  <div class="format-row-pillar">Cincinnati at the Counter</div>
+                </div>
+                <div class="format-status test">Test</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="format-funnel-card">
+            <div class="format-funnel-header mofu">
+              <div class="format-funnel-stage">Middle of Funnel &middot; Consideration</div>
+              <div class="format-funnel-purpose">Trust</div>
+            </div>
+            <div class="format-funnel-body">
+              <div class="format-row">
+                <div class="format-row-info">
+                  <div class="format-row-name">Top Down</div>
+                  <div class="format-row-pillar">Carl's Craft</div>
+                </div>
+                <div class="format-status core">Core</div>
+              </div>
+              <div class="format-row">
+                <div class="format-row-info">
+                  <div class="format-row-name">Quick-Shot B-Roll</div>
+                  <div class="format-row-pillar">Carl's Craft</div>
+                </div>
+                <div class="format-status core">Core</div>
+              </div>
+              <div class="format-row">
+                <div class="format-row-info">
+                  <div class="format-row-name">Authority Builder Carousel</div>
+                  <div class="format-row-pillar">Carl's Craft</div>
+                </div>
+                <div class="format-status core">Core</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="format-funnel-card">
+            <div class="format-funnel-header bofu">
+              <div class="format-funnel-stage">Bottom of Funnel &middot; Catering Conversion</div>
+              <div class="format-funnel-purpose">Catering</div>
+            </div>
+            <div class="format-funnel-body">
+              <div class="format-row">
+                <div class="format-row-info">
+                  <div class="format-row-name">Catering Feature Reel</div>
+                  <div class="format-row-pillar">Sandwiches at Scale</div>
+                </div>
+                <div class="format-status core">Core</div>
+              </div>
+              <div class="format-row">
+                <div class="format-row-info">
+                  <div class="format-row-name">Educational Carousel</div>
+                  <div class="format-row-pillar">Sandwiches at Scale</div>
+                </div>
+                <div class="format-status core">Core</div>
+              </div>
+              <div class="format-row">
+                <div class="format-row-info">
+                  <div class="format-row-name">Sam Adams Case Study</div>
+                  <div class="format-row-pillar">Sandwiches at Scale &middot; Path 2 Original</div>
+                </div>
+                <div class="format-status test">Test</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="format-mix-bar">
+          <div class="format-mix-label">
+            Format Mix Discipline
+            <span class="format-mix-label-meta">Reels &ge; 60% &middot; Carousels ~ 30% &middot; Static &lt; 10%</span>
+          </div>
+          <div class="format-mix-track">
+            <div class="format-mix-segment reels">Reels 65%</div>
+            <div class="format-mix-segment carousels">Carousels 30%</div>
+            <div class="format-mix-segment static">5%</div>
+          </div>
+          <div class="format-mix-legend">
+            <span><span class="format-mix-legend-dot reels"></span>Reels (primary)</span>
+            <span><span class="format-mix-legend-dot carousels"></span>Carousels (depth + saves)</span>
+            <span><span class="format-mix-legend-dot static"></span>Static (rare)</span>
+          </div>
+        </div>
+
+        <div class="format-source-card">
+          <div class="format-source-info">
+            <div class="format-source-eyebrow">Where the test log lives</div>
+            <div class="format-source-text"><strong>Inside Rachel's Carl's Content Planner xlsx</strong>, not as a separate Drive document. Reviewed monthly during performance reporting. A new format earns the proven rotation when it runs 3+ times and consistently outperforms its funnel-stage average on the metrics we weight most.</div>
+          </div>
+          <a href="https://drive.google.com/drive/u/0/folders/0ALFxUq3VtPy4Uk9PVA" target="_blank" class="plan-ref-btn">Open Content Planner &rsaquo;</a>
+        </div>
+      </div>
+
+      <!-- ============================================ -->
+      <!-- 18. Conversion Strategy -->
+      <!-- ============================================ -->
+      <div id="conversion" class="section">
+        <div class="section-header">
+          <div class="section-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M3 3h18l-7 9v7l-4-2v-5z"/></svg>
+          </div>
+          <div>
+            <div class="section-title">Conversion Strategy</div>
+            <div class="section-subtitle">How we turn Instagram traffic into Carl's customers. Catering is the priority lever.</div>
+          </div>
+        </div>
+
+        <div class="cm-frame-block">
+          <div class="cm-frame-eyebrow">The conversion priority</div>
+          <div class="cm-frame-headline">Catering leads the strategy. The deli, online orders, and merch grow alongside it.</div>
+          <div class="cm-frame-body">
+            <p>Catering is the largest near-term revenue lever for Carl's, the longest sales cycle (corporate buyers don't decide on the spot), and the only revenue path with a measurement gap surfaced at kickoff. <em>"I haven't tracked it. I think most of it is regulars."</em> That's the gap to close.</p>
+            <p>The deli, online orders, and merch don't need separate conversion campaigns. Strong Instagram content drives discovery, trust, and craving, and those naturally produce walk-ins, online orders, and merch interest. Concentrating engineering on catering doesn't underweight the rest. It targets the path where deliberate work compounds the most.</p>
+          </div>
+        </div>
+
+        <div class="conversion-metrics-block">
+          <div class="cm-block-title">The Metrics That Predict Customers</div>
+          <div class="conversion-metrics-lede">We track the behaviors that lead to customers, not just the customers themselves. These are the signals that compound into walk-ins, online orders, and catering bookings.</div>
+          <div class="conversion-metrics-grid">
+            <div class="conversion-metric-card">
+              <div class="conversion-metric-name">Link Taps</div>
+              <div class="conversion-metric-signal">Direct intent. Someone saw your content and wanted to know more. The most direct conversion-correlated signal short of an actual transaction.</div>
+            </div>
+            <div class="conversion-metric-card">
+              <div class="conversion-metric-name">Profile Conversion</div>
+              <div class="conversion-metric-signal">How often new viewers tap through to your profile after seeing one of your posts. The bridge between discovery and consideration.</div>
+            </div>
+            <div class="conversion-metric-card">
+              <div class="conversion-metric-name">Saves</div>
+              <div class="conversion-metric-signal">"I'll come back to this." The strongest predictor of return behavior. Instagram weights saves heaviest for organic distribution.</div>
+            </div>
+            <div class="conversion-metric-card">
+              <div class="conversion-metric-name">Shares</div>
+              <div class="conversion-metric-signal">Customers sending your content to a friend. The clearest "send to a friend" signal and the way your audience grows without paid promotion.</div>
+            </div>
+            <div class="conversion-metric-card is-priority">
+              <div class="conversion-metric-name">Catering Inquiries</div>
+              <div class="conversion-metric-signal">Direct interest converted to action. The clearest signal that catering content is producing real business outcomes.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="conversion-upgrade-block">
+          <div class="cm-block-title">Phase 1 Measurement Upgrades</div>
+          <div class="conversion-upgrade-grid">
+            <div class="conversion-upgrade-card">
+              <div class="conversion-upgrade-eyebrow">Upgrade 01 &middot; One question on catering inquiries</div>
+              <div class="conversion-upgrade-question">"How did you hear about Carl's catering?"</div>
+              <div class="conversion-upgrade-body">
+                <p>Five options: Instagram, Google, word of mouth, walked in, other. Required field on every catering inquiry. Asked on the form, asked in DMs, asked on the phone.</p>
+                <p>What this changes: the monthly performance report adds a "where catering inquiries came from" line. Lets you see, month over month, what proportion of catering interest is coming from Instagram.</p>
+              </div>
+              <div class="conversion-upgrade-status"><span class="status-dot-build"></span>Building &middot; ships launch week</div>
+            </div>
+            <div class="conversion-upgrade-card">
+              <div class="conversion-upgrade-eyebrow">Upgrade 02 &middot; UTM-tracked links across bio and stories</div>
+              <div class="conversion-upgrade-question">Every link we publish for Carl's runs through a measurement layer.</div>
+              <div class="conversion-upgrade-body">
+                <p>Metricool smart-links route the bio link page and story stickers to the right destination. Bitly with UTM parameters layers on top to capture which surface (bio, story, caption) drove each tap.</p>
+                <p>What this changes: link taps stop being a single number on your monthly report. They break out by surface so we can see exactly which Instagram surfaces are working.</p>
+              </div>
+              <div class="conversion-upgrade-status"><span class="status-dot-build"></span>Building &middot; ships launch week</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="conversion-considering-block">
+          <div class="cm-block-title">Worth Considering</div>
+          <div class="conversion-considering-lede">Forward-looking ideas Carl's can think through as the business and capacity evolve. Not part of current scope. Worth talking through together.</div>
+          <div class="conversion-considering-grid">
+            <div class="conversion-considering-card">
+              <div class="conversion-considering-num">01</div>
+              <div class="conversion-considering-title">Merch e-commerce on the website</div>
+              <div class="conversion-considering-body">Demand already shows up in your DMs. Merch is sold in-store only today, so that demand evaporates or routes through DM. An online merch store on Carl's website creates a direct path from Instagram content to merch revenue. Carl's owns the infrastructure and the customer relationship.</div>
+            </div>
+            <div class="conversion-considering-card">
+              <div class="conversion-considering-num">02</div>
+              <div class="conversion-considering-title">Lean into online ordering and DoorDash in social</div>
+              <div class="conversion-considering-body">Carl's website already takes online sandwich orders. DoorDash partnership exists. Today neither path gets pushed deliberately in Instagram content. A more intentional online-order push in feed (Friday lunch reminders, weekend menu features) and stories captures intent that's currently going to walk-ins or competitors.</div>
+            </div>
+            <div class="conversion-considering-card">
+              <div class="conversion-considering-num">03</div>
+              <div class="conversion-considering-title">A simple customer email list for retention</div>
+              <div class="conversion-considering-body">Your most engaged followers are repeat customers. A low-frequency newsletter (weekly specials, holiday catering reminders, behind-the-counter notes from Sydney) gives Carl's a Carl's-owned channel that compounds independently of the Instagram algorithm. Capture via story stickers, in-store signup card, or occasional bio CTA.</div>
+            </div>
+            <div class="conversion-considering-card is-active">
+              <div class="conversion-considering-num">04 &middot; Active Scroll capability</div>
+              <div class="conversion-considering-title">ManyChat DM automation with a catering lead magnet</div>
+              <div class="conversion-considering-body">Instagram is prioritizing DM activity, and ManyChat keyword triggers turn comments into automated lead-capture moments. The play: a viewer comments "CATERING" on a catering reel, ManyChat auto-DMs them a lead magnet (catering menu PDF or "How to Cater Lunch for 50" guide), and the inquiry link rides inside the DM. Captures intent at the peak moment, before they scroll away. Scroll is testing this on other accounts. Available to deploy for Carl's at your call.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ============================================ -->
+      <!-- 19. Content Calendar (Plan reference) -->
+      <!-- ============================================ -->
+      <div id="calendar" class="section">
+        <div class="section-header">
+          <div class="section-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+          </div>
+          <div>
+            <div class="section-title">Content Calendar</div>
+            <div class="section-subtitle">Lives in Plan. Single source of truth for approvals, scheduling, and post status.</div>
+          </div>
+        </div>
+        <div class="plan-reference">
+          <div class="plan-ref-content">
+            <div class="plan-ref-eyebrow">Source of Truth</div>
+            <div class="plan-ref-title">Carl's Content Calendar in Plan</div>
+            <div class="plan-ref-desc">Plan is where every post lives from draft to approval to scheduled to published. We do not duplicate the calendar in Drive or in this Homebase. Rachel updates Plan. Sydney approves there. Bi-weekly check-ins review the next two weeks of pending content together.</div>
+          </div>
+          <a href="https://www.plannthat.com/home/" target="_blank" class="plan-ref-btn">Open in Plan &rsaquo;</a>
+        </div>
+      </div>
+
+      <!-- ============================================ -->
+      <!-- 20. Command Center -->
+      <!-- ============================================ -->
+      <div id="command" class="section">
+        <div class="section-header">
+          <div class="section-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+          </div>
+          <div>
+            <div class="section-title">Command Center</div>
+            <div class="section-subtitle">Quick links for all account assets and resources.</div>
+          </div>
+        </div>
+        <div class="command-grid">
+          <a href="https://reports.scrollmedia.co/carlsdeli/" target="_blank" class="command-card primary">
+            <div class="command-card-icon">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+            </div>
+            <div class="command-card-label">Performance Reports</div>
+            <div class="command-card-sub">reports.scrollmedia.co/carlsdeli</div>
+          </a>
+          <a href="https://drive.google.com/drive/u/0/folders/0ALFxUq3VtPy4Uk9PVA" target="_blank" class="command-card">
+            <div class="command-card-icon">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.59 14.59L19 19.4 22 16.41 17.41 12l4.59-4.41L19 4.6l-4.41 4.59-4.59-4.59L7 7.59 11.59 12 7 16.41 10 19.4l4.59-4.81z" stroke-width="0" fill="currentColor" opacity="0.4"/><path d="M3 12l3-6h12l3 6-9 9z"/></svg>
+            </div>
+            <div class="command-card-label">Carl's Drive Folder</div>
+            <div class="command-card-sub">Calendar, shot lists, assets</div>
+          </a>
+          <a href="https://www.instagram.com/carlsdelihydepark/" target="_blank" class="command-card">
+            <div class="command-card-icon">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>
+            </div>
+            <div class="command-card-label">Instagram (Hyde Park)</div>
+            <div class="command-card-sub">@carlsdelihydepark</div>
+          </a>
+          <a href="https://www.instagram.com/carlsdelifindlaymarket/" target="_blank" class="command-card">
+            <div class="command-card-icon">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>
+            </div>
+            <div class="command-card-label">Instagram (Findlay)</div>
+            <div class="command-card-sub">@carlsdelifindlaymarket &middot; sunsetting</div>
+          </a>
+        </div>
+      </div>
+
+    </main>
+  </div>
+</div>
+
+<script>
+  const PW = 'scrollies';
+  function checkPassword() {
+    const val = document.getElementById('pwInput').value;
+    if (val === PW) {
+      document.getElementById('pw-gate').style.display = 'none';
+      document.getElementById('app').classList.remove('pw-hidden');
+      localStorage.setItem('sm_auth', '1');
+    } else {
+      document.getElementById('pw-error').style.display = 'block';
+    }
+  }
+  document.getElementById('pwInput').addEventListener('keydown', e => {
+    if (e.key === 'Enter') checkPassword();
+  });
+  if (localStorage.getItem('sm_auth') === '1') {
+    document.getElementById('pw-gate').style.display = 'none';
+    document.getElementById('app').classList.remove('pw-hidden');
+  }
+
+  // Active sidebar nav on scroll
+  const sections = document.querySelectorAll('[id]');
+  const navLinks = document.querySelectorAll('.sidebar-nav a');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        navLinks.forEach(l => l.classList.remove('active'));
+        const active = document.querySelector(`.sidebar-nav a[href="#${entry.target.id}"]`);
+        if (active) active.classList.add('active');
+      }
+    });
+  }, { rootMargin: '-20% 0px -70% 0px' });
+  sections.forEach(s => observer.observe(s));
+</script>
+
+</body>
+</html>
