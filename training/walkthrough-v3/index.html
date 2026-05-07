@@ -1,0 +1,1595 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Strategy Walkthrough v3 &middot; Training Handoff | Scroll Media</title>
+  <link rel="icon" type="image/svg+xml" href="/scroll-favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --ghost: #FAFDFF;
+      --azure: #0C3387;
+      --azure-900: #071d4f;
+      --azure-800: #0c3387;
+      --azure-600: #254fb0;
+      --azure-400: #7a9ad8;
+      --azure-200: #b9cdee;
+      --lucid: #CBE9FF;
+      --lucid-deep: #9ecee8;
+      --lucid-soft: #e4f3ff;
+      --highlighter: #E2ED7A;
+      --highlighter-dark: #c8d94a;
+      --shadow: #151516;
+      --white: #ffffff;
+      --border: #e4e7ec;
+
+      --bg: var(--ghost);
+      --bg-alt: #f7f8fa;
+      --bg-panel: var(--white);
+      --fg: var(--shadow);
+      --fg-heading: var(--azure);
+      --fg-muted: #5a6070;
+      --fg-subtle: #9097a6;
+      --fg-on-azure: var(--white);
+      --rule: rgba(12, 51, 135, 0.20);
+      --rule-strong: rgba(12, 51, 135, 0.40);
+      --rule-faint: rgba(12, 51, 135, 0.08);
+
+      --tofu-bg: #eff6ff;
+      --tofu-accent: #2563eb;
+      --mofu-bg: #f0fdf4;
+      --mofu-accent: #16a34a;
+      --bofu-bg: #fdf4ff;
+      --bofu-accent: #9333ea;
+
+      --fs-xs: 11px;
+      --fs-sm: 13px;
+      --fs-base: 15px;
+      --fs-md: 17px;
+      --fs-lg: 20px;
+      --fs-xl: 24px;
+      --fs-2xl: 32px;
+
+      --sp-1: 4px;
+      --sp-2: 8px;
+      --sp-3: 12px;
+      --sp-4: 16px;
+      --sp-5: 24px;
+      --sp-6: 32px;
+      --sp-7: 40px;
+
+      --sidebar-w: 280px;
+      --header-h: 60px;
+      --content-max: 920px;
+
+      --r-sm: 8px;
+      --r-md: 12px;
+      --r-lg: 16px;
+
+      --sh-sm: 0 1px 2px rgba(12, 51, 135, .06);
+      --sh-md: 0 6px 24px rgba(12, 51, 135, .08);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Source Sans 3', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg);
+      color: var(--fg);
+      font-size: var(--fs-base);
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+      font-variant-numeric: tabular-nums;
+    }
+
+    /* Password gate */
+    #pw-gate {
+      position: fixed; inset: 0;
+      background: var(--azure-900);
+      display: flex; align-items: center; justify-content: center;
+      z-index: 9999; flex-direction: column; gap: 14px;
+    }
+    #pw-gate::before {
+      content: ''; position: absolute;
+      top: -200px; right: -200px;
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(12, 51, 135, 0.6) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    #pw-gate img { width: 130px; margin-bottom: 6px; position: relative; }
+    #pw-gate h2 { color: #fff; font-size: var(--fs-md); font-weight: 700; letter-spacing: -0.3px; position: relative; }
+    #pw-gate p { color: rgba(255, 255, 255, 0.4); font-size: var(--fs-sm); position: relative; }
+    #pw-gate input {
+      width: 272px; padding: 11px 16px;
+      border-radius: var(--r-sm);
+      border: 1.5px solid rgba(255, 255, 255, 0.12);
+      background: rgba(255, 255, 255, 0.06);
+      color: #fff; font-size: var(--fs-base);
+      outline: none; text-align: center;
+      position: relative; transition: border-color 0.2s;
+      font-family: inherit;
+    }
+    #pw-gate input::placeholder { color: rgba(255, 255, 255, 0.3); }
+    #pw-gate input:focus { border-color: rgba(203, 233, 255, 0.5); }
+    #pw-gate button {
+      width: 272px; padding: 11px;
+      background: var(--azure);
+      color: #fff; border: none;
+      border-radius: var(--r-sm);
+      font-size: var(--fs-base); font-weight: 700;
+      cursor: pointer; transition: background 0.2s;
+      position: relative; font-family: inherit;
+    }
+    #pw-gate button:hover { background: var(--azure-600); }
+    #pw-error { color: #f87171; font-size: var(--fs-sm); display: none; position: relative; }
+    .pw-hidden { display: none !important; }
+
+    /* Header */
+    .top-header {
+      position: fixed; top: 0; left: 0; right: 0;
+      height: var(--header-h);
+      background: var(--azure-900);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 24px;
+      z-index: 200;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+    }
+    .top-header-left { display: flex; align-items: center; gap: 16px; }
+    .top-header-left img { height: 26px; }
+    .top-header-divider { width: 1px; height: 18px; background: rgba(255, 255, 255, 0.15); }
+    .top-header-crumb {
+      display: flex; align-items: center; gap: 6px;
+      font-size: var(--fs-sm); color: rgba(255, 255, 255, 0.45);
+    }
+    .top-header-crumb span { color: rgba(255, 255, 255, 0.78); font-weight: 500; }
+    .top-header-right { display: flex; align-items: center; gap: 10px; }
+    .hdr-badge {
+      padding: 3px 10px; border-radius: 20px;
+      font-size: 10px; font-weight: 700;
+      letter-spacing: 0.6px; text-transform: uppercase;
+    }
+    .hdr-badge-internal { background: rgba(226, 237, 122, 0.14); color: var(--highlighter); }
+    .hdr-badge-version { background: rgba(203, 233, 255, 0.12); color: var(--lucid); }
+    .hdr-back {
+      color: rgba(255, 255, 255, 0.4); font-size: var(--fs-sm);
+      text-decoration: none; display: flex; align-items: center; gap: 4px;
+      transition: color 0.2s;
+    }
+    .hdr-back:hover { color: rgba(255, 255, 255, 0.85); }
+
+    /* Layout */
+    .layout { display: flex; padding-top: var(--header-h); min-height: 100vh; }
+
+    /* Sidebar */
+    .sidebar {
+      width: var(--sidebar-w);
+      position: fixed;
+      top: var(--header-h); left: 0; bottom: 0;
+      overflow-y: auto;
+      background: var(--white);
+      border-right: 1px solid var(--border);
+      padding: 20px 0 0;
+      z-index: 100;
+      display: flex; flex-direction: column;
+    }
+    .sidebar::-webkit-scrollbar { width: 4px; }
+    .sidebar::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+    .sidebar-inner { flex: 1; padding-bottom: 24px; }
+    .sidebar-group { margin-bottom: 6px; }
+    .sidebar-group-label {
+      padding: 12px 22px 6px;
+      font-size: 9.5px; font-weight: 700;
+      letter-spacing: 1.2px; text-transform: uppercase;
+      color: var(--fg-subtle);
+    }
+    .sidebar-nav { list-style: none; }
+    .sidebar-nav li a {
+      display: flex; align-items: center; gap: 9px;
+      padding: 7px 22px 7px 26px;
+      text-decoration: none;
+      color: var(--fg-muted); font-size: 13px; font-weight: 500;
+      border-left: 2px solid transparent;
+      transition: all 0.15s;
+      line-height: 1.4;
+    }
+    .sidebar-nav li a:hover { color: var(--azure); background: rgba(12, 51, 135, 0.04); }
+    .sidebar-nav li a.active {
+      color: var(--azure); background: rgba(12, 51, 135, 0.06);
+      border-left-color: var(--azure); font-weight: 600;
+    }
+    .sidebar-nav .nav-num {
+      font-size: 10.5px; font-weight: 700;
+      color: var(--fg-subtle); flex-shrink: 0;
+      letter-spacing: 0.4px; min-width: 24px;
+    }
+    .sidebar-nav li a:hover .nav-num,
+    .sidebar-nav li a.active .nav-num { color: var(--azure); }
+    .sidebar-footer {
+      padding: 16px 22px 20px;
+      border-top: 1px solid var(--border);
+      background: var(--bg-alt);
+      position: sticky; bottom: 0;
+    }
+    .sidebar-footer-label {
+      font-size: 9.5px; color: var(--fg-subtle);
+      font-weight: 700; letter-spacing: 1px; text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+    .sidebar-footer-line {
+      font-size: 12px; color: var(--fg-muted);
+      line-height: 1.55;
+    }
+    .sidebar-footer-line strong { color: var(--fg); font-weight: 600; }
+
+    /* Main */
+    .main {
+      margin-left: var(--sidebar-w);
+      flex: 1;
+      padding: 32px 40px 96px;
+      max-width: calc(var(--sidebar-w) + var(--content-max) + 80px);
+    }
+
+    /* Section */
+    .section { margin-bottom: 64px; scroll-margin-top: calc(var(--header-h) + 16px); }
+    .section-header {
+      display: flex; align-items: flex-start; gap: 12px;
+      margin-bottom: 24px;
+    }
+    .section-icon {
+      width: 36px; height: 36px;
+      flex-shrink: 0;
+      background: var(--azure);
+      border-radius: var(--r-sm);
+      display: flex; align-items: center; justify-content: center;
+      margin-top: 1px;
+    }
+    .section-icon svg { width: 16px; height: 16px; }
+    .section-eyebrow {
+      font-size: 10px; font-weight: 800;
+      letter-spacing: 1.2px; text-transform: uppercase;
+      color: var(--azure); margin-bottom: 4px;
+    }
+    .section-title {
+      font-size: var(--fs-xl); font-weight: 800;
+      color: var(--fg); letter-spacing: -0.4px;
+      line-height: 1.2;
+    }
+    .section-subtitle {
+      font-size: var(--fs-sm); color: var(--fg-muted); margin-top: 4px;
+      max-width: 720px;
+    }
+
+    /* Document hero */
+    .doc-hero {
+      background: linear-gradient(135deg, var(--azure-900) 0%, var(--azure) 100%);
+      border-radius: var(--r-lg);
+      padding: 32px 36px;
+      margin-bottom: 40px;
+      position: relative; overflow: hidden;
+    }
+    .doc-hero::before {
+      content: ''; position: absolute;
+      top: -80px; right: -80px;
+      width: 320px; height: 320px;
+      background: radial-gradient(circle, rgba(12, 51, 135, 0.7) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .doc-hero::after {
+      content: ''; position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--highlighter) 0%, transparent 60%);
+    }
+    .doc-hero-eyebrow {
+      font-size: 10px; font-weight: 800;
+      letter-spacing: 1.4px; text-transform: uppercase;
+      color: var(--highlighter); margin-bottom: 10px;
+      position: relative;
+    }
+    .doc-hero-title {
+      font-size: var(--fs-2xl); font-weight: 900;
+      color: #fff; letter-spacing: -0.6px;
+      line-height: 1.15; margin-bottom: 10px;
+      position: relative; max-width: 760px;
+    }
+    .doc-hero-lede {
+      font-size: var(--fs-md); color: rgba(255, 255, 255, 0.78);
+      line-height: 1.55; max-width: 720px;
+      position: relative; font-weight: 400;
+    }
+    .doc-hero-meta {
+      display: flex; flex-wrap: wrap; gap: 10px;
+      margin-top: 18px; position: relative;
+    }
+    .doc-hero-tag {
+      padding: 5px 12px; border-radius: 20px;
+      font-size: 11px; font-weight: 600;
+      background: rgba(255, 255, 255, 0.08);
+      color: rgba(255, 255, 255, 0.78);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    .doc-hero-tag.lime {
+      background: rgba(226, 237, 122, 0.14);
+      color: var(--highlighter);
+      border-color: rgba(226, 237, 122, 0.2);
+    }
+    .doc-hero-tag.lucid {
+      background: rgba(203, 233, 255, 0.14);
+      color: var(--lucid);
+      border-color: rgba(203, 233, 255, 0.2);
+    }
+
+    /* Prose block */
+    .prose {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--r-md);
+      padding: 26px 32px;
+      box-shadow: var(--sh-sm);
+    }
+    .prose p {
+      font-size: 14px; line-height: 1.72;
+      color: var(--fg-muted);
+    }
+    .prose p + p { margin-top: 14px; }
+    .prose strong { color: var(--fg); font-weight: 700; }
+    .prose em { color: var(--fg); font-style: italic; }
+    .prose blockquote {
+      border-left: 3px solid var(--azure);
+      background: var(--lucid-soft);
+      padding: 14px 20px;
+      margin: 18px 0;
+      font-size: 13.5px;
+      color: var(--azure-900);
+      font-weight: 600;
+      line-height: 1.6;
+      border-radius: 0 var(--r-sm) var(--r-sm) 0;
+    }
+    .prose blockquote em { font-style: normal; }
+    .prose ul, .prose ol {
+      margin: 14px 0 4px 0;
+      padding-left: 22px;
+    }
+    .prose ul li, .prose ol li {
+      font-size: 14px; line-height: 1.7;
+      color: var(--fg-muted);
+      padding-left: 6px;
+      margin-bottom: 8px;
+    }
+    .prose ul li::marker { color: var(--azure); }
+    .prose ol li::marker { color: var(--azure); font-weight: 700; }
+    .prose code {
+      background: var(--bg-alt);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 1px 6px;
+      font-family: 'SF Mono', Menlo, Monaco, Consolas, monospace;
+      font-size: 12.5px;
+      color: var(--azure);
+    }
+    .prose a {
+      color: var(--azure); font-weight: 600;
+      border-bottom: 1px solid rgba(12, 51, 135, 0.25);
+      text-decoration: none;
+    }
+    .prose a:hover { border-bottom-color: var(--azure); }
+
+    /* Subsection (for H3-equivalent within a Part) */
+    .subsection {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--r-md);
+      padding: 24px 30px;
+      box-shadow: var(--sh-sm);
+      margin-bottom: 14px;
+      scroll-margin-top: calc(var(--header-h) + 16px);
+    }
+    .subsection-eyebrow {
+      font-size: 9.5px; font-weight: 800;
+      letter-spacing: 1.2px; text-transform: uppercase;
+      color: var(--highlighter-dark); margin-bottom: 6px;
+    }
+    .subsection-title {
+      font-size: var(--fs-md); font-weight: 800;
+      color: var(--fg); letter-spacing: -0.2px;
+      line-height: 1.3; margin-bottom: 14px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--border);
+    }
+    .subsection p {
+      font-size: 14px; line-height: 1.72;
+      color: var(--fg-muted);
+    }
+    .subsection p + p { margin-top: 12px; }
+    .subsection strong { color: var(--fg); font-weight: 700; }
+    .subsection em { color: var(--fg); font-style: italic; }
+    .subsection ul, .subsection ol {
+      margin: 12px 0 4px 0;
+      padding-left: 22px;
+    }
+    .subsection ul li, .subsection ol li {
+      font-size: 14px; line-height: 1.7;
+      color: var(--fg-muted);
+      padding-left: 6px;
+      margin-bottom: 6px;
+    }
+    .subsection ul li::marker { color: var(--azure); }
+    .subsection ol li::marker { color: var(--azure); font-weight: 700; }
+    .subsection code {
+      background: var(--bg-alt);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 1px 6px;
+      font-family: 'SF Mono', Menlo, Monaco, Consolas, monospace;
+      font-size: 12.5px;
+      color: var(--azure);
+    }
+    .subsection blockquote {
+      border-left: 3px solid var(--azure);
+      background: var(--lucid-soft);
+      padding: 14px 20px;
+      margin: 16px 0;
+      font-size: 13.5px;
+      color: var(--azure-900);
+      font-weight: 600;
+      line-height: 1.6;
+      border-radius: 0 var(--r-sm) var(--r-sm) 0;
+    }
+    .subsection blockquote em { font-style: normal; }
+    .subsection-canonical {
+      margin-top: 16px;
+      padding: 10px 14px;
+      background: var(--bg-alt);
+      border-left: 3px solid var(--lucid-deep);
+      border-radius: 0 var(--r-sm) var(--r-sm) 0;
+      font-size: 11.5px;
+      color: var(--fg-muted);
+      font-weight: 500;
+    }
+    .subsection-canonical strong { color: var(--azure); font-weight: 800; }
+    .subsection-canonical code {
+      font-size: 11.5px;
+      background: var(--white);
+    }
+
+    /* Standout callout (replaces .hero modifier; brand_system §6.6) */
+    .standout {
+      background: linear-gradient(135deg, var(--azure-900) 0%, var(--azure) 100%);
+      border-radius: var(--r-md);
+      padding: 22px 28px;
+      margin: 18px 0 0;
+      position: relative; overflow: hidden;
+    }
+    .standout::after {
+      content: ''; position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--highlighter) 0%, transparent 60%);
+    }
+    .standout-eyebrow {
+      font-size: 10px; font-weight: 800;
+      letter-spacing: 1.2px; text-transform: uppercase;
+      color: var(--highlighter); margin-bottom: 6px;
+    }
+    .standout-text {
+      font-size: var(--fs-md); font-weight: 600;
+      color: #fff; line-height: 1.5;
+      letter-spacing: -0.1px;
+    }
+
+    /* Sub-group (for Part 3 section-logic clusters) */
+    .subgroup {
+      margin-top: 24px; margin-bottom: 8px;
+      scroll-margin-top: calc(var(--header-h) + 16px);
+    }
+    .subgroup-label {
+      display: inline-block;
+      font-size: 10px; font-weight: 800;
+      letter-spacing: 1.4px; text-transform: uppercase;
+      color: var(--azure);
+      padding: 4px 10px;
+      background: var(--lucid-soft);
+      border-radius: 4px;
+      margin-bottom: 4px;
+    }
+    .subgroup-count { font-size: 11px; color: var(--fg-subtle); margin-left: 6px; }
+
+    /* Section-logic card (one per Homebase section) */
+    .seclogic-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--azure);
+      border-radius: 0 var(--r-sm) var(--r-sm) 0;
+      padding: 18px 22px 16px;
+      margin-bottom: 10px;
+      box-shadow: var(--sh-sm);
+    }
+    .seclogic-head {
+      display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 12px;
+    }
+    .seclogic-num {
+      font-size: 11px; font-weight: 800;
+      color: var(--azure); letter-spacing: 0.5px;
+    }
+    .seclogic-name {
+      font-size: 14.5px; font-weight: 800;
+      color: var(--fg); letter-spacing: -0.2px;
+    }
+    .seclogic-anchor {
+      font-size: 11px; font-weight: 600;
+      color: var(--fg-subtle);
+      font-family: 'SF Mono', Menlo, Monaco, Consolas, monospace;
+    }
+    .seclogic-row {
+      display: grid;
+      grid-template-columns: 110px 1fr;
+      gap: 10px;
+      padding: 5px 0;
+      font-size: 12.5px; line-height: 1.55;
+    }
+    .seclogic-key {
+      font-size: 9.5px; font-weight: 800;
+      letter-spacing: 0.9px; text-transform: uppercase;
+      color: var(--fg-subtle);
+      padding-top: 1px;
+    }
+    .seclogic-val { color: var(--fg-muted); }
+    .seclogic-val strong { color: var(--fg); }
+
+    /* Anchor table (canonical sources) */
+    .anchor-table {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--r-md);
+      overflow: hidden;
+      box-shadow: var(--sh-sm);
+    }
+    .anchor-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      border-bottom: 1px solid var(--border);
+    }
+    .anchor-row:last-child { border-bottom: none; }
+    .anchor-row.head {
+      background: var(--bg-alt);
+    }
+    .anchor-row.head .anchor-cell {
+      font-size: 9.5px; font-weight: 800;
+      color: var(--azure); letter-spacing: 0.9px;
+      text-transform: uppercase;
+    }
+    .anchor-cell {
+      padding: 14px 18px;
+      font-size: 13px; line-height: 1.55;
+      color: var(--fg-muted);
+      border-right: 1px solid var(--border);
+    }
+    .anchor-cell:last-child { border-right: none; }
+    .anchor-cell strong { color: var(--fg); font-weight: 700; }
+    .anchor-cell code {
+      background: var(--bg-alt);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 1px 6px;
+      font-family: 'SF Mono', Menlo, Monaco, Consolas, monospace;
+      font-size: 11.5px;
+      color: var(--azure);
+    }
+
+    /* Version log table */
+    .version-table {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--r-md);
+      overflow: hidden;
+      box-shadow: var(--sh-sm);
+    }
+    .version-row {
+      display: grid;
+      grid-template-columns: 80px 140px 1fr;
+      border-bottom: 1px solid var(--border);
+    }
+    .version-row:last-child { border-bottom: none; }
+    .version-row.head {
+      background: var(--bg-alt);
+    }
+    .version-row.head .version-cell {
+      font-size: 9.5px; font-weight: 800;
+      color: var(--azure); letter-spacing: 0.9px;
+      text-transform: uppercase;
+    }
+    .version-cell {
+      padding: 12px 18px;
+      font-size: 12.5px; line-height: 1.55;
+      color: var(--fg-muted);
+      border-right: 1px solid var(--border);
+    }
+    .version-cell:last-child { border-right: none; }
+    .version-cell.tag {
+      font-weight: 800; color: var(--azure);
+      letter-spacing: 0.4px;
+    }
+    .version-cell.date { color: var(--fg); font-weight: 600; }
+
+    /* End mark */
+    .end-mark {
+      text-align: center;
+      margin-top: 48px; padding: 24px 0;
+      border-top: 1px solid var(--border);
+      font-size: 11px; font-weight: 700;
+      letter-spacing: 1.2px; text-transform: uppercase;
+      color: var(--fg-subtle);
+    }
+
+    /* Mobile responsive */
+    @media (max-width: 1100px) {
+      :root { --sidebar-w: 240px; --content-max: 760px; }
+      .main { padding: 28px 28px 80px; }
+      .anchor-row { grid-template-columns: 1fr; }
+      .anchor-cell { border-right: none; border-bottom: 1px solid var(--border); }
+      .anchor-cell:last-child { border-bottom: none; }
+      .seclogic-row { grid-template-columns: 1fr; gap: 2px; padding: 4px 0; }
+      .seclogic-key { padding-top: 4px; }
+    }
+    @media (max-width: 900px) {
+      .doc-hero { padding: 26px 24px; }
+      .doc-hero-title { font-size: 24px; }
+      .doc-hero-lede { font-size: 14.5px; }
+      .version-row { grid-template-columns: 70px 110px 1fr; }
+    }
+    @media (max-width: 768px) {
+      .sidebar { display: none; }
+      .main { margin-left: 0; padding: 22px 18px 56px; }
+      .top-header-crumb { display: none; }
+      .top-header { padding: 0 16px; }
+      .doc-hero { padding: 22px 20px; }
+      .doc-hero-title { font-size: 22px; }
+      .prose, .subsection { padding: 20px 22px; }
+      .anchor-cell { padding: 12px 14px; }
+      .version-cell { padding: 10px 12px; }
+      .version-row { grid-template-columns: 56px 100px 1fr; }
+      .seclogic-card { padding: 14px 16px 12px; }
+      .standout { padding: 18px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Password Gate -->
+<div id="pw-gate">
+  <img src="/scroll-media-logo.svg" alt="Scroll Media" />
+  <h2>Strategy Walkthrough v3 &middot; Training Handoff</h2>
+  <p>Scroll Media internal access only.</p>
+  <input type="password" id="pwInput" placeholder="Enter password" autocomplete="off" />
+  <button onclick="checkPassword()">Access Training</button>
+  <span id="pw-error">Incorrect password. Try again.</span>
+</div>
+
+<div id="app" class="pw-hidden">
+
+  <!-- Top Header -->
+  <header class="top-header">
+    <div class="top-header-left">
+      <a href="/"><img src="/scroll-media-logo.svg" alt="Scroll Media" /></a>
+      <div class="top-header-divider"></div>
+      <div class="top-header-crumb">Internal &rsaquo; Training &rsaquo; <span>Strategy Walkthrough v3</span></div>
+    </div>
+    <div class="top-header-right">
+      <span class="hdr-badge hdr-badge-version">v3</span>
+      <span class="hdr-badge hdr-badge-internal">Internal Training</span>
+      <a class="hdr-back" href="/">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
+        Dashboard
+      </a>
+    </div>
+  </header>
+
+  <div class="layout">
+
+    <!-- Sidebar -->
+    <nav class="sidebar" aria-label="Document navigation">
+      <div class="sidebar-inner">
+        <div class="sidebar-group">
+          <div class="sidebar-group-label">Read me first</div>
+          <ul class="sidebar-nav">
+            <li><a href="#read-me-first"><span class="nav-num">0</span>How to read this document</a></li>
+          </ul>
+        </div>
+
+        <div class="sidebar-group">
+          <div class="sidebar-group-label">The framework</div>
+          <ul class="sidebar-nav">
+            <li><a href="#framework-problem"><span class="nav-num">1.1</span>What problem the framework solves</a></li>
+            <li><a href="#framework-four-parts"><span class="nav-num">1.2</span>Four key parts of any Scroll content strategy</a></li>
+            <li><a href="#framework-naming"><span class="nav-num">1.3</span>Why the framework is named the Signal Method</a></li>
+            <li><a href="#framework-homebase"><span class="nav-num">1.4</span>The Homebase is the strategy document</a></li>
+          </ul>
+        </div>
+
+        <div class="sidebar-group">
+          <div class="sidebar-group-label">Why the Homebase</div>
+          <ul class="sidebar-nav">
+            <li><a href="#principle-density"><span class="nav-num">2.1</span>Density discipline</a></li>
+            <li><a href="#principle-simplicity"><span class="nav-num">2.2</span>Lead with simplicity</a></li>
+            <li><a href="#principle-soft-roi"><span class="nav-num">2.3</span>Soft-ROI delivery model</a></li>
+            <li><a href="#principle-active-vs-client"><span class="nav-num">2.4</span>Carl's-side vs. Active Scroll</a></li>
+            <li><a href="#principle-priority"><span class="nav-num">2.5</span>One priority lever per client</a></li>
+            <li><a href="#principle-template"><span class="nav-num">2.6</span>Carl's as template + tool stack specificity</a></li>
+            <li><a href="#principle-banned"><span class="nav-num">2.7</span>Banned-on-Homebase moves</a></li>
+            <li><a href="#principle-maturity"><span class="nav-num">2.8</span>The maturity stage frame</a></li>
+          </ul>
+        </div>
+
+        <div class="sidebar-group">
+          <div class="sidebar-group-label">Section logic</div>
+          <ul class="sidebar-nav">
+            <li><a href="#section-logic-overview"><span class="nav-num">3a</span>Overview group (4)</a></li>
+            <li><a href="#section-logic-strategy"><span class="nav-num">3b</span>Strategy group (6)</a></li>
+            <li><a href="#section-logic-content"><span class="nav-num">3c</span>Content group (6)</a></li>
+            <li><a href="#section-logic-measurement"><span class="nav-num">3d</span>Measurement group (3)</a></li>
+            <li><a href="#section-logic-resources"><span class="nav-num">3e</span>Resources group (2)</a></li>
+          </ul>
+        </div>
+
+        <div class="sidebar-group">
+          <div class="sidebar-group-label">How to present</div>
+          <ul class="sidebar-nav">
+            <li><a href="#present-flow"><span class="nav-num">4.1</span>Why the 60-min flow is ordered this way</a></li>
+            <li><a href="#present-stage"><span class="nav-num">4.2</span>Why we lead with stage, not deliverables</a></li>
+            <li><a href="#present-priority"><span class="nav-num">4.3</span>Why priority lands in Block 4</a></li>
+            <li><a href="#present-pushback"><span class="nav-num">4.4</span>Common pushback patterns</a></li>
+            <li><a href="#present-signals"><span class="nav-num">4.5</span>How to read the room</a></li>
+          </ul>
+        </div>
+
+        <div class="sidebar-group">
+          <div class="sidebar-group-label">Generalize</div>
+          <ul class="sidebar-nav">
+            <li><a href="#generalize-pattern"><span class="nav-num">5.1</span>What stays the same</a></li>
+            <li><a href="#generalize-swapped"><span class="nav-num">5.2</span>What gets swapped per client</a></li>
+            <li><a href="#generalize-checklist"><span class="nav-num">5.3</span>Pre-walkthrough checklist</a></li>
+            <li><a href="#generalize-summary"><span class="nav-num">5.4</span>The pattern in one sentence</a></li>
+          </ul>
+        </div>
+
+        <div class="sidebar-group">
+          <div class="sidebar-group-label">Onboard new AMs</div>
+          <ul class="sidebar-nav">
+            <li><a href="#onboard"><span class="nav-num">6</span>Onboarding path for new AMs</a></li>
+          </ul>
+        </div>
+
+        <div class="sidebar-group">
+          <div class="sidebar-group-label">Reference</div>
+          <ul class="sidebar-nav">
+            <li><a href="#anchor-table"><span class="nav-num">A</span>Document anchor table</a></li>
+            <li><a href="#version-log"><span class="nav-num">B</span>Document version log</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="sidebar-footer">
+        <div class="sidebar-footer-label">Document context</div>
+        <div class="sidebar-footer-line">
+          <strong>Audience:</strong> Rachel + future AMs<br />
+          <strong>Updated:</strong> May 2026<br />
+          Sits on top of v2 (tactical run-of-show)
+        </div>
+      </div>
+    </nav>
+
+    <main class="main">
+
+      <!-- Document hero -->
+      <div class="doc-hero">
+        <div class="doc-hero-eyebrow">Internal Training Handoff &middot; v3</div>
+        <div class="doc-hero-title">Carl's Deli &mdash; Strategy Presentation Walkthrough v3</div>
+        <div class="doc-hero-lede">
+          The strategic context layer that sits on top of v2. The framework, the principles, the section logic, the generalization pattern, and the AM onboarding path. v2 tells you what to do on the day of the walkthrough; v3 tells you why every block in v2 exists.
+        </div>
+        <div class="doc-hero-meta">
+          <span class="doc-hero-tag lime">Audience: Rachel + future AMs</span>
+          <span class="doc-hero-tag lucid">Last updated: May 7, 2026</span>
+          <span class="doc-hero-tag">Anchors to: Homebase v6 at tools.scrollmedia.co/clients/carls-deli/</span>
+          <span class="doc-hero-tag">NOT customer-facing</span>
+        </div>
+      </div>
+
+      <!-- ============================================ -->
+      <!-- Part 0 -->
+      <!-- ============================================ -->
+      <div id="read-me-first" class="section">
+        <div class="section-header">
+          <div class="section-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+          </div>
+          <div>
+            <div class="section-eyebrow">Part 0</div>
+            <div class="section-title">How to read this document</div>
+            <div class="section-subtitle">Read v3 first. Internalize the framework. Then read v2 with a clear head.</div>
+          </div>
+        </div>
+
+        <div class="prose">
+          <p>v2 is the run-of-show. It tells you exactly what to do, in what order, with what time blocks, on the day of a client walkthrough. It is the field manual.</p>
+          <p>v3 is the strategic context layer. It tells you <em>why</em> the framework exists, <em>why</em> the Homebase looks the way it does, <em>why</em> we present in the order we present in, and how the pattern generalizes to any future Signature client.</p>
+          <p>Read v3 first. Internalize the framework. Then read v2 with a clear head, and the run-of-show will read as obvious &mdash; every block in v2 has a reason rooted in v3.</p>
+          <p>If v3 ever conflicts with v2, v2 wins for tactical execution and v3 gets updated to match what we actually do. If v3 ever conflicts with the canonical sources cited at the bottom of each part (CLAUDE.md, brand_system.md, signal_method.md, the SKILL, the Scoring Framework, _BUILD_STATUS.md), the canonical source wins and v3 gets updated.</p>
+          <p>This document is exempt from the strict client-facing voice rules per CLAUDE.md &sect;5. Internal operating documentation. Direct, instructional, complete.</p>
+        </div>
+      </div>
+
+      <!-- ============================================ -->
+      <!-- Part 1 -->
+      <!-- ============================================ -->
+      <div class="section">
+        <div class="section-header">
+          <div class="section-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+          </div>
+          <div>
+            <div class="section-eyebrow">Part 1</div>
+            <div class="section-title">The Scroll Strategy Framework</div>
+            <div class="section-subtitle">The premise behind the Signal Method, the four key parts of any Scroll content strategy, and why the Homebase IS the strategy document.</div>
+          </div>
+        </div>
+
+        <div id="framework-problem" class="subsection">
+          <div class="subsection-eyebrow">1.1</div>
+          <div class="subsection-title">What problem the framework solves</div>
+          <p>Most agencies treat Instagram as a content channel. They publish posts, hope they perform, and react to whatever the platform shows them. The work is downstream of the algorithm.</p>
+          <p>Scroll Media treats Instagram as a growth channel. Every post is engineered to produce a specific signal. Every signal is read against a defined hierarchy. Every signal informs the next round of content. The work is upstream of the algorithm.</p>
+          <p>That is the entire premise of the Signal Method, and the entire premise of why a Scroll Homebase looks the way it does. The Homebase is the strategic spine that makes the engineering possible. Strip the Homebase out and the agency is just publishing content and hoping.</p>
+          <div class="subsection-canonical">Canonical: <code>01_Strategy/frameworks/signal_method.md</code> &sect;1 &mdash; The Premise.</div>
+        </div>
+
+        <div id="framework-four-parts" class="subsection">
+          <div class="subsection-eyebrow">1.2</div>
+          <div class="subsection-title">The four key parts of any Scroll content strategy</div>
+          <p>Chase's framing, codified during the May 7, 2026 refinement conversation. Every Signature engagement runs against these four parts. If any is missing, the strategy collapses.</p>
+          <ol>
+            <li><strong>The customer clearly understands the strategy.</strong> If Sydney doesn't understand what we're doing and why, she can't approve, can't give signal, can't sell catering on the back of it, can't renew with confidence. Customer comprehension is the precondition for everything downstream. This is why the Homebase reads in plain English, why we present at human pace, why every section is named for the question it answers rather than for the framework that produced it.</li>
+            <li><strong>Strong content ideas.</strong> The single biggest driver of content success is the idea itself. Format, hook, caption, cover photo all amplify or dampen a strong idea &mdash; none of them rescue a weak one. Idea generation is anchored to the IVP and the four pillars. No idea earns a slot that doesn't trace to a specific IVP motivator, pain point, or FAQ.</li>
+            <li><strong>Strong creative formats.</strong> Especially in the Testing phase, when format discovery is the priority. The right format is the delivery vehicle that makes a strong idea land. Two paths run in parallel: Path 1 (Proven &amp; Adapted from niche performance research) and Path 2 (Original &amp; Invented through Pattern Break). Both paths run simultaneously in every Signature engagement. Path 1 produces consistent Tier 1 performance; Path 2 produces breakout shareability and brand differentiation.</li>
+            <li><strong>Curiosity-invoking execution.</strong> Hook discipline, retention engineering, viewer engagement at the post level. The first three seconds either earn the rest of the post or surrender it. Caption frameworks per funnel stage. Cover photo + grid aesthetic. The execution layer is where strategy translates into behavior change.</li>
+          </ol>
+          <p>These four parts are followed by <strong>performance analysis</strong>, which loops back into refinement. That's the closed loop:</p>
+          <blockquote>Customer comprehension &rarr; strong ideas &rarr; strong formats &rarr; curiosity-invoking execution &rarr; performance analysis &rarr; refinement &rarr; next round of ideas, formats, execution.</blockquote>
+          <p>The Homebase makes this loop visible and operational. Each section is a step in the loop. Each Signal Method phase (Testing &rarr; Executing &rarr; Refining) is a calibration of how aggressively the loop adjusts at each stage of the engagement.</p>
+          <div class="subsection-canonical">Canonical: <code>signature_strategy_build/SKILL.md</code> &mdash; Two-Path Format Philosophy.</div>
+        </div>
+
+        <div id="framework-naming" class="subsection">
+          <div class="subsection-eyebrow">1.3</div>
+          <div class="subsection-title">Why the framework is named the Signal Method</div>
+          <p>The Signal Method is the integration of five components: IVP-First Architecture, Funnel-Mapped Content Mix, Three-Tier Metric Hierarchy, the Pattern Break Format, and Signal-Driven Adjustment. Take one out and it stops being the Signal Method and becomes a generic content strategy.</p>
+          <p>The name matters in BD. "We run our content strategy" is generic. "We run the Signal Method against your account" is specific, named, defendable. Cold prospects encounter the Signal Method through Chase's content, then see it referenced in the proposal, then see it operationalized in the Homebase. The compounding repetition is the credibility asset.</p>
+          <div class="subsection-canonical">Canonical: <code>01_Strategy/frameworks/signal_method.md</code> &sect;2.</div>
+        </div>
+
+        <div id="framework-homebase" class="subsection">
+          <div class="subsection-eyebrow">1.4</div>
+          <div class="subsection-title">The Homebase is the strategy document</div>
+          <p>This is the single most important framing for any AM picking up a client.</p>
+          <p>The Homebase is not a summary of the strategy. It is not a deck. It is not a wrapper for the operational artifacts. The Homebase IS the strategy document. Every artifact in <code>06_Clients/[client]/strategy/</code> exists to back the Homebase, but the Homebase is the surface the client sees, the surface the agency presents from, the surface that gets updated quarterly, and the surface that anchors the renewal conversation 30 days before contract end.</p>
+          <p>When a future AM internalizes this, the rest of the framework clicks into place. The walkthrough is not a meeting where we explain a separate document. It's a meeting where we walk the client through the strategic spine of the engagement, in real time, in the surface where they will continue to interact with it for the life of the contract.</p>
+        </div>
+      </div>
+
+      <!-- ============================================ -->
+      <!-- Part 2 -->
+      <!-- ============================================ -->
+      <div class="section">
+        <div class="section-header">
+          <div class="section-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="9" y1="3" x2="9" y2="21"/><line x1="15" y1="3" x2="15" y2="21"/></svg>
+          </div>
+          <div>
+            <div class="section-eyebrow">Part 2</div>
+            <div class="section-title">Why the Homebase Looks the Way It Does</div>
+            <div class="section-subtitle">Locked Principles 3.1&ndash;3.10 from <code>_BUILD_STATUS.md</code> &sect;3. Carl's was the first publicly accessible client Homebase. Every framing decision is precedent-setting.</div>
+          </div>
+        </div>
+
+        <div id="principle-density" class="subsection">
+          <div class="subsection-eyebrow">Principle 3.1</div>
+          <div class="subsection-title">Density discipline</div>
+          <p>The Homebase is the at-a-glance strategic surface, not the operational deep-dive. Every section limits to four sub-blocks max. Operational depth lives in the v1 strategy docs in <code>06_Clients/[client]/strategy/</code>.</p>
+          <p><strong>Why this matters in the walkthrough:</strong> Sydney does not need to memorize five things per section. She needs to remember one thing per section, with the option to drill down on her own time. Density discipline is what makes the Homebase scannable as a customer-facing surface.</p>
+          <p>If a future AM is tempted to pack a fifth sub-block into a section "because the strategy doc has it," that's the signal to cut. The Homebase is the spine; the strategy docs are the muscle. Different surfaces, different jobs.</p>
+        </div>
+
+        <div id="principle-simplicity" class="subsection">
+          <div class="subsection-eyebrow">Principle 3.5</div>
+          <div class="subsection-title">Lead with simplicity (the customer-readable language standard)</div>
+          <p>Plain English over jargon. Customer-readable language over internal Scroll vocabulary.</p>
+          <p><strong>The voice test:</strong> Read the section aloud as if Rachel is walking Sydney through it for the first time. If a phrase makes Sydney pause or ask "what does that mean," the phrase loses.</p>
+          <p>This is the principle that drove the Item 1 voice rehab pass. Twenty BOFU/TOFU/MOFU instances, eleven Tier 1/2/3 references, eleven Pillar 0X / Goal 0X identifier-only references &mdash; all swept across sixteen sections. The Format Test Log reads "Top of Funnel &middot; Discovery" not "TOFU." The KPI Framework reads "Saves carry the highest weight" not "T1-High at 2.0&times; weight." The IVP section uses "audience profiles" in body copy while the section heading retains "IVP" for context.</p>
+          <p>The internal vocabulary still lives in the strategy v1 docs. That's intentional. Strategy v1 docs follow CLAUDE.md voice principles loosely; the Homebase HTML uses customer-readable language. The separation is canonical (Locked Principle 3.10).</p>
+        </div>
+
+        <div id="principle-soft-roi" class="subsection">
+          <div class="subsection-eyebrow">Principle 3.6</div>
+          <div class="subsection-title">Soft-ROI delivery model alignment</div>
+          <p>Scroll converts on link taps, profile conversion, saves, shares, and direct interest signals. Hard last-mile attribution is not part of standard delivery. No hard-ROI numbers. No multi-stage attribution chains. No revenue-attribution dashboards across multiple conversion paths.</p>
+          <p><strong>Why this matters:</strong> The agency is hired to drive qualified attention and pre-trust. The conversion to revenue happens at the client's cash register, in their inquiry inbox, in their booking flow. Pretending otherwise sets up a renewal conversation we can't win. Every claim in the Homebase is a claim we can defend with platform-native data plus the lead-source instrumentation we close at Phase 1.</p>
+          <p>In Carl's case, the lead-source instrumentation is a single question on catering inquiries: "How did you hear about Carl's catering?" Five options, required field. That question &mdash; installed launch week &mdash; is what makes the BOFU goal falsifiable. Without it, Phase 1 is unmeasurable. With it, the renewal conversation has data.</p>
+        </div>
+
+        <div id="principle-active-vs-client" class="subsection">
+          <div class="subsection-eyebrow">Principle 3.7</div>
+          <div class="subsection-title">Distinguish Carl's-side suggestions vs. Active Scroll capabilities</div>
+          <p>Forward-looking ideas split cleanly into two categories with distinct visual treatment:</p>
+          <ul>
+            <li><strong>Client-side infrastructure suggestions</strong> (e.g., merch e-commerce, online ordering push, customer email list): decisions for the client about their business. We surface; they decide.</li>
+            <li><strong>Active Scroll capabilities</strong> (e.g., ManyChat DM automation): tools we have and can deploy at the client's call. Tagged with "0X &middot; Active Scroll capability" eyebrow + <code>.is-active</code> modifier (Highlighter-tinted background).</li>
+          </ul>
+          <p><strong>Why this matters:</strong> It prevents the Worth Considering surface from reading as a feature pitch. The client knows immediately which items require their business decision and which are tools we'd activate on a green-light. ManyChat in Carl's Worth Considering is the canonical example.</p>
+          <p>This pattern becomes canonical for every Signature client. AMs should pattern-match it.</p>
+        </div>
+
+        <div id="principle-priority" class="subsection">
+          <div class="subsection-eyebrow">Principle 3.8</div>
+          <div class="subsection-title">One priority lever per client</div>
+          <p>Every Signature engagement has one priority revenue lever. For Carl's, that's catering. The Conversion Strategy section uses the <code>.is-priority</code> modifier to anchor this visually.</p>
+          <p><strong>Why this matters in the walkthrough:</strong> This is the strategic call most likely to provoke pushback. If the client doesn't agree on the priority lever, the strategy isn't yet locked. Sydney signing off on "catering leads, the deli + online + merch grow alongside it" is the single most important moment of the walkthrough. Block 4 is the block where you land it.</p>
+          <p>For a future client, the priority lever is whatever the largest near-term revenue lever is, weighted by sales cycle length and measurement gap. For Up &amp; Running, it might be high-value coaching enrollments. For MEAS Active, it might be class-pack conversions. The pattern is the same; the specific lever is per-client.</p>
+        </div>
+
+        <div id="principle-template" class="subsection">
+          <div class="subsection-eyebrow">Principles 3.4 + 3.9</div>
+          <div class="subsection-title">Carl's as template + tool stack specificity</div>
+          <p><strong>3.4 &mdash;</strong> Carl's is the first publicly accessible client Homebase. Every framing decision is precedent-setting. AMs adapting the pattern to a future client should treat Carl's as the canonical example, not the only example. Where Carl's deviates from the SKILL (e.g., the 38/38/24 mix vs. standard Lift 60/25/15), the deviation is documented because catering is the priority revenue lever and BOFU underweight would undermine the engagement thesis.</p>
+          <p><strong>3.9 &mdash;</strong> Tool stack specificity. When citing measurement tools, name them directly (Metricool, Bitly, ManyChat). Specificity reads as competence; vagueness reads as hand-waving. "We'll measure conversion" is weak. "Metricool routes the bio link page; Bitly with UTM parameters layers attribution" is strong. Same content, different signal.</p>
+        </div>
+
+        <div id="principle-banned" class="subsection">
+          <div class="subsection-eyebrow">2.7</div>
+          <div class="subsection-title">Banned-on-Homebase moves</div>
+          <p>Codified in <code>_BUILD_STATUS.md</code> &sect;4. These cannot appear in client-facing Homebase prose:</p>
+          <ul>
+            <li>BOFU / TOFU / MOFU without a plain-English alternative</li>
+            <li>Tier 1 / Tier 2 / Tier 3 framing in body copy</li>
+            <li>Internal goal/pillar identifiers (Goal 03 / Pillar 03) without naming what they are</li>
+            <li>Consultancy framing: "instrumentation," "unfalsifiable," "compounding lever," "activation lever," "closing the loop"</li>
+            <li>Marketing jargon as section titles</li>
+            <li>Hard-ROI commitments</li>
+            <li>Em-dashes (entities or literal characters)</li>
+            <li>Repeated metadata eyebrows that add no information</li>
+          </ul>
+          <p>These moves often pass an internal review because they read as competent. They fail the customer-readable test. Strip them.</p>
+        </div>
+
+        <div id="principle-maturity" class="subsection">
+          <div class="subsection-eyebrow">2.8</div>
+          <div class="subsection-title">The maturity stage frame (Spark / Lift / Rise / Thrive)</div>
+          <p>The Account Overview section opens with the maturity stage ladder. Carl's is at Lift, the second of four stages. The visual ladder shows the progression: Spark &rarr; Lift &rarr; Rise &rarr; Thrive.</p>
+          <p><strong>Why we lead with stage, not deliverables:</strong> Stage tells the client where they are in the system. It frames the rest of the conversation as "we have a defined system, you're at this point in it, here's where we're going." Without the stage frame, the deliverables read as a checklist; with it, they read as a calibrated phase plan.</p>
+          <p>Stage also calibrates everything downstream &mdash; the content mix, the KPI benchmarks, the score interpretation, the cadence of strategic adjustment. A Lift account with 38/38/24 catering-priority mix gets evaluated differently than a Spark account with 70/20/10 awareness-heavy mix. Calibration is the thing that lets the framework apply to every Signature client without becoming generic.</p>
+          <div class="subsection-canonical">Canonical: <code>signal_method.md</code> &sect;2.2 + <code>Scroll_Media_Scoring_Framework.md</code> &sect;Stage Targets.</div>
+        </div>
+      </div>
+
+      <!-- ============================================ -->
+      <!-- Part 3 -->
+      <!-- ============================================ -->
+      <div class="section">
+        <div class="section-header">
+          <div class="section-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+          </div>
+          <div>
+            <div class="section-eyebrow">Part 3</div>
+            <div class="section-title">Section-by-Section Logic</div>
+            <div class="section-subtitle">21 sections in 5 sidebar groups. The walkthrough covers ~12 of them in 60 minutes. The remaining 9 are reference sections the client navigates on their own time. For each section: what strategic question it answers, what's pattern-level, and what's Carl's-specific.</div>
+          </div>
+        </div>
+
+        <div id="section-logic-overview" class="subgroup">
+          <span class="subgroup-label">Overview group</span><span class="subgroup-count">4 sections</span>
+        </div>
+
+        <div class="seclogic-card">
+          <div class="seclogic-head">
+            <span class="seclogic-num">1</span>
+            <span class="seclogic-name">Executive Summary</span>
+            <span class="seclogic-anchor">#summary</span>
+          </div>
+          <div class="seclogic-row"><div class="seclogic-key">Question</div><div class="seclogic-val">What is this engagement, in one screen?</div></div>
+          <div class="seclogic-row"><div class="seclogic-key">Pattern-level</div><div class="seclogic-val">Brand identity at a glance + maturity stage + cycle position + AM ownership.</div></div>
+          <div class="seclogic-row"><div class="seclogic-key">Carl's-specific</div><div class="seclogic-val">Hyde Park institution framing, sister-owned by Sydney + Cameron, 80-year heritage anchor.</div></div>
+          <div class="seclogic-row"><div class="seclogic-key">Walkthrough</div><div class="seclogic-val"><strong>Light.</strong> Set the table for Block 1, then move on. Don't dwell.</div></div>
+        </div>
+
+        <div class="seclogic-card">
+          <div class="seclogic-head">
+            <span class="seclogic-num">2</span>
+            <span class="seclogic-name">Account Overview</span>
+            <span class="seclogic-anchor">#overview</span>
+          </div>
+          <div class="seclogic-row"><div class="seclogic-key">Question</div><div class="seclogic-val">Where is this account today, and where is it going?</div></div>
+          <div class="seclogic-row"><div class="seclogic-key">Pattern-level</div><div class="seclogic-val">Maturity stage ladder (Spark &rarr; Lift &rarr; Rise &rarr; Thrive); Performance Snapshot row; Cycle Position cell ("Month 1 of Testing").</div></div>
+          <div class="seclogic-row"><div class="seclogic-key">Carl's-specific</div><div class="seclogic-val">Lift Stage with "Next: Rise" indicator. Performance Snapshot is placeholder until Month 1 report lands.</div></div>
+          <div class="seclogic-row"><div class="seclogic-key">Walkthrough</div><div class="seclogic-val"><strong>Heavy on the maturity ladder.</strong> This is where stage framing gets installed.</div></div>
+        </div>
+
+        <div class="seclogic-card">
+          <div class="seclogic-head">
+            <span class="seclogic-num">3</span>
+            <span class="seclogic-name">The Signal Method</span>
+            <span class="seclogic-anchor">#timeline</span>
+          </div>
+          <div class="seclogic-row"><div class="seclogic-key">Question</div><div class="seclogic-val">How does the strategy actually evolve over time?</div></div>
+          <div class="seclogic-row"><div class="seclogic-key">Pattern-level</div><div class="seclogic-val">Three-phase arc (Testing / Executing / Refining), cyclical not linear, the loop restarts.</div></div>
+          <div class="seclogic-row"><div class="seclogic-key">Carl's-specific</div><div class="seclogic-val">Currently in Testing (Months 1&ndash;3). All clients in Phase 1 are in Testing.</div></div>
+          <div class="seclogic-row"><div class="seclogic-key">Walkthrough</div><div class="seclogic-val">Frame as "this is our testing framework &mdash; the strategy stays locked, format choices evolve based on what your audience actually responds to." Do not deep-dive phase names.</div></div>
+        </div>
+
+        <div class="seclogic-card">
+          <div class="seclogic-head">
+            <span class="seclogic-num">4</span>
+            <span class="seclogic-name">Operating Rhythm</span>
+            <span class="seclogic-anchor">#rhythm</span>
+          </div>
+          <div class="seclogic-row"><div class="seclogic-key">Question</div><div class="seclogic-val">How will we work together day-to-day?</div></div>
+          <div class="seclogic-row"><div class="seclogic-key">Pattern-level</div><div class="seclogic-val">Six cadences (Daily / Weekly / Bi-weekly / Monthly / Quarterly / Annual) + Approval Discipline callout.</div></div>
+          <div class="seclogic-row"><div class="seclogic-key">Carl's-specific</div><div class="seclogic-val">Coverage flow &mdash; "Rachel surfaces. Sydney decides direction." Bi-weekly = 30-min check-in, Sydney + Rachel.</div></div>
+          <div class="seclogic-row"><div class="seclogic-key">Walkthrough</div><div class="seclogic-val">This is the "you are not in this 24/7" moment. Approval discipline (5 business days, max 2 rounds, batched at bi-weekly) is the load-removal promise.</div></div>
+        </div>
+
+        <div id="section-logic-strategy" class="subgroup">
+          <span class="subgroup-label">Strategy group</span><span class="subgroup-count">6 sections</span>
+        </div>
+
+        <div class="seclogic-card">
+          <div class="seclogic-head">
+            <span class="seclogic-num">5</span>
+            <span class="seclogic-name">Strategic Direction</span>
+            <span class="seclogic-anchor">#strategy</span>
+          </div>
+          <div class="seclogic-row"><div class="seclogic-key">Question</div><div class="seclogic-val">What's the brand thesis, and what role does Instagram play in it?</div></div>
+          <div class="seclogic-row"><div class="seclogic-key">Pattern-level</div><div class="seclogic-val">Brand thesis paragraph + 3 IG role cards (build awareness / engage community / drive priority-lever conversion) + 7 Differentiation Pillars list (the "moat").</div></div>
+          <div class="seclogic-row"><div class="seclogic-key">Carl's-specific</div><div class="seclogic-val">"Catering is the priority lever" is the locked phrase. 7 pillars are Carl's-uncopyable: Honey-Baked Ham lineage, Sam Adams 300+, Findlay walk-in, Country Club ritual, FCC organic earned media, vendor stack, sister-owners + wonky wood floors.</div></div>
+          <div class="seclogic-row"><div class="seclogic-key">Walkthrough</div><div class="seclogic-val">Read or paraphrase the opening paragraph. Land "catering is the priority lever" and pause for reaction.</div></div>
+        </div>
+
+        <div class="seclogic-card">
+          <div class="seclogic-head">
+            <span class="seclogic-num">6</span>
+            <span class="seclogic-name">Three Goals</span>
+            <span class="seclogic-anchor">#goals</span>
+          </div>
+          <div class="seclogic-row"><div class="seclogic-key">Question</div><div class="seclogic-val">What is the engagement actually trying to accomplish?</div></div>
+          <div class="seclogic-row"><div class="seclogic-key">Pattern-level</div><div class="seclogic-val">Overarching qualified-lead-generation framing + three goals, one per funnel stage, equal weight.</div></div>
+          <div class="seclogic-row"><div class="seclogic-key">Carl's-specific</div><div class="seclogic-val">Top of Funnel = Cincinnati awareness; Middle = engage community; Bottom = catering conversion.</div></div>
+          <div class="seclogic-row"><div class="seclogic-key">Walkthrough</div><div class="seclogic-val">The 40/35/25 mix is <em>content volume allocation</em>, not goal importance. This distinction matters.</div></div>
+        </div>
+
+        <div class="seclogic-card">
+          <div class="seclogic-head">
+            <span class="seclogic-num">7</span>
+            <span class="seclogic-name">IVP Profiles</span>
+            <span class="seclogic-anchor">#ivp</span>
+          </div>
+          <div class="seclogic-row"><div class="seclogic-key">Question</div><div class="seclogic-val">Who are we actually talking to?</div></div>
+          <div class="seclogic-row"><div class="seclogic-key">Pattern-level</div><div class="seclogic-val">One or two IVPs at psychological depth per Signal Method Standard 1. B2C primary + B2B/personal-event conversion layer when applicable.</div></div>
+          <div class="seclogic-row"><div class="seclogic-key">Carl's-specific</div><div class="seclogic-val">IVP 1 = Cincinnati Deli Customer (B2C, 22&ndash;40 transplants as acquisition priority). IVP 2 = Catering Buyer (B2B + personal events).</div></div>
+          <div class="seclogic-row"><div class="seclogic-key">Walkthrough</div><div class="seclogic-val">This is the "they get us" moment. Hit one Core Motivator with Sydney's verbatim ("Wonky Wood Floors" / "We are not high and tight"). Checkpoint question: "Does this match how you think about your customers?" Listen.</div></div>
+        </div>
+
+        <div class="seclogic-card">
+          <div class="seclogic-head">
+            <span class="seclogic-num">8</span>
+            <span class="seclogic-name">Brand Proof Points</span>
+            <span class="seclogic-anchor">#proof</span>
+          </div>
+          <div class="seclogic-row"><div class="seclogic-key">Question</div><div class="seclogic-val">What can this brand claim that no competitor can?</div></div>
+          <div class="seclogic-row"><div class="seclogic-key">Pattern-level</div><div class="seclogic-val">Vendor stack inventory + uncopyable assets catalog + founder/owner voice library.</div></div>
+          <div class="seclogic-row"><div class="seclogic-key">Carl's-specific</div><div class="seclogic-val">7 differentiators broadened per Locked Principle 3.3 ("Sydney's personal voice and owner-led DM relationships &mdash; verbatim phrases plus DM thank-yous to story-share customers").</div></div>
+          <div class="seclogic-row"><div class="seclogic-key">Walkthrough</div><div class="seclogic-val">Light. Drive-by. The pillars in #strategy already named the moat; this section is the supporting catalog.</div></div>
+        </div>
+
+        <div class="seclogic-card">
+          <div class="seclogic-head">
+            <span class="seclogic-num">9</span>
+            <span class="seclogic-name">Trends + Cultural Moments</span>
+            <span class="seclogic-anchor">#trends</span>
+          </div>
+          <div class="seclogic-row"><div class="seclogic-key">Question</div><div class="seclogic-val">How do we plug into culture without losing voice?</div></div>
+          <div class="seclogic-row"><div class="seclogic-key">Pattern-level</div><div class="seclogic-val">Strategic Frame + Decision Filter + Cincinnati Moment Calendar + Approval + Coverage. Reactive lane lives here.</div></div>
+          <div class="seclogic-row"><div class="seclogic-key">Carl's-specific</div><div class="seclogic-val">Cincinnati moments (FC Cincinnati matches, Reds opening day, Bengals season, Findlay Market hours).</div></div>
+          <div class="seclogic-row"><div class="seclogic-key">Walkthrough</div><div class="seclogic-val">Light unless Sydney engages on a specific moment.</div></div>
+        </div>
+
+        <div class="seclogic-card">
+          <div class="seclogic-head">
+            <span class="seclogic-num">10</span>
+            <span class="seclogic-name">Account Consolidation</span>
+            <span class="seclogic-anchor">#consolidation</span>
+          </div>
+          <div class="seclogic-row"><div class="seclogic-key">Question</div><div class="seclogic-val">What's the plan for unifying the existing accounts?</div></div>
+          <div class="seclogic-row"><div class="seclogic-key">Pattern-level</div><div class="seclogic-val">Conditional Module C1 &mdash; only present when client has 2+ accounts to unify. Most Signature clients won't have this section.</div></div>
+          <div class="seclogic-row"><div class="seclogic-key">Carl's-specific</div><div class="seclogic-val"><code>@carlsdelihydepark</code> + <code>@carlsdelifindlaymarket</code> &rarr; <code>@carls_deli</code>. 4-phase transition plan.</div></div>
+          <div class="seclogic-row"><div class="seclogic-key">Walkthrough</div><div class="seclogic-val">Light. The plan is locked. Sydney needs to know it's coordinated, not deep-dive the timeline.</div></div>
+        </div>
+
+        <div id="section-logic-content" class="subgroup">
+          <span class="subgroup-label">Content group</span><span class="subgroup-count">6 sections</span>
+        </div>
+
+        <div class="seclogic-card">
+          <div class="seclogic-head">
+            <span class="seclogic-num">11</span>
+            <span class="seclogic-name">Pillars + Formats</span>
+            <span class="seclogic-anchor">#pillars</span>
+          </div>
+          <div class="seclogic-row"><div class="seclogic-key">Question</div><div class="seclogic-val">What types of content are we making, and what does each one do?</div></div>
+          <div class="seclogic-row"><div class="seclogic-key">Pattern-level</div><div class="seclogic-val">4 content pillars mapped to IVP motivators + Two-Path Format Philosophy callout (Path 1 Proven &amp; Adapted + Path 2 Original &amp; Invented).</div></div>
+          <div class="seclogic-row"><div class="seclogic-key">Carl's-specific</div><div class="seclogic-val">Carl's Craft / Sisters Behind the Counter / Sandwiches at Scale / Cincinnati at the Counter. Sandwich x Dog Breed is the canonical Path 2 Pattern Break flagship.</div></div>
+          <div class="seclogic-row"><div class="seclogic-key">Walkthrough</div><div class="seclogic-val">Walk pillars by name + intent. Don't read every format anchor. If Sydney asks about Pattern Break, lean in 30 seconds, then move on.</div></div>
+        </div>
+
+        <div class="seclogic-card">
+          <div class="seclogic-head">
+            <span class="seclogic-num">12</span>
+            <span class="seclogic-name">Feed Strategy</span>
+            <span class="seclogic-anchor">#feed</span>
+          </div>
+          <div class="seclogic-row"><div class="seclogic-key">Question</div><div class="seclogic-val">What does the weekly feed cadence look like?</div></div>
+          <div class="seclogic-row"><div class="seclogic-key">Pattern-level</div><div class="seclogic-val">Mon/Wed/Fri rhythm (Growth tier) + format prioritization per day + first-3-second hook discipline + caption frameworks per stage + cover photo + hashtag cross-reference to SEO.</div></div>
+          <div class="seclogic-row"><div class="seclogic-key">Carl's-specific</div><div class="seclogic-val">Specific day-by-day allocations with Carl's pillars + formats.</div></div>
+          <div class="seclogic-row"><div class="seclogic-key">Walkthrough</div><div class="seclogic-val">Reference section. Drive-by mention unless Sydney pulls up a specific question. <em>Note:</em> Item 7 in <code>_BUILD_STATUS.md</code> is a post-deploy refinement to consolidate Pillars + Feed + Stories into a day-centric calendar view. When that lands, this section restructures across all future Signature clients.</div></div>
+        </div>
+
+        <div class="seclogic-card">
+          <div class="seclogic-head">
+            <span class="seclogic-num">13</span>
+            <span class="seclogic-name">Stories Strategy</span>
+            <span class="seclogic-anchor">#stories</span>
+          </div>
+          <div class="seclogic-row"><div class="seclogic-key">Question</div><div class="seclogic-val">What are stories doing for the account?</div></div>
+          <div class="seclogic-row"><div class="seclogic-key">Pattern-level</div><div class="seclogic-val">Tue/Thu optimized story days + Mon/Wed/Fri reshares + link sticker mechanics + multi-frame arc design + sticker strategy + highlights connection + feed-stories flywheel.</div></div>
+          <div class="seclogic-row"><div class="seclogic-key">Carl's-specific</div><div class="seclogic-val">Customer Spotlight (Sydney-led DM thank-yous), reactive ratio ~30&ndash;40% per Trends strategy.</div></div>
+          <div class="seclogic-row"><div class="seclogic-key">Walkthrough</div><div class="seclogic-val">Reference section. Drive-by.</div></div>
+        </div>
+
+        <div class="seclogic-card">
+          <div class="seclogic-head">
+            <span class="seclogic-num">14</span>
+            <span class="seclogic-name">Profile Optimization</span>
+            <span class="seclogic-anchor">#profile</span>
+          </div>
+          <div class="seclogic-row"><div class="seclogic-key">Question</div><div class="seclogic-val">Is the profile itself converting?</div></div>
+          <div class="seclogic-row"><div class="seclogic-key">Pattern-level</div><div class="seclogic-val">Bio + Link Strategy (Metricool smart-links page) + Profile Image + Pinned Posts (Pin 1 Founder Story, Pin 2 How to Work With, Pin 3 dynamic) + Highlights structure + Grid aesthetic.</div></div>
+          <div class="seclogic-row"><div class="seclogic-key">Carl's-specific</div><div class="seclogic-val">Specific bio recommendation, dual-IVP routing on smart-links, Carl's highlight buckets.</div></div>
+          <div class="seclogic-row"><div class="seclogic-key">Walkthrough</div><div class="seclogic-val">Reference section. Drive-by unless Sydney asks specifically about bio or highlights.</div></div>
+        </div>
+
+        <div class="seclogic-card">
+          <div class="seclogic-head">
+            <span class="seclogic-num">15</span>
+            <span class="seclogic-name">Community Management</span>
+            <span class="seclogic-anchor">#community</span>
+          </div>
+          <div class="seclogic-row"><div class="seclogic-key">Question</div><div class="seclogic-val">How are DMs and comments handled, and what stays in Sydney's voice vs. delegated?</div></div>
+          <div class="seclogic-row"><div class="seclogic-key">Pattern-level</div><div class="seclogic-val">4 sub-blocks (Strategic Frame / Coverage Approach / Voice in Replies / Preserved by Design). Coverage flow: "Rachel surfaces. Sydney decides direction."</div></div>
+          <div class="seclogic-row"><div class="seclogic-key">Carl's-specific</div><div class="seclogic-val">Sydney's relational DMs preserved (no automation in that lane). Catering DMs separate, automation candidate.</div></div>
+          <div class="seclogic-row"><div class="seclogic-key">Walkthrough</div><div class="seclogic-val">Light. Reference section.</div></div>
+        </div>
+
+        <div class="seclogic-card">
+          <div class="seclogic-head">
+            <span class="seclogic-num">16</span>
+            <span class="seclogic-name">SEO Keyword Bank</span>
+            <span class="seclogic-anchor">#seo</span>
+          </div>
+          <div class="seclogic-row"><div class="seclogic-key">Question</div><div class="seclogic-val">What language are we using to be discovered on Instagram?</div></div>
+          <div class="seclogic-row"><div class="seclogic-key">Pattern-level</div><div class="seclogic-val">4-Tier Keyword Architecture (Broad Discovery + Niche Specific + Service + Location + High-Intent Buyer) + embedding strategy per surface + voice search optimization + hashtag count by funnel stage.</div></div>
+          <div class="seclogic-row"><div class="seclogic-key">Carl's-specific</div><div class="seclogic-val">Cincinnati-anchored. Catering buyer language.</div></div>
+          <div class="seclogic-row"><div class="seclogic-key">Walkthrough</div><div class="seclogic-val">Reference section. Drive-by.</div></div>
+        </div>
+
+        <div id="section-logic-measurement" class="subgroup">
+          <span class="subgroup-label">Measurement group</span><span class="subgroup-count">3 sections</span>
+        </div>
+
+        <div class="seclogic-card">
+          <div class="seclogic-head">
+            <span class="seclogic-num">17</span>
+            <span class="seclogic-name">KPI Framework</span>
+            <span class="seclogic-anchor">#kpi</span>
+          </div>
+          <div class="seclogic-row"><div class="seclogic-key">Question</div><div class="seclogic-val">How do we measure success, and how is the score calculated?</div></div>
+          <div class="seclogic-row"><div class="seclogic-key">Pattern-level</div><div class="seclogic-val">Three tiers (T1-High Saves + CTR at 2.0&times; / T1 Retention + PCR + Link Taps at 1.5&times; / T2 volume metrics at 1.0&times; / T3 Shares at 0.75&times;) + funnel-stage tags per metric + Score Progression Targets + 6.0 floor on 10-point scale.</div></div>
+          <div class="seclogic-row"><div class="seclogic-key">Carl's-specific</div><div class="seclogic-val">Stage-calibrated benchmarks for Lift Stage. Catering inquiries called out as priority lever.</div></div>
+          <div class="seclogic-row"><div class="seclogic-key">Walkthrough</div><div class="seclogic-val">Frame the structure. Saves and CTR carry the highest weight. Don't deep-dive scoring math (denominator, compression, AM-context adjustment). Sydney needs the headline framing, not the formula. <em>Canonical:</em> <code>Scroll_Media_Scoring_Framework.md</code> v1.2.</div></div>
+        </div>
+
+        <div class="seclogic-card">
+          <div class="seclogic-head">
+            <span class="seclogic-num">18</span>
+            <span class="seclogic-name">Format Test Log</span>
+            <span class="seclogic-anchor">#testlog</span>
+          </div>
+          <div class="seclogic-row"><div class="seclogic-key">Question</div><div class="seclogic-val">Which formats are we trying, what's working, what gets retired?</div></div>
+          <div class="seclogic-row"><div class="seclogic-key">Pattern-level</div><div class="seclogic-val">Funnel-stage organization + format performance log + promote-to-CORE / retire-format rules. Reviewed monthly during performance reporting.</div></div>
+          <div class="seclogic-row"><div class="seclogic-key">Carl's-specific</div><div class="seclogic-val">Carl's format inventory + initial test pipeline.</div></div>
+          <div class="seclogic-row"><div class="seclogic-key">Walkthrough</div><div class="seclogic-val">Reference section. Drive-by.</div></div>
+        </div>
+
+        <div class="seclogic-card">
+          <div class="seclogic-head">
+            <span class="seclogic-num">19</span>
+            <span class="seclogic-name">Conversion Strategy</span>
+            <span class="seclogic-anchor">#conversion</span>
+          </div>
+          <div class="seclogic-row"><div class="seclogic-key">Question</div><div class="seclogic-val">How do we close the gap between Instagram attention and revenue, and what's the priority lever?</div></div>
+          <div class="seclogic-row"><div class="seclogic-key">Pattern-level</div><div class="seclogic-val">4 sub-blocks (Conversion Priority / Metrics That Predict Customers / Phase 1 Measurement Upgrades / Worth Considering). One priority lever (<code>.is-priority</code> modifier). Active Scroll capabilities tagged with <code>.is-active</code> modifier.</div></div>
+          <div class="seclogic-row"><div class="seclogic-key">Carl's-specific</div><div class="seclogic-val">Catering priority lever. Two Phase 1 measurement upgrades: catering inquiry source question + UTM-tracked links (Bitly + Metricool stacked, Config A locked). ManyChat in Worth Considering as Active Scroll capability.</div></div>
+          <div class="seclogic-row"><div class="seclogic-key">Walkthrough</div><div class="seclogic-val"><strong>Heavy.</strong> This is the block where catering-as-priority becomes operational. Reference Sydney's verbatim ("I haven't tracked it. I think most of it is regulars."). Land both Phase 1 measurement upgrades. Drive-by ManyChat &mdash; do not pressure.</div></div>
+        </div>
+
+        <div id="section-logic-resources" class="subgroup">
+          <span class="subgroup-label">Resources group</span><span class="subgroup-count">2 sections</span>
+        </div>
+
+        <div class="seclogic-card">
+          <div class="seclogic-head">
+            <span class="seclogic-num">20</span>
+            <span class="seclogic-name">Content Calendar</span>
+            <span class="seclogic-anchor">#calendar</span>
+          </div>
+          <div class="seclogic-row"><div class="seclogic-key">Question</div><div class="seclogic-val">Where do I see this month's posts in flight?</div></div>
+          <div class="seclogic-row"><div class="seclogic-key">Pattern-level</div><div class="seclogic-val">Plan platform reference. Approvals, scheduling, and content lifecycle live in Plan.</div></div>
+          <div class="seclogic-row"><div class="seclogic-key">Carl's-specific</div><div class="seclogic-val">Carl's Plan workspace link.</div></div>
+          <div class="seclogic-row"><div class="seclogic-key">Walkthrough</div><div class="seclogic-val">Drive-by. "This is your reference for what's in flight; approvals happen in Plan."</div></div>
+        </div>
+
+        <div class="seclogic-card">
+          <div class="seclogic-head">
+            <span class="seclogic-num">21</span>
+            <span class="seclogic-name">Command Center</span>
+            <span class="seclogic-anchor">#command</span>
+          </div>
+          <div class="seclogic-row"><div class="seclogic-key">Question</div><div class="seclogic-val">Where are the operational links &mdash; Drive folder, performance reports archive, contract, etc.?</div></div>
+          <div class="seclogic-row"><div class="seclogic-key">Pattern-level</div><div class="seclogic-val">Quick links to operational surfaces.</div></div>
+          <div class="seclogic-row"><div class="seclogic-key">Carl's-specific</div><div class="seclogic-val">Carl's-specific URLs.</div></div>
+          <div class="seclogic-row"><div class="seclogic-key">Walkthrough</div><div class="seclogic-val">Drive-by. Sydney references on her own time.</div></div>
+        </div>
+      </div>
+
+      <!-- ============================================ -->
+      <!-- Part 4 -->
+      <!-- ============================================ -->
+      <div class="section">
+        <div class="section-header">
+          <div class="section-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          </div>
+          <div>
+            <div class="section-eyebrow">Part 4</div>
+            <div class="section-title">How to Present (Reference Layer)</div>
+            <div class="section-subtitle">Tactical run-of-show: <code>carls_deli_strategy_presentation_walkthrough_v2.md</code>. Read v2 for the 60-min flow with time blocks, anti-patterns, signal-reading, after-meeting follow-up, and the if-Cameron-joins protocol. v3 layers in the why beneath each block.</div>
+          </div>
+        </div>
+
+        <div id="present-flow" class="subsection">
+          <div class="subsection-eyebrow">4.1</div>
+          <div class="subsection-title">Why the 60-min flow is ordered the way it is</div>
+          <p>The five blocks in v2 are not arbitrary. They mirror the trust-building sequence a client needs to internalize the strategy:</p>
+          <ul>
+            <li><strong>Block 1 (Opening + framing, 5 min)</strong> &mdash; the meeting's purpose is set. Sydney already signed; we are not pitching. The frame is "this is your strategy document, not a deck we made for the meeting."</li>
+            <li><strong>Block 2 (Strategic foundation, 13 min)</strong> &mdash; the <em>who and what</em>. Maturity stage installs the "system" frame. Strategic Direction lands the brand thesis. IVP is the "they get us" moment. Without these three, nothing downstream lands.</li>
+            <li><strong>Block 3 (Execution engine, 17 min)</strong> &mdash; the <em>how</em>. Three Goals, Pillars + Formats, Signal Method timeline, Operating Rhythm. The sequence is goals &rarr; content engine &rarr; testing framework &rarr; working rhythm. Each builds on the last.</li>
+            <li><strong>Block 4 (Conversion + measurement, 13 min)</strong> &mdash; the <em>what we're optimizing for</em>. Catering priority becomes operational here. KPI Framework lands the score so Sydney isn't surprised when the first report arrives.</li>
+            <li><strong>Block 5 (Discussion + close, 12 min)</strong> &mdash; Sydney's voice. Capture signals. Lock next steps.</li>
+          </ul>
+          <p>The order is deliberate because each block depends on the prior. Pulling forward Block 4 (catering priority) before Block 2 (IVP for the catering buyer) lands cold. Pulling forward Block 3 (formats) before Block 2 (pillars + IVP) makes formats look like decoration rather than vehicles for IVP-anchored ideas.</p>
+        </div>
+
+        <div id="present-stage" class="subsection">
+          <div class="subsection-eyebrow">4.2</div>
+          <div class="subsection-title">Why we lead with stage, not deliverables</div>
+          <p>A common AM mistake on a first walkthrough is opening with what we'll ship. "First we're going to make 12 reels and 4 carousels per month, and stories Tue/Thu..."</p>
+          <p>Wrong move. The deliverables read as a checklist if installed before the strategic frame.</p>
+          <p>The v2 flow opens with the maturity stage ladder. That installs the "we have a system, you're at a defined point in it, every decision laddters from where you are to where you're going" frame. After that frame is installed, deliverables read as the calibrated outputs of a system, not as a list of work.</p>
+        </div>
+
+        <div id="present-priority" class="subsection">
+          <div class="subsection-eyebrow">4.3</div>
+          <div class="subsection-title">Why catering-as-priority is landed in Block 4, not Block 1</div>
+          <p>Tempting to lead with "catering is the priority." It's the biggest strategic call. It feels like the headline.</p>
+          <p>But catering-as-priority depends on three prior installations:</p>
+          <ol>
+            <li><strong>The dual IVP</strong> (Block 2c). Without IVP 2 (the Catering Buyer), the priority claim has no audience.</li>
+            <li><strong>The Three Goals overarching frame</strong> (Block 3a). The 40/35/25 mix has to be installed <em>as content volume allocation</em>, not as goal importance, before BOFU 25% reads correctly.</li>
+            <li><strong>The Signal Method + Operating Rhythm</strong> (Block 3c&ndash;3d). These tell Sydney how the strategy adjusts over time. Without that, "catering priority" sounds locked-in-stone rather than calibrated and adjustable.</li>
+          </ol>
+          <p>Land catering as priority in Block 4 with all three prior installations active. Sydney nods. If you land it in Block 1, Sydney pushes back because the prior frames aren't yet installed.</p>
+        </div>
+
+        <div id="present-pushback" class="subsection">
+          <div class="subsection-eyebrow">4.4</div>
+          <div class="subsection-title">How to handle the most common pushback patterns</div>
+          <p>(v2 &sect;6 has the signal-reading list. v3 layers in why each pattern exists.)</p>
+          <ul>
+            <li><strong>"I don't think catering is the priority."</strong> This is the highest-stakes pushback. It means the priority lever isn't aligned. Don't argue. Capture, schedule a follow-up, re-pull the strategy thread. The Phase 1 build can survive other pushbacks; it can't survive misalignment on the priority lever.</li>
+            <li><strong>Pushback on the 22&ndash;40 acquisition cohort.</strong> IVP refinement opportunity. Don't defend the cohort live. Capture and revisit at Q1 Strategic Refresh.</li>
+            <li><strong>"Why are we not on TikTok / running ads?"</strong> Instagram-only positioning thread. Address inline with the agency's strategic differentiator. If the client is still uncomfortable after one pass, that's a renewal-risk signal worth flagging to Chase post-meeting.</li>
+            <li><strong>Confusion about funnel mix vs. goal importance.</strong> Reframing opportunity, address inline: "All three goals are equally important. The 40/35/25 mix is just how we allocate content volume &mdash; more discovery posts because that's how the audience grows."</li>
+          </ul>
+        </div>
+
+        <div id="present-signals" class="subsection">
+          <div class="subsection-eyebrow">4.5</div>
+          <div class="subsection-title">How to read the room</div>
+          <p>Three signal categories, in v2 &sect;6:</p>
+          <ul>
+            <li><strong>Green-light signals</strong> &mdash; the client is moving with you. Proceed with confidence.</li>
+            <li><strong>Yellow-flag signals</strong> &mdash; capture, address inline if quick, otherwise carry to next bi-weekly.</li>
+            <li><strong>Red-flag signals</strong> &mdash; stop, address now, do not move on.</li>
+          </ul>
+          <p>The discipline a future AM has to build: catch yourself before defending the strategy. Sydney's pushback is signal, not threat. Capture, validate, revisit. The strategy survives an unfinished walkthrough; it doesn't survive a meeting that ends without next steps.</p>
+        </div>
+      </div>
+
+      <!-- ============================================ -->
+      <!-- Part 5 -->
+      <!-- ============================================ -->
+      <div class="section">
+        <div class="section-header">
+          <div class="section-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+          </div>
+          <div>
+            <div class="section-eyebrow">Part 5</div>
+            <div class="section-title">Generalizing to Future Clients</div>
+            <div class="section-subtitle">What stays the same, what gets swapped, and the pre-walkthrough adaptation checklist for any new Signature client.</div>
+          </div>
+        </div>
+
+        <div id="generalize-pattern" class="subsection">
+          <div class="subsection-eyebrow">5.1</div>
+          <div class="subsection-title">What stays the same across every Signature walkthrough</div>
+          <p>These are pattern-level. They do not change client to client:</p>
+          <ul>
+            <li><strong>The 5-block, 60-min structure.</strong> Opening / Foundation / Execution / Conversion / Close.</li>
+            <li><strong>The 21-section Homebase architecture.</strong> All 21 sections exist for every Signature client. Some run light (Account Consolidation only when applicable). The structure is invariant.</li>
+            <li><strong>The strategic spine of ~12 walkthrough sections.</strong> Executive Summary, Account Overview, Signal Method, Operating Rhythm, Strategic Direction, Three Goals, IVP, Pillars + Formats, Conversion Strategy, KPI Framework, then close. The other 9 are reference sections the client navigates on their own time.</li>
+            <li><strong>The principle stack.</strong> Density discipline, lead with simplicity, soft-ROI, customer-readable language, one priority lever, Active Scroll vs. client-side suggestions, tool stack specificity. Locked Principles 3.1&ndash;3.10 in <code>_BUILD_STATUS.md</code> &sect;3.</li>
+            <li><strong>The Signal Method.</strong> Five components, three phases, five trigger criteria. Canonical: <code>signal_method.md</code>.</li>
+            <li><strong>The Two-Path Format Philosophy.</strong> Path 1 Proven &amp; Adapted + Path 2 Original &amp; Invented. Both run simultaneously in every engagement.</li>
+            <li><strong>The voice rules.</strong> Brand system &sect;3 governs every client-facing surface produced for or by the engagement.</li>
+            <li><strong>The four key parts of strategy.</strong> Customer comprehension + strong ideas + strong formats + curiosity-invoking execution. Then performance analysis loops back.</li>
+          </ul>
+        </div>
+
+        <div id="generalize-swapped" class="subsection">
+          <div class="subsection-eyebrow">5.2</div>
+          <div class="subsection-title">What gets swapped per client</div>
+          <p>These are Carl's-specific. Future AMs replace them per client:</p>
+          <ul>
+            <li><strong>The IVPs.</strong> Built from each client's onboarding form + kickoff transcript + discovery notes. Always at psychological depth.</li>
+            <li><strong>The 4 content pillars.</strong> Mapped to the client's specific IVP motivators and uncopyable proof points.</li>
+            <li><strong>The format library.</strong> Curated 18&ndash;25 formats specific to client niche. Path 1 sources adapt to niche.</li>
+            <li><strong>The Path 2 flagship.</strong> Sandwich x Dog Breed for Carl's. Each client gets their own original Pattern Break, mapped to a universal affinity their IVP recognizes + their uncopyable asset.</li>
+            <li><strong>The priority lever.</strong> Catering for Carl's. Whatever the largest near-term revenue lever is for the next client.</li>
+            <li><strong>The maturity stage assignment.</strong> Spark / Lift / Rise / Thrive based on follower count + sustained Tier 1 metric performance.</li>
+            <li><strong>The content mix calibration.</strong> Stage default per Signal Method &sect;2.2, adjusted when priority lever requires deviation (e.g., Carl's 38/38/24 vs. Lift default 60/25/15).</li>
+            <li><strong>The lead-source instrumentation.</strong> Carl's gets the catering-source single question. Future clients get whatever single question closes their BOFU attribution gap.</li>
+            <li><strong>The Cincinnati moment calendar.</strong> Local-market moments swap per client market.</li>
+            <li><strong>Conditional modules.</strong> C1 Consolidation, C2 Rebrand, C3 Multi-Location, C4 Brand Visual Refresh &mdash; only when triggered.</li>
+          </ul>
+        </div>
+
+        <div id="generalize-checklist" class="subsection">
+          <div class="subsection-eyebrow">5.3</div>
+          <div class="subsection-title">Pre-walkthrough adaptation checklist (for any new client)</div>
+          <p>Before running a walkthrough on a future Signature client, the AM verifies:</p>
+          <ul>
+            <li>Homebase v6 is built and deployed at <code>tools.scrollmedia.co/clients/[client]/</code></li>
+            <li>All 14 v1 strategy artifacts exist in <code>06_Clients/[client]/strategy/</code></li>
+            <li>IVP passes the psychological depth standard (Signal Method Standard 1)</li>
+            <li>Each pillar maps to &ge;1 IVP motivator at primary intent</li>
+            <li>Two-Path Format Philosophy is reflected in the format library &mdash; at least one Path 2 anchor</li>
+            <li>Priority lever is locked and visible in Conversion Strategy</li>
+            <li>Lead-source instrumentation is designed (the single-question catering inquiry pattern adapted to client's BOFU goal)</li>
+            <li>KPI Framework v1.2 is applied with stage-calibrated benchmarks</li>
+            <li>Maturity stage is locked and visible in Account Overview</li>
+            <li>Walkthrough doc (per-client v2 equivalent) is written and rehearsed</li>
+            <li>The five-block 60-min flow is tested in internal rehearsal (Day 20 of the SKILL)</li>
+          </ul>
+          <p>When all of these pass, the walkthrough is ready. If any fails, fix before scheduling.</p>
+        </div>
+
+        <div id="generalize-summary" class="subsection">
+          <div class="subsection-eyebrow">5.4</div>
+          <div class="subsection-title">The pattern in one sentence</div>
+          <div class="standout">
+            <div class="standout-eyebrow">Memorize this</div>
+            <div class="standout-text">Lead the client through the strategic spine of their Homebase, in the order that installs the trust frames before the operational deliverables, with one priority lever locked and one measurement gap closed.</div>
+          </div>
+          <p style="margin-top: 16px;">Memorize that sentence. It is the entire framework, compressed.</p>
+        </div>
+      </div>
+
+      <!-- ============================================ -->
+      <!-- Part 6 -->
+      <!-- ============================================ -->
+      <div id="onboard" class="section">
+        <div class="section-header">
+          <div class="section-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          </div>
+          <div>
+            <div class="section-eyebrow">Part 6</div>
+            <div class="section-title">Onboarding Path for New AMs</div>
+            <div class="section-subtitle">A new AM joining Scroll runs this learning path before owning any walkthrough.</div>
+          </div>
+        </div>
+
+        <div class="prose">
+          <ol>
+            <li><strong>Read the canonical context, in order.</strong> CLAUDE.md &rarr; <code>signature_strategy_build/SKILL.md</code> &rarr; <code>signal_method.md</code> &rarr; <code>brand_system.md</code> &rarr; <code>Scroll_Media_Scoring_Framework.md</code> &rarr; Carl's <code>_BUILD_STATUS.md</code> &rarr; Carl's strategy v1 docs end-to-end &rarr; Carl's Homebase v6 end-to-end &rarr; walkthrough v3 (this doc) &rarr; walkthrough v2.</li>
+            <li><strong>Observe a live walkthrough.</strong> Sit in on a Chase-led or Rachel-led walkthrough. Bring this doc. Mark which Block is happening when. Capture signals you'd miss.</li>
+            <li><strong>Run a shadowed walkthrough.</strong> Lead the next walkthrough with Chase or Rachel in the room as backup. Debrief immediately after &mdash; what landed, what didn't, what to swap.</li>
+            <li><strong>Run solo.</strong> Own the next walkthrough independently. Submit a self-debrief to Chase within 24 hours: green-light signals captured, yellow flags carried to bi-weekly, red flags escalated, anything you'd swap on the next run.</li>
+            <li><strong>Iterate the per-client walkthrough doc.</strong> Every client gets a per-client v2 equivalent walkthrough doc. After your first two walkthroughs, you should be writing them yourself for new clients.</li>
+          </ol>
+          <p>The point of this path: walkthroughs are not improvisations. They are choreographed, scripted, and rehearsed, and the choreography is documented at two layers (v3 strategic context + v2 tactical run-of-show). Future AMs aren't expected to invent the framework on the fly. They're expected to internalize it from the docs and execute it in person.</p>
+        </div>
+      </div>
+
+      <!-- ============================================ -->
+      <!-- Reference: Anchor Table -->
+      <!-- ============================================ -->
+      <div id="anchor-table" class="section">
+        <div class="section-header">
+          <div class="section-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+          </div>
+          <div>
+            <div class="section-eyebrow">Reference</div>
+            <div class="section-title">Document anchor table</div>
+            <div class="section-subtitle">When this doc conflicts with any of the canonical sources below, the canonical source wins and v3 gets updated to match.</div>
+          </div>
+        </div>
+
+        <div class="anchor-table">
+          <div class="anchor-row head">
+            <div class="anchor-cell">Question this doc answers</div>
+            <div class="anchor-cell">Canonical source</div>
+          </div>
+          <div class="anchor-row">
+            <div class="anchor-cell">What's the Signal Method?</div>
+            <div class="anchor-cell"><code>01_Strategy/frameworks/signal_method.md</code></div>
+          </div>
+          <div class="anchor-row">
+            <div class="anchor-cell">What's the brand voice + visual identity?</div>
+            <div class="anchor-cell"><code>01_Strategy/frameworks/brand_system.md</code></div>
+          </div>
+          <div class="anchor-row">
+            <div class="anchor-cell">What's the OS-level voice rule for client-facing copy?</div>
+            <div class="anchor-cell"><code>CLAUDE.md</code> &sect;5 + <code>brand_system.md</code> &sect;3</div>
+          </div>
+          <div class="anchor-row">
+            <div class="anchor-cell">What's the canonical 3-week strategy build process?</div>
+            <div class="anchor-cell"><code>01_Strategy/skills/signature_strategy_build/SKILL.md</code></div>
+          </div>
+          <div class="anchor-row">
+            <div class="anchor-cell">What's the canonical scoring framework?</div>
+            <div class="anchor-cell"><code>03_Reporting/skills/performance_report/resources/Scroll_Media_Scoring_Framework.md</code> v1.2</div>
+          </div>
+          <div class="anchor-row">
+            <div class="anchor-cell">What's the locked principle stack for Homebase work?</div>
+            <div class="anchor-cell"><code>_BUILD_STATUS.md</code> &sect;3 (Principles 3.1&ndash;3.10)</div>
+          </div>
+          <div class="anchor-row">
+            <div class="anchor-cell">What's the banned-on-Homebase moves list?</div>
+            <div class="anchor-cell"><code>_BUILD_STATUS.md</code> &sect;4</div>
+          </div>
+          <div class="anchor-row">
+            <div class="anchor-cell">What's the run-of-show for the walkthrough meeting?</div>
+            <div class="anchor-cell"><code>carls_deli_strategy_presentation_walkthrough_v2.md</code></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ============================================ -->
+      <!-- Reference: Version Log -->
+      <!-- ============================================ -->
+      <div id="version-log" class="section">
+        <div class="section-header">
+          <div class="section-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          </div>
+          <div>
+            <div class="section-eyebrow">Reference</div>
+            <div class="section-title">Document version log</div>
+          </div>
+        </div>
+
+        <div class="version-table">
+          <div class="version-row head">
+            <div class="version-cell">Version</div>
+            <div class="version-cell">Date</div>
+            <div class="version-cell">Notes</div>
+          </div>
+          <div class="version-row">
+            <div class="version-cell tag">v1</div>
+            <div class="version-cell date">May 5, 2026</div>
+            <div class="version-cell">Pre-Homebase strategy walkthrough. Anchored on initial strategy artifacts. Used for the May 5 walkthrough. Archived.</div>
+          </div>
+          <div class="version-row">
+            <div class="version-cell tag">v2</div>
+            <div class="version-cell date">May 7, 2026</div>
+            <div class="version-cell">Tactical run-of-show. Anchored on deployed Homebase v6. The field manual.</div>
+          </div>
+          <div class="version-row">
+            <div class="version-cell tag">v3</div>
+            <div class="version-cell date">May 7, 2026</div>
+            <div class="version-cell">Training and onboarding handoff. Strategic context layer that sits on top of v2. The framework, the principles, the section logic, the generalization pattern, the AM onboarding path.</div>
+          </div>
+        </div>
+
+        <div class="end-mark">End of walkthrough v3 training handoff</div>
+      </div>
+
+    </main>
+  </div>
+</div>
+
+<script>
+  const PW = 'scrollies';
+  function checkPassword() {
+    const val = document.getElementById('pwInput').value;
+    if (val === PW) {
+      document.getElementById('pw-gate').style.display = 'none';
+      document.getElementById('app').classList.remove('pw-hidden');
+      localStorage.setItem('sm_auth', '1');
+    } else {
+      document.getElementById('pw-error').style.display = 'block';
+    }
+  }
+  document.getElementById('pwInput').addEventListener('keydown', e => {
+    if (e.key === 'Enter') checkPassword();
+  });
+  if (localStorage.getItem('sm_auth') === '1') {
+    document.getElementById('pw-gate').style.display = 'none';
+    document.getElementById('app').classList.remove('pw-hidden');
+  }
+
+  // Active sidebar nav on scroll
+  const trackedIds = [
+    'read-me-first',
+    'framework-problem','framework-four-parts','framework-naming','framework-homebase',
+    'principle-density','principle-simplicity','principle-soft-roi','principle-active-vs-client',
+    'principle-priority','principle-template','principle-banned','principle-maturity',
+    'section-logic-overview','section-logic-strategy','section-logic-content',
+    'section-logic-measurement','section-logic-resources',
+    'present-flow','present-stage','present-priority','present-pushback','present-signals',
+    'generalize-pattern','generalize-swapped','generalize-checklist','generalize-summary',
+    'onboard','anchor-table','version-log'
+  ];
+  const sections = trackedIds.map(id => document.getElementById(id)).filter(Boolean);
+  const navLinks = document.querySelectorAll('.sidebar-nav a');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        navLinks.forEach(l => l.classList.remove('active'));
+        const active = document.querySelector(`.sidebar-nav a[href="#${entry.target.id}"]`);
+        if (active) active.classList.add('active');
+      }
+    });
+  }, { rootMargin: '-20% 0px -70% 0px' });
+  sections.forEach(s => observer.observe(s));
+</script>
+
+</body>
+</html>
