@@ -655,6 +655,85 @@
     .ivp-meta-label { font-size: 11px; color: var(--fg-subtle); }
     .ivp-meta-value { font-size: 12px; font-weight: 600; color: var(--azure); }
 
+    /* IVP paired-contrast blocks (Pain Points + Dream Outcomes) */
+    .contrast-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin-top: 14px;
+    }
+    .contrast-block {
+      padding: 14px 16px 12px;
+      background: var(--bg-alt);
+      border: 1px solid var(--border);
+      border-radius: var(--r-sm);
+    }
+    .pain-block { border-left: 3px solid var(--azure-200); }
+    .dream-block { border-left: 3px solid var(--lucid-deep); }
+    .contrast-block-header {
+      display: flex; align-items: center; gap: 8px;
+      padding-bottom: 8px;
+      margin-bottom: 6px;
+      border-bottom: 1px solid var(--rule-faint);
+    }
+    .contrast-block-icon {
+      width: 16px; height: 16px;
+      flex-shrink: 0;
+      stroke-width: 1.5;
+      fill: none;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+    .pain-block .contrast-block-icon { stroke: var(--azure); }
+    .dream-block .contrast-block-icon { stroke: var(--lucid-deep); }
+    .contrast-block-title {
+      font-size: 9.5px; font-weight: 800;
+      letter-spacing: 1px; text-transform: uppercase;
+      color: var(--fg-subtle);
+    }
+    .contrast-item {
+      display: flex; gap: 10px;
+      padding: 8px 0;
+      border-bottom: 1px solid var(--rule-faint);
+    }
+    .contrast-item:last-child { border-bottom: none; padding-bottom: 0; }
+    .contrast-num-chip {
+      font-size: 9.5px; font-weight: 800;
+      letter-spacing: 0.4px;
+      flex-shrink: 0;
+      width: 22px; height: 18px;
+      display: flex; align-items: center; justify-content: center;
+      border: 1px solid var(--rule);
+      color: var(--azure);
+      margin-top: 1px;
+    }
+    .dream-block .contrast-num-chip { border-color: var(--lucid-deep); }
+    .contrast-item-body { flex: 1; min-width: 0; }
+    .contrast-item-label {
+      font-size: 12px; font-weight: 700;
+      color: var(--fg);
+      line-height: 1.35;
+      margin-bottom: 2px;
+    }
+    .contrast-item-text {
+      font-size: var(--fs-sm); color: var(--fg-muted);
+      line-height: 1.55;
+    }
+    .contrast-item.is-priority-pain .contrast-num-chip {
+      background: var(--highlighter);
+      border-color: var(--highlighter-dark);
+      color: var(--azure);
+    }
+    .contrast-item.is-priority-pain .contrast-priority-tag {
+      display: inline-block;
+      background: var(--highlighter);
+      color: var(--azure);
+      font-size: 8.5px; font-weight: 800;
+      padding: 2px 6px;
+      letter-spacing: 0.7px; text-transform: uppercase;
+      margin-left: 6px;
+      vertical-align: 2px;
+    }
+
     /* Pillars */
     .pillars-grid {
       display: grid; grid-template-columns: repeat(2, 1fr);
@@ -1892,6 +1971,7 @@
       .client-hero-actions { align-items: flex-start; flex-direction: row; flex-wrap: wrap; }
       .strategy-ig-role { grid-template-columns: 1fr; }
       .day-rhythm-grid, .vendor-grid, .command-grid, .consol-phases { grid-template-columns: 1fr; }
+      .contrast-grid { grid-template-columns: 1fr; }
       .cm-frame-block { padding: 24px 22px 22px 28px; }
       .cm-frame-headline { font-size: 19px; }
       .cm-preserved-callout { flex-direction: column; gap: 14px; }
@@ -1912,7 +1992,7 @@
 <div id="pw-gate">
   <img src="../../scroll-media-logo.svg" alt="Scroll Media" />
   <h2>Carl's Deli &middot; Account Homebase</h2>
-  <p>Scroll Media internal access only.</p>
+  <p>Carl's Deli account access.</p>
   <input type="password" id="pwInput" placeholder="Enter password" autocomplete="off" />
   <button onclick="checkPassword()">Access Homebase</button>
   <span id="pw-error">Incorrect password. Try again.</span>
@@ -1923,7 +2003,7 @@
   <!-- Top Header -->
   <header class="top-header">
     <div class="top-header-left">
-      <a href="/"><img src="../../scroll-media-logo.svg" alt="Scroll Media" /></a>
+      <a href="https://decks.scrollmedia.co/pitch/" target="_blank" rel="noopener"><img src="../../scroll-media-logo.svg" alt="Scroll Media" /></a>
       <div class="top-header-divider"></div>
       <div class="top-header-crumb">Clients &rsaquo; <span>Carl's Deli</span></div>
     </div>
@@ -2376,7 +2456,7 @@
           <div class="rhythm-cell">
             <div class="rhythm-cell-cadence">Daily</div>
             <div class="rhythm-cell-title">Content production &amp; publishing</div>
-            <div class="rhythm-cell-body">Rachel manages content drafts, scheduling, and publishing through Plan. Sydney approves content as it lands in her queue.</div>
+            <div class="rhythm-cell-body">Rachel manages content drafts, scheduling, and publishing through Plann. Sydney approves content as it lands in her queue.</div>
           </div>
           <div class="rhythm-cell">
             <div class="rhythm-cell-cadence">Weekly</div>
@@ -2407,7 +2487,7 @@
 
         <div class="timeline-cadence" style="margin-top: 22px;">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-          <span><strong>Approval discipline.</strong> Content lands in Plan five business days before publish. Maximum two rounds of edits per cycle. All approvals tracked in Plan, batched at bi-weekly check-ins.</span>
+          <span><strong>Approval discipline.</strong> Content lands in Plann five business days before publish. Maximum two rounds of edits per cycle. All approvals tracked in Plann, batched at bi-weekly check-ins.</span>
         </div>
       </div>
 
@@ -2427,12 +2507,6 @@
         <div class="strategy-block">
           <p><strong>Carl's Deli</strong> is a Cincinnati institution. 80 years on the same Hyde Park corner. Sister-owned by Sydney and Cameron Turnbull, who grew up two blocks away and bought the deli to preserve it. Best Deli in Cincinnati 2026. Now expanding through Findlay Market with real catering capacity.</p>
           <p>Instagram's role is to <strong>drive new customer acquisition (the 22-40 transplant cohort), build the Findlay audience, and grow catering revenue</strong>. Catering is the priority lever. Content positions Carl's as the Cincinnati deli with sister-led authenticity, uncopyable craft (28-32 pieces of meat sliced in-house every Friday), and the catering operation Cincinnati companies trust at scale (Sam Adams 300+ sandwiches).</p>
-          <div class="strategy-ig-role">
-            <div class="ig-role-card"><div class="ig-role-num">01</div><div class="ig-role-text"><strong>Build Cincinnati awareness.</strong> Pattern Break series, sister narrative, neighborhood-coded content for the 22-40 acquisition cohort.</div></div>
-            <div class="ig-role-card"><div class="ig-role-num">02</div><div class="ig-role-text"><strong>Engage the community.</strong> Vendor stack spotlights, Sydney's voice content, save-worthy education that earns the metrics we weight most.</div></div>
-            <div class="ig-role-card"><div class="ig-role-num">03</div><div class="ig-role-text"><strong>Drive catering revenue.</strong> Capacity proof, process clarity, Direct Response Stories with Metricool-tracked links to catering inquiry.</div></div>
-          </div>
-
           <div style="margin-top: 24px;">
             <div class="ivp-section-title">7 Differentiation Pillars Carl's Owns</div>
             <div class="diff-pillars">
@@ -2443,6 +2517,16 @@
               <div class="diff-pillar"><span class="diff-pillar-num">05</span><span class="diff-pillar-text">FC Cincinnati players eat at Carl's organically (uncopyable earned media)</span></div>
               <div class="diff-pillar"><span class="diff-pillar-num">06</span><span class="diff-pillar-text">The Country Club (#23) ritual. 13,000 sold in one year</span></div>
               <div class="diff-pillar"><span class="diff-pillar-num">07</span><span class="diff-pillar-text">Sydney's personal voice and owner-led DM relationships (verbatim phrases plus DM thank-yous to story-share customers)</span></div>
+            </div>
+          </div>
+
+          <div style="margin-top: 24px;">
+            <div class="ivp-section-title">How we drive content performance</div>
+            <div class="diff-pillars">
+              <div class="diff-pillar"><span class="diff-pillar-num">01</span><span class="diff-pillar-text"><strong>Ideation.</strong> Every concept starts with the customer. We pull from your IVP's pain points, dream outcomes, and motivators, then test counter-positioning angles against the national chains and the local competitive set.</span></div>
+              <div class="diff-pillar"><span class="diff-pillar-num">02</span><span class="diff-pillar-text"><strong>Format selection.</strong> Strong idea, wrong format equals weak post. We monitor what's winning right now and maintain a dynamic library of high-performing formats. Old formats retire when they cool. New formats earn the rotation when they prove out.</span></div>
+              <div class="diff-pillar"><span class="diff-pillar-num">03</span><span class="diff-pillar-text"><strong>Storytelling with curiosity.</strong> Open and close loops inside every video. Hook, payoff, save the best for the end. Average watch time is the strongest signal we send the algorithm that this content is worth amplifying to new audiences.</span></div>
+              <div class="diff-pillar"><span class="diff-pillar-num">04</span><span class="diff-pillar-text"><strong>Data-driven decisions.</strong> Every two weeks we look at what shipped. Outliers (2-5x above average) get doubled down on. Underperformers retire. Slight differences are noise, not signal. The Format Test Log is where this discipline lives.</span></div>
             </div>
           </div>
         </div>
@@ -2519,6 +2603,11 @@
             <div class="section-subtitle">B2C primary plus a B2B and personal-event conversion layer. Catering conversion path overweighted at this growth stage.</div>
           </div>
         </div>
+
+        <div class="strategy-block" style="margin-bottom: 18px;">
+          <p>Each profile lists the top pain points (the friction we remove) and the top dream outcomes (the wins we showcase). Every content concept ladders back to solving a pain point or showcasing a dream outcome. If it doesn't, it doesn't ship.</p>
+        </div>
+
         <div class="ivp-grid">
           <div class="ivp-card">
             <span class="ivp-card-tag b2c">IVP 1 &middot; B2C Primary</span>
@@ -2547,6 +2636,85 @@
             <div class="ivp-section-title">Top Customer FAQs</div>
             <div class="ivp-item-text">
               "What sandwich would you recommend?" &middot; "Are you Carl?" &middot; "What's the sandwich of the day?" &middot; "Where can I get the merch?" &middot; "Is it dog-friendly?"
+            </div>
+
+            <div class="contrast-grid">
+              <div class="contrast-block pain-block">
+                <div class="contrast-block-header">
+                  <svg class="contrast-block-icon" viewBox="0 0 24 24"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg>
+                  <span class="contrast-block-title">Top Pain Points</span>
+                </div>
+                <div class="contrast-item is-priority-pain">
+                  <span class="contrast-num-chip">01</span>
+                  <div class="contrast-item-body">
+                    <div class="contrast-item-label">They don't know Carl's exists yet<span class="contrast-priority-tag">Priority</span></div>
+                    <div class="contrast-item-text">Cincinnati transplants and young professionals discover food on Instagram. If Carl's doesn't surface in the feed, they default to the national chain on the corner. The single largest acquisition gap.</div>
+                  </div>
+                </div>
+                <div class="contrast-item">
+                  <span class="contrast-num-chip">02</span>
+                  <div class="contrast-item-body">
+                    <div class="contrast-item-label">The 50-sandwich menu is paralyzing for first-timers</div>
+                    <div class="contrast-item-text">Sydney's verbatim: "overwhelmed by the amount of sandwich options, not sure how to narrow down." The most common conversion-blocking moment at the counter and in the DMs.</div>
+                  </div>
+                </div>
+                <div class="contrast-item">
+                  <span class="contrast-num-chip">03</span>
+                  <div class="contrast-item-body">
+                    <div class="contrast-item-label">The line reads as a barrier, not a signal</div>
+                    <div class="contrast-item-text">Sydney's verbatim: "if you're not used to the line, someone new comes in and stands there, like, this line is so long." Regulars love it. First-timers walk past.</div>
+                  </div>
+                </div>
+                <div class="contrast-item">
+                  <span class="contrast-num-chip">04</span>
+                  <div class="contrast-item-body">
+                    <div class="contrast-item-label">The unpolished texture gets misread without context</div>
+                    <div class="contrast-item-text">Wonky wood floors and chipping paint are the brand. Without the 80-year history, a first-timer can mistake authenticity for "not sure if this is any good."</div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="contrast-block dream-block">
+                <div class="contrast-block-header">
+                  <svg class="contrast-block-icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+                  <span class="contrast-block-title">Top Dream Outcomes</span>
+                </div>
+                <div class="contrast-item">
+                  <span class="contrast-num-chip">01</span>
+                  <div class="contrast-item-body">
+                    <div class="contrast-item-label">A go-to sandwich that becomes theirs</div>
+                    <div class="contrast-item-text">Walk in, order without thinking, eat something that hits exactly right. The reliable lunch they don't have to research.</div>
+                  </div>
+                </div>
+                <div class="contrast-item">
+                  <span class="contrast-num-chip">02</span>
+                  <div class="contrast-item-body">
+                    <div class="contrast-item-label">The "I know the good spots" badge</div>
+                    <div class="contrast-item-text">The quiet satisfaction of being the person who knows where Cincinnati actually eats. Carl's becomes a credential, not just a meal.</div>
+                  </div>
+                </div>
+                <div class="contrast-item">
+                  <span class="contrast-num-chip">03</span>
+                  <div class="contrast-item-body">
+                    <div class="contrast-item-label">A place they bring people to</div>
+                    <div class="contrast-item-text">Out-of-town guests, parents, new dates, transplant coworkers. Carl's becomes their proof point that they get Cincinnati.</div>
+                  </div>
+                </div>
+                <div class="contrast-item">
+                  <span class="contrast-num-chip">04</span>
+                  <div class="contrast-item-body">
+                    <div class="contrast-item-label">Earned-share posts</div>
+                    <div class="contrast-item-text">They post the #23 to their story without prompting because the sandwich earns it. It reflects their taste, not the brand's ask.</div>
+                  </div>
+                </div>
+                <div class="contrast-item">
+                  <span class="contrast-num-chip">05</span>
+                  <div class="contrast-item-body">
+                    <div class="contrast-item-label">Becoming a regular</div>
+                    <div class="contrast-item-text">First-timer to "every Friday for 12 years." The slow conversion from "place I tried" to "place that's mine."</div>
+                  </div>
+                </div>
+              </div>
             </div>
 
             <div class="ivp-meta-row">
@@ -2582,6 +2750,92 @@
             <div class="ivp-section-title">Top Catering FAQs</div>
             <div class="ivp-item-text">
               "How many people can you handle?" &middot; "How far in advance do I need to order?" &middot; "What's the price for X people?" &middot; "Do you deliver or do I pick up?" &middot; "What's the minimum order?" &middot; "Can you do dietary restrictions?"
+            </div>
+
+            <div class="contrast-grid">
+              <div class="contrast-block pain-block">
+                <div class="contrast-block-header">
+                  <svg class="contrast-block-icon" viewBox="0 0 24 24"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg>
+                  <span class="contrast-block-title">Top Pain Points</span>
+                </div>
+                <div class="contrast-item">
+                  <span class="contrast-num-chip">01</span>
+                  <div class="contrast-item-body">
+                    <div class="contrast-item-label">The deli menu is the wrong tool for catering</div>
+                    <div class="contrast-item-text">50+ sandwich options is overwhelming when they're ordering for 30. They want a curated catering package they can screenshot and forward to their boss in 30 seconds.</div>
+                  </div>
+                </div>
+                <div class="contrast-item">
+                  <span class="contrast-num-chip">02</span>
+                  <div class="contrast-item-body">
+                    <div class="contrast-item-label">Capacity is a question mark</div>
+                    <div class="contrast-item-text">"Can they actually handle 75 people? Will it show up on time, in the right quantities?" Without proof of volume, they default to the safe national chain.</div>
+                  </div>
+                </div>
+                <div class="contrast-item">
+                  <span class="contrast-num-chip">03</span>
+                  <div class="contrast-item-body">
+                    <div class="contrast-item-label">The process is invisible</div>
+                    <div class="contrast-item-text">Lead time, delivery vs. pickup, minimum order, dietary options. They need answers without three rounds of email back-and-forth before they'll commit.</div>
+                  </div>
+                </div>
+                <div class="contrast-item">
+                  <span class="contrast-num-chip">04</span>
+                  <div class="contrast-item-body">
+                    <div class="contrast-item-label">Their reputation is on the line</div>
+                    <div class="contrast-item-text">A bad caterer becomes a story that gets told inside the org or family. They need reliability signals, not just quality signals, before they'll put their name on the order.</div>
+                  </div>
+                </div>
+                <div class="contrast-item is-priority-pain">
+                  <span class="contrast-num-chip">05</span>
+                  <div class="contrast-item-body">
+                    <div class="contrast-item-label">They can't tell if Carl's is a real catering operation<span class="contrast-priority-tag">Priority</span></div>
+                    <div class="contrast-item-text">"Are they a real catering operation, or a deli that sometimes does trays?" Without proof of corporate work and personal events, they don't know which version they're getting.</div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="contrast-block dream-block">
+                <div class="contrast-block-header">
+                  <svg class="contrast-block-icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+                  <span class="contrast-block-title">Top Dream Outcomes</span>
+                </div>
+                <div class="contrast-item">
+                  <span class="contrast-num-chip">01</span>
+                  <div class="contrast-item-body">
+                    <div class="contrast-item-label">A catering decision that runs itself</div>
+                    <div class="contrast-item-text">Inquire, get a clear quote fast, order, food shows up. No chasing, no surprises, no last-minute scrambling.</div>
+                  </div>
+                </div>
+                <div class="contrast-item">
+                  <span class="contrast-num-chip">02</span>
+                  <div class="contrast-item-body">
+                    <div class="contrast-item-label">Food that lands at the table</div>
+                    <div class="contrast-item-text">People at the event say something. "Where is this from?" or "this is actually really good." The food earns conversation, not just consumption.</div>
+                  </div>
+                </div>
+                <div class="contrast-item">
+                  <span class="contrast-num-chip">03</span>
+                  <div class="contrast-item-body">
+                    <div class="contrast-item-label">Credit for the call</div>
+                    <div class="contrast-item-text">Inside their org or family, they're the person who knew where to order. Their name lands on a decision that worked, and gets remembered.</div>
+                  </div>
+                </div>
+                <div class="contrast-item">
+                  <span class="contrast-num-chip">04</span>
+                  <div class="contrast-item-body">
+                    <div class="contrast-item-label">A go-to contact, not a fresh start</div>
+                    <div class="contrast-item-text">Once Carl's is on their list, the next event is a one-text reorder. No vendor research, no requoting, no starting over.</div>
+                  </div>
+                </div>
+                <div class="contrast-item">
+                  <span class="contrast-num-chip">05</span>
+                  <div class="contrast-item-body">
+                    <div class="contrast-item-label">Capacity proof in writing</div>
+                    <div class="contrast-item-text">"Carl's did Sam Adams 300+ and the school 60-box-lunch days. They can do mine." A reference that signals "we've handled bigger than what you're asking for."</div>
+                  </div>
+                </div>
+              </div>
             </div>
 
             <div class="ivp-meta-row">
@@ -3266,72 +3520,75 @@
             <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
           </div>
           <div>
-            <div class="section-title">SEO Keyword Bank &middot; 4-Tier Architecture</div>
-            <div class="section-subtitle">Cincinnati-anchored. Dual deli + catering keyword stacks. Embedded across bio, captions, on-screen text, alt text.</div>
+            <div class="section-title">SEO Keyword Bank &middot; The TAM Ladder</div>
+            <div class="section-subtitle">Climb broad to narrow. Tier 1 spikes algorithmic distribution at the widest funnel point. Each tier down condenses the audience and lifts conversion intent. The mix evolves as Carl's matures: lean broad in Phase 1 to teach the algorithm the cohort, narrow toward Hyde Park and Findlay Market as conversion data validates.</div>
           </div>
         </div>
         <div class="seo-tier-table">
           <div class="seo-tier-row">
             <div class="seo-tier-label">
               <div class="seo-tier-name">Tier 1</div>
-              <div class="seo-tier-purpose">Broad Discovery. Every awareness post.</div>
+              <div class="seo-tier-purpose">Industry-wide. Broadest audience. Pulls into algorithmic distribution at the widest funnel point.</div>
+            </div>
+            <div class="seo-tier-content">
+              <span class="seo-hashtag">#food</span>
+              <span class="seo-hashtag">#sandwich</span>
+              <span class="seo-hashtag">#deli</span>
+              <span class="seo-hashtag">#lunch</span>
+              <span class="seo-hashtag">#foodie</span>
+              <span class="seo-hashtag">#foodporn</span>
+              <span class="seo-hashtag">#comfortfood</span>
+              <span class="seo-hashtag">#foodlovers</span>
+            </div>
+          </div>
+          <div class="seo-tier-row">
+            <div class="seo-tier-label">
+              <div class="seo-tier-name">Tier 2</div>
+              <div class="seo-tier-purpose">Category-level reach. National market within the industry. Brand identity and craft signals.</div>
+            </div>
+            <div class="seo-tier-content">
+              <span class="seo-hashtag">#womenowned</span>
+              <span class="seo-hashtag">#sisterowned</span>
+              <span class="seo-hashtag">#familybusiness</span>
+              <span class="seo-hashtag">#supportlocal</span>
+              <span class="seo-hashtag">#shoplocal</span>
+              <span class="seo-hashtag">#handsliced</span>
+              <span class="seo-hashtag">#deliartisan</span>
+              <span class="seo-hashtag">#cateringservice</span>
+            </div>
+          </div>
+          <div class="seo-tier-row">
+            <div class="seo-tier-label">
+              <div class="seo-tier-name">Tier 3</div>
+              <div class="seo-tier-purpose">Regional. Cincinnati and Ohio anchor. The metro searchers who could realistically eat at Carl's.</div>
             </div>
             <div class="seo-tier-content">
               <span class="seo-hashtag">#cincinnatifood</span>
               <span class="seo-hashtag">#cincinnatieats</span>
               <span class="seo-hashtag">#cincinnati</span>
               <span class="seo-hashtag">#cincyfoodie</span>
-              <span class="seo-hashtag">#foodporn</span>
-            </div>
-          </div>
-          <div class="seo-tier-row">
-            <div class="seo-tier-label">
-              <div class="seo-tier-name">Tier 2</div>
-              <div class="seo-tier-purpose">Niche Specific. Rotate 3-5 per post.</div>
-            </div>
-            <div class="seo-tier-content">
+              <span class="seo-hashtag">#cincinnatilunch</span>
               <span class="seo-hashtag">#cincinnatideli</span>
               <span class="seo-hashtag">#cincinnatisandwich</span>
-              <span class="seo-hashtag">#cincinnatilunch</span>
-              <span class="seo-hashtag">#hydeparkcincinnati</span>
-              <span class="seo-hashtag">#findlaymarket</span>
-              <span class="seo-hashtag">#findlaymarketcincy</span>
-              <span class="seo-hashtag">#womenowned</span>
-              <span class="seo-hashtag">#sisterowned</span>
-              <span class="seo-hashtag">#supportlocal</span>
-              <span class="seo-hashtag">#shoplocal</span>
-              <span class="seo-hashtag">#handsliced</span>
-              <span class="seo-hashtag">#deliartisan</span>
-            </div>
-          </div>
-          <div class="seo-tier-row">
-            <div class="seo-tier-label">
-              <div class="seo-tier-name">Tier 3</div>
-              <div class="seo-tier-purpose">Service + Location. Catering posts only (1-3).</div>
-            </div>
-            <div class="seo-tier-content">
               <span class="seo-hashtag">#cincinnaticatering</span>
-              <span class="seo-hashtag">#hydeparkcatering</span>
-              <span class="seo-hashtag">#cincinnatiofficecatering</span>
-              <span class="seo-hashtag">#cincinnaticorporatecatering</span>
-              <span class="seo-hashtag">#cincinnatieventcatering</span>
-              <span class="seo-hashtag">#cincinnatibridalcatering</span>
-              <span class="seo-hashtag">#cincinnatischoolcatering</span>
-              <span class="seo-hashtag">#cincinnatisandwichcatering</span>
-              <span class="seo-hashtag">#cincinnatiboxlunch</span>
+              <span class="seo-hashtag">#ohiofoodie</span>
             </div>
           </div>
           <div class="seo-tier-row">
             <div class="seo-tier-label">
               <div class="seo-tier-name">Tier 4</div>
-              <div class="seo-tier-purpose">High-Intent Buyer. Caption + on-screen text. Brand check only.</div>
+              <div class="seo-tier-purpose">Hyper-local. Highest conversion intent. Hyde Park and Findlay Market specific. Plus brand-search anchors.</div>
             </div>
             <div class="seo-tier-content">
+              <span class="seo-hashtag">#hydeparkcincinnati</span>
+              <span class="seo-hashtag">#hydeparkcincy</span>
+              <span class="seo-hashtag">#findlaymarket</span>
+              <span class="seo-hashtag">#findlaymarketcincy</span>
+              <span class="seo-hashtag">#hydeparkcatering</span>
               <span class="seo-hashtag">#carlsdeli</span>
               <span class="seo-hashtag">#cincinnatibestdeli</span>
-              <span class="seo-hashtag">#cincinnatibestsandwich2026</span>
               <div style="margin-top: 8px; font-size: 11.5px; color: var(--fg-muted); line-height: 1.55;">
-                Search-phrase anchors for caption + on-screen text: "Best deli Cincinnati" &middot; "Best catering in Cincinnati" &middot; "Last-minute catering Cincinnati" &middot; "Cincinnati Best Deli 2026" &middot; "80-year-old Cincinnati deli" &middot; "Where to get catering in Cincinnati" (voice search anchor)
+                Brand-search and voice-search anchors for caption + on-screen text (separate from the TAM ladder, used on conversion content): "Best deli Cincinnati" &middot; "Best catering in Cincinnati" &middot; "Last-minute catering Cincinnati" &middot; "Cincinnati Best Deli 2026" &middot; "80-year-old Cincinnati deli" &middot; "Where to get catering in Cincinnati"
               </div>
             </div>
           </div>
@@ -3661,16 +3918,16 @@
           </div>
           <div>
             <div class="section-title">Content Calendar</div>
-            <div class="section-subtitle">Lives in Plan. Single source of truth for approvals, scheduling, and post status.</div>
+            <div class="section-subtitle">Lives in Plann. Single source of truth for approvals, scheduling, and post status.</div>
           </div>
         </div>
         <div class="plan-reference">
           <div class="plan-ref-content">
             <div class="plan-ref-eyebrow">Source of Truth</div>
-            <div class="plan-ref-title">Carl's Content Calendar in Plan</div>
-            <div class="plan-ref-desc">Plan is where every post lives from draft to approval to scheduled to published. We do not duplicate the calendar in Drive or in this Homebase. Rachel updates Plan. Sydney approves there. Bi-weekly check-ins review the next two weeks of pending content together.</div>
+            <div class="plan-ref-title">Carl's Content Calendar in Plann</div>
+            <div class="plan-ref-desc">Plann is where every post lives from draft to approval to scheduled to published. We do not duplicate the calendar in Drive or in this Homebase. Rachel updates Plann. Sydney approves there. Bi-weekly check-ins review the next two weeks of pending content together.</div>
           </div>
-          <a href="https://www.plannthat.com/home/" target="_blank" class="plan-ref-btn">Open in Plan &rsaquo;</a>
+          <a href="https://www.plannthat.com/home/" target="_blank" class="plan-ref-btn">Open in Plann &rsaquo;</a>
         </div>
       </div>
 
@@ -3724,13 +3981,13 @@
 </div>
 
 <script>
-  const PW = 'scrollies';
+  const PW = 'carls_scroll';
   function checkPassword() {
     const val = document.getElementById('pwInput').value;
     if (val === PW) {
       document.getElementById('pw-gate').style.display = 'none';
       document.getElementById('app').classList.remove('pw-hidden');
-      localStorage.setItem('sm_auth', '1');
+      localStorage.setItem('sm_carls_auth', '1');
     } else {
       document.getElementById('pw-error').style.display = 'block';
     }
@@ -3738,7 +3995,7 @@
   document.getElementById('pwInput').addEventListener('keydown', e => {
     if (e.key === 'Enter') checkPassword();
   });
-  if (localStorage.getItem('sm_auth') === '1') {
+  if (localStorage.getItem('sm_carls_auth') === '1') {
     document.getElementById('pw-gate').style.display = 'none';
     document.getElementById('app').classList.remove('pw-hidden');
   }
