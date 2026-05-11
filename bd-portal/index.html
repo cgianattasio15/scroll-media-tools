@@ -529,7 +529,7 @@ function checkPassword() {
 <div class="meta-strip">
   <div class="meta-strip-inner">
     <span><strong>Internal use only.</strong> Do not share with prospects or clients.</span>
-    <span class="nowrap">v1.2 · May 11, 2026</span>
+    <span class="nowrap">v1.3 · May 11, 2026</span>
   </div>
 </div>
 
@@ -546,6 +546,7 @@ function checkPassword() {
       <a href="#voice">Voice</a>
       <a href="#audits">Audits</a>
       <a href="#posting">Posting</a>
+      <a href="#ideation">Ideation</a>
       <a href="#escalation">Escalation</a>
       <a href="#resources">Resources</a>
     </div>
@@ -711,30 +712,39 @@ function checkPassword() {
       <strong>Hard line.</strong> Team only sends from <code>@scrollmedia.co</code> IG. Never personal IG. Never email. Never LinkedIn. If a prospect tries to pull you to email or LinkedIn, ask for their email and run the handoff to Chase.
     </div>
 
-    <h3>Tier-based channel allocation</h3>
-    <p>How many channels run per prospect depends on tier. A-tier gets multi-channel saturation. C-tier is IG-only.</p>
+    <h3>Channel allocation by owner</h3>
+    <p>Single owner per prospect. Owner determines channels. Chase runs the multi-channel motion for his 115 prospects. Team runs IG@scrollmedia.co for theirs.</p>
 
     <div class="table-wrap reveal">
       <table>
-        <thead><tr><th>Tier</th><th>Channels active</th><th>Your involvement</th></tr></thead>
+        <thead><tr><th>Owner</th><th>Channels run</th><th>Tier mix</th></tr></thead>
         <tbody>
           <tr>
-            <td><span class="tag azure">A</span></td>
-            <td>Chase email + Chase LinkedIn + IG@scroll (you) + IG@chase (Chase)</td>
-            <td>You run the IG@scroll piece. Chase runs his three.</td>
+            <td><span class="op chase"><span class="op-mark">C</span> Chase</span></td>
+            <td>Email + LinkedIn + IG@chase.scrolls (multi-channel saturation)</td>
+            <td>80 A-tier (top signal) · 30 B-tier · 5 C-tier</td>
           </tr>
           <tr>
-            <td><span class="tag azure">B</span></td>
-            <td>(Chase email + IG@scroll) or (Chase LinkedIn + IG@scroll)</td>
-            <td>You run the IG@scroll piece. 1 to 2 channels per prospect.</td>
+            <td><span class="op"><span class="op-mark">RI</span> Riley</span></td>
+            <td>IG@scrollmedia.co only</td>
+            <td>42 A · 21 B · 54 C</td>
           </tr>
           <tr>
-            <td><span class="tag azure">C</span></td>
-            <td>IG@scroll only</td>
-            <td><strong>You own end-to-end.</strong> No Chase touches.</td>
+            <td><span class="op"><span class="op-mark">RA</span> Rachel</span></td>
+            <td>IG@scrollmedia.co only</td>
+            <td>48 A · 24 B · 45 C</td>
+          </tr>
+          <tr>
+            <td><span class="op"><span class="op-mark">E</span> Emily</span></td>
+            <td>IG@scrollmedia.co only</td>
+            <td>38 A · 33 B · 42 C</td>
           </tr>
         </tbody>
       </table>
+    </div>
+
+    <div class="callout reveal">
+      <strong>Why the split.</strong> Chase takes the highest-signal A-tier (strict A-eligible niche + 2k–10k followers + Cincy core + founder-front) because those convert hardest under multi-channel saturation. Team takes the geo-zoned rest because IG@scrollmedia.co is the channel that scales to that volume.
     </div>
   </div>
 </section>
@@ -751,18 +761,19 @@ function checkPassword() {
     <div class="summary reveal">
       <h4 style="margin-top: 0;">Three things to remember about your assignment</h4>
       <ol class="summary-rows">
-        <li><span class="n">1</span><span><strong>Two ownership columns.</strong> Column K (<code>Owner</code>) drives reporting and stays with Chase for A/B-tier. Column AB (<code>IG@scroll Owner</code>) is your daily worklist column. Always Riley, Rachel, or Emily. For C-tier, K = AB.</span></li>
-        <li><span class="n">2</span><span><strong>Your geo zone is sticky.</strong> Emily = OTR/Downtown core. Rachel = NKY. Riley = east side proper. Unzoned (generic Cincy, far north, west side) gets distributed by capacity. Don't reassign yourself; flag in Slack.</span></li>
-        <li><span class="n">3</span><span><strong>Your daily worklist filter</strong> = <code>IG@scroll Owner = your name</code> AND <code>Status ∈ {Warming, In Sequence}</code> AND <code>Next Touch Date ≤ TODAY()</code>. Save it as a Filter view. Open it first every IG block.</span></li>
+        <li><span class="n">1</span><span><strong>Single Owner column.</strong> Column K (<code>Owner</code>) is the only ownership column. Each prospect has exactly one operator. Chase owns the highest-priority A-tier across all geos. Riley / Rachel / Emily own everything else by geo zone.</span></li>
+        <li><span class="n">2</span><span><strong>Your geo zone is sticky.</strong> Emily = OTR / Downtown urban core. Rachel = NKY + Cincinnati overflow + far north. Riley = east side proper. Unzoned (generic Cincy, west side) gets distributed by capacity. Don't reassign yourself; flag in Slack.</span></li>
+        <li><span class="n">3</span><span><strong>Your daily worklist filter</strong> = <code>Owner = your name</code> AND <code>Funnel Stage NOT IN {Closed-Won, Closed-Lost, Disqualified}</code> AND <code>Next Touch Date ≤ TODAY()</code>. Save it as a Filter view. Open it first every IG block.</span></li>
       </ol>
     </div>
 
     <div class="diagram-frame reveal">
       <div class="diagram-caption">Geo zones · operator territories across the Cincinnati metro</div>
-      <svg viewBox="0 0 1080 380" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Three operator territories: Emily owns the urban core, Riley owns the east side, Rachel owns NKY. Unzoned bucket distributed by capacity.">
+      <svg viewBox="0 0 1080 380" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Four operator territories: Chase owns top-priority A-tier across all geos, Emily owns the urban core, Riley owns the east side, Rachel owns NKY plus far-north overflow.">
         <defs>
           <style>
             .gz-bg { fill: #FAFDFF; }
+            .gz-zone-chase { fill: #E2ED7A; stroke: #151516; stroke-width: 1.5; }
             .gz-zone-emily { fill: #e4f3ff; stroke: rgba(12,51,135,0.40); stroke-width: 1.25; }
             .gz-zone-riley { fill: #FAFDFF; stroke: rgba(12,51,135,0.40); stroke-width: 1.25; }
             .gz-zone-rachel { fill: #FAFDFF; stroke: rgba(12,51,135,0.40); stroke-width: 1.25; stroke-dasharray: 5 4; }
@@ -785,9 +796,9 @@ function checkPassword() {
         <text class="gz-mark-letter" x="68" y="94">E</text>
         <text class="gz-h" x="90" y="93">Emily</text>
         <text class="gz-c" x="90" y="110">Urban core</text>
-        <text class="gz-num" x="40" y="160">138</text>
+        <text class="gz-num" x="40" y="160">113</text>
         <text class="gz-s" x="90" y="155">prospects</text>
-        <text class="gz-s" x="90" y="170">~9–10 day rotation</text>
+        <text class="gz-s" x="90" y="170">~8–10 day rotation</text>
         <text class="gz-s" x="55" y="195">OTR · Downtown · Pendleton</text>
         <text class="gz-s" x="55" y="210">Mt. Auburn · Mt. Adams · Northside</text>
         <text class="gz-s" x="55" y="225">Queensgate · West End · East End</text>
@@ -798,45 +809,48 @@ function checkPassword() {
         <text class="gz-mark-letter" x="388" y="94">RI</text>
         <text class="gz-h" x="410" y="93">Riley</text>
         <text class="gz-c" x="410" y="110">East side proper</text>
-        <text class="gz-num" x="360" y="160">186</text>
-        <text class="gz-s" x="410" y="155">prospects (densest zone)</text>
-        <text class="gz-s" x="410" y="170">~13 day rotation</text>
+        <text class="gz-num" x="360" y="160">117</text>
+        <text class="gz-s" x="410" y="155">prospects</text>
+        <text class="gz-s" x="410" y="170">~8–10 day rotation</text>
         <text class="gz-s" x="375" y="195">Hyde Park · Oakley · Mt. Lookout · Mariemont</text>
         <text class="gz-s" x="375" y="210">Madisonville · Anderson · Indian Hill · Loveland</text>
-        <text class="gz-s" x="375" y="225">Kenwood · Madeira · Norwood · Walnut Hills · +12 more</text>
+        <text class="gz-s" x="375" y="225">Kenwood · Madeira · Walnut Hills · +14 more</text>
 
-        <!-- Rachel: NKY (bottom) -->
+        <!-- Rachel: NKY + Cincy overflow (bottom) -->
         <rect class="gz-zone-rachel" x="40" y="280" width="690" height="80"/>
         <circle class="gz-mark" cx="68" cy="305" r="12"/>
         <text class="gz-mark-letter" x="68" y="309">RA</text>
         <text class="gz-h" x="90" y="308">Rachel</text>
-        <text class="gz-c" x="90" y="325">All NKY · south of the river</text>
-        <text class="gz-num" x="40" y="357">138</text>
-        <text class="gz-s" x="90" y="343">prospects · ~9–10 day rotation</text>
+        <text class="gz-c" x="90" y="325">NKY + Cincy overflow + far north</text>
+        <text class="gz-num" x="40" y="357">117</text>
+        <text class="gz-s" x="90" y="343">prospects · ~8–10 day rotation</text>
         <text class="gz-s" x="240" y="343">Covington · Newport · Florence · Bellevue · Erlanger</text>
-        <text class="gz-s" x="240" y="357">Ft. Mitchell · Ft. Thomas · Edgewood · Southgate · +6 more</text>
+        <text class="gz-s" x="240" y="357">Ft. Mitchell · Ft. Thomas · Montgomery · Mason · +9 more</text>
 
         <!-- River divider -->
         <path class="gz-river" d="M 40 270 L 730 270"/>
         <text class="gz-river-label" x="40" y="264">Ohio River</text>
 
-        <!-- Unzoned (right column) -->
-        <rect class="gz-zone-unzoned" x="760" y="60" width="280" height="300"/>
-        <text class="gz-c" x="775" y="90">Unzoned</text>
-        <text class="gz-s" x="775" y="108">Distributed across all three</text>
-        <text class="gz-s" x="775" y="123">by capacity to balance load.</text>
-        <text class="gz-s" x="775" y="155" style="font-weight:600;">Includes:</text>
-        <text class="gz-s" x="775" y="175">Generic "Cincinnati"</text>
-        <text class="gz-s" x="775" y="195">West side · Westwood · Cheviot</text>
-        <text class="gz-s" x="775" y="215">Mason · West Chester</text>
-        <text class="gz-s" x="775" y="235">Sharonville · Fairfield</text>
-        <text class="gz-s" x="775" y="255">Blue Ash · Montgomery</text>
-        <text class="gz-s" x="775" y="275">Hamilton</text>
+        <!-- Chase: geo-agnostic top-priority A-tier (right column, highlighted) -->
+        <rect class="gz-zone-chase" x="760" y="60" width="280" height="200"/>
+        <circle class="gz-mark" cx="788" cy="90" r="12" style="fill:#FAFDFF;stroke:#151516;"/>
+        <text class="gz-mark-letter" x="788" y="94" style="fill:#151516;">C</text>
+        <text class="gz-h" x="810" y="93" style="fill:#151516;">Chase</text>
+        <text class="gz-c" x="810" y="110" style="fill:#151516;">Top-priority A across all geos</text>
+        <text class="gz-num" x="760" y="160" style="fill:#151516;">115</text>
+        <text class="gz-s" x="810" y="155" style="fill:#151516;">prospects · geo-agnostic</text>
+        <text class="gz-s" x="810" y="170" style="fill:#151516;">multi-channel motion</text>
+        <text class="gz-s" x="775" y="195" style="fill:#151516;">Strict A-eligible niche + 2k–10k</text>
+        <text class="gz-s" x="775" y="210" style="fill:#151516;">+ Cincy core + founder-front</text>
+        <text class="gz-s" x="775" y="235" style="font-weight:600;fill:#151516;">Chase channels:</text>
+        <text class="gz-s" x="775" y="250" style="fill:#151516;">Email · LinkedIn · IG@chase</text>
 
-        <!-- Legend -->
-        <text class="gz-c" x="775" y="315">Note</text>
-        <text class="gz-s" x="775" y="335">Geo affinity is sticky.</text>
-        <text class="gz-s" x="775" y="350">Chase decides moves.</text>
+        <!-- Unzoned note -->
+        <rect class="gz-zone-unzoned" x="760" y="280" width="280" height="80"/>
+        <text class="gz-c" x="775" y="305">Unzoned</text>
+        <text class="gz-s" x="775" y="323">West side, generic "Cincinnati"</text>
+        <text class="gz-s" x="775" y="340">distributed across team by capacity.</text>
+        <text class="gz-s" x="775" y="355" style="font-style:italic;">Geo affinity is sticky. Chase decides moves.</text>
       </svg>
     </div>
 
@@ -916,10 +930,10 @@ function checkPassword() {
           </table>
         </div>
 
-        <h3>The two ownership columns</h3>
+        <h3>The single Owner column</h3>
         <div class="callout">
-          <strong>Column K (<code>Owner</code>) drives reporting.</strong> For A-tier and B-tier, K = Chase. For C-tier, K = your name.<br /><br />
-          <strong>Column AB (<code>IG@scroll Owner</code>) drives your daily worklist.</strong> Always Riley / Rachel / Emily. For A/B, AB differs from K. For C, K and AB are both your name.
+          <strong>Column K (<code>Owner</code>) is the only ownership column.</strong> Each prospect has exactly one operator. Chase owns the highest-priority A-tier across all geos (multi-channel motion). Riley / Rachel / Emily own everything else by geo zone (IG@scrollmedia.co motion only). Sticky once assigned.<br /><br />
+          The previous dual-column model (separate <code>IG@scroll Owner</code> in col AB) was retired May 11, 2026. One column, one owner, one daily filter.
         </div>
       </div>
     </details>
@@ -928,18 +942,18 @@ function checkPassword() {
       <summary>Set up your daily worklist filter view (one-time, 5-min setup)</summary>
       <div class="acc-body">
         <h3 style="margin-top: var(--sp-3);">The filter formula</h3>
-        <pre><code>IG@scroll Owner = [your first name]
-AND Status ∈ (Warming, In Sequence)
+        <pre><code>Owner = [your first name]
+AND Funnel Stage NOT IN (Closed-Won, Closed-Lost, Disqualified)
 AND Next Touch Date ≤ TODAY()</code></pre>
-        <p>Everything that matches is actionable today. Everything else is either not yours, not in active sequence, or scheduled for later.</p>
+        <p>Everything that matches is actionable today. Everything else is either not yours, terminal, or scheduled for later.</p>
 
         <h3>How to set it up in Google Sheets</h3>
         <ol>
           <li>Open <code>master_prospect_spreadsheet.xlsx</code> from the Drive folder.</li>
           <li>Click <strong>Data → Create a filter</strong>.</li>
-          <li>On column AB (<code>IG@scroll Owner</code>), filter to your first name only.</li>
-          <li>On column N (<code>Status</code>), filter to <code>Warming</code> and <code>In Sequence</code>.</li>
-          <li>On column U (<code>Next Touch Date</code>), set the condition to <em>"Date is on or before"</em> with the value <code>=TODAY()</code>.</li>
+          <li>On column K (<code>Owner</code>), filter to your first name only.</li>
+          <li>On column M (<code>Funnel Stage</code>), exclude <code>Closed-Won</code>, <code>Closed-Lost</code>, and <code>Disqualified</code>.</li>
+          <li>On column R (<code>Next Touch Date</code>), set the condition to <em>"Date is on or before"</em> with the value <code>=TODAY()</code>.</li>
           <li>Save as a <strong>Filter view</strong>: <em>Data → Filter views → Save as filter view</em>. Name it <code>[Your Name] daily worklist</code>.</li>
           <li>Bookmark the filter view URL in your browser. Open it as the first action of every IG block.</li>
         </ol>
@@ -956,11 +970,12 @@ AND Next Touch Date ≤ TODAY()</code></pre>
     <h3>Weekly volume budget</h3>
     <div class="table-wrap reveal">
       <table>
-        <thead><tr><th>Operator</th><th>Daily target</th><th>Weekly volume</th><th>Active prospects (steady state)</th></tr></thead>
+        <thead><tr><th>Operator</th><th>Channels</th><th>Daily target</th><th>Total prospects owned</th></tr></thead>
         <tbody>
-          <tr><td><span class="op"><span class="op-mark">E</span> Emily</span></td><td>10 to 15</td><td>50 to 75</td><td>~50 to 60</td></tr>
-          <tr><td><span class="op"><span class="op-mark">RA</span> Rachel</span></td><td>10 to 15</td><td>50 to 75</td><td>~50 to 60</td></tr>
-          <tr><td><span class="op"><span class="op-mark">RI</span> Riley</span></td><td>10 to 15</td><td>50 to 75</td><td>~50 to 60</td></tr>
+          <tr><td><span class="op chase"><span class="op-mark">C</span> Chase</span></td><td>Email + LI + IG@chase</td><td>25 emails + 25 LI + 10–15 IG@chase Tue/Wed/Thu</td><td>115</td></tr>
+          <tr><td><span class="op"><span class="op-mark">E</span> Emily</span></td><td>IG@scrollmedia.co</td><td>10 to 15</td><td>113</td></tr>
+          <tr><td><span class="op"><span class="op-mark">RA</span> Rachel</span></td><td>IG@scrollmedia.co</td><td>10 to 15</td><td>117</td></tr>
+          <tr><td><span class="op"><span class="op-mark">RI</span> Riley</span></td><td>IG@scrollmedia.co</td><td>10 to 15</td><td>117</td></tr>
         </tbody>
       </table>
     </div>
@@ -1147,12 +1162,10 @@ AND Next Touch Date ≤ TODAY()</code></pre>
         <div class="panel tight">
           <h4 style="margin-top: 0;">Log in the sheet</h4>
           <ul class="small">
-            <li><code>Last Touch Date</code> = today</li>
-            <li><code>Last Touch By</code> = your name</li>
-            <li><code>Last Touch Channel</code> = IG@scroll</li>
-            <li><code>Status</code> = Warming (if it was New)</li>
-            <li><code>Funnel Stage</code> = <strong>Engaged</strong></li>
-            <li><code>Engagement Signals</code> = append: <code>Followed [date]</code></li>
+            <li><code>Funnel Stage</code> (col M) = <strong>Engaged</strong></li>
+            <li><code>Last Touch Date</code> (col P) = today</li>
+            <li><code>Last Touch Channel</code> (col Q) = IG@scroll</li>
+            <li><code>Engagement Signals</code> (col T) = append: <code>Followed [date]</code></li>
           </ul>
         </div>
         <p><strong>Don't:</strong></p>
@@ -1214,7 +1227,7 @@ AND Next Touch Date ≤ TODAY()</code></pre>
           <li><strong>The small value-add.</strong> A one-line tactical observation they can use this week. Not a teardown. A nudge.</li>
         </ol>
         <div class="callout signal">
-          <strong>If they don't respond to DM 2.</strong> Wait 5 days. Send one more attention touch (story react or comment). If still no response after 14 days from Day 3: mark <code>Status</code> = Engaged-Silent, <code>Funnel Stage</code> stays at DM2 Sent, <code>Next Touch Date</code> = today + 60 days. Leave them alone. Three unanswered DMs starts to feel like spam.
+          <strong>If they don't respond to DM 2.</strong> Wait 5 days. Send one more attention touch (story react or comment). If still no response after 14 days from Day 3: <code>Funnel Stage</code> stays at DM2 Sent. Append <code>Engaged-Silent [date]</code> to Engagement Signals. Set <code>Next Touch Date</code> = today + 60 days. Leave them alone. Three unanswered DMs starts to feel like spam.
         </div>
 
         <h3>Day 8-10. Share the Manual (only if warm reply landed)</h3>
@@ -1293,14 +1306,14 @@ AND Next Touch Date ≤ TODAY()</code></pre>
         <p class="small"><strong>Day 5:</strong> Sarah replies asking what Riley has seen work for booking conversion. Warm reply with a real question.</p>
         <p class="small"><strong>Day 5 same day:</strong> Riley shares the Manual, pointing at Section 6 (DM-to-booking flow). <code>Funnel Stage</code> = Manual Shared.</p>
         <p class="small"><strong>Day 9:</strong> Riley offers the audit. Sarah says yes Day 10. A-tier governance: Chase QAs script. Loom goes out Day 12.</p>
-        <p class="small"><strong>Day 14:</strong> Sarah replies asking to talk through implementation. <code>Status</code> flips to Hot · Handoff to Chase. <code>Funnel Stage</code> = Discovery Booked.</p>
+        <p class="small"><strong>Day 14:</strong> Sarah replies asking to talk through implementation. <code>Funnel Stage</code> = Discovery Booked. Riley Slacks the hot handoff to <code>#bd-team</code>.</p>
 
         <h3>Example 2. Oakley fitness studio (Riley, A-tier). Slow build.</h3>
         <p class="small"><strong>Day 0-3:</strong> Riley follows, warms up, sends DM 1. No reply.</p>
         <p class="small"><strong>Day 6:</strong> DM 2 with a peer-observation angle on member-led testimonial reels. No reply yet.</p>
         <p class="small"><strong>Day 11:</strong> Mike replies. "Interesting. We've been running mostly class-shot content." Warm reply.</p>
         <p class="small"><strong>Day 12:</strong> Riley shares the Manual. <code>Funnel Stage</code> = Manual Shared.</p>
-        <p class="small"><strong>Day 16:</strong> No engagement. Riley logs <code>Engaged-Silent</code>, sets a soft check-in for Day 22.</p>
+        <p class="small"><strong>Day 16:</strong> No engagement. Riley appends <code>Engaged-Silent [date]</code> to Engagement Signals, sets a soft check-in for Day 22.</p>
         <p class="small"><strong>Day 28:</strong> Mike DMs back about a new content series in July. Hot signal. Riley offers the audit and Slacks Chase. Sequence resumes from Audit Shared.</p>
 
         <h3>Example 3. Northside coffee shop (Emily, B-tier). Manual share, then quiet.</h3>
@@ -1308,7 +1321,7 @@ AND Next Touch Date ≤ TODAY()</code></pre>
         <p class="small"><strong>Day 7:</strong> DM 2 with an open question on what content is pulling foot traffic.</p>
         <p class="small"><strong>Day 10:</strong> Maya replies. "Honestly we don't really track it." Real reply, not hot.</p>
         <p class="small"><strong>Day 10 same day:</strong> Emily shares the Manual, pointing at Section 4 (cadence for small accounts).</p>
-        <p class="small"><strong>Day 14:</strong> No further engagement. Emily logs <code>Manual Shared</code>, <code>Engaged-Silent</code>, next touch 21 days out. No audit offer fires (B-tier, no continued engagement signal yet).</p>
+        <p class="small"><strong>Day 14:</strong> No further engagement. <code>Funnel Stage</code> stays at Manual Shared. Emily appends <code>Engaged-Silent [date]</code> to Engagement Signals, next touch 21 days out. No audit offer fires (B-tier, no continued engagement signal yet).</p>
       </div>
     </details>
 
@@ -1317,7 +1330,7 @@ AND Next Touch Date ≤ TODAY()</code></pre>
       <div class="acc-body">
         <h3 style="margin-top: var(--sp-3);">Scenario 1. Prospect replies hostile or annoyed</h3>
         <p><strong>Signal:</strong> "Take me off your list," "stop messaging me," "not interested."</p>
-        <p><strong>Action:</strong> Reply once with one line: "Got it, appreciate the response. Cheers, [your first name]." Don't defend. Don't pitch. Update: <code>Status</code> = Closed, <code>Funnel Stage</code> = Disqualified, <code>Outcome</code> = Closed Negative.</p>
+        <p><strong>Action:</strong> Reply once with one line: "Got it, appreciate the response. Cheers, [your first name]." Don't defend. Don't pitch. Update <code>Funnel Stage</code> = Disqualified. Append the reply context to <code>Notes</code> (col U).</p>
 
         <h3>Scenario 2. Ghost after Manual share</h3>
         <p><strong>Signal:</strong> Warm reply, you shared the Manual, then silence 4+ days.</p>
@@ -1332,7 +1345,7 @@ AND Next Touch Date ≤ TODAY()</code></pre>
         <p><strong>Action:</strong> Never send pricing in DM. Reply with a redirect: "Pricing depends on the scope. Easiest to walk you through on a 15-min call. Going to loop in Chase, our co-founder. Could you send your email so he can pick it up?" Slack Chase with the hot handoff alert.</p>
 
         <h3>Scenario 5. Prospect asks to be removed</h3>
-        <p><strong>Action:</strong> Reply once: "Got it, will stop. Cheers." Unfollow immediately. <code>Status</code> = Closed, <code>Funnel Stage</code> = Disqualified, <code>Notes</code> = "Asked to be removed [date]. Do not re-engage." Flag the row in red.</p>
+        <p><strong>Action:</strong> Reply once: "Got it, will stop. Cheers." Unfollow immediately. <code>Funnel Stage</code> (col M) = Disqualified. <code>Notes</code> (col U) = "Asked to be removed [date]. Do not re-engage." Flag the row in red.</p>
 
         <h3>Scenario 6. Prospect replies with a strategy question that needs depth</h3>
         <p><strong>Action:</strong> Don't fake an answer. Reply with a small piece of real insight + a redirect to the Manual section that goes deeper: "Quick answer: [insight]. The longer answer is in section 4 of our Local Brand Instagram Growth Manual. Want me to send the link?" If yes, that's a Manual Share trigger. Real questions are the best signal you'll see. Treat them like gold.</p>
@@ -1344,14 +1357,13 @@ AND Next Touch Date ≤ TODAY()</code></pre>
       <div class="acc-body">
         <h3 style="margin-top: var(--sp-3);">Spreadsheet hygiene (after every touch, within 60 seconds)</h3>
         <ol>
-          <li><code>Last Touch Date</code> (col R) updated to today.</li>
-          <li><code>Last Touch By</code> (col S) = your name.</li>
-          <li><code>Last Touch Channel</code> (col T) = IG@scroll.</li>
-          <li><code>Funnel Stage</code> (col AC) advanced if the action moved the prospect to a new stage.</li>
-          <li><code>Next Touch Date</code> (col U) set to the next scheduled action date.</li>
-          <li><code>Next Touch Type</code> (col V) set to what's next.</li>
-          <li><code>Engagement Signals</code> (col W) appended with the new signal (date format <code>[YYYY-MM-DD]</code>).</li>
-          <li><code>Status</code> (col N) updated if the touch changed pipeline state.</li>
+          <li><code>Funnel Stage</code> (col M) advanced if the action moved the prospect to a new stage.</li>
+          <li><code>Last Touch Date</code> (col P) updated to today.</li>
+          <li><code>Last Touch Channel</code> (col Q) = IG@scroll.</li>
+          <li><code>Next Touch Date</code> (col R) set to the next scheduled action date.</li>
+          <li><code>Next Touch Type</code> (col S) set to what's next.</li>
+          <li><code>Engagement Signals</code> (col T) appended with the new signal (date format <code>[YYYY-MM-DD]</code>).</li>
+          <li><code>Notes</code> (col U) appended if there's relationship context worth capturing (reply text, intel, etc.).</li>
         </ol>
 
         <h3>Daily IG block order of operations (60-90 min)</h3>
@@ -1389,7 +1401,359 @@ AND Next Touch Date ≤ TODAY()</code></pre>
       </div>
     </details>
 
-    <p class="small muted" style="margin-top: var(--sp-5);">Source: <code>playbooks/team_ig_outreach_playbook.md</code>. The markdown is the source of truth; this portal is the live operating doc the team consumes.</p>
+    <h3 style="margin-top: var(--sp-7);">The script library (embedded)</h3>
+    <p class="intro">Every DM type the team sends from <code>@scrollmedia.co</code> with worked openers and templates. Pull from these inline. Compile fresh variants via the Claude prompt at the bottom.</p>
+
+    <details class="acc reveal">
+      <summary>Warm-up protocol (Day 0–2 engagement language)</summary>
+      <div class="acc-body">
+        <h3 style="margin-top: var(--sp-3);">Why agency warm-up reads differently than personal</h3>
+        <p><code>@chase.scrolls</code> is a personal handle. Engagement reads as a peer noticing. <code>@scrollmedia.co</code> is the agency. Engagement reads as the brand paying attention, which converts well when it's substantive and dies when it's spammy.</p>
+        <p>Two implications: keep per-prospect frequency low (2–3 touches across the warm-up window, not 5+), and make every comment reflect agency expertise rather than fan energy.</p>
+
+        <h3>Day-by-day</h3>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Day</th><th>Action</th><th>Time</th></tr></thead>
+            <tbody>
+              <tr><td>Day 1</td><td>Follow + watch stories. Scan grid 30 sec. No likes, no comments.</td><td>~90 sec</td></tr>
+              <tr><td>Day 2</td><td>One strategic like on their strongest recent post (highest save count, sharpest hook). Don't stack multiple likes.</td><td>~30 sec</td></tr>
+              <tr><td>Day 3</td><td>Watch one recent Reel start to finish. Leave one thoughtful comment on a recent post (specific, additive, agency voice).</td><td>~2 min</td></tr>
+              <tr><td>Day 4</td><td>Optional. Story react only if they posted a tactical / strategy story (not personal life). Skip otherwise.</td><td>0–60 sec</td></tr>
+              <tr><td>Day 5</td><td>Hold. No new touch. The agency has signaled presence; more engagement tips into prospecting tell.</td><td>0</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3>What good agency comments look like</h3>
+        <div class="do-dont">
+          <div class="col do">
+            <h4 class="do-label">Alive</h4>
+            <ul>
+              <li>"the framing on the silent-worry angle here is sharp. most med spas miss this."</li>
+              <li>"saved this. the trust-signal stack you're running is the move."</li>
+              <li>"the consent piece on member transformations is huge. most studios are getting this wrong."</li>
+              <li>"the contrast with most med spa content right now is real."</li>
+              <li>"the framing here would change how a lot of local brands approach this."</li>
+            </ul>
+          </div>
+          <div class="col dont">
+            <h4 class="dont-label">Dead</h4>
+            <ul>
+              <li>"Great post!"</li>
+              <li>"Love it!"</li>
+              <li>"Awesome work"</li>
+              <li>"🔥🔥🔥"</li>
+              <li>"So good!!!"</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="callout signal">
+          <strong>The test.</strong> Would a respected Cincinnati operator say this? If yes, ship. If it sounds like an engagement pod, scrap it.
+        </div>
+
+        <p class="small muted">Source: <code>templates/03_ig_dm_system/scrollmedia_co_team_voice/01_warm_up_protocol.md</code>.</p>
+      </div>
+    </details>
+
+    <details class="acc reveal">
+      <summary>DM 1 · Cold first DM (Day 3) · 20 openers + worked example</summary>
+      <div class="acc-body">
+        <p><strong>Length:</strong> 200–250 chars. <strong>Operator-first identification required.</strong> One specific observation pulled from warm-up. No ask. No link.</p>
+
+        <h3>Body template</h3>
+        <pre><code>{OPENING_LINE} {ONE_SENTENCE_SPECIFIC_OBSERVATION}.
+
+No ask. Cheers, {OPERATOR_FIRST_NAME}.</code></pre>
+
+        <h3>Worked example · Hyde Park med spa, Riley sending</h3>
+        <pre><code>Hey Sarah, Riley here from Scroll Media. Been watching Radiance this week. Your "what makes botox last longer" carousel is doing the kind of save numbers most Cincy med spas don't get close to.
+
+No ask. Cheers, Riley.</code></pre>
+        <p class="small muted">Char count ~245.</p>
+
+        <h3>Opening line library (20 options)</h3>
+        <ol>
+          <li>Hey {FIRST_NAME}, Riley here from Scroll Media. Been following {BUSINESS_NAME} this week.</li>
+          <li>{FIRST_NAME}, Rachel from Scroll Media. Your last reel jumped out.</li>
+          <li>Hey {FIRST_NAME}, Emily here. Picked up your account through {SOURCE}.</li>
+          <li>{FIRST_NAME}, sliding over from your story. {OPERATOR} from Scroll Media here.</li>
+          <li>Hey {FIRST_NAME}, your {SPECIFIC_POST} caught the team.</li>
+          <li>{FIRST_NAME}, Riley from Scroll Media. One observation, no pitch.</li>
+          <li>Hey {FIRST_NAME}, been watching {BUSINESS_NAME}'s account this week.</li>
+          <li>{FIRST_NAME}, sliding over from a comment thread. Rachel from Scroll Media.</li>
+          <li>Hey {FIRST_NAME}, your hook on the {TOPIC} carousel is sharp.</li>
+          <li>{FIRST_NAME}, Emily here. Spotted a pattern on {BUSINESS_NAME}.</li>
+          <li>Hey {FIRST_NAME}, Scroll Media looking your way.</li>
+          <li>{FIRST_NAME}, picking up your account through the {NEIGHBORHOOD} {NICHE} crowd.</li>
+          <li>Hey {FIRST_NAME}, Riley from Scroll Media. Quick thought after watching.</li>
+          <li>{FIRST_NAME}, your last few reels have been hitting differently.</li>
+          <li>Hey {FIRST_NAME}, Rachel here. Saw your latest carousel.</li>
+          <li>{FIRST_NAME}, sliding into the dm with a small note from the agency side.</li>
+          <li>Hey {FIRST_NAME}, Emily from Scroll Media. {BUSINESS_NAME} caught us this week.</li>
+          <li>{FIRST_NAME}, one observation from the team after a few days of watching.</li>
+          <li>Hey {FIRST_NAME}, Riley here. Spotted something on your grid.</li>
+          <li>{FIRST_NAME}, your account stands out on the {NICHE} side. Rachel from Scroll Media.</li>
+        </ol>
+
+        <div class="callout">
+          The opening line must reference something REAL from the warm-up. If you can't, you didn't warm up properly. Go back and add one comment, wait 48 hours, then send DM 1.
+        </div>
+
+        <p class="small muted">Source: <code>scrollmedia_co_team_voice/02_dm_templates.md</code> · DM Type 1.</p>
+      </div>
+    </details>
+
+    <details class="acc reveal">
+      <summary>DM 2 · Follow-up (Day 5–7) · 3 angles that work</summary>
+      <div class="acc-body">
+        <p><strong>Trigger:</strong> No reply to DM 1 by Day 5. <strong>Length:</strong> 1–2 sentences. <strong>Voice:</strong> continuation of attention, not nag.</p>
+
+        <h3>Three angles that work</h3>
+        <ol>
+          <li><strong>Peer observation.</strong> "We saw a [niche] in [neighborhood] run a similar post last week that hit ~3x their normal save count. The pattern under it is the [tactical detail]."</li>
+          <li><strong>Open question.</strong> "Curious which content type is pulling the most discovery for you right now. Reels, carousels, or stories?"</li>
+          <li><strong>Small value-add.</strong> A one-line tactical observation they can use this week. Not a teardown. A nudge.</li>
+        </ol>
+
+        <h3>Worked example · Oakley fitness studio, Riley sending</h3>
+        <pre><code>Quick follow on the reels side. We've watched 3 fitness studios in Cincy run member-led testimonial opens recently. Average save count was 4x their class-shot reels. Worth testing on your account.
+
+Cheers, Riley.</code></pre>
+        <p class="small muted">Char count ~230.</p>
+
+        <h3>Story reply alternative (Day 5–7 if no DM reply)</h3>
+        <p>Instead of DM 2, sometimes a single story reply lands better. Under 100 chars. Example pulls:</p>
+        <ul class="small">
+          <li>"Saved this for the team."</li>
+          <li>"The {SPECIFIC_DETAIL} is the move."</li>
+          <li>"The framing here is sharp."</li>
+          <li>"This is exactly what most {NICHE} accounts miss."</li>
+          <li>"The contrast with most {NICHE} content is real."</li>
+        </ul>
+        <p class="small muted">Use sparingly. One story reply per week per prospect, max. Tactical / business stories only, never personal life.</p>
+
+        <p class="small muted">Source: <code>scrollmedia_co_team_voice/02_dm_templates.md</code> · DM Type 1 follow-up + DM Type 2 story reply.</p>
+      </div>
+    </details>
+
+    <details class="acc reveal">
+      <summary>DM 3 · Manual share (Day 8–10) · the value frame</summary>
+      <div class="acc-body">
+        <p><strong>Trigger:</strong> Warm reply landed (even "thanks!" counts). <strong>Length:</strong> 2–3 sentences with the link.</p>
+
+        <h3>The frame</h3>
+        <pre><code>Hey {FIRST_NAME}, we put together a free Local Brand Instagram Growth Manual specifically for Cincy brands like {BUSINESS_NAME}. Walks through bio, content pillars, Reels, and a 7-day kickstart. Free, no email required.
+
+https://tools.scrollmedia.co/growth-manual/</code></pre>
+
+        <h3>Worked example · Northside coffee shop, Emily sending</h3>
+        <pre><code>Hey Maya, we put together a free Local Brand Instagram Growth Manual specifically for Cincy brands like {Northside Coffee}. Section 4 is on cadence for small accounts, should land hard given where you're at right now.
+
+https://tools.scrollmedia.co/growth-manual/
+
+Cheers, Emily.</code></pre>
+
+        <h3>Voice check</h3>
+        <ul>
+          <li>"Free, no email required" is the line that earns the click. Don't bury it.</li>
+          <li>Point them to a specific section if their reply gave you a real hint of what they need. Generic = lower click rate. Targeted = higher.</li>
+          <li>Don't stack the Manual + Calendly + audit offer in one message. One ask per touch.</li>
+          <li>Don't pitch the agency. The Manual is the pitch. Let it land.</li>
+        </ul>
+
+        <div class="callout signal">
+          <strong>After the Manual share.</strong> <code>Funnel Stage</code> = Manual Shared. <code>Next Touch Date</code> = today + 4–5 days. Wait for engagement signal (DM reply, story view streak, comment on your posts). If silence, hold and re-evaluate Day 12.
+        </div>
+
+        <p class="small muted">Source: <code>playbooks/team_ig_outreach_playbook.md</code> · Day 8–10 + Manual lead magnet.</p>
+      </div>
+    </details>
+
+    <details class="acc reveal">
+      <summary>DM 4 · Audit offer (Day 12–14) · 20 openers + worked example</summary>
+      <div class="acc-body">
+        <p><strong>Trigger:</strong> Continued engagement after Manual share. <strong>Length:</strong> 200–250 chars. <strong>Includes the "5 min, free, no pitch" line.</strong></p>
+
+        <h3>Body template</h3>
+        <pre><code>{OPENING_LINE} {SPECIFIC_LEVER_OR_OBSERVATION}.
+
+5 min, free, no pitch. Cheers, {OPERATOR_FIRST_NAME}.</code></pre>
+
+        <h3>Worked example · Fitness studio, Rachel sending</h3>
+        <pre><code>Hey Mike, Rachel from Scroll Media. Want me to record a quick Loom on Peak Strength? One specific lever. Your reels are class-shot heavy where the move is member-led.
+
+5 min, free, no pitch. Cheers, Rachel.</code></pre>
+        <p class="small muted">Char count ~225.</p>
+
+        <h3>Opening line library (20 options)</h3>
+        <ol>
+          <li>Hey {FIRST_NAME}, Riley from Scroll Media. Want me to record a quick Loom on {BUSINESS_NAME}?</li>
+          <li>{FIRST_NAME}, Rachel here. Audit offer.</li>
+          <li>Hey {FIRST_NAME}, Emily from Scroll Media. One specific lever for {BUSINESS_NAME}.</li>
+          <li>{FIRST_NAME}, Riley here. Want a 5-min Loom on your IG?</li>
+          <li>Hey {FIRST_NAME}, mind if I record a quick walkthrough for {BUSINESS_NAME}?</li>
+          <li>{FIRST_NAME}, Rachel from Scroll Media. Would a Loom be useful?</li>
+          <li>Hey {FIRST_NAME}, one tactical move for your IG. Emily here.</li>
+          <li>{FIRST_NAME}, Riley from Scroll Media. Want me to send a Loom?</li>
+          <li>Hey {FIRST_NAME}, real quick on {BUSINESS_NAME}. Want a free walkthrough?</li>
+          <li>{FIRST_NAME}, Rachel here. Specific lever for your account.</li>
+          <li>Hey {FIRST_NAME}, audit offer from the team. Emily here.</li>
+          <li>{FIRST_NAME}, Riley from Scroll Media. Want a 5-min read on your IG?</li>
+          <li>Hey {FIRST_NAME}, mind if I record? Rachel from Scroll Media.</li>
+          <li>{FIRST_NAME}, Emily here. Quick walkthrough offer.</li>
+          <li>Hey {FIRST_NAME}, want a free Loom on {BUSINESS_NAME}? Riley from Scroll Media.</li>
+          <li>{FIRST_NAME}, Rachel from Scroll Media. One move you're not making yet.</li>
+          <li>Hey {FIRST_NAME}, free Loom offer. Emily here.</li>
+          <li>{FIRST_NAME}, Riley from Scroll Media. Want a 5-min read?</li>
+          <li>Hey {FIRST_NAME}, mind if I send a Loom on {BUSINESS_NAME}? Rachel here.</li>
+          <li>{FIRST_NAME}, Emily from Scroll Media. Specific tactical lever for your IG.</li>
+        </ol>
+
+        <div class="callout">
+          If they say yes via DM, ask for their email so the Loom lands somewhere real: <em>"Great. Send your email and we'll get it over by EOD."</em>
+        </div>
+
+        <p class="small muted">Source: <code>scrollmedia_co_team_voice/02_dm_templates.md</code> · DM Type 4.</p>
+      </div>
+    </details>
+
+    <details class="acc reveal">
+      <summary>Comment-to-DM transition · when they comment on @scrollmedia.co</summary>
+      <div class="acc-body">
+        <p><strong>Trigger:</strong> Prospect comments on an <code>@scrollmedia.co</code> post (or occasionally on <code>@chase.scrolls</code>). <strong>Highest reply rate</strong> of any DM type. Treat as a warm conversion mechanic.</p>
+
+        <h3>Body template</h3>
+        <pre><code>{OPENING_LINE} {SPECIFIC_FOLLOW_UP_QUESTION_OR_OBSERVATION}.
+
+Cheers, {OPERATOR_FIRST_NAME}.</code></pre>
+
+        <h3>Worked example · Real estate, Riley sending</h3>
+        <pre><code>Hey Marcus, picking up your comment on the buyer journey post. Riley from Scroll Media here. Curious if you're running buyer journey content for your listings yet, or still mostly listing-led. Want to see how you're approaching it.
+
+Cheers, Riley.</code></pre>
+
+        <h3>Opening line shortlist (top 8)</h3>
+        <ol>
+          <li>Hey {FIRST_NAME}, appreciate the comment on the {TOPIC} post. Riley from Scroll Media here.</li>
+          <li>{FIRST_NAME}, your comment on the {TOPIC} reel landed. Rachel from Scroll Media.</li>
+          <li>Hey {FIRST_NAME}, your take in the thread had me check out {BUSINESS_NAME}.</li>
+          <li>{FIRST_NAME}, Emily here. Picked up your comment, slid over.</li>
+          <li>Hey {FIRST_NAME}, sliding over from the comment thread. Riley from Scroll Media.</li>
+          <li>{FIRST_NAME}, sliding from comment to dm so it's easier to track. Riley from Scroll Media.</li>
+          <li>{FIRST_NAME}, picking up the comment thread. Rachel from Scroll Media.</li>
+          <li>Hey {FIRST_NAME}, your take on this was the right one. Emily from Scroll Media.</li>
+        </ol>
+
+        <p class="small">Always reference the specific comment topic so they remember the context. One question per DM. Don't overload.</p>
+        <p class="small muted">Source: <code>scrollmedia_co_team_voice/02_dm_templates.md</code> · DM Type 3.</p>
+      </div>
+    </details>
+
+    <details class="acc reveal">
+      <summary>Compile prompt · Claude prompt to generate fresh variants in 2 minutes</summary>
+      <div class="acc-body">
+        <p>Paste at the top of a new Claude conversation. Fill the bracketed variables with prospect data. Get a draft + one alternate back in agency voice.</p>
+
+        <pre><code>You are writing an Instagram DM in Scroll Media's agency voice for the @scrollmedia.co
+agency account. The DM is being sent by a team-member operator (Riley, Rachel, or Emily)
+who works at Scroll Media.
+
+CONTEXT
+Scroll Media is Cincinnati's Instagram agency for local brands. The @scrollmedia.co
+account is the agency surface (NOT a personal handle). DMs from this account come from
+the agency speaking through one of three operators. The operator identifies themselves
+in the DM ("Riley here from Scroll Media") because the account is a brand account, not
+a personal handle.
+
+The agency-voice DM is calibrated to feel like an experienced agency thoughtful about
+the prospect's brand, NOT like a sales account or a fan. Calm, expert, brand-led.
+
+VOICE RULES (NON-NEGOTIABLE)
+- Proper grammatical capitalization in body (sentence case). Casual but not lowercase.
+- Operator-first identification ("Riley here from Scroll Media") on cold first DMs and
+  comment-to-DM transitions. On story replies and re-engagement, identification is optional.
+- Reads like a thoughtful agency operator talking, not a sales rep.
+- Short. Under 250 chars total. Openers under 150 chars.
+- No links. The Manual link goes through ManyChat keyword trigger or DM 3 only.
+- No CTAs in cold DMs. First DM is observation, not ask.
+- No em-dashes. No hyphens used as em-dash substitutes.
+- No hype words: "transform," "unlock," "elevate," "synergy," "leverage" (verb).
+- No hedging: "I just wanted to," "I hope this finds you well," "circling back."
+- No double exclamation points.
+- White-labeled client proof only. Never name a client. Format: niche + neighborhood + result.
+
+BANNED IN AGENCY VOICE (allowed for Chase voice, NOT here)
+- "kinda," "honestly," "man" (warm landing only). Too casual for agency.
+- "Grind season," "Hot take:," "We're building something special." Chase signatures only.
+- "Peace." Chase Reel sign-off, never used here.
+- First-person founder framing ("I built this"). Operator framing only.
+
+WHICH DM TYPE
+[Specify one: cold_dm_1 / story_reply / comment_to_dm / audit_offer / re_engagement]
+
+LENGTH TARGETS
+- cold_dm_1: 200-250 chars (1-3 sentences)
+- story_reply: under 100 chars (1 line)
+- comment_to_dm: 200-245 chars (1-2 sentences)
+- audit_offer: 200-250 chars (2-3 sentences)
+- re_engagement: 180-220 chars (1-2 sentences)
+
+WHO IS SENDING
+- Operator first name (Riley / Rachel / Emily): [OPERATOR_FIRST_NAME]
+
+PROSPECT DATA
+- First name: [FIRST_NAME]
+- Business name: [BUSINESS_NAME]
+- Niche: [med spa / fitness studio / interior designer / etc.]
+- Cincinnati neighborhood: [NEIGHBORHOOD]
+- Tier: [A/B/C]
+- Instagram handle: [@HANDLE]
+
+WARM-UP CONTEXT (for cold_dm_1)
+[What the operator observed during 5-day warm-up: a specific post that hit, a hook
+pattern, save rate signal, recent shift.]
+
+SPECIFIC OBSERVATION (for cold_dm_1, comment_to_dm, audit_offer)
+[1 sentence specific observation rooted in agency expertise. Real. Not flattery.]
+
+AUDIT LEVERS (for audit_offer only)
+[1-2 specific levers from Audit Research Brief Compiler.]
+
+DELIVERABLES
+1. The DM (within length target)
+2. ONE alternate version with different opening line
+3. Char count for both
+
+DO NOT include @ mentions or # hashtags (DMs are private).
+DO NOT include links of any kind.
+DO NOT use em-dashes.
+DO NOT name clients (white-label only).
+DO NOT use Chase signature phrases.
+DO NOT use first-person founder framing.
+DO use operator-first identification on cold_dm_1, comment_to_dm, audit_offer.</code></pre>
+
+        <div class="callout signal">
+          <strong>Estimated time per DM:</strong> 2–3 minutes (compile + light edit + send).
+        </div>
+
+        <h3>Pre-send checklist</h3>
+        <ul class="small">
+          <li>Sentence case in body, under length target, no em-dashes, no links.</li>
+          <li>No client names (white-label only).</li>
+          <li>Operator identification present on cold_dm_1, comment_to_dm, audit_offer.</li>
+          <li>References real warm-up content (not generic).</li>
+          <li>{FIRST_NAME} and {BUSINESS_NAME} substituted correctly.</li>
+          <li>Cheers signoff appropriate for length.</li>
+          <li>Warm-up complete before cold_dm_1 (5 days A-tier, 3–5 days B/C-tier).</li>
+        </ul>
+
+        <p class="small muted">Source: <code>scrollmedia_co_team_voice/03_compile_prompt.md</code>.</p>
+      </div>
+    </details>
+
+    <p class="small muted" style="margin-top: var(--sp-5);">Source: <code>playbooks/team_ig_outreach_playbook.md</code> + <code>templates/03_ig_dm_system/scrollmedia_co_team_voice/</code>. The markdowns are the source of truth; this portal rebuilds from them.</p>
   </div>
 </section>
 
@@ -1537,37 +1901,32 @@ Cheers, Riley.</div>
       </ul>
     </div>
 
-    <h3>Recording assignment (post-v2 prospect tiering)</h3>
+    <h3>Recording assignment</h3>
     <div class="table-wrap reveal">
       <table>
         <thead>
-          <tr><th>Tier</th><th>Channel that triggered audit response</th><th>Records the audit</th></tr>
+          <tr><th>Owner</th><th>Tier</th><th>Records the audit</th></tr>
         </thead>
         <tbody>
           <tr>
+            <td><span class="op chase"><span class="op-mark">C</span> Chase</span></td>
+            <td><span class="tag azure">A / B / C</span></td>
+            <td>Chase records (any prospect owned by Chase, any tier)</td>
+          </tr>
+          <tr>
+            <td><span class="op"><span class="op-mark">RI/RA/E</span> Team</span></td>
             <td><span class="tag azure">A</span></td>
-            <td>Email or LinkedIn reply</td>
-            <td><span class="op chase"><span class="op-mark">C</span> Chase</span> (col K = Chase)</td>
+            <td>Owner records, then Chase reviews (24-hr SLA before send)</td>
           </tr>
           <tr>
-            <td><span class="tag azure">A</span></td>
-            <td>IG@scroll reply</td>
-            <td>IG@scroll Owner from col AB, with Chase review (24-hr SLA)</td>
-          </tr>
-          <tr>
+            <td><span class="op"><span class="op-mark">RI/RA/E</span> Team</span></td>
             <td><span class="tag azure">B</span></td>
-            <td>Email or LinkedIn reply</td>
-            <td><span class="op chase"><span class="op-mark">C</span> Chase</span> (col K = Chase)</td>
+            <td>Owner records, self-checklist (no Chase review SLA)</td>
           </tr>
           <tr>
-            <td><span class="tag azure">B</span></td>
-            <td>IG@scroll reply</td>
-            <td>IG@scroll Owner from col AB, self-checklist (no Chase review SLA)</td>
-          </tr>
-          <tr>
+            <td><span class="op"><span class="op-mark">RI/RA/E</span> Team</span></td>
             <td><span class="tag azure">C</span></td>
-            <td>IG@scroll reply (only channel)</td>
-            <td>IG@scroll Owner from col AB (= col K for C-tier)</td>
+            <td>No proactive audits. Owner can record reactively if a hot signal lands.</td>
           </tr>
         </tbody>
       </table>
@@ -1633,7 +1992,7 @@ Hot signals leading to this audit:
   <div class="container">
     <p class="section-kicker">Section 07</p>
     <h2>@scrollmedia.co posting strategy</h2>
-    <p class="intro">The grid is acquisition air cover. Every cold prospect taps the profile before they reply. Empty grid, inconsistent posting, or pitchy content kills conversion in 5 seconds.</p>
+    <p class="intro">The grid is acquisition air cover. Every cold prospect taps the profile before they reply. Empty grid, inconsistent posting, or pitchy content kills conversion in 5 seconds. This is a team-collective workstream. Riley, Rachel, and Emily game-plan the grid together.</p>
 
     <div class="summary reveal">
       <h4 style="margin-top: 0;">The cadence that holds the grid alive</h4>
@@ -1643,6 +2002,10 @@ Hot signals leading to this audit:
         <li><strong>1 to 2 Reels/week</strong> (subset of feed). Chase records, team repurposes.</li>
         <li><strong>Reshare every Chase content drop</strong> to story within 24 hours with agency-voice framing.</li>
       </ul>
+    </div>
+
+    <div class="callout signal reveal">
+      <strong>How the team divides + conquers.</strong> The posting strategy is collective. All three team operators contribute pillar ideas, hooks, and execution. Don't wait for someone else to drive. A reasonable starting frame: weekly 30-min huddle every Monday to plan the week's posts, rotating ownership across pillars, all three contributing ideas and shipping. You decide the role split together. The portal gives you the framework; the team owns the execution.
     </div>
 
     <h3>Content pillars</h3>
@@ -1670,18 +2033,44 @@ Hot signals leading to this audit:
     </div>
 
     <details class="acc reveal">
+      <summary>See the weekly team huddle framework (30 min Monday)</summary>
+      <div class="acc-body">
+        <h3 style="margin-top: var(--sp-3);">Suggested agenda (30 min, Monday morning)</h3>
+        <ol>
+          <li><strong>Last week's pulse (5 min).</strong> Which posts saved hardest. Which DMs came in from the grid. Any patterns to repeat or kill.</li>
+          <li><strong>This week's slate (15 min).</strong> 3 to 5 feed posts. One from each pillar minimum. Who has the hook for each. Whose Canva queue gets the build.</li>
+          <li><strong>Stories rotation (5 min).</strong> Who runs Monday stories, Tuesday, Wednesday, etc. Behind-the-scenes vs proof vs neighborhood spotlight rotation.</li>
+          <li><strong>Inbound DM coverage (5 min).</strong> Who has DM watch for the week. 4-hour reply SLA during business hours.</li>
+        </ol>
+
+        <h3>Rotating ownership across the team</h3>
+        <p>No fixed role assignments. The frame Riley / Rachel / Emily land on is your call. A reasonable shape:</p>
+        <ul>
+          <li><strong>Pillar rotation.</strong> Each operator takes the lead on one pillar per week. Lead means: drafts the hook, builds the post in Canva (or briefs whoever's on Canva that week), writes the caption, schedules. Rotate weekly so no operator owns the same pillar twice in a month.</li>
+          <li><strong>Stories rotation.</strong> Pair stories with the IG@scroll outreach block. Whoever is on shift for outreach that day handles the story slot. Aim for 1 to 2 stories per shift.</li>
+          <li><strong>Reels.</strong> Chase records 1 to 2 per week. Team repurposes for additional formats (carousel breakdown, story sequence) when the Reel lands hard.</li>
+          <li><strong>Inbound DMs from grid traffic.</strong> Whoever is on DM watch that day handles inbound. If a warm prospect surfaces who fits another operator's geo zone, hand off the prospect (not the conversation midway).</li>
+        </ul>
+
+        <div class="callout">
+          <strong>The rule.</strong> Posting is not a solo workstream. Three operators contributing ideas + execution beats one operator owning the grid every time. If the rotation drifts (one person doing everything), flag in Slack.
+        </div>
+      </div>
+    </details>
+
+    <details class="acc reveal">
       <summary>See the cadence table + strategic logic</summary>
       <div class="acc-body">
         <h3 style="margin-top: var(--sp-3);">Cadence (locked for the current build phase)</h3>
         <div class="table-wrap">
           <table>
-            <thead><tr><th>Surface</th><th>Cadence</th><th>Owner</th></tr></thead>
+            <thead><tr><th>Surface</th><th>Cadence</th><th>Ownership</th></tr></thead>
             <tbody>
-              <tr><td>Feed posts</td><td>3 to 5 per week</td><td>Operator rotation (Chase + team)</td></tr>
-              <tr><td>Stories</td><td>1 to 2 per day, 5 days per week minimum</td><td>Operator on shift</td></tr>
-              <tr><td>Reels</td><td>1 to 2 per week (subset of feed posts)</td><td>Chase records, team can repurpose</td></tr>
-              <tr><td>Carousels</td><td>2 to 3 per week (subset of feed posts)</td><td>Operator rotation</td></tr>
-              <tr><td>Cross-account amplification</td><td>Per Chase content drop on @chase.scrolls</td><td>@scrollmedia.co reshares within 24 hours</td></tr>
+              <tr><td>Feed posts</td><td>3 to 5 per week</td><td>Team-collective. Weekly pillar rotation across Riley / Rachel / Emily.</td></tr>
+              <tr><td>Stories</td><td>1 to 2 per day, 5 days per week minimum</td><td>Operator on outreach shift handles the story slot.</td></tr>
+              <tr><td>Reels</td><td>1 to 2 per week (subset of feed posts)</td><td>Chase records. Team can repurpose into carousels or story sequences.</td></tr>
+              <tr><td>Carousels</td><td>2 to 3 per week (subset of feed posts)</td><td>Team-collective. Rotating pillar lead drafts and builds.</td></tr>
+              <tr><td>Cross-account amplification</td><td>Per Chase content drop on @chase.scrolls</td><td>Whichever team operator is on DM / story watch that day reshares within 24 hours.</td></tr>
             </tbody>
           </table>
         </div>
@@ -1826,11 +2215,129 @@ Hot signals leading to this audit:
 </section>
 
 <!-- ====================================================================
-     8. ESCALATION + TROUBLESHOOTING
+     8. ICP IDEATION PILLARS (NEW v1.3)
+     ==================================================================== -->
+<section class="block" id="ideation">
+  <div class="container">
+    <p class="section-kicker">Section 08</p>
+    <h2>ICP ideation pillars</h2>
+    <p class="intro">Every post idea passes through one filter: <strong>does it hit an obstacle our ICP is feeling, or paint a dream outcome they want?</strong> The 4 content pillars stay as content categorization. The obstacles + dream outcomes are the ideation angles applied across all 4 pillars.</p>
+
+    <div class="summary reveal">
+      <h4 style="margin-top: 0;">The ICP refined for ideation</h4>
+      <p>A Cincinnati or Dayton-area local brand founder, 25–50 years old, operating a service or retail business with real foot traffic or in-person experience. They've been running IG themselves or with a generalist agency. They're past the startup phase but haven't cracked Instagram. They're not Gen Z native, they're skeptical of marketing speak, they want results not vibes, and they care about how their brand reads to their actual neighborhood.</p>
+    </div>
+
+    <h3>5 obstacles · pain points driving them to want Scroll</h3>
+    <div class="table-wrap reveal">
+      <table>
+        <thead><tr><th>#</th><th>Obstacle</th><th>What's underneath</th></tr></thead>
+        <tbody>
+          <tr><td>1</td><td>"I'm posting consistently but nothing's moving."</td><td>Flat performance, no signal of growth.</td></tr>
+          <tr><td>2</td><td>"I don't know what's actually working or why."</td><td>No strategy, chasing tips, throwing darts.</td></tr>
+          <tr><td>3</td><td>"I've been burned by an agency before."</td><td>Generic content, no Cincinnati relevance.</td></tr>
+          <tr><td>4</td><td>"I don't have time and my team doesn't either."</td><td>Operationally drowning.</td></tr>
+          <tr><td>5</td><td>"Competitors are gaining ground on Instagram and I can see it."</td><td>Market position anxiety.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>5 dream outcomes · success if Scroll works perfectly</h3>
+    <div class="table-wrap reveal">
+      <table>
+        <thead><tr><th>#</th><th>Dream outcome</th><th>What it looks like</th></tr></thead>
+        <tbody>
+          <tr><td>1</td><td>"Instagram is finally driving real business."</td><td>Foot traffic, leads, sales visible in P&amp;L.</td></tr>
+          <tr><td>2</td><td>"My brand looks legit on Instagram."</td><td>Authority, professionalism, pride.</td></tr>
+          <tr><td>3</td><td>"I have a system running in the background I can trust."</td><td>Founder gets time back.</td></tr>
+          <tr><td>4</td><td>"I'm known in my Cincinnati neighborhood as THE [niche]."</td><td>Local authority.</td></tr>
+          <tr><td>5</td><td>"My competitors are watching me now."</td><td>Market position flipped.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Obstacle → dream outcome mapping</h3>
+    <p>Pair the pain with the relief. Every great post hits one column and points at the matching column on the other side.</p>
+    <div class="table-wrap reveal">
+      <table>
+        <thead><tr><th>Obstacle</th><th>Dream outcome</th></tr></thead>
+        <tbody>
+          <tr><td>Posting but nothing moves</td><td>Instagram drives real business</td></tr>
+          <tr><td>Don't know what works</td><td>Have a system I can trust</td></tr>
+          <tr><td>Burned by an agency</td><td>Brand looks legit</td></tr>
+          <tr><td>No time, no team</td><td>System running in the background</td></tr>
+          <tr><td>Competitors winning</td><td>Competitors watching us now</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout signal reveal">
+      <strong>How to use this in ideation.</strong> Every post idea passes through this filter: <em>does this hit an obstacle, or paint a dream outcome?</em> If neither, kill the idea. The 4 content pillars stay as categorization (Cincinnati authority / tactical advice / proof / BTS). The obstacles + dream outcomes are the ideation angles applied across all 4 pillars.
+    </div>
+
+    <details class="acc reveal">
+      <summary>See pillar × angle combinations (worked examples)</summary>
+      <div class="acc-body">
+        <h3 style="margin-top: var(--sp-3);">Example combinations</h3>
+        <div class="grid-2">
+          <div class="panel">
+            <h4 style="margin-top: 0;">Pillar 2 (tactical) + Obstacle 1 (plateauing)</h4>
+            <p class="small">"If your IG is flat-lined, check these 3 things."</p>
+            <p class="small muted">Why it works: names the exact pain, promises a runnable fix in 3 beats. Tactical pillar gives the runnable list.</p>
+          </div>
+          <div class="panel">
+            <h4 style="margin-top: 0;">Pillar 3 (proof) + Dream 1 (real business)</h4>
+            <p class="small">"A Hyde Park med spa we work with saw bookings follow their Save rate jump."</p>
+            <p class="small muted">Why it works: white-labeled proof tied directly to the business outcome the ICP actually wants (real revenue, not vanity metrics).</p>
+          </div>
+          <div class="panel">
+            <h4 style="margin-top: 0;">Pillar 1 (Cincy authority) + Dream 4 (neighborhood authority)</h4>
+            <p class="small">"What it looks like to be THE [niche] in your Cincinnati neighborhood."</p>
+            <p class="small muted">Why it works: positioning piece. Reads as a how-to but sells the dream outcome. Cincinnati naming makes it specific.</p>
+          </div>
+          <div class="panel">
+            <h4 style="margin-top: 0;">Pillar 4 (BTS) + Obstacle 3 (burned by an agency)</h4>
+            <p class="small">"The 3 questions we ask every prospect before we'd quote a single dollar."</p>
+            <p class="small muted">Why it works: reverse-pitch. Speaks directly to the ICP that's been burned. Positions us as the opposite of the pattern they're scared of.</p>
+          </div>
+          <div class="panel">
+            <h4 style="margin-top: 0;">Pillar 2 (tactical) + Dream 3 (system in background)</h4>
+            <p class="small">"The 4-touch weekly rhythm that runs without you watching."</p>
+            <p class="small muted">Why it works: tactical post that sells the dream of operator-level systems. Cincinnati founder reads this and pictures less work.</p>
+          </div>
+          <div class="panel">
+            <h4 style="margin-top: 0;">Pillar 3 (proof) + Obstacle 5 (competitors winning)</h4>
+            <p class="small">"What changed for an Oakley fitness studio after their first 60 days with us."</p>
+            <p class="small muted">Why it works: proof tied to market-position shift. ICPs feeling competitive pressure read this and self-identify.</p>
+          </div>
+        </div>
+
+        <h3>The ideation prompt (use in weekly huddle)</h3>
+        <pre><code>For [pillar]:
+
+  Which obstacle (1-5) does this idea hit?
+  Which dream outcome (1-5) does it paint?
+
+  If neither: kill it.
+  If both: sharpest possible angle.
+  If one: ship it.</code></pre>
+
+        <div class="callout">
+          <strong>Filter ruthlessly.</strong> Most "post ideas" fail this test. That's the test working. The ICP doesn't need more content. They need content that names their pain or shows them the way out.
+        </div>
+      </div>
+    </details>
+
+    <p class="small muted" style="margin-top: var(--sp-5);">Source: <code>strategy/scrollmedia_co_ig_posting_strategy.md</code> · ICP ideation section. The markdown is the source of truth.</p>
+  </div>
+</section>
+
+<!-- ====================================================================
+     9. ESCALATION + TROUBLESHOOTING (renumbered v1.3)
      ==================================================================== -->
 <section class="block" id="escalation">
   <div class="container">
-    <p class="section-kicker">Section 08</p>
+    <p class="section-kicker">Section 09</p>
     <h2>Escalation + troubleshooting</h2>
     <p class="intro">When to ping Chase. When to ping the AM. When to act, when to ask. The most common escalation is the hot handoff: a prospect signals real interest and you route to Chase instead of trying to close.</p>
 
@@ -1875,10 +2382,10 @@ Cheers, {Your First Name}.</code></pre>
 
         <h3>Step 2 · spreadsheet update (immediate)</h3>
         <ul>
-          <li>Status → <code>Hot · Handoff to Chase</code></li>
-          <li>Last Touch Channel → <code>IG@scroll</code></li>
-          <li>Engagement Signals → log the positive reply</li>
-          <li>Reply Notes → paste the prospect's reply text verbatim</li>
+          <li><code>Funnel Stage</code> (col M) → <code>Discovery Booked</code> (or <code>Audit Shared</code> if audit triggered the handoff and discovery isn't yet on calendar)</li>
+          <li><code>Last Touch Channel</code> (col Q) → <code>IG@scroll</code></li>
+          <li><code>Engagement Signals</code> (col T) → log the positive reply with date</li>
+          <li><code>Notes</code> (col U) → paste the prospect's reply text verbatim</li>
         </ul>
 
         <h3>Step 3 · Slack #bd-team handoff alert</h3>
@@ -1993,11 +2500,11 @@ Ready for you when you are.</code></pre>
 </section>
 
 <!-- ====================================================================
-     9. RESOURCES
+     10. RESOURCES
      ==================================================================== -->
 <section class="block" id="resources">
   <div class="container">
-    <p class="section-kicker">Section 09</p>
+    <p class="section-kicker">Section 10</p>
     <h2>Resources</h2>
     <p class="intro">Everything you need to work the system. Bookmark these.</p>
 
@@ -2014,11 +2521,11 @@ Ready for you when you are.</code></pre>
       <div class="panel">
         <h4>Templates and compile prompts</h4>
         <ul class="small">
-          <li>IG DM templates (agency voice): <code>templates/03_ig_dm_system/scrollmedia_co_team_voice/</code></li>
-          <li>IG warm-up protocol: <code>scrollmedia_co_team_voice/01_warm_up_protocol.md</code></li>
-          <li>IG DM compile prompt: <code>scrollmedia_co_team_voice/03_compile_prompt.md</code></li>
+          <li><a href="#playbook">Full DM script library</a> (embedded in this portal, Section 04)</li>
           <li>Audit script: <code>templates/05_loom_audit_system/01_audit_script.md</code></li>
           <li>Audit research brief compiler: <code>05_loom_audit_system/02_research_brief_compiler.md</code></li>
+          <li>Audit team checklist: <code>05_loom_audit_system/05_team_checklist.md</code></li>
+          <li>Source-of-truth markdowns: <code>templates/03_ig_dm_system/scrollmedia_co_team_voice/</code></li>
         </ul>
       </div>
 
@@ -2058,7 +2565,7 @@ Ready for you when you are.</code></pre>
       <a href="#who-you-own">Who you own</a>
       <a href="#escalation">Escalation</a>
     </div>
-    <div class="meta">Scroll Media · BD Portal · v1.2 · May 11, 2026</div>
+    <div class="meta">Scroll Media · BD Portal · v1.3 · May 11, 2026</div>
   </div>
 </footer>
 
