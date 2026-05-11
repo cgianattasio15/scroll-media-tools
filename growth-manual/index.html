@@ -1,0 +1,1422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<meta name="theme-color" content="#FAFDFF" />
+<title>The Local Brand Instagram Growth Manual · Scroll Media</title>
+<meta name="description" content="How local brand founders run Instagram for compounding growth. A 15-minute manual from Cincinnati's Instagram agency for local brands. Free, no email gate." />
+
+<!-- Open Graph / social sharing -->
+<meta property="og:type" content="article" />
+<meta property="og:title" content="The Local Brand Instagram Growth Manual" />
+<meta property="og:description" content="How local brand founders run Instagram for compounding growth. From Cincinnati's Instagram agency for local brands." />
+<meta property="og:url" content="https://tools.scrollmedia.co/growth-manual/" />
+<meta property="og:site_name" content="Scroll Media" />
+<meta property="og:image" content="https://tools.scrollmedia.co/growth-manual/og.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content="The Local Brand Instagram Growth Manual. Scroll Media." />
+
+<!-- Twitter card -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="The Local Brand Instagram Growth Manual" />
+<meta name="twitter:description" content="How local brand founders run Instagram for compounding growth. Free read." />
+<meta name="twitter:image" content="https://tools.scrollmedia.co/growth-manual/og.png" />
+
+<link rel="canonical" href="https://tools.scrollmedia.co/growth-manual/" />
+<link rel="icon" type="image/svg+xml" href="https://tools.scrollmedia.co/assets/scroll-favicon.svg" />
+
+<!-- Source Sans 3 (working face per brand_system.md §5.2) -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+<style>
+  /* =========================================================
+     TOKENS — inherited from brand_system.md §5 (Layer 1)
+     Light theme. Ghost default. Lucid for emphasis.
+     Hard corners. No shadows by default.
+     ========================================================= */
+  :root {
+    --ghost: #FAFDFF;
+    --azure: #0C3387;
+    --lucid: #CBE9FF;
+    --highlighter: #E2ED7A;
+    --shadow: #151516;
+
+    --azure-900: #071d4f;
+    --azure-800: #0c3387;
+    --azure-600: #254fb0;
+    --azure-400: #7a9ad8;
+    --azure-200: #b9cdee;
+
+    --lucid-deep: #9ecee8;
+    --lucid-soft: #e4f3ff;
+
+    --bg: var(--ghost);
+    --bg-alt: #f5f8fb;
+    --bg-panel: var(--lucid-soft);
+    --fg: var(--shadow);
+    --fg-heading: var(--azure);
+    --fg-muted: #5a6070;
+    --fg-subtle: #9097a6;
+    --fg-on-azure: var(--ghost);
+    --accent: var(--lucid);
+    --signal: var(--highlighter);
+
+    --rule: rgba(12, 51, 135, 0.20);
+    --rule-strong: rgba(12, 51, 135, 0.40);
+    --rule-faint: rgba(12, 51, 135, 0.08);
+
+    --fs-xs: 11px;
+    --fs-sm: 13px;
+    --fs-base: 16px;
+    --fs-md: 18px;
+    --fs-lg: 22px;
+    --fs-xl: 26px;
+    --fs-2xl: 34px;
+    --fs-3xl: 46px;
+    --fs-4xl: 64px;
+
+    --tracking-tight: -0.01em;
+    --tracking-normal: 0;
+    --tracking-wide: 0.08em;
+    --tracking-wider: 0.14em;
+
+    --lh-tight: 1.08;
+    --lh-snug: 1.22;
+    --lh-normal: 1.5;
+    --lh-relaxed: 1.65;
+
+    --sp-1: 4px;
+    --sp-2: 8px;
+    --sp-3: 12px;
+    --sp-4: 16px;
+    --sp-5: 24px;
+    --sp-6: 32px;
+    --sp-7: 40px;
+    --sp-8: 56px;
+    --sp-9: 80px;
+    --sp-10: 120px;
+
+    --r-sm: 4px;
+    --r-md: 8px;
+    --r-lg: 16px;
+    --r-pill: 999px;
+
+    --maxw: 1080px;
+    --maxw-prose: 720px;
+    --nav-h: 56px;
+
+    --sans: 'Source Sans 3', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+    --mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  }
+
+  /* =========================================================
+     BASE
+     ========================================================= */
+  *, *::before, *::after { box-sizing: border-box; }
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+    font-size: var(--fs-base);
+  }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--fg);
+    font-family: var(--sans);
+    font-size: var(--fs-base);
+    line-height: var(--lh-relaxed);
+    font-feature-settings: 'tnum' 1, 'cv11' 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--azure);
+    outline-offset: 2px;
+  }
+
+  section { scroll-margin-top: 80px; }
+  h1, h2, h3 { scroll-margin-top: 80px; }
+
+  a {
+    color: var(--azure);
+    text-decoration: none;
+    border-bottom: 1px solid var(--rule);
+    transition: border-color 120ms ease, color 120ms ease;
+  }
+  a:hover { border-bottom-color: var(--azure); }
+  a.plain { border-bottom: 0; }
+  a.plain:hover { color: var(--azure-600); }
+
+  ::selection { background: var(--highlighter); color: var(--shadow); }
+
+  /* =========================================================
+     LAYOUT
+     ========================================================= */
+  .container {
+    max-width: var(--maxw);
+    margin: 0 auto;
+    padding: 0 var(--sp-5);
+  }
+  .prose {
+    max-width: var(--maxw-prose);
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* =========================================================
+     METADATA STRIP
+     ========================================================= */
+  .meta-strip {
+    background: var(--bg);
+    border-bottom: 1px solid var(--rule);
+    color: var(--fg-muted);
+    font-size: var(--fs-xs);
+    letter-spacing: var(--tracking-wider);
+    text-transform: uppercase;
+  }
+  .meta-strip-inner {
+    max-width: var(--maxw);
+    margin: 0 auto;
+    padding: 8px var(--sp-5);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--sp-4);
+  }
+  .meta-strip strong { color: var(--azure); font-weight: 600; }
+
+  /* =========================================================
+     STICKY NAV — hairline below, type-led
+     ========================================================= */
+  .nav {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: rgba(250, 253, 255, 0.92);
+    backdrop-filter: saturate(140%) blur(8px);
+    -webkit-backdrop-filter: saturate(140%) blur(8px);
+    border-bottom: 1px solid var(--rule);
+  }
+  .nav-inner {
+    max-width: var(--maxw);
+    margin: 0 auto;
+    padding: 12px var(--sp-5);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--sp-5);
+    min-height: var(--nav-h);
+  }
+  .brand {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    font-weight: 700;
+    font-size: var(--fs-md);
+    letter-spacing: var(--tracking-tight);
+    color: var(--azure);
+    flex-shrink: 0;
+  }
+  .brand .sep {
+    color: var(--rule-strong);
+    font-weight: 400;
+  }
+  .brand .label {
+    color: var(--fg-muted);
+    font-weight: 500;
+    font-size: var(--fs-sm);
+    letter-spacing: 0;
+    text-transform: none;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2px;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .nav-links::-webkit-scrollbar { display: none; }
+  .nav-links a {
+    flex: 0 0 auto;
+    padding: 6px 10px;
+    color: var(--fg-muted);
+    font-size: var(--fs-sm);
+    font-weight: 500;
+    white-space: nowrap;
+    border-bottom: 0;
+    border-radius: var(--r-sm);
+    transition: color 120ms ease, background 120ms ease;
+  }
+  .nav-links a:hover {
+    color: var(--azure);
+    background: var(--lucid-soft);
+  }
+  .nav-links a.active {
+    color: var(--azure);
+    background: var(--lucid);
+  }
+
+  .nav-cta {
+    flex-shrink: 0;
+    background: var(--azure);
+    color: var(--ghost);
+    font-size: var(--fs-sm);
+    font-weight: 600;
+    padding: 8px 14px;
+    border: 1px solid var(--azure);
+    border-radius: 0;
+    transition: background 120ms ease;
+    white-space: nowrap;
+  }
+  .nav-cta:hover {
+    background: var(--azure-900);
+    border-color: var(--azure-900);
+    color: var(--ghost);
+  }
+
+  @media (max-width: 880px) {
+    .nav-inner {
+      flex-direction: column;
+      align-items: stretch;
+      gap: 8px;
+      padding: 10px var(--sp-4);
+    }
+    .brand { justify-content: flex-start; }
+    .nav-links { padding: 2px 0 4px; order: 2; }
+    .nav-cta { order: 1; align-self: flex-end; }
+  }
+
+  /* =========================================================
+     HERO
+     ========================================================= */
+  .hero {
+    padding: var(--sp-9) 0 var(--sp-8);
+    border-bottom: 1px solid var(--rule);
+  }
+  .hero .container { max-width: var(--maxw-prose); }
+  .hero .label {
+    display: inline-block;
+    font-size: var(--fs-xs);
+    letter-spacing: var(--tracking-wider);
+    text-transform: uppercase;
+    color: var(--fg-muted);
+    margin-bottom: var(--sp-3);
+    font-weight: 600;
+  }
+  h1.title {
+    font-family: var(--sans);
+    font-size: clamp(36px, 5.6vw, 60px);
+    line-height: var(--lh-tight);
+    letter-spacing: var(--tracking-tight);
+    margin: 0 0 var(--sp-4);
+    font-weight: 700;
+    color: var(--azure);
+  }
+  .hero .subtitle {
+    font-size: var(--fs-md);
+    color: var(--fg-muted);
+    margin: 0 0 var(--sp-5);
+    font-weight: 500;
+  }
+  .lede {
+    font-size: var(--fs-md);
+    color: var(--fg);
+    margin: 0 0 var(--sp-5);
+    line-height: var(--lh-relaxed);
+  }
+  .hero-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--sp-5);
+    padding-top: var(--sp-5);
+    border-top: 1px solid var(--rule);
+    margin-top: var(--sp-6);
+    font-size: var(--fs-sm);
+    color: var(--fg-muted);
+  }
+  .hero-meta span strong {
+    color: var(--shadow);
+    font-weight: 600;
+    margin-right: 4px;
+  }
+
+  /* =========================================================
+     TOC
+     ========================================================= */
+  .toc-section {
+    padding: var(--sp-8) 0;
+    border-bottom: 1px solid var(--rule);
+    background: var(--bg-alt);
+  }
+  .toc-section .container { max-width: var(--maxw-prose); }
+  .toc-section h2.toc-h {
+    font-size: var(--fs-xs);
+    letter-spacing: var(--tracking-wider);
+    text-transform: uppercase;
+    color: var(--fg-muted);
+    font-weight: 600;
+    margin: 0 0 var(--sp-4);
+  }
+  .toc {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    counter-reset: toc;
+  }
+  .toc li {
+    counter-increment: toc;
+    border-bottom: 1px solid var(--rule);
+  }
+  .toc li:first-child { border-top: 1px solid var(--rule); }
+  .toc li a {
+    display: flex;
+    align-items: baseline;
+    gap: var(--sp-4);
+    padding: 14px 0;
+    color: var(--shadow);
+    border-bottom: 0;
+    font-size: var(--fs-md);
+    font-weight: 500;
+    transition: color 120ms ease;
+  }
+  .toc li a::before {
+    content: counter(toc, decimal-leading-zero);
+    color: var(--fg-subtle);
+    font-size: var(--fs-sm);
+    font-weight: 600;
+    letter-spacing: var(--tracking-wide);
+    flex-shrink: 0;
+    width: 28px;
+  }
+  .toc li a:hover { color: var(--azure); }
+
+  /* =========================================================
+     SECTIONS
+     ========================================================= */
+  section.block {
+    padding: var(--sp-9) 0;
+    border-bottom: 1px solid var(--rule);
+  }
+  section.block:last-of-type { border-bottom: 0; }
+  section.block .container { max-width: var(--maxw-prose); }
+
+  .section-num {
+    color: var(--fg-muted);
+    font-size: var(--fs-xs);
+    letter-spacing: var(--tracking-wider);
+    text-transform: uppercase;
+    font-weight: 600;
+    margin-bottom: var(--sp-2);
+    display: block;
+  }
+
+  h2 {
+    font-family: var(--sans);
+    font-size: clamp(28px, 3.4vw, 40px);
+    line-height: var(--lh-snug);
+    margin: 0 0 var(--sp-5);
+    color: var(--azure);
+    font-weight: 700;
+    letter-spacing: var(--tracking-tight);
+  }
+  h3 {
+    font-family: var(--sans);
+    font-size: var(--fs-xl);
+    margin: var(--sp-7) 0 var(--sp-3);
+    color: var(--shadow);
+    font-weight: 700;
+    letter-spacing: var(--tracking-tight);
+    line-height: var(--lh-snug);
+  }
+  h4 {
+    font-size: var(--fs-md);
+    margin: var(--sp-5) 0 var(--sp-2);
+    color: var(--shadow);
+    font-weight: 700;
+  }
+
+  p {
+    margin: 0 0 var(--sp-4);
+    line-height: var(--lh-relaxed);
+  }
+  ul, ol {
+    margin: 0 0 var(--sp-5);
+    padding-left: 24px;
+  }
+  li {
+    margin: var(--sp-2) 0;
+    line-height: var(--lh-relaxed);
+  }
+  li::marker { color: var(--fg-subtle); }
+
+  strong { color: var(--shadow); font-weight: 700; }
+  em { font-style: italic; color: var(--shadow); }
+
+  blockquote {
+    border-left: 2px solid var(--azure);
+    background: var(--lucid-soft);
+    padding: var(--sp-4) var(--sp-5);
+    margin: var(--sp-5) 0;
+    font-size: var(--fs-base);
+    color: var(--shadow);
+    line-height: var(--lh-relaxed);
+  }
+  blockquote p:last-child { margin-bottom: 0; }
+
+  /* =========================================================
+     CALLOUTS — for "Worked example" + "Tactical takeaway"
+     ========================================================= */
+  .callout {
+    background: var(--lucid-soft);
+    border: 1px solid var(--rule);
+    border-left: 2px solid var(--azure);
+    padding: var(--sp-4) var(--sp-5);
+    margin: var(--sp-5) 0;
+    font-size: var(--fs-base);
+  }
+  .callout .kicker {
+    display: inline-block;
+    font-size: var(--fs-xs);
+    letter-spacing: var(--tracking-wider);
+    text-transform: uppercase;
+    color: var(--azure);
+    font-weight: 700;
+    margin-bottom: var(--sp-2);
+  }
+  .callout p:last-child { margin-bottom: 0; }
+  .callout.signal {
+    background: var(--bg);
+    border-left-color: var(--shadow);
+  }
+  .callout.signal .kicker {
+    background: var(--highlighter);
+    color: var(--shadow);
+    padding: 2px 8px;
+  }
+
+  /* =========================================================
+     SAMPLE BIO BLOCK
+     ========================================================= */
+  .sample-block {
+    background: var(--bg-alt);
+    border: 1px solid var(--rule);
+    border-left: 2px solid var(--azure);
+    padding: var(--sp-4) var(--sp-5);
+    margin: var(--sp-4) 0 var(--sp-5);
+    font-family: var(--sans);
+    font-size: var(--fs-base);
+    color: var(--shadow);
+    white-space: pre-wrap;
+    line-height: var(--lh-relaxed);
+  }
+
+  /* =========================================================
+     KICKSTART DAYS
+     ========================================================= */
+  .day {
+    border-top: 1px solid var(--rule);
+    padding: var(--sp-5) 0;
+  }
+  .day:last-of-type { border-bottom: 1px solid var(--rule); }
+  .day h3 {
+    margin: 0 0 var(--sp-3);
+    font-size: var(--fs-lg);
+    color: var(--azure);
+  }
+  .day .day-time {
+    color: var(--fg-muted);
+    font-size: var(--fs-sm);
+    margin-top: var(--sp-2);
+    font-weight: 600;
+    letter-spacing: var(--tracking-wide);
+  }
+
+  /* =========================================================
+     OPT-IN FORM (Kit-compatible)
+     ========================================================= */
+  .optin-section {
+    background: var(--lucid-soft);
+    border-top: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+    padding: var(--sp-9) 0;
+  }
+  .optin-section .container { max-width: var(--maxw-prose); }
+  .optin-card {
+    background: var(--bg);
+    border: 1px solid var(--rule);
+    padding: var(--sp-7);
+  }
+  .optin-card h3 {
+    color: var(--azure);
+    font-size: var(--fs-xl);
+    margin: 0 0 var(--sp-3);
+  }
+  .optin-card .lede {
+    color: var(--fg);
+    font-size: var(--fs-base);
+    margin-bottom: var(--sp-5);
+  }
+  .optin-form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--sp-3);
+  }
+  .optin-form .row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--sp-3);
+  }
+  @media (max-width: 540px) {
+    .optin-form .row { grid-template-columns: 1fr; }
+    .optin-card { padding: var(--sp-5); }
+  }
+  .optin-form label {
+    display: block;
+    font-size: var(--fs-xs);
+    letter-spacing: var(--tracking-wider);
+    text-transform: uppercase;
+    color: var(--fg-muted);
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+  .optin-form input[type="text"],
+  .optin-form input[type="email"] {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1px solid var(--rule-strong);
+    background: var(--bg);
+    color: var(--shadow);
+    font-family: var(--sans);
+    font-size: var(--fs-base);
+    border-radius: 0;
+    transition: border-color 120ms ease;
+  }
+  .optin-form input:focus {
+    outline: none;
+    border-color: var(--azure);
+    box-shadow: 0 0 0 1px var(--azure);
+  }
+  .optin-form button {
+    background: var(--azure);
+    color: var(--ghost);
+    border: 1px solid var(--azure);
+    padding: 12px 20px;
+    font-family: var(--sans);
+    font-size: var(--fs-base);
+    font-weight: 600;
+    cursor: pointer;
+    border-radius: 0;
+    transition: background 120ms ease;
+    margin-top: var(--sp-2);
+  }
+  .optin-form button:hover {
+    background: var(--azure-900);
+    border-color: var(--azure-900);
+  }
+  .optin-form .footnote {
+    font-size: var(--fs-xs);
+    color: var(--fg-muted);
+    margin: var(--sp-2) 0 0;
+    line-height: var(--lh-normal);
+  }
+
+  /* =========================================================
+     CTA SECTION (Discovery call)
+     ========================================================= */
+  .cta-section {
+    padding: var(--sp-9) 0;
+    border-bottom: 1px solid var(--rule);
+  }
+  .cta-section .container { max-width: var(--maxw-prose); }
+  .cta-card {
+    border: 1px solid var(--rule);
+    padding: var(--sp-7);
+  }
+  .cta-card .kicker {
+    display: inline-block;
+    font-size: var(--fs-xs);
+    letter-spacing: var(--tracking-wider);
+    text-transform: uppercase;
+    color: var(--fg-muted);
+    font-weight: 600;
+    margin-bottom: var(--sp-2);
+  }
+  .cta-card h3 {
+    margin: 0 0 var(--sp-3);
+    color: var(--azure);
+    font-size: var(--fs-xl);
+  }
+  .cta-card p { margin-bottom: var(--sp-4); }
+  .btn-primary {
+    display: inline-block;
+    background: var(--azure);
+    color: var(--ghost);
+    padding: 14px 24px;
+    border: 1px solid var(--azure);
+    font-weight: 600;
+    font-size: var(--fs-base);
+    border-bottom: 0;
+    transition: background 120ms ease;
+  }
+  .btn-primary:hover {
+    background: var(--azure-900);
+    border-color: var(--azure-900);
+    color: var(--ghost);
+  }
+
+  /* =========================================================
+     OPTIONS BLOCK (What to do next)
+     ========================================================= */
+  .options {
+    margin: var(--sp-5) 0;
+  }
+  .option {
+    border-top: 1px solid var(--rule);
+    padding: var(--sp-5) 0;
+  }
+  .option:last-child { border-bottom: 1px solid var(--rule); }
+  .option h3 {
+    margin: 0 0 var(--sp-2);
+    font-size: var(--fs-lg);
+    color: var(--azure);
+  }
+  .option p:last-child { margin-bottom: 0; }
+
+  /* =========================================================
+     FOOTER (white-label "About Scroll Media")
+     ========================================================= */
+  footer {
+    background: var(--bg);
+    border-top: 1px solid var(--rule);
+    padding: var(--sp-8) 0 var(--sp-9);
+    color: var(--fg-muted);
+  }
+  footer .container { max-width: var(--maxw-prose); }
+  footer h3 {
+    margin: 0 0 var(--sp-3);
+    color: var(--azure);
+    font-size: var(--fs-lg);
+  }
+  footer p {
+    color: var(--fg);
+    font-size: var(--fs-base);
+    margin-bottom: var(--sp-3);
+  }
+  footer .footer-meta {
+    margin-top: var(--sp-7);
+    padding-top: var(--sp-4);
+    border-top: 1px solid var(--rule);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: var(--sp-3);
+    font-size: var(--fs-xs);
+    letter-spacing: var(--tracking-wide);
+    text-transform: uppercase;
+    color: var(--fg-subtle);
+  }
+  footer .footer-meta a {
+    color: var(--fg-muted);
+    border-bottom: 0;
+  }
+  footer .footer-meta a:hover { color: var(--azure); }
+
+  /* =========================================================
+     PRINT
+     ========================================================= */
+  @media print {
+    .nav, .meta-strip, .nav-cta { display: none; }
+    body { background: white; color: black; }
+    .callout, .optin-section, .cta-section { background: white; border-color: #ccc; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ====================================================================
+     METADATA STRIP
+     ==================================================================== -->
+<div class="meta-strip">
+  <div class="meta-strip-inner">
+    <span><strong>Free read.</strong> No email required. Share with anyone running a local brand.</span>
+    <span class="nowrap">v1.0 · May 2026</span>
+  </div>
+</div>
+
+<!-- ====================================================================
+     STICKY NAV
+     ==================================================================== -->
+<nav class="nav" aria-label="Section navigation">
+  <div class="nav-inner">
+    <div class="brand">
+      Scroll Media <span class="sep">/</span> <span class="label">Growth Manual</span>
+    </div>
+    <div class="nav-links" id="navLinks">
+      <a href="#opportunity">Opportunity</a>
+      <a href="#foundation">Foundation</a>
+      <a href="#signal">Signal</a>
+      <a href="#cadence">Cadence</a>
+      <a href="#reels">Reels</a>
+      <a href="#dms">DMs</a>
+      <a href="#metrics">Metrics</a>
+      <a href="#kickstart">7-day plan</a>
+    </div>
+    <a href="https://calendly.com/scrollmedia/discovery" class="nav-cta plain" target="_blank" rel="noopener">Book a discovery call</a>
+  </div>
+</nav>
+
+<!-- ====================================================================
+     HERO
+     ==================================================================== -->
+<section class="hero" id="top">
+  <div class="container">
+    <span class="label">The Local Brand Instagram Growth Manual · Universal Edition</span>
+    <h1 class="title">How local brand founders run Instagram for compounding growth.</h1>
+    <p class="subtitle">Published by Scroll Media. Cincinnati's Instagram agency for local brands.</p>
+
+    <p class="lede">You run a local brand. You sell to people who can drive to you, walk into your space, book an appointment, or click "buy" from a phone in your zip code. You're somewhere between two and twenty employees, founder-led or close to it, and you're either running your own Instagram or working with one person who does.</p>
+
+    <p>You've watched the "social media tips" content for years. Most of it is written for influencers, ecom brands with 50K ad budgets, or B2B SaaS founders LARPing as creators. Almost none of it is written for the local brand founder trying to fill a calendar, drive foot traffic, or move product on a real-world margin.</p>
+
+    <p><strong>This is written for you.</strong></p>
+
+    <div class="hero-meta">
+      <span><strong>Read time:</strong> 15 to 20 minutes</span>
+      <span><strong>Format:</strong> Manual, not blog post</span>
+      <span><strong>Includes:</strong> 7-day kickstart plan</span>
+    </div>
+  </div>
+</section>
+
+<!-- ====================================================================
+     WHAT YOU'LL GET
+     ==================================================================== -->
+<section class="block" id="overview">
+  <div class="container">
+    <span class="section-num">What you'll get out of this</span>
+    <h2>A clear picture of how local brand Instagram actually works in 2026.</h2>
+    <p>Separated from the noise of viral hacks, AI carousels, and follower-count theater. Specific moves you can run this week. A 7-day kickstart plan at the end if you want a structured starting point.</p>
+    <p>We pulled this together from running Instagram for boutique local brands across Cincinnati. The patterns repeat. The tactics that work for a Hyde Park med spa work for an Oakley fitness studio work for an OTR boutique, with niche-specific adjustments. The shape of "winning on Instagram as a local brand" is more universal than people make it out to be.</p>
+    <p>Save it, come back to it, run the 7-day plan when you're ready.</p>
+  </div>
+</section>
+
+<!-- ====================================================================
+     TABLE OF CONTENTS
+     ==================================================================== -->
+<section class="toc-section" id="contents">
+  <div class="container">
+    <h2 class="toc-h">Table of contents</h2>
+    <ol class="toc">
+      <li><a href="#opportunity">The local-brand Instagram opportunity</a></li>
+      <li><a href="#foundation">The foundation: bio, grid, and content pillars</a></li>
+      <li><a href="#signal">What actually works (signal beats hacks)</a></li>
+      <li><a href="#cadence">The cadence that compounds</a></li>
+      <li><a href="#reels">Reels for local: the format that's winning</a></li>
+      <li><a href="#dms">DMs and comments: turning attention into customers</a></li>
+      <li><a href="#metrics">The metrics that matter (and the ones to ignore)</a></li>
+      <li><a href="#kickstart">The 7-day kickstart plan</a></li>
+      <li><a href="#next">What to do next</a></li>
+      <li><a href="#about">About Scroll Media</a></li>
+    </ol>
+  </div>
+</section>
+
+<!-- ====================================================================
+     1. OPPORTUNITY
+     ==================================================================== -->
+<section class="block" id="opportunity">
+  <div class="container">
+    <span class="section-num">Section 01</span>
+    <h2>The local-brand Instagram opportunity.</h2>
+
+    <p>Instagram is your most-visited surface that isn't your front door. For most local brands, more humans hit your Instagram in a month than walk past your physical location. Every one of those humans is making a decision in under 5 seconds: is this place worth a follow, a save, a visit, or a booking.</p>
+
+    <p>That's the opportunity. It's not a follower contest. It's not a meme account. It's a discovery channel that runs 24 hours a day at zero variable cost, and the people who tap your handle are already curious. You don't need to convince them you exist. You need to convince them you're the answer.</p>
+
+    <p>Most local brands miss this opportunity in one of three ways:</p>
+    <ul>
+      <li>They treat Instagram as a billboard. Pretty pictures, no path to a transaction.</li>
+      <li>They chase whatever format is trending. Reels for the sake of Reels. AI carousels for the sake of AI carousels. No system underneath.</li>
+      <li>They post inconsistently and conclude "Instagram doesn't work for us." Translation: their version of Instagram doesn't work. Instagram works fine.</li>
+    </ul>
+
+    <p>The good news: local Instagram is less competitive than national Instagram. Your audience is smaller, more concentrated, and more loyal once you earn them. A Cincinnati med spa doesn't need 100K followers. They need 3,500 followers in a 30-mile radius who treat the account as a trust signal before booking.</p>
+
+    <p>The math is tighter than people think. If your average client is worth $1,200 over their lifetime, a single new booking per month sourced from Instagram pays for the whole channel several times over. Most local brands aren't getting one new booking per month from Instagram, not because the channel doesn't work, but because they've never built it as a system.</p>
+
+    <div class="callout">
+      <span class="kicker">Worked example</span>
+      <p>A Cincinnati specialty retail brand we work with has held a stable mid-7-to-mid-8 performance score for 6 months running. That's not viral. That's not a hockey stick. That's compounding consistency. Their customer base recognizes them, returns to them, and brings friends. The Instagram account is one of the reasons.</p>
+    </div>
+
+    <div class="callout signal">
+      <span class="kicker">This week</span>
+      <p>Open your Instagram in incognito mode on your phone. Look at it like a stranger. If you can't tell within 5 seconds who you are, what you do, and why someone should follow, your front door is closed.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ====================================================================
+     2. FOUNDATION
+     ==================================================================== -->
+<section class="block" id="foundation">
+  <div class="container">
+    <span class="section-num">Section 02</span>
+    <h2>The foundation: bio, grid, and content pillars.</h2>
+
+    <p>Before you post anything new, fix the foundation. The foundation is what every cold viewer sees in the first 5 seconds. If it's broken, the best Reel in the world won't save you.</p>
+
+    <p>The foundation has three pieces.</p>
+
+    <h3>Bio</h3>
+    <p>Your bio is the only piece of copy on your account that 100% of profile visitors read. Treat it that way. Most local brand bios read like directory listings: "Family-owned. Serving Cincinnati since 2014. Botox, fillers, and skincare." That's a description, not a hook.</p>
+
+    <p>A working bio has four pieces:</p>
+    <ol>
+      <li><strong>Hook.</strong> What makes you different in 3 to 7 words.</li>
+      <li><strong>Offer.</strong> What you do, who it's for.</li>
+      <li><strong>Proof.</strong> A credibility signal. Years in business, neighborhood specificity, a category claim.</li>
+      <li><strong>CTA.</strong> A clear next action.</li>
+    </ol>
+
+    <p>Sample structure:</p>
+    <div class="sample-block">Cincinnati's [niche] for [audience].
+[What you do, in 1 line]
+[Proof line: years, location, credential]
+👇 [CTA: book / shop / dm us]</div>
+
+    <p>Keep it under 4 lines on a phone. Most bios run too long because the founder thinks "more = more value." Less = more conversion.</p>
+
+    <h3>Name field</h3>
+    <p>The name field is the second-most-searchable thing on your profile and most local brands waste it. If your name field is just your brand name, you're invisible to anyone searching for what you do.</p>
+    <p>Add 1 to 3 keywords. Cincinnati. Your neighborhood. Your service. Your category.</p>
+    <div class="sample-block">"[Brand Name]" → "[Brand Name] | Cincinnati Skincare"
+"[Brand Name]" → "[Brand Name] | Hyde Park Deli + Sandwiches"</div>
+    <p>That single change opens you up to discovery searches you currently miss.</p>
+
+    <h3>Link strategy</h3>
+    <p>Your bio link is the only clickable destination from your profile. Stop sending traffic to your homepage. The visitor came from Instagram. They were ready to take an action. The homepage forces them to navigate, which is where they bail.</p>
+
+    <p>Two acceptable patterns:</p>
+    <ul>
+      <li><strong>Single direct destination.</strong> Service businesses link to booking. Retail links to a primary product page or seasonal collection. The cleanest path.</li>
+      <li><strong>Sequenced linktree.</strong> Maximum 5 destinations, ordered top-to-bottom by funnel priority. Top slot = the action you most want them to take. Bottom slot = the lowest-priority option.</li>
+    </ul>
+
+    <p>If you're using Linktree (or Beacons or Stan), audit it. Most are 8 to 12 destinations of equal weight, which means none of them get clicked.</p>
+
+    <h3>Grid first impression</h3>
+    <p>The first 9 grid posts are your visual hook. They tell a stranger what kind of brand you are before they read a single caption. Aesthetic consistency does not mean sameness. It means intentional rhythm. Color, light, subject matter, post format. A cohesive grid signals "this brand is run by someone who cares about details," which is exactly the signal a local brand wants.</p>
+
+    <h3>Content pillars</h3>
+    <p>Pillars are themes, not formats. A pillar is what your content is about. Most local brands ship reactive content: a holiday post, a promo, a flyer, a quote. The audience can't articulate what the account is about, because it isn't about anything.</p>
+
+    <p>Define 3 to 4 pillars in writing. Examples:</p>
+    <ul>
+      <li><strong>Med spa:</strong> treatment education, silent-worry content, team and trust, before-and-after with consent</li>
+      <li><strong>F&amp;B:</strong> menu and product, behind-the-bar process, hours and seasonal drops, community and regulars</li>
+      <li><strong>Fitness studio:</strong> workout breakdowns, member progress stories with consent, coach personality, community moments</li>
+      <li><strong>Real estate:</strong> neighborhood deep-dives, buyer journey content, market reads, personality</li>
+      <li><strong>Interior design:</strong> project breakdowns, process content, aesthetic point of view, sourcing tips</li>
+    </ul>
+
+    <div class="callout">
+      <span class="kicker">Worked example</span>
+      <p>A Cincinnati med spa we work with had a steady 5-month upward performance trajectory between November 2025 and March 2026. Top-of-line metrics improved every month. What changed: clean pillar definition, then content built against pillars instead of built reactively. Same team, same studio, same camera. Different system underneath.</p>
+    </div>
+
+    <div class="callout signal">
+      <span class="kicker">This week</span>
+      <p>Rewrite your bio using the hook + offer + proof + CTA structure. Add 1 to 3 keywords to your name field. Change your link to a single conversion destination or trim your linktree to 5. That's your week.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ====================================================================
+     3. SIGNAL
+     ==================================================================== -->
+<section class="block" id="signal">
+  <div class="container">
+    <span class="section-num">Section 03</span>
+    <h2>What actually works for local brands (signal beats hacks).</h2>
+
+    <p>Most "Instagram growth" advice is written for accounts trying to go viral. Local brands don't need to go viral. Local brands need to be the obvious answer when someone in their zip code searches their category.</p>
+    <p>Different goal. Different game.</p>
+
+    <h3>Saves and sends beat likes</h3>
+    <p>Likes are vanity. Saves and sends are intent. When someone saves your post, they're saying "I might come back to this." When they send it, they're saying "this is relevant to someone I know." Both behaviors correlate to conversion. Likes don't.</p>
+    <p>Build content that earns saves and sends. The lazy way to test it: before you ship a post, ask "would the right viewer save this for later or send it to a friend?" If neither, redesign or kill the post.</p>
+
+    <h3>Silent worries beat polish</h3>
+    <p>Polish wins likes. Silent worries win saves.</p>
+    <p>A polished before-and-after of a med spa treatment gets likes from existing clients. A post that names the silent worry someone has before booking ("If you've been thinking about Botox for 2 years and keep canceling on yourself, here's what I'd want you to know") gets saves from people who haven't booked yet.</p>
+    <p>Your audience has questions they haven't asked you out loud. They're doing the research alone, on their phone, at 11pm on a Tuesday. The brand that names those silent questions in content earns the save, the follow, and eventually the booking.</p>
+
+    <h3>Specificity beats generic</h3>
+    <p>"5 tips for a healthier skin routine" is generic. "What we tell every Cincinnati client about pre-procedure skincare" is specific. The second one feels like it was written by an operator, because it was. The first feels like it was written by a content mill, because it was.</p>
+    <p>Specificity is your moat as a local brand. National content has to be generic to scale. Yours doesn't. Lean in.</p>
+
+    <h3>Reject the hack stack</h3>
+    <p>What doesn't work, and what gets your account penalized:</p>
+    <ul>
+      <li>Follow / unfollow</li>
+      <li>Mass commenting bots</li>
+      <li>Engagement pods</li>
+      <li>Like-for-like</li>
+      <li>DM bots</li>
+      <li>Buying followers</li>
+      <li>AI carousel sweatshops with no point of view</li>
+    </ul>
+    <p>Instagram has spent years building algorithms specifically to detect and demote these signals. They worked in 2017. They actively hurt you in 2026. Real engagement is the only sustainable signal.</p>
+
+    <div class="callout">
+      <span class="kicker">Worked example</span>
+      <p>An Oakley fitness studio we work with hit their strongest 60-day performance stretch of the last 6 months between February and April 2026. Their composite performance score moved from 7.2 to 9.1 in 60 days. The 9.1 was the highest score we've recorded across our entire roster in any month captured. What drove it: format mix shift away from class shots toward member-led content with consent. Authentic environment beat polished promo by a margin we hadn't seen before. No hacks. No bots. Just better signal.</p>
+    </div>
+
+    <div class="callout signal">
+      <span class="kicker">This week</span>
+      <p>Pick your last 5 posts. For each one, ask: would my ideal customer save this or send it? If 3 of 5 are no, the engine is running on the wrong fuel. The fix is content built around your audience's silent worries, not your brand's polish.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ====================================================================
+     4. CADENCE
+     ==================================================================== -->
+<section class="block" id="cadence">
+  <div class="container">
+    <span class="section-num">Section 04</span>
+    <h2>The cadence that compounds.</h2>
+
+    <p>Cadence is where most local brands fail. Not because the math is hard. Because the discipline is hard.</p>
+    <p>Three feed posts per week, shipped consistently for 12 months, beats seven posts per week shipped for 6 weeks followed by ghost mode. The compounding engine only runs if it runs.</p>
+
+    <h3>The cadence floor</h3>
+    <p>The minimum cadence that keeps the algorithm engaged for most local brands:</p>
+    <ul>
+      <li><strong>3 feed posts per week.</strong> Mix of carousel, single image, and Reel calibrated to your niche.</li>
+      <li><strong>3 to 5 story days per week.</strong> Even one story posted on a day moves you from "dormant" to "active" in the algorithm's read.</li>
+    </ul>
+    <p>Below that floor, your account is on life support and the algorithm knows it.</p>
+
+    <h3>The operating sweet spot</h3>
+    <p>For most local brands, 4 to 5 feed posts per week is the operating sweet spot. Beyond 5, you're producing content faster than you can produce strategic thought, which is when posts start getting reactive and shallow. The diminishing returns kick in fast.</p>
+
+    <h3>Format mix by niche</h3>
+    <ul>
+      <li><strong>F&amp;B and retail:</strong> Reels primary (50 to 60% of feed), carousels secondary (25 to 30%), single images for visual identity (15 to 20%). Stories required.</li>
+      <li><strong>Med spa, fitness, interior design:</strong> Carousels and Reels in equal balance (35 to 45% each), single images sparingly (15 to 20%). Stories required.</li>
+      <li><strong>Real estate:</strong> Carousel-heavy for neighborhood content (40%), Reels for market reads and personality (35%), singles sparingly. Stories required.</li>
+    </ul>
+    <p>This isn't dogma. It's a starting point. Watch your save rate per format and let the data shift the mix over 90 days.</p>
+
+    <h3>Batching beats daily creation</h3>
+    <p>Local brand teams that try to create content "as inspiration strikes" lose to teams that batch. Batching means two things:</p>
+    <ol>
+      <li><strong>Shoot in batches.</strong> One half-day of focused shooting can yield 2 to 3 weeks of content. Schedule it the same way you schedule client work.</li>
+      <li><strong>Plan in batches.</strong> Pillar-based monthly planning. Lay out the 12 to 16 posts for the month against your pillars. Fill in the visual production after the strategic frame is locked.</li>
+    </ol>
+    <p>The brands that ship consistently almost universally batch. The brands that don't ship consistently almost universally try to do it daily.</p>
+
+    <div class="callout">
+      <span class="kicker">Worked example</span>
+      <p>A Cincinnati med spa we work with hit a 5-month consecutive upward trajectory between November 2025 and March 2026. The cadence under the hood: 3 feed posts per week, 3 to 4 story days, never below the floor, never feast-or-famine. That's the engine. The reason their score climbed wasn't a single magic post. It was 5 months of compounding consistent output against a defined system.</p>
+    </div>
+
+    <div class="callout signal">
+      <span class="kicker">This week</span>
+      <p>Pick your floor (3 feed posts per week is a safe default). Block 3 hours on your calendar this Friday to plan the next 14 days of content against your pillars. The plan beats the inspiration.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ====================================================================
+     5. REELS
+     ==================================================================== -->
+<section class="block" id="reels">
+  <div class="container">
+    <span class="section-num">Section 05</span>
+    <h2>Reels for local: the format that's winning.</h2>
+
+    <p>Reels are the highest-leverage format on Instagram for most local brands in 2026. Not because Instagram is forcing them on you (although they are), but because Reels do something static posts can't: they create an emotional or visual hit in the first 2 seconds that pulls a stranger into your account.</p>
+    <p>For local brands, the Reels that work aren't viral attempts. They're operator content that happens to be shot vertical.</p>
+
+    <h3>What kinds of Reels work for local brands</h3>
+    <p>Three formats handle 80% of what works for a local brand.</p>
+
+    <p><strong>1. Process Reels.</strong> The thing you do, shown being done. The chef plating. The bartender shaking. The injector marking. The trainer demoing. The designer sketching. Process is the cheat code for local brand Reels because it's content you're already producing in real life. You just point a camera at it.</p>
+
+    <p><strong>2. Talking-head Reels.</strong> You, the founder or operator, on camera, answering one specific question or sharing one specific take. 30 to 60 seconds. The bar for production is lower than people think. What matters: a strong hook in the first 2 seconds, a clear point, and your face.</p>
+
+    <p><strong>3. Narrative Reels.</strong> A story told in 30 to 90 seconds. A client situation (white-labeled). A behind-the-scenes moment. A founder's reflection on a real choice. Narrative Reels are slower to produce but have the highest save and send rates when they land.</p>
+
+    <h3>The hook is everything</h3>
+    <p>If your Reel doesn't earn the next 2 seconds in the first second, the rest doesn't matter.</p>
+
+    <p>Hooks that work:</p>
+    <ul>
+      <li><strong>Contrarian:</strong> "Stop posting before-and-afters until you do this."</li>
+      <li><strong>Silent-worry-named:</strong> "If you've been canceling on yourself, this is for you."</li>
+      <li><strong>Specific outcome:</strong> "How an Oakley fitness studio doubled their saves in 60 days."</li>
+      <li><strong>Pattern interrupt:</strong> Visual or motion that breaks the scroll. The camera moves. Something unexpected happens.</li>
+    </ul>
+
+    <p>Hooks that don't work:</p>
+    <ul>
+      <li>"Hey guys, today I want to talk about..."</li>
+      <li>"So I've been thinking..."</li>
+      <li>"Have you ever wondered..."</li>
+    </ul>
+    <p>If you'd skip your own hook in your own feed, your viewer will too.</p>
+
+    <h3>Production reality check</h3>
+    <p>You don't need cinema gear. You need:</p>
+    <ul>
+      <li>A phone that's been made in the last 3 years</li>
+      <li>Decent natural light or one $80 ring light</li>
+      <li>A clean audio source (lavalier mic or a quiet room)</li>
+      <li>A simple edit tool (CapCut is free and gets you 95% of the way there)</li>
+    </ul>
+    <p>The brands losing to "I don't have the equipment" are losing to the wrong constraint. The brands losing to "I don't have a clear point of view" are losing to the right one. Fix the right constraint first.</p>
+
+    <div class="callout">
+      <span class="kicker">Worked example</span>
+      <p>An Oakley fitness studio we work with shifted from class-shot-heavy promo content to member-led process and community content. Same studio. Same camera. Same lighting. Different content philosophy. Their composite score moved +1.9 points in 60 days. Format mix mattered less than content philosophy. The Reels that won were the ones where real members did real things in the real space.</p>
+    </div>
+
+    <div class="callout signal">
+      <span class="kicker">This week</span>
+      <p>Shoot 3 process Reels this week. Don't overthink it. Phone, vertical, 15 to 30 seconds each. One per work day. Hook in the first 2 seconds, payoff fast. Ship them. Watch what your audience does with them.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ====================================================================
+     6. DMs
+     ==================================================================== -->
+<section class="block" id="dms">
+  <div class="container">
+    <span class="section-num">Section 06</span>
+    <h2>DMs and comments: turning attention into customers.</h2>
+
+    <p>Most local brands treat DMs as customer service and comments as a courtesy. Operators treat both as conversion channels.</p>
+    <p>The math: most local brand prospects DM you with a question before they book, buy, or visit. How fast and how well you respond determines whether that DM becomes a customer or a tab they close and forget.</p>
+
+    <h3>DM as conversion channel</h3>
+    <p>Every inbound DM about hours, services, pricing, or availability is a high-intent signal. Treat it that way.</p>
+    <p>Build a DM response playbook:</p>
+    <ol>
+      <li><strong>Top 5 inbound questions.</strong> What do prospects DM you about most? Write them down.</li>
+      <li><strong>Pre-written response templates.</strong> Not robotic. Just structured. Saves time, ensures consistency, lets a teammate cover.</li>
+      <li><strong>Response time SLA.</strong> Target under 4 business hours. The drop-off in conversion between a 4-hour response and a 24-hour response is large.</li>
+      <li><strong>Soft path to booking.</strong> Every response includes a low-friction next step. The booking link. The Calendly. The "want me to send you our menu / pricing / availability."</li>
+    </ol>
+
+    <h3>Comments are public DMs</h3>
+    <p>Every comment on your own post is a public conversation other prospects are reading. Reply to every comment within 4 business hours. Replies are personal, not rote. "Thanks!" and an emoji is a reply that shows you don't care. A real reply that uses the commenter's first name and answers their actual point is a signal that you're paying attention.</p>
+    <p>The compounding effect: a viewer scrolls your account, sees you reply thoughtfully to comments, and that signals "this brand is run by humans who care." That signal converts.</p>
+
+    <h3>Story interactives feed the DM funnel</h3>
+    <p>Polls, sliders, question stickers, this-or-that. These aren't gimmicks. They're qualification mechanics. Every reply to a poll or question sticker is a person hand-raising. They've told you something about themselves.</p>
+
+    <p>Use the data:</p>
+    <ul>
+      <li>Slider asking "how curious are you about X?" → highest sliders get a personalized DM follow-up within 24 hours</li>
+      <li>Question sticker "what's stopping you from booking?" → every reply is a sales conversation handed to you for free</li>
+      <li>Poll "this week or next?" → respondents who pick "this week" get a soft outreach the next morning</li>
+    </ul>
+    <p>This is where Instagram becomes a real conversion channel for local brands. Most brands skip it because it requires actually reading the inbound and responding.</p>
+
+    <h3>Daily commenting block</h3>
+    <p>15 minutes per day. 5 to 10 thoughtful comments on local accounts in adjacent niches. The goal is to be useful and visible, not to promote.</p>
+
+    <p>Comment on:</p>
+    <ul>
+      <li>Local accounts in adjacent niches (a med spa comments on local skincare brands, gyms, wellness accounts)</li>
+      <li>Local accounts your audience already follows (the local food bloggers, neighborhood accounts, local businesses you respect)</li>
+      <li>Accounts you want to be discovered by (the local press, local creators, local connectors)</li>
+    </ul>
+    <p>Real comments. Specific to the post. No emojis-only. No "love this!" The compound effect over 90 days is significant. The brands that do this consistently end up in the comment sections of every account their target customer follows.</p>
+
+    <div class="callout">
+      <span class="kicker">Worked example</span>
+      <p>Across our roster, the single biggest difference-maker for med spa accounts is DM responsiveness. Slow response rates correlate to lower conversion across the board. The brands that treat DM as a primary conversion channel, not as customer service, win.</p>
+    </div>
+
+    <div class="callout signal">
+      <span class="kicker">This week</span>
+      <p>Set a 4-hour DM response SLA. Write your top 5 inbound DM templates. Add 15 minutes per day to your calendar for the commenting block. Run it for 30 days and watch what changes.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ====================================================================
+     7. METRICS
+     ==================================================================== -->
+<section class="block" id="metrics">
+  <div class="container">
+    <span class="section-num">Section 07</span>
+    <h2>The metrics that matter (and the ones to ignore).</h2>
+
+    <p>The metrics you track determine the decisions you make, which determine the content you ship next month. Most local brands track the wrong metrics, which means they're optimizing toward the wrong outcomes. Then they wonder why Instagram isn't working.</p>
+    <p>Here's the short list.</p>
+
+    <h3>Metrics that matter</h3>
+
+    <p><strong>1. Save rate per post.</strong> The strongest leading indicator of conversion across local brand niches we've seen. A post with high saves and low likes outperforms a post with high likes and low saves over time. Track median save count per post and your top 10% threshold each month.</p>
+
+    <p><strong>2. Profile visits per post.</strong> How many viewers got curious enough to tap your handle. This is your top-of-funnel attention metric. Profile visits are where the bio + grid + content pillars work either earns or loses the follow.</p>
+
+    <p><strong>3. Follow conversion rate.</strong> Profile visits to follows. If profile visits are high but follows are low, your foundation is broken. If both are low, your content isn't reaching the right audience.</p>
+
+    <p><strong>4. DM volume.</strong> How many inbound conversations does your account generate per week. The most direct mid-funnel signal you have. DM volume going up means content is creating intent.</p>
+
+    <p><strong>5. Story completion rate.</strong> What percentage of viewers make it through your full story sequence. Especially important for F&amp;B (drives same-day visits) and any niche where stories carry the conversion load.</p>
+
+    <p><strong>6. Top 3 and bottom 3 posts each month.</strong> Not as a vanity ranking. As a pattern source. What did your top performers have in common? What did your bottom performers have in common? Patterns drive next month's bets.</p>
+
+    <h3>Metrics to ignore (or de-prioritize)</h3>
+
+    <p><strong>Follower count.</strong> Vanity. A 5,000-follower account in your zip code outperforms a 50,000-follower account spread nationally. Stop tracking follower count as your primary metric.</p>
+
+    <p><strong>Likes.</strong> Soft signal. Likes happen reflexively. They don't correlate to conversion the way saves and shares do.</p>
+
+    <p><strong>Reach (alone).</strong> Reach without context is meaningless. A Reel that reaches 100,000 people and produces 0 saves did nothing. A carousel that reaches 4,000 people and produces 80 saves moved the business.</p>
+
+    <p><strong>Impressions.</strong> Same logic as reach.</p>
+
+    <p><strong>Audience growth rate.</strong> Sounds important. Isn't, in isolation. Slow audience growth with high engagement quality beats fast audience growth with low engagement quality every time for a local brand.</p>
+
+    <h3>The 30-minute monthly review</h3>
+    <p>Same time every month. Same day. Block it on the calendar.</p>
+
+    <p>The format:</p>
+    <ol>
+      <li><strong>Pull the data.</strong> Native Instagram Insights is fine. Metricool or Sprout if you want cross-channel. 5 minutes.</li>
+      <li><strong>Write a 1-paragraph diagnosis.</strong> What worked. What didn't. Patterns, not anecdotes. 10 minutes.</li>
+      <li><strong>Set 1 to 2 testable hypotheses for next month.</strong> "Our silent-worry carousels saved 3x our before-and-afters. Next month we ship 6 silent-worry carousels and 2 before-and-afters and watch the ratio." 10 minutes.</li>
+      <li><strong>Update your content plan accordingly.</strong> 5 minutes.</li>
+    </ol>
+    <p>That's it. Patterns drive content strategy. Anecdotes drive content scattershot. The brands that do this monthly review for 12 months straight build a content engine that actually improves. The brands that don't are still posting in 2027 the same way they posted in 2025.</p>
+
+    <div class="callout signal">
+      <span class="kicker">This week</span>
+      <p>Block 30 minutes on your calendar for the last Friday of every month. Title it "IG monthly review." Don't move it. Don't skip it. Compound it.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ====================================================================
+     8. KICKSTART
+     ==================================================================== -->
+<section class="block" id="kickstart">
+  <div class="container">
+    <span class="section-num">Section 08</span>
+    <h2>The 7-day kickstart plan.</h2>
+
+    <p>If you want a structured starting point, run this 7-day plan. Each day takes 30 to 90 minutes. By the end of the week you'll have rebuilt the foundation, shipped real content, and started the systems that compound.</p>
+
+    <div class="day">
+      <h3>Day 1 (Monday): Audit and bio rebuild</h3>
+      <ul>
+        <li>Open your Instagram in incognito mode on your phone. Note what a stranger sees in 5 seconds. Honest assessment.</li>
+        <li>Rewrite your bio using the hook + offer + proof + CTA structure.</li>
+        <li>Add 1 to 3 keywords to your name field.</li>
+        <li>Update your link to a single conversion destination, or trim your linktree to 5 destinations.</li>
+      </ul>
+      <p class="day-time">Time: 60 minutes</p>
+    </div>
+
+    <div class="day">
+      <h3>Day 2 (Tuesday): Content pillars</h3>
+      <ul>
+        <li>Define your 3 to 4 content pillars in writing. Use the niche defaults in section 2 as a starting point. Tune to your business.</li>
+        <li>Write a 1-line description of what each pillar is about, what kinds of posts fit, and what emotion or outcome you want each pillar to drive.</li>
+        <li>Save the pillar doc somewhere you can reference (Notion, Google Doc, Notes app).</li>
+      </ul>
+      <p class="day-time">Time: 60 minutes</p>
+    </div>
+
+    <div class="day">
+      <h3>Day 3 (Wednesday): Plan the next 14 days</h3>
+      <ul>
+        <li>Map 6 to 10 feed posts across the next 14 days against your pillars. Each post gets a pillar tag, a format (carousel, Reel, single), and a hook in writing.</li>
+        <li>Schedule 2 batched shoot blocks on your calendar (one this week, one next).</li>
+      </ul>
+      <p class="day-time">Time: 90 minutes</p>
+    </div>
+
+    <div class="day">
+      <h3>Day 4 (Thursday): Shoot batch 1</h3>
+      <ul>
+        <li>Run your first batched shoot. Target 6 to 10 pieces of content (mix of formats). Don't overproduce. Phone, vertical, natural light or one ring light.</li>
+        <li>For Reels: 3 process Reels with hooks in the first 2 seconds.</li>
+      </ul>
+      <p class="day-time">Time: 90 minutes</p>
+    </div>
+
+    <div class="day">
+      <h3>Day 5 (Friday): DM playbook + commenting block</h3>
+      <ul>
+        <li>Write your top 5 inbound DM templates. Save them somewhere fast to access.</li>
+        <li>Set your DM response SLA (under 4 business hours target).</li>
+        <li>Block 15 minutes per day on your calendar for the commenting block. Same time every day.</li>
+        <li>Run today's commenting block now. 5 to 10 thoughtful comments on local accounts in adjacent niches.</li>
+      </ul>
+      <p class="day-time">Time: 60 minutes</p>
+    </div>
+
+    <div class="day">
+      <h3>Day 6 (Saturday): Story interactives</h3>
+      <ul>
+        <li>Plan and ship 1 story sequence today that includes 2 interactive elements (poll, slider, question sticker). Use real questions, not gimmicks.</li>
+        <li>Set a calendar reminder for Sunday to review the inbound. Reply personally to high-intent signals within 24 hours.</li>
+      </ul>
+      <p class="day-time">Time: 30 minutes</p>
+    </div>
+
+    <div class="day">
+      <h3>Day 7 (Sunday): Set up the monthly review</h3>
+      <ul>
+        <li>Block 30 minutes on the last Friday of every month going forward. Title it "IG monthly review." Recurring.</li>
+        <li>Bookmark Instagram Insights or set up Metricool / Sprout if you want cross-channel.</li>
+        <li>Write a 1-paragraph baseline note. Where you are today, what you ran this week, what you're testing in the next 30 days.</li>
+      </ul>
+      <p class="day-time">Time: 30 minutes</p>
+    </div>
+
+    <p style="margin-top: var(--sp-6);">That's the week. By Sunday night, your foundation is rebuilt, your pillars are defined, your content is shipping, your DM and comment systems are running, and your monthly review is in place. From here, it's compounding execution.</p>
+  </div>
+</section>
+
+<!-- ====================================================================
+     EMAIL OPT-IN — Niche editions
+     ==================================================================== -->
+<section class="optin-section" id="niche-edition">
+  <div class="container">
+    <div class="optin-card">
+      <h3>Want the niche edition for your business?</h3>
+      <p class="lede">We've built deeper editions of this Manual for med spas, F&amp;B, fitness studios, real estate teams, and interior designers. Each one swaps the universal examples for niche-specific case work, benchmarks, and tactical moves. Drop your email and we'll send the right one for you.</p>
+      <!-- Kit integration deferred to backlog. Form non-functional until Kit provisioning script runs. May 11, 2026. -->
+      <form class="optin-form" action="[KIT_FORM_URL]" method="post" data-uid="[KIT_FORM_UID]" data-format="inline" data-version="5" target="_blank">
+        <div class="row">
+          <div>
+            <label for="first_name">First name</label>
+            <input type="text" name="fields[first_name]" id="first_name" placeholder="First name" required autocomplete="given-name" />
+          </div>
+          <div>
+            <label for="email">Email</label>
+            <input type="email" name="email_address" id="email" placeholder="you@yourbrand.com" required autocomplete="email" />
+          </div>
+        </div>
+        <input type="hidden" name="fields[lead_magnet]" value="growth-manual" />
+        <input type="hidden" name="fields[source]" value="growth-manual-page" />
+        <input type="hidden" name="tags[]" value="growth-manual-lead" />
+        <button type="submit">Send me the niche edition</button>
+        <p class="footnote">We'll never sell your email. Unsubscribe in one click. Currently shipping the Med Spa Edition first; others land May to July 2026.</p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ====================================================================
+     CTA — Discovery call
+     ==================================================================== -->
+<section class="cta-section" id="discovery">
+  <div class="container">
+    <div class="cta-card">
+      <span class="kicker">If you're ready to talk</span>
+      <h3>Walk through your account with us.</h3>
+      <p>If reading this Manual surfaced things that feel structurally hard to fix in-house, that's a fair signal. We work with a small number of local brands at a time on long-term Instagram strategy. If you want to walk through your account with us and see whether we'd be a fit, here's our calendar.</p>
+      <a href="https://calendly.com/scrollmedia/discovery" class="btn-primary plain" target="_blank" rel="noopener">Book a discovery call</a>
+    </div>
+  </div>
+</section>
+
+<!-- ====================================================================
+     9. WHAT TO DO NEXT
+     ==================================================================== -->
+<section class="block" id="next">
+  <div class="container">
+    <span class="section-num">Section 09</span>
+    <h2>What to do next.</h2>
+    <p>You read the Manual. Three options from here.</p>
+
+    <div class="options">
+      <div class="option">
+        <h3>Option A: Run the 7-day plan and see what changes.</h3>
+        <p>The plan is structured to give you compounding wins within 30 days. If you want to test what's in this Manual without involving us, run it. Come back in 30 days and see what moved. We'd love to hear how it goes.</p>
+      </div>
+      <div class="option">
+        <h3>Option B: Get the deeper version for your niche.</h3>
+        <p>Niche-specific editions for med spas, F&amp;B brands, fitness studios, real estate teams, and interior designers. Drop your email above and we'll send the right one for you.</p>
+      </div>
+      <div class="option">
+        <h3>Option C: Talk to us.</h3>
+        <p>If reading this Manual surfaced things that feel structurally hard to fix in-house, that's a fair signal. <a href="https://calendly.com/scrollmedia/discovery" target="_blank" rel="noopener">Book a discovery call</a> and we'll walk through your account together.</p>
+      </div>
+    </div>
+
+    <p>If you got to this Manual through one of our outreach emails or DMs, you can also just reply. We read everything that comes back.</p>
+  </div>
+</section>
+
+<!-- ====================================================================
+     10. ABOUT (white-label footer)
+     ==================================================================== -->
+<footer id="about">
+  <div class="container">
+    <h3>About Scroll Media</h3>
+    <p>Scroll Media is Cincinnati's Instagram agency for local brands. We work with a small roster of boutique founder-led brands across the Tri-State on long-term Instagram strategy and execution. No paid ads. No hacks. Compounding organic growth built around the patterns that actually move the needle for local brands.</p>
+    <p>We publish work, frameworks, and free resources at <a href="https://scrollmedia.co" target="_blank" rel="noopener">scrollmedia.co</a>. Follow how we think on Instagram at <a href="https://instagram.com/scrollmedia.co" target="_blank" rel="noopener">@scrollmedia.co</a> and our founder Chase at <a href="https://instagram.com/chase.scrolls" target="_blank" rel="noopener">@chase.scrolls</a>.</p>
+    <p>This Manual is free. Share it with anyone running a local brand who'd benefit. If you want to credit us, link to scrollmedia.co. If you don't, no problem.</p>
+
+    <div class="footer-meta">
+      <span>The Local Brand Instagram Growth Manual · Universal Edition · v1.0 · May 2026</span>
+      <span>
+        <a href="https://scrollmedia.co" target="_blank" rel="noopener">scrollmedia.co</a>
+      </span>
+    </div>
+  </div>
+</footer>
+
+<!-- ====================================================================
+     SCRIPT — sticky nav active section highlight
+     ==================================================================== -->
+<script>
+  (function () {
+    var sections = Array.prototype.slice.call(
+      document.querySelectorAll('section[id], footer[id]')
+    );
+    var navLinks = Array.prototype.slice.call(
+      document.querySelectorAll('#navLinks a')
+    );
+
+    function setActive() {
+      var top = window.scrollY + 100;
+      var current = null;
+      for (var i = 0; i < sections.length; i++) {
+        if (sections[i].offsetTop <= top) current = sections[i].id;
+      }
+      navLinks.forEach(function (link) {
+        var href = link.getAttribute('href').replace('#', '');
+        if (href === current) link.classList.add('active');
+        else link.classList.remove('active');
+      });
+    }
+
+    window.addEventListener('scroll', setActive, { passive: true });
+    window.addEventListener('load', setActive);
+  })();
+</script>
+
+</body>
+</html>

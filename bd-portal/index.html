@@ -1,0 +1,2130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<meta name="robots" content="noindex, nofollow" />
+<meta name="theme-color" content="#FAFDFF" />
+<title>Scroll Media · BD Portal</title>
+<link rel="icon" type="image/svg+xml" href="https://tools.scrollmedia.co/assets/scroll-favicon.svg" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+<style>
+  /* =========================================================
+     TOKENS — inherited from brand_system.md §5 (Layer 1)
+     Light theme. Ghost default. Lucid for emphasis.
+     Hard corners. No shadows by default.
+     ========================================================= */
+  :root {
+    --ghost: #FAFDFF;
+    --azure: #0C3387;
+    --lucid: #CBE9FF;
+    --highlighter: #E2ED7A;
+    --shadow: #151516;
+
+    --azure-900: #071d4f;
+    --azure-800: #0c3387;
+    --azure-600: #254fb0;
+    --azure-400: #7a9ad8;
+    --azure-200: #b9cdee;
+
+    --lucid-deep: #9ecee8;
+    --lucid-soft: #e4f3ff;
+
+    --bg: var(--ghost);
+    --bg-alt: #f5f8fb;
+    --bg-panel: var(--lucid-soft);
+    --fg: var(--shadow);
+    --fg-heading: var(--azure);
+    --fg-muted: #5a6070;
+    --fg-subtle: #9097a6;
+    --fg-on-azure: var(--ghost);
+    --accent: var(--lucid);
+    --signal: var(--highlighter);
+
+    --rule: rgba(12, 51, 135, 0.20);
+    --rule-strong: rgba(12, 51, 135, 0.40);
+    --rule-faint: rgba(12, 51, 135, 0.08);
+
+    --fs-xs: 11px;
+    --fs-sm: 13px;
+    --fs-base: 15px;
+    --fs-md: 17px;
+    --fs-lg: 20px;
+    --fs-xl: 24px;
+    --fs-2xl: 32px;
+    --fs-3xl: 44px;
+    --fs-4xl: 64px;
+
+    --tracking-tight: -0.01em;
+    --tracking-normal: 0;
+    --tracking-wide: 0.08em;
+    --tracking-wider: 0.14em;
+
+    --lh-tight: 1.08;
+    --lh-snug: 1.22;
+    --lh-normal: 1.45;
+    --lh-relaxed: 1.6;
+
+    --sp-1: 4px;
+    --sp-2: 8px;
+    --sp-3: 12px;
+    --sp-4: 16px;
+    --sp-5: 24px;
+    --sp-6: 32px;
+    --sp-7: 40px;
+    --sp-8: 56px;
+    --sp-9: 80px;
+    --sp-10: 120px;
+
+    --r-sm: 4px;
+    --r-md: 8px;
+    --r-lg: 16px;
+    --r-pill: 999px;
+
+    --maxw: 1080px;
+    --maxw-prose: 720px;
+    --nav-h: 56px;
+
+    --sans: 'Source Sans 3', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+    --mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+
+    --ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; }
+  html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; font-size: var(--fs-base); }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--fg);
+    font-family: var(--sans);
+    font-size: var(--fs-base);
+    line-height: var(--lh-normal);
+    font-feature-settings: 'tnum' 1, 'cv11' 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  :focus-visible { outline: 2px solid var(--azure); outline-offset: 2px; }
+  section { scroll-margin-top: 80px; }
+  a {
+    color: var(--azure);
+    text-decoration: none;
+    border-bottom: 1px solid var(--rule);
+    transition: border-color 120ms var(--ease), color 120ms var(--ease);
+  }
+  a:hover { border-bottom-color: var(--azure); }
+  a.plain { border-bottom: 0; }
+  ::selection { background: var(--highlighter); color: var(--shadow); }
+
+  .container { max-width: var(--maxw); margin: 0 auto; padding: 0 var(--sp-5); }
+  .prose { max-width: var(--maxw-prose); }
+
+  .meta-strip {
+    background: var(--bg);
+    border-bottom: 1px solid var(--rule);
+    color: var(--fg-muted);
+    font-size: var(--fs-xs);
+    letter-spacing: var(--tracking-wider);
+    text-transform: uppercase;
+  }
+  .meta-strip-inner {
+    max-width: var(--maxw);
+    margin: 0 auto;
+    padding: 8px var(--sp-5);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--sp-4);
+  }
+  .meta-strip strong { color: var(--azure); font-weight: 600; }
+
+  .nav {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: rgba(250, 253, 255, 0.92);
+    backdrop-filter: saturate(140%) blur(8px);
+    -webkit-backdrop-filter: saturate(140%) blur(8px);
+    border-bottom: 1px solid var(--rule);
+  }
+  .nav-inner {
+    max-width: var(--maxw);
+    margin: 0 auto;
+    padding: 12px var(--sp-5);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--sp-5);
+    min-height: var(--nav-h);
+  }
+  .brand {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    font-weight: 700;
+    font-size: var(--fs-md);
+    letter-spacing: var(--tracking-tight);
+    color: var(--azure);
+    flex-shrink: 0;
+  }
+  .brand .sep { color: var(--rule-strong); font-weight: 400; }
+  .brand .label { color: var(--fg-muted); font-weight: 500; font-size: var(--fs-sm); letter-spacing: 0; text-transform: none; }
+  .nav-links {
+    display: flex;
+    gap: 2px;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .nav-links::-webkit-scrollbar { display: none; }
+  .nav-links a {
+    flex: 0 0 auto;
+    padding: 6px 10px;
+    color: var(--fg-muted);
+    font-size: var(--fs-sm);
+    font-weight: 500;
+    white-space: nowrap;
+    border-bottom: 0;
+    border-radius: var(--r-sm);
+    transition: color 120ms var(--ease), background 120ms var(--ease);
+  }
+  .nav-links a:hover { color: var(--azure); background: var(--lucid-soft); }
+  .nav-links a.active { color: var(--azure); background: var(--lucid); }
+  @media (max-width: 880px) {
+    .nav-inner { flex-direction: column; align-items: stretch; gap: 8px; padding: 10px var(--sp-4); }
+    .brand { justify-content: flex-start; }
+    .nav-links { padding: 2px 0 4px; }
+  }
+
+  .hero { padding: var(--sp-9) 0 var(--sp-8); border-bottom: 1px solid var(--rule); }
+  .hero .label {
+    display: inline-block;
+    font-size: var(--fs-xs);
+    letter-spacing: var(--tracking-wider);
+    text-transform: uppercase;
+    color: var(--fg-muted);
+    margin-bottom: var(--sp-3);
+    font-weight: 600;
+  }
+  h1.title {
+    font-family: var(--sans);
+    font-size: clamp(36px, 5.6vw, 64px);
+    line-height: var(--lh-tight);
+    letter-spacing: var(--tracking-tight);
+    margin: 0 0 var(--sp-4);
+    font-weight: 700;
+    color: var(--azure);
+    max-width: 18ch;
+  }
+  .lede {
+    font-size: var(--fs-md);
+    color: var(--fg);
+    max-width: var(--maxw-prose);
+    margin: 0 0 var(--sp-5);
+    line-height: var(--lh-normal);
+  }
+
+  section.block { padding: var(--sp-9) 0; border-bottom: 1px solid var(--rule); }
+  section.block:last-of-type { border-bottom: 0; }
+  .section-kicker {
+    color: var(--fg-muted);
+    font-size: var(--fs-xs);
+    letter-spacing: var(--tracking-wider);
+    text-transform: uppercase;
+    font-weight: 600;
+    margin-bottom: var(--sp-2);
+  }
+  h2 {
+    font-family: var(--sans);
+    font-size: clamp(28px, 3.4vw, 44px);
+    line-height: var(--lh-snug);
+    margin: 0 0 var(--sp-3);
+    color: var(--azure);
+    font-weight: 700;
+    letter-spacing: var(--tracking-tight);
+    max-width: 24ch;
+  }
+  h3 {
+    font-family: var(--sans);
+    font-size: var(--fs-lg);
+    margin: var(--sp-6) 0 var(--sp-3);
+    color: var(--shadow);
+    font-weight: 700;
+    letter-spacing: var(--tracking-tight);
+  }
+  h4 {
+    font-size: var(--fs-xs);
+    margin: var(--sp-5) 0 var(--sp-2);
+    color: var(--fg-muted);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-wider);
+  }
+  p { margin: 0 0 var(--sp-4); max-width: var(--maxw-prose); }
+  ul, ol { margin: 0 0 var(--sp-4); padding-left: 22px; max-width: var(--maxw-prose); }
+  li { margin: var(--sp-1) 0; }
+  li::marker { color: var(--fg-subtle); }
+  strong { color: var(--shadow); font-weight: 700; }
+  em { font-style: italic; color: var(--shadow); }
+  .intro { color: var(--fg-muted); font-size: var(--fs-md); max-width: var(--maxw-prose); margin-bottom: var(--sp-5); }
+
+  .panel { background: var(--bg); border: 1px solid var(--rule); padding: var(--sp-5); margin: var(--sp-4) 0; }
+  .panel.tight { padding: var(--sp-4); }
+  .panel.lucid { background: var(--lucid-soft); border-color: var(--rule); }
+  .panel h3:first-child, .panel h4:first-child { margin-top: 0; }
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: var(--sp-4); }
+  .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--sp-4); }
+  .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--sp-4); }
+  @media (max-width: 880px) {
+    .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
+  }
+
+  .callout {
+    background: var(--lucid-soft);
+    border: 1px solid var(--rule);
+    border-left: 2px solid var(--azure);
+    padding: var(--sp-4) var(--sp-5);
+    margin: var(--sp-4) 0;
+    font-size: var(--fs-base);
+    max-width: 100%;
+  }
+  .callout.signal { background: var(--bg); border-left-color: var(--shadow); border-left-width: 2px; }
+  .callout.signal::before {
+    content: "Signal";
+    display: inline-block;
+    font-size: var(--fs-xs);
+    letter-spacing: var(--tracking-wider);
+    text-transform: uppercase;
+    background: var(--highlighter);
+    color: var(--shadow);
+    padding: 2px 8px;
+    margin-right: 10px;
+    font-weight: 700;
+    vertical-align: 1px;
+  }
+  .callout strong { color: var(--azure); }
+  .callout p:last-child { margin-bottom: 0; }
+
+  .summary {
+    background: var(--bg);
+    border: 1px solid var(--rule-strong);
+    padding: var(--sp-5);
+    margin: var(--sp-4) 0 var(--sp-6);
+    position: relative;
+  }
+  .summary::before {
+    content: "At a glance";
+    position: absolute;
+    top: -10px;
+    left: var(--sp-4);
+    background: var(--bg);
+    padding: 0 8px;
+    font-size: var(--fs-xs);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-wider);
+    color: var(--azure);
+    font-weight: 700;
+  }
+  .summary p:last-child { margin-bottom: 0; }
+  .summary ul:last-child, .summary ol:last-child { margin-bottom: 0; }
+  .summary .summary-rows {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    max-width: 100%;
+  }
+  .summary .summary-rows li {
+    display: grid;
+    grid-template-columns: 32px 1fr;
+    gap: var(--sp-3);
+    padding: var(--sp-3) 0;
+    border-bottom: 1px solid var(--rule-faint);
+    margin: 0;
+    align-items: baseline;
+  }
+  .summary .summary-rows li:last-child { border-bottom: 0; padding-bottom: 0; }
+  .summary .summary-rows li:first-child { padding-top: 0; }
+  .summary .summary-rows .n { font-size: var(--fs-md); color: var(--azure); font-weight: 700; font-variant-numeric: tabular-nums; }
+
+  .table-wrap { overflow-x: auto; margin: var(--sp-4) 0 var(--sp-5); border: 1px solid var(--rule); }
+  table { width: 100%; border-collapse: collapse; font-size: var(--fs-sm); min-width: 480px; font-variant-numeric: tabular-nums; }
+  th, td { text-align: left; padding: 10px 14px; border-bottom: 1px solid var(--rule); vertical-align: top; }
+  th { background: var(--bg-alt); color: var(--fg-muted); font-weight: 600; font-size: var(--fs-xs); text-transform: uppercase; letter-spacing: var(--tracking-wide); border-bottom: 1px solid var(--rule-strong); white-space: nowrap; }
+  tr:last-child td { border-bottom: 0; }
+  tbody tr:hover td { background: var(--lucid-soft); }
+
+  code { font-family: var(--mono); background: var(--bg-alt); color: var(--azure-900); padding: 1px 6px; font-size: 0.92em; border: 1px solid var(--rule-faint); }
+  pre {
+    background: var(--bg-alt);
+    border: 1px solid var(--rule);
+    border-left: 2px solid var(--azure);
+    padding: var(--sp-4) var(--sp-5);
+    overflow-x: auto;
+    font-family: var(--mono);
+    font-size: var(--fs-sm);
+    line-height: var(--lh-normal);
+    color: var(--shadow);
+    margin: var(--sp-3) 0 var(--sp-5);
+    white-space: pre;
+  }
+  pre code { background: transparent; color: inherit; padding: 0; border: 0; }
+
+  .tag { display: inline-block; font-family: var(--sans); font-size: var(--fs-xs); padding: 2px 8px; letter-spacing: var(--tracking-wide); margin: 2px 4px 2px 0; border: 1px solid var(--rule); background: var(--bg); color: var(--fg-muted); text-transform: uppercase; font-weight: 600; line-height: 1.5; }
+  .tag.azure { background: var(--lucid-soft); border-color: var(--rule-strong); color: var(--azure); }
+  .tag.signal { background: var(--highlighter); border-color: var(--shadow); color: var(--shadow); }
+  .tag.warn { background: var(--bg); border-color: var(--shadow); color: var(--shadow); }
+  .tag.muted { color: var(--fg-subtle); border-color: var(--rule-faint); }
+  .tag.banned { border-color: var(--rule); color: var(--fg-muted); text-decoration: line-through; text-decoration-color: var(--shadow); text-decoration-thickness: 1px; text-transform: none; letter-spacing: 0; }
+
+  .op { display: inline-flex; align-items: center; gap: 6px; font-weight: 600; font-size: var(--fs-sm); color: var(--shadow); margin-right: var(--sp-2); }
+  .op-mark { width: 18px; height: 18px; display: inline-flex; align-items: center; justify-content: center; border: 1px solid var(--rule-strong); background: var(--bg); font-size: 10px; font-weight: 700; color: var(--azure); }
+  .op.chase .op-mark { background: var(--highlighter); border-color: var(--shadow); color: var(--shadow); }
+
+  .voice-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--sp-4); margin: var(--sp-5) 0; }
+  @media (max-width: 880px) { .voice-grid { grid-template-columns: 1fr; } }
+  .voice-card { background: var(--bg); border: 1px solid var(--rule); padding: var(--sp-5); }
+  .voice-card.alt { background: var(--lucid-soft); }
+  .voice-card .label-row { display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--rule); padding-bottom: var(--sp-3); margin-bottom: var(--sp-3); }
+  .voice-card .voice-name { font-size: var(--fs-md); font-weight: 700; color: var(--azure); letter-spacing: var(--tracking-tight); }
+  .voice-card .voice-tag { font-size: var(--fs-xs); text-transform: uppercase; letter-spacing: var(--tracking-wider); color: var(--fg-muted); font-weight: 600; }
+  .voice-card .sample { background: var(--bg); border: 1px solid var(--rule); padding: var(--sp-4) var(--sp-5); margin-top: var(--sp-3); font-size: var(--fs-base); line-height: var(--lh-relaxed); white-space: pre-wrap; color: var(--shadow); }
+  .voice-card.alt .sample { background: var(--bg); }
+  .voice-card .sample-label { font-size: var(--fs-xs); color: var(--fg-muted); text-transform: uppercase; letter-spacing: var(--tracking-wider); margin: var(--sp-4) 0 var(--sp-2); font-weight: 600; }
+
+  /* Accordion */
+  details.acc { border: 1px solid var(--rule); background: var(--bg); padding: 0; margin: 0; border-bottom: 0; }
+  details.acc:first-of-type { border-top: 1px solid var(--rule); }
+  details.acc:last-of-type { border-bottom: 1px solid var(--rule); }
+  details.acc summary { list-style: none; cursor: pointer; padding: var(--sp-4) var(--sp-5); font-weight: 600; color: var(--shadow); display: flex; align-items: center; justify-content: space-between; font-size: var(--fs-base); gap: var(--sp-3); }
+  details.acc summary::-webkit-details-marker { display: none; }
+  details.acc summary::after { content: '＋'; font-family: var(--sans); color: var(--azure); font-size: var(--fs-md); font-weight: 600; margin-left: var(--sp-3); transition: transform 200ms var(--ease); flex-shrink: 0; }
+  details.acc[open] summary::after { content: '－'; transform: rotate(180deg); }
+  details.acc summary:hover { background: var(--lucid-soft); }
+  details.acc .acc-body { padding: 0 var(--sp-5) var(--sp-5); color: var(--fg); border-top: 1px solid var(--rule); padding-top: var(--sp-4); font-size: var(--fs-base); line-height: var(--lh-relaxed); animation: accIn 280ms var(--ease); }
+  details.acc .acc-body p:last-child { margin-bottom: 0; }
+  @keyframes accIn { from { opacity: 0; transform: translateY(-4px); } to { opacity: 1; transform: translateY(0); } }
+  /* Backward compat */
+  details.faq { border: 1px solid var(--rule); background: var(--bg); padding: 0; margin: 0; border-bottom: 0; }
+  details.faq:first-of-type { border-top: 1px solid var(--rule); }
+  details.faq:last-of-type { border-bottom: 1px solid var(--rule); }
+  details.faq summary { list-style: none; cursor: pointer; padding: var(--sp-4) var(--sp-5); font-weight: 600; color: var(--shadow); display: flex; align-items: center; justify-content: space-between; font-size: var(--fs-base); }
+  details.faq summary::-webkit-details-marker { display: none; }
+  details.faq summary::after { content: '＋'; color: var(--azure); font-size: var(--fs-md); font-weight: 600; margin-left: var(--sp-3); transition: transform 200ms var(--ease); }
+  details.faq[open] summary::after { content: '－'; }
+  details.faq summary:hover { background: var(--lucid-soft); }
+  details.faq .faq-body { padding: 0 var(--sp-5) var(--sp-5); color: var(--fg); border-top: 1px solid var(--rule); padding-top: var(--sp-4); font-size: var(--fs-base); line-height: var(--lh-relaxed); animation: accIn 280ms var(--ease); }
+
+  /* Diagrams */
+  .diagram-frame { background: var(--bg); border: 1px solid var(--rule); padding: var(--sp-5); margin: var(--sp-5) 0; overflow-x: auto; }
+  .diagram-frame .diagram-caption { font-size: var(--fs-xs); text-transform: uppercase; letter-spacing: var(--tracking-wider); color: var(--fg-muted); font-weight: 600; margin-bottom: var(--sp-3); }
+  .diagram-frame svg { width: 100%; height: auto; display: block; }
+
+  /* Pillars */
+  .pillars { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--sp-4); margin: var(--sp-5) 0; }
+  @media (max-width: 880px) { .pillars { grid-template-columns: 1fr; } }
+  .pillar { background: var(--bg); border: 1px solid var(--rule); padding: var(--sp-4); display: flex; flex-direction: column; gap: var(--sp-2); }
+  .pillar .pillar-num { font-size: var(--fs-xs); text-transform: uppercase; letter-spacing: var(--tracking-wider); color: var(--azure); font-weight: 700; }
+  .pillar h4 { margin: 0; color: var(--shadow); text-transform: none; letter-spacing: var(--tracking-tight); font-size: var(--fs-md); font-weight: 700; }
+  .pillar p { margin: 0; font-size: var(--fs-sm); color: var(--fg); }
+
+  /* Do/Dont */
+  .do-dont { display: grid; grid-template-columns: 1fr 1fr; gap: 0; border: 1px solid var(--rule); margin: var(--sp-4) 0; }
+  @media (max-width: 720px) { .do-dont { grid-template-columns: 1fr; } }
+  .do-dont .col { padding: var(--sp-4) var(--sp-5); }
+  .do-dont .col.do { border-right: 1px solid var(--rule); }
+  @media (max-width: 720px) { .do-dont .col.do { border-right: 0; border-bottom: 1px solid var(--rule); } }
+  .do-dont h4 { margin: 0 0 var(--sp-3); }
+  .do-dont h4.do-label { color: var(--azure); }
+  .do-dont h4.dont-label { color: var(--shadow); }
+  .do-dont ul { margin: 0; padding-left: 18px; font-size: var(--fs-sm); }
+  .do-dont li { margin: 4px 0; }
+
+  /* Reveal */
+  .reveal { opacity: 0; transform: translateY(12px); transition: opacity 240ms var(--ease), transform 240ms var(--ease); will-change: opacity, transform; }
+  .reveal.in { opacity: 1; transform: translateY(0); }
+  @media (prefers-reduced-motion: reduce) {
+    .reveal { opacity: 1; transform: none; transition: none; }
+    details.acc .acc-body, details.faq .faq-body { animation: none; }
+  }
+
+  footer { padding: var(--sp-6) 0 var(--sp-9); color: var(--fg-muted); font-size: var(--fs-sm); border-top: 1px solid var(--rule); }
+  footer .footer-inner { max-width: var(--maxw); margin: 0 auto; padding: 0 var(--sp-5); display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: var(--sp-4); }
+  footer .footer-links a { color: var(--fg-muted); margin-right: var(--sp-4); border-bottom: 0; font-size: var(--fs-sm); }
+  footer .footer-links a:hover { color: var(--azure); }
+  footer .meta { font-size: var(--fs-xs); letter-spacing: var(--tracking-wide); text-transform: uppercase; }
+
+  .row { display: flex; gap: var(--sp-3); flex-wrap: wrap; align-items: baseline; }
+  .muted { color: var(--fg-muted); }
+  .small { font-size: var(--fs-sm); }
+  .xsmall { font-size: var(--fs-xs); }
+  .nowrap { white-space: nowrap; }
+  .hairline { border-bottom: 1px solid var(--rule); padding-bottom: var(--sp-2); margin-bottom: var(--sp-3); }
+
+  .pw-overlay { position: fixed; inset: 0; background: var(--ghost); z-index: 9999; display: flex; align-items: center; justify-content: center; padding: var(--sp-5); }
+  .pw-box { background: var(--bg); border: 1px solid var(--rule-strong); padding: var(--sp-7) var(--sp-6); max-width: 400px; width: 100%; text-align: left; }
+  .pw-kicker { font-size: var(--fs-xs); letter-spacing: var(--tracking-wider); text-transform: uppercase; color: var(--fg-muted); font-weight: 600; margin-bottom: var(--sp-3); }
+  .pw-title { font-size: var(--fs-xl); font-weight: 700; color: var(--azure); letter-spacing: var(--tracking-tight); margin: 0 0 var(--sp-3) 0; }
+  .pw-subtitle { font-size: var(--fs-sm); color: var(--fg-muted); margin: 0 0 var(--sp-5) 0; line-height: var(--lh-normal); }
+  .pw-input { width: 100%; padding: 12px 14px; border: 1px solid var(--rule-strong); background: var(--bg); color: var(--shadow); font-size: var(--fs-base); font-family: var(--sans); outline: none; margin-bottom: var(--sp-3); transition: border-color 120ms var(--ease); }
+  .pw-input:focus { border-color: var(--azure); }
+  .pw-input::placeholder { color: var(--fg-subtle); }
+  .pw-btn { width: 100%; padding: 12px 14px; background: var(--azure); color: var(--ghost); font-size: var(--fs-sm); font-weight: 700; font-family: var(--sans); letter-spacing: var(--tracking-wide); text-transform: uppercase; border: 1px solid var(--azure); cursor: pointer; transition: background 120ms var(--ease); }
+  .pw-btn:hover { background: var(--azure-900); }
+  .pw-error { font-size: var(--fs-sm); color: #b3261e; margin-top: var(--sp-3); display: none; }
+
+  @media print {
+    .nav, .meta-strip { display: none; }
+    body { background: white; color: black; }
+    .panel, .callout, .summary { background: white; border-color: #ccc; }
+    .reveal { opacity: 1; transform: none; }
+    details .acc-body, details .faq-body { display: block !important; }
+  }
+</style>
+</head>
+<body>
+
+<div class="pw-overlay" id="pwOverlay">
+  <div class="pw-box">
+    <div class="pw-kicker">Scroll Media · Internal</div>
+    <div class="pw-title">BD portal access</div>
+    <div class="pw-subtitle">This page is for the Scroll Media BD team. Enter your access password to continue.</div>
+    <input type="password" class="pw-input" id="pwInput" placeholder="Password" autocomplete="off" />
+    <button type="button" class="pw-btn" onclick="checkPassword()">Enter portal</button>
+    <div class="pw-error" id="pwError">Incorrect password. Try again.</div>
+  </div>
+</div>
+<script>
+(function() {
+  var key = 'sm_tools_auth';
+  if (sessionStorage.getItem(key) === '1') {
+    var el = document.getElementById('pwOverlay');
+    if (el) el.style.display = 'none';
+  }
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Enter' && document.activeElement && document.activeElement.id === 'pwInput') {
+      checkPassword();
+    }
+  });
+})();
+function checkPassword() {
+  var val = document.getElementById('pwInput').value;
+  if (val === 'scrollies') {
+    sessionStorage.setItem('sm_tools_auth', '1');
+    document.getElementById('pwOverlay').style.display = 'none';
+  } else {
+    document.getElementById('pwError').style.display = 'block';
+    document.getElementById('pwInput').value = '';
+    document.getElementById('pwInput').focus();
+  }
+}
+</script>
+
+<div class="meta-strip">
+  <div class="meta-strip-inner">
+    <span><strong>Internal use only.</strong> Do not share with prospects or clients.</span>
+    <span class="nowrap">v1.2 · May 11, 2026</span>
+  </div>
+</div>
+
+<nav class="nav" aria-label="Section navigation">
+  <div class="nav-inner">
+    <div class="brand">
+      Scroll Media <span class="sep">/</span> <span class="label">BD Portal</span>
+    </div>
+    <div class="nav-links" id="navLinks">
+      <a href="#welcome">Welcome</a>
+      <a href="#channels">Setup</a>
+      <a href="#who-you-own">Who you own</a>
+      <a href="#playbook">14-day playbook</a>
+      <a href="#voice">Voice</a>
+      <a href="#audits">Audits</a>
+      <a href="#posting">Posting</a>
+      <a href="#escalation">Escalation</a>
+      <a href="#resources">Resources</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ====================================================================
+     1. WELCOME + 30-SECOND PITCH (MERGED)
+     ==================================================================== -->
+<section class="block hero" id="welcome">
+  <div class="container">
+    <span class="label">Last updated May 11, 2026</span>
+    <h1 class="title">The BD team operating portal.</h1>
+    <p class="lede">
+      The live working doc for everyone running outreach for Scroll Media. Find your daily worklist filter, your geo zone, your voice rules, and the handoff path when a prospect says yes. Built for scanning, not reading. The answer to "what do I do today" should be 10 seconds away.
+    </p>
+
+    <div class="callout signal reveal">
+      <strong>System-live target:</strong> Tuesday May 12, 2026. Team meeting kicks off live execution. The 60-day target after launch: 3 new Signature clients. If you're reading this before launch, sit tight on outreach until Chase greenlights in <code>#bd-team</code>.
+    </div>
+
+    <div class="summary reveal">
+      <h4 style="margin-top: 0;">The 30-second pitch</h4>
+      <p style="font-size: var(--fs-md); margin-bottom: var(--sp-3);"><strong style="color: var(--azure);">Cincinnati's Instagram agency for local brands.</strong></p>
+      <ol class="summary-rows">
+        <li><span class="n">1</span><span><strong>What we sell.</strong> Organic Instagram strategy + execution. Signature Essential $2,975/mo, Signature Growth $3,250/mo. 3-month minimum, then month-to-month. Preceded by a $1,917 flat 3-week strategy build. Productized layer ($87 Playbook, $997 Blueprint, $500 Strategy Session) sits underneath.</span></li>
+        <li><span class="n">2</span><span><strong>Who we sell to.</strong> Cincinnati and Dayton-area local brands with foot traffic, a visual product or service, and a founder willing to invest in long-term brand building. Strongest fits: med spas, fitness studios, hair/nail/lash, interior design, real estate, F&amp;B.</span></li>
+        <li><span class="n">3</span><span><strong>Why this wins.</strong> Cincinnati is the moat. Instagram-only is the differentiator. Organic is the differentiation at depth. Founder-led acquisition (Chase is the front of the brand).</span></li>
+      </ol>
+    </div>
+
+    <details class="acc reveal">
+      <summary>Read the full positioning logic and what we don't do</summary>
+      <div class="acc-body">
+        <h3 style="margin-top: var(--sp-3);">Why this positioning wins</h3>
+        <ul>
+          <li><strong>Cincinnati is the moat.</strong> No agency has captured this market position. Local brands want local agencies.</li>
+          <li><strong>Instagram-only is the differentiator.</strong> Most local agencies are generalists. We picked a lane.</li>
+          <li><strong>Organic is the differentiation at depth.</strong> "No paid ads, no hacks." We don't lead with it in the headline, but it lands once a prospect digs in.</li>
+          <li><strong>Founder-led acquisition.</strong> Chase is the front of the brand. Cold prospects look up <code>@chase.scrolls</code> before they reply. The personal brand is air cover for the outreach motion.</li>
+        </ul>
+
+        <h3>What we don't do</h3>
+        <ul>
+          <li>Paid ads. Not yet, not as core service.</li>
+          <li>TikTok-first, LinkedIn-first, or YouTube-first work.</li>
+          <li>Sub-$2,750/mo retainers for new clients. The floor is the floor.</li>
+          <li>"Viral hack" pitches. We sell strategy and consistency.</li>
+        </ul>
+
+        <h3>How to use this portal</h3>
+        <ul>
+          <li><strong>Bookmark it.</strong> Open it at the start of every IG block.</li>
+          <li><strong>Use the sticky nav</strong> at the top to jump to a section. Mobile: scroll the nav strip horizontally.</li>
+          <li><strong>This portal does not edit itself.</strong> When ops procedures change, the source markdown gets edited first, then this portal gets rebuilt from it.</li>
+        </ul>
+      </div>
+    </details>
+  </div>
+</section>
+
+<!-- ====================================================================
+     2. HOW WE'RE SET UP (CHANNEL ARCHITECTURE + DIAGRAM)
+     ==================================================================== -->
+<section class="block" id="channels">
+  <div class="container">
+    <p class="section-kicker">Section 02</p>
+    <h2>How we're set up</h2>
+    <p class="intro">Two voices on the system. One founder seat, one agency seat. The May 2026 channel restructure made the split clean. Don't cross lanes.</p>
+
+    <div class="diagram-frame reveal">
+      <div class="diagram-caption">Channel architecture · who runs what</div>
+      <svg viewBox="0 0 1080 360" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Channel architecture showing Chase voice surfaces and Agency voice surfaces, plus shared ManyChat and Loom audit surfaces feeding into a Chase handoff">
+        <defs>
+          <style>
+            .dg-bg { fill: #FAFDFF; }
+            .dg-box { fill: #FAFDFF; stroke: rgba(12,51,135,0.40); stroke-width: 1.25; }
+            .dg-box-chase { fill: #FAFDFF; stroke: #151516; stroke-width: 1.25; }
+            .dg-box-agency { fill: #e4f3ff; stroke: rgba(12,51,135,0.40); stroke-width: 1.25; }
+            .dg-box-shared { fill: #FAFDFF; stroke: rgba(12,51,135,0.40); stroke-width: 1.25; stroke-dasharray: 4 3; }
+            .dg-h { font: 700 13px 'Source Sans 3', sans-serif; fill: #0C3387; letter-spacing: 0.08em; text-transform: uppercase; }
+            .dg-t { font: 700 15px 'Source Sans 3', sans-serif; fill: #151516; }
+            .dg-s { font: 500 12px 'Source Sans 3', sans-serif; fill: #5a6070; }
+            .dg-l { stroke: rgba(12,51,135,0.40); stroke-width: 1; fill: none; }
+            .dg-chase-mark { fill: #E2ED7A; stroke: #151516; stroke-width: 1; }
+            .dg-agency-mark { fill: #FAFDFF; stroke: rgba(12,51,135,0.40); stroke-width: 1; }
+            .dg-cluster { font: 700 11px 'Source Sans 3', sans-serif; fill: #0C3387; letter-spacing: 0.14em; text-transform: uppercase; }
+            .dg-op-letter { font: 700 10px 'Source Sans 3', sans-serif; fill: #0C3387; text-anchor: middle; }
+          </style>
+        </defs>
+        <rect class="dg-bg" x="0" y="0" width="1080" height="360"/>
+
+        <text class="dg-cluster" x="40" y="40">Chase voice · founder seat</text>
+        <line class="dg-l" x1="40" y1="50" x2="510" y2="50"/>
+
+        <rect class="dg-box-chase" x="40" y="70" width="145" height="92"/>
+        <circle class="dg-chase-mark" cx="58" cy="88" r="6"/>
+        <text class="dg-t" x="72" y="92">Cold email</text>
+        <text class="dg-s" x="55" y="115">25/day, weekday</text>
+        <text class="dg-s" x="55" y="132">Chase voice</text>
+        <text class="dg-s" x="55" y="149">Lowercase subject</text>
+
+        <rect class="dg-box-chase" x="200" y="70" width="145" height="92"/>
+        <circle class="dg-chase-mark" cx="218" cy="88" r="6"/>
+        <text class="dg-t" x="232" y="92">LinkedIn DMs</text>
+        <text class="dg-s" x="215" y="115">25/day, Tue/Wed/Thu</text>
+        <text class="dg-s" x="215" y="132">Chase voice</text>
+        <text class="dg-s" x="215" y="149">Founder seat unified</text>
+
+        <rect class="dg-box-chase" x="360" y="70" width="150" height="92"/>
+        <circle class="dg-chase-mark" cx="378" cy="88" r="6"/>
+        <text class="dg-t" x="392" y="92">IG@chase.scrolls</text>
+        <text class="dg-s" x="375" y="115">10–15/day Tue/Wed/Thu</text>
+        <text class="dg-s" x="375" y="132">Personal brand</text>
+        <text class="dg-s" x="375" y="149">Casual peer-to-peer</text>
+
+        <text class="dg-cluster" x="565" y="40">Agency voice · brand seat</text>
+        <line class="dg-l" x1="565" y1="50" x2="1040" y2="50"/>
+
+        <rect class="dg-box-agency" x="565" y="70" width="475" height="92"/>
+        <text class="dg-t" x="580" y="92">IG@scrollmedia.co</text>
+        <text class="dg-s" x="580" y="113">10–15 DMs/day per operator · 3–5 feed posts/wk · 1–2 stories/day</text>
+
+        <circle class="dg-agency-mark" cx="588" cy="138" r="9"/>
+        <text class="dg-op-letter" x="588" y="142">E</text>
+        <text class="dg-s" x="603" y="142">Emily</text>
+
+        <circle class="dg-agency-mark" cx="670" cy="138" r="9"/>
+        <text class="dg-op-letter" x="670" y="142">RA</text>
+        <text class="dg-s" x="687" y="142">Rachel</text>
+
+        <circle class="dg-agency-mark" cx="758" cy="138" r="9"/>
+        <text class="dg-op-letter" x="758" y="142">RI</text>
+        <text class="dg-s" x="775" y="142">Riley</text>
+
+        <text class="dg-s" x="838" y="142" style="font-style:italic;">brand-led, "we" framing</text>
+
+        <text class="dg-cluster" x="40" y="210">Shared surfaces · routes back to Chase</text>
+        <line class="dg-l" x1="40" y1="220" x2="1040" y2="220"/>
+
+        <rect class="dg-box-shared" x="40" y="240" width="305" height="80"/>
+        <text class="dg-t" x="55" y="262">ManyChat keyword triggers</text>
+        <text class="dg-s" x="55" y="282">Runs on BOTH IG accounts</text>
+        <text class="dg-s" x="55" y="300">Account-specific DM copy per voice</text>
+
+        <rect class="dg-box-shared" x="365" y="240" width="305" height="80"/>
+        <text class="dg-t" x="380" y="262">Loom audits</text>
+        <text class="dg-s" x="380" y="282">Recorded by whoever held the relationship</text>
+        <text class="dg-s" x="380" y="300">A-tier governance, B-tier self-checklist</text>
+
+        <rect class="dg-box" x="690" y="240" width="350" height="80"/>
+        <text class="dg-t" x="705" y="262">Handoff to Chase (always)</text>
+        <text class="dg-s" x="705" y="282">Hot signal → Chase takes over via email</text>
+        <text class="dg-s" x="705" y="300">Calendly + pricing live in Chase's seat</text>
+
+        <path class="dg-l" d="M 802 162 L 802 220"/>
+        <path class="dg-l" d="M 282 162 L 282 220"/>
+        <path class="dg-l" d="M 1040 116 Q 1075 116 1075 220 L 865 220" stroke-dasharray="3 3"/>
+      </svg>
+    </div>
+
+    <div class="callout signal reveal">
+      <strong>Hard line.</strong> Team only sends from <code>@scrollmedia.co</code> IG. Never personal IG. Never email. Never LinkedIn. If a prospect tries to pull you to email or LinkedIn, ask for their email and run the handoff to Chase.
+    </div>
+
+    <h3>Tier-based channel allocation</h3>
+    <p>How many channels run per prospect depends on tier. A-tier gets multi-channel saturation. C-tier is IG-only.</p>
+
+    <div class="table-wrap reveal">
+      <table>
+        <thead><tr><th>Tier</th><th>Channels active</th><th>Your involvement</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><span class="tag azure">A</span></td>
+            <td>Chase email + Chase LinkedIn + IG@scroll (you) + IG@chase (Chase)</td>
+            <td>You run the IG@scroll piece. Chase runs his three.</td>
+          </tr>
+          <tr>
+            <td><span class="tag azure">B</span></td>
+            <td>(Chase email + IG@scroll) or (Chase LinkedIn + IG@scroll)</td>
+            <td>You run the IG@scroll piece. 1 to 2 channels per prospect.</td>
+          </tr>
+          <tr>
+            <td><span class="tag azure">C</span></td>
+            <td>IG@scroll only</td>
+            <td><strong>You own end-to-end.</strong> No Chase touches.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ====================================================================
+     3. WHO YOU OWN (TIERING + GEO + WORKLIST MERGED)
+     ==================================================================== -->
+<section class="block" id="who-you-own">
+  <div class="container">
+    <p class="section-kicker">Section 03</p>
+    <h2>Who you own</h2>
+    <p class="intro">462 prospects in the master sheet. You only ever look at yours. Three filters narrow the universe to today's work: tier, geo, and a daily filter view.</p>
+
+    <div class="summary reveal">
+      <h4 style="margin-top: 0;">Three things to remember about your assignment</h4>
+      <ol class="summary-rows">
+        <li><span class="n">1</span><span><strong>Two ownership columns.</strong> Column K (<code>Owner</code>) drives reporting and stays with Chase for A/B-tier. Column AB (<code>IG@scroll Owner</code>) is your daily worklist column. Always Riley, Rachel, or Emily. For C-tier, K = AB.</span></li>
+        <li><span class="n">2</span><span><strong>Your geo zone is sticky.</strong> Emily = OTR/Downtown core. Rachel = NKY. Riley = east side proper. Unzoned (generic Cincy, far north, west side) gets distributed by capacity. Don't reassign yourself; flag in Slack.</span></li>
+        <li><span class="n">3</span><span><strong>Your daily worklist filter</strong> = <code>IG@scroll Owner = your name</code> AND <code>Status ∈ {Warming, In Sequence}</code> AND <code>Next Touch Date ≤ TODAY()</code>. Save it as a Filter view. Open it first every IG block.</span></li>
+      </ol>
+    </div>
+
+    <div class="diagram-frame reveal">
+      <div class="diagram-caption">Geo zones · operator territories across the Cincinnati metro</div>
+      <svg viewBox="0 0 1080 380" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Three operator territories: Emily owns the urban core, Riley owns the east side, Rachel owns NKY. Unzoned bucket distributed by capacity.">
+        <defs>
+          <style>
+            .gz-bg { fill: #FAFDFF; }
+            .gz-zone-emily { fill: #e4f3ff; stroke: rgba(12,51,135,0.40); stroke-width: 1.25; }
+            .gz-zone-riley { fill: #FAFDFF; stroke: rgba(12,51,135,0.40); stroke-width: 1.25; }
+            .gz-zone-rachel { fill: #FAFDFF; stroke: rgba(12,51,135,0.40); stroke-width: 1.25; stroke-dasharray: 5 4; }
+            .gz-zone-unzoned { fill: #FAFDFF; stroke: rgba(12,51,135,0.20); stroke-width: 1; stroke-dasharray: 2 3; }
+            .gz-h { font: 700 14px 'Source Sans 3', sans-serif; fill: #0C3387; letter-spacing: -0.01em; }
+            .gz-c { font: 700 11px 'Source Sans 3', sans-serif; fill: #0C3387; letter-spacing: 0.14em; text-transform: uppercase; }
+            .gz-s { font: 500 11px 'Source Sans 3', sans-serif; fill: #5a6070; }
+            .gz-num { font: 700 28px 'Source Sans 3', sans-serif; fill: #0C3387; letter-spacing: -0.01em; }
+            .gz-mark { fill: #FAFDFF; stroke: rgba(12,51,135,0.40); stroke-width: 1; }
+            .gz-mark-letter { font: 700 11px 'Source Sans 3', sans-serif; fill: #0C3387; text-anchor: middle; }
+            .gz-river { stroke: rgba(12,51,135,0.40); stroke-width: 1.5; stroke-dasharray: 3 3; fill: none; }
+            .gz-river-label { font: 600 10px 'Source Sans 3', sans-serif; fill: #5a6070; letter-spacing: 0.08em; text-transform: uppercase; }
+          </style>
+        </defs>
+        <rect class="gz-bg" x="0" y="0" width="1080" height="380"/>
+
+        <!-- Emily: urban core (left-center) -->
+        <rect class="gz-zone-emily" x="40" y="60" width="290" height="180"/>
+        <circle class="gz-mark" cx="68" cy="90" r="12"/>
+        <text class="gz-mark-letter" x="68" y="94">E</text>
+        <text class="gz-h" x="90" y="93">Emily</text>
+        <text class="gz-c" x="90" y="110">Urban core</text>
+        <text class="gz-num" x="40" y="160">138</text>
+        <text class="gz-s" x="90" y="155">prospects</text>
+        <text class="gz-s" x="90" y="170">~9–10 day rotation</text>
+        <text class="gz-s" x="55" y="195">OTR · Downtown · Pendleton</text>
+        <text class="gz-s" x="55" y="210">Mt. Auburn · Mt. Adams · Northside</text>
+        <text class="gz-s" x="55" y="225">Queensgate · West End · East End</text>
+
+        <!-- Riley: east side proper (right) -->
+        <rect class="gz-zone-riley" x="360" y="60" width="370" height="180"/>
+        <circle class="gz-mark" cx="388" cy="90" r="12"/>
+        <text class="gz-mark-letter" x="388" y="94">RI</text>
+        <text class="gz-h" x="410" y="93">Riley</text>
+        <text class="gz-c" x="410" y="110">East side proper</text>
+        <text class="gz-num" x="360" y="160">186</text>
+        <text class="gz-s" x="410" y="155">prospects (densest zone)</text>
+        <text class="gz-s" x="410" y="170">~13 day rotation</text>
+        <text class="gz-s" x="375" y="195">Hyde Park · Oakley · Mt. Lookout · Mariemont</text>
+        <text class="gz-s" x="375" y="210">Madisonville · Anderson · Indian Hill · Loveland</text>
+        <text class="gz-s" x="375" y="225">Kenwood · Madeira · Norwood · Walnut Hills · +12 more</text>
+
+        <!-- Rachel: NKY (bottom) -->
+        <rect class="gz-zone-rachel" x="40" y="280" width="690" height="80"/>
+        <circle class="gz-mark" cx="68" cy="305" r="12"/>
+        <text class="gz-mark-letter" x="68" y="309">RA</text>
+        <text class="gz-h" x="90" y="308">Rachel</text>
+        <text class="gz-c" x="90" y="325">All NKY · south of the river</text>
+        <text class="gz-num" x="40" y="357">138</text>
+        <text class="gz-s" x="90" y="343">prospects · ~9–10 day rotation</text>
+        <text class="gz-s" x="240" y="343">Covington · Newport · Florence · Bellevue · Erlanger</text>
+        <text class="gz-s" x="240" y="357">Ft. Mitchell · Ft. Thomas · Edgewood · Southgate · +6 more</text>
+
+        <!-- River divider -->
+        <path class="gz-river" d="M 40 270 L 730 270"/>
+        <text class="gz-river-label" x="40" y="264">Ohio River</text>
+
+        <!-- Unzoned (right column) -->
+        <rect class="gz-zone-unzoned" x="760" y="60" width="280" height="300"/>
+        <text class="gz-c" x="775" y="90">Unzoned</text>
+        <text class="gz-s" x="775" y="108">Distributed across all three</text>
+        <text class="gz-s" x="775" y="123">by capacity to balance load.</text>
+        <text class="gz-s" x="775" y="155" style="font-weight:600;">Includes:</text>
+        <text class="gz-s" x="775" y="175">Generic "Cincinnati"</text>
+        <text class="gz-s" x="775" y="195">West side · Westwood · Cheviot</text>
+        <text class="gz-s" x="775" y="215">Mason · West Chester</text>
+        <text class="gz-s" x="775" y="235">Sharonville · Fairfield</text>
+        <text class="gz-s" x="775" y="255">Blue Ash · Montgomery</text>
+        <text class="gz-s" x="775" y="275">Hamilton</text>
+
+        <!-- Legend -->
+        <text class="gz-c" x="775" y="315">Note</text>
+        <text class="gz-s" x="775" y="335">Geo affinity is sticky.</text>
+        <text class="gz-s" x="775" y="350">Chase decides moves.</text>
+      </svg>
+    </div>
+
+    <details class="acc reveal">
+      <summary>See the full tiering framework (niche lanes + follower bands + ownership cols)</summary>
+      <div class="acc-body">
+        <p>Locked May 6, 2026. Chase tiers. You don't. But know the rules so you can flag misfits.</p>
+
+        <h3 style="margin-top: var(--sp-4);">The four niche lanes</h3>
+        <div class="grid-2">
+          <div class="panel">
+            <h4 style="margin-top: 0;">Force-route to C</h4>
+            <p class="small muted">Structurally weak on organic IG. Never go to A or B regardless of size.</p>
+            <p class="small">
+              <span class="tag">Chiropractors</span>
+              <span class="tag">Physical Therapists</span>
+              <span class="tag">Therapists</span>
+              <span class="tag">Doctors</span>
+              <span class="tag">Pregnancy Services</span>
+              <span class="tag">Toy Store</span>
+            </p>
+          </div>
+          <div class="panel">
+            <h4 style="margin-top: 0;">Strict A-eligible</h4>
+            <p class="small muted">Top organic-IG niches. Default to A if follower band fits.</p>
+            <p class="small">
+              <span class="tag azure">Med Spa</span>
+              <span class="tag azure">Hair / Nail Studio</span>
+              <span class="tag azure">Fitness Studio</span>
+              <span class="tag azure">Interior Design</span>
+              <span class="tag azure">Real Estate</span>
+              <span class="tag azure">Restaurant</span>
+              <span class="tag azure">Bar</span>
+              <span class="tag azure">Bakery</span>
+              <span class="tag azure">Brewery</span>
+              <span class="tag azure">Coffee Shop</span>
+              <span class="tag azure">Pizza Shop</span>
+            </p>
+          </div>
+          <div class="panel">
+            <h4 style="margin-top: 0;">Conditional A</h4>
+            <p class="small muted">A-tier only if all three: Cincy core neighborhood, 2k to 10k followers, founder-led.</p>
+            <p class="small">
+              <span class="tag">Health &amp; Wellness boutique studios</span>
+              <span class="tag">Dermatologist</span>
+              <span class="tag">Plastic Surgeons</span>
+              <span class="tag">Clothing</span>
+              <span class="tag">Gift Shop</span>
+              <span class="tag">Florist</span>
+              <span class="tag">Photography &amp; Videography</span>
+            </p>
+          </div>
+          <div class="panel">
+            <h4 style="margin-top: 0;">B-tier max only</h4>
+            <p class="small muted">Acceptable on the list, capped at B regardless of fit.</p>
+            <p class="small">
+              <span class="tag">Home Builders</span>
+              <span class="tag">Coaching Services</span>
+            </p>
+          </div>
+        </div>
+
+        <h3>Follower bands</h3>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Followers</th><th>Tier ceiling</th><th>Notes</th></tr></thead>
+            <tbody>
+              <tr><td>2,000 to 10,000</td><td><span class="tag signal">Prime A</span></td><td>The sweet spot. Most brand-building leverage.</td></tr>
+              <tr><td>1,000 to 2,000</td><td><span class="tag azure">Acceptable A</span></td><td>Smaller base, but room to scale.</td></tr>
+              <tr><td>10,000 to 15,000</td><td><span class="tag azure">Acceptable A</span></td><td>Larger base, may already be doing well organically.</td></tr>
+              <tr><td>15,000 to 20,000</td><td><span class="tag">B max</span></td><td>Established. Less likely to need us.</td></tr>
+              <tr><td>500 to 1,000</td><td><span class="tag">B max</span></td><td>Too small for prime A volume.</td></tr>
+              <tr><td>20,000+</td><td><span class="tag">Force C</span></td><td>Anti-signal. Already established without us.</td></tr>
+              <tr><td>Under 500</td><td><span class="tag">Force C</span></td><td>Unless flagged High priority, default to C.</td></tr>
+              <tr><td>Unknown</td><td><span class="tag muted">Treat as 1k to 2k</span></td><td>Validate at first touch (5-min IG check).</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3>The two ownership columns</h3>
+        <div class="callout">
+          <strong>Column K (<code>Owner</code>) drives reporting.</strong> For A-tier and B-tier, K = Chase. For C-tier, K = your name.<br /><br />
+          <strong>Column AB (<code>IG@scroll Owner</code>) drives your daily worklist.</strong> Always Riley / Rachel / Emily. For A/B, AB differs from K. For C, K and AB are both your name.
+        </div>
+      </div>
+    </details>
+
+    <details class="acc reveal">
+      <summary>Set up your daily worklist filter view (one-time, 5-min setup)</summary>
+      <div class="acc-body">
+        <h3 style="margin-top: var(--sp-3);">The filter formula</h3>
+        <pre><code>IG@scroll Owner = [your first name]
+AND Status ∈ (Warming, In Sequence)
+AND Next Touch Date ≤ TODAY()</code></pre>
+        <p>Everything that matches is actionable today. Everything else is either not yours, not in active sequence, or scheduled for later.</p>
+
+        <h3>How to set it up in Google Sheets</h3>
+        <ol>
+          <li>Open <code>master_prospect_spreadsheet.xlsx</code> from the Drive folder.</li>
+          <li>Click <strong>Data → Create a filter</strong>.</li>
+          <li>On column AB (<code>IG@scroll Owner</code>), filter to your first name only.</li>
+          <li>On column N (<code>Status</code>), filter to <code>Warming</code> and <code>In Sequence</code>.</li>
+          <li>On column U (<code>Next Touch Date</code>), set the condition to <em>"Date is on or before"</em> with the value <code>=TODAY()</code>.</li>
+          <li>Save as a <strong>Filter view</strong>: <em>Data → Filter views → Save as filter view</em>. Name it <code>[Your Name] daily worklist</code>.</li>
+          <li>Bookmark the filter view URL in your browser. Open it as the first action of every IG block.</li>
+        </ol>
+
+        <h3>What you'll see</h3>
+        <p>Your worklist will show 8 to 15 prospects on a normal day. Sort by <strong>Next Touch Type</strong> if you want to group warm-up touches together and DM sends together. Work the list top-down.</p>
+
+        <div class="callout signal">
+          <strong>The hygiene rule that makes the filter work.</strong> Update <code>Next Touch Date</code> immediately after every touch. If you skip this, the filter drifts and tomorrow's worklist will be wrong. Inline updates, not EOD batch.
+        </div>
+      </div>
+    </details>
+
+    <h3>Weekly volume budget</h3>
+    <div class="table-wrap reveal">
+      <table>
+        <thead><tr><th>Operator</th><th>Daily target</th><th>Weekly volume</th><th>Active prospects (steady state)</th></tr></thead>
+        <tbody>
+          <tr><td><span class="op"><span class="op-mark">E</span> Emily</span></td><td>10 to 15</td><td>50 to 75</td><td>~50 to 60</td></tr>
+          <tr><td><span class="op"><span class="op-mark">RA</span> Rachel</span></td><td>10 to 15</td><td>50 to 75</td><td>~50 to 60</td></tr>
+          <tr><td><span class="op"><span class="op-mark">RI</span> Riley</span></td><td>10 to 15</td><td>50 to 75</td><td>~50 to 60</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout reveal">
+      <strong>Spot a prospect in your zone that's not assigned to you?</strong> Or one outside your zone that is? Flag in <code>#bd-team</code> Slack. Don't reassign yourself. Geo affinity is sticky and Chase decides moves.
+    </div>
+  </div>
+</section>
+
+<!-- ====================================================================
+     4. THE 14-DAY PLAYBOOK
+     ==================================================================== -->
+<section class="block" id="playbook">
+  <div class="container">
+    <p class="section-kicker">Section 04</p>
+    <h2>The 14-day playbook</h2>
+    <p class="intro">Every A and B-tier prospect we touch on IG@scroll runs the same shape: follow, engage, DM, share the Manual when warm, offer an audit when warmer, route to Chase when they're ready to talk. This is the day-by-day sequence underneath your DM templates and warm-up protocol.</p>
+
+    <div class="summary reveal">
+      <h4 style="margin-top: 0;">Three principles the whole playbook rests on</h4>
+      <ol class="summary-rows">
+        <li><span class="n">1</span><span><strong>Attention before pitch.</strong> Every prospect gets 2 to 7 days of genuine attention before a single DM goes out. The warm-up is the whole point.</span></li>
+        <li><span class="n">2</span><span><strong>Value before ask.</strong> Manual share before audit offer. Audit offer before discovery call. No skipping steps to chase a fast yes.</span></li>
+        <li><span class="n">3</span><span><strong>Update the sheet immediately.</strong> The system breaks the moment your worklist drifts from reality. Touch the sheet within 60 seconds of the action, every time.</span></li>
+      </ol>
+    </div>
+
+    <div class="diagram-frame reveal">
+      <div class="diagram-caption">14-day sequence · timeline view</div>
+      <svg viewBox="0 0 1080 280" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="14-day outreach timeline from Day 0 follow through Day 14+ handoff, with funnel stage transitions noted at each milestone">
+        <defs>
+          <style>
+            .tl-bg { fill: #FAFDFF; }
+            .tl-line { stroke: rgba(12,51,135,0.40); stroke-width: 1.5; fill: none; }
+            .tl-dot { fill: #FAFDFF; stroke: #0C3387; stroke-width: 1.5; }
+            .tl-dot-hot { fill: #E2ED7A; stroke: #151516; stroke-width: 1.5; }
+            .tl-day { font: 700 12px 'Source Sans 3', sans-serif; fill: #0C3387; letter-spacing: 0.08em; text-transform: uppercase; text-anchor: middle; }
+            .tl-action { font: 700 12px 'Source Sans 3', sans-serif; fill: #151516; text-anchor: middle; }
+            .tl-stage { font: 500 10px 'Source Sans 3', sans-serif; fill: #5a6070; text-anchor: middle; letter-spacing: 0.08em; text-transform: uppercase; }
+            .tl-stage-box { fill: #e4f3ff; stroke: rgba(12,51,135,0.40); stroke-width: 1; }
+            .tl-pulse { fill: none; stroke: #0C3387; stroke-width: 1; opacity: 0.3; }
+          </style>
+        </defs>
+        <rect class="tl-bg" x="0" y="0" width="1080" height="280"/>
+
+        <!-- Horizontal line -->
+        <line class="tl-line" x1="80" y1="120" x2="1000" y2="120"/>
+
+        <!-- 7 milestones at x: 80, 233, 387, 540, 693, 847, 1000 -->
+        <!-- Day 0 -->
+        <circle class="tl-dot" cx="80" cy="120" r="9"/>
+        <text class="tl-day" x="80" y="100">Day 0</text>
+        <text class="tl-action" x="80" y="155">Follow + watch</text>
+        <rect class="tl-stage-box" x="40" y="175" width="80" height="20"/>
+        <text class="tl-stage" x="80" y="189">Engaged</text>
+
+        <!-- Day 1-2 -->
+        <circle class="tl-dot" cx="233" cy="120" r="9"/>
+        <text class="tl-day" x="233" y="100">Day 1–2</text>
+        <text class="tl-action" x="233" y="155">Warm-up</text>
+        <text class="tl-action" x="233" y="170">comments</text>
+        <rect class="tl-stage-box" x="193" y="190" width="80" height="20"/>
+        <text class="tl-stage" x="233" y="204">Engaged</text>
+
+        <!-- Day 3 -->
+        <circle class="tl-dot" cx="387" cy="120" r="9"/>
+        <text class="tl-day" x="387" y="100">Day 3</text>
+        <text class="tl-action" x="387" y="155">DM 1</text>
+        <text class="tl-action" x="387" y="170">(cold intro)</text>
+        <rect class="tl-stage-box" x="347" y="190" width="80" height="20"/>
+        <text class="tl-stage" x="387" y="204">DM1 sent</text>
+
+        <!-- Day 5-7 -->
+        <circle class="tl-dot" cx="540" cy="120" r="9"/>
+        <text class="tl-day" x="540" y="100">Day 5–7</text>
+        <text class="tl-action" x="540" y="155">DM 2</text>
+        <text class="tl-action" x="540" y="170">(if no reply)</text>
+        <rect class="tl-stage-box" x="500" y="190" width="80" height="20"/>
+        <text class="tl-stage" x="540" y="204">DM2 sent</text>
+
+        <!-- Day 8-10 -->
+        <circle class="tl-dot" cx="693" cy="120" r="9"/>
+        <text class="tl-day" x="693" y="100">Day 8–10</text>
+        <text class="tl-action" x="693" y="155">Share Manual</text>
+        <text class="tl-action" x="693" y="170">(if warm reply)</text>
+        <rect class="tl-stage-box" x="643" y="190" width="100" height="20"/>
+        <text class="tl-stage" x="693" y="204">Manual shared</text>
+
+        <!-- Day 12-14 -->
+        <circle class="tl-dot" cx="847" cy="120" r="9"/>
+        <text class="tl-day" x="847" y="100">Day 12–14</text>
+        <text class="tl-action" x="847" y="155">Audit offer</text>
+        <text class="tl-action" x="847" y="170">(if still engaged)</text>
+        <rect class="tl-stage-box" x="807" y="190" width="80" height="20"/>
+        <text class="tl-stage" x="847" y="204">Audit shared</text>
+
+        <!-- Day 14+ -->
+        <circle class="tl-dot-hot" cx="1000" cy="120" r="11"/>
+        <circle class="tl-pulse" cx="1000" cy="120" r="18"/>
+        <text class="tl-day" x="1000" y="100">Day 14+</text>
+        <text class="tl-action" x="1000" y="155">Handoff to Chase</text>
+        <text class="tl-action" x="1000" y="170">(Calendly)</text>
+        <rect class="tl-stage-box" x="945" y="190" width="110" height="20" style="fill:#E2ED7A;stroke:#151516;"/>
+        <text class="tl-stage" x="1000" y="204" style="fill:#151516;font-weight:700;">Discovery booked</text>
+
+        <!-- Caption -->
+        <text class="tl-stage" x="540" y="245" style="text-transform:none;letter-spacing:0;font-style:italic;">Day numbers are guideposts, not handcuffs. Funnel stages drive the spreadsheet.</text>
+      </svg>
+    </div>
+
+    <div class="diagram-frame reveal">
+      <div class="diagram-caption">Funnel progression · how a prospect narrows from cold to closed</div>
+      <svg viewBox="0 0 1080 340" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Funnel from Cold through Engaged, DM1 Sent, DM2 Sent, Manual Shared, Audit Shared, Discovery Booked, ending in Closed-Won or Closed-Lost">
+        <defs>
+          <style>
+            .fn-bg { fill: #FAFDFF; }
+            .fn-stage { fill: #FAFDFF; stroke: rgba(12,51,135,0.40); stroke-width: 1.25; }
+            .fn-stage-hot { fill: #E2ED7A; stroke: #151516; stroke-width: 1.5; }
+            .fn-stage-lost { fill: #FAFDFF; stroke: rgba(12,51,135,0.20); stroke-width: 1; stroke-dasharray: 3 3; }
+            .fn-label { font: 700 13px 'Source Sans 3', sans-serif; fill: #151516; }
+            .fn-stage-label { font: 700 11px 'Source Sans 3', sans-serif; fill: #0C3387; letter-spacing: 0.08em; text-transform: uppercase; }
+            .fn-meta { font: 500 11px 'Source Sans 3', sans-serif; fill: #5a6070; }
+            .fn-arrow { stroke: rgba(12,51,135,0.40); stroke-width: 1; fill: none; }
+          </style>
+        </defs>
+        <rect class="fn-bg" x="0" y="0" width="1080" height="340"/>
+
+        <!-- 7 stacked funnel bars narrowing -->
+        <!-- Cold -->
+        <rect class="fn-stage" x="80" y="30" width="920" height="32"/>
+        <text class="fn-stage-label" x="95" y="51">01 · Cold</text>
+        <text class="fn-meta" x="200" y="51">Not yet contacted. Sits in the master sheet at default.</text>
+
+        <!-- Engaged -->
+        <rect class="fn-stage" x="130" y="70" width="820" height="32"/>
+        <text class="fn-stage-label" x="145" y="91">02 · Engaged</text>
+        <text class="fn-meta" x="260" y="91">Follow + warm-up comments / story reacts complete.</text>
+
+        <!-- DM1 Sent -->
+        <rect class="fn-stage" x="180" y="110" width="720" height="32"/>
+        <text class="fn-stage-label" x="195" y="131">03 · DM1 sent</text>
+        <text class="fn-meta" x="305" y="131">First direct DM (operator-first identification, no ask).</text>
+
+        <!-- DM2 Sent -->
+        <rect class="fn-stage" x="230" y="150" width="620" height="32"/>
+        <text class="fn-stage-label" x="245" y="171">04 · DM2 sent</text>
+        <text class="fn-meta" x="355" y="171">Follow-up DM, different angle, still no pitch.</text>
+
+        <!-- Manual Shared -->
+        <rect class="fn-stage" x="280" y="190" width="520" height="32"/>
+        <text class="fn-stage-label" x="295" y="211">05 · Manual shared</text>
+        <text class="fn-meta" x="425" y="211">Warm reply landed. Manual link sent as value.</text>
+
+        <!-- Audit Shared -->
+        <rect class="fn-stage" x="330" y="230" width="420" height="32"/>
+        <text class="fn-stage-label" x="345" y="251">06 · Audit shared</text>
+        <text class="fn-meta" x="475" y="251">Loom offer went out OR Loom delivered.</text>
+
+        <!-- Discovery Booked (hot) -->
+        <rect class="fn-stage-hot" x="380" y="270" width="320" height="32"/>
+        <text class="fn-stage-label" x="395" y="291" style="fill:#151516;">07 · Discovery booked</text>
+        <text class="fn-meta" x="555" y="291" style="fill:#151516;">Chase owns from here.</text>
+
+        <!-- Exit branches at the bottom -->
+        <path class="fn-arrow" d="M 540 302 L 540 320"/>
+        <text class="fn-stage-label" x="430" y="328">Closed-won</text>
+        <text class="fn-stage-label" x="615" y="328" style="opacity:0.6;">Closed-lost / Disqualified</text>
+      </svg>
+    </div>
+
+    <details class="acc reveal">
+      <summary>See the full day-by-day, touch-by-touch sequence</summary>
+      <div class="acc-body">
+        <h3 style="margin-top: var(--sp-3);">Day 0. Follow + first watch</h3>
+        <p><strong>Action:</strong></p>
+        <ol>
+          <li>Open the prospect's IG profile from @scrollmedia.co.</li>
+          <li>Tap Follow.</li>
+          <li>If they have active stories, watch them.</li>
+          <li>Scan their grid for 30 seconds. Note what they actually post (the niche, the visual style, the obvious strengths).</li>
+        </ol>
+        <p class="small"><strong>Time:</strong> ~90 seconds per prospect.</p>
+        <div class="panel tight">
+          <h4 style="margin-top: 0;">Log in the sheet</h4>
+          <ul class="small">
+            <li><code>Last Touch Date</code> = today</li>
+            <li><code>Last Touch By</code> = your name</li>
+            <li><code>Last Touch Channel</code> = IG@scroll</li>
+            <li><code>Status</code> = Warming (if it was New)</li>
+            <li><code>Funnel Stage</code> = <strong>Engaged</strong></li>
+            <li><code>Engagement Signals</code> = append: <code>Followed [date]</code></li>
+          </ul>
+        </div>
+        <p><strong>Don't:</strong></p>
+        <ul>
+          <li>Don't DM yet. Day 0 is observation only.</li>
+          <li>Don't story-reply yet. That comes Day 1-2.</li>
+          <li>Don't engage with personal-life stories ever (only tactical / business stories).</li>
+        </ul>
+
+        <h3>Day 1-2. Warm-up engagement</h3>
+        <p><strong>Action:</strong> Engage 2 to 3 of their recent posts with comments that earn the right to land in their DMs three days later.</p>
+        <div class="do-dont">
+          <div class="col do">
+            <h4 class="do-label">Good warm-up</h4>
+            <ul>
+              <li><strong>Comment 1.</strong> On their strongest recent post. A specific observation about what's working. Reference the actual hook, the framing, the visual choice. One sentence. No emoji-only.</li>
+              <li><strong>Comment 2.</strong> On a different recent post. Same shape: specific, additive, not generic. Avoid stacking same-day comments (reads as bot behavior).</li>
+              <li><strong>Like 1-2 stories.</strong> If they post tactical or business stories, react to one with a quick line (under 100 chars).</li>
+            </ul>
+          </div>
+          <div class="col dont">
+            <h4 class="dont-label">Bad warm-up</h4>
+            <ul>
+              <li>"Love this!" is empty.</li>
+              <li>Emoji-only reads as a fan account, not an agency.</li>
+              <li>Comments on personal-life stories (kid's birthday, vacation pics). Not your lane.</li>
+              <li>Three comments in one minute. Looks like a bot.</li>
+              <li>Saying "we" or referencing Scroll Media in a public comment. The warm-up is attention, not a sales touch.</li>
+            </ul>
+          </div>
+        </div>
+        <p class="small"><strong>Time:</strong> ~5 to 8 minutes per prospect across Day 1 and Day 2 combined.</p>
+
+        <h3>Day 3. Cold DM #1</h3>
+        <p><strong>Action:</strong> Send DM 1 from <code>templates/03_ig_dm_system/scrollmedia_co_team_voice/02_dm_templates.md</code>, DM Type 1.</p>
+        <p><strong>Required ingredients in every DM 1:</strong></p>
+        <ul>
+          <li>Operator-first identification: "Riley here from Scroll Media."</li>
+          <li>One specific observation pulled from your warm-up (a real post, a real pattern).</li>
+          <li>No ask. No link. No pitch.</li>
+          <li>Close: <code>Cheers, [your first name].</code></li>
+          <li>Under 250 characters total.</li>
+        </ul>
+        <div class="panel tight">
+          <h4 style="margin-top: 0;">Log in the sheet</h4>
+          <ul class="small">
+            <li><code>Funnel Stage</code> = <strong>DM1 Sent</strong></li>
+            <li><code>Next Touch Date</code> = today + 3 days</li>
+            <li><code>Next Touch Type</code> = IG DM @scroll (DM 2 follow-up if no response)</li>
+          </ul>
+        </div>
+
+        <h3>Day 5-7. DM 2 (only if no response to DM 1)</h3>
+        <p><strong>Action:</strong> Send DM 2. Different angle. Still no pitch. The goal is to make the second touch feel like a continuation of attention, not a follow-up nag. If you write "just bumping this" or "wanted to circle back," you've failed.</p>
+        <p><strong>Three angles that work:</strong></p>
+        <ol>
+          <li><strong>The peer observation.</strong> "We saw a [niche] in [neighborhood] run a similar post last week that hit ~3x their normal save count. The pattern under it is the [tactical detail]."</li>
+          <li><strong>The open question.</strong> "Curious which content type is pulling the most discovery for you right now. Reels, carousels, or stories?"</li>
+          <li><strong>The small value-add.</strong> A one-line tactical observation they can use this week. Not a teardown. A nudge.</li>
+        </ol>
+        <div class="callout signal">
+          <strong>If they don't respond to DM 2.</strong> Wait 5 days. Send one more attention touch (story react or comment). If still no response after 14 days from Day 3: mark <code>Status</code> = Engaged-Silent, <code>Funnel Stage</code> stays at DM2 Sent, <code>Next Touch Date</code> = today + 60 days. Leave them alone. Three unanswered DMs starts to feel like spam.
+        </div>
+
+        <h3>Day 8-10. Share the Manual (only if warm reply landed)</h3>
+        <p><strong>Trigger:</strong> Prospect replied to DM 1 or DM 2 with any non-hostile message. Even "thanks!" counts as a warm signal. Especially a question, a follow-back, or a real reply.</p>
+        <p><strong>Action:</strong> Drop the Manual link inside a one-message frame that makes it feel like value, not a download wall.</p>
+        <div class="panel tight">
+          <h4 style="margin-top: 0;">The frame</h4>
+          <p class="small"><em>"Hey {first name}, we put together a free Local Brand Instagram Growth Manual specifically for Cincy brands like {business name}. Walks through bio, content pillars, Reels, and a 7-day kickstart. Free, no email required. https://tools.scrollmedia.co/growth-manual/"</em></p>
+        </div>
+        <p><strong>Voice check:</strong></p>
+        <ul>
+          <li>"Free, no email required" is the line that earns the click. Don't bury it.</li>
+          <li>Don't pitch the agency in this message. The Manual is the pitch. Let it land.</li>
+          <li>One link only. Never stack the Manual + Calendly + audit offer in the same message.</li>
+        </ul>
+
+        <h3>Day 12-14. Audit offer (only if engagement continued after Manual share)</h3>
+        <p><strong>Trigger:</strong> Prospect engaged after Manual share (clicked, replied, asked a follow-up, kept the conversation alive).</p>
+        <p><strong>Action:</strong> Offer a Loom audit. Reference <code>templates/05_loom_audit_system/01_audit_script.md</code>.</p>
+        <div class="panel tight">
+          <p class="small"><em>"Hey {first name}, [operator] from Scroll Media. Want me to record a quick Loom on {business name}? One specific lever I'd test, based on what I've been watching the last 2 weeks. 5 min, free, no pitch. Cheers, [your first name]."</em></p>
+        </div>
+        <p><strong>If they say yes:</strong></p>
+        <ul>
+          <li>Ask for their email so the Loom lands in a real channel.</li>
+          <li>For A-tier: Chase records or reviews before sending.</li>
+          <li>For B-tier: you record using the self-checklist.</li>
+          <li>Send within 48 hours. Slow audits kill momentum.</li>
+        </ul>
+
+        <h3>Day 14+. Calendly handoff to Chase</h3>
+        <p><strong>Trigger:</strong> Prospect watched the audit and replied with intent (asked about pricing, asked to talk, asked "what's next").</p>
+        <p><strong>Action:</strong></p>
+        <ol>
+          <li>Reply within 4 hours.</li>
+          <li>Use the canonical handoff line (see Section 8).</li>
+          <li>Once they send their email: Slack Chase using the hot handoff format.</li>
+          <li>Move conversation to email (Chase takes it from there).</li>
+        </ol>
+        <p class="small muted">You don't paste the Calendly link in the DM. Chase owns the email handoff and the link share. This keeps the operator-to-founder handoff clean.</p>
+      </div>
+    </details>
+
+    <details class="acc reveal">
+      <summary>Read the Funnel Stage glossary (use when updating the sheet)</summary>
+      <div class="acc-body">
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Stage</th><th>What just happened</th><th>What's next</th></tr></thead>
+            <tbody>
+              <tr><td>Cold</td><td>Nothing. Prospect was added to the sheet.</td><td>Day 0 follow when their row hits your worklist.</td></tr>
+              <tr><td>Engaged</td><td>Follow + warm-up complete.</td><td>DM 1 on Day 3.</td></tr>
+              <tr><td>DM1 Sent</td><td>DM 1 went out. Awaiting response.</td><td>DM 2 on Day 5-7 if no response.</td></tr>
+              <tr><td>DM2 Sent</td><td>DM 2 went out. Awaiting response.</td><td>Manual share if warm reply. Closeout drift if not.</td></tr>
+              <tr><td>Manual Shared</td><td>They replied warmly, you shared the Manual.</td><td>Audit offer Day 12-14 if engagement continues.</td></tr>
+              <tr><td>Audit Shared</td><td>Loom offer went out OR Loom delivered.</td><td>Watch for engagement. Handoff if hot reply.</td></tr>
+              <tr><td>Discovery Booked</td><td>Chase took the handoff. Call is on the calendar.</td><td>Chase owns from here.</td></tr>
+              <tr><td>Closed-Won</td><td>Proposal accepted.</td><td>Onboarding starts.</td></tr>
+              <tr><td>Closed-Lost</td><td>Discovery happened or proposal sent; prospect declined.</td><td>Move to 60-day cooling period before re-engagement check.</td></tr>
+              <tr><td>Disqualified</td><td>Bad fit, bad timing, hostile reply, or asked to be removed.</td><td>No further outreach.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </details>
+
+    <details class="acc reveal">
+      <summary>Read three worked examples (Hyde Park med spa, Oakley fitness, Northside coffee)</summary>
+      <div class="acc-body">
+        <p class="small muted">Illustrative. All names, neighborhoods, and details are composites or white-labeled.</p>
+
+        <h3 style="margin-top: var(--sp-3);">Example 1. Hyde Park med spa (Riley owns IG@scroll, A-tier). Hot path.</h3>
+        <p class="small"><strong>Day 0 (Wed May 13):</strong> Riley follows from @scrollmedia.co. Watches three active stories. Notes: visually clean, save-rate hooks already strong, no booking flow in stories.</p>
+        <p class="small"><strong>Day 1-2:</strong> Riley comments on the founder's "what to know before your first Botox consult" carousel with a specific observation. Reacts to a credential story.</p>
+        <p class="small"><strong>Day 3 (Mon May 18):</strong> Riley sends DM 1 referencing the carousel save numbers. No ask.</p>
+        <p class="small"><strong>Day 5:</strong> Sarah replies asking what Riley has seen work for booking conversion. Warm reply with a real question.</p>
+        <p class="small"><strong>Day 5 same day:</strong> Riley shares the Manual, pointing at Section 6 (DM-to-booking flow). <code>Funnel Stage</code> = Manual Shared.</p>
+        <p class="small"><strong>Day 9:</strong> Riley offers the audit. Sarah says yes Day 10. A-tier governance: Chase QAs script. Loom goes out Day 12.</p>
+        <p class="small"><strong>Day 14:</strong> Sarah replies asking to talk through implementation. <code>Status</code> flips to Hot · Handoff to Chase. <code>Funnel Stage</code> = Discovery Booked.</p>
+
+        <h3>Example 2. Oakley fitness studio (Riley, A-tier). Slow build.</h3>
+        <p class="small"><strong>Day 0-3:</strong> Riley follows, warms up, sends DM 1. No reply.</p>
+        <p class="small"><strong>Day 6:</strong> DM 2 with a peer-observation angle on member-led testimonial reels. No reply yet.</p>
+        <p class="small"><strong>Day 11:</strong> Mike replies. "Interesting. We've been running mostly class-shot content." Warm reply.</p>
+        <p class="small"><strong>Day 12:</strong> Riley shares the Manual. <code>Funnel Stage</code> = Manual Shared.</p>
+        <p class="small"><strong>Day 16:</strong> No engagement. Riley logs <code>Engaged-Silent</code>, sets a soft check-in for Day 22.</p>
+        <p class="small"><strong>Day 28:</strong> Mike DMs back about a new content series in July. Hot signal. Riley offers the audit and Slacks Chase. Sequence resumes from Audit Shared.</p>
+
+        <h3>Example 3. Northside coffee shop (Emily, B-tier). Manual share, then quiet.</h3>
+        <p class="small"><strong>Day 0-3:</strong> Emily follows, warms up, sends DM 1 referencing an espresso supplier post. No reply.</p>
+        <p class="small"><strong>Day 7:</strong> DM 2 with an open question on what content is pulling foot traffic.</p>
+        <p class="small"><strong>Day 10:</strong> Maya replies. "Honestly we don't really track it." Real reply, not hot.</p>
+        <p class="small"><strong>Day 10 same day:</strong> Emily shares the Manual, pointing at Section 4 (cadence for small accounts).</p>
+        <p class="small"><strong>Day 14:</strong> No further engagement. Emily logs <code>Manual Shared</code>, <code>Engaged-Silent</code>, next touch 21 days out. No audit offer fires (B-tier, no continued engagement signal yet).</p>
+      </div>
+    </details>
+
+    <details class="acc reveal">
+      <summary>Read the 6 troubleshooting scenarios (hostile, ghost, pricing-too-early, removal, real question, follow-back)</summary>
+      <div class="acc-body">
+        <h3 style="margin-top: var(--sp-3);">Scenario 1. Prospect replies hostile or annoyed</h3>
+        <p><strong>Signal:</strong> "Take me off your list," "stop messaging me," "not interested."</p>
+        <p><strong>Action:</strong> Reply once with one line: "Got it, appreciate the response. Cheers, [your first name]." Don't defend. Don't pitch. Update: <code>Status</code> = Closed, <code>Funnel Stage</code> = Disqualified, <code>Outcome</code> = Closed Negative.</p>
+
+        <h3>Scenario 2. Ghost after Manual share</h3>
+        <p><strong>Signal:</strong> Warm reply, you shared the Manual, then silence 4+ days.</p>
+        <p><strong>Action:</strong> Wait 4-5 days. Send one soft check-in on Day 14: "Hey {first name}, did the Manual land? Curious if anything in there hit." If no response, leave them alone 21 days.</p>
+
+        <h3>Scenario 3. Follow-back without a DM reply</h3>
+        <p><strong>Signal:</strong> Prospect follows @scrollmedia.co back but hasn't responded to DM 1 or DM 2.</p>
+        <p><strong>Action:</strong> Real signal but not a green light. Stay in sequence. React to one story within 24 hours of the follow-back. Comment on one new post within 3 days. Continue DM sequence as scheduled. Append <code>Follow-back [date]</code> to Engagement Signals.</p>
+
+        <h3>Scenario 4. Prospect asks for pricing too early</h3>
+        <p><strong>Signal:</strong> Before audit, before discovery call, they ask "how much do you charge?"</p>
+        <p><strong>Action:</strong> Never send pricing in DM. Reply with a redirect: "Pricing depends on the scope. Easiest to walk you through on a 15-min call. Going to loop in Chase, our co-founder. Could you send your email so he can pick it up?" Slack Chase with the hot handoff alert.</p>
+
+        <h3>Scenario 5. Prospect asks to be removed</h3>
+        <p><strong>Action:</strong> Reply once: "Got it, will stop. Cheers." Unfollow immediately. <code>Status</code> = Closed, <code>Funnel Stage</code> = Disqualified, <code>Notes</code> = "Asked to be removed [date]. Do not re-engage." Flag the row in red.</p>
+
+        <h3>Scenario 6. Prospect replies with a strategy question that needs depth</h3>
+        <p><strong>Action:</strong> Don't fake an answer. Reply with a small piece of real insight + a redirect to the Manual section that goes deeper: "Quick answer: [insight]. The longer answer is in section 4 of our Local Brand Instagram Growth Manual. Want me to send the link?" If yes, that's a Manual Share trigger. Real questions are the best signal you'll see. Treat them like gold.</p>
+      </div>
+    </details>
+
+    <details class="acc reveal">
+      <summary>Read the spreadsheet hygiene checklist + daily IG block order</summary>
+      <div class="acc-body">
+        <h3 style="margin-top: var(--sp-3);">Spreadsheet hygiene (after every touch, within 60 seconds)</h3>
+        <ol>
+          <li><code>Last Touch Date</code> (col R) updated to today.</li>
+          <li><code>Last Touch By</code> (col S) = your name.</li>
+          <li><code>Last Touch Channel</code> (col T) = IG@scroll.</li>
+          <li><code>Funnel Stage</code> (col AC) advanced if the action moved the prospect to a new stage.</li>
+          <li><code>Next Touch Date</code> (col U) set to the next scheduled action date.</li>
+          <li><code>Next Touch Type</code> (col V) set to what's next.</li>
+          <li><code>Engagement Signals</code> (col W) appended with the new signal (date format <code>[YYYY-MM-DD]</code>).</li>
+          <li><code>Status</code> (col N) updated if the touch changed pipeline state.</li>
+        </ol>
+
+        <h3>Daily IG block order of operations (60-90 min)</h3>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Time</th><th>Action</th></tr></thead>
+            <tbody>
+              <tr><td>0:00-0:15</td><td>Reply triage. Any DMs that came in since yesterday get answered first. Hot signals get Slacked to Chase immediately.</td></tr>
+              <tr><td>0:15-0:50</td><td>Warm-up engagement. 8-12 prospects in your worklist. Day 1-2 warm-up touches first.</td></tr>
+              <tr><td>0:50-1:20</td><td>Cold DMs. 4-6 sends across DM 1, DM 2, Manual share, audit offer.</td></tr>
+              <tr><td>1:20-1:30</td><td>Spreadsheet hygiene. Update every row you touched. Confirm <code>Next Touch Date</code> is set on every active prospect.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="small muted">Total daily target: 10-15 IG@scroll touches across all stages.</p>
+        <div class="callout">
+          <strong>Block went over 90 minutes?</strong> Almost always one of three reasons: writing DMs from scratch instead of using the compile prompt, batching spreadsheet updates instead of doing them inline, or going too deep on warm-up per prospect. Diagnose, fix tomorrow.
+        </div>
+      </div>
+    </details>
+
+    <details class="acc reveal">
+      <summary>Read what never to do (the hard rules)</summary>
+      <div class="acc-body">
+        <ul>
+          <li>Never send the same prospect two unanswered DMs in 24 hours.</li>
+          <li>Never pitch the agency in the cold DM. The Manual is the pitch.</li>
+          <li>Never name a Scroll Media client by name anywhere. White-label only.</li>
+          <li>Never use Chase signature phrases ("Grind season," "Hot take:," "We're building something special").</li>
+          <li>Never close with "Peace." That's Chase video sign-off only.</li>
+          <li>Never paste the Calendly link from a team DM. Chase owns the email handoff.</li>
+          <li>Never send pricing in DM. Route to Chase, every time.</li>
+          <li>Never skip the warm-up. The warm-up is the whole point.</li>
+        </ul>
+      </div>
+    </details>
+
+    <p class="small muted" style="margin-top: var(--sp-5);">Source: <code>playbooks/team_ig_outreach_playbook.md</code>. The markdown is the source of truth; this portal is the live operating doc the team consumes.</p>
+  </div>
+</section>
+
+<!-- ====================================================================
+     5. VOICE RULES
+     ==================================================================== -->
+<section class="block" id="voice">
+  <div class="container">
+    <p class="section-kicker">Section 05</p>
+    <h2>Voice rules</h2>
+    <p class="intro">Two voices on the system, deliberately distinct. Don't blend them. If a piece of copy could live on either Chase's surfaces or Scroll Media's surfaces unchanged, it fails the voice test.</p>
+
+    <div class="summary reveal">
+      <h4 style="margin-top: 0;">The hard rules (apply to every prospect-facing message)</h4>
+      <ol class="summary-rows">
+        <li><span class="n">1</span><span><strong>Sentence case</strong> in body copy across every surface. Cold-email subject lines stay lowercase (stylistic exception).</span></li>
+        <li><span class="n">2</span><span><strong>No em-dashes (<code>—</code>) in prose.</strong> Use periods, commas, parens, line breaks. In cold outreach, no hyphens used as em-dash substitutes either.</span></li>
+        <li><span class="n">3</span><span><strong>No banned phrases or AI-isms.</strong> Killed on sight: <em>delve, navigate the landscape, tapestry, circling back, synergy, leverage</em> (verb), <em>elevate, unlock, transform, real talk, die on that hill</em>.</span></li>
+        <li><span class="n">4</span><span><strong>No hedging.</strong> Skip "I think," "maybe," "I just wanted to," "hope this finds you well." Direct beats hedged.</span></li>
+        <li><span class="n">5</span><span><strong>No generic compliments.</strong> "Great post!" "Love it!" Specific only. If you can't be specific, skip the compliment.</span></li>
+        <li><span class="n">6</span><span><strong>White-label only.</strong> Never name a Scroll Media client. Format: <em>"a [neighborhood] [niche] we work with..."</em>.</span></li>
+      </ol>
+    </div>
+
+    <h3>Chase voice vs agency voice (side-by-side)</h3>
+
+    <div class="voice-grid reveal">
+      <div class="voice-card">
+        <div class="label-row">
+          <span class="voice-name">Chase voice</span>
+          <span class="voice-tag">Cold email · LinkedIn · IG@chase</span>
+        </div>
+
+        <h4>Approved connectors</h4>
+        <p class="small">
+          <span class="tag azure">like</span>
+          <span class="tag azure">kinda</span>
+          <span class="tag azure">honestly</span>
+          <span class="tag azure">man</span>
+          <span class="tag azure">anyways</span>
+          <span class="tag azure">so</span>
+        </p>
+
+        <h4>Signature phrases (Chase only)</h4>
+        <p class="small">
+          <span class="tag azure">Hot take:</span>
+          <span class="tag azure">We're building something special</span>
+          <span class="tag azure">Grind season</span>
+        </p>
+
+        <h4>Signoffs</h4>
+        <p class="small">
+          Email / LinkedIn / IG with name: <code>Cheers, Chase.</code><br />
+          Short DMs: <code>Cheers.</code><br />
+          Reels only (video): "Peace."
+        </p>
+
+        <div class="sample-label">Sample · cold IG DM, founder voice</div>
+        <div class="sample">Hey Sarah, honestly your save rate on the OTR food guides is doing real work. Most local accounts in that lane are still posting menu shots. Quick question if cool: are you running the strategy yourself or with a team?
+
+Cheers, Chase.</div>
+      </div>
+
+      <div class="voice-card alt">
+        <div class="label-row">
+          <span class="voice-name">Agency voice</span>
+          <span class="voice-tag">IG@scroll · @scrollmedia.co</span>
+        </div>
+
+        <h4>Operator-first identification (cold DM #1)</h4>
+        <p class="small">"Riley here from Scroll Media." / "Rachel here from Scroll Media." / "Emily here from Scroll Media." Non-negotiable on cold first DMs because <code>@scrollmedia.co</code> is a brand handle.</p>
+
+        <h4>"We" framing</h4>
+        <p class="small">"A Hyde Park med spa we work with..." not "I built this for Chase..." You speak on behalf of the agency.</p>
+
+        <h4>Signoffs</h4>
+        <p class="small">
+          Most DMs: <code>Cheers, [Your First Name].</code><br />
+          Very short story replies: <code>Cheers.</code> acceptable.<br />
+          Never: "Peace." (Chase only). Never: founder claims.
+        </p>
+
+        <h4>Banned in agency voice (Chase-only territory)</h4>
+        <p class="small">
+          <span class="tag banned">kinda</span>
+          <span class="tag banned">honestly</span>
+          <span class="tag banned">man</span>
+          <span class="tag banned">Hot take:</span>
+          <span class="tag banned">Grind season</span>
+          <span class="tag banned">We're building something special</span>
+          <span class="tag banned">Peace.</span>
+        </p>
+
+        <div class="sample-label">Sample · cold IG DM #1, day 3</div>
+        <div class="sample">Riley here from Scroll Media. Your save rate on the recent kitchen reveals jumped out. We work with a few local design studios in Cincinnati. Curious how you're thinking about Reels versus carousels right now.
+
+Cheers, Riley.</div>
+      </div>
+    </div>
+
+    <details class="acc reveal">
+      <summary>See the character-count discipline (per DM type)</summary>
+      <div class="acc-body">
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>DM type</th><th>Target chars</th></tr></thead>
+            <tbody>
+              <tr><td>Cold DM #1 (operator-first identification)</td><td>200 to 250</td></tr>
+              <tr><td>Story reply</td><td>under 100</td></tr>
+              <tr><td>Comment-to-DM transition</td><td>200 to 245</td></tr>
+              <tr><td>Audit offer DM (Day 12-14)</td><td>200 to 250</td></tr>
+              <tr><td>Re-engagement DM</td><td>180 to 220</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </details>
+
+    <details class="acc reveal">
+      <summary>Read the white-label rule + proof library format</summary>
+      <div class="acc-body">
+        <p>You never name a client in cold outreach. The format is: <em>"A [neighborhood] [niche] we work with [shifted X to Y]. Their [metric] went from [baseline] to [result] inside [timeframe]."</em></p>
+        <p class="small muted">Source: <code>customer_acquisition/proof_library.md</code>. Don't make up metrics. If a proof point isn't in the library, skip it.</p>
+      </div>
+    </details>
+  </div>
+</section>
+
+<!-- ====================================================================
+     6. LOOM AUDITS
+     ==================================================================== -->
+<section class="block" id="audits">
+  <div class="container">
+    <p class="section-kicker">Section 06</p>
+    <h2>Loom audits</h2>
+    <p class="intro">The highest-converting 1:1 asset in the system. Quality matters more than speed. Recording owner ties to the channel that triggered the audit response, not a single fixed owner field.</p>
+
+    <div class="summary reveal">
+      <h4 style="margin-top: 0;">Audit essentials</h4>
+      <ul>
+        <li><strong>Length cap:</strong> 8 minutes. Target 6 to 7.</li>
+        <li><strong>Six sections:</strong> Open / What's working / Biggest opportunity / Niche context / Tactical fixes / Soft close.</li>
+        <li><strong>Always run the brief compiler first</strong> (<code>02_research_brief_compiler.md</code>) before recording. ~10 min. Output drives a faster, more specific audit.</li>
+        <li><strong>Rule of thumb:</strong> whoever held the relationship signal records.</li>
+      </ul>
+    </div>
+
+    <h3>Recording assignment (post-v2 prospect tiering)</h3>
+    <div class="table-wrap reveal">
+      <table>
+        <thead>
+          <tr><th>Tier</th><th>Channel that triggered audit response</th><th>Records the audit</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="tag azure">A</span></td>
+            <td>Email or LinkedIn reply</td>
+            <td><span class="op chase"><span class="op-mark">C</span> Chase</span> (col K = Chase)</td>
+          </tr>
+          <tr>
+            <td><span class="tag azure">A</span></td>
+            <td>IG@scroll reply</td>
+            <td>IG@scroll Owner from col AB, with Chase review (24-hr SLA)</td>
+          </tr>
+          <tr>
+            <td><span class="tag azure">B</span></td>
+            <td>Email or LinkedIn reply</td>
+            <td><span class="op chase"><span class="op-mark">C</span> Chase</span> (col K = Chase)</td>
+          </tr>
+          <tr>
+            <td><span class="tag azure">B</span></td>
+            <td>IG@scroll reply</td>
+            <td>IG@scroll Owner from col AB, self-checklist (no Chase review SLA)</td>
+          </tr>
+          <tr>
+            <td><span class="tag azure">C</span></td>
+            <td>IG@scroll reply (only channel)</td>
+            <td>IG@scroll Owner from col AB (= col K for C-tier)</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Tier governance</h3>
+    <div class="table-wrap reveal">
+      <table>
+        <thead><tr><th>Tier</th><th>Process</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><span class="tag azure">A</span></td>
+            <td>Record → upload to Drive (Pending Review folder) → Slack <code>@chase</code> → wait for review (24-hr SLA) → send</td>
+          </tr>
+          <tr>
+            <td><span class="tag azure">B</span></td>
+            <td>Record → self-checklist (<code>05_team_checklist.md</code>) → send → Slack FYI in <code>#bd-team</code></td>
+          </tr>
+          <tr>
+            <td><span class="tag azure">C</span></td>
+            <td>No proactive audits</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <details class="acc reveal">
+      <summary>See the Slack alert format (A-tier upload) + escalation criteria</summary>
+      <div class="acc-body">
+        <h3 style="margin-top: var(--sp-3);">Slack alert format</h3>
+        <pre><code>@chase Loom audit pending review
+
+Prospect: [BUSINESS_NAME]
+Recorded by: [OPERATOR_FIRST_NAME]
+Spreadsheet row: [link]
+Loom URL: [link]
+Niche: [NICHE]
+Tier: A
+
+Hot signals leading to this audit:
+- [signal 1]
+- [signal 2]</code></pre>
+
+        <h3>What gets escalated to A-tier review (even if prospect is B-tier)</h3>
+        <ul>
+          <li>Prospect responded with technical pushback that needs careful handling</li>
+          <li>Prospect is high-followers / high-revenue and you're unsure</li>
+          <li>You're uncertain about audit quality</li>
+          <li>You're auditing a niche you haven't audited before</li>
+        </ul>
+        <div class="callout">
+          When in doubt, escalate. Better to slow down a B-tier audit than ship a weak one.
+        </div>
+      </div>
+    </details>
+  </div>
+</section>
+
+<!-- ====================================================================
+     7. @SCROLLMEDIA.CO POSTING STRATEGY
+     ==================================================================== -->
+<section class="block" id="posting">
+  <div class="container">
+    <p class="section-kicker">Section 07</p>
+    <h2>@scrollmedia.co posting strategy</h2>
+    <p class="intro">The grid is acquisition air cover. Every cold prospect taps the profile before they reply. Empty grid, inconsistent posting, or pitchy content kills conversion in 5 seconds.</p>
+
+    <div class="summary reveal">
+      <h4 style="margin-top: 0;">The cadence that holds the grid alive</h4>
+      <ul>
+        <li><strong>3 to 5 feed posts/week.</strong> Below 3, the grid reads dormant. Above 5, we chase volume over signal.</li>
+        <li><strong>1 to 2 stories/day, 5 days/week minimum.</strong> Empty story ring = kill signal to a cold prospect.</li>
+        <li><strong>1 to 2 Reels/week</strong> (subset of feed). Chase records, team repurposes.</li>
+        <li><strong>Reshare every Chase content drop</strong> to story within 24 hours with agency-voice framing.</li>
+      </ul>
+    </div>
+
+    <h3>Content pillars</h3>
+    <div class="pillars reveal">
+      <div class="pillar">
+        <span class="pillar-num">Pillar 01</span>
+        <h4>Cincinnati local-brand authority</h4>
+        <p>Neighborhoods named. Cincinnati-specific patterns surfaced. Local references that prove we live in this market. <strong>Rule:</strong> always name a real neighborhood. "Hyde Park," "OTR," "Oakley" hits harder than "Cincinnati" alone.</p>
+      </div>
+      <div class="pillar">
+        <span class="pillar-num">Pillar 02</span>
+        <h4>Instagram tactical advice for local brands</h4>
+        <p>Hook frameworks, content format breakdowns, story structure, DM flow, bio optimization. The stuff a local founder can run this week. <strong>Rule:</strong> every tactical post has at least one concrete, runnable action.</p>
+      </div>
+      <div class="pillar">
+        <span class="pillar-num">Pillar 03</span>
+        <h4>White-labeled proof + case study spotlights</h4>
+        <p>Real results from real clients per <code>proof_library.md</code> rules. Niche + neighborhood + result, no client names. <strong>Rule:</strong> zero client names. Ever. Use the proof library format strictly.</p>
+      </div>
+      <div class="pillar">
+        <span class="pillar-num">Pillar 04</span>
+        <h4>Behind the scenes (process, team, POV)</h4>
+        <p>The human texture of the agency. How we work. Founder POV amplification. <strong>Rule:</strong> framing is "Scroll Media's point of view," not "Chase's hot take." Voice separation applies.</p>
+      </div>
+    </div>
+
+    <details class="acc reveal">
+      <summary>See the cadence table + strategic logic</summary>
+      <div class="acc-body">
+        <h3 style="margin-top: var(--sp-3);">Cadence (locked for the current build phase)</h3>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Surface</th><th>Cadence</th><th>Owner</th></tr></thead>
+            <tbody>
+              <tr><td>Feed posts</td><td>3 to 5 per week</td><td>Operator rotation (Chase + team)</td></tr>
+              <tr><td>Stories</td><td>1 to 2 per day, 5 days per week minimum</td><td>Operator on shift</td></tr>
+              <tr><td>Reels</td><td>1 to 2 per week (subset of feed posts)</td><td>Chase records, team can repurpose</td></tr>
+              <tr><td>Carousels</td><td>2 to 3 per week (subset of feed posts)</td><td>Operator rotation</td></tr>
+              <tr><td>Cross-account amplification</td><td>Per Chase content drop on @chase.scrolls</td><td>@scrollmedia.co reshares within 24 hours</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3>Strategic logic</h3>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Question</th><th>Answer</th></tr></thead>
+            <tbody>
+              <tr><td>Who's the audience?</td><td>Cold Cincinnati / Dayton local-brand founders who got a DM and tapped the profile to check us out.</td></tr>
+              <tr><td>What do they need to see in 5 seconds?</td><td>We work with Cincinnati local brands. We know what we're talking about. We're not chasing them.</td></tr>
+              <tr><td>What turns them off?</td><td>Empty grid, inconsistent posting, pitchy "book a call now" content, generic agency-speak.</td></tr>
+              <tr><td>What earns the follow?</td><td>Specific tactical insight, white-labeled proof, neighborhood-anchored content, calm confidence.</td></tr>
+              <tr><td>What converts them?</td><td>Content that proves we know their world better than they expected, followed by a low-friction next step.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </details>
+
+    <details class="acc reveal">
+      <summary>See story types (5 rotating, used daily)</summary>
+      <div class="acc-body">
+        <p>Stories are the heartbeat. Five types rotate through the daily story slot. Aim for 1 to 2 stories per day.</p>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Type</th><th>What it is</th><th>Frequency</th></tr></thead>
+            <tbody>
+              <tr><td>1. Behind the scenes</td><td>What the team is working on today. A frame from a client review meeting (no identifying info). A Loom recording in progress.</td><td>1-2/week</td></tr>
+              <tr><td>2. Client wins (white-labeled)</td><td>Score improvement charts with the client name blurred. Save-count milestones, niche named but brand redacted.</td><td>1-2/week</td></tr>
+              <tr><td>3. Cincinnati neighborhood spotlights</td><td>A Cincinnati brand we admire but don't work with. A neighborhood pattern we noticed.</td><td>1/week</td></tr>
+              <tr><td>4. Polls and engagement bait</td><td>Real questions that drive replies. "How often do you post Reels?" Polls and question stickers.</td><td>1-2/week</td></tr>
+              <tr><td>5. Founder POV amplification</td><td>Reshare Chase / Allison content drops with an agency-voice one-line frame.</td><td>3-5/week per content drop</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="small muted">Every poll or question gets answered in DM within 24 hours. Don't waste warm signals.</p>
+      </div>
+    </details>
+
+    <details class="acc reveal">
+      <summary>See hashtag + geo strategy</summary>
+      <div class="acc-body">
+        <p><strong>Standard 8-hashtag stack (use on most feed posts):</strong></p>
+        <ol>
+          <li>#cincinnati</li>
+          <li>#cincymade OR #cincyliving OR #lovecincy (rotate)</li>
+          <li>#cincinnatibusiness OR #cincysmallbusiness (rotate)</li>
+          <li>#[neighborhood] (Hyde Park, OTR, Oakley, Northside, etc., when relevant)</li>
+          <li>#[niche] (medspa, fitnessstudio, coffeeshop, when relevant)</li>
+          <li>#cincinnatimarketing OR #cincinnatistrategy (rotate)</li>
+          <li>#instagramforbusiness OR #instagramtips (variation)</li>
+          <li>#localbrand OR #localmarketing (variation)</li>
+        </ol>
+        <p><strong>Don't use:</strong> more than 10 hashtags (diminishing returns), trending hashtags unrelated to the niche or geo (vanity reach), generic high-volume tags like #marketing or #business (drowns us).</p>
+        <p><strong>Geo strategy.</strong> Tag the post location to a real Cincinnati / NKY / Dayton location whenever possible. A post tagged to OTR + #cincinnati + #otrcincinnati hits the local-discovery surface three different ways.</p>
+      </div>
+    </details>
+
+    <details class="acc reveal">
+      <summary>See cross-account amplification rules (@chase.scrolls ↔ @scrollmedia.co)</summary>
+      <div class="acc-body">
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Trigger on @chase.scrolls</th><th>Action on @scrollmedia.co</th></tr></thead>
+            <tbody>
+              <tr><td>Chase posts a Reel</td><td>Reshare to story within 24 hours with an agency-voice one-line frame</td></tr>
+              <tr><td>Chase posts a carousel</td><td>Reshare to story; consider repurposing as an @scrollmedia.co feed carousel 1-2 weeks later (different framing)</td></tr>
+              <tr><td>Chase posts a hard text post</td><td>Reshare to story if it lands hard, with agency framing</td></tr>
+              <tr><td>Chase goes live or posts a story</td><td>Reshare key story slides only if they're tactical, not personal</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="callout signal">
+          <strong>The rule.</strong> @scrollmedia.co never copies @chase.scrolls content verbatim into a feed post. The voices have to differ. If a piece of content could live on both accounts unchanged, it fails.
+        </div>
+      </div>
+    </details>
+
+    <details class="acc reveal">
+      <summary>See example post ideas + daily / weekly checklists</summary>
+      <div class="acc-body">
+        <h3 style="margin-top: var(--sp-3);">Example post ideas (seed the current build phase)</h3>
+        <ul>
+          <li><strong>Pillar 2 carousel.</strong> "The 4-part local brand bio framework" (6 slides; hook, offer, proof, CTA, worked example).</li>
+          <li><strong>Pillar 3 carousel.</strong> "A Cincinnati med spa we work with held an 8.0+ composite score for 6 months. Here's what changed in month 1." (7 slides, white-labeled).</li>
+          <li><strong>Pillar 4 Reel.</strong> "Why we don't run paid ads as a primary growth channel for clients" (45-60 sec, strong POV).</li>
+          <li><strong>Pillar 1 carousel.</strong> "The OTR boutique playbook" (5 slides, hyperlocal).</li>
+          <li><strong>Pillar 2 carousel.</strong> "3 Reel hooks that work for local fitness studios (and 2 that flop)" (6 slides, niche-specific).</li>
+          <li><strong>Pillar 4 carousel.</strong> "How we choose which clients to take on" (5 slides, reverse-pitch positioning).</li>
+          <li><strong>Pillar 1 carousel.</strong> "Cincinnati neighborhoods we work in" (7 slides, hyperlocal proof at neighborhood level).</li>
+        </ul>
+
+        <h3>Daily checklist</h3>
+        <ol>
+          <li>Post at least 1 story (Type 1-4 rotation).</li>
+          <li>Reshare any Chase / Allison content drop to story within 24 hours.</li>
+          <li>Check DMs. Reply to any new replies within 4 hours during business hours.</li>
+          <li>Check story poll / question replies. Move warm DMs into the prospect spreadsheet if relevant.</li>
+          <li>Engage with 5-10 Cincinnati local brand accounts as @scrollmedia.co (genuine comments, story reacts).</li>
+        </ol>
+
+        <h3>3-5 times per week (feed posts)</h3>
+        <ol>
+          <li>Pick the pillar (rotate; don't post the same pillar 3 days in a row).</li>
+          <li>Pull the hook from the working hook library or write fresh.</li>
+          <li>Build in Canva using the @scrollmedia.co brand template.</li>
+          <li>Write caption (3-paragraph max, hook + body + soft CTA).</li>
+          <li>Pull the 8-hashtag stack appropriate to the topic.</li>
+          <li>Tag geo location.</li>
+          <li>Schedule via Plan platform or post live.</li>
+          <li>Within 1 hour of posting: reply to first 3-5 comments to seed engagement.</li>
+        </ol>
+
+        <h3>Weekly (Friday review)</h3>
+        <p>Pull the 3-5 feed posts from the week. Note save count, share count, profile visits per post. Flag the strongest post for repurposing. Move any warm DM threads into the prospect spreadsheet. Plan next week's posts at a high level (one from each pillar minimum).</p>
+      </div>
+    </details>
+
+    <details class="acc reveal">
+      <summary>Read what @scrollmedia.co never does</summary>
+      <div class="acc-body">
+        <ul>
+          <li>Never names a Scroll Media client by name in any feed post or story.</li>
+          <li>Never uses Chase signature phrases ("Grind season," "Hot take:," "We're building something special").</li>
+          <li>Never closes a caption with "Peace." (Chase video sign-off only).</li>
+          <li>Never runs first-person founder framing in agency-voice posts.</li>
+          <li>Never posts content that would read as Chase's personal hot take unchanged.</li>
+          <li>Never pitches the agency directly in a feed caption. The Manual is the soft conversion. Never "DM us for pricing."</li>
+          <li>Never uses em-dashes in caption copy.</li>
+          <li>Never uses banned hype words.</li>
+        </ul>
+      </div>
+    </details>
+
+    <div class="callout reveal">
+      <strong>The test.</strong> If a cold Cincinnati local-brand founder lands on @scrollmedia.co tomorrow having just received a DM from Riley, do they: see a recent active story, scroll the grid and see 9 recent feed posts that look like a real agency, read 2 posts and learn something tactical, see proof we work with Cincinnati local brands? If all 4 land, the DM converts at 2-3x baseline. If any fail, the DM dies on impact.
+    </div>
+
+    <p class="small muted">Source: <code>strategy/scrollmedia_co_ig_posting_strategy.md</code>. The markdown is the source of truth.</p>
+  </div>
+</section>
+
+<!-- ====================================================================
+     8. ESCALATION + TROUBLESHOOTING
+     ==================================================================== -->
+<section class="block" id="escalation">
+  <div class="container">
+    <p class="section-kicker">Section 08</p>
+    <h2>Escalation + troubleshooting</h2>
+    <p class="intro">When to ping Chase. When to ping the AM. When to act, when to ask. The most common escalation is the hot handoff: a prospect signals real interest and you route to Chase instead of trying to close.</p>
+
+    <div class="summary reveal">
+      <h4 style="margin-top: 0;">Hot handoff triggers (route to Chase, don't try to close)</h4>
+      <ul>
+        <li>Prospect replies asking for a call or meeting.</li>
+        <li>Prospect replies positively to audit and asks "what's next."</li>
+        <li>Prospect asks about pricing or process.</li>
+        <li>Any reply that signals real intent to work together.</li>
+      </ul>
+    </div>
+
+    <h3>Quick reference (other escalation paths)</h3>
+    <div class="table-wrap reveal">
+      <table>
+        <thead><tr><th>Situation</th><th>Action</th></tr></thead>
+        <tbody>
+          <tr><td>Prospect mentions a competitor by name</td><td>Slack <code>@chase</code> with screenshot. Don't reply until he weighs in.</td></tr>
+          <tr><td>Prospect asks technical questions you can't answer</td><td>Reply with substance on what you do know. Slack <code>@chase</code> for the rest. Don't BS.</td></tr>
+          <tr><td>Compliance considerations (medical, legal, regulated)</td><td>Slack <code>@chase</code>. Don't proceed without his read on fit.</td></tr>
+          <tr><td>Hostile reply on a Loom audit</td><td>Don't argue. Reply once gracefully, then mark Closed. Slack <code>@chase</code> for visibility.</td></tr>
+          <tr><td>Prospect DMs your personal IG</td><td>Pivot back: "appreciate the message, let's continue on the @scrollmedia.co side." Don't engage on personal.</td></tr>
+          <tr><td>Pricing question</td><td>Don't quote. Run the handoff.</td></tr>
+          <tr><td>You can't categorize a reply</td><td>Slack <code>#bd-team</code>, paste the reply, ask the team.</td></tr>
+          <tr><td>Burnout signal (dreading the block, output dropping)</td><td>Pause your outreach. Tell Chase. Bandwidth is the #1 risk to the next 60 days.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <details class="acc reveal">
+      <summary>Read the full hot handoff protocol (4 steps with templates)</summary>
+      <div class="acc-body">
+        <h3 style="margin-top: var(--sp-3);">Step 1 · reply within 4 business hours</h3>
+        <pre><code>Hey {FIRST_NAME},
+
+Appreciate the reply. Going to loop in Chase, our co-founder. He runs initial conversations with new brands and would be the right person to walk through this with you.
+
+Could you send your email so we can get it on his radar? He'll reach out today or tomorrow with a couple times that work.
+
+Cheers, {Your First Name}.</code></pre>
+
+        <h3>Step 2 · spreadsheet update (immediate)</h3>
+        <ul>
+          <li>Status → <code>Hot · Handoff to Chase</code></li>
+          <li>Last Touch Channel → <code>IG@scroll</code></li>
+          <li>Engagement Signals → log the positive reply</li>
+          <li>Reply Notes → paste the prospect's reply text verbatim</li>
+        </ul>
+
+        <h3>Step 3 · Slack #bd-team handoff alert</h3>
+        <pre><code>@chase Hot handoff
+
+Prospect: [BUSINESS_NAME]
+Owner: [your first name]
+Spreadsheet row: [link]
+Reply text: "[paste prospect's reply verbatim]"
+Channel: IG@scroll
+Day in sequence: __
+Engagement signals: [summary]
+
+Ready for you when you are.</code></pre>
+
+        <h3>Step 4 · Chase takes over within 24 hours</h3>
+        <p>He emails the prospect, references you by name (so the prospect doesn't feel handed off), books the call.</p>
+      </div>
+    </details>
+
+    <details class="acc reveal">
+      <summary>Read the Slack channel etiquette rules</summary>
+      <div class="acc-body">
+        <ul>
+          <li><code>#bd-team</code> is the operational channel. Handoffs, audit alerts, pattern sharing, daily standups. All BD lives here.</li>
+          <li><code>#general</code>, <code>#wins</code>, <code>#strategic</code> exist but aren't BD. Don't put handoffs in them.</li>
+          <li><strong>Don't DM Chase 1:1 for BD work.</strong> Visibility matters. The whole team should see handoff patterns and audit cadence.</li>
+        </ul>
+      </div>
+    </details>
+
+    <h3>Common scenarios (FAQ)</h3>
+    <p class="intro">The most common questions in the first 30 days. Click to expand.</p>
+
+    <details class="faq reveal">
+      <summary>What if ManyChat doesn't trigger when a prospect comments the keyword?</summary>
+      <div class="faq-body">
+        <p>First, check the ManyChat dashboard for the correct IG account (each operator's slice runs through <code>@scrollmedia.co</code>). Confirm the keyword flow is enabled and the trigger word matches what was posted (case-insensitive, but exact word required). If the flow is enabled and the prospect commented the right keyword, it usually means Instagram throttled the trigger (rate limiting). Wait 60 minutes and verify in ManyChat. If still nothing, Slack <code>@chase</code> with a screenshot. Don't manually DM the prospect to compensate. The keyword path is intentional and we don't want to break the funnel.</p>
+      </div>
+    </details>
+
+    <details class="faq reveal">
+      <summary>What if a prospect replies on the wrong channel?</summary>
+      <div class="faq-body">
+        <p>Reply briefly: <em>"appreciate the message, let's continue on the @scrollmedia.co side, that's where the team handles this kind of thing."</em> Don't engage on personal. The channel separation is non-negotiable. If a prospect replies to a Chase email on Instagram instead of email, ask for their email and run the handoff to Chase the standard way.</p>
+      </div>
+    </details>
+
+    <details class="faq reveal">
+      <summary>What if a Loom audit gets a hostile reply?</summary>
+      <div class="faq-body">
+        <p>Don't argue. Reply once, gracefully: <em>"appreciate the candor. Most of what I flagged is what we'd want to test versus prescribe. Wishing you the best on the account."</em> Then mark the prospect Closed in the spreadsheet and Slack <code>@chase</code> with the reply for visibility. We don't try to recover hostile audits.</p>
+      </div>
+    </details>
+
+    <details class="faq reveal">
+      <summary>What if I'm not sure whether to escalate an audit to Chase review (B-tier judgment call)?</summary>
+      <div class="faq-body">
+        <p>Escalate. The cost of escalation is 24 hours of Chase review time. The cost of shipping a weak audit is brand damage and a closed prospect. Weak-audit cost is bigger every time. Default to escalate.</p>
+      </div>
+    </details>
+
+    <details class="faq reveal">
+      <summary>What if I miss a daily IG block?</summary>
+      <div class="faq-body">
+        <p>One missed block isn't a crisis. Next-touch dates can shift by a day. Two missed in a row triggers a check-in with Chase about bandwidth or blockers. Don't try to make up two days of volume in one block. Spread it across two days or accept the gap and move on.</p>
+      </div>
+    </details>
+
+    <details class="faq reveal">
+      <summary>What if a prospect asks me a question I don't know the answer to?</summary>
+      <div class="faq-body">
+        <p>Reply with substance on what you do know. <em>"Good question. On the [topic] side, what we typically see is X. On the [other topic] side, I'd want to come back to you with a more specific read after looking at your account."</em> Then Slack <code>#bd-team</code> with the question. Don't BS the prospect. Don't make up data. Specific honesty converts better than confident guessing.</p>
+      </div>
+    </details>
+
+    <details class="faq reveal">
+      <summary>What's our pricing? What do I tell a prospect who asks?</summary>
+      <div class="faq-body">
+        <p>Don't quote. That's a handoff signal. Run the handoff protocol above. Chase quotes pricing on the discovery call, not in DMs. For your own reference: Signature Essential is $2,975/mo, Signature Growth is $3,250/mo, premium niches go higher. Floor is $2,750. But you don't say any of that to a prospect. You hand off.</p>
+      </div>
+    </details>
+
+    <details class="faq reveal">
+      <summary>What if I want to add a prospect to the spreadsheet that's not on it?</summary>
+      <div class="faq-body">
+        <p>Talk to Chase in Slack first. Lead distribution is sticky. Don't add prospects unilaterally. If you spot a great fit in your zone, post the IG handle in <code>#bd-team</code> with a one-line read on why you think it fits. Chase tiers and adds.</p>
+      </div>
+    </details>
+
+    <details class="faq reveal">
+      <summary>What if I find an A-tier prospect I think Chase should email or LinkedIn?</summary>
+      <div class="faq-body">
+        <p>Flag in Slack. Chase decides how to layer the multi-channel touches. You still run the IG@scroll piece in parallel. Multi-channel orchestration is Chase's call.</p>
+      </div>
+    </details>
+
+    <details class="faq reveal">
+      <summary>What if a prospect uses an em-dash in their reply? Do I match their voice?</summary>
+      <div class="faq-body">
+        <p>No. Maintain agency voice. Em-dashes are an AI tell in cold outreach, especially in our voice system. Don't pattern-match the prospect's voice. The reason we have a voice rule is so cold prospects can't tell if it's AI.</p>
+      </div>
+    </details>
+
+    <details class="faq reveal">
+      <summary>What if my output is dropping and I'm starting to dread the block?</summary>
+      <div class="faq-body">
+        <p>That's a burnout signal. Pause your outreach for a week. Tell Chase. Reassign your active prospects temporarily if needed. Bandwidth is the #1 risk to the next 60 days. Burnout kills the system. Caught early it's a one-week pause; caught late it's a transition. Always early.</p>
+      </div>
+    </details>
+  </div>
+</section>
+
+<!-- ====================================================================
+     9. RESOURCES
+     ==================================================================== -->
+<section class="block" id="resources">
+  <div class="container">
+    <p class="section-kicker">Section 09</p>
+    <h2>Resources</h2>
+    <p class="intro">Everything you need to work the system. Bookmark these.</p>
+
+    <div class="grid-2 reveal">
+      <div class="panel">
+        <h4>Working files (Drive)</h4>
+        <ul class="small">
+          <li><a href="https://drive.google.com/drive/folders/1ORzw-YMADty44MwKgj_SFe1ZKHum18FT?usp=sharing" target="_blank" rel="noopener">BD team Drive folder</a></li>
+          <li><a href="https://docs.google.com/spreadsheets/d/1FSY0govTTvmAhkUTBL1PGArX6pmOQf8Z/edit?usp=sharing&amp;ouid=107579686327393763557&amp;rtpof=true&amp;sd=true" target="_blank" rel="noopener">Master prospect spreadsheet (live)</a></li>
+          <li><a href="https://drive.google.com/drive/folders/1ORzw-YMADty44MwKgj_SFe1ZKHum18FT?usp=sharing" target="_blank" rel="noopener">Loom audits folder (Pending Review + Sent, inside BD team Drive)</a></li>
+        </ul>
+      </div>
+
+      <div class="panel">
+        <h4>Templates and compile prompts</h4>
+        <ul class="small">
+          <li>IG DM templates (agency voice): <code>templates/03_ig_dm_system/scrollmedia_co_team_voice/</code></li>
+          <li>IG warm-up protocol: <code>scrollmedia_co_team_voice/01_warm_up_protocol.md</code></li>
+          <li>IG DM compile prompt: <code>scrollmedia_co_team_voice/03_compile_prompt.md</code></li>
+          <li>Audit script: <code>templates/05_loom_audit_system/01_audit_script.md</code></li>
+          <li>Audit research brief compiler: <code>05_loom_audit_system/02_research_brief_compiler.md</code></li>
+        </ul>
+      </div>
+
+      <div class="panel">
+        <h4>Reference docs</h4>
+        <ul class="small">
+          <li>Master onboarding doc: <code>onboarding/01_master_onboarding_doc.md</code></li>
+          <li>Daily cheat sheet (1-pager): <code>onboarding/02_cheat_sheet.md</code></li>
+          <li>White-label proof library: <code>customer_acquisition/proof_library.md</code></li>
+          <li>Voice canonical: <code>01_Strategy/frameworks/brand_system.md</code> §3</li>
+          <li>Module canonical context: <code>customer_acquisition/master_context.md</code></li>
+        </ul>
+      </div>
+
+      <div class="panel">
+        <h4>Live links</h4>
+        <ul class="small">
+          <li>Manual lead magnet (public): <a href="https://tools.scrollmedia.co/growth-manual/" target="_blank" rel="noopener">tools.scrollmedia.co/growth-manual/</a></li>
+          <li>Calendly (Chase, reference only): <a href="https://calendly.com/scrollmedia/discovery" target="_blank" rel="noopener">calendly.com/scrollmedia/discovery</a></li>
+          <li><code>@scrollmedia.co</code> Instagram: <a href="https://instagram.com/scrollmedia.co" target="_blank" rel="noopener">instagram.com/scrollmedia.co</a></li>
+          <li><code>@chase.scrolls</code> Instagram (reference): <a href="https://instagram.com/chase.scrolls" target="_blank" rel="noopener">instagram.com/chase.scrolls</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====================================================================
+     FOOTER
+     ==================================================================== -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-links">
+      <a href="#welcome">Top</a>
+      <a href="#playbook">Playbook</a>
+      <a href="#voice">Voice</a>
+      <a href="#who-you-own">Who you own</a>
+      <a href="#escalation">Escalation</a>
+    </div>
+    <div class="meta">Scroll Media · BD Portal · v1.2 · May 11, 2026</div>
+  </div>
+</footer>
+
+<script>
+  // Active-section highlight in nav based on scroll
+  (function () {
+    var links = document.querySelectorAll('#navLinks a');
+    var sections = Array.prototype.map.call(links, function (a) {
+      var id = a.getAttribute('href').slice(1);
+      return { id: id, link: a, el: document.getElementById(id) };
+    }).filter(function (s) { return s.el; });
+
+    function onScroll() {
+      var y = window.scrollY + 120;
+      var current = sections[0];
+      for (var i = 0; i < sections.length; i++) {
+        if (sections[i].el.offsetTop <= y) current = sections[i];
+      }
+      sections.forEach(function (s) { s.link.classList.remove('active'); });
+      if (current) current.link.classList.add('active');
+    }
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll);
+    onScroll();
+  })();
+
+  // Auto-scroll the nav strip to keep the active link visible (mobile)
+  (function () {
+    var nav = document.getElementById('navLinks');
+    if (!nav) return;
+    var obs = new MutationObserver(function () {
+      var active = nav.querySelector('a.active');
+      if (active && nav.scrollWidth > nav.clientWidth) {
+        var navRect = nav.getBoundingClientRect();
+        var aRect = active.getBoundingClientRect();
+        if (aRect.left < navRect.left || aRect.right > navRect.right) {
+          nav.scrollTo({
+            left: active.offsetLeft - nav.clientWidth / 2 + active.clientWidth / 2,
+            behavior: 'smooth'
+          });
+        }
+      }
+    });
+    obs.observe(nav, { attributes: true, subtree: true, attributeFilter: ['class'] });
+  })();
+
+  // Reveal-on-scroll via IntersectionObserver
+  (function () {
+    var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var els = document.querySelectorAll('.reveal');
+    if (reduce || !('IntersectionObserver' in window)) {
+      Array.prototype.forEach.call(els, function (el) { el.classList.add('in'); });
+      return;
+    }
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
+    Array.prototype.forEach.call(els, function (el) { io.observe(el); });
+  })();
+</script>
+
+</body>
+</html>

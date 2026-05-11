@@ -67,3 +67,17 @@
   [headers.values]
     X-Frame-Options = "SAMEORIGIN"
     X-Content-Type-Options = "nosniff"
+
+
+# ─────────────────────────────────────────────────────────────────────
+# Password gate model (May 2026)
+# ─────────────────────────────────────────────────────────────────────
+# tools.scrollmedia.co uses a client-side password gate baked per-HTML-file
+# (sessionStorage key sm_tools_auth, password: scrollies).
+#
+# Gated pages: /, /dashboard, /bd-portal/ — password gate present in HTML
+# Public pages: /growth-manual/ — NO password gate (public lead magnet)
+#
+# To gate a new page: inject the standard pw-overlay block above <body>.
+# To exempt a new page from gating: do not inject the block.
+# ─────────────────────────────────────────────────────────────────────
