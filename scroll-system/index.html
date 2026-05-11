@@ -1,0 +1,2321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<meta name="theme-color" content="#FAFDFF" />
+<title>The Scroll Method · Flowchart · Scroll Media</title>
+<meta name="description" content="The Scroll Method architectural flowchart. Cincinnati's Instagram agency for local brands." />
+<link rel="icon" type="image/svg+xml" href="https://tools.scrollmedia.co/assets/scroll-favicon.svg" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+<style>
+  /* ============================================================
+     TOKENS
+     ============================================================ */
+  :root {
+    --ghost: #FAFDFF;
+    --azure: #0C3387;
+    --azure-900: #071d4f;
+    --azure-700: #1a44a0;
+    --azure-600: #254fb0;
+    --azure-500: #4070cc;
+    --azure-400: #7a9ad8;
+    --azure-300: #9cb5e3;
+    --azure-200: #b9cdee;
+    --azure-100: #d4e0f5;
+    --lucid: #CBE9FF;
+    --lucid-soft: #e4f3ff;
+    --highlighter: #E2ED7A;
+    --shadow: #151516;
+    --shadow-soft: #1c1c1f;
+    --shadow-2: #25262a;
+    --cream: #fff8dc;
+    --cream-soft: #fffbe8;
+    --gold-300: #d4b73a;
+    --gold-600: #8a7000;
+    --gold-700: #735f00;
+    --bg: var(--ghost);
+    --bg-alt: #f5f8fb;
+    --fg: var(--shadow);
+    --fg-muted: #5a6070;
+    --fg-subtle: #9097a6;
+    --rule: rgba(12, 51, 135, 0.20);
+    --rule-strong: rgba(12, 51, 135, 0.40);
+    --rule-faint: rgba(12, 51, 135, 0.08);
+    --sans: 'Source Sans 3', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+    --ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+  }
+  *, *::before, *::after { box-sizing: border-box; }
+  html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; font-size: 16px; }
+  body {
+    margin: 0;
+    background:
+      radial-gradient(ellipse 1200px 800px at top center, var(--lucid-soft) 0%, transparent 70%),
+      var(--bg);
+    color: var(--fg);
+    font-family: var(--sans);
+    line-height: 1.5;
+    font-feature-settings: 'tnum' 1, 'cv11' 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  :focus-visible { outline: 2px solid var(--azure); outline-offset: 2px; }
+  ::selection { background: var(--highlighter); color: var(--shadow); }
+  h1, h2, h3, h4, h5, h6 { margin: 0; font-weight: 700; letter-spacing: -0.01em; }
+  p { margin: 0; }
+  a { color: var(--azure); text-decoration: none; border-bottom: 1px solid var(--rule); }
+
+  /* ============================================================
+     TOP BAR + NAV
+     ============================================================ */
+  .topbar {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(250, 253, 255, 0.94);
+    backdrop-filter: saturate(150%) blur(10px);
+    -webkit-backdrop-filter: saturate(150%) blur(10px);
+    border-bottom: 1px solid var(--rule);
+  }
+  .topbar-inner {
+    max-width: 1480px; margin: 0 auto; padding: 10px 24px;
+    display: grid; grid-template-columns: auto 1fr auto;
+    align-items: center; gap: 24px;
+  }
+  .brand {
+    display: flex; align-items: center; gap: 12px;
+    border-bottom: 0; white-space: nowrap; text-decoration: none;
+  }
+  .brand-logo {
+    height: 30px; width: auto; display: block; flex-shrink: 0;
+  }
+  .brand-fallback {
+    font-weight: 700; color: var(--azure); font-size: 20px;
+    letter-spacing: -0.02em; text-transform: lowercase;
+    display: none; line-height: 1;
+  }
+  .brand .tag {
+    color: var(--fg-muted); font-weight: 500; font-size: 11px;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    padding-left: 12px; border-left: 1px solid var(--rule);
+  }
+  .nav-links {
+    display: flex; gap: 24px; align-items: center; justify-content: center;
+    flex-wrap: wrap;
+  }
+  .nav-links a {
+    color: var(--fg-muted); font-size: 12px; font-weight: 600;
+    letter-spacing: 0.04em; border-bottom: 0;
+    padding: 6px 0; position: relative;
+    transition: color 150ms var(--ease);
+  }
+  .nav-links a::after {
+    content: ''; position: absolute; bottom: 0; left: 0; right: 0;
+    height: 2px; background: var(--azure); transform: scaleX(0);
+    transform-origin: center; transition: transform 200ms var(--ease);
+  }
+  .nav-links a:hover { color: var(--azure); }
+  .nav-links a:hover::after { transform: scaleX(1); }
+  .topbar-meta {
+    font-size: 11px; color: var(--fg-muted); letter-spacing: 0.14em;
+    text-transform: uppercase; font-weight: 600; white-space: nowrap;
+  }
+  .topbar-meta strong { color: var(--azure); }
+  @media (max-width: 1100px) {
+    .nav-links { gap: 18px; }
+    .nav-links a { font-size: 11px; }
+  }
+  @media (max-width: 920px) {
+    .topbar-inner { grid-template-columns: 1fr auto; }
+    .nav-links { display: none; }
+  }
+
+  /* ============================================================
+     CANVAS
+     ============================================================ */
+  .canvas-wrap { padding: 40px 24px 80px; }
+  .canvas { position: relative; width: 100%; max-width: 1480px; margin: 0 auto; }
+
+  /* ============================================================
+     HEADLINE
+     ============================================================ */
+  .headline { margin: 0 0 36px; }
+  .headline .h-eyebrow {
+    display: inline-block; background: var(--highlighter); color: var(--shadow);
+    padding: 5px 11px; font-size: 11px; letter-spacing: 0.14em;
+    text-transform: uppercase; font-weight: 700; margin-bottom: 20px;
+  }
+  .headline h1 {
+    font-size: 52px; line-height: 1.05; color: var(--azure);
+    letter-spacing: -0.02em; max-width: 22ch; margin-bottom: 14px;
+  }
+  .headline .sub { font-size: 18px; color: var(--fg); max-width: 64ch; line-height: 1.5; }
+  .headline .sub strong { color: var(--azure); font-weight: 600; }
+  .headline-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 40px; align-items: end; }
+  .headline-meta {
+    border-left: 1px solid var(--rule); padding-left: 32px;
+    display: flex; flex-direction: column; gap: 12px; padding-bottom: 4px;
+  }
+  .headline-meta .stat { display: flex; align-items: baseline; gap: 12px; }
+  .headline-meta .num {
+    font-size: 30px; font-weight: 700; color: var(--azure);
+    line-height: 1; letter-spacing: -0.02em; min-width: 50px;
+  }
+  .headline-meta .label {
+    font-size: 11px; color: var(--fg-muted); letter-spacing: 0.14em;
+    text-transform: uppercase; font-weight: 600; line-height: 1.25;
+  }
+
+  /* ============================================================
+     TIMELINE — 12-month commercial arc at top
+     ============================================================ */
+  .timeline {
+    background: var(--ghost); border: 1px solid var(--rule);
+    padding: 28px 32px 32px; margin-bottom: 44px;
+    position: relative;
+  }
+  .timeline-header { margin-bottom: 22px; }
+  .timeline-eyebrow {
+    font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--azure); font-weight: 700; margin-bottom: 8px;
+  }
+  .timeline-title { font-size: 26px; color: var(--azure); letter-spacing: -0.015em; line-height: 1.1; margin-bottom: 6px; }
+  .timeline-sub { font-size: 13px; color: var(--fg-muted); line-height: 1.5; max-width: 80ch; }
+
+  .t-grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 3px; margin-bottom: 4px; }
+  .t-month {
+    text-align: center; font-size: 11px; letter-spacing: 0.08em;
+    color: var(--fg-muted); font-weight: 700; padding: 6px 0;
+  }
+  .t-phases {
+    display: grid; grid-template-columns: repeat(12, 1fr); gap: 3px;
+    margin-bottom: 14px;
+  }
+  .t-phase {
+    padding: 14px 10px; text-align: center; font-size: 12px;
+    color: var(--ghost); font-weight: 700; letter-spacing: -0.005em;
+    line-height: 1.2; display: flex; flex-direction: column;
+    align-items: center; justify-content: center; gap: 3px;
+  }
+  .t-phase small {
+    font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase;
+    opacity: 0.85; font-weight: 600;
+  }
+  .t-phase.strategy { grid-column: 1 / 2; background: var(--azure-900); }
+  .t-phase.testing { grid-column: 2 / 4; background: var(--azure); }
+  .t-phase.executing { grid-column: 4 / 7; background: var(--azure-600); }
+  .t-phase.refining { grid-column: 7 / 10; background: var(--azure-500); }
+  .t-phase.renewal-prep { grid-column: 10 / 13; background: var(--gold-600); }
+
+  .t-commercial {
+    display: grid; grid-template-columns: repeat(12, 1fr); gap: 3px;
+    margin-bottom: 14px;
+  }
+  .t-commit {
+    padding: 10px 12px; font-size: 11px; font-weight: 700;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--azure); border: 1.5px dashed var(--azure);
+    display: flex; align-items: center; justify-content: center; gap: 6px;
+    background: var(--lucid-soft);
+  }
+  .t-commit.initial { grid-column: 1 / 4; }
+  .t-commit.extension { grid-column: 4 / 13; }
+  .t-commit .t-c-tag {
+    background: var(--azure); color: var(--highlighter); padding: 2px 6px;
+    font-size: 9px; letter-spacing: 0.16em;
+  }
+
+  .t-decisions {
+    display: grid; grid-template-columns: repeat(12, 1fr); gap: 3px;
+  }
+  .t-decision {
+    padding: 8px 10px; font-size: 11px; font-weight: 700;
+    color: var(--shadow); background: var(--highlighter);
+    border: 1.5px solid var(--shadow);
+    display: flex; align-items: center; justify-content: center; gap: 6px;
+    letter-spacing: -0.005em;
+  }
+  .t-decision small {
+    font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase;
+    font-weight: 600; opacity: 0.75;
+  }
+  .t-decision.d-m3 { grid-column: 3 / 5; }
+  .t-decision.d-m12 { grid-column: 11 / 13; }
+
+  .timeline-footer {
+    margin-top: 18px; padding-top: 16px; border-top: 1px dashed var(--rule);
+    display: flex; gap: 28px; flex-wrap: wrap; align-items: center;
+    font-size: 11px; color: var(--fg-muted); letter-spacing: 0.04em;
+  }
+  .timeline-footer strong { color: var(--azure); font-weight: 600; }
+
+  /* ============================================================
+     FOUNDATION
+     ============================================================ */
+  .foundation {
+    position: relative; width: 100%;
+    background: linear-gradient(180deg, var(--azure) 0%, var(--azure-900) 100%);
+    color: var(--ghost); padding: 32px 40px;
+    display: grid; grid-template-columns: 240px 1fr;
+    gap: 32px; align-items: center;
+  }
+  .foundation::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+    background: linear-gradient(90deg, var(--highlighter) 0%, transparent 100%);
+  }
+  .foundation .f-label { display: flex; flex-direction: column; gap: 6px; }
+  .foundation .f-label .f-eyebrow {
+    font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--highlighter); font-weight: 700;
+  }
+  .foundation .f-label h3 { font-size: 24px; color: var(--ghost); line-height: 1.1; letter-spacing: -0.01em; }
+  .foundation .f-label .f-meta {
+    font-size: 11px; letter-spacing: 0.10em; text-transform: uppercase;
+    color: var(--lucid); margin-top: 2px;
+  }
+  .foundation-pills { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+  .foundation-pill {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(226, 237, 122, 0.30);
+    padding: 12px 16px;
+    transition: transform 200ms var(--ease), background 200ms var(--ease);
+  }
+  .foundation-pill:hover {
+    transform: translateY(-2px);
+    background: rgba(255,255,255,0.08);
+  }
+  .foundation-pill .fp-num {
+    font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase;
+    color: var(--highlighter); font-weight: 700; margin-bottom: 4px;
+  }
+  .foundation-pill h5 { font-size: 15px; color: var(--ghost); margin: 0 0 4px; letter-spacing: -0.005em; }
+  .foundation-pill p { font-size: 12px; color: var(--lucid); line-height: 1.4; margin: 0; }
+
+  /* ============================================================
+     PHASE 0
+     ============================================================ */
+  .phase-zero {
+    position: relative; width: 100%;
+    background: linear-gradient(180deg, var(--lucid-soft) 0%, var(--ghost) 100%);
+    border: 1px solid var(--azure-200); padding: 28px 40px;
+    display: grid; grid-template-columns: 240px 1fr;
+    gap: 32px; align-items: center;
+  }
+  .phase-zero::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+    background: linear-gradient(90deg, var(--highlighter) 0%, transparent 60%);
+  }
+  .phase-zero .pz-label { display: flex; flex-direction: column; gap: 6px; }
+  .phase-zero .pz-eyebrow {
+    font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--azure); font-weight: 700;
+  }
+  .phase-zero h3 { font-size: 24px; color: var(--azure); line-height: 1.1; letter-spacing: -0.01em; }
+  .phase-zero .pz-meta {
+    font-size: 11px; letter-spacing: 0.10em; text-transform: uppercase;
+    color: var(--fg-muted); margin-top: 2px; font-weight: 600;
+  }
+  .phase-zero-pills { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+  .phase-zero-pill {
+    background: var(--ghost); border: 1px solid var(--azure-200); padding: 12px 14px;
+    display: flex; flex-direction: column; gap: 3px;
+    transition: transform 200ms var(--ease), border-color 200ms var(--ease);
+  }
+  .phase-zero-pill:hover {
+    transform: translateY(-2px); border-color: var(--azure);
+  }
+  .phase-zero-pill .pzp-num {
+    font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase;
+    color: var(--azure); font-weight: 700;
+  }
+  .phase-zero-pill h5 {
+    font-size: 14px; color: var(--azure); margin: 0; letter-spacing: -0.005em; line-height: 1.2;
+  }
+  .phase-zero-pill p { font-size: 12px; color: var(--fg); line-height: 1.4; margin: 2px 0 0; }
+  .phase-zero-pill .pzp-meta {
+    font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--fg-muted); font-weight: 600; margin-top: 4px;
+  }
+
+  /* ============================================================
+     ZONE
+     ============================================================ */
+  .zone {
+    position: relative; width: 100%; background: var(--bg-alt);
+    border: 1px solid var(--rule); padding: 28px 32px 36px;
+  }
+  .zone-header {
+    display: flex; align-items: baseline; justify-content: space-between;
+    gap: 24px; margin-bottom: 18px; padding-bottom: 14px;
+    border-bottom: 2px solid var(--azure);
+  }
+  .zone-header .z-num {
+    font-size: 11px; color: var(--azure); font-weight: 700;
+    letter-spacing: 0.22em; text-transform: uppercase; white-space: nowrap;
+  }
+  .zone-header h3 { font-size: 24px; color: var(--azure); flex: 1; letter-spacing: -0.01em; }
+  .zone-header .z-meta {
+    font-size: 11px; color: var(--fg-muted); letter-spacing: 0.14em;
+    text-transform: uppercase; font-weight: 600; white-space: nowrap;
+  }
+  .zone-sub {
+    font-size: 13px; color: var(--fg-muted); margin: 0 0 22px;
+    max-width: 80ch; line-height: 1.5;
+  }
+
+  /* ============================================================
+     NODE
+     ============================================================ */
+  .node {
+    background: var(--ghost); border: 1.5px solid var(--azure);
+    padding: 14px 14px 12px; display: flex; flex-direction: column;
+    gap: 7px; min-height: 220px;
+    transition: transform 200ms var(--ease), box-shadow 200ms var(--ease);
+  }
+  .node:hover { transform: translateY(-2px); box-shadow: 0 4px 0 var(--azure-100); }
+  .node .n-head {
+    display: flex; justify-content: space-between; align-items: baseline; gap: 6px;
+  }
+  .node .n-num {
+    font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase;
+    color: var(--azure); font-weight: 700;
+  }
+  .node .n-dur {
+    font-size: 9px; letter-spacing: 0.10em; text-transform: uppercase;
+    color: var(--fg-muted); font-weight: 600;
+  }
+  .node h4 { font-size: 18px; color: var(--azure); line-height: 1.1; letter-spacing: -0.005em; }
+  .node .n-desc { font-size: 12px; color: var(--fg); line-height: 1.45; flex: 1; }
+  .node .n-get {
+    background: var(--lucid-soft); border-left: 2px solid var(--azure);
+    padding: 6px 8px; font-size: 11px; color: var(--azure);
+    line-height: 1.35; font-weight: 500;
+  }
+  .node .n-get strong {
+    display: block; font-size: 9px; letter-spacing: 0.18em;
+    text-transform: uppercase; font-weight: 700;
+    color: var(--azure); margin-bottom: 2px;
+  }
+  .node .n-out {
+    margin-top: auto; padding-top: 6px; border-top: 1px dashed var(--rule);
+    font-size: 10px; letter-spacing: 0.10em; text-transform: uppercase;
+    color: var(--azure); font-weight: 600;
+  }
+
+  /* ============================================================
+     FLOW ARROWS — inline between flex items
+     ============================================================ */
+  .flow-arrow {
+    flex: 0 0 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    line-height: 1;
+    color: var(--azure);
+    font-weight: 700;
+  }
+  .flow-arrow.large { font-size: 28px; flex: 0 0 40px; }
+  .flow-arrow.signal { color: var(--highlighter); }
+
+  /* ============================================================
+     ZONE 01 LAYOUT
+     ============================================================ */
+  /* Pre-Sales / Setup sub-grouping labels above the phases row */
+  .z1-group-labels {
+    display: grid; grid-template-columns: 2fr 1fr; gap: 32px;
+    margin-bottom: 12px;
+  }
+  .z1-group-label {
+    font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--azure); font-weight: 700;
+    padding: 8px 14px; background: var(--lucid-soft);
+    border: 1px solid var(--azure-200); text-align: center;
+  }
+  .z1-group-label .zgl-meta {
+    color: var(--fg-muted); font-weight: 600; margin-left: 8px;
+  }
+
+  .z1-phases { display: flex; gap: 0; align-items: stretch; }
+  .z1-phases .node { flex: 1; min-width: 0; }
+
+  /* Strategy Build Detail — 3-week sprint deep-dive inside Phase 06 */
+  .strategy-detail {
+    margin-top: 28px; padding: 24px 26px;
+    background: var(--lucid-soft); border: 1px solid var(--azure-200);
+  }
+  .sd-header { margin-bottom: 20px; }
+  .sd-eyebrow {
+    font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--azure); font-weight: 700; margin-bottom: 6px;
+  }
+  .sd-header h4 {
+    font-size: 20px; color: var(--azure); letter-spacing: -0.01em; margin-bottom: 6px;
+  }
+  .sd-header p {
+    font-size: 13px; color: var(--fg); line-height: 1.5; margin: 0;
+    max-width: 80ch;
+  }
+  .sd-weeks {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px;
+  }
+  .sd-week {
+    background: var(--ghost); border: 1.5px solid var(--azure); padding: 14px 16px;
+    display: flex; flex-direction: column; gap: 10px;
+    transition: transform 200ms var(--ease), box-shadow 200ms var(--ease);
+  }
+  .sd-week:hover { transform: translateY(-2px); box-shadow: 0 4px 0 var(--azure-100); }
+  .sd-week-num {
+    font-size: 10px; letter-spacing: 0.20em; text-transform: uppercase;
+    color: var(--azure); font-weight: 700;
+  }
+  .sd-week h5 {
+    font-size: 16px; color: var(--azure); margin: 0;
+    letter-spacing: -0.005em; line-height: 1.15;
+  }
+  .sd-items {
+    list-style: none; padding: 0; margin: 0;
+    display: flex; flex-direction: column; gap: 5px;
+  }
+  .sd-items li {
+    font-size: 11px; color: var(--fg); line-height: 1.45;
+    padding-left: 12px; position: relative;
+  }
+  .sd-items li::before {
+    content: '·'; position: absolute; left: 0; top: 0;
+    color: var(--azure); font-weight: 700;
+  }
+  .sd-output {
+    margin-top: auto; padding-top: 8px;
+    border-top: 1px dashed var(--rule);
+    font-size: 10px; letter-spacing: 0.10em; text-transform: uppercase;
+    color: var(--azure); font-weight: 700;
+  }
+  .sd-deliverable {
+    margin-top: 14px; padding: 10px 14px;
+    background: rgba(12, 51, 135, 0.06); border-left: 3px solid var(--azure);
+    font-size: 12px; color: var(--fg); line-height: 1.5;
+  }
+  .sd-deliverable strong { color: var(--azure); font-weight: 700; }
+
+  .z1-branches {
+    margin-top: 24px; display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
+  }
+  .branch-card { background: var(--ghost); border-left: 3px solid var(--azure); padding: 12px 16px; transition: transform 200ms var(--ease); }
+  .branch-card:hover { transform: translateX(2px); }
+  .branch-card.exit { border-left-color: var(--fg-subtle); border-left-style: dashed; }
+  .branch-card .bc-eyebrow {
+    font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--azure); font-weight: 700; margin-bottom: 6px;
+  }
+  .branch-card.exit .bc-eyebrow { color: var(--fg-muted); }
+  .branch-card h5 { font-size: 14px; color: var(--azure); margin-bottom: 4px; letter-spacing: -0.005em; }
+  .branch-card.exit h5 { color: var(--fg-muted); }
+  .branch-card p { font-size: 12px; color: var(--fg-muted); line-height: 1.45; margin: 0; }
+
+  .z1-subs {
+    margin-top: 28px; display: grid; grid-template-columns: 1fr 1fr; gap: 32px;
+  }
+  .sub-block { position: relative; }
+  .sub-label {
+    font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--fg-muted); font-weight: 700; margin-bottom: 10px;
+  }
+  .sub-bubbles { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; }
+  .sub-bubble {
+    background: var(--lucid-soft); border: 1px dashed var(--azure-400);
+    padding: 10px 12px; font-size: 13px; color: var(--azure);
+    font-weight: 600; line-height: 1.2;
+    transition: border-style 200ms var(--ease), background 200ms var(--ease);
+  }
+  .sub-bubble:hover { border-style: solid; background: var(--lucid); }
+  .sub-bubble .sb-meta {
+    display: block; font-size: 10px; letter-spacing: 0.08em;
+    text-transform: uppercase; color: var(--fg-muted);
+    font-weight: 600; margin-top: 2px;
+  }
+  .sub-bubble.output {
+    background: var(--cream-soft); border: 1px solid var(--gold-300); color: var(--gold-700);
+  }
+  .sub-bubble.output:hover { background: var(--cream); }
+  .sub-bubble.output .sb-meta { color: var(--gold-600); }
+
+  .referral-note {
+    margin-top: 24px; padding: 14px 18px;
+    background: rgba(226, 237, 122, 0.15);
+    border-left: 3px solid var(--highlighter);
+  }
+  .referral-note .r-label {
+    font-size: 10px; letter-spacing: 0.20em; text-transform: uppercase;
+    color: var(--gold-700); font-weight: 700; margin-bottom: 4px;
+  }
+  .referral-note h5 { font-size: 13px; color: var(--azure); margin: 0 0 4px; }
+  .referral-note p { font-size: 12px; color: var(--fg); line-height: 1.5; margin: 0; }
+
+  /* ============================================================
+     ZONE 02 LAYOUT
+     ============================================================ */
+  .z2-phases { display: flex; gap: 0; align-items: stretch; }
+  .z2-phases .node { flex: 1; min-width: 0; min-height: 240px; padding: 18px 18px 14px; }
+  .z2-phases .node h4 { font-size: 20px; }
+  .z2-phases .node .n-desc { font-size: 13px; }
+  .z2-phases .flow-arrow { flex: 0 0 40px; font-size: 28px; }
+
+  .loop-callouts {
+    margin-top: 24px; display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
+  }
+  .loop-callout {
+    background: var(--lucid-soft); border: 1px solid var(--azure-200);
+    padding: 14px 16px; display: flex; gap: 14px; align-items: center;
+    transition: transform 200ms var(--ease);
+  }
+  .loop-callout:hover { transform: translateY(-2px); }
+  .loop-icon {
+    flex-shrink: 0; width: 36px; height: 36px;
+    border: 2px solid var(--azure); display: flex; align-items: center;
+    justify-content: center; color: var(--azure); font-weight: 700; font-size: 20px;
+  }
+  .loop-callout h5 { font-size: 14px; color: var(--azure); margin-bottom: 2px; letter-spacing: -0.005em; }
+  .loop-callout p { font-size: 12px; color: var(--fg); line-height: 1.4; margin: 0; }
+
+  /* Quarterly phase strip */
+  .phase-strip {
+    margin-top: 28px; padding: 20px 24px;
+    background: var(--ghost); border: 1px solid var(--rule);
+  }
+  .phase-strip-label {
+    font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--azure); font-weight: 700; margin-bottom: 6px;
+  }
+  .phase-strip-title { font-size: 16px; color: var(--azure); margin-bottom: 4px; }
+  .phase-strip-sub { font-size: 12px; color: var(--fg-muted); margin-bottom: 16px; max-width: 80ch; line-height: 1.5; }
+  .phase-cycle {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 0;
+    border: 1px solid var(--rule); position: relative;
+  }
+  .phase-cycle-item {
+    padding: 14px 16px; border-right: 1px solid var(--rule); position: relative;
+  }
+  .phase-cycle-item:last-child { border-right: none; }
+  .phase-cycle-item .pc-months {
+    font-size: 10px; letter-spacing: 0.20em; text-transform: uppercase;
+    color: var(--fg-muted); font-weight: 700; margin-bottom: 4px;
+  }
+  .phase-cycle-item h5 { font-size: 15px; color: var(--azure); margin-bottom: 6px; letter-spacing: -0.005em; }
+  .phase-cycle-item p { font-size: 12px; color: var(--fg); line-height: 1.4; margin: 0; }
+  .phase-cycle-item.refresh { background: var(--cream-soft); }
+  .phase-cycle-item.refresh .pc-months { color: var(--gold-700); }
+  .phase-strip-restart {
+    margin-top: 12px; padding-top: 12px; border-top: 1px dashed var(--rule);
+    font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--fg-muted); font-weight: 600; text-align: center;
+  }
+  .phase-strip-restart strong { color: var(--azure); }
+
+  /* Month 3 mini-gate (commercial decision) */
+  .mini-gate {
+    margin-top: 22px; padding: 16px 20px;
+    background: linear-gradient(90deg, var(--lucid-soft) 0%, var(--cream-soft) 100%);
+    border: 1.5px solid var(--shadow);
+    display: grid; grid-template-columns: auto 1fr auto; gap: 18px;
+    align-items: center;
+  }
+  .mini-gate .mg-icon {
+    font-size: 22px; color: var(--shadow); font-weight: 700;
+    background: var(--highlighter); padding: 8px 12px; border: 2px solid var(--shadow);
+  }
+  .mini-gate .mg-content h5 {
+    font-size: 14px; color: var(--shadow); margin: 0 0 4px; letter-spacing: -0.005em;
+  }
+  .mini-gate .mg-content p { font-size: 12px; color: var(--fg); line-height: 1.5; margin: 0; }
+  .mini-gate .mg-content p strong { color: var(--azure); }
+  .mini-gate .mg-tag {
+    font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--shadow); font-weight: 700; padding: 6px 10px;
+    background: var(--highlighter); border: 1px solid var(--shadow);
+  }
+
+  /* ============================================================
+     CONNECTOR
+     ============================================================ */
+  .connector { margin: 24px 0; padding: 16px 0; text-align: center; }
+  .connector .conn-arrow {
+    font-size: 28px; line-height: 1; color: var(--azure);
+    font-weight: 700; display: block;
+  }
+  .connector .conn-label {
+    font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--fg-muted); font-weight: 600; margin-top: 8px;
+  }
+  .connector .conn-label strong { color: var(--azure); }
+
+  /* ============================================================
+     ENGINE
+     ============================================================ */
+  .engine {
+    position: relative;
+    background: linear-gradient(180deg, var(--shadow) 0%, var(--shadow-soft) 100%);
+    color: var(--ghost); padding: 48px 40px 56px; margin: 36px 0;
+    border: 1px solid var(--shadow-2);
+  }
+  .engine::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px;
+    background: linear-gradient(90deg, transparent 0%, var(--highlighter) 50%, transparent 100%);
+    opacity: 0.6;
+  }
+  .engine::after {
+    content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 1px;
+    background: linear-gradient(90deg, transparent 0%, var(--highlighter) 50%, transparent 100%);
+    opacity: 0.3;
+  }
+  .engine-header {
+    display: grid; grid-template-columns: 2fr 1fr;
+    gap: 32px; align-items: end; padding-bottom: 24px;
+    border-bottom: 1px solid rgba(226, 237, 122, 0.20); margin-bottom: 28px;
+  }
+  .engine-header .e-eyebrow {
+    font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--highlighter); font-weight: 700; margin-bottom: 12px;
+  }
+  .engine-header h2 {
+    font-size: 40px; color: var(--ghost); line-height: 1.05;
+    letter-spacing: -0.02em; margin-bottom: 8px;
+  }
+  .engine-header .e-sub { font-size: 14px; color: var(--azure-200); line-height: 1.5; max-width: 60ch; }
+  .engine-header .e-meta {
+    font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--highlighter); font-weight: 700; text-align: right; line-height: 1.6;
+  }
+  .engine-io { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 32px; }
+  .engine-io-block { border-left: 2px solid var(--highlighter); padding-left: 16px; }
+  .engine-io-block .io-label {
+    font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--highlighter); font-weight: 700; margin-bottom: 6px;
+  }
+  .engine-io-block p { font-size: 13px; color: var(--lucid); line-height: 1.5; margin: 0; }
+  .engine-io-block strong { color: var(--ghost); font-weight: 600; }
+
+  .engine-steps { display: flex; gap: 0; align-items: stretch; }
+  .engine-step {
+    flex: 1; min-width: 0;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.10);
+    padding: 18px 18px 16px; display: flex; flex-direction: column;
+    gap: 10px;
+    transition: border-color 200ms var(--ease), background 200ms var(--ease);
+  }
+  .engine-step:hover { border-color: rgba(226, 237, 122, 0.40); background: rgba(255,255,255,0.05); }
+  .engine-steps .flow-arrow {
+    flex: 0 0 36px; font-size: 26px; color: var(--highlighter);
+  }
+  .engine-step .es-num {
+    font-size: 10px; letter-spacing: 0.20em; text-transform: uppercase;
+    color: var(--highlighter); font-weight: 700;
+  }
+  .engine-step h4 { font-size: 22px; color: var(--ghost); letter-spacing: -0.015em; line-height: 1.05; }
+  .engine-step .es-desc {
+    font-size: 12px; color: var(--azure-200); line-height: 1.5;
+    padding-bottom: 12px; border-bottom: 1px solid rgba(255,255,255,0.10);
+  }
+  .engine-step .es-desc strong { color: var(--highlighter); font-weight: 700; }
+  .checkpoints { display: flex; flex-direction: column; gap: 8px; }
+  .checkpoint {
+    background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.10);
+    padding: 10px 12px; transition: border-color 200ms var(--ease), background 200ms var(--ease);
+  }
+  .checkpoint:hover { border-color: var(--highlighter); background: rgba(226, 237, 122, 0.06); }
+  .checkpoint .cp-num {
+    font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--highlighter); font-weight: 700; margin-bottom: 4px;
+  }
+  .checkpoint h5 { font-size: 13px; color: var(--ghost); margin-bottom: 3px; letter-spacing: -0.005em; line-height: 1.2; }
+  .checkpoint p { font-size: 11px; color: var(--azure-200); line-height: 1.4; margin: 0; }
+  .ivp-tree { margin-top: 10px; padding-top: 10px; border-top: 1px dashed rgba(255,255,255,0.15); }
+  .ivp-label {
+    font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--highlighter); font-weight: 700; margin-bottom: 6px;
+  }
+  .ivp-paths { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+  .ivp-path {
+    background: rgba(226, 237, 122, 0.08); border: 1px dashed rgba(226, 237, 122, 0.40);
+    padding: 6px 8px;
+  }
+  .ivp-path .path-label {
+    font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--highlighter); font-weight: 700;
+  }
+  .ivp-path h6 { font-size: 11px; color: var(--ghost); margin: 1px 0 2px; line-height: 1.2; }
+  .ivp-path p { font-size: 10px; color: var(--azure-200); line-height: 1.3; margin: 0; }
+  .es-output {
+    margin-top: auto; padding-top: 10px; border-top: 1px solid rgba(226, 237, 122, 0.25);
+    font-size: 10px; letter-spacing: 0.10em; text-transform: uppercase;
+    color: var(--highlighter); font-weight: 700; line-height: 1.3;
+  }
+  .engine-cycle {
+    margin-top: 32px; padding: 18px 24px;
+    background: rgba(226, 237, 122, 0.08); border: 1px solid var(--highlighter);
+    text-align: center;
+  }
+  .engine-cycle .cycle-line {
+    font-size: 16px; color: var(--highlighter); font-weight: 700; letter-spacing: -0.005em;
+  }
+  .engine-cycle .cycle-line .arrow { color: var(--ghost); margin: 0 8px; }
+  .engine-cycle .cycle-line .return { color: var(--ghost); margin: 0 8px; }
+  .engine-cycle .cycle-note { font-size: 12px; color: var(--azure-200); margin-top: 6px; }
+
+  /* ============================================================
+     ZONE 03 GATE
+     ============================================================ */
+  .gate-band {
+    position: relative;
+    background: linear-gradient(180deg, var(--bg-alt) 0%, var(--cream-soft) 100%);
+    border: 1px solid var(--rule); padding: 28px 32px 36px;
+  }
+  .gate { display: grid; grid-template-columns: 1.2fr 1fr 1.2fr; gap: 24px; align-items: stretch; }
+  .gate-decision {
+    background: var(--highlighter); border: 2px solid var(--shadow);
+    padding: 28px 24px; display: flex; flex-direction: column;
+    align-items: center; justify-content: center; text-align: center;
+    gap: 4px;
+    transition: transform 200ms var(--ease);
+  }
+  .gate-decision:hover { transform: scale(1.02); }
+  .gate-decision .gd-eyebrow {
+    font-size: 10px; letter-spacing: 0.20em; text-transform: uppercase;
+    color: var(--shadow); font-weight: 700;
+  }
+  .gate-decision h3 { font-size: 32px; color: var(--shadow); letter-spacing: -0.02em; line-height: 1; }
+  .gate-decision .gd-window {
+    font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--shadow); font-weight: 600; opacity: 0.7; margin-top: 6px;
+  }
+  .gate-path {
+    background: var(--ghost); border: 1.5px solid var(--azure);
+    padding: 16px 18px; display: flex; flex-direction: column; gap: 8px;
+    transition: transform 200ms var(--ease), box-shadow 200ms var(--ease);
+  }
+  .gate-path:hover { transform: translateY(-2px); box-shadow: 0 4px 0 var(--azure-100); }
+  .gate-path.close { border-color: var(--fg-subtle); border-style: dashed; }
+  .gate-path .gp-eyebrow {
+    font-size: 10px; letter-spacing: 0.20em; text-transform: uppercase;
+    color: var(--azure); font-weight: 700;
+  }
+  .gate-path.close .gp-eyebrow { color: var(--fg-muted); }
+  .gate-path h4 { font-size: 18px; color: var(--azure); letter-spacing: -0.01em; }
+  .gate-path.close h4 { color: var(--fg-muted); }
+  .gate-path p { font-size: 12px; color: var(--fg); line-height: 1.45; margin: 0; }
+  .gate-path .gp-back {
+    margin-top: 8px; padding-top: 8px; border-top: 1px solid var(--rule);
+    font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--azure); font-weight: 700;
+  }
+  .gate-path.close .gp-back { color: var(--fg-muted); }
+  .gate-refresh-note {
+    margin-top: 14px; padding: 10px 14px;
+    background: var(--cream); border: 1px solid var(--gold-300);
+  }
+  .gate-refresh-note .grn-label {
+    font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--gold-700); font-weight: 700;
+  }
+  .gate-refresh-note h6 { font-size: 12px; color: var(--azure); margin: 2px 0 3px; font-weight: 700; letter-spacing: -0.005em; }
+  .gate-refresh-note p { font-size: 11px; color: var(--fg); line-height: 1.4; margin: 0; }
+
+  .feedback-note {
+    margin-top: 28px; padding: 14px 18px;
+    background: rgba(12, 51, 135, 0.06); border-left: 3px solid var(--azure);
+  }
+  .feedback-note .fn-label {
+    font-size: 10px; letter-spacing: 0.20em; text-transform: uppercase;
+    color: var(--azure); font-weight: 700; margin-bottom: 4px;
+  }
+  .feedback-note p { font-size: 13px; color: var(--fg); line-height: 1.5; margin: 0; }
+  .feedback-note p strong { color: var(--azure); font-weight: 600; }
+
+  /* ============================================================
+     SUPPLEMENT — COLLAPSIBLE via <details>
+     ============================================================ */
+  .supplement {
+    margin-top: 32px; background: var(--ghost); border: 1px solid var(--rule);
+    overflow: hidden;
+  }
+  .supplement summary {
+    list-style: none; cursor: pointer; padding: 24px 32px;
+    display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 24px;
+    transition: background 200ms var(--ease);
+    user-select: none;
+  }
+  .supplement summary::-webkit-details-marker { display: none; }
+  .supplement summary:hover { background: var(--bg-alt); }
+  .supplement summary .summary-head {
+    display: flex; flex-direction: column; gap: 6px;
+  }
+  .supplement summary .s-eyebrow {
+    font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--azure); font-weight: 700;
+  }
+  .supplement summary h2 {
+    font-size: 22px; color: var(--azure); letter-spacing: -0.015em; line-height: 1.15;
+  }
+  .supplement summary .s-sub {
+    font-size: 13px; color: var(--fg-muted); margin-top: 2px;
+    max-width: 80ch; line-height: 1.5;
+  }
+  .supplement summary .expand-icon {
+    width: 32px; height: 32px;
+    border: 1.5px solid var(--azure); background: var(--ghost);
+    display: flex; align-items: center; justify-content: center;
+    color: var(--azure); font-size: 16px; font-weight: 700;
+    transition: transform 300ms var(--ease), background 200ms var(--ease);
+  }
+  .supplement[open] summary .expand-icon {
+    transform: rotate(45deg); background: var(--azure); color: var(--ghost);
+  }
+  .supplement .supplement-body {
+    padding: 0 32px 32px;
+    animation: revealDown 400ms var(--ease);
+  }
+  @keyframes revealDown {
+    from { opacity: 0; transform: translateY(-8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .supplement-divider {
+    border-top: 1px solid var(--rule); margin-bottom: 28px;
+  }
+
+  /* AI strip */
+  .ai-strip { background: linear-gradient(180deg, var(--lucid-soft) 0%, var(--ghost) 100%); }
+  .ai-strip summary { background: linear-gradient(180deg, var(--lucid-soft) 0%, transparent 100%); }
+  .ai-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+  .ai-card {
+    background: var(--ghost); border: 1px solid var(--azure-200);
+    padding: 16px 16px 14px; display: flex; flex-direction: column; gap: 6px;
+    position: relative;
+    transition: transform 200ms var(--ease), border-color 200ms var(--ease);
+  }
+  .ai-card:hover { transform: translateY(-2px); border-color: var(--azure); }
+  .ai-card::before {
+    content: 'AI'; position: absolute; top: 0; right: 0;
+    background: var(--azure); color: var(--highlighter);
+    padding: 3px 8px; font-size: 9px; letter-spacing: 0.16em; font-weight: 700;
+  }
+  .ai-card .ac-phase {
+    font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--fg-muted); font-weight: 700;
+  }
+  .ai-card h5 { font-size: 14px; color: var(--azure); margin: 0 0 2px; letter-spacing: -0.005em; }
+  .ai-card p { font-size: 12px; color: var(--fg); line-height: 1.45; margin: 0; }
+  .ai-rule {
+    margin-top: 24px; padding: 14px 18px;
+    background: var(--shadow); color: var(--ghost);
+    display: flex; gap: 16px; align-items: center;
+  }
+  .ai-rule .ar-icon {
+    flex-shrink: 0; width: 32px; height: 32px;
+    background: var(--highlighter); color: var(--shadow);
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 700; font-size: 16px;
+  }
+  .ai-rule h5 { font-size: 13px; color: var(--highlighter); margin: 0 0 2px; letter-spacing: -0.005em; }
+  .ai-rule p { font-size: 12px; color: var(--lucid); line-height: 1.4; margin: 0; }
+
+  /* Cadence */
+  .cadence-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  .cadence-col {
+    background: var(--bg-alt); border: 1px solid var(--rule); padding: 18px 20px;
+  }
+  .cadence-col-header {
+    margin-bottom: 14px; padding-bottom: 10px; border-bottom: 1px solid var(--rule);
+  }
+  .cadence-col-header .cc-eyebrow {
+    font-size: 10px; letter-spacing: 0.20em; text-transform: uppercase;
+    color: var(--azure); font-weight: 700; margin-bottom: 4px;
+  }
+  .cadence-col-header h4 { font-size: 18px; color: var(--azure); letter-spacing: -0.005em; }
+  .cadence-col-header .cc-meta {
+    font-size: 11px; color: var(--fg-muted); letter-spacing: 0.10em;
+    text-transform: uppercase; font-weight: 600; margin-top: 2px;
+  }
+  .cadence-row {
+    display: grid; grid-template-columns: 110px 1fr 100px;
+    gap: 14px; padding: 10px 0; border-bottom: 1px solid var(--rule-faint);
+    align-items: baseline;
+  }
+  .cadence-row:last-child { border-bottom: none; }
+  .cadence-row .cr-when {
+    font-size: 11px; letter-spacing: 0.10em; text-transform: uppercase;
+    color: var(--azure); font-weight: 700;
+  }
+  .cadence-row .cr-what { font-size: 13px; color: var(--fg); font-weight: 600; line-height: 1.3; }
+  .cadence-row .cr-what small {
+    display: block; font-size: 11px; color: var(--fg-muted); font-weight: 500; margin-top: 2px;
+  }
+  .cadence-row .cr-time {
+    font-size: 10px; letter-spacing: 0.10em; text-transform: uppercase;
+    color: var(--fg-muted); font-weight: 600; text-align: right;
+  }
+  .cadence-total {
+    margin-top: 20px; padding: 14px 18px;
+    background: rgba(12, 51, 135, 0.06); border-left: 3px solid var(--azure);
+  }
+  .cadence-total .ct-label {
+    font-size: 10px; letter-spacing: 0.20em; text-transform: uppercase;
+    color: var(--azure); font-weight: 700; margin-bottom: 4px;
+  }
+  .cadence-total p { font-size: 13px; color: var(--fg); line-height: 1.5; margin: 0; }
+  .cadence-total strong { color: var(--azure); }
+
+  /* Customer Lifecycle Touchpoints */
+  .lifecycle-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  .lifecycle-col { padding: 20px 22px; }
+  .lifecycle-col.active { background: var(--lucid-soft); border: 1px solid var(--azure-200); }
+  .lifecycle-col.exit { background: var(--cream-soft); border: 1px solid var(--gold-300); }
+  .lc-header { margin-bottom: 16px; padding-bottom: 14px; border-bottom: 1px solid var(--rule); }
+  .lc-eyebrow {
+    font-size: 10px; letter-spacing: 0.20em; text-transform: uppercase;
+    color: var(--azure); font-weight: 700; margin-bottom: 4px;
+  }
+  .lifecycle-col.exit .lc-eyebrow { color: var(--gold-700); }
+  .lc-header h4 { font-size: 18px; color: var(--azure); margin: 0 0 6px; letter-spacing: -0.005em; }
+  .lifecycle-col.exit .lc-header h4 { color: var(--gold-700); }
+  .lc-header p { font-size: 12px; color: var(--fg); line-height: 1.5; margin: 0; }
+  .lc-items { display: flex; flex-direction: column; }
+  .lc-item {
+    display: grid; grid-template-columns: 140px 1fr; gap: 14px;
+    padding: 12px 0; border-bottom: 1px dashed var(--rule-faint);
+  }
+  .lc-item:last-child { border-bottom: none; padding-bottom: 0; }
+  .lc-item:first-child { padding-top: 4px; }
+  .li-trigger {
+    font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--azure); font-weight: 700; line-height: 1.3;
+  }
+  .lifecycle-col.exit .li-trigger { color: var(--gold-700); }
+  .li-content h6 { font-size: 13px; color: var(--azure); margin: 0 0 3px; letter-spacing: -0.005em; }
+  .lifecycle-col.exit .li-content h6 { color: var(--gold-700); }
+  .li-content p { font-size: 12px; color: var(--fg); line-height: 1.4; margin: 0; }
+  .lifecycle-note {
+    margin-top: 22px; padding: 14px 18px;
+    background: rgba(12, 51, 135, 0.06); border-left: 3px solid var(--azure);
+  }
+  .lifecycle-note .ln-label {
+    font-size: 10px; letter-spacing: 0.20em; text-transform: uppercase;
+    color: var(--azure); font-weight: 700; margin-bottom: 4px;
+  }
+  .lifecycle-note p { font-size: 13px; color: var(--fg); line-height: 1.5; margin: 0; }
+  .lifecycle-note p strong { color: var(--azure); font-weight: 600; }
+
+  /* Worked example */
+  .scenarios { display: flex; flex-direction: column; gap: 28px; }
+  .scenario {
+    background: var(--bg-alt); border: 1px solid var(--rule);
+    padding: 22px 24px;
+  }
+  .scenario.sideways { background: var(--cream-soft); border-color: var(--gold-300); }
+  .scenario-header {
+    display: flex; align-items: baseline; justify-content: space-between;
+    gap: 16px; margin-bottom: 8px;
+  }
+  .scenario-header .sh-tag {
+    background: var(--azure); color: var(--ghost);
+    padding: 4px 10px; font-size: 10px; letter-spacing: 0.18em;
+    text-transform: uppercase; font-weight: 700;
+  }
+  .scenario.sideways .sh-tag { background: var(--gold-600); color: var(--ghost); }
+  .scenario-header h4 { font-size: 20px; color: var(--azure); letter-spacing: -0.01em; }
+  .scenario .scenario-context {
+    font-size: 13px; color: var(--fg-muted); font-style: italic;
+    line-height: 1.5; margin-bottom: 16px; padding-bottom: 14px;
+    border-bottom: 1px dashed var(--rule);
+  }
+  .milestones { display: flex; gap: 0; align-items: stretch; }
+  .milestone {
+    flex: 1; min-width: 0;
+    background: var(--ghost); border: 1px solid var(--azure-200);
+    padding: 12px 14px; display: flex; flex-direction: column; gap: 4px;
+    transition: transform 200ms var(--ease), border-color 200ms var(--ease);
+  }
+  .milestone:hover { transform: translateY(-2px); border-color: var(--azure); }
+  .milestones .flow-arrow { flex: 0 0 28px; font-size: 20px; color: var(--azure); }
+  .milestone .m-phase {
+    font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase;
+    color: var(--azure); font-weight: 700;
+  }
+  .milestone h6 {
+    font-size: 13px; color: var(--azure); margin: 0;
+    letter-spacing: -0.005em; line-height: 1.2;
+  }
+  .milestone p {
+    font-size: 11px; color: var(--fg); line-height: 1.4; margin: 0;
+  }
+  .scenario-outcome {
+    margin-top: 16px; padding-top: 14px; border-top: 1px solid var(--rule);
+    font-size: 13px; color: var(--fg); line-height: 1.5;
+  }
+  .scenario-outcome strong { color: var(--azure); font-weight: 700; }
+  .scenario.sideways .scenario-outcome strong { color: var(--gold-700); }
+  .scenario-sub-paths { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .scenario-sub-path {
+    background: var(--ghost); border-left: 3px solid var(--gold-600);
+    padding: 14px 16px;
+  }
+  .scenario-sub-path h6 {
+    font-size: 13px; color: var(--azure); margin: 0 0 6px; letter-spacing: -0.005em;
+  }
+  .scenario-sub-path p {
+    font-size: 12px; color: var(--fg-muted); line-height: 1.5; margin-bottom: 6px;
+  }
+  .scenario-sub-path p:last-child { margin-bottom: 0; }
+  .scenario-sub-path .ssp-outcome {
+    font-size: 11px; letter-spacing: 0.10em; text-transform: uppercase;
+    color: var(--gold-700); font-weight: 700;
+  }
+
+  /* Legend */
+  .legend {
+    margin-top: 40px; padding: 18px 24px;
+    background: var(--ghost); border: 1px solid var(--rule);
+    display: flex; flex-wrap: wrap; gap: 28px; align-items: center;
+    font-size: 11px; color: var(--fg-muted); letter-spacing: 0.10em;
+    text-transform: uppercase; font-weight: 600;
+  }
+  .legend .l-title {
+    font-size: 10px; letter-spacing: 0.20em; color: var(--azure);
+    font-weight: 700; padding-right: 16px; border-right: 1px solid var(--rule);
+  }
+  .legend .l-item { display: flex; align-items: center; gap: 8px; }
+  .legend .swatch { width: 24px; text-align: center; color: var(--azure); font-weight: 700; }
+  .legend .swatch.loop { color: var(--azure-600); }
+  .legend .swatch.exit { color: var(--fg-subtle); }
+  .legend .swatch.refresh { color: var(--gold-600); }
+  .legend .swatch.referral { color: var(--gold-700); }
+  .legend .swatch.gate { color: var(--shadow); }
+
+  /* Footer */
+  .footer {
+    margin-top: 64px; padding-top: 24px; border-top: 1px solid var(--rule);
+    font-size: 11px; color: var(--fg-subtle); letter-spacing: 0.14em;
+    text-transform: uppercase; display: flex; justify-content: space-between; gap: 16px;
+  }
+  .footer a { color: var(--fg-muted); border-bottom: 0; }
+  .footer a:hover { color: var(--azure); }
+
+  /* ============================================================
+     SCROLL REVEAL ANIMATIONS
+     ============================================================ */
+  .reveal {
+    opacity: 0; transform: translateY(20px);
+    transition: opacity 600ms var(--ease), transform 600ms var(--ease);
+  }
+  .reveal.in-view {
+    opacity: 1; transform: translateY(0);
+  }
+
+  /* ============================================================
+     RESPONSIVE — TABLET
+     ============================================================ */
+  @media (max-width: 1279px) {
+    .canvas-wrap { padding: 32px 18px 64px; }
+    .headline h1 { font-size: clamp(36px, 4.5vw, 52px); }
+    .headline-meta .num { font-size: 26px; }
+    .engine-header h2 { font-size: clamp(28px, 3.6vw, 40px); }
+    .supplement summary h2 { font-size: 19px; }
+    .ai-cards { grid-template-columns: repeat(2, 1fr); }
+    .phase-zero-pills { grid-template-columns: repeat(2, 1fr); }
+    .timeline-title { font-size: 22px; }
+    .t-phase { padding: 12px 6px; font-size: 11px; }
+    .t-commit { font-size: 10px; padding: 8px 8px; }
+  }
+
+  /* ============================================================
+     RESPONSIVE — MOBILE
+     ============================================================ */
+  @media (max-width: 767px) {
+    .topbar-inner { padding: 8px 14px; grid-template-columns: 1fr; gap: 4px; }
+    .brand { gap: 8px; }
+    .brand-logo { height: 24px; }
+    .brand-fallback { font-size: 13px; }
+    .brand .tag { display: none; }
+    .topbar-meta { font-size: 9px; }
+    .nav-links { display: none; }
+    .canvas-wrap { padding: 20px 12px 40px; }
+
+    .headline { margin-bottom: 28px; }
+    .headline .h-eyebrow { font-size: 10px; padding: 4px 9px; margin-bottom: 16px; }
+    .headline h1 { font-size: 28px; }
+    .headline .sub { font-size: 14px; }
+    .headline-grid { grid-template-columns: 1fr; gap: 22px; }
+    .headline-meta { border-left: 0; padding-left: 0; padding-top: 16px; border-top: 1px solid var(--rule); }
+    .headline-meta .num { font-size: 24px; min-width: 42px; }
+    .headline-meta .label { font-size: 10px; }
+
+    /* Timeline — collapse for mobile */
+    .timeline { padding: 22px 18px; }
+    .timeline-title { font-size: 20px; }
+    .t-grid { gap: 2px; }
+    .t-month { font-size: 9px; padding: 4px 0; }
+    .t-phases, .t-commercial, .t-decisions { gap: 2px; }
+    .t-phase { padding: 10px 4px; font-size: 10px; }
+    .t-phase small { font-size: 8px; }
+    .t-commit { padding: 6px 4px; font-size: 9px; letter-spacing: 0.04em; }
+    .t-decision { padding: 6px 4px; font-size: 9px; }
+    .timeline-footer { flex-direction: column; gap: 6px; align-items: flex-start; }
+
+    .foundation { grid-template-columns: 1fr; padding: 22px 18px; gap: 18px; }
+    .foundation .f-label h3 { font-size: 22px; }
+    .foundation-pills { grid-template-columns: 1fr; gap: 10px; }
+    .foundation-pill { padding: 12px 14px; }
+
+    .phase-zero { grid-template-columns: 1fr; padding: 22px 18px; gap: 18px; }
+    .phase-zero h3 { font-size: 22px; }
+    .phase-zero-pills { grid-template-columns: 1fr; gap: 10px; }
+    .phase-zero-pill { padding: 12px 14px; }
+
+    .zone, .gate-band { padding: 22px 16px 26px; }
+    .zone-header { flex-direction: column; align-items: flex-start; gap: 6px; padding-bottom: 12px; }
+    .zone-header h3 { font-size: 19px; }
+    .zone-header .z-meta { font-size: 10px; }
+    .zone-sub { font-size: 12px; margin: 0 0 18px; }
+
+    .z1-phases, .z2-phases, .engine-steps, .milestones {
+      flex-direction: column;
+    }
+    .z1-phases .flow-arrow,
+    .z2-phases .flow-arrow,
+    .engine-steps .flow-arrow,
+    .milestones .flow-arrow {
+      flex: 0 0 auto; padding: 4px 0; transform: rotate(90deg);
+    }
+    .node, .z2-phases .node { min-height: auto; padding: 14px; }
+    .node h4 { font-size: 17px; }
+    .z2-phases .node h4 { font-size: 18px; }
+
+    .z1-group-labels { grid-template-columns: 1fr; gap: 8px; margin-bottom: 10px; }
+    .z1-group-label { padding: 6px 10px; font-size: 10px; }
+    .z1-branches { grid-template-columns: 1fr; gap: 10px; }
+    .z1-subs { grid-template-columns: 1fr; gap: 18px; }
+    .sub-bubbles { grid-template-columns: 1fr; }
+    .referral-note { padding: 12px 14px; }
+
+    .strategy-detail { padding: 18px 16px; }
+    .sd-header h4 { font-size: 18px; }
+    .sd-weeks { grid-template-columns: 1fr; gap: 10px; }
+    .sd-week { padding: 12px 14px; }
+
+    .loop-callouts { grid-template-columns: 1fr; gap: 10px; }
+    .phase-strip { padding: 16px 14px; }
+    .phase-cycle { grid-template-columns: 1fr; }
+    .phase-cycle-item { border-right: none; border-bottom: 1px solid var(--rule); padding: 12px 14px; }
+    .phase-cycle-item:last-child { border-bottom: none; }
+
+    .mini-gate { grid-template-columns: 1fr; gap: 10px; padding: 14px 16px; }
+
+    .engine { padding: 32px 18px 36px; margin: 28px 0; }
+    .engine-header { grid-template-columns: 1fr; gap: 14px; padding-bottom: 18px; margin-bottom: 22px; }
+    .engine-header h2 { font-size: 26px; }
+    .engine-header .e-sub { font-size: 13px; }
+    .engine-header .e-meta { text-align: left; }
+    .engine-io { grid-template-columns: 1fr; gap: 16px; margin-bottom: 24px; }
+    .engine-step { padding: 16px; }
+    .engine-step h4 { font-size: 20px; }
+    .ivp-paths { grid-template-columns: 1fr; }
+    .engine-cycle { padding: 14px 18px; }
+    .engine-cycle .cycle-line { font-size: 14px; line-height: 1.7; }
+
+    .gate { grid-template-columns: 1fr; gap: 14px; }
+    .gate-decision { padding: 22px 18px; }
+    .gate-decision h3 { font-size: 28px; }
+    .gate-path { padding: 14px 16px; }
+    .gate-path h4 { font-size: 16px; }
+
+    .supplement summary { padding: 18px 18px; grid-template-columns: 1fr auto; gap: 14px; }
+    .supplement summary h2 { font-size: 18px; }
+    .supplement summary .s-sub { font-size: 12px; }
+    .supplement .supplement-body { padding: 0 18px 24px; }
+    .supplement-divider { margin-bottom: 22px; }
+
+    .ai-cards { grid-template-columns: 1fr; gap: 10px; }
+    .ai-rule { flex-direction: column; align-items: flex-start; gap: 10px; padding: 14px; }
+
+    .cadence-grid { grid-template-columns: 1fr; gap: 16px; }
+    .cadence-col { padding: 16px 16px; }
+    .cadence-row { grid-template-columns: 80px 1fr 60px; gap: 8px; padding: 8px 0; }
+    .cadence-row .cr-when { font-size: 10px; }
+    .cadence-row .cr-what { font-size: 12px; }
+    .cadence-row .cr-what small { font-size: 10px; }
+    .cadence-row .cr-time { font-size: 9px; }
+
+    .lifecycle-grid { grid-template-columns: 1fr; gap: 14px; }
+    .lifecycle-col { padding: 16px 16px; }
+    .lc-item { grid-template-columns: 1fr; gap: 4px; padding: 10px 0; }
+    .li-trigger { font-size: 9px; }
+
+    .scenario { padding: 18px 16px; }
+    .scenario-header { flex-direction: column-reverse; align-items: flex-start; gap: 6px; }
+    .scenario-header h4 { font-size: 18px; }
+    .milestone { padding: 12px 14px; }
+    .scenario-sub-paths { grid-template-columns: 1fr; }
+
+    .connector { padding: 12px 0; margin: 12px 0; }
+    .connector .conn-label { font-size: 10px; }
+
+    .legend { flex-direction: column; align-items: flex-start; gap: 10px; padding: 14px 16px; }
+    .legend .l-title { padding-right: 0; padding-bottom: 8px; border-right: 0; border-bottom: 1px solid var(--rule); width: 100%; }
+
+    .footer { flex-direction: column; gap: 8px; font-size: 10px; margin-top: 48px; padding-top: 18px; }
+  }
+
+  @media print {
+    body { background: white; }
+    .topbar { display: none; }
+    .canvas-wrap { padding: 0; }
+    .engine { background: white; color: black; border-color: #ccc; }
+    .engine h2, .engine .e-eyebrow, .engine-step h4, .checkpoint h5 { color: black; }
+    .engine-step, .checkpoint { background: white; border-color: #ccc; }
+    .engine-step .es-desc, .checkpoint p, .engine-header .e-sub { color: #444; }
+    .supplement[open] { page-break-inside: avoid; }
+    .supplement { open: true; }
+    .reveal { opacity: 1; transform: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- TOP BAR WITH NAV -->
+<div class="topbar">
+  <div class="topbar-inner">
+    <a href="https://scrollmedia.co" class="brand" aria-label="Scroll Media">
+      <img src="https://tools.scrollmedia.co/assets/scroll-media-logo.svg" alt="Scroll Media" class="brand-logo" onerror="this.style.display='none';this.nextElementSibling.style.display='inline';" />
+      <span class="brand-fallback">Scroll Media</span>
+      <span class="tag">The Scroll Method</span>
+    </a>
+    <nav class="nav-links" aria-label="Page navigation">
+      <a href="#timeline">Timeline</a>
+      <a href="#foundation">Foundation</a>
+      <a href="#zone1">Phases</a>
+      <a href="#engine">Engine</a>
+      <a href="#zone3">Renewal</a>
+      <a href="#cadence">Cadence</a>
+      <a href="#example">Example</a>
+      <a href="#lifecycle">Lifecycle</a>
+      <a href="#ai">AI</a>
+    </nav>
+    <span class="topbar-meta">Updated <strong>May 2026</strong></span>
+  </div>
+</div>
+
+<div class="canvas-wrap">
+  <div class="canvas">
+
+    <!-- HEADLINE -->
+    <div class="headline">
+      <span class="h-eyebrow">The Scroll Method · v1.0</span>
+      <div class="headline-grid">
+        <div>
+          <h1>The architecture every Scroll Media engagement runs on.</h1>
+          <p class="sub">Cincinnati's Instagram agency for local brands. <strong>Ten phases. Three zones. One engine.</strong> Every output becomes the next input. Built to be productized so it works the same way, every client, every time.</p>
+        </div>
+        <div class="headline-meta">
+          <div class="stat"><span class="num">10</span><span class="label">Phases · First touch to renewal</span></div>
+          <div class="stat"><span class="num">3</span><span class="label">Zones · Setup · Loop · Decision</span></div>
+          <div class="stat"><span class="num">1</span><span class="label">Engine · Where content is built</span></div>
+          <div class="stat"><span class="num">∞</span><span class="label">Cycles · The engagement compounds</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TIMELINE — Executive Summary -->
+    <div class="timeline reveal" id="timeline">
+      <div class="timeline-header">
+        <div class="timeline-eyebrow">The 12-month engagement at a glance</div>
+        <h2 class="timeline-title">How the year unfolds.</h2>
+        <p class="timeline-sub">Strategy. Testing. Decision. Extension. Renewal. The full commercial and strategic arc on one timeline. Details follow below.</p>
+      </div>
+
+      <!-- Month markers -->
+      <div class="t-grid">
+        <div class="t-month">M1</div>
+        <div class="t-month">M2</div>
+        <div class="t-month">M3</div>
+        <div class="t-month">M4</div>
+        <div class="t-month">M5</div>
+        <div class="t-month">M6</div>
+        <div class="t-month">M7</div>
+        <div class="t-month">M8</div>
+        <div class="t-month">M9</div>
+        <div class="t-month">M10</div>
+        <div class="t-month">M11</div>
+        <div class="t-month">M12</div>
+      </div>
+
+      <!-- Strategic phases bar -->
+      <div class="t-phases">
+        <div class="t-phase strategy"><small>Phase 06</small>Strategy</div>
+        <div class="t-phase testing"><small>Months 2-3</small>Testing</div>
+        <div class="t-phase executing"><small>Months 4-6</small>Executing</div>
+        <div class="t-phase refining"><small>Months 7-9</small>Refining</div>
+        <div class="t-phase renewal-prep"><small>Months 10-12</small>Refining + Annual Review</div>
+      </div>
+
+      <!-- Commercial layer -->
+      <div class="t-commercial">
+        <div class="t-commit initial"><span class="t-c-tag">Initial</span>3-Month Commitment</div>
+        <div class="t-commit extension"><span class="t-c-tag">Extension</span>9-Month Retainer</div>
+      </div>
+
+      <!-- Decision gates -->
+      <div class="t-decisions">
+        <div class="t-decision d-m3">◇ Month 3 <small>Extend?</small></div>
+        <div class="t-decision d-m12">◇ Month 12 <small>Renew?</small></div>
+      </div>
+
+      <div class="timeline-footer">
+        <span><strong>Initial:</strong> Month 1 strategy build + Months 2-3 testing window</span>
+        <span><strong>Decision at M3:</strong> Extend to 9-month retainer</span>
+        <span><strong>Renewal at M12:</strong> Continue with refresh or close cleanly</span>
+      </div>
+    </div>
+
+    <!-- FOUNDATION -->
+    <div class="foundation reveal" id="foundation">
+      <div class="f-label">
+        <span class="f-eyebrow">Layer 00</span>
+        <h3>Foundation</h3>
+        <span class="f-meta">What everything else is built on</span>
+      </div>
+      <div class="foundation-pills">
+        <div class="foundation-pill">
+          <div class="fp-num">01</div>
+          <h5>Positioning</h5>
+          <p>Cincinnati's Instagram agency for local brands. Locked, repeated everywhere.</p>
+        </div>
+        <div class="foundation-pill">
+          <div class="fp-num">02</div>
+          <h5>ICP</h5>
+          <p>Cincinnati and Dayton local brands. Founder-led. Investing in long-term brand.</p>
+        </div>
+        <div class="foundation-pill">
+          <div class="fp-num">03</div>
+          <h5>Prospect Tiering</h5>
+          <p>Four-lane niche framework. Tight follower bands. Geo-zoned ownership across the team.</p>
+        </div>
+        <div class="foundation-pill">
+          <div class="fp-num">04</div>
+          <h5>Brand OS</h5>
+          <p>One brand. One voice. One visual system. Every surface inherits the standards.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="connector reveal">
+      <span class="conn-arrow">↓</span>
+      <div class="conn-label"><strong>Foundation</strong> underlies everything below</div>
+    </div>
+
+    <!-- PHASE 0 -->
+    <div class="phase-zero reveal" id="phase-zero">
+      <div class="pz-label">
+        <span class="pz-eyebrow">Phase 0</span>
+        <h3>Inbound</h3>
+        <span class="pz-meta">Always-on · Feeds Phase 01</span>
+      </div>
+      <div class="phase-zero-pills">
+        <div class="phase-zero-pill">
+          <div class="pzp-num">01</div>
+          <h5>Personal Brand</h5>
+          <p>Daily content from chase.scrolls across Instagram, LinkedIn, Threads, and X.</p>
+          <div class="pzp-meta">Authority + reach</div>
+        </div>
+        <div class="phase-zero-pill">
+          <div class="pzp-num">02</div>
+          <h5>Lead Magnet</h5>
+          <p>The Local Brand Growth Manual. Free, no email gate. Establishes expertise.</p>
+          <div class="pzp-meta">Top of funnel</div>
+        </div>
+        <div class="phase-zero-pill">
+          <div class="pzp-num">03</div>
+          <h5>Productized Tier</h5>
+          <p>Audience-to-Action Playbook ($87) + Instagram Growth Blueprint ($997). Lower-ticket entry points.</p>
+          <div class="pzp-meta">Direct purchase path</div>
+        </div>
+        <div class="phase-zero-pill">
+          <div class="pzp-num">04</div>
+          <h5>Authority Quiz</h5>
+          <p>Instagram Maturity Quiz feeds Kit email nurture sequence with stage-personalized follow-up.</p>
+          <div class="pzp-meta">Email pipeline</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="connector reveal">
+      <span class="conn-arrow">↓</span>
+      <div class="conn-label"><strong>Inbound warms outreach</strong> and creates direct entry points</div>
+    </div>
+
+    <!-- ZONE 01 -->
+    <div class="zone reveal" id="zone1">
+      <div class="zone-header">
+        <span class="z-num">Zone 01</span>
+        <h3>Acquisition + Setup</h3>
+        <span class="z-meta">6 Phases · One-time · ~6-9 weeks</span>
+      </div>
+      <p class="zone-sub">From cold prospect to signed client with strategy locked. Run once per client. Run clean.</p>
+
+      <div class="z1-group-labels">
+        <div class="z1-group-label">Pre-Sales <span class="zgl-meta">Phases 01-04</span></div>
+        <div class="z1-group-label">Setup <span class="zgl-meta">Phases 05-06</span></div>
+      </div>
+
+      <div class="z1-phases">
+        <div class="node">
+          <div class="n-head"><span class="n-num">Phase 01</span><span class="n-dur">Ongoing</span></div>
+          <h4>Outreach</h4>
+          <p class="n-desc">Daily acquisition across cold email, LinkedIn, and Instagram. About 95 personal touches a day. Targeted, not mass.</p>
+          <div class="n-get"><strong>You get</strong>First contact from us. A free Loom audit if you're an A or B tier fit.</div>
+          <div class="n-out">→ Discovery call booked</div>
+        </div>
+        <div class="flow-arrow">→</div>
+        <div class="node">
+          <div class="n-head"><span class="n-num">Phase 02</span><span class="n-dur">30 min</span></div>
+          <h4>Discovery</h4>
+          <p class="n-desc">A 30-minute structured call. AI transcribes everything. We walk away with the information your proposal needs.</p>
+          <div class="n-get"><strong>You get</strong>A free strategy call. No pressure, no obligation.</div>
+          <div class="n-out">→ Qualification decision</div>
+        </div>
+        <div class="flow-arrow">→</div>
+        <div class="node">
+          <div class="n-head"><span class="n-num">Phase 03</span><span class="n-dur">≤5 days</span></div>
+          <h4>Proposal</h4>
+          <p class="n-desc">AI extracts your transcript. The 11-section template fills in around your specifics. Deployed as a hosted webpage.</p>
+          <div class="n-get"><strong>You get</strong>A live proposal page tailored to your business. Yours to review on your own time.</div>
+          <div class="n-out">→ Proposal sent</div>
+        </div>
+        <div class="flow-arrow">→</div>
+        <div class="node">
+          <div class="n-head"><span class="n-num">Phase 04</span><span class="n-dur">≤7 days</span></div>
+          <h4>Onboarding</h4>
+          <p class="n-desc">Contract signed. Onboarding form captures the business in detail. Link Infrastructure Intake closes the attribution gap.</p>
+          <div class="n-get"><strong>You get</strong>Clean paperwork. Two short forms. About 30 minutes total.</div>
+          <div class="n-out">→ Kickoff scheduled</div>
+        </div>
+        <div class="flow-arrow">→</div>
+        <div class="node">
+          <div class="n-head"><span class="n-num">Phase 05</span><span class="n-dur">60 min</span></div>
+          <h4>Kickoff</h4>
+          <p class="n-desc">Structured live meeting. We lock the three biggest goals for the year and capture your business in your own words.</p>
+          <div class="n-get"><strong>You get</strong>A 60-minute meeting where we lock the year's goals together.</div>
+          <div class="n-out">→ Strategy inputs captured</div>
+        </div>
+        <div class="flow-arrow">→</div>
+        <div class="node">
+          <div class="n-head"><span class="n-num">Phase 06</span><span class="n-dur">3 weeks</span></div>
+          <h4>Strategy</h4>
+          <p class="n-desc">Three-week build sprint. IVP, pillars, format library, content calendar, KPI framework, profile optimization. Live Homebase deployed.</p>
+          <div class="n-get"><strong>You get</strong>A live strategy webpage and a 60-minute walkthrough. Yours forever.</div>
+          <div class="n-out">→ Execution begins</div>
+        </div>
+      </div>
+
+      <div class="z1-branches">
+        <div class="branch-card">
+          <div class="bc-eyebrow">Decision · After Phase 02</div>
+          <h5>Right-fit prospects continue to Phase 03.</h5>
+          <p>Discovery produces a clear yes or no. We don't push when it doesn't fit.</p>
+        </div>
+        <div class="branch-card exit">
+          <div class="bc-eyebrow">Exit · Nurture loop</div>
+          <h5>Not-yet-qualified returns to Phase 01.</h5>
+          <p>Timing, budget, or capacity shifts. We keep the relationship warm with quarterly nurture touches.</p>
+        </div>
+      </div>
+
+      <div class="z1-subs">
+        <div class="sub-block">
+          <div class="sub-label">↓ Channels under Phase 01</div>
+          <div class="sub-bubbles">
+            <div class="sub-bubble">Cold Email <span class="sb-meta">Chase</span></div>
+            <div class="sub-bubble">LinkedIn DMs <span class="sb-meta">Chase</span></div>
+            <div class="sub-bubble">IG @chase.scrolls <span class="sb-meta">Chase</span></div>
+            <div class="sub-bubble">IG @scrollmedia.co <span class="sb-meta">Team</span></div>
+          </div>
+        </div>
+        <div class="sub-block">
+          <div class="sub-label">↓ Strategy outputs · feed Production</div>
+          <div class="sub-bubbles">
+            <div class="sub-bubble output">IVP <span class="sb-meta">B2C + B2B</span></div>
+            <div class="sub-bubble output">Content Pillars <span class="sb-meta">4 pillars</span></div>
+            <div class="sub-bubble output">Format Library <span class="sb-meta">Path 1 + Path 2</span></div>
+            <div class="sub-bubble output">KPI Framework <span class="sb-meta">Scoring v1.2</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- STRATEGY BUILD DETAIL — deep-dive inside Phase 06 -->
+      <div class="strategy-detail">
+        <div class="sd-header">
+          <div class="sd-eyebrow">↓ Inside Phase 06 · Strategy Build</div>
+          <h4>The 3-week sprint, broken down.</h4>
+          <p>Strategy isn't a single deliverable. It's three weeks of structured work that produces 15+ artifacts feeding every cycle of content production. The same architecture runs on every Signature engagement.</p>
+        </div>
+        <div class="sd-weeks">
+          <div class="sd-week">
+            <span class="sd-week-num">Week 1 · Days 1-7</span>
+            <h5>Research + IVP</h5>
+            <ul class="sd-items">
+              <li>Input synthesis · Discovery transcript, onboarding form, kickoff capture</li>
+              <li>IVP v2 build · psychological depth, pain points + dream outcomes</li>
+              <li>Brand + Competitive Review · differentiation pillars, open lanes</li>
+            </ul>
+            <div class="sd-output">→ Audience profile locked</div>
+          </div>
+          <div class="sd-week">
+            <span class="sd-week-num">Week 2 · Days 8-14</span>
+            <h5>Strategy Architecture</h5>
+            <ul class="sd-items">
+              <li>Content Pillars · 4 pillars mapped to IVP motivators</li>
+              <li>Format Library · Two-Path system · 60-70% Reels / 30% Carousels mix discipline</li>
+              <li>Feed + Stories Strategy · cadence, hook framework, sticker strategy</li>
+              <li>SEO Keyword Bank · 4-Tier TAM Ladder</li>
+              <li>KPI Framework · Scoring v1.2 + stage benchmarks</li>
+              <li>Profile Optimization + Conditional Modules</li>
+            </ul>
+            <div class="sd-output">→ Full strategy architecture built</div>
+          </div>
+          <div class="sd-week">
+            <span class="sd-week-num">Week 3 · Days 15-21</span>
+            <h5>Build + Deliver</h5>
+            <ul class="sd-items">
+              <li>Brand Proof + Community Mgmt + Conversion Strategy (Day 15)</li>
+              <li>Trends + Cultural Moments + Walkthrough prep (Day 16)</li>
+              <li>Drive Folder + 30-Day Calendar build (Day 17)</li>
+              <li>Homebase v6 HTML build · 19 sections, 5 sidebar groups (Day 18)</li>
+              <li>Customer-Language Pass · required gate (Day 19)</li>
+              <li>Internal Rehearsal · pacing + decisions list (Day 20)</li>
+              <li>Strategy Presentation · 60-min live walkthrough (Day 21)</li>
+            </ul>
+            <div class="sd-output">→ Live Homebase delivered · Year 1 begins</div>
+          </div>
+        </div>
+        <div class="sd-deliverable">
+          <strong>By Day 21 you have:</strong> A live Account Homebase webpage, a 30-day content calendar, a strategy doc set, and a 60-minute walkthrough that anchors the rest of the year.
+        </div>
+      </div>
+
+      <div class="referral-note">
+        <div class="r-label">★ The Referral Loop · Phase 01 enhancement</div>
+        <h5>Renewed clients become warm intros, not cold outreach.</h5>
+        <p>When a renewed client refers a friend, that prospect enters Phase 01 as a warm lead. Skips the cold motion. Higher close rate. Compounds the system as the client roster grows.</p>
+      </div>
+    </div>
+
+    <div class="connector reveal">
+      <span class="conn-arrow">↓</span>
+      <div class="conn-label"><strong>Strategy outputs</strong> hand off to the Execution Loop</div>
+    </div>
+
+    <!-- ZONE 02 -->
+    <div class="zone reveal" id="zone2">
+      <div class="zone-header">
+        <span class="z-num">Zone 02</span>
+        <h3>Execution Loop</h3>
+        <span class="z-meta">3 Phases · Recurring · Monthly + Quarterly</span>
+      </div>
+      <p class="zone-sub">The engagement lives here for a year. Production publishes. Reporting measures. Optimization adjusts on signal, not on calendar.</p>
+
+      <div class="z2-phases">
+        <div class="node">
+          <div class="n-head"><span class="n-num">Phase 07</span><span class="n-dur">Continuous</span></div>
+          <h4>Production</h4>
+          <p class="n-desc">Shoot every 3 weeks. Edit, caption, publish. 60-70% Reels, ~30% Carousels. Every piece runs through the Content Engine first.</p>
+          <div class="n-get"><strong>You get</strong>3 feed posts a week + story coverage. We handle production end to end.</div>
+          <div class="n-out">→ Published content</div>
+        </div>
+        <div class="flow-arrow large">→</div>
+        <div class="node">
+          <div class="n-head"><span class="n-num">Phase 08</span><span class="n-dur">Monthly</span></div>
+          <h4>Reporting</h4>
+          <p class="n-desc">Performance from Metricool + Meta Graph API. AI compiles the monthly report. We add the strategic narrative.</p>
+          <div class="n-get"><strong>You get</strong>A monthly performance report and an email walkthrough.</div>
+          <div class="n-out">→ Live performance report</div>
+        </div>
+        <div class="flow-arrow large">→</div>
+        <div class="node">
+          <div class="n-head"><span class="n-num">Phase 09</span><span class="n-dur">Bi-weekly + Quarterly</span></div>
+          <h4>Optimization</h4>
+          <p class="n-desc">Five trigger criteria. Format Test Log. Bi-weekly check-ins. Strategy adjusts on signal, not on calendar.</p>
+          <div class="n-get"><strong>You get</strong>Bi-weekly check-ins. Quarterly strategic reviews. No surprises.</div>
+          <div class="n-out">→ Strategy refined</div>
+        </div>
+      </div>
+
+      <div class="loop-callouts">
+        <div class="loop-callout">
+          <div class="loop-icon">↻</div>
+          <div>
+            <h5>Monthly Loop</h5>
+            <p>Phase 09 outcomes feed back into Phase 07 every month. The Format Test Log dictates next month's rotation.</p>
+          </div>
+        </div>
+        <div class="loop-callout">
+          <div class="loop-icon">↑</div>
+          <div>
+            <h5>Quarterly Review</h5>
+            <p>At Months 3, 6, and 9, Optimization can loop all the way back to Phase 06 for strategy refresh.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="phase-strip">
+        <div class="phase-strip-label">↓ Inside the 12-month engagement</div>
+        <div class="phase-strip-title">The strategy evolves on a 3-month cadence.</div>
+        <div class="phase-strip-sub">Every quarter we review performance against this phase model. The architecture stays constant. What's happening inside it evolves as we learn.</div>
+        <div class="phase-cycle">
+          <div class="phase-cycle-item">
+            <div class="pc-months">Months 1-3 · Testing</div>
+            <h5>Test multiple formats and angles</h5>
+            <p>Cast wide. Test 6-10 formats and content angles. Goal: find what resonates with the specific audience.</p>
+          </div>
+          <div class="phase-cycle-item">
+            <div class="pc-months">Months 4-6 · Executing</div>
+            <h5>Consolidate to the winners</h5>
+            <p>2-3 winning formats per goal. Drop what didn't perform. Volume goes on the proven approach.</p>
+          </div>
+          <div class="phase-cycle-item">
+            <div class="pc-months">Months 7-9 · Refining</div>
+            <h5>Polish the proven approach</h5>
+            <p>Lock the core rotation. Test 1-2 new angles. Optimize hooks, captions, and visuals on what works.</p>
+          </div>
+          <div class="phase-cycle-item refresh">
+            <div class="pc-months">Months 10-12 · Refining + Annual Review</div>
+            <h5>Continued execution at full pace</h5>
+            <p>Refinement keeps running. A year-end Annual Strategic Review at Month 11-12 checks IVP, Goals, and positioning. Findings feed the renewal conversation — without slowing the work.</p>
+          </div>
+        </div>
+        <div class="phase-strip-restart">If we renew, the next 12 months <strong>restart the cycle</strong> with a refreshed strategy</div>
+      </div>
+
+      <!-- Month 3 mini-gate (commercial decision) -->
+      <div class="mini-gate">
+        <div class="mg-icon">◇</div>
+        <div class="mg-content">
+          <h5>Month 3 Decision · Initial → Extension</h5>
+          <p>At Month 3, the initial 3-month commitment closes. <strong>Decision point:</strong> extend to the 9-month retainer for the full 12-month engagement, or part ways cleanly. By this point, Testing Phase signals are clear, the working relationship is proven, and both sides have data to decide.</p>
+        </div>
+        <div class="mg-tag">Month 3</div>
+      </div>
+    </div>
+
+    <div class="connector reveal">
+      <span class="conn-arrow">↓</span>
+      <div class="conn-label"><strong>Every piece of content</strong> from Phase 07 runs through the engine</div>
+    </div>
+
+    <!-- CONTENT ENGINE -->
+    <div class="engine reveal" id="engine">
+      <div class="engine-header">
+        <div>
+          <span class="e-eyebrow">The Scroll Content Engine</span>
+          <h2>Four steps. One loop. The engine never stops.</h2>
+          <p class="e-sub">Sub-loop inside Phase 07. Every piece of content runs through these four steps before publication, then feeds the next ideation cycle on the way out.</p>
+        </div>
+        <div class="e-meta">
+          Step 04 ↺ Step 01<br>
+          The cycle runs continuously
+        </div>
+      </div>
+
+      <div class="engine-io">
+        <div class="engine-io-block">
+          <div class="io-label">↓ Inputs from Phase 06 Strategy</div>
+          <p><strong>IVP</strong> (B2C + B2B), <strong>Content Pillars</strong>, <strong>Format Library</strong>, and <strong>KPI Framework</strong> feed every ideation cycle.</p>
+        </div>
+        <div class="engine-io-block">
+          <div class="io-label">↑ Outputs to Phase 08 Reporting</div>
+          <p>Published content + the performance signals each piece generates. Saves, shares, retention, CTR, profile conversions.</p>
+        </div>
+      </div>
+
+      <div class="engine-steps">
+        <div class="engine-step">
+          <span class="es-num">Step 01</span>
+          <h4>The Idea</h4>
+          <p class="es-desc">Map every idea against four checkpoints. If any fails, cut it before the format question is asked.</p>
+          <div class="checkpoints">
+            <div class="checkpoint">
+              <div class="cp-num">Checkpoint 1</div>
+              <h5>IVP First</h5>
+              <p>Ties to a motivator, pain point, FAQ, or dream outcome?</p>
+              <div class="ivp-tree">
+                <div class="ivp-label">↓ Choose buyer path</div>
+                <div class="ivp-paths">
+                  <div class="ivp-path">
+                    <div class="path-label">B2C</div>
+                    <h6>Direct Consumer</h6>
+                    <p>FAQs · Challenges · Dream Outcomes</p>
+                  </div>
+                  <div class="ivp-path">
+                    <div class="path-label">B2B</div>
+                    <h6>Business Buyer</h6>
+                    <p>FAQs · Challenges · Dream Outcomes</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="checkpoint">
+              <div class="cp-num">Checkpoint 2</div>
+              <h5>Brand Aligned</h5>
+              <p>Fits the brand voice and the business proposition?</p>
+            </div>
+            <div class="checkpoint">
+              <div class="cp-num">Checkpoint 3</div>
+              <h5>Goal Mapped</h5>
+              <p>Serves one of the 3 client Goals locked at kickoff.</p>
+            </div>
+            <div class="checkpoint">
+              <div class="cp-num">Checkpoint 4</div>
+              <h5>Funnel Stage</h5>
+              <p>Awareness, Engagement, or Conversion. Pick one.</p>
+            </div>
+          </div>
+          <div class="es-output">→ Output · Validated idea</div>
+        </div>
+
+        <div class="flow-arrow signal">→</div>
+
+        <div class="engine-step">
+          <span class="es-num">Step 02</span>
+          <h4>The Format</h4>
+          <p class="es-desc">Choose the format that best delivers the message. Format serves the idea, not the calendar slot.</p>
+          <div class="checkpoints">
+            <div class="checkpoint">
+              <div class="cp-num">Option 1</div>
+              <h5>Founder-Led Authority</h5>
+              <p>Talking head. Owner or founder delivers. For trust and authority.</p>
+            </div>
+            <div class="checkpoint">
+              <div class="cp-num">Option 2</div>
+              <h5>Education Carousel</h5>
+              <p>Tactical depth to an established audience. For saves and substance.</p>
+            </div>
+            <div class="checkpoint">
+              <div class="cp-num">Option 3</div>
+              <h5>Pattern Break</h5>
+              <p>List, clone, mashup, unexpected format. Stops the scroll with novelty.</p>
+            </div>
+            <div class="checkpoint">
+              <div class="cp-num">Option 4</div>
+              <h5>Live Demonstration</h5>
+              <p>Walkthrough, split-screen, in-action. For tactile credibility.</p>
+            </div>
+          </div>
+          <div class="es-output">→ Output · Format chosen</div>
+        </div>
+
+        <div class="flow-arrow signal">→</div>
+
+        <div class="engine-step">
+          <span class="es-num">Step 03</span>
+          <h4>The Hook</h4>
+          <p class="es-desc"><strong>The first 3 seconds decide whether anyone watches the rest.</strong> Five techniques compound to earn that decision. Stack as many as the piece can carry.</p>
+          <div class="checkpoints">
+            <div class="checkpoint">
+              <div class="cp-num">Technique 1</div>
+              <h5>Brand Associations</h5>
+              <p>Repeated taglines, signature openings and closings, recurring on-screen text, colors, backgrounds.</p>
+            </div>
+            <div class="checkpoint">
+              <div class="cp-num">Technique 2</div>
+              <h5>Pattern Interrupts</h5>
+              <p>Unexpected visuals, switching angles, surprising elements. Stops the viewer mid-scroll.</p>
+            </div>
+            <div class="checkpoint">
+              <div class="cp-num">Technique 3</div>
+              <h5>Curiosity Loops</h5>
+              <p>Open with a question. Delay the payoff. Storytelling structure that pulls viewers through.</p>
+            </div>
+            <div class="checkpoint">
+              <div class="cp-num">Technique 4</div>
+              <h5>Contrarian Takes</h5>
+              <p>Push against the niche norm. Alternative view to the dominant take.</p>
+            </div>
+            <div class="checkpoint">
+              <div class="cp-num">Technique 5</div>
+              <h5>Strong Copywriting</h5>
+              <p>Punchy unique words, lists, frameworks, metaphors, analogies. Quotes from experts who paved the road.</p>
+            </div>
+          </div>
+          <div class="es-output">→ Output · Attention earned</div>
+        </div>
+
+        <div class="flow-arrow signal">→</div>
+
+        <div class="engine-step">
+          <span class="es-num">Step 04</span>
+          <h4>The Data</h4>
+          <p class="es-desc">Test, measure, learn, feed back. 2-week test windows. Winners promote. Losers retire.</p>
+          <div class="checkpoints">
+            <div class="checkpoint">
+              <div class="cp-num">Action 1</div>
+              <h5>Publish</h5>
+              <p>Run multiple formats across a 2-week window.</p>
+            </div>
+            <div class="checkpoint">
+              <div class="cp-num">Action 2</div>
+              <h5>Measure</h5>
+              <p>Saves, Shares, CTR, Retention, Profile Conversion.</p>
+            </div>
+            <div class="checkpoint">
+              <div class="cp-num">Action 3</div>
+              <h5>Identify Winners</h5>
+              <p>Which formats performed best, and why. Diagnose the cause.</p>
+            </div>
+            <div class="checkpoint">
+              <div class="cp-num">Action 4</div>
+              <h5>Promote or Retire</h5>
+              <p>Winners join CORE rotation. Underperformers retire on the 2-strike rule.</p>
+            </div>
+          </div>
+          <div class="es-output">↺ Output · More of what worked · feeds Step 01</div>
+        </div>
+      </div>
+
+      <div class="engine-cycle">
+        <div class="cycle-line">
+          Step 01 <span class="arrow">→</span> Step 02 <span class="arrow">→</span> Step 03 <span class="arrow">→</span> Step 04 <span class="return">↺</span> Step 01
+        </div>
+        <div class="cycle-note">Data drives the next ideation cycle. The engine never stops.</div>
+      </div>
+    </div>
+
+    <div class="connector reveal">
+      <span class="conn-arrow">↓</span>
+      <div class="conn-label"><strong>At contract end</strong> · Month 12</div>
+    </div>
+
+    <!-- ZONE 03 -->
+    <div class="gate-band reveal" id="zone3">
+      <div class="zone-header">
+        <span class="z-num">Zone 03</span>
+        <h3>Renewal Gate</h3>
+        <span class="z-meta">1 Decision · Contract end · ~30 days prior</span>
+      </div>
+      <p class="zone-sub">One decision at the end of every twelve-month engagement. The case is built on demonstrated work, not on a sales pitch. Both paths feed something downstream.</p>
+
+      <div class="gate">
+        <div class="gate-path">
+          <span class="gp-eyebrow">Path A · Renew</span>
+          <h4>Continue with refresh</h4>
+          <p>Re-enter Strategy at Phase 06 with new scope: refined IVP, refreshed pillars, expanded Phase 2 opportunities flagged across the year. The engagement compounds.</p>
+          <div class="gp-back">→ Feeds Phase 06 · Strategy refresh</div>
+          <div class="gate-refresh-note">
+            <div class="grn-label">★ Path A · Variant · Legacy clients</div>
+            <h6>Strategy Refresh for pre-Method clients</h6>
+            <p>Clients who joined before this method was systemized get brought up to current standards at renewal. Fresh IVP, fresh pillars, current KPIs. Same renewal moment, deeper rebuild.</p>
+          </div>
+        </div>
+
+        <div class="gate-decision">
+          <span class="gd-eyebrow">Phase 10</span>
+          <h3>Renewal</h3>
+          <span class="gd-window">~30 days before contract end</span>
+        </div>
+
+        <div class="gate-path close">
+          <span class="gp-eyebrow">Path B · Close</span>
+          <h4>Conclude with diagnostic</h4>
+          <p>Clean exit. Churn diagnostic runs against the engagement. Findings update the Foundation Layer: ICP, prospect tiering, positioning. See the Customer Lifecycle Touchpoints section below for the full offboarding workflow.</p>
+          <div class="gp-back">→ Feeds Foundation · System learns</div>
+        </div>
+      </div>
+
+      <div class="feedback-note">
+        <div class="fn-label">★ Annual Strategic Review · Baked Into Renewal Prep</div>
+        <p>Quarterly reviews are tactical (formats, calendars, format rotation). The Annual Strategic Review is bigger. Three questions: <strong>Is the IVP still right?</strong> <strong>Are the three Goals still accurate?</strong> <strong>Has the positioning evolved?</strong> The answers shape the next 12-month engagement. This conversation happens at Month 11-12, before the contract is re-signed.</p>
+      </div>
+
+      <div class="feedback-note">
+        <div class="fn-label">The Connective Tissue · No Terminal Nodes</div>
+        <p>Every output in this system feeds something else. Renewal feeds a fresh Phase 06. Close feeds the Foundation Layer. Happy renewed clients refer new prospects who enter Phase 01 as warm leads. The system gets smarter every cycle. Nothing here is a dead end.</p>
+      </div>
+    </div>
+
+    <!-- SUPPLEMENT · CADENCE (collapsible) -->
+    <details class="supplement reveal" id="cadence">
+      <summary>
+        <div class="summary-head">
+          <span class="s-eyebrow">What You Actually Experience</span>
+          <h2>How much of your time this takes, and when.</h2>
+          <p class="s-sub">The setup is intensive. The ongoing rhythm is light by design. You run your business. We run your Instagram.</p>
+        </div>
+        <div class="expand-icon" aria-hidden="true">+</div>
+      </summary>
+      <div class="supplement-body">
+        <div class="supplement-divider"></div>
+        <div class="cadence-grid">
+          <div class="cadence-col">
+            <div class="cadence-col-header">
+              <div class="cc-eyebrow">Setup phase</div>
+              <h4>One-time, ~6-9 weeks</h4>
+              <div class="cc-meta">From first call to live strategy</div>
+            </div>
+            <div class="cadence-row">
+              <div class="cr-when">Day 0</div>
+              <div class="cr-what">Discovery call<small>You + Chase</small></div>
+              <div class="cr-time">30 min</div>
+            </div>
+            <div class="cadence-row">
+              <div class="cr-when">Week 1</div>
+              <div class="cr-what">Contract + onboarding form<small>You only</small></div>
+              <div class="cr-time">~30 min</div>
+            </div>
+            <div class="cadence-row">
+              <div class="cr-when">Week 2</div>
+              <div class="cr-what">Kickoff meeting<small>You + Chase + AM</small></div>
+              <div class="cr-time">60 min</div>
+            </div>
+            <div class="cadence-row">
+              <div class="cr-when">Weeks 2-5</div>
+              <div class="cr-what">Strategy sprint<small>We work, you wait</small></div>
+              <div class="cr-time">We do</div>
+            </div>
+            <div class="cadence-row">
+              <div class="cr-when">Week 6</div>
+              <div class="cr-what">Strategy presentation<small>You + Chase + AM</small></div>
+              <div class="cr-time">60 min</div>
+            </div>
+          </div>
+
+          <div class="cadence-col">
+            <div class="cadence-col-header">
+              <div class="cc-eyebrow">Ongoing rhythm</div>
+              <h4>12-month engagement</h4>
+              <div class="cc-meta">Light touch, high output</div>
+            </div>
+            <div class="cadence-row">
+              <div class="cr-when">As needed</div>
+              <div class="cr-what">Content approvals<small>You review in Plann</small></div>
+              <div class="cr-time">5-15 min</div>
+            </div>
+            <div class="cadence-row">
+              <div class="cr-when">Weekly</div>
+              <div class="cr-what">Story + community management<small>We handle, you see</small></div>
+              <div class="cr-time">We do</div>
+            </div>
+            <div class="cadence-row">
+              <div class="cr-when">Bi-weekly</div>
+              <div class="cr-what">Check-in call<small>You + AM</small></div>
+              <div class="cr-time">30 min</div>
+            </div>
+            <div class="cadence-row">
+              <div class="cr-when">Monthly</div>
+              <div class="cr-what">Performance report + walkthrough<small>You read, we email</small></div>
+              <div class="cr-time">15 min</div>
+            </div>
+            <div class="cadence-row">
+              <div class="cr-when">Quarterly</div>
+              <div class="cr-what">Strategic review<small>You + Chase + AM · Months 3, 6, 9</small></div>
+              <div class="cr-time">60 min</div>
+            </div>
+            <div class="cadence-row">
+              <div class="cr-when">Month 11</div>
+              <div class="cr-what">Annual review + renewal conversation<small>You + Chase</small></div>
+              <div class="cr-time">60 min</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="cadence-total">
+          <div class="ct-label">Total time from you</div>
+          <p>Setup: about 4 hours total across 6 weeks. <strong>Ongoing: about 3-4 hours per month.</strong> You run your business. We run the Instagram. That's the trade.</p>
+        </div>
+      </div>
+    </details>
+
+    <!-- SUPPLEMENT · WORKED EXAMPLE (collapsible) -->
+    <details class="supplement reveal" id="example">
+      <summary>
+        <div class="summary-head">
+          <span class="s-eyebrow">How It Looks In Practice</span>
+          <h2>One real client journey. One alternative path.</h2>
+          <p class="s-sub">Most engagements look like this. Some don't go linear. Both run through the same architecture.</p>
+        </div>
+        <div class="expand-icon" aria-hidden="true">+</div>
+      </summary>
+      <div class="supplement-body">
+        <div class="supplement-divider"></div>
+        <div class="scenarios">
+          <div class="scenario">
+            <div class="scenario-header">
+              <h4>Ideal Flow · Cincinnati F&B Brand</h4>
+              <span class="sh-tag">Scenario A</span>
+            </div>
+            <p class="scenario-context">A Hyde Park sandwich shop. Sister-owned, 80-year family history. Goal: grow catering inquiries + foot traffic across two locations.</p>
+
+            <div class="milestones">
+              <div class="milestone">
+                <div class="m-phase">Phases 01-02</div>
+                <h6>Found + Talked</h6>
+                <p>Team AM reached out via @scrollmedia.co. 30-min discovery captured family history + catering as the under-monetized lever.</p>
+              </div>
+              <div class="flow-arrow">→</div>
+              <div class="milestone">
+                <div class="m-phase">Phases 03-06</div>
+                <h6>Setup</h6>
+                <p>Proposal in 4 days. Contract signed. Kickoff locks 3 Goals. 3-week strategy sprint. Live Homebase by Week 6.</p>
+              </div>
+              <div class="flow-arrow">→</div>
+              <div class="milestone">
+                <div class="m-phase">Months 1-9</div>
+                <h6>Execution</h6>
+                <p>Testing → Executing → Refining. Pattern Break flagship: local product × universal cultural reference. Bi-weekly check-ins.</p>
+              </div>
+              <div class="flow-arrow">→</div>
+              <div class="milestone">
+                <div class="m-phase">Phase 10</div>
+                <h6>Renewal · Path A</h6>
+                <p>Year-over-year: 30% growth in catering inquiries. Account doubles in followers. Path A accepted with Phase 2 scope.</p>
+              </div>
+            </div>
+
+            <div class="scenario-outcome">
+              <strong>Outcome:</strong> 30% growth in catering inquiries. Account doubles. Brand authority compounds. Year 2 begins with refreshed scope and stronger foundation.
+            </div>
+          </div>
+
+          <div class="scenario sideways">
+            <div class="scenario-header">
+              <h4>Alternative Paths · When It Doesn't Go Linear</h4>
+              <span class="sh-tag">Scenario B</span>
+            </div>
+            <p class="scenario-context">Not every prospect converts. Not every client makes it to twelve months. The system handles both without losing what it learned.</p>
+
+            <div class="scenario-sub-paths">
+              <div class="scenario-sub-path">
+                <h6>B1 · Prospect declines the proposal</h6>
+                <p>Discovery shows interest. Proposal sent. Prospect declines after 3 weeks (budget + timing). Returns to Phase 01 nurture loop with quarterly value touches.</p>
+                <p class="ssp-outcome">→ 6 months later they come back ready. Faster close, trust earned in the gap.</p>
+              </div>
+              <div class="scenario-sub-path">
+                <h6>B2 · Client declines extension at Month 3</h6>
+                <p>Initial 3-month engagement completes. Testing data is mixed. Client decides not to extend to the 9-month retainer. Path closes cleanly with full handoff.</p>
+                <p class="ssp-outcome">→ Diagnostic feeds Foundation. ICP refined. Sometimes returns later for a fresh engagement.</p>
+              </div>
+            </div>
+
+            <div class="scenario-outcome">
+              <strong>Outcome:</strong> Even lost engagements feed the system. The decline becomes a nurture relationship. The non-extension becomes ICP refinement. No prospect or client is wasted.
+            </div>
+          </div>
+        </div>
+      </div>
+    </details>
+
+    <!-- SUPPLEMENT · CUSTOMER LIFECYCLE (collapsible) -->
+    <details class="supplement reveal" id="lifecycle">
+      <summary>
+        <div class="summary-head">
+          <span class="s-eyebrow">Customer Lifecycle Touchpoints</span>
+          <h2>How we handle wins, transitions, and offboarding.</h2>
+          <p class="s-sub">Two threads run alongside the engagement. One captures social proof at peak moments. The other handles offboarding cleanly when the engagement ends.</p>
+        </div>
+        <div class="expand-icon" aria-hidden="true">+</div>
+      </summary>
+      <div class="supplement-body">
+        <div class="supplement-divider"></div>
+        <div class="lifecycle-grid">
+          <div class="lifecycle-col active">
+            <div class="lc-header">
+              <span class="lc-eyebrow">Thread 1 · While Active</span>
+              <h4>Win Moments · Capture at the High Points</h4>
+              <p>Testimonials, case studies, and referral intros captured when the client is excited and outcomes are visible. Not at the end.</p>
+            </div>
+            <div class="lc-items">
+              <div class="lc-item">
+                <div class="li-trigger">★ Month 3 · Quarterly Review</div>
+                <div class="li-content">
+                  <h6>First testimonial ask</h6>
+                  <p>After a quarter of data and proven early wins. Client sees the system working. We ask for a short written testimonial.</p>
+                </div>
+              </div>
+              <div class="lc-item">
+                <div class="li-trigger">★ Month 6 · Quarterly Review</div>
+                <div class="li-content">
+                  <h6>Case study permission</h6>
+                  <p>Mid-year. Wins are stacking. We ask permission to build a case study with real numbers and outcomes.</p>
+                </div>
+              </div>
+              <div class="lc-item">
+                <div class="li-trigger">★ Month 9 · Quarterly Review</div>
+                <div class="li-content">
+                  <h6>Referral introduction</h6>
+                  <p>Strong year-end position. We ask for a warm intro to another local brand in their network.</p>
+                </div>
+              </div>
+              <div class="lc-item">
+                <div class="li-trigger">★ Anytime · Big wins</div>
+                <div class="li-content">
+                  <h6>Capture in the moment</h6>
+                  <p>Viral post, milestone hit, new customer credits Instagram. We ask immediately while excitement is high.</p>
+                </div>
+              </div>
+              <div class="lc-item">
+                <div class="li-trigger">★ Month 11 · Renewal</div>
+                <div class="li-content">
+                  <h6>Year-end recap + final case study</h6>
+                  <p>Full year of data and milestones documented. Case study finalized. Featured in BD assets and the Foundation Layer proof library.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="lifecycle-col exit">
+            <div class="lc-header">
+              <span class="lc-eyebrow">Thread 2 · At Offboarding</span>
+              <h4>Offboarding Workflow · Path B Detail</h4>
+              <p>Path B isn't a clean break. Structured handoff: asset transition, knowledge transfer, door left open.</p>
+            </div>
+            <div class="lc-items">
+              <div class="lc-item">
+                <div class="li-trigger">Step 1 · Capture</div>
+                <div class="li-content">
+                  <h6>Final testimonial + use case</h6>
+                  <p>If not captured during active engagement, we ask now. Even churn engagements usually have wins worth documenting.</p>
+                </div>
+              </div>
+              <div class="lc-item">
+                <div class="li-trigger">Step 2 · Transition</div>
+                <div class="li-content">
+                  <h6>Asset handoff</h6>
+                  <p>Drive folder ownership transferred. Plann access settled. Metricool dashboard handed off. Smart-links exported.</p>
+                </div>
+              </div>
+              <div class="lc-item">
+                <div class="li-trigger">Step 3 · Knowledge</div>
+                <div class="li-content">
+                  <h6>Strategy doc + final report</h6>
+                  <p>Final performance report. Strategy doc handed off (IVP, pillars, format library, what worked).</p>
+                </div>
+              </div>
+              <div class="lc-item">
+                <div class="li-trigger">Step 4 · Diagnostic</div>
+                <div class="li-content">
+                  <h6>Churn diagnostic runs</h6>
+                  <p>What didn't fit? ICP signal? Capacity issue? Findings feed Foundation Layer. ICP and prospect tiering refined.</p>
+                </div>
+              </div>
+              <div class="lc-item">
+                <div class="li-trigger">Step 5 · Door open</div>
+                <div class="li-content">
+                  <h6>Future re-engagement path</h6>
+                  <p>"When you're ready, we'll be here." Quarterly nurture touch added. Past clients sometimes return after 6-18 months.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="lifecycle-note">
+          <div class="ln-label">★ The Lifecycle Principle</div>
+          <p>We don't wait until offboarding to capture social proof. We capture it during the high points when emotion is positive and outcomes are visible. <strong>Offboarding becomes a cleanup of work the system has been doing all along.</strong></p>
+        </div>
+      </div>
+    </details>
+
+    <!-- SUPPLEMENT · AI IN THE SYSTEM (collapsible) -->
+    <details class="supplement ai-strip reveal" id="ai">
+      <summary>
+        <div class="summary-head">
+          <span class="s-eyebrow">AI In The System</span>
+          <h2>Where AI shows up across the architecture.</h2>
+          <p class="s-sub">Most local agencies aren't this AI-leveraged. We use AI internally to compress time and improve quality. Client-facing content stays human-led.</p>
+        </div>
+        <div class="expand-icon" aria-hidden="true">+</div>
+      </summary>
+      <div class="supplement-body">
+        <div class="supplement-divider"></div>
+        <div class="ai-cards">
+          <div class="ai-card">
+            <div class="ac-phase">Phase 02 · Discovery</div>
+            <h5>Discovery Transcription</h5>
+            <p>AI captures the discovery call verbatim. We re-read it before building your proposal. Nothing important falls through the cracks.</p>
+          </div>
+          <div class="ai-card">
+            <div class="ac-phase">Phase 03 · Proposal</div>
+            <h5>Proposal Generation</h5>
+            <p>AI drafts the first version of your proposal from your discovery transcript. We polish, customize, and review before sending.</p>
+          </div>
+          <div class="ai-card">
+            <div class="ac-phase">Phase 06 · Strategy</div>
+            <h5>Strategy Synthesis</h5>
+            <p>AI helps synthesize your kickoff notes and onboarding form into a deep IVP. We pressure-test and finalize the strategy.</p>
+          </div>
+          <div class="ai-card">
+            <div class="ac-phase">Phase 07 · Production</div>
+            <h5>Content Ideation</h5>
+            <p>AI generates content angles, hook variations, and script drafts from your IVP. Our team picks the winners, edits, and produces.</p>
+          </div>
+          <div class="ai-card">
+            <div class="ac-phase">Phase 08 · Reporting</div>
+            <h5>Performance Reports</h5>
+            <p>AI compiles your monthly report and analyzes top posts. We add the strategic narrative before delivery.</p>
+          </div>
+          <div class="ai-card">
+            <div class="ac-phase">Phase 09 · Optimization</div>
+            <h5>Strategy Adjustment</h5>
+            <p>AI surfaces patterns in your performance data. We diagnose what's working, decide what changes, and write the brief.</p>
+          </div>
+        </div>
+
+        <div class="ai-rule">
+          <div class="ar-icon">!</div>
+          <div>
+            <h5>The Rule · Internal AI. Human-Led Delivery.</h5>
+            <p>AI compresses our time inside the system. Your Reels, captions, carousels, and stories stay made by people. Time savings become strategic depth, not invisible cost cutting.</p>
+          </div>
+        </div>
+      </div>
+    </details>
+
+    <!-- LEGEND -->
+    <div class="legend reveal">
+      <span class="l-title">Legend</span>
+      <div class="l-item"><span class="swatch">→</span>Forward flow</div>
+      <div class="l-item"><span class="swatch loop">↻</span>Loop back</div>
+      <div class="l-item"><span class="swatch exit">⤴</span>Exit · nurture or close</div>
+      <div class="l-item"><span class="swatch refresh">★</span>Strategy refresh path</div>
+      <div class="l-item"><span class="swatch referral">★</span>Referral · warm intro</div>
+      <div class="l-item"><span class="swatch gate">◇</span>Decision gate</div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+      <span>© 2026 Scroll Media · The Scroll Method · Architectural flowchart</span>
+      <span><a href="narrative.html">View narrative version</a> · Updated May 2026</span>
+    </footer>
+
+  </div>
+</div>
+
+<script>
+  // Scroll-reveal animations via IntersectionObserver
+  (function() {
+    if (!('IntersectionObserver' in window)) {
+      document.querySelectorAll('.reveal').forEach(el => el.classList.add('in-view'));
+      return;
+    }
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in-view');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.05, rootMargin: '0px 0px -40px 0px' });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  })();
+</script>
+
+</body>
+</html>
