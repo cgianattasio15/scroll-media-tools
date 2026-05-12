@@ -11,6 +11,12 @@
   to = "/thanks.html"
   status = 200
 
+# Retired narrative companion (May 12, 2026) — single-surface flowchart going forward
+[[redirects]]
+  from = "/scroll-system/narrative.html"
+  to = "/scroll-system/"
+  status = 301
+
 # Checklist pages
 [[redirects]]
   from = "/checklists/medspa"
