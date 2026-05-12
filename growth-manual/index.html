@@ -34,26 +34,47 @@
 
 <style>
   /* =========================================================
-     TOKENS — inherited from brand_system.md §5 (Layer 1)
+     TOKENS — Web Design v2 (extends brand_system.md §5)
      Light theme. Ghost default. Lucid for emphasis.
-     Hard corners. No shadows by default.
+     Hard corners. No shadows by default. v2 reference:
+     /04_Web_Build/design_system/web_patterns_v2.md §1.1
      ========================================================= */
   :root {
+    /* Core brand */
     --ghost: #FAFDFF;
     --azure: #0C3387;
     --lucid: #CBE9FF;
     --highlighter: #E2ED7A;
     --shadow: #151516;
 
+    /* Azure ladder (v2 full) */
     --azure-900: #071d4f;
     --azure-800: #0c3387;
+    --azure-700: #1a44a0;
     --azure-600: #254fb0;
+    --azure-500: #4070cc;
     --azure-400: #7a9ad8;
+    --azure-300: #9cb5e3;
     --azure-200: #b9cdee;
+    --azure-100: #d4e0f5;
 
+    /* Lucid variants */
     --lucid-deep: #9ecee8;
     --lucid-soft: #e4f3ff;
 
+    /* Shadow variants (for dark-mode accent blocks like the Engine) */
+    --shadow-soft: #1c1c1f;
+    --shadow-2: #25262a;
+
+    /* Cream + Gold ladder (Refresh / Renewal signal moments — unused at launch,
+       included for ladder completeness per v2 §1.1) */
+    --cream: #fff8dc;
+    --cream-soft: #fffbe8;
+    --gold-300: #d4b73a;
+    --gold-600: #8a7000;
+    --gold-700: #735f00;
+
+    /* Semantic */
     --bg: var(--ghost);
     --bg-alt: #f5f8fb;
     --bg-panel: var(--lucid-soft);
@@ -111,6 +132,9 @@
 
     --sans: 'Source Sans 3', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
     --mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+
+    /* Motion (v2 shared ease curve) */
+    --ease: cubic-bezier(0.22, 0.61, 0.36, 1);
   }
 
   /* =========================================================
@@ -191,105 +215,152 @@
   .meta-strip strong { color: var(--azure); font-weight: 600; }
 
   /* =========================================================
-     STICKY NAV — hairline below, type-led
+     TOPBAR — v2 full variant (brand-left / nav-center / meta-right)
+     SVG logo + text fallback, animated underline hover via ::after
+     scaleX, persistent CTA in meta-right per G7 audit Q4 sign-off.
+     Three-stage responsive collapse: 1100 / 920 / 767. Reference:
+     web_patterns_v2.md §4.
      ========================================================= */
-  .nav {
+  .topbar {
     position: sticky;
     top: 0;
     z-index: 50;
-    background: rgba(250, 253, 255, 0.92);
-    backdrop-filter: saturate(140%) blur(8px);
-    -webkit-backdrop-filter: saturate(140%) blur(8px);
+    background: rgba(250, 253, 255, 0.94);
+    backdrop-filter: saturate(150%) blur(10px);
+    -webkit-backdrop-filter: saturate(150%) blur(10px);
     border-bottom: 1px solid var(--rule);
   }
-  .nav-inner {
+  .topbar-inner {
     max-width: var(--maxw);
     margin: 0 auto;
-    padding: 12px var(--sp-5);
+    padding: 10px var(--sp-5);
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    gap: var(--sp-5);
+  }
+  .topbar .brand {
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    gap: var(--sp-5);
-    min-height: var(--nav-h);
-  }
-  .brand {
-    display: flex;
-    align-items: baseline;
-    gap: 10px;
-    font-weight: 700;
-    font-size: var(--fs-md);
-    letter-spacing: var(--tracking-tight);
-    color: var(--azure);
-    flex-shrink: 0;
-  }
-  .brand .sep {
-    color: var(--rule-strong);
-    font-weight: 400;
-  }
-  .brand .label {
-    color: var(--fg-muted);
-    font-weight: 500;
-    font-size: var(--fs-sm);
-    letter-spacing: 0;
-    text-transform: none;
-  }
-
-  .nav-links {
-    display: flex;
-    gap: 2px;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: none;
-  }
-  .nav-links::-webkit-scrollbar { display: none; }
-  .nav-links a {
-    flex: 0 0 auto;
-    padding: 6px 10px;
-    color: var(--fg-muted);
-    font-size: var(--fs-sm);
-    font-weight: 500;
-    white-space: nowrap;
+    gap: 12px;
     border-bottom: 0;
-    border-radius: var(--r-sm);
-    transition: color 120ms ease, background 120ms ease;
-  }
-  .nav-links a:hover {
-    color: var(--azure);
-    background: var(--lucid-soft);
-  }
-  .nav-links a.active {
-    color: var(--azure);
-    background: var(--lucid);
-  }
-
-  .nav-cta {
+    white-space: nowrap;
+    text-decoration: none;
     flex-shrink: 0;
+  }
+  .topbar .brand-logo {
+    height: 26px;
+    width: auto;
+    display: block;
+    flex-shrink: 0;
+  }
+  .topbar .brand-fallback {
+    font-weight: 700;
+    color: var(--azure);
+    font-size: var(--fs-md);
+    letter-spacing: -0.02em;
+    text-transform: lowercase;
+    display: none;
+    line-height: 1;
+  }
+  .topbar .brand .tag {
+    color: var(--fg-muted);
+    font-weight: 500;
+    font-size: var(--fs-xs);
+    letter-spacing: var(--tracking-wider);
+    text-transform: uppercase;
+    padding-left: 12px;
+    border-left: 1px solid var(--rule);
+  }
+  .topbar .nav-links {
+    display: flex;
+    gap: var(--sp-5);
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .topbar .nav-links a {
+    flex: 0 0 auto;
+    color: var(--fg-muted);
+    font-size: var(--fs-xs);
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    border-bottom: 0;
+    padding: 6px 0;
+    position: relative;
+    background: transparent;
+    border-radius: 0;
+    white-space: nowrap;
+    transition: color 150ms var(--ease);
+  }
+  .topbar .nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: var(--azure);
+    transform: scaleX(0);
+    transform-origin: center;
+    transition: transform 200ms var(--ease);
+  }
+  .topbar .nav-links a:hover { color: var(--azure); }
+  .topbar .nav-links a:hover::after { transform: scaleX(1); }
+  .topbar .nav-links a.active { color: var(--azure); }
+  .topbar .nav-links a.active::after { transform: scaleX(1); }
+
+  .topbar-meta {
+    display: flex;
+    align-items: center;
+    gap: var(--sp-4);
+    flex-shrink: 0;
+  }
+  .topbar-meta .date-stamp {
+    font-size: var(--fs-xs);
+    color: var(--fg-muted);
+    letter-spacing: var(--tracking-wider);
+    text-transform: uppercase;
+    font-weight: 600;
+    white-space: nowrap;
+  }
+  .topbar-meta .date-stamp strong { color: var(--azure); font-weight: 700; }
+
+  .topbar-cta {
     background: var(--azure);
     color: var(--ghost);
-    font-size: var(--fs-sm);
+    font-size: var(--fs-xs);
     font-weight: 600;
+    letter-spacing: 0.04em;
     padding: 8px 14px;
     border: 1px solid var(--azure);
     border-radius: 0;
-    transition: background 120ms ease;
+    border-bottom: 0;
     white-space: nowrap;
+    transition: background 150ms var(--ease), border-color 150ms var(--ease);
   }
-  .nav-cta:hover {
+  .topbar-cta:hover {
     background: var(--azure-900);
     border-color: var(--azure-900);
     color: var(--ghost);
   }
 
-  @media (max-width: 880px) {
-    .nav-inner {
-      flex-direction: column;
-      align-items: stretch;
-      gap: 8px;
-      padding: 10px var(--sp-4);
-    }
-    .brand { justify-content: flex-start; }
-    .nav-links { padding: 2px 0 4px; order: 2; }
-    .nav-cta { order: 1; align-self: flex-end; }
+  @media (max-width: 1100px) {
+    .topbar .nav-links { gap: 18px; }
+    .topbar .nav-links a { font-size: 11px; }
+    .topbar-meta .date-stamp { display: none; }
+  }
+  @media (max-width: 920px) {
+    .topbar-inner { grid-template-columns: 1fr auto; gap: var(--sp-4); }
+    .topbar .nav-links { display: none; }
+  }
+  @media (max-width: 767px) {
+    .topbar-inner { padding: 8px var(--sp-4); }
+    .topbar .brand { gap: 8px; }
+    .topbar .brand-logo { height: 22px; }
+    .topbar .brand-fallback { font-size: 13px; }
+    .topbar .brand .tag { display: none; }
+    .topbar-cta { padding: 6px 10px; font-size: 10px; }
   }
 
   /* =========================================================
@@ -517,24 +588,135 @@
   }
 
   /* =========================================================
-     KICKSTART DAYS
+     KICKSTART DAYS — collapsible via native <details>
+     Day summary shows headline + time chip; body expands.
+     v2 §3 canonical: hidden disclosure triangle, custom +→×
+     rotate(45deg) on open, background-fills-Azure, revealDown
+     keyframe on body. Hard corners + hairline border preserved.
      ========================================================= */
   .day {
     border-top: 1px solid var(--rule);
-    padding: var(--sp-5) 0;
+    background: var(--bg);
+    transition: transform 200ms var(--ease), box-shadow 200ms var(--ease);
   }
   .day:last-of-type { border-bottom: 1px solid var(--rule); }
-  .day h3 {
-    margin: 0 0 var(--sp-3);
+  .day > summary {
+    list-style: none;
+    cursor: pointer;
+    padding: var(--sp-5) 0;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    gap: var(--sp-4);
+    user-select: none;
+  }
+  .day > summary::-webkit-details-marker { display: none; }
+  .day > summary .day-head {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    min-width: 0;
+  }
+  .day > summary h3 {
+    margin: 0;
     font-size: var(--fs-lg);
     color: var(--azure);
+    line-height: var(--lh-snug);
   }
-  .day .day-time {
+  .day > summary .day-time {
     color: var(--fg-muted);
     font-size: var(--fs-sm);
-    margin-top: var(--sp-2);
     font-weight: 600;
     letter-spacing: var(--tracking-wide);
+  }
+  .day > summary .expand-icon {
+    width: 28px;
+    height: 28px;
+    border: 1.5px solid var(--azure);
+    background: var(--bg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--azure);
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 1;
+    flex-shrink: 0;
+    transition: transform 300ms var(--ease), background 200ms var(--ease), color 200ms var(--ease);
+  }
+  .day[open] > summary .expand-icon {
+    transform: rotate(45deg);
+    background: var(--azure);
+    color: var(--ghost);
+  }
+  .day .day-body {
+    padding: 0 0 var(--sp-5);
+    animation: revealDown 400ms var(--ease);
+  }
+  .day:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 0 var(--azure-100);
+  }
+  @keyframes revealDown {
+    from { opacity: 0; transform: translateY(-8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* =========================================================
+     OPTIONS — collapsible via native <details>
+     Same +→× pattern as .day. Summary shows headline; body
+     expands. v2 §3.
+     ========================================================= */
+  .option {
+    border-top: 1px solid var(--rule);
+    background: var(--bg);
+    transition: transform 200ms var(--ease), box-shadow 200ms var(--ease);
+  }
+  .option:last-of-type { border-bottom: 1px solid var(--rule); }
+  .option > summary {
+    list-style: none;
+    cursor: pointer;
+    padding: var(--sp-5) 0;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    gap: var(--sp-4);
+    user-select: none;
+  }
+  .option > summary::-webkit-details-marker { display: none; }
+  .option > summary h3 {
+    margin: 0;
+    font-size: var(--fs-lg);
+    color: var(--azure);
+    line-height: var(--lh-snug);
+  }
+  .option > summary .expand-icon {
+    width: 28px;
+    height: 28px;
+    border: 1.5px solid var(--azure);
+    background: var(--bg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--azure);
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 1;
+    flex-shrink: 0;
+    transition: transform 300ms var(--ease), background 200ms var(--ease), color 200ms var(--ease);
+  }
+  .option[open] > summary .expand-icon {
+    transform: rotate(45deg);
+    background: var(--azure);
+    color: var(--ghost);
+  }
+  .option .option-body {
+    padding: 0 0 var(--sp-5);
+    animation: revealDown 400ms var(--ease);
+  }
+  .option:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 0 var(--azure-100);
   }
 
   /* =========================================================
@@ -672,21 +854,110 @@
 
   /* =========================================================
      OPTIONS BLOCK (What to do next)
+     Wrapper around the collapsible .option <details> elements.
      ========================================================= */
   .options {
     margin: var(--sp-5) 0;
   }
-  .option {
-    border-top: 1px solid var(--rule);
-    padding: var(--sp-5) 0;
+
+  /* =========================================================
+     SCROLL-REVEAL (v2 §2 — top-level sections only)
+     600ms / translateY(20px) / one-shot via IntersectionObserver.
+     Respects prefers-reduced-motion. Print stylesheet forces
+     reveal visible so PDF exports never lose content.
+     ========================================================= */
+  .reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 600ms var(--ease), transform 600ms var(--ease);
+    will-change: opacity, transform;
   }
-  .option:last-child { border-bottom: 1px solid var(--rule); }
-  .option h3 {
-    margin: 0 0 var(--sp-2);
-    font-size: var(--fs-lg);
-    color: var(--azure);
+  .reveal.in-view {
+    opacity: 1;
+    transform: translateY(0);
   }
-  .option p:last-child { margin-bottom: 0; }
+  @media (prefers-reduced-motion: reduce) {
+    .reveal { opacity: 1; transform: none; transition: none; }
+  }
+
+  /* =========================================================
+     ENGINE — single full-bleed dark accent block (v2 §7)
+     Anchored at end of §4 Cadence. The page's anti-positioning
+     thesis lands here: consistency beats virality. Max one per
+     page. Highlighter ::before/::after accent lines are the
+     v2-explicit exception to the signal-only Highlighter rule.
+     ========================================================= */
+  .engine {
+    position: relative;
+    background: linear-gradient(180deg, var(--shadow) 0%, var(--shadow-soft) 100%);
+    color: var(--ghost);
+    padding: var(--sp-9) 0;
+    border-top: 1px solid var(--shadow-2);
+    border-bottom: 1px solid var(--shadow-2);
+  }
+  .engine::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent 0%, var(--highlighter) 50%, transparent 100%);
+    opacity: 0.6;
+    pointer-events: none;
+  }
+  .engine::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent 0%, var(--highlighter) 50%, transparent 100%);
+    opacity: 0.3;
+    pointer-events: none;
+  }
+  .engine .container { max-width: var(--maxw-prose); }
+  .engine .e-eyebrow {
+    display: inline-block;
+    background: var(--highlighter);
+    color: var(--shadow);
+    font-size: var(--fs-xs);
+    letter-spacing: var(--tracking-wider);
+    text-transform: uppercase;
+    font-weight: 700;
+    padding: 5px 11px;
+    margin-bottom: var(--sp-4);
+  }
+  .engine h2 {
+    color: var(--ghost);
+    font-size: clamp(26px, 3.0vw, 36px);
+    line-height: var(--lh-snug);
+    letter-spacing: var(--tracking-tight);
+    margin: 0 0 var(--sp-4);
+  }
+  .engine p {
+    color: var(--lucid);
+    font-size: var(--fs-md);
+    line-height: var(--lh-relaxed);
+    margin-bottom: var(--sp-4);
+    max-width: 64ch;
+  }
+  .engine p:last-child { margin-bottom: 0; }
+  .engine p strong { color: var(--ghost); font-weight: 700; }
+
+  /* =========================================================
+     HOVER TRANSFORMS — applied to meaningful card units
+     (.day and .option scoped above; .callout below). Shared
+     200ms / --ease. Hard corners preserved (no border-radius).
+     v2 §5 — lift + soft Azure-100 shadow variant.
+     ========================================================= */
+  .callout {
+    transition: transform 200ms var(--ease), box-shadow 200ms var(--ease);
+  }
+  .callout:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 0 var(--azure-100);
+  }
+  .callout.signal:hover {
+    box-shadow: 0 4px 0 var(--highlighter);
+  }
 
   /* =========================================================
      FOOTER (white-label "About Scroll Media")
@@ -729,11 +1000,25 @@
 
   /* =========================================================
      PRINT
+     v2 §9: force .reveal visible so PDF exports never lose
+     content; force <details> open so collapsibles don't hide
+     content; invert Engine dark block to ink-friendly light;
+     keep page-break-inside protection on open collapsibles.
      ========================================================= */
   @media print {
-    .nav, .meta-strip, .nav-cta { display: none; }
+    .topbar, .meta-strip, .topbar-cta { display: none; }
     body { background: white; color: black; }
     .callout, .optin-section, .cta-section { background: white; border-color: #ccc; }
+    .reveal { opacity: 1; transform: none; transition: none; }
+    details[open] { page-break-inside: avoid; }
+    details > summary .expand-icon { display: none; }
+    .day, .option { background: white; transform: none; box-shadow: none; }
+    .day .day-body, .option .option-body { animation: none; padding-top: var(--sp-3); }
+    .engine { background: white; color: black; border-color: #ccc; }
+    .engine::before, .engine::after { display: none; }
+    .engine h2 { color: black; }
+    .engine p { color: #444; }
+    .engine .e-eyebrow { background: #eee; color: black; }
   }
 </style>
 </head>
@@ -745,19 +1030,25 @@
 <div class="meta-strip">
   <div class="meta-strip-inner">
     <span><strong>Free read.</strong> No email required. Share with anyone running a local brand.</span>
-    <span class="nowrap">v1.0 · May 2026</span>
+    <span class="nowrap">Updated May 12, 2026</span>
   </div>
 </div>
 
 <!-- ====================================================================
-     STICKY NAV
+     TOPBAR · sticky glass-blurred, v2 full variant
+     Brand-left (SVG logo + text fallback + tag) / nav-center
+     (animated underline hover) / meta-right (date stamp + CTA).
+     Three-stage responsive collapse per web_patterns_v2.md §4.
+     Q4 sign-off (May 11, 2026): CTA persists in topbar.
      ==================================================================== -->
-<nav class="nav" aria-label="Section navigation">
-  <div class="nav-inner">
-    <div class="brand">
-      Scroll Media <span class="sep">/</span> <span class="label">Growth Manual</span>
-    </div>
-    <div class="nav-links" id="navLinks">
+<div class="topbar">
+  <div class="topbar-inner">
+    <a href="https://scrollmedia.co" class="brand" aria-label="Scroll Media · Growth Manual">
+      <img src="https://tools.scrollmedia.co/assets/scroll-media-logo.svg" alt="Scroll Media" class="brand-logo" onerror="this.style.display='none';this.nextElementSibling.style.display='inline';" />
+      <span class="brand-fallback">Scroll Media</span>
+      <span class="tag">Growth Manual</span>
+    </a>
+    <nav class="nav-links" id="navLinks" aria-label="Section navigation">
       <a href="#opportunity">Opportunity</a>
       <a href="#foundation">Foundation</a>
       <a href="#signal">Signal</a>
@@ -766,10 +1057,13 @@
       <a href="#dms">DMs</a>
       <a href="#metrics">Metrics</a>
       <a href="#kickstart">7-day plan</a>
+    </nav>
+    <div class="topbar-meta">
+      <span class="date-stamp">Updated <strong>May 12, 2026</strong></span>
+      <a href="https://calendly.com/scrollmedia/discovery" class="topbar-cta" target="_blank" rel="noopener">Book a discovery call</a>
     </div>
-    <a href="https://calendly.com/scrollmedia/discovery" class="nav-cta plain" target="_blank" rel="noopener">Book a discovery call</a>
   </div>
-</nav>
+</div>
 
 <!-- ====================================================================
      HERO
@@ -797,7 +1091,7 @@
 <!-- ====================================================================
      WHAT YOU'LL GET
      ==================================================================== -->
-<section class="block" id="overview">
+<section class="block reveal" id="overview">
   <div class="container">
     <span class="section-num">What you'll get out of this</span>
     <h2>A clear picture of how local brand Instagram actually works in 2026.</h2>
@@ -810,7 +1104,7 @@
 <!-- ====================================================================
      TABLE OF CONTENTS
      ==================================================================== -->
-<section class="toc-section" id="contents">
+<section class="toc-section reveal" id="contents">
   <div class="container">
     <h2 class="toc-h">Table of contents</h2>
     <ol class="toc">
@@ -831,7 +1125,7 @@
 <!-- ====================================================================
      1. OPPORTUNITY
      ==================================================================== -->
-<section class="block" id="opportunity">
+<section class="block reveal" id="opportunity">
   <div class="container">
     <span class="section-num">Section 01</span>
     <h2>The local-brand Instagram opportunity.</h2>
@@ -866,7 +1160,7 @@
 <!-- ====================================================================
      2. FOUNDATION
      ==================================================================== -->
-<section class="block" id="foundation">
+<section class="block reveal" id="foundation">
   <div class="container">
     <span class="section-num">Section 02</span>
     <h2>The foundation: bio, grid, and content pillars.</h2>
@@ -942,7 +1236,7 @@
 <!-- ====================================================================
      3. SIGNAL
      ==================================================================== -->
-<section class="block" id="signal">
+<section class="block reveal" id="signal">
   <div class="container">
     <span class="section-num">Section 03</span>
     <h2>What actually works for local brands (signal beats hacks).</h2>
@@ -991,7 +1285,7 @@
 <!-- ====================================================================
      4. CADENCE
      ==================================================================== -->
-<section class="block" id="cadence">
+<section class="block reveal" id="cadence">
   <div class="container">
     <span class="section-num">Section 04</span>
     <h2>The cadence that compounds.</h2>
@@ -1039,9 +1333,26 @@
 </section>
 
 <!-- ====================================================================
+     ENGINE · single full-bleed dark accent block (v2 §7)
+     The agency thesis lands here at the drop-off moment between
+     cadence content and the heavier execution material that follows.
+     Max one per page. CTA intentionally omitted — page CTA lives
+     in the topbar.
+     ==================================================================== -->
+<section class="engine reveal" id="thesis">
+  <div class="container">
+    <span class="e-eyebrow">The thesis</span>
+    <h2>Consistency beats virality.</h2>
+    <p>Most local brands chase the post that goes viral. The right local brands chase the cadence that compounds.</p>
+    <p>One viral hit is a lottery ticket. Three feed posts a week for twelve months is a system. The system wins because it keeps running while the lottery players are still waiting for their next ticket to print.</p>
+    <p><strong>This is the boring part. It's also the moat.</strong> Almost nobody actually does it. The brands that do are the ones still here in five years.</p>
+  </div>
+</section>
+
+<!-- ====================================================================
      5. REELS
      ==================================================================== -->
-<section class="block" id="reels">
+<section class="block reveal" id="reels">
   <div class="container">
     <span class="section-num">Section 05</span>
     <h2>Reels for local: the format that's winning.</h2>
@@ -1102,7 +1413,7 @@
 <!-- ====================================================================
      6. DMs
      ==================================================================== -->
-<section class="block" id="dms">
+<section class="block reveal" id="dms">
   <div class="container">
     <span class="section-num">Section 06</span>
     <h2>DMs and comments: turning attention into customers.</h2>
@@ -1161,7 +1472,7 @@
 <!-- ====================================================================
      7. METRICS
      ==================================================================== -->
-<section class="block" id="metrics">
+<section class="block reveal" id="metrics">
   <div class="container">
     <span class="section-num">Section 07</span>
     <h2>The metrics that matter (and the ones to ignore).</h2>
@@ -1217,81 +1528,130 @@
 <!-- ====================================================================
      8. KICKSTART
      ==================================================================== -->
-<section class="block" id="kickstart">
+<section class="block reveal" id="kickstart">
   <div class="container">
     <span class="section-num">Section 08</span>
     <h2>The 7-day kickstart plan.</h2>
 
     <p>If you want a structured starting point, run this 7-day plan. Each day takes 30 to 90 minutes. By the end of the week you'll have rebuilt the foundation, shipped real content, and started the systems that compound.</p>
 
-    <div class="day">
-      <h3>Day 1 (Monday): Audit and bio rebuild</h3>
-      <ul>
-        <li>Open your Instagram in incognito mode on your phone. Note what a stranger sees in 5 seconds. Honest assessment.</li>
-        <li>Rewrite your bio using the hook + offer + proof + CTA structure.</li>
-        <li>Add 1 to 3 keywords to your name field.</li>
-        <li>Update your link to a single conversion destination, or trim your linktree to 5 destinations.</li>
-      </ul>
-      <p class="day-time">Time: 60 minutes</p>
-    </div>
+    <details class="day">
+      <summary>
+        <div class="day-head">
+          <h3>Day 1 (Monday): Audit and bio rebuild</h3>
+          <span class="day-time">Time: 60 minutes</span>
+        </div>
+        <span class="expand-icon" aria-hidden="true">+</span>
+      </summary>
+      <div class="day-body">
+        <ul>
+          <li>Open your Instagram in incognito mode on your phone. Note what a stranger sees in 5 seconds. Honest assessment.</li>
+          <li>Rewrite your bio using the hook + offer + proof + CTA structure.</li>
+          <li>Add 1 to 3 keywords to your name field.</li>
+          <li>Update your link to a single conversion destination, or trim your linktree to 5 destinations.</li>
+        </ul>
+      </div>
+    </details>
 
-    <div class="day">
-      <h3>Day 2 (Tuesday): Content pillars</h3>
-      <ul>
-        <li>Define your 3 to 4 content pillars in writing. Use the niche defaults in section 2 as a starting point. Tune to your business.</li>
-        <li>Write a 1-line description of what each pillar is about, what kinds of posts fit, and what emotion or outcome you want each pillar to drive.</li>
-        <li>Save the pillar doc somewhere you can reference (Notion, Google Doc, Notes app).</li>
-      </ul>
-      <p class="day-time">Time: 60 minutes</p>
-    </div>
+    <details class="day">
+      <summary>
+        <div class="day-head">
+          <h3>Day 2 (Tuesday): Content pillars</h3>
+          <span class="day-time">Time: 60 minutes</span>
+        </div>
+        <span class="expand-icon" aria-hidden="true">+</span>
+      </summary>
+      <div class="day-body">
+        <ul>
+          <li>Define your 3 to 4 content pillars in writing. Use the niche defaults in section 2 as a starting point. Tune to your business.</li>
+          <li>Write a 1-line description of what each pillar is about, what kinds of posts fit, and what emotion or outcome you want each pillar to drive.</li>
+          <li>Save the pillar doc somewhere you can reference (Notion, Google Doc, Notes app).</li>
+        </ul>
+      </div>
+    </details>
 
-    <div class="day">
-      <h3>Day 3 (Wednesday): Plan the next 14 days</h3>
-      <ul>
-        <li>Map 6 to 10 feed posts across the next 14 days against your pillars. Each post gets a pillar tag, a format (carousel, Reel, single), and a hook in writing.</li>
-        <li>Schedule 2 batched shoot blocks on your calendar (one this week, one next).</li>
-      </ul>
-      <p class="day-time">Time: 90 minutes</p>
-    </div>
+    <details class="day">
+      <summary>
+        <div class="day-head">
+          <h3>Day 3 (Wednesday): Plan the next 14 days</h3>
+          <span class="day-time">Time: 90 minutes</span>
+        </div>
+        <span class="expand-icon" aria-hidden="true">+</span>
+      </summary>
+      <div class="day-body">
+        <ul>
+          <li>Map 6 to 10 feed posts across the next 14 days against your pillars. Each post gets a pillar tag, a format (carousel, Reel, single), and a hook in writing.</li>
+          <li>Schedule 2 batched shoot blocks on your calendar (one this week, one next).</li>
+        </ul>
+      </div>
+    </details>
 
-    <div class="day">
-      <h3>Day 4 (Thursday): Shoot batch 1</h3>
-      <ul>
-        <li>Run your first batched shoot. Target 6 to 10 pieces of content (mix of formats). Don't overproduce. Phone, vertical, natural light or one ring light.</li>
-        <li>For Reels: 3 process Reels with hooks in the first 2 seconds.</li>
-      </ul>
-      <p class="day-time">Time: 90 minutes</p>
-    </div>
+    <details class="day">
+      <summary>
+        <div class="day-head">
+          <h3>Day 4 (Thursday): Shoot batch 1</h3>
+          <span class="day-time">Time: 90 minutes</span>
+        </div>
+        <span class="expand-icon" aria-hidden="true">+</span>
+      </summary>
+      <div class="day-body">
+        <ul>
+          <li>Run your first batched shoot. Target 6 to 10 pieces of content (mix of formats). Don't overproduce. Phone, vertical, natural light or one ring light.</li>
+          <li>For Reels: 3 process Reels with hooks in the first 2 seconds.</li>
+        </ul>
+      </div>
+    </details>
 
-    <div class="day">
-      <h3>Day 5 (Friday): DM playbook + commenting block</h3>
-      <ul>
-        <li>Write your top 5 inbound DM templates. Save them somewhere fast to access.</li>
-        <li>Set your DM response SLA (under 4 business hours target).</li>
-        <li>Block 15 minutes per day on your calendar for the commenting block. Same time every day.</li>
-        <li>Run today's commenting block now. 5 to 10 thoughtful comments on local accounts in adjacent niches.</li>
-      </ul>
-      <p class="day-time">Time: 60 minutes</p>
-    </div>
+    <details class="day">
+      <summary>
+        <div class="day-head">
+          <h3>Day 5 (Friday): DM playbook + commenting block</h3>
+          <span class="day-time">Time: 60 minutes</span>
+        </div>
+        <span class="expand-icon" aria-hidden="true">+</span>
+      </summary>
+      <div class="day-body">
+        <ul>
+          <li>Write your top 5 inbound DM templates. Save them somewhere fast to access.</li>
+          <li>Set your DM response SLA (under 4 business hours target).</li>
+          <li>Block 15 minutes per day on your calendar for the commenting block. Same time every day.</li>
+          <li>Run today's commenting block now. 5 to 10 thoughtful comments on local accounts in adjacent niches.</li>
+        </ul>
+      </div>
+    </details>
 
-    <div class="day">
-      <h3>Day 6 (Saturday): Story interactives</h3>
-      <ul>
-        <li>Plan and ship 1 story sequence today that includes 2 interactive elements (poll, slider, question sticker). Use real questions, not gimmicks.</li>
-        <li>Set a calendar reminder for Sunday to review the inbound. Reply personally to high-intent signals within 24 hours.</li>
-      </ul>
-      <p class="day-time">Time: 30 minutes</p>
-    </div>
+    <details class="day">
+      <summary>
+        <div class="day-head">
+          <h3>Day 6 (Saturday): Story interactives</h3>
+          <span class="day-time">Time: 30 minutes</span>
+        </div>
+        <span class="expand-icon" aria-hidden="true">+</span>
+      </summary>
+      <div class="day-body">
+        <ul>
+          <li>Plan and ship 1 story sequence today that includes 2 interactive elements (poll, slider, question sticker). Use real questions, not gimmicks.</li>
+          <li>Set a calendar reminder for Sunday to review the inbound. Reply personally to high-intent signals within 24 hours.</li>
+        </ul>
+      </div>
+    </details>
 
-    <div class="day">
-      <h3>Day 7 (Sunday): Set up the monthly review</h3>
-      <ul>
-        <li>Block 30 minutes on the last Friday of every month going forward. Title it "IG monthly review." Recurring.</li>
-        <li>Bookmark Instagram Insights or set up Metricool / Sprout if you want cross-channel.</li>
-        <li>Write a 1-paragraph baseline note. Where you are today, what you ran this week, what you're testing in the next 30 days.</li>
-      </ul>
-      <p class="day-time">Time: 30 minutes</p>
-    </div>
+    <details class="day">
+      <summary>
+        <div class="day-head">
+          <h3>Day 7 (Sunday): Set up the monthly review</h3>
+          <span class="day-time">Time: 30 minutes</span>
+        </div>
+        <span class="expand-icon" aria-hidden="true">+</span>
+      </summary>
+      <div class="day-body">
+        <ul>
+          <li>Block 30 minutes on the last Friday of every month going forward. Title it "IG monthly review." Recurring.</li>
+          <li>Bookmark Instagram Insights or set up Metricool / Sprout if you want cross-channel.</li>
+          <li>Write a 1-paragraph baseline note. Where you are today, what you ran this week, what you're testing in the next 30 days.</li>
+        </ul>
+      </div>
+    </details>
 
     <p style="margin-top: var(--sp-6);">That's the week. By Sunday night, your foundation is rebuilt, your pillars are defined, your content is shipping, your DM and comment systems are running, and your monthly review is in place. From here, it's compounding execution.</p>
   </div>
@@ -1300,7 +1660,7 @@
 <!-- ====================================================================
      EMAIL OPT-IN — Niche editions
      ==================================================================== -->
-<section class="optin-section" id="niche-edition">
+<section class="optin-section reveal" id="niche-edition">
   <div class="container">
     <div class="optin-card">
       <h3>Want the niche edition for your business?</h3>
@@ -1330,7 +1690,7 @@
 <!-- ====================================================================
      CTA — Discovery call
      ==================================================================== -->
-<section class="cta-section" id="discovery">
+<section class="cta-section reveal" id="discovery">
   <div class="container">
     <div class="cta-card">
       <span class="kicker">If you're ready to talk</span>
@@ -1344,25 +1704,40 @@
 <!-- ====================================================================
      9. WHAT TO DO NEXT
      ==================================================================== -->
-<section class="block" id="next">
+<section class="block reveal" id="next">
   <div class="container">
     <span class="section-num">Section 09</span>
     <h2>What to do next.</h2>
     <p>You read the Manual. Three options from here.</p>
 
     <div class="options">
-      <div class="option">
-        <h3>Option A: Run the 7-day plan and see what changes.</h3>
-        <p>The plan is structured to give you compounding wins within 30 days. If you want to test what's in this Manual without involving us, run it. Come back in 30 days and see what moved. We'd love to hear how it goes.</p>
-      </div>
-      <div class="option">
-        <h3>Option B: Get the deeper version for your niche.</h3>
-        <p>Niche-specific editions for med spas, F&amp;B brands, fitness studios, real estate teams, and interior designers. Drop your email above and we'll send the right one for you.</p>
-      </div>
-      <div class="option">
-        <h3>Option C: Talk to us.</h3>
-        <p>If reading this Manual surfaced things that feel structurally hard to fix in-house, that's a fair signal. <a href="https://calendly.com/scrollmedia/discovery" target="_blank" rel="noopener">Book a discovery call</a> and we'll walk through your account together.</p>
-      </div>
+      <details class="option">
+        <summary>
+          <h3>Option A: Run the 7-day plan and see what changes.</h3>
+          <span class="expand-icon" aria-hidden="true">+</span>
+        </summary>
+        <div class="option-body">
+          <p>The plan is structured to give you compounding wins within 30 days. If you want to test what's in this Manual without involving us, run it. Come back in 30 days and see what moved. We'd love to hear how it goes.</p>
+        </div>
+      </details>
+      <details class="option">
+        <summary>
+          <h3>Option B: Get the deeper version for your niche.</h3>
+          <span class="expand-icon" aria-hidden="true">+</span>
+        </summary>
+        <div class="option-body">
+          <p>Niche-specific editions for med spas, F&amp;B brands, fitness studios, real estate teams, and interior designers. Drop your email above and we'll send the right one for you.</p>
+        </div>
+      </details>
+      <details class="option">
+        <summary>
+          <h3>Option C: Talk to us.</h3>
+          <span class="expand-icon" aria-hidden="true">+</span>
+        </summary>
+        <div class="option-body">
+          <p>If reading this Manual surfaced things that feel structurally hard to fix in-house, that's a fair signal. <a href="https://calendly.com/scrollmedia/discovery" target="_blank" rel="noopener">Book a discovery call</a> and we'll walk through your account together.</p>
+        </div>
+      </details>
     </div>
 
     <p>If you got to this Manual through one of our outreach emails or DMs, you can also just reply. We read everything that comes back.</p>
@@ -1380,7 +1755,7 @@
     <p>This Manual is free. Share it with anyone running a local brand who'd benefit. If you want to credit us, link to scrollmedia.co. If you don't, no problem.</p>
 
     <div class="footer-meta">
-      <span>The Local Brand Instagram Growth Manual · Universal Edition · v1.0 · May 2026</span>
+      <span>The Local Brand Instagram Growth Manual · Universal Edition · Updated May 12, 2026</span>
       <span>
         <a href="https://scrollmedia.co" target="_blank" rel="noopener">scrollmedia.co</a>
       </span>
@@ -1389,9 +1764,13 @@
 </footer>
 
 <!-- ====================================================================
-     SCRIPT — sticky nav active section highlight
+     SCRIPT — scroll-spy active section highlight + scroll-reveal
+     Topbar nav active-state behavior preserved across the v2 swap.
+     Reveal animation per web_patterns_v2.md §2: one-shot,
+     threshold 0.05, rootMargin -40px, respects prefers-reduced-motion.
      ==================================================================== -->
 <script>
+  // Scroll-spy: highlight the topbar nav link for the section in view.
   (function () {
     var sections = Array.prototype.slice.call(
       document.querySelectorAll('section[id], footer[id]')
@@ -1415,6 +1794,28 @@
 
     window.addEventListener('scroll', setActive, { passive: true });
     window.addEventListener('load', setActive);
+  })();
+
+  // Scroll-reveal: one-shot fade-in via IntersectionObserver.
+  // Applied to top-level sections only. v2 §2 tuning: 600ms / 20px /
+  // threshold 0.05 / rootMargin -40px. Falls back to instant-visible
+  // when reduced motion is requested or IntersectionObserver is missing.
+  (function () {
+    var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var els = document.querySelectorAll('.reveal');
+    if (reduce || !('IntersectionObserver' in window)) {
+      Array.prototype.forEach.call(els, function (el) { el.classList.add('in-view'); });
+      return;
+    }
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in-view');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.05, rootMargin: '0px 0px -40px 0px' });
+    Array.prototype.forEach.call(els, function (el) { io.observe(el); });
   })();
 </script>
 
