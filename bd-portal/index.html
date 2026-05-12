@@ -609,7 +609,7 @@ function checkPassword() {
 <div class="meta-strip">
   <div class="meta-strip-inner">
     <span><strong>Internal use only.</strong> Do not share with prospects or clients.</span>
-    <span class="nowrap">v1.7 · May 12, 2026</span>
+    <span class="nowrap">v1.8 · May 12, 2026</span>
   </div>
 </div>
 
@@ -632,7 +632,7 @@ function checkPassword() {
       <a href="#escalation">Escalation</a>
       <a href="#resources">Resources</a>
     </nav>
-    <span class="topbar-meta"><strong>v1.7</strong> · May 12, 2026</span>
+    <span class="topbar-meta"><strong>v1.8</strong> · May 12, 2026</span>
   </div>
 </div>
 
@@ -649,6 +649,8 @@ function checkPassword() {
 
     <div class="callout signal reveal">
       <strong>System-live target:</strong> Tuesday May 12, 2026. Team meeting kicks off live execution. The 60-day target after launch: 3 new Signature clients. If you're reading this before launch, sit tight on outreach until Chase greenlights in <code>#bd-team</code>.
+      <br><br>
+      <strong>What's new:</strong> Visit motion. In-person drop-ins when prospects reach the Engaged Funnel Stage. The Cincinnati moat made literal. See Section 4 for the full play.
     </div>
 
     <div class="summary reveal">
@@ -1230,6 +1232,10 @@ AND Next Touch Date ≤ TODAY()</code></pre>
       </svg>
     </div>
 
+    <div class="callout signal reveal">
+      <strong>Visit motion · the Cincinnati moat made literal.</strong> When a prospect hits the Engaged Funnel Stage, the system gets one move no remote agency can run: drive over and say hi. A-tier prospects get a mandatory visit before the Audit is shared. B-tier is strongly recommended if you're already in the area. C-tier is opportunistic. The mechanic is 60 to 90 seconds, unannounced, no formal script. Drop in, introduce yourself, say hello. Face-to-face recognition compounds every subsequent digital touch. No remote agency competes with this. Full guidance in the Visit motion accordion below.
+    </div>
+
     <details class="acc reveal">
       <summary>See the full day-by-day, touch-by-touch sequence</summary>
       <div class="acc-body">
@@ -1351,6 +1357,37 @@ AND Next Touch Date ≤ TODAY()</code></pre>
           <li>Move conversation to email (Chase takes it from there).</li>
         </ol>
         <p class="small muted">You don't paste the Calendly link in the DM. Chase owns the email handoff and the link share. This keeps the operator-to-founder handoff clean.</p>
+      </div>
+    </details>
+
+    <details class="acc reveal">
+      <summary>Visit motion · in-person drop-in</summary>
+      <div class="acc-body">
+        <p>The visit is the Cincinnati-local moat made literal. Asynchronous to the 14-day digital sequence and runs in parallel.</p>
+
+        <p><strong>Trigger:</strong> Prospect reaches <code>Engaged</code> Funnel Stage (any positive signal: warm reply, content engagement, opened the Manual link).</p>
+
+        <p><strong>Tier scope</strong></p>
+        <ul>
+          <li><strong>A-tier ·</strong> Mandatory before Audit Shared. Visit before the Loom drops.</li>
+          <li><strong>B-tier ·</strong> Strongly recommended. Operator's call based on geographic convenience to your zone.</li>
+          <li><strong>C-tier ·</strong> Opportunistic. If you're already in the neighborhood, swing by.</li>
+        </ul>
+
+        <p><strong>Mechanic:</strong> Unannounced drop-in. No scheduling, no appointment, no formal sales-call energy.</p>
+
+        <p><strong>Format (light guidelines, not a script)</strong></p>
+        <ul>
+          <li>Drop in</li>
+          <li>Introduce yourself</li>
+          <li>Say hello</li>
+        </ul>
+
+        <p>One-time intro per prospect. Subsequent relationship stays digital.</p>
+
+        <p><strong>Log:</strong> Update <code>Visit Date</code> (col V) with today's date. Asynchronous to Funnel Stage; does not advance the stage enum.</p>
+
+        <p class="small muted">Source: <code>playbooks/team_ig_outreach_playbook.md</code> · Visit motion subsection.</p>
       </div>
     </details>
 
@@ -1836,37 +1873,6 @@ DO use operator-first identification on cold_dm_1, comment_to_dm, audit_offer.</
       </div>
     </details>
 
-    <details class="acc reveal">
-      <summary>Visit motion · in-person drop-in</summary>
-      <div class="acc-body">
-        <p>The visit is the Cincinnati-local moat made literal. Asynchronous to the 14-day digital sequence and runs in parallel.</p>
-
-        <p><strong>Trigger:</strong> Prospect reaches <code>Engaged</code> Funnel Stage (any positive signal: warm reply, content engagement, opened the Manual link).</p>
-
-        <p><strong>Tier scope</strong></p>
-        <ul>
-          <li><strong>A-tier ·</strong> Mandatory before Audit Shared. Visit before the Loom drops.</li>
-          <li><strong>B-tier ·</strong> Strongly recommended. Operator's call based on geographic convenience to your zone.</li>
-          <li><strong>C-tier ·</strong> Opportunistic. If you're already in the neighborhood, swing by.</li>
-        </ul>
-
-        <p><strong>Mechanic:</strong> Unannounced drop-in. No scheduling, no appointment, no formal sales-call energy.</p>
-
-        <p><strong>Format (light guidelines, not a script)</strong></p>
-        <ul>
-          <li>Drop in</li>
-          <li>Introduce yourself</li>
-          <li>Say hello</li>
-        </ul>
-
-        <p>One-time intro per prospect. Subsequent relationship stays digital.</p>
-
-        <p><strong>Log:</strong> Update <code>Visit Date</code> (col V) with today's date. Asynchronous to Funnel Stage; does not advance the stage enum.</p>
-
-        <p class="small muted">Source: <code>playbooks/team_ig_outreach_playbook.md</code> · Visit motion subsection.</p>
-      </div>
-    </details>
-
     <p class="small muted" style="margin-top: var(--sp-5);">Source: <code>playbooks/team_ig_outreach_playbook.md</code> + <code>templates/03_ig_dm_system/scrollmedia_co_team_voice/</code>. The markdowns are the source of truth; this portal rebuilds from them.</p>
   </div>
 </section>
@@ -1879,6 +1885,10 @@ DO use operator-first identification on cold_dm_1, comment_to_dm, audit_offer.</
     <p class="section-kicker">Section 05</p>
     <h2>Voice rules</h2>
     <p class="intro">Two voices on the system, deliberately distinct. Don't blend them. If a piece of copy could live on either Chase's surfaces or Scroll Media's surfaces unchanged, it fails the voice test.</p>
+
+    <div class="callout signal reveal">
+      <strong>Templates are guidance, not strict scripts.</strong> Cold email templates, DM scripts, audit copy, delivery emails: starting points to remove blank-page friction. Tweak the opens, adjust the close, adapt framing per prospect and per niche. The voice floor below holds without exception (no em-dashes, no banned phrases, sentence case, approved connectors only). Everything above the floor is your call. Personal beats templated, every time.
+    </div>
 
     <div class="summary reveal">
       <h4 style="margin-top: 0;">The hard rules (apply to every prospect-facing message)</h4>
@@ -2244,20 +2254,21 @@ Cheers,
   <div class="container">
     <p class="section-kicker">Section 07</p>
     <h2>@scrollmedia.co posting strategy</h2>
-    <p class="intro">The grid is acquisition air cover. Every cold prospect taps the profile before they reply. Empty grid, inconsistent posting, or pitchy content kills conversion in 5 seconds. This is a team-collective workstream. Riley, Rachel, and Emily game-plan the grid together.</p>
+    <p class="intro">The grid is acquisition air cover. Every cold prospect taps the profile before they reply. Empty grid, inconsistent posting, or pitchy content kills conversion in 5 seconds. This is a team-collective workstream owned across Rachel, Riley, and Emily, with Emily leading the daily-feed-post push. We have the bandwidth. We're using it.</p>
 
     <div class="summary reveal">
       <h4 style="margin-top: 0;">The cadence that holds the grid alive</h4>
       <ul>
-        <li><strong>3 to 5 feed posts/week.</strong> Below 3, the grid reads dormant. Above 5, we chase volume over signal.</li>
-        <li><strong>1 to 2 stories/day, 5 days/week minimum.</strong> Empty story ring = kill signal to a cold prospect.</li>
+        <li><strong>5 feed posts/week minimum.</strong> Emily leads the push for daily where bandwidth allows. The grid stays active by frequency, not by hero posts.</li>
+        <li><strong>Daily stories</strong> (Monday through Friday minimum, weekends opportunistic). Empty story ring = kill signal to a cold prospect.</li>
         <li><strong>1 to 2 Reels/week</strong> (subset of feed). Chase records, team repurposes.</li>
-        <li><strong>Reshare every Chase content drop</strong> to story within 24 hours with agency-voice framing.</li>
+        <li><strong>Team reshares every @chase.scrolls feed post</strong> (Reel or carousel) via @scrollmedia.co stories same day or next morning. Signal-amplification mechanic. Compounds both accounts.</li>
+        <li><strong>Reshare other Chase content drops</strong> (hard text posts, live stories) to @scrollmedia.co stories within 24 hours with agency-voice framing.</li>
       </ul>
     </div>
 
     <div class="callout signal reveal">
-      <strong>How the team divides + conquers.</strong> The posting strategy is collective. All three team operators contribute pillar ideas, hooks, and execution. Don't wait for someone else to drive. A reasonable starting frame: weekly 30-min huddle every Monday to plan the week's posts, rotating ownership across pillars, all three contributing ideas and shipping. You decide the role split together. The portal gives you the framework; the team owns the execution.
+      <strong>How the team divides + conquers.</strong> The posting strategy is collective. Rachel, Riley, and Emily contribute pillar ideas, hooks, and execution. Don't wait for someone else to drive. Emily leads the push toward daily feed-post cadence, but the work splits collaboratively. A reasonable starting frame: weekly 30-min huddle every Monday to plan the week's posts, rotating ownership across pillars, all three contributing ideas and shipping. The portal gives you the framework; the team owns the execution.
     </div>
 
     <h3>Content pillars</h3>
@@ -2290,7 +2301,7 @@ Cheers,
         <h3 style="margin-top: var(--sp-3);">Suggested agenda (30 min, Monday morning)</h3>
         <ol>
           <li><strong>Last week's pulse (5 min).</strong> Which posts saved hardest. Which DMs came in from the grid. Any patterns to repeat or kill.</li>
-          <li><strong>This week's slate (15 min).</strong> 3 to 5 feed posts. One from each pillar minimum. Who has the hook for each. Whose Canva queue gets the build.</li>
+          <li><strong>This week's slate (15 min).</strong> 5 feed posts minimum (push for daily where bandwidth allows). One from each pillar minimum. Who has the hook for each. Whose Canva queue gets the build. Emily anchors the daily-post push.</li>
           <li><strong>Stories rotation (5 min).</strong> Who runs Monday stories, Tuesday, Wednesday, etc. Behind-the-scenes vs proof vs neighborhood spotlight rotation.</li>
           <li><strong>Inbound DM coverage (5 min).</strong> Who has DM watch for the week. 4-hour reply SLA during business hours.</li>
         </ol>
@@ -2318,11 +2329,12 @@ Cheers,
           <table>
             <thead><tr><th>Surface</th><th>Cadence</th><th>Ownership</th></tr></thead>
             <tbody>
-              <tr><td>Feed posts</td><td>3 to 5 per week</td><td>Team-collective. Weekly pillar rotation across Riley / Rachel / Emily.</td></tr>
-              <tr><td>Stories</td><td>1 to 2 per day, 5 days per week minimum</td><td>Operator on outreach shift handles the story slot.</td></tr>
+              <tr><td>Feed posts</td><td>5 per week minimum (push for daily where bandwidth allows)</td><td>Team-collective across Rachel / Riley / Emily. Emily leads daily-cadence push. Weekly pillar rotation.</td></tr>
+              <tr><td>Stories</td><td>Daily, Monday through Friday minimum</td><td>Operator on outreach shift handles the story slot.</td></tr>
               <tr><td>Reels</td><td>1 to 2 per week (subset of feed posts)</td><td>Chase records. Team can repurpose into carousels or story sequences.</td></tr>
               <tr><td>Carousels</td><td>2 to 3 per week (subset of feed posts)</td><td>Team-collective. Rotating pillar lead drafts and builds.</td></tr>
-              <tr><td>Cross-account amplification</td><td>Per Chase content drop on @chase.scrolls</td><td>Whichever team operator is on DM / story watch that day reshares within 24 hours.</td></tr>
+              <tr><td>@chase.scrolls feed-post reshares</td><td>Every Reel and carousel Chase posts</td><td>Team reshares via @scrollmedia.co stories same day or next morning. Signal-amplification mechanic.</td></tr>
+              <tr><td>Other cross-account amplification</td><td>Per Chase content drop (hard text, live, story)</td><td>Whichever team operator is on DM / story watch that day reshares within 24 hours.</td></tr>
             </tbody>
           </table>
         </div>
@@ -2346,7 +2358,7 @@ Cheers,
     <details class="acc reveal">
       <summary>See story types (5 rotating, used daily)</summary>
       <div class="acc-body">
-        <p>Stories are the heartbeat. Five types rotate through the daily story slot. Aim for 1 to 2 stories per day.</p>
+        <p>Stories are the heartbeat. Five types rotate through the daily story slot. Cadence is daily (Monday through Friday minimum, weekends opportunistic).</p>
         <div class="table-wrap">
           <table>
             <thead><tr><th>Type</th><th>What it is</th><th>Frequency</th></tr></thead>
@@ -2389,10 +2401,10 @@ Cheers,
           <table>
             <thead><tr><th>Trigger on @chase.scrolls</th><th>Action on @scrollmedia.co</th></tr></thead>
             <tbody>
-              <tr><td>Chase posts a Reel</td><td>Reshare to story within 24 hours with an agency-voice one-line frame</td></tr>
-              <tr><td>Chase posts a carousel</td><td>Reshare to story; consider repurposing as an @scrollmedia.co feed carousel 1-2 weeks later (different framing)</td></tr>
-              <tr><td>Chase posts a hard text post</td><td>Reshare to story if it lands hard, with agency framing</td></tr>
-              <tr><td>Chase goes live or posts a story</td><td>Reshare key story slides only if they're tactical, not personal</td></tr>
+              <tr><td>Chase posts a Reel</td><td>Reshare to story <strong>same day or next morning</strong> with an agency-voice one-line frame. Mandatory, not optional.</td></tr>
+              <tr><td>Chase posts a carousel</td><td>Reshare to story <strong>same day or next morning</strong> with agency framing. Mandatory. Consider repurposing as an @scrollmedia.co feed carousel 1-2 weeks later (different framing).</td></tr>
+              <tr><td>Chase posts a hard text post</td><td>Reshare to story within 24 hours if it lands hard, with agency framing.</td></tr>
+              <tr><td>Chase goes live or posts a story</td><td>Reshare key story slides only if they're tactical, not personal.</td></tr>
             </tbody>
           </table>
         </div>
@@ -2418,14 +2430,15 @@ Cheers,
 
         <h3>Daily checklist</h3>
         <ol>
-          <li>Post at least 1 story (Type 1-4 rotation).</li>
-          <li>Reshare any Chase / Allison content drop to story within 24 hours.</li>
+          <li>Post stories daily (Type 1-4 rotation, Monday through Friday minimum).</li>
+          <li>Reshare any @chase.scrolls feed post (Reel or carousel) to @scrollmedia.co stories same day or next morning.</li>
+          <li>Reshare any other Chase / Allison content drop within 24 hours.</li>
           <li>Check DMs. Reply to any new replies within 4 hours during business hours.</li>
           <li>Check story poll / question replies. Move warm DMs into the prospect spreadsheet if relevant.</li>
           <li>Engage with 5-10 Cincinnati local brand accounts as @scrollmedia.co (genuine comments, story reacts).</li>
         </ol>
 
-        <h3>3-5 times per week (feed posts)</h3>
+        <h3>Daily feed-post target (5/week minimum)</h3>
         <ol>
           <li>Pick the pillar (rotate; don't post the same pillar 3 days in a row).</li>
           <li>Pull the hook from the working hook library or write fresh.</li>
@@ -2438,7 +2451,7 @@ Cheers,
         </ol>
 
         <h3>Weekly (Friday review)</h3>
-        <p>Pull the 3-5 feed posts from the week. Note save count, share count, profile visits per post. Flag the strongest post for repurposing. Move any warm DM threads into the prospect spreadsheet. Plan next week's posts at a high level (one from each pillar minimum).</p>
+        <p>Pull the week's feed posts. Note save count, share count, profile visits per post. Flag the strongest post for repurposing. Move any warm DM threads into the prospect spreadsheet. Plan next week's posts at a high level (one from each pillar minimum, daily push baseline).</p>
       </div>
     </details>
 
@@ -2817,7 +2830,7 @@ Ready for you when you are.</code></pre>
       <a href="#who-you-own">Who you own</a>
       <a href="#escalation">Escalation</a>
     </div>
-    <div class="meta">Scroll Media · BD Portal · v1.7 · May 12, 2026</div>
+    <div class="meta">Scroll Media · BD Portal · v1.8 · May 12, 2026</div>
   </div>
 </footer>
 
