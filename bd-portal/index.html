@@ -609,7 +609,7 @@ function checkPassword() {
 <div class="meta-strip">
   <div class="meta-strip-inner">
     <span><strong>Internal use only.</strong> Do not share with prospects or clients.</span>
-    <span class="nowrap">v1.8 · May 12, 2026</span>
+    <span class="nowrap">v1.9 · May 12, 2026</span>
   </div>
 </div>
 
@@ -632,7 +632,7 @@ function checkPassword() {
       <a href="#escalation">Escalation</a>
       <a href="#resources">Resources</a>
     </nav>
-    <span class="topbar-meta"><strong>v1.8</strong> · May 12, 2026</span>
+    <span class="topbar-meta"><strong>v1.9</strong> · May 12, 2026</span>
   </div>
 </div>
 
@@ -650,7 +650,7 @@ function checkPassword() {
     <div class="callout signal reveal">
       <strong>System-live target:</strong> Tuesday May 12, 2026. Team meeting kicks off live execution. The 60-day target after launch: 3 new Signature clients. If you're reading this before launch, sit tight on outreach until Chase greenlights in <code>#bd-team</code>.
       <br><br>
-      <strong>What's new:</strong> Visit motion. In-person drop-ins when prospects reach the Engaged Funnel Stage. The Cincinnati moat made literal. See Section 4 for the full play.
+      <strong>What's new:</strong> Visit motion. In-person drop-ins on prospects who reply to a DM with positive interest or a buying signal. The Cincinnati moat made literal. See Section 4 for the full play.
     </div>
 
     <div class="summary reveal">
@@ -1091,7 +1091,7 @@ AND Next Touch Date ≤ TODAY()</code></pre>
 
     <div class="diagram-frame reveal">
       <div class="diagram-caption">14-day sequence · timeline view</div>
-      <svg viewBox="0 0 1080 280" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="14-day outreach timeline from Day 0 follow through Day 14+ handoff, with funnel stage transitions noted at each milestone">
+      <svg viewBox="0 0 1080 330" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="14-day outreach timeline from Day 0 follow through Day 14+ handoff, with funnel stage transitions noted at each milestone and a parallel visit motion track that opens after a positive DM reply">
         <defs>
           <style>
             .tl-bg { fill: #FAFDFF; }
@@ -1103,9 +1103,13 @@ AND Next Touch Date ≤ TODAY()</code></pre>
             .tl-stage { font: 500 10px 'Source Sans 3', sans-serif; fill: #5a6070; text-anchor: middle; letter-spacing: 0.08em; text-transform: uppercase; }
             .tl-stage-box { fill: #e4f3ff; stroke: rgba(12,51,135,0.40); stroke-width: 1; }
             .tl-pulse { fill: none; stroke: #0C3387; stroke-width: 1; opacity: 0.3; }
+            .tl-visit-line { stroke: #0C3387; stroke-width: 1.5; stroke-dasharray: 5 4; fill: none; opacity: 0.75; }
+            .tl-visit-tick { stroke: #0C3387; stroke-width: 1.5; }
+            .tl-visit-label { font: 700 10px 'Source Sans 3', sans-serif; fill: #0C3387; letter-spacing: 0.10em; text-transform: uppercase; }
+            .tl-visit-cap { font: 500 11px 'Source Sans 3', sans-serif; fill: #151516; }
           </style>
         </defs>
-        <rect class="tl-bg" x="0" y="0" width="1080" height="280"/>
+        <rect class="tl-bg" x="0" y="0" width="1080" height="330"/>
 
         <!-- Horizontal line -->
         <line class="tl-line" x1="80" y1="120" x2="1000" y2="120"/>
@@ -1167,14 +1171,21 @@ AND Next Touch Date ≤ TODAY()</code></pre>
         <rect class="tl-stage-box" x="945" y="190" width="110" height="20" style="fill:#E2ED7A;stroke:#151516;"/>
         <text class="tl-stage" x="1000" y="204" style="fill:#151516;font-weight:700;">Discovery booked</text>
 
+        <!-- Visit motion parallel track -->
+        <text class="tl-visit-label" x="80" y="240">Visit window · parallel track</text>
+        <line class="tl-visit-line" x1="387" y1="258" x2="1000" y2="258"/>
+        <line class="tl-visit-tick" x1="387" y1="251" x2="387" y2="265"/>
+        <line class="tl-visit-tick" x1="1000" y1="251" x2="1000" y2="265"/>
+        <text class="tl-visit-cap" x="693" y="282" style="text-anchor: middle;">Opens after a positive DM reply · A-tier mandatory before Audit shared</text>
+
         <!-- Caption -->
-        <text class="tl-stage" x="540" y="245" style="text-transform:none;letter-spacing:0;font-style:italic;">Day numbers are guideposts, not handcuffs. Funnel stages drive the spreadsheet.</text>
+        <text class="tl-stage" x="540" y="310" style="text-transform:none;letter-spacing:0;font-style:italic;">Day numbers are guideposts, not handcuffs. Funnel stages drive the spreadsheet. The visit window is asynchronous to the digital sequence.</text>
       </svg>
     </div>
 
     <div class="diagram-frame reveal">
       <div class="diagram-caption">Funnel progression · how a prospect narrows from cold to closed</div>
-      <svg viewBox="0 0 1080 340" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Funnel from Cold through Engaged, DM1 Sent, DM2 Sent, Manual Shared, Audit Shared, Discovery Booked, ending in Closed-Won or Closed-Lost">
+      <svg viewBox="0 0 1080 400" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Funnel from Cold through Engaged, DM1 Sent, DM2 Sent, Manual Shared, Audit Shared, Discovery Booked, ending in Closed-Won or Closed-Lost, with a parallel visit motion annotation showing the visit window opens after a positive DM reply">
         <defs>
           <style>
             .fn-bg { fill: #FAFDFF; }
@@ -1185,9 +1196,12 @@ AND Next Touch Date ≤ TODAY()</code></pre>
             .fn-stage-label { font: 700 11px 'Source Sans 3', sans-serif; fill: #0C3387; letter-spacing: 0.08em; text-transform: uppercase; }
             .fn-meta { font: 500 11px 'Source Sans 3', sans-serif; fill: #5a6070; }
             .fn-arrow { stroke: rgba(12,51,135,0.40); stroke-width: 1; fill: none; }
+            .fn-visit-rule { stroke: rgba(12,51,135,0.15); stroke-width: 0.5; fill: none; }
+            .fn-visit-bracket { stroke: #0C3387; stroke-width: 1.5; stroke-dasharray: 5 4; fill: none; opacity: 0.75; }
+            .fn-visit-tick { stroke: #0C3387; stroke-width: 1.5; }
           </style>
         </defs>
-        <rect class="fn-bg" x="0" y="0" width="1080" height="340"/>
+        <rect class="fn-bg" x="0" y="0" width="1080" height="400"/>
 
         <!-- 7 stacked funnel bars narrowing -->
         <!-- Cold -->
@@ -1229,11 +1243,19 @@ AND Next Touch Date ≤ TODAY()</code></pre>
         <path class="fn-arrow" d="M 540 302 L 540 320"/>
         <text class="fn-stage-label" x="430" y="328">Closed-won</text>
         <text class="fn-stage-label" x="615" y="328" style="opacity:0.6;">Closed-lost / Disqualified</text>
+
+        <!-- Visit motion · parallel asynchronous annotation -->
+        <line class="fn-visit-rule" x1="80" y1="350" x2="1000" y2="350"/>
+        <text class="fn-stage-label" x="80" y="372">Visit motion · asynchronous parallel</text>
+        <text class="fn-meta" x="80" y="389">Opens after a positive DM reply · A-tier mandatory before Audit shared · B recommended on geo · C opportunistic</text>
+        <line class="fn-visit-bracket" x1="700" y1="382" x2="990" y2="382"/>
+        <line class="fn-visit-tick" x1="700" y1="375" x2="700" y2="389"/>
+        <line class="fn-visit-tick" x1="990" y1="375" x2="990" y2="389"/>
       </svg>
     </div>
 
     <div class="callout signal reveal">
-      <strong>Visit motion · the Cincinnati moat made literal.</strong> When a prospect hits the Engaged Funnel Stage, the system gets one move no remote agency can run: drive over and say hi. A-tier prospects get a mandatory visit before the Audit is shared. B-tier is strongly recommended if you're already in the area. C-tier is opportunistic. The mechanic is 60 to 90 seconds, unannounced, no formal script. Drop in, introduce yourself, say hello. Face-to-face recognition compounds every subsequent digital touch. No remote agency competes with this. Full guidance in the Visit motion accordion below.
+      <strong>Visit motion · the Cincinnati moat made literal.</strong> When a prospect replies to your DM with positive interest or a buying signal, the system gets one move no remote agency can run: drive over and say hi. The trigger is narrower than every Engaged signal. Content engagement, follows, and Manual link opens still move the prospect to Engaged, but the visit window only opens once they have explicitly told you, in a DM, that they want to engage further. A-tier prospects get a mandatory visit before the Audit is shared. B-tier is strongly recommended if you're already in the area. C-tier is opportunistic. The mechanic is 60 to 90 seconds, unannounced, no formal script. Drop in, introduce yourself, say hello. Face-to-face recognition compounds every subsequent digital touch. No remote agency competes with this. Full guidance in the Visit motion accordion below.
     </div>
 
     <details class="acc reveal">
@@ -1365,7 +1387,9 @@ AND Next Touch Date ≤ TODAY()</code></pre>
       <div class="acc-body">
         <p>The visit is the Cincinnati-local moat made literal. Asynchronous to the 14-day digital sequence and runs in parallel.</p>
 
-        <p><strong>Trigger:</strong> Prospect reaches <code>Engaged</code> Funnel Stage (any positive signal: warm reply, content engagement, opened the Manual link).</p>
+        <p><strong>Trigger:</strong> Prospect replies to a team @scrollmedia.co DM with positive interest or a buying signal. Other engagement signals (content engagement, follows, Manual link opens) still move the prospect to <code>Engaged</code> Funnel Stage but do not independently trigger a visit. The visit is reserved for prospects who have explicitly indicated they want to engage further via a DM response.</p>
+
+        <p class="small muted">Operator judgment: when a DM reply lands, read it. Positive interest or a buying signal (warm question, asks about pricing, asks about your work, asks to talk, replies with a genuine yes to the Manual share or audit offer) opens the visit window. A non-committal "thanks" or a polite deflection does not. When in doubt, default to "no visit yet" and keep the digital cadence running.</p>
 
         <p><strong>Tier scope</strong></p>
         <ul>
@@ -2830,7 +2854,7 @@ Ready for you when you are.</code></pre>
       <a href="#who-you-own">Who you own</a>
       <a href="#escalation">Escalation</a>
     </div>
-    <div class="meta">Scroll Media · BD Portal · v1.8 · May 12, 2026</div>
+    <div class="meta">Scroll Media · BD Portal · v1.9 · May 12, 2026</div>
   </div>
 </footer>
 
