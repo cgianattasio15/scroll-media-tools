@@ -4,8 +4,8 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
 <meta name="theme-color" content="#FAFDFF" />
-<title>The Scroll Method · Flowchart · Scroll Media</title>
-<meta name="description" content="The Scroll Method architectural flowchart. Cincinnati's Instagram agency for local brands." />
+<title>The Scroll System · Flowchart · Scroll Media</title>
+<meta name="description" content="The Scroll System architectural flowchart. Cincinnati's Instagram agency for local brands." />
 <link rel="icon" type="image/svg+xml" href="https://tools.scrollmedia.co/assets/scroll-favicon.svg" />
 
 <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -292,6 +292,18 @@
   }
   .foundation-pill h5 { font-size: 15px; color: var(--ghost); margin: 0 0 4px; letter-spacing: -0.005em; }
   .foundation-pill p { font-size: 12px; color: var(--lucid); line-height: 1.4; margin: 0; }
+  .foundation-pill .fp-annot {
+    display: inline-flex; align-items: center; gap: 4px;
+    margin-top: 8px;
+    background: rgba(226, 237, 122, 0.10);
+    border: 1px dashed rgba(226, 237, 122, 0.55);
+    padding: 4px 7px;
+    font-size: 9px; letter-spacing: 0.10em; text-transform: uppercase;
+    color: var(--highlighter); font-weight: 700; line-height: 1.25;
+  }
+  .foundation-pill .fp-annot::before {
+    content: '★'; font-size: 9px; color: var(--highlighter);
+  }
 
   /* ============================================================
      PHASE 0
@@ -554,6 +566,220 @@
   .referral-note h5 { font-size: 13px; color: var(--azure); margin: 0 0 4px; }
   .referral-note p { font-size: 12px; color: var(--fg); line-height: 1.5; margin: 0; }
 
+  /* Brand Immersion accent band — spans Phases 04 → 05 → 06 Week 1 */
+  .brand-immersion-band {
+    margin: 20px 0 24px;
+    background: var(--lucid-soft);
+    border: 1.5px solid var(--azure);
+    border-left: 4px solid var(--azure);
+    padding: 14px 18px 16px;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 18px;
+    align-items: start;
+  }
+  .brand-immersion-band .bi-eyebrow {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--azure); color: var(--ghost);
+    padding: 6px 12px;
+    font-size: 10px; letter-spacing: 0.20em; text-transform: uppercase;
+    font-weight: 700; line-height: 1.2;
+    white-space: nowrap;
+    align-self: start;
+  }
+  .brand-immersion-band .bi-eyebrow .bi-star {
+    color: var(--highlighter); font-size: 12px; line-height: 1;
+  }
+  .brand-immersion-band .bi-body { display: flex; flex-direction: column; gap: 8px; }
+  .brand-immersion-band .bi-span {
+    display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
+    font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase;
+    color: var(--azure); font-weight: 700;
+  }
+  .brand-immersion-band .bi-marker {
+    background: var(--ghost); border: 1px solid var(--azure-300);
+    padding: 4px 10px; line-height: 1.2;
+  }
+  .brand-immersion-band .bi-marker strong { color: var(--azure); font-weight: 700; }
+  .brand-immersion-band .bi-arrow { color: var(--azure); font-weight: 700; }
+  .brand-immersion-band p {
+    font-size: 13px; color: var(--fg); line-height: 1.55; margin: 0;
+    max-width: 92ch;
+  }
+  .brand-immersion-band p strong { color: var(--azure); font-weight: 700; }
+
+  /* Compact sub-detail strip inside a node (Phase 04, Phase 05) */
+  .node .n-detail {
+    margin-top: 4px; padding-top: 8px;
+    border-top: 1px dashed var(--rule);
+  }
+  .node .n-detail .nd-label {
+    font-size: 9px; letter-spacing: 0.16em; text-transform: uppercase;
+    color: var(--fg-muted); font-weight: 700; margin-bottom: 5px;
+  }
+  .node .n-detail ul {
+    list-style: none; padding: 0; margin: 0;
+    display: flex; flex-direction: column; gap: 3px;
+  }
+  .node .n-detail li {
+    font-size: 11px; color: var(--fg); line-height: 1.35;
+    padding-left: 10px; position: relative;
+  }
+  .node .n-detail li::before {
+    content: '·'; position: absolute; left: 0; top: -1px;
+    color: var(--azure); font-weight: 700;
+  }
+
+  /* Platform Audit named sub-step inside Phase 06 Week 2 */
+  .platform-audit {
+    margin-top: 10px; padding: 10px 12px;
+    background: var(--lucid-soft); border: 1px solid var(--azure-300);
+    border-left: 3px solid var(--azure);
+  }
+  .platform-audit .pa-eyebrow {
+    font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--azure); font-weight: 700; margin-bottom: 3px;
+  }
+  .platform-audit h6 {
+    font-size: 13px; color: var(--azure); margin: 0 0 5px;
+    letter-spacing: -0.005em; font-weight: 700; line-height: 1.2;
+  }
+  .platform-audit p {
+    font-size: 11px; color: var(--fg); line-height: 1.45; margin: 0;
+  }
+  .platform-audit p + p { margin-top: 4px; }
+  .platform-audit p strong { color: var(--azure); font-weight: 700; }
+
+  /* Phase 01 collapsible — "Inside the outreach engine" */
+  .phase-collapsible {
+    margin-top: 24px;
+    background: var(--ghost); border: 1px solid var(--azure-200);
+  }
+  .phase-collapsible > summary {
+    list-style: none; cursor: pointer; padding: 14px 18px;
+    display: grid; grid-template-columns: auto 1fr auto;
+    align-items: center; gap: 16px;
+    transition: background 200ms var(--ease);
+    user-select: none;
+  }
+  .phase-collapsible > summary::-webkit-details-marker { display: none; }
+  .phase-collapsible > summary:hover { background: var(--bg-alt); }
+  .phase-collapsible .pc-tag {
+    font-size: 9px; letter-spacing: 0.20em; text-transform: uppercase;
+    color: var(--ghost); background: var(--azure);
+    padding: 5px 10px; font-weight: 700; line-height: 1.2;
+    white-space: nowrap;
+  }
+  .phase-collapsible .pc-title { display: flex; flex-direction: column; gap: 3px; }
+  .phase-collapsible .pc-title h5 {
+    font-size: 15px; color: var(--azure); margin: 0;
+    letter-spacing: -0.005em; line-height: 1.2;
+  }
+  .phase-collapsible .pc-title p {
+    font-size: 12px; color: var(--fg-muted); line-height: 1.4; margin: 0;
+  }
+  .phase-collapsible .pc-toggle {
+    width: 28px; height: 28px;
+    border: 1.5px solid var(--azure); background: var(--ghost);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px; line-height: 1; color: var(--azure); font-weight: 700;
+    transition: transform 200ms var(--ease);
+  }
+  .phase-collapsible[open] > summary .pc-toggle { transform: rotate(45deg); }
+  .phase-collapsible-body {
+    padding: 4px 18px 18px;
+    border-top: 1px solid var(--rule);
+    display: flex; flex-direction: column; gap: 12px;
+  }
+  .phase-collapsible-body p {
+    font-size: 13px; color: var(--fg); line-height: 1.5; margin: 0;
+  }
+  .phase-collapsible-body p strong { color: var(--azure); font-weight: 700; }
+  .pc-rows { display: flex; flex-direction: column; gap: 10px; }
+  .pc-row {
+    display: grid; grid-template-columns: 180px 1fr;
+    gap: 14px; align-items: start;
+    padding: 8px 0; border-bottom: 1px dashed var(--rule);
+  }
+  .pc-row:last-child { border-bottom: none; }
+  .pc-row .pc-row-label {
+    font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase;
+    color: var(--azure); font-weight: 700; line-height: 1.3;
+  }
+  .pc-row .pc-row-body { font-size: 12px; color: var(--fg); line-height: 1.5; }
+  .pc-row .pc-row-body strong { color: var(--azure); font-weight: 700; }
+  .pc-row .pc-row-body em { font-style: normal; color: var(--fg-muted); }
+  .pc-zones { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 6px; }
+  .pc-zone {
+    background: var(--lucid-soft); border: 1px solid var(--azure-200);
+    padding: 8px 10px;
+  }
+  .pc-zone .pc-zone-op {
+    font-size: 11px; color: var(--azure); font-weight: 700;
+    letter-spacing: -0.005em; margin-bottom: 2px;
+  }
+  .pc-zone .pc-zone-area {
+    font-size: 10px; color: var(--fg-muted); line-height: 1.4;
+  }
+  .pc-tier-table {
+    width: 100%; border-collapse: collapse; margin-top: 4px;
+    font-size: 12px;
+  }
+  .pc-tier-table th, .pc-tier-table td {
+    text-align: left; padding: 7px 10px;
+    border-bottom: 1px solid var(--rule);
+  }
+  .pc-tier-table th {
+    font-size: 9px; letter-spacing: 0.16em; text-transform: uppercase;
+    color: var(--azure); font-weight: 700; background: var(--lucid-soft);
+  }
+  .pc-tier-table .pc-tier-name {
+    font-weight: 700; color: var(--azure);
+  }
+  .pc-tier-table tr:last-child td { border-bottom: none; }
+
+  /* M12 Annual Strategic Review depth band */
+  .annual-review-detail {
+    margin-top: 18px; padding: 18px 20px;
+    background: var(--cream-soft); border: 1px solid var(--gold-300);
+  }
+  .annual-review-detail .ard-eyebrow {
+    font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--gold-700); font-weight: 700; margin-bottom: 6px;
+  }
+  .annual-review-detail h4 {
+    font-size: 17px; color: var(--azure); letter-spacing: -0.005em;
+    margin-bottom: 6px;
+  }
+  .annual-review-detail .ard-lede {
+    font-size: 12px; color: var(--fg); line-height: 1.5; margin: 0 0 14px;
+    max-width: 88ch;
+  }
+  .ard-grid {
+    display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px;
+  }
+  .ard-block {
+    background: var(--ghost); border: 1px solid var(--gold-300);
+    padding: 10px 12px;
+  }
+  .ard-block .ard-block-label {
+    font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--gold-700); font-weight: 700; margin-bottom: 4px;
+  }
+  .ard-block h5 {
+    font-size: 13px; color: var(--azure); margin: 0 0 4px;
+    letter-spacing: -0.005em; font-weight: 700; line-height: 1.2;
+  }
+  .ard-block p {
+    font-size: 11px; color: var(--fg); line-height: 1.45; margin: 0;
+  }
+  .ard-block p strong { color: var(--azure); font-weight: 700; }
+  .ard-decision-ref {
+    margin-top: 12px;
+    font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--gold-700); font-weight: 700; text-align: right;
+  }
+
   /* ============================================================
      ZONE 02 LAYOUT
      ============================================================ */
@@ -579,6 +805,48 @@
   }
   .loop-callout h5 { font-size: 14px; color: var(--azure); margin-bottom: 2px; letter-spacing: -0.005em; }
   .loop-callout p { font-size: 12px; color: var(--fg); line-height: 1.4; margin: 0; }
+
+  /* Phase 07 brand voice enforcement marker (inside the node) */
+  .voice-marker {
+    margin-top: 10px;
+    padding: 8px 10px;
+    background: rgba(226, 237, 122, 0.10);
+    border-left: 2px solid var(--highlighter);
+  }
+  .voice-marker .vm-eyebrow {
+    display: flex; align-items: center; gap: 5px;
+    font-size: 9px; letter-spacing: 0.16em; text-transform: uppercase;
+    color: var(--azure); font-weight: 700; margin-bottom: 4px;
+  }
+  .voice-marker .vm-eyebrow::before {
+    content: '★'; font-size: 9px; color: var(--highlighter);
+  }
+  .voice-marker p {
+    font-size: 11px; color: var(--fg); line-height: 1.4; margin: 0;
+  }
+  .voice-marker p strong { color: var(--azure); font-weight: 700; }
+
+  /* Phase 09 → Phase 07 explicit loop-back arrow (closes the execution loop) */
+  .z2-loopback {
+    margin-top: 16px;
+    padding: 10px 16px;
+    background: rgba(226, 237, 122, 0.08);
+    border: 1px dashed rgba(12, 51, 135, 0.45);
+    display: flex; align-items: center; gap: 14px;
+  }
+  .z2-lb-arrow {
+    flex-shrink: 0;
+    width: 32px; height: 32px;
+    border: 2px solid var(--azure);
+    display: flex; align-items: center; justify-content: center;
+    color: var(--azure); font-weight: 700; font-size: 18px;
+  }
+  .z2-lb-eyebrow {
+    font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--azure); font-weight: 700; margin-bottom: 2px;
+  }
+  .z2-lb-text { font-size: 12px; color: var(--fg); line-height: 1.4; margin: 0; }
+  .z2-lb-text strong { color: var(--azure); font-weight: 700; }
 
   /* Quarterly phase strip */
   .phase-strip {
@@ -754,16 +1022,521 @@
     color: var(--highlighter); font-weight: 700; line-height: 1.3;
   }
   .engine-cycle {
-    margin-top: 32px; padding: 18px 24px;
-    background: rgba(226, 237, 122, 0.08); border: 1px solid var(--highlighter);
+    margin-top: 36px; padding: 22px 24px;
+    background: rgba(226, 237, 122, 0.10); border: 1px solid var(--highlighter);
     text-align: center;
   }
   .engine-cycle .cycle-line {
-    font-size: 16px; color: var(--highlighter); font-weight: 700; letter-spacing: -0.005em;
+    font-size: 17px; color: var(--ghost); font-weight: 700; letter-spacing: -0.005em;
+    line-height: 1.5;
   }
-  .engine-cycle .cycle-line .arrow { color: var(--ghost); margin: 0 8px; }
-  .engine-cycle .cycle-line .return { color: var(--ghost); margin: 0 8px; }
-  .engine-cycle .cycle-note { font-size: 12px; color: var(--azure-200); margin-top: 6px; }
+  .engine-cycle .cycle-line .arrow { color: var(--highlighter); margin: 0 8px; font-weight: 800; }
+  .engine-cycle .cycle-line .return {
+    color: var(--shadow); background: var(--highlighter);
+    padding: 2px 10px; margin: 0 8px; font-weight: 900;
+    display: inline-block; letter-spacing: 0;
+  }
+  .engine-cycle .cycle-note { font-size: 12px; color: var(--azure-200); margin-top: 10px; }
+  .engine-cycle .cycle-note strong { color: var(--highlighter); font-weight: 700; }
+
+  /* Step 01 · The Idea — parallel input bubbles */
+  .idea-inputs { display: flex; flex-direction: column; gap: 8px; }
+  .idea-input {
+    background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.10);
+    padding: 10px 12px; transition: border-color 200ms var(--ease), background 200ms var(--ease);
+  }
+  .idea-input:hover { border-color: var(--highlighter); background: rgba(226, 237, 122, 0.06); }
+  .idea-input .ii-num {
+    font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--highlighter); font-weight: 700; margin-bottom: 4px;
+  }
+  .idea-input h5 { font-size: 13px; color: var(--ghost); margin-bottom: 3px; letter-spacing: -0.005em; line-height: 1.2; }
+  .idea-input p { font-size: 11px; color: var(--azure-200); line-height: 1.4; margin: 0; }
+  .idea-input.pattern-break-anchor {
+    background: rgba(226, 237, 122, 0.10); border-color: rgba(226, 237, 122, 0.45);
+  }
+  .idea-input .ii-tie {
+    margin-top: 8px; padding-top: 8px; border-top: 1px dashed rgba(226, 237, 122, 0.45);
+    font-size: 10px; letter-spacing: 0.02em; color: var(--highlighter); font-weight: 700; line-height: 1.4;
+  }
+
+  /* Step 02 · The Format — three orthogonal lanes */
+  .format-lanes { display: flex; flex-direction: column; gap: 10px; }
+  .format-lane {
+    background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.12);
+    border-left: 3px solid var(--highlighter);
+    padding: 10px 12px;
+    transition: background 200ms var(--ease);
+  }
+  .format-lane:hover { background: rgba(255,255,255,0.06); }
+  .format-lane .fl-label {
+    font-size: 9px; letter-spacing: 0.20em; text-transform: uppercase;
+    color: var(--highlighter); font-weight: 700; margin-bottom: 8px;
+  }
+  .format-lane .fl-options { display: flex; flex-direction: column; gap: 7px; }
+  .format-lane .fl-opt {
+    display: flex; flex-direction: column; gap: 2px;
+    font-size: 11px; color: var(--azure-200); line-height: 1.4;
+  }
+  .format-lane .fl-opt strong { color: var(--ghost); font-weight: 700; font-size: 11px; letter-spacing: -0.005em; }
+  .format-note {
+    margin-top: 10px; padding: 8px 10px;
+    background: rgba(226, 237, 122, 0.06); border: 1px dashed rgba(226, 237, 122, 0.35);
+    font-size: 10px; color: var(--ghost); line-height: 1.45;
+  }
+
+  /* Step 03 · The Hook — 7-technique grid + descriptor + craft callout */
+  .hook-grid { display: flex; flex-direction: column; gap: 6px; }
+  .hook-tech {
+    background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.10);
+    padding: 8px 10px;
+    display: flex; flex-direction: column; gap: 2px;
+    transition: border-color 200ms var(--ease), background 200ms var(--ease);
+  }
+  .hook-tech:hover { border-color: var(--highlighter); background: rgba(226, 237, 122, 0.06); }
+  .hook-tech .ht-num {
+    font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--highlighter); font-weight: 700;
+  }
+  .hook-tech h6 { font-size: 12px; color: var(--ghost); margin: 0; letter-spacing: -0.005em; line-height: 1.2; font-weight: 700; }
+  .hook-tech p { font-size: 10px; color: var(--azure-200); line-height: 1.4; margin: 0; }
+  .hook-stack-note {
+    margin-top: 10px; padding: 8px 12px;
+    border-left: 3px solid var(--highlighter);
+    background: rgba(255,255,255,0.03);
+    font-size: 11px; color: var(--ghost); font-weight: 600; line-height: 1.45;
+    letter-spacing: -0.005em;
+  }
+  .craft-callout {
+    margin-top: 10px; padding: 11px 12px;
+    background: rgba(226, 237, 122, 0.10); border: 1px solid rgba(226, 237, 122, 0.45);
+  }
+  .craft-callout .cc-eyebrow {
+    font-size: 9px; letter-spacing: 0.20em; text-transform: uppercase;
+    color: var(--highlighter); font-weight: 700; margin-bottom: 5px;
+  }
+  .craft-callout p { font-size: 11px; color: var(--ghost); line-height: 1.5; margin: 0; }
+
+  /* Step 04 · The Data — action sequence + quarterly tieback */
+  .data-actions { display: flex; flex-direction: column; gap: 6px; }
+  .data-action {
+    background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.10);
+    padding: 8px 10px;
+    transition: border-color 200ms var(--ease), background 200ms var(--ease);
+  }
+  .data-action:hover { border-color: var(--highlighter); background: rgba(226, 237, 122, 0.06); }
+  .data-action .da-eyebrow {
+    font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--highlighter); font-weight: 700; margin-bottom: 3px;
+  }
+  .data-action p { font-size: 11px; color: var(--azure-200); line-height: 1.4; margin: 0; }
+  .data-action p strong { color: var(--ghost); font-weight: 700; }
+  .quarterly-tieback {
+    margin-top: 12px; padding: 11px 12px;
+    background: rgba(226, 237, 122, 0.10); border: 1px solid var(--highlighter);
+  }
+  .quarterly-tieback .qt-eyebrow {
+    font-size: 9px; letter-spacing: 0.20em; text-transform: uppercase;
+    color: var(--highlighter); font-weight: 700; margin-bottom: 5px;
+  }
+  .quarterly-tieback p { font-size: 11px; color: var(--ghost); line-height: 1.45; margin: 0; font-weight: 600; }
+
+  /* Engine column · Signal Method badges (Tier 1 mapping) */
+  .engine-step .es-sm-badges {
+    display: flex; flex-wrap: wrap; gap: 4px;
+    margin-top: 4px;
+  }
+  .es-sm-badge {
+    display: inline-flex; align-items: center; gap: 4px;
+    background: rgba(226, 237, 122, 0.10);
+    border: 1px dashed rgba(226, 237, 122, 0.55);
+    color: var(--highlighter);
+    padding: 3px 7px;
+    font-size: 9px;
+    letter-spacing: 0.10em;
+    text-transform: uppercase;
+    font-weight: 700;
+    line-height: 1.25;
+  }
+  .es-sm-badge::before {
+    content: '◇';
+    font-size: 8px;
+    opacity: 0.85;
+  }
+  /* Step 03 · Strategic Standard variant (distinct from Signal Method Component badges) */
+  .es-std-badge {
+    display: inline-flex; align-items: flex-start; gap: 6px;
+    background: rgba(212, 183, 58, 0.10);
+    border: 1px dashed rgba(212, 183, 58, 0.55);
+    color: var(--cream);
+    padding: 5px 9px;
+    font-size: 9px;
+    letter-spacing: 0.08em;
+    line-height: 1.35;
+    font-weight: 600;
+    max-width: 100%;
+  }
+  .es-std-badge::before {
+    content: '★';
+    font-size: 9px;
+    color: var(--gold-300);
+    flex-shrink: 0;
+  }
+  .es-std-badge strong {
+    color: var(--cream);
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  /* Tier 3 SKILL link bar inside dark engine (Step 01 bonus) */
+  .idea-input .ii-skill-link {
+    margin-top: 8px; padding-top: 8px;
+    border-top: 1px dashed rgba(155, 191, 255, 0.30);
+    font-size: 10px; letter-spacing: 0.02em;
+    color: var(--azure-200); line-height: 1.45;
+    font-weight: 600;
+  }
+  .idea-input .ii-skill-link .sl-prefix {
+    color: var(--highlighter);
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    margin-right: 4px;
+    font-size: 9px;
+  }
+  .idea-input .ii-skill-link code {
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: 10px;
+    color: var(--highlighter);
+    background: rgba(226, 237, 122, 0.08);
+    padding: 1px 5px;
+    border: 1px solid rgba(226, 237, 122, 0.30);
+    letter-spacing: 0;
+  }
+
+  /* ============================================================
+     SIGNAL METHOD CALLOUT (Zone 02 named framework)
+     ============================================================ */
+  .signal-method {
+    margin-top: 28px;
+    background: var(--ghost);
+    border: 2px solid var(--azure);
+    box-shadow: 0 1px 0 rgba(12, 51, 135, 0.06);
+    position: relative;
+  }
+  .signal-method-header {
+    background: var(--highlighter);
+    border-bottom: 2px solid var(--azure);
+    padding: 12px 28px;
+    display: flex; align-items: center; gap: 14px;
+    flex-wrap: wrap;
+  }
+  .signal-method-header .sm-badge {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: var(--azure);
+    color: var(--highlighter);
+    padding: 6px 12px;
+    font-size: 10px;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    font-weight: 700;
+    border: 1.5px solid var(--shadow);
+    line-height: 1;
+  }
+  .signal-method-header .sm-badge .sm-star {
+    font-size: 11px;
+    line-height: 1;
+  }
+  .signal-method-header .sm-zone {
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--shadow);
+    font-weight: 700;
+  }
+  .signal-method-header .sm-zone-divider {
+    color: var(--shadow);
+    opacity: 0.5;
+    font-weight: 700;
+  }
+  .signal-method-body {
+    padding: 24px 28px 28px;
+  }
+  .signal-method-body h3 {
+    font-size: 26px;
+    color: var(--azure);
+    letter-spacing: -0.015em;
+    line-height: 1.1;
+    margin-bottom: 10px;
+  }
+  .signal-method-body .sm-lede {
+    font-size: 14px;
+    color: var(--fg);
+    line-height: 1.5;
+    max-width: 76ch;
+    margin-bottom: 12px;
+  }
+  .signal-method-body .sm-lede strong { color: var(--azure); font-weight: 700; }
+  .signal-method-body .sm-components-line {
+    font-size: 13px;
+    color: var(--fg);
+    line-height: 1.55;
+    padding: 12px 14px;
+    background: var(--lucid-soft);
+    border-left: 3px solid var(--azure);
+    margin-bottom: 18px;
+  }
+  .signal-method-body .sm-components-line strong {
+    color: var(--azure);
+    font-weight: 700;
+  }
+  .signal-method-components {
+    border-top: 1px solid var(--rule);
+  }
+  .sm-component {
+    border-bottom: 1px solid var(--rule);
+  }
+  .sm-component:last-child { border-bottom: none; }
+  .sm-component > summary {
+    list-style: none; cursor: pointer;
+    padding: 16px 18px;
+    display: grid;
+    grid-template-columns: 90px 1fr auto;
+    gap: 16px; align-items: center;
+    transition: background 200ms var(--ease);
+    user-select: none;
+  }
+  .sm-component > summary::-webkit-details-marker { display: none; }
+  .sm-component > summary:hover { background: var(--bg-alt); }
+  .sm-component .smc-num {
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--azure);
+    font-weight: 700;
+  }
+  .sm-component .smc-title h5 {
+    font-size: 15px;
+    color: var(--azure);
+    letter-spacing: -0.005em;
+    line-height: 1.2;
+    font-weight: 700;
+    margin-bottom: 3px;
+  }
+  .sm-component .smc-title p {
+    font-size: 13px;
+    color: var(--fg);
+    line-height: 1.5;
+    margin: 0;
+    font-weight: 500;
+  }
+  .sm-component .smc-toggle {
+    width: 26px; height: 26px;
+    border: 1px solid var(--azure);
+    background: var(--ghost);
+    color: var(--azure);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 14px; font-weight: 700;
+    transition: transform 300ms var(--ease), background 200ms var(--ease);
+  }
+  .sm-component[open] > summary .smc-toggle {
+    transform: rotate(45deg); background: var(--azure); color: var(--ghost);
+  }
+  .sm-component-body {
+    padding: 4px 18px 20px;
+    display: flex; flex-direction: column; gap: 12px;
+    animation: revealDown 300ms var(--ease);
+  }
+  .sm-component-body p { font-size: 13px; color: var(--fg); line-height: 1.5; margin: 0; }
+  .sm-component-body p strong { color: var(--azure); font-weight: 700; }
+  .sm-component-body ul {
+    margin: 0; padding-left: 20px;
+    display: flex; flex-direction: column; gap: 6px;
+  }
+  .sm-component-body li {
+    font-size: 13px; color: var(--fg); line-height: 1.5;
+  }
+  .sm-component-body li strong { color: var(--azure); font-weight: 700; }
+
+  /* Stage ladder table (Funnel-Mapped Content Mix) */
+  .stage-ladder {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--cream-soft);
+    border: 1px solid var(--gold-300);
+    margin: 2px 0;
+    font-size: 12px;
+  }
+  .stage-ladder th {
+    background: var(--cream);
+    color: var(--gold-700);
+    text-align: left;
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    font-weight: 700;
+    padding: 8px 12px;
+    border-bottom: 1px solid var(--gold-300);
+  }
+  .stage-ladder th.right { text-align: center; }
+  .stage-ladder td {
+    padding: 10px 12px;
+    border-bottom: 1px solid rgba(212, 183, 58, 0.30);
+    color: var(--fg);
+    vertical-align: top;
+  }
+  .stage-ladder tr:last-child td { border-bottom: none; }
+  .stage-ladder td.stage-name {
+    font-weight: 700;
+    color: var(--azure);
+    letter-spacing: -0.005em;
+  }
+  .stage-ladder td.stage-desc {
+    color: var(--fg-muted);
+    font-size: 12px;
+    line-height: 1.4;
+  }
+  .stage-ladder td.stage-mix {
+    font-variant-numeric: tabular-nums;
+    text-align: center;
+    font-weight: 700;
+    color: var(--gold-700);
+    font-size: 12px;
+  }
+
+  /* Adapt / Invent examples block (folded into Funnel-Mapped collapsible) */
+  .lane-examples {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+  .lane-example {
+    background: var(--bg-alt);
+    border: 1px solid var(--rule);
+    border-left: 3px solid var(--highlighter);
+    padding: 10px 12px;
+  }
+  .lane-example .le-label {
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--azure);
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+  .lane-example p {
+    font-size: 12px;
+    color: var(--fg);
+    line-height: 1.45;
+    margin: 0;
+  }
+  .lane-example p + p { margin-top: 4px; }
+
+  /* Weight table (Three-Tier Metric Hierarchy) */
+  .weight-table {
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid var(--rule);
+    background: var(--ghost);
+    margin: 2px 0;
+    font-size: 12px;
+  }
+  .weight-table th {
+    background: var(--bg-alt);
+    color: var(--azure);
+    text-align: left;
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    font-weight: 700;
+    padding: 8px 12px;
+    border-bottom: 1px solid var(--rule);
+  }
+  .weight-table th.center { text-align: center; }
+  .weight-table td {
+    padding: 10px 12px;
+    border-bottom: 1px solid var(--rule-faint);
+    color: var(--fg);
+    vertical-align: top;
+    line-height: 1.4;
+  }
+  .weight-table tr:last-child td { border-bottom: none; }
+  .weight-table td.wt-tier {
+    font-weight: 700;
+    color: var(--azure);
+    white-space: nowrap;
+  }
+  .weight-table td.wt-weight {
+    font-variant-numeric: tabular-nums;
+    font-weight: 700;
+    color: var(--azure);
+    text-align: center;
+    white-space: nowrap;
+  }
+
+  /* 6.0 floor callout */
+  .floor-callout {
+    padding: 12px 14px;
+    background: rgba(12, 51, 135, 0.05);
+    border-left: 3px solid var(--azure);
+    font-size: 12px;
+    color: var(--fg);
+    line-height: 1.5;
+  }
+  .floor-callout strong { color: var(--azure); font-weight: 700; }
+  .floor-callout code {
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: 11px;
+    color: var(--azure-900);
+    background: var(--ghost);
+    padding: 1px 5px;
+    border: 1px solid var(--azure-200);
+  }
+
+  /* SKILL link bar (Tier 3 pill, light surfaces) */
+  .skill-link {
+    margin-top: 4px;
+    padding: 9px 12px;
+    background: var(--lucid-soft);
+    border: 1px dashed var(--azure-300);
+    display: flex; align-items: center; gap: 8px;
+    flex-wrap: wrap;
+    font-size: 12px;
+    color: var(--azure);
+    font-weight: 600;
+    line-height: 1.4;
+  }
+  .skill-link .sl-prefix {
+    color: var(--azure);
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    font-size: 10px;
+  }
+  .skill-link code {
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: 11px;
+    color: var(--azure-900);
+    background: var(--ghost);
+    padding: 1px 6px;
+    border: 1px solid var(--azure-200);
+    letter-spacing: 0;
+  }
+
+  /* Cadence cross-ref annotation */
+  .cadence-cross-ref {
+    margin-top: 6px;
+    font-size: 11px;
+    color: var(--azure);
+    font-weight: 600;
+    letter-spacing: 0;
+  }
+  .cadence-cross-ref::before {
+    content: '→ ';
+    color: var(--azure);
+    font-weight: 700;
+  }
 
   /* ============================================================
      ZONE 03 GATE
@@ -1204,6 +1977,34 @@
     .sd-weeks { grid-template-columns: 1fr; gap: 10px; }
     .sd-week { padding: 12px 14px; }
 
+    .brand-immersion-band { grid-template-columns: 1fr; gap: 10px; padding: 12px 14px; }
+    .brand-immersion-band .bi-eyebrow { align-self: flex-start; font-size: 9px; padding: 5px 10px; }
+    .brand-immersion-band .bi-span { font-size: 9px; gap: 6px; }
+    .brand-immersion-band .bi-marker { padding: 3px 8px; }
+    .brand-immersion-band p { font-size: 12px; }
+
+    .node .n-detail { margin-top: 4px; }
+    .node .n-detail li { font-size: 10px; }
+
+    .platform-audit { padding: 10px 12px; }
+    .platform-audit h6 { font-size: 12px; }
+    .platform-audit p { font-size: 10px; }
+
+    .phase-collapsible > summary { grid-template-columns: auto 1fr auto; padding: 12px 14px; gap: 10px; }
+    .phase-collapsible .pc-tag { font-size: 8px; padding: 4px 8px; }
+    .phase-collapsible .pc-title h5 { font-size: 14px; }
+    .phase-collapsible .pc-title p { font-size: 11px; }
+    .phase-collapsible-body { padding: 4px 14px 14px; }
+    .pc-row { grid-template-columns: 1fr; gap: 4px; padding: 8px 0; }
+    .pc-row .pc-row-label { font-size: 9px; }
+    .pc-row .pc-row-body { font-size: 11px; }
+    .pc-zones { grid-template-columns: 1fr; gap: 6px; }
+    .pc-tier-table { font-size: 11px; display: block; overflow-x: auto; }
+
+    .annual-review-detail { padding: 14px 14px; }
+    .annual-review-detail h4 { font-size: 15px; }
+    .ard-grid { grid-template-columns: 1fr; gap: 8px; }
+
     .loop-callouts { grid-template-columns: 1fr; gap: 10px; }
     .phase-strip { padding: 16px 14px; }
     .phase-cycle { grid-template-columns: 1fr; }
@@ -1211,6 +2012,24 @@
     .phase-cycle-item:last-child { border-bottom: none; }
 
     .mini-gate { grid-template-columns: 1fr; gap: 10px; padding: 14px 16px; }
+
+    .signal-method-header { padding: 12px 16px; gap: 10px; }
+    .signal-method-header .sm-badge { padding: 5px 10px; font-size: 9px; letter-spacing: 0.20em; }
+    .signal-method-header .sm-zone { font-size: 10px; }
+    .signal-method-body { padding: 18px 16px 22px; }
+    .signal-method-body h3 { font-size: 22px; }
+    .signal-method-body .sm-lede { font-size: 13px; }
+    .signal-method-body .sm-components-line { font-size: 12px; padding: 10px 12px; }
+    .sm-component > summary { grid-template-columns: 1fr auto; padding: 14px 14px; gap: 12px; }
+    .sm-component .smc-num { display: none; }
+    .sm-component .smc-title h5 { font-size: 14px; }
+    .sm-component .smc-title p { font-size: 12px; }
+    .sm-component-body { padding: 4px 14px 18px; }
+    .sm-component-body p, .sm-component-body li { font-size: 12px; }
+    .stage-ladder, .weight-table { font-size: 11px; display: block; overflow-x: auto; }
+    .lane-examples { grid-template-columns: 1fr; gap: 8px; }
+    .skill-link { font-size: 11px; padding: 8px 10px; }
+    .skill-link code { font-size: 10px; }
 
     .engine { padding: 32px 18px 36px; margin: 28px 0; }
     .engine-header { grid-template-columns: 1fr; gap: 14px; padding-bottom: 18px; margin-bottom: 22px; }
@@ -1289,7 +2108,7 @@
     <a href="https://scrollmedia.co" class="brand" aria-label="Scroll Media">
       <img src="https://tools.scrollmedia.co/assets/scroll-media-logo.svg" alt="Scroll Media" class="brand-logo" onerror="this.style.display='none';this.nextElementSibling.style.display='inline';" />
       <span class="brand-fallback">Scroll Media</span>
-      <span class="tag">The Scroll Method</span>
+      <span class="tag">The Scroll System</span>
     </a>
     <nav class="nav-links" aria-label="Page navigation">
       <a href="#timeline">Timeline</a>
@@ -1311,7 +2130,8 @@
 
     <!-- HEADLINE -->
     <div class="headline">
-      <span class="h-eyebrow">The Scroll Method · v1.0</span>
+      <!-- Scroll System v2.0 (formerly Scroll Method v1.0). Renamed May 2026. Major architectural revision: umbrella rename + Content Engine rebuild + new named frameworks + three-tier depth pattern + 5-breakpoint audit standard. -->
+      <span class="h-eyebrow">Scroll System · v2.0</span>
       <div class="headline-grid">
         <div>
           <h1>The architecture every Scroll Media engagement runs on.</h1>
@@ -1400,11 +2220,12 @@
           <div class="fp-num">03</div>
           <h5>Prospect Tiering</h5>
           <p>Four-lane niche framework. Tight follower bands. Geo-zoned ownership across the team.</p>
+          <span class="fp-annot">Referral channel runs Tier 1 alongside cold outreach</span>
         </div>
         <div class="foundation-pill">
           <div class="fp-num">04</div>
           <h5>Brand OS</h5>
-          <p>One brand. One voice. One visual system. Every surface inherits the standards.</p>
+          <p>One brand. Voice layered across surfaces.</p>
         </div>
       </div>
     </div>
@@ -1431,7 +2252,7 @@
         <div class="phase-zero-pill">
           <div class="pzp-num">02</div>
           <h5>Lead Magnet</h5>
-          <p>The Local Brand Growth Manual. Free, no email gate. Establishes expertise.</p>
+          <p>The Local Brand Growth Manual. Email-gated authority asset. First name + email. Tags Kit nurture · routes ManyChat keyword flow.</p>
           <div class="pzp-meta">Top of funnel</div>
         </div>
         <div class="phase-zero-pill">
@@ -1498,6 +2319,15 @@
           <h4>Onboarding</h4>
           <p class="n-desc">Contract signed. Onboarding form captures the business in detail. Link Infrastructure Intake closes the attribution gap.</p>
           <div class="n-get"><strong>You get</strong>Clean paperwork. Two short forms. About 30 minutes total.</div>
+          <div class="n-detail">
+            <div class="nd-label">↓ What the forms capture</div>
+            <ul>
+              <li>Business questionnaire · history, model, audience, offers</li>
+              <li>Brand asset intake · logo, palette, fonts, photography</li>
+              <li>Vendor stack mapping · POS, booking, email, ads, CRM</li>
+              <li>IVP source material · existing reviews, FAQs, founder notes</li>
+            </ul>
+          </div>
           <div class="n-out">→ Kickoff scheduled</div>
         </div>
         <div class="flow-arrow">→</div>
@@ -1506,6 +2336,15 @@
           <h4>Kickoff</h4>
           <p class="n-desc">Structured live meeting. We lock the three biggest goals for the year and capture your business in your own words.</p>
           <div class="n-get"><strong>You get</strong>A 60-minute meeting where we lock the year's goals together.</div>
+          <div class="n-detail">
+            <div class="nd-label">↓ What the meeting locks</div>
+            <ul>
+              <li>Founder voice capture · the way you actually talk about the business</li>
+              <li>3 Goals locked in your own language, not agency reframes</li>
+              <li>AM-client handoff · your day-to-day partner introduced live</li>
+              <li>IVP draft begins · psychological profile takes first shape</li>
+            </ul>
+          </div>
           <div class="n-out">→ Strategy inputs captured</div>
         </div>
         <div class="flow-arrow">→</div>
@@ -1515,6 +2354,21 @@
           <p class="n-desc">Three-week build sprint. IVP, pillars, format library, content calendar, KPI framework, profile optimization. Live Homebase deployed.</p>
           <div class="n-get"><strong>You get</strong>A live strategy webpage and a 60-minute walkthrough. Yours forever.</div>
           <div class="n-out">→ Execution begins</div>
+        </div>
+      </div>
+
+      <!-- BRAND IMMERSION accent band — spans Phases 04 → 05 → 06 Week 1 -->
+      <div class="brand-immersion-band">
+        <span class="bi-eyebrow"><span class="bi-star">★</span>Brand Immersion</span>
+        <div class="bi-body">
+          <div class="bi-span">
+            <span class="bi-marker"><strong>Phase 04</strong></span>
+            <span class="bi-arrow">→</span>
+            <span class="bi-marker"><strong>Phase 05</strong></span>
+            <span class="bi-arrow">→</span>
+            <span class="bi-marker"><strong>Phase 06 · Week 1</strong></span>
+          </div>
+          <p>Before we write a single line of strategy, we absorb your brand. The onboarding form captures your business in detail. The kickoff meeting locks your goals in your own words. Week 1 of the strategy sprint synthesizes everything into your Ideal Viewer Profile. <strong>The strategy that follows is built on your brand, not agency assumptions.</strong></p>
         </div>
       </div>
 
@@ -1552,6 +2406,109 @@
         </div>
       </div>
 
+      <!-- PHASE 01 collapsible · Inside the outreach engine (Tier 2 depth) -->
+      <details class="phase-collapsible" id="outreach-engine">
+        <summary>
+          <span class="pc-tag">Tier 2 · Phase 01</span>
+          <div class="pc-title">
+            <h5>Inside the outreach engine</h5>
+            <p>How 95 personal touches a day get sourced, sorted, and assigned without sacrificing personalization.</p>
+          </div>
+          <div class="pc-toggle" aria-hidden="true">+</div>
+        </summary>
+        <div class="phase-collapsible-body">
+          <p>The outreach motion runs against a master prospect list maintained as the system of record. Every prospect carries a niche lane, a follower-band signal, a tier, an owner, and a channel allocation. Daily worklists pull from saved filter views so each operator opens the workday to a sorted, ranked queue.</p>
+
+          <div class="pc-rows">
+            <div class="pc-row">
+              <div class="pc-row-label">4-Lane Niche Framework</div>
+              <div class="pc-row-body">
+                Tier eligibility flows through a 4-lane gate based on first-principles fit with organic Instagram for local brands. <strong>Strict A-eligible</strong> covers the top organic-IG niches (med spa, hair / nail studio, fitness studio, interior design, real estate, restaurant, bar, bakery, brewery, coffee shop, pizza shop). <strong>Conditional A</strong> qualifies only if all three signals hit (Cincy core, 2k-10k followers, founder identifiable). <strong>B-tier max</strong> covers ICP-fit niches with weaker organic-IG fit. <strong>Force-route to C</strong> applies to structurally weak niches regardless of other signals.
+              </div>
+            </div>
+
+            <div class="pc-row">
+              <div class="pc-row-label">Follower Bands</div>
+              <div class="pc-row-body">
+                The <strong>2,000-10,000 band</strong> is the prime acquisition zone. 1k-2k or 10k-15k counts as acceptable A. 15k-20k is B-tier max. 20k+ is anti-signal (already established, doesn't need Scroll) and force-routes to C. Below 500 force-routes to C unless flagged High Priority.
+              </div>
+            </div>
+
+            <div class="pc-row">
+              <div class="pc-row-label">Geo-Zoned Operator Ownership</div>
+              <div class="pc-row-body">
+                The team's IG outreach surface is divided by geographic territory. Operators build local presence in the neighborhoods they actually know.
+                <div class="pc-zones">
+                  <div class="pc-zone">
+                    <div class="pc-zone-op">Emily</div>
+                    <div class="pc-zone-area">OTR · Downtown · Pendleton · Mt. Auburn · Mt. Adams · Northside · Queensgate · West End · East End</div>
+                  </div>
+                  <div class="pc-zone">
+                    <div class="pc-zone-op">Rachel</div>
+                    <div class="pc-zone-area">All NKY · Covington · Newport · Florence · Bellevue · Erlanger · Ft. Mitchell · Ft. Thomas · Edgewood · Hebron · Union</div>
+                  </div>
+                  <div class="pc-zone">
+                    <div class="pc-zone-op">Riley</div>
+                    <div class="pc-zone-area">East side · Hyde Park · Oakley · Mt. Lookout · Mariemont · Madisonville · Anderson · Indian Hill · Loveland · Norwood</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="pc-row">
+              <div class="pc-row-label">Tier-Based Channel Allocation</div>
+              <div class="pc-row-body">
+                <table class="pc-tier-table">
+                  <thead>
+                    <tr>
+                      <th>Tier</th>
+                      <th>Channels active</th>
+                      <th>Logic</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td class="pc-tier-name">A-tier</td>
+                      <td>Multi-channel · Chase email + Chase LinkedIn + IG @scrollmedia.co (team) + IG @chase.scrolls (Chase)</td>
+                      <td>Saturation. A-tier deserves multi-surface presence.</td>
+                    </tr>
+                    <tr>
+                      <td class="pc-tier-name">B-tier</td>
+                      <td>1-2 channels · (Chase email + IG) OR (Chase LinkedIn + IG)</td>
+                      <td>Selective. Don't burn Chase's volume across every B-tier prospect.</td>
+                    </tr>
+                    <tr>
+                      <td class="pc-tier-name">C-tier</td>
+                      <td>IG-only via @scrollmedia.co</td>
+                      <td>Team-owned. Preserves Chase's email and LinkedIn bandwidth for A and B-tier.</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <div class="pc-row">
+              <div class="pc-row-label">Daily Volume</div>
+              <div class="pc-row-body">
+                <strong>Chase:</strong> 25 cold emails + 25 LinkedIn DMs + 10-15 IG @chase.scrolls touches Tue / Wed / Thu. <strong>Team operators (Emily · Rachel · Riley):</strong> 10-15 IG @scrollmedia.co touches per operator per day. <strong>Combined: roughly 95-100 daily outreach touches</strong> across all four operators, plus audit recordings, content posts, and engagement work.
+              </div>
+            </div>
+
+            <div class="pc-row">
+              <div class="pc-row-label">System of Record</div>
+              <div class="pc-row-body">
+                The <strong>master prospect spreadsheet</strong> is the system of record. Every prospect row carries tier, niche lane, follower count, owner, IG @scrollmedia.co owner, channel allocation, next-touch date, funnel stage, and last touch channel. Every operator's daily worklist runs off a saved filter view keyed to their assignment column.
+              </div>
+            </div>
+          </div>
+
+          <div class="skill-link">
+            <span class="sl-prefix">→ Deep dive</span>
+            <code>05_Business_Dev/customer_acquisition/master_context.md</code>
+          </div>
+        </div>
+      </details>
+
       <!-- STRATEGY BUILD DETAIL — deep-dive inside Phase 06 -->
       <div class="strategy-detail">
         <div class="sd-header">
@@ -1577,10 +2534,16 @@
               <li>Content Pillars · 4 pillars mapped to IVP motivators</li>
               <li>Format Library · Two-Path system · 60-70% Reels / 30% Carousels mix discipline</li>
               <li>Feed + Stories Strategy · cadence, hook framework, sticker strategy</li>
-              <li>SEO Keyword Bank · 4-Tier TAM Ladder</li>
+              <li>SEO Keyword Bank · Industry-broad to neighborhood-specific terms layered into bio, captions, alt text, and content topics</li>
               <li>KPI Framework · Scoring v1.2 + stage benchmarks</li>
               <li>Profile Optimization + Conditional Modules</li>
             </ul>
+            <div class="platform-audit">
+              <div class="pa-eyebrow">★ Named sub-step · Phase 06 Week 2</div>
+              <h6>Platform Audit</h6>
+              <p>We audit your current Instagram against your IVP and competitive landscape. Profile, bio, highlights, grid, current content patterns, vendor stack, brand proof points.</p>
+              <p><strong>Output:</strong> profile optimization recommendations + competitive gap analysis. The audit informs the rest of the strategy architecture.</p>
+            </div>
             <div class="sd-output">→ Full strategy architecture built</div>
           </div>
           <div class="sd-week">
@@ -1631,6 +2594,10 @@
           <p class="n-desc">Shoot every 3 weeks. Edit, caption, publish. 60-70% Reels, ~30% Carousels. Every piece runs through the Content Engine first.</p>
           <div class="n-get"><strong>You get</strong>3 feed posts a week + story coverage. We handle production end to end.</div>
           <div class="n-out">→ Published content</div>
+          <div class="voice-marker">
+            <div class="vm-eyebrow">Brand voice enforcement</div>
+            <p>Foundation Layer positioning gets enforced at production, not just defined upfront. <strong>Two voices, deliberately distinct:</strong> agency voice on Scroll surfaces, Chase voice on @chase.scrolls. AMs inherit agency voice with permitted tonal variation.</p>
+          </div>
         </div>
         <div class="flow-arrow large">→</div>
         <div class="node">
@@ -1650,6 +2617,15 @@
         </div>
       </div>
 
+      <!-- Explicit Phase 09 → Phase 07 loop-back arrow (closes the execution loop) -->
+      <div class="z2-loopback" aria-label="Phase 09 loops back to Phase 07, closing the execution loop">
+        <div class="z2-lb-arrow">↺</div>
+        <div>
+          <div class="z2-lb-eyebrow">Loop close · Phase 09 → Phase 07</div>
+          <p class="z2-lb-text"><strong>The execution loop closes here.</strong> Optimization signals route back into Production every month. The Format Test Log dictates the next rotation. The loop never breaks.</p>
+        </div>
+      </div>
+
       <div class="loop-callouts">
         <div class="loop-callout">
           <div class="loop-icon">↻</div>
@@ -1663,6 +2639,234 @@
           <div>
             <h5>Quarterly Review</h5>
             <p>At Months 3, 6, and 9, Optimization can loop all the way back to Phase 06 for strategy refresh.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- SIGNAL METHOD · Zone 02 named framework callout -->
+      <div class="signal-method" id="signal-method">
+        <div class="signal-method-header">
+          <span class="sm-badge"><span class="sm-star">★</span>NAMED FRAMEWORK</span>
+          <span class="sm-zone">Zone 02</span>
+          <span class="sm-zone-divider">·</span>
+          <span class="sm-zone">Alongside Phase 09 Optimization</span>
+        </div>
+        <div class="signal-method-body">
+          <h3>Signal Method</h3>
+          <p class="sm-lede"><strong>The strategic engine inside Zone 02.</strong> Scroll Media's proprietary framework for engineering content signals deliberately and adjusting on signal, not on calendar.</p>
+          <div class="sm-components-line">Five components run inside Zone 02: <strong>IVP-First Architecture</strong> · <strong>Funnel-Mapped Content Mix</strong> · <strong>Three-Tier Metric Hierarchy</strong> · <strong>Pattern Break Format</strong> · <strong>Signal-Driven Adjustment</strong>.</div>
+
+          <div class="signal-method-components">
+
+            <!-- Component 1 · IVP-First Architecture -->
+            <details class="sm-component" id="sm-ivp">
+              <summary>
+                <span class="smc-num">Component 1</span>
+                <div class="smc-title">
+                  <h5>IVP-First Architecture</h5>
+                  <p>Every content decision routes through the Ideal Viewer Profile. Pillars derive from it. Formats select for it. Hooks land for it. No piece publishes that can't trace back to a specific motivator, pain point, or FAQ.</p>
+                </div>
+                <span class="smc-toggle" aria-hidden="true">+</span>
+              </summary>
+              <div class="sm-component-body">
+                <p><strong>Learn more · The IVP-First discipline in execution.</strong></p>
+                <ul>
+                  <li><strong>FAQs mined from existing customer conversations.</strong> The questions the founder already answers in person become the content backbone. The IVP names the FAQ, the content answers it on camera.</li>
+                  <li><strong>Real Dream Outcome quotes used as hook copy.</strong> If the IVP names "I want my catering inquiries to feel less random," that line shows up verbatim in a hook before it shows up in a script.</li>
+                  <li><strong>B2B versus B2C path branching.</strong> Service businesses often run two IVPs in parallel (end consumer + corporate buyer). Pillars, formats, and CTAs branch by path. One profile never gets bolted onto the other's content.</li>
+                  <li><strong>Buyer-journey-stage content calibration.</strong> A first-time visitor and a six-month follower don't get the same content. The IVP maps awareness, consideration, and conversion behaviors. Content publishes against those stages, not against a universal mix.</li>
+                  <li><strong>Pillar pressure-test.</strong> Every pillar must map to at least one IVP motivator, pain point, or dream outcome. If a pillar doesn't connect, it gets cut before writing begins.</li>
+                </ul>
+                <div class="skill-link">
+                  <span class="sl-prefix">→ Deep dive</span>
+                  <code>01_Strategy/skills/ivp_framework/SKILL.md</code>
+                </div>
+              </div>
+            </details>
+
+            <!-- Component 2 · Funnel-Mapped Content Mix -->
+            <details class="sm-component" id="sm-mix">
+              <summary>
+                <span class="smc-num">Component 2</span>
+                <div class="smc-title">
+                  <h5>Funnel-Mapped Content Mix</h5>
+                  <p>Content mix calibrates to the account's maturity stage. Pushing 25% conversion content on a young account starves the audience-building that conversion depends on. Stage drives mix.</p>
+                </div>
+                <span class="smc-toggle" aria-hidden="true">+</span>
+              </summary>
+              <div class="sm-component-body">
+                <p><strong>Learn more · The stage ladder and the mix it dictates.</strong></p>
+                <p>Four stages of account maturity. Each carries a calibrated top-of-funnel, middle-of-funnel, bottom-of-funnel split. Trust grows through value plus story plus consistency before conversion content earns the right to land.</p>
+                <table class="stage-ladder">
+                  <thead>
+                    <tr>
+                      <th>Stage</th>
+                      <th>Stage description</th>
+                      <th class="right">Top of funnel</th>
+                      <th class="right">Mid funnel</th>
+                      <th class="right">Bottom of funnel</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td class="stage-name">Spark</td>
+                      <td class="stage-desc">Early growth. Audience-building is the job.</td>
+                      <td class="stage-mix">70%</td>
+                      <td class="stage-mix">20%</td>
+                      <td class="stage-mix">10%</td>
+                    </tr>
+                    <tr>
+                      <td class="stage-name">Lift</td>
+                      <td class="stage-desc">Building momentum. Audience knows the brand.</td>
+                      <td class="stage-mix">60%</td>
+                      <td class="stage-mix">25%</td>
+                      <td class="stage-mix">15%</td>
+                    </tr>
+                    <tr>
+                      <td class="stage-name">Rise</td>
+                      <td class="stage-desc">Scaling reach. Conversion content earns its weight.</td>
+                      <td class="stage-mix">50%</td>
+                      <td class="stage-mix">30%</td>
+                      <td class="stage-mix">20%</td>
+                    </tr>
+                    <tr>
+                      <td class="stage-name">Thrive</td>
+                      <td class="stage-desc">Mature compounding. Authority and conversion both pull.</td>
+                      <td class="stage-mix">40%</td>
+                      <td class="stage-mix">35%</td>
+                      <td class="stage-mix">25%</td>
+                    </tr>
+                  </tbody>
+                </table>
+                <p><strong>Lane B Creative Direction in practice.</strong> Adapt and Invent decide where the format gets sourced from. Mix decides how often it runs.</p>
+                <div class="lane-examples">
+                  <div class="lane-example">
+                    <div class="le-label">Adapt · proven sources</div>
+                    <p>Replicate a niche winner using a specific format that's working in-category.</p>
+                    <p>Riff on adjacent niches. A pet brand pulls from food creator structures. A med spa pulls from beauty creator structures.</p>
+                    <p>Model historical winners with less current competition. A 2019 carousel pattern reborn with sharper hooks today.</p>
+                  </div>
+                  <div class="lane-example">
+                    <div class="le-label">Invent · net-new</div>
+                    <p>Create formats no one in the niche is running. Higher risk, higher differentiation upside.</p>
+                    <p>Example: A neighborhood retailer launches a "what we almost named the store" series. No niche precedent. Pure brand IP.</p>
+                  </div>
+                </div>
+                <div class="skill-link">
+                  <span class="sl-prefix">→ Deep dive</span>
+                  <code>01_Strategy/frameworks/signal_method.md · §2.2</code>
+                </div>
+              </div>
+            </details>
+
+            <!-- Component 3 · Three-Tier Metric Hierarchy -->
+            <details class="sm-component" id="sm-metrics">
+              <summary>
+                <span class="smc-num">Component 3</span>
+                <div class="smc-title">
+                  <h5>Three-Tier Metric Hierarchy</h5>
+                  <p>Metrics get weighted by buyer-intent signal. Saves and CTR carry the highest weight. Vanity metrics carry the least. Evaluation aligns to what actually predicts revenue.</p>
+                </div>
+                <span class="smc-toggle" aria-hidden="true">+</span>
+              </summary>
+              <div class="sm-component-body">
+                <p><strong>Learn more · The weighted scoring framework.</strong></p>
+                <p>Ten scored metrics across the funnel. Four tier weights. Saves and CTR sit at T1-High because they map most directly to consideration-stage and conversion-stage behavior. Shares sits at T3 because high shareability often reaches non-buyer audiences.</p>
+                <table class="weight-table">
+                  <thead>
+                    <tr>
+                      <th>Tier</th>
+                      <th class="center">Weight</th>
+                      <th>Metrics</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td class="wt-tier">T1-High</td>
+                      <td class="wt-weight">2.0×</td>
+                      <td>Saves · CTR</td>
+                    </tr>
+                    <tr>
+                      <td class="wt-tier">T1</td>
+                      <td class="wt-weight">1.5×</td>
+                      <td>Retention % · PCR · Link Taps</td>
+                    </tr>
+                    <tr>
+                      <td class="wt-tier">T2</td>
+                      <td class="wt-weight">1.0×</td>
+                      <td>Profile Visits · Comments · New Followers · Total Views</td>
+                    </tr>
+                    <tr>
+                      <td class="wt-tier">T3</td>
+                      <td class="wt-weight">0.75×</td>
+                      <td>Shares</td>
+                    </tr>
+                  </tbody>
+                </table>
+                <div class="floor-callout">
+                  <strong>Why the 6.0 floor.</strong> The score formula is <code>Final Score = 6.0 + (raw × 0.4)</code>. The 6.0 floor compresses scoring to a 0-10 scale clients can read. No client gets a 2/10 on a piece of content. The floor protects the relationship while the multiplier captures the genuine variance. Denominator 13.75 across the 10 scored metrics.
+                </div>
+                <div class="skill-link">
+                  <span class="sl-prefix">→ Deep dive</span>
+                  <code>03_Reporting/skills/performance_report/resources/Scroll_Media_Scoring_Framework.md</code>
+                </div>
+              </div>
+            </details>
+
+            <!-- Component 4 · Pattern Break Format -->
+            <details class="sm-component" id="sm-pattern-break">
+              <summary>
+                <span class="smc-num">Component 4</span>
+                <div class="smc-title">
+                  <h5>Pattern Break Format</h5>
+                  <p>Take something universally familiar. Map the brand onto it. The brain rewards the familiar pattern. The unexpected application creates novelty without confusion. Familiar plus surprising stops the scroll.</p>
+                </div>
+                <span class="smc-toggle" aria-hidden="true">+</span>
+              </summary>
+              <div class="sm-component-body">
+                <p><strong>Learn more · Worked Pattern Break examples.</strong></p>
+                <p>The structure is always the same. A universal cultural reference the IVP already loves crosses with a specific brand product or service. Series-ready execution. Client tone-fit confirmed before committing.</p>
+                <ul>
+                  <li><strong>Local F&amp;B brand × classic TV culture.</strong> Each sandwich on the menu mapped to a recurring sitcom character. One entry per post. The audience returns for the next character.</li>
+                  <li><strong>Service business × pet ownership universal.</strong> Treatment menu mapped to dog breeds with shared personality traits. Specific SKUs, specific breeds, specific reasons.</li>
+                  <li><strong>Neighborhood retailer × historical figures.</strong> Brand products matched to figures the niche associates with that aesthetic or era. Built-in authority borrowed from the reference.</li>
+                  <li><strong>Founder-led service × coffee orders.</strong> If your skincare routine were a coffee order, here's which treatment you'd be. Botox to espresso. Hydrafacial to latte. Real menu, real maps.</li>
+                  <li><strong>Local product × weather archetypes.</strong> Each seasonal special mapped to a weather pattern the IVP recognizes. Works for any brand with a rotating menu or service catalog.</li>
+                </ul>
+                <div class="skill-link">
+                  <span class="sl-prefix">→ Deep dive</span>
+                  <code>01_Strategy/frameworks/signal_method.md · §2.4</code>
+                </div>
+              </div>
+            </details>
+
+            <!-- Component 5 · Signal-Driven Adjustment -->
+            <details class="sm-component" id="sm-adjustment">
+              <summary>
+                <span class="smc-num">Component 5</span>
+                <div class="smc-title">
+                  <h5>Signal-Driven Adjustment</h5>
+                  <p>Strategy adjusts on signal, never on schedule. Single-month dips are noise. Two consecutive months below floor is signal. Five trigger criteria are the only adjustment authorization.</p>
+                </div>
+                <span class="smc-toggle" aria-hidden="true">+</span>
+              </summary>
+              <div class="sm-component-body">
+                <p><strong>Learn more · How the promote/retire loop runs.</strong></p>
+                <p>The monthly Format Test Log review is the operational mechanic that feeds the promote/retire decision. Step 04 The Data publishes the punchy version. This is the precise operational version.</p>
+                <ul>
+                  <li><strong>Promotion criterion.</strong> 3 executions of a format must outperform the funnel-stage floor before it gets promoted to CORE.</li>
+                  <li><strong>Retirement criterion.</strong> 2 consecutive months below floor and the format retires from the rotation.</li>
+                  <li><strong>Review cadence.</strong> Monthly during performance reporting. The Format Test Log is the system of record.</li>
+                  <li><strong>Output.</strong> 2-3 go-to formats per funnel stage locked for the next quarter's all-in execution.</li>
+                </ul>
+                <p>The discipline protects against reactive strategy whiplash. Over-adjusting is a bigger risk than under-adjusting.</p>
+                <div class="skill-link">
+                  <span class="sl-prefix">→ Deep dive</span>
+                  <code>01_Strategy/frameworks/signal_method.md · §2.5</code>
+                </div>
+              </div>
+            </details>
+
           </div>
         </div>
       </div>
@@ -1690,7 +2894,7 @@
           <div class="phase-cycle-item refresh">
             <div class="pc-months">Months 10-12 · Refining + Annual Review</div>
             <h5>Continued execution at full pace</h5>
-            <p>Refinement keeps running. A year-end Annual Strategic Review at Month 11-12 checks IVP, Goals, and positioning. Findings feed the renewal conversation without slowing the work.</p>
+            <p>Refinement keeps running. A year-end Annual Strategic Review fires at Month 11 trigger inside the M10-12 band. Checks IVP, Goals, and positioning. Findings feed the renewal conversation without slowing the work.</p>
           </div>
         </div>
         <div class="phase-strip-restart">If we renew, the next 12 months <strong>restart the cycle</strong> with a refreshed strategy</div>
@@ -1738,146 +2942,205 @@
       </div>
 
       <div class="engine-steps">
+
+        <!-- STEP 01 · THE IDEA -->
         <div class="engine-step">
           <span class="es-num">Step 01</span>
           <h4>The Idea</h4>
-          <p class="es-desc">Map every idea against four checkpoints. If any fails, cut it before the format question is asked.</p>
-          <div class="checkpoints">
-            <div class="checkpoint">
-              <div class="cp-num">Checkpoint 1</div>
-              <h5>IVP First</h5>
-              <p>Ties to a motivator, pain point, FAQ, or dream outcome?</p>
-              <div class="ivp-tree">
-                <div class="ivp-label">↓ Choose buyer path</div>
-                <div class="ivp-paths">
-                  <div class="ivp-path">
-                    <div class="path-label">B2C</div>
-                    <h6>Direct Consumer</h6>
-                    <p>FAQs · Challenges · Dream Outcomes</p>
-                  </div>
-                  <div class="ivp-path">
-                    <div class="path-label">B2B</div>
-                    <h6>Business Buyer</h6>
-                    <p>FAQs · Challenges · Dream Outcomes</p>
-                  </div>
-                </div>
+          <div class="es-sm-badges" aria-label="Signal Method components active at Step 01">
+            <span class="es-sm-badge">Signal Method · IVP-First Architecture</span>
+            <span class="es-sm-badge">Signal Method · Pattern Break Format</span>
+          </div>
+          <p class="es-desc">Five parallel input streams feed ideation. Every idea originates from one or more.</p>
+          <div class="idea-inputs">
+
+            <div class="idea-input">
+              <div class="ii-num">Input 1 · IVP-driven</div>
+              <h5>The Ideal Viewer Profile</h5>
+              <p>FAQs · challenges · dream outcomes · B2C and B2B paths · buyer path · funnel stage mapping · goal mapping.</p>
+              <div class="ii-skill-link">
+                <span class="sl-prefix">→ Deep dive</span>
+                <code>01_Strategy/skills/ideation_framework/SKILL.md</code> · Component 2 · 12-method ideation lane.
               </div>
             </div>
-            <div class="checkpoint">
-              <div class="cp-num">Checkpoint 2</div>
-              <h5>Brand Aligned</h5>
-              <p>Fits the brand voice and the business proposition?</p>
+
+            <div class="idea-input">
+              <div class="ii-num">Input 2 · Trending culture</div>
+              <h5>Real-time relevance</h5>
+              <p>Google Trends · pop culture events · world news. Pulled into brand context, never copied raw.</p>
             </div>
-            <div class="checkpoint">
-              <div class="cp-num">Checkpoint 3</div>
-              <h5>Goal Mapped</h5>
-              <p>Serves one of the 3 client Goals locked at kickoff.</p>
+
+            <div class="idea-input">
+              <div class="ii-num">Input 3 · Niche leader monitoring</div>
+              <h5>Dedicated research account</h5>
+              <p>One account algorithm-trained for the client's niche. Patterns surface fast. Winning formats spotted early.</p>
             </div>
-            <div class="checkpoint">
-              <div class="cp-num">Checkpoint 4</div>
-              <h5>Funnel Stage</h5>
-              <p>Awareness, Engagement, or Conversion. Pick one.</p>
+
+            <div class="idea-input">
+              <div class="ii-num">Input 4 · Historical figure inspiration</div>
+              <h5>Authors, originators, pioneers</h5>
+              <p>The people who built the niche. Less-explored ideation lane with built-in authority to borrow.</p>
             </div>
+
+            <div class="idea-input pattern-break-anchor">
+              <div class="ii-num">Input 5 · Universal brand association mining</div>
+              <h5>Everyday human universals</h5>
+              <p>Pets · coffee · classic TV culture · personality types · weather. Translated into brand-specific content.</p>
+              <div class="ii-tie">★ Produces Pattern Break originals · see Signal Method.</div>
+            </div>
+
           </div>
-          <div class="es-output">→ Output · Validated idea</div>
+          <div class="es-output">→ Output · Validated idea pool</div>
         </div>
 
         <div class="flow-arrow signal">→</div>
 
+        <!-- STEP 02 · THE FORMAT -->
         <div class="engine-step">
           <span class="es-num">Step 02</span>
           <h4>The Format</h4>
-          <p class="es-desc">Choose the format that best delivers the message. Format serves the idea, not the calendar slot.</p>
-          <div class="checkpoints">
-            <div class="checkpoint">
-              <div class="cp-num">Option 1</div>
-              <h5>Founder-Led Authority</h5>
-              <p>Talking head. Owner or founder delivers. For trust and authority.</p>
-            </div>
-            <div class="checkpoint">
-              <div class="cp-num">Option 2</div>
-              <h5>Education Carousel</h5>
-              <p>Tactical depth to an established audience. For saves and substance.</p>
-            </div>
-            <div class="checkpoint">
-              <div class="cp-num">Option 3</div>
-              <h5>Pattern Break</h5>
-              <p>List, clone, mashup, unexpected format. Stops the scroll with novelty.</p>
-            </div>
-            <div class="checkpoint">
-              <div class="cp-num">Option 4</div>
-              <h5>Live Demonstration</h5>
-              <p>Walkthrough, split-screen, in-action. For tactile credibility.</p>
-            </div>
+          <div class="es-sm-badges" aria-label="Signal Method components active at Step 02">
+            <span class="es-sm-badge">Signal Method · Funnel-Mapped Content Mix</span>
           </div>
-          <div class="es-output">→ Output · Format chosen</div>
+          <p class="es-desc">Three orthogonal dimensions. Every idea decides on all three independently.</p>
+          <div class="format-lanes">
+
+            <div class="format-lane">
+              <div class="fl-label">Lane A · Production</div>
+              <div class="fl-options">
+                <div class="fl-opt">
+                  <strong>Path 1 · high-production.</strong>
+                  <span>Agency-led shoot, edit, post. Higher cost, higher polish.</span>
+                </div>
+                <div class="fl-opt">
+                  <strong>Path 2 · founder-led.</strong>
+                  <span>Client-shot, agency-directed. Key Scroll IP differentiator.</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="format-lane">
+              <div class="fl-label">Lane B · Creative Direction</div>
+              <div class="fl-options">
+                <div class="fl-opt">
+                  <strong>Adapt.</strong>
+                  <span>Replicate niche winners. Pull from adjacent niches. Model historical winners with less current competition.</span>
+                </div>
+                <div class="fl-opt">
+                  <strong>Invent.</strong>
+                  <span>Create net-new formats. Higher risk, higher differentiation upside.</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="format-lane">
+              <div class="fl-label">Lane C · Distribution</div>
+              <div class="fl-options">
+                <div class="fl-opt">
+                  <strong>60-70% Reels.</strong>
+                  <span>Algorithm-weighted reach.</span>
+                </div>
+                <div class="fl-opt">
+                  <strong>30% Carousels.</strong>
+                  <span>Save-engineered retention.</span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+          <div class="format-note">The three lanes compose independently. Any Path 1 piece can run Adapt or Invent and ship as Reel or Carousel. Same for Path 2.</div>
+          <div class="es-output">→ Output · Format committed across all three lanes</div>
         </div>
 
         <div class="flow-arrow signal">→</div>
 
+        <!-- STEP 03 · THE HOOK -->
         <div class="engine-step">
           <span class="es-num">Step 03</span>
           <h4>The Hook</h4>
-          <p class="es-desc"><strong>The first 3 seconds decide whether anyone watches the rest.</strong> Five techniques compound to earn that decision. Stack as many as the piece can carry.</p>
-          <div class="checkpoints">
-            <div class="checkpoint">
-              <div class="cp-num">Technique 1</div>
-              <h5>Brand Associations</h5>
-              <p>Repeated taglines, signature openings and closings, recurring on-screen text, colors, backgrounds.</p>
+          <div class="es-sm-badges" aria-label="Strategic Standard active at Step 03">
+            <span class="es-std-badge"><span><strong>Strategic Standard 3</strong> · Hook framework runs as Standard, not Signal Method Component. Standards run parallel to Components inside Zone 02. See signal_method.md §4.3.</span></span>
+          </div>
+          <p class="es-desc"><strong>The first 3 seconds decide whether anyone watches the rest.</strong> Seven canonical techniques, stackable.</p>
+          <div class="hook-grid">
+            <div class="hook-tech">
+              <span class="ht-num">Technique 01</span>
+              <h6>Curiosity Loops</h6>
+              <p>Open with question. Delay payoff.</p>
             </div>
-            <div class="checkpoint">
-              <div class="cp-num">Technique 2</div>
-              <h5>Pattern Interrupts</h5>
-              <p>Unexpected visuals, switching angles, surprising elements. Stops the viewer mid-scroll.</p>
+            <div class="hook-tech">
+              <span class="ht-num">Technique 02</span>
+              <h6>Pattern Interrupts</h6>
+              <p>Unexpected visuals. Switching angles.</p>
             </div>
-            <div class="checkpoint">
-              <div class="cp-num">Technique 3</div>
-              <h5>Curiosity Loops</h5>
-              <p>Open with a question. Delay the payoff. Storytelling structure that pulls viewers through.</p>
+            <div class="hook-tech">
+              <span class="ht-num">Technique 03</span>
+              <h6>Brand Associations</h6>
+              <p>Repeated taglines. Signature openings. Recurring visual marks.</p>
             </div>
-            <div class="checkpoint">
-              <div class="cp-num">Technique 4</div>
-              <h5>Contrarian Takes</h5>
-              <p>Push against the niche norm. Alternative view to the dominant take.</p>
+            <div class="hook-tech">
+              <span class="ht-num">Technique 04</span>
+              <h6>Contrarian Takes</h6>
+              <p>Push against the niche norm.</p>
             </div>
-            <div class="checkpoint">
-              <div class="cp-num">Technique 5</div>
-              <h5>Strong Copywriting</h5>
-              <p>Punchy unique words, lists, frameworks, metaphors, analogies. Quotes from experts who paved the road.</p>
+            <div class="hook-tech">
+              <span class="ht-num">Technique 05</span>
+              <h6>Specific Result Claim</h6>
+              <p>Data-anchored opening promise.</p>
             </div>
+            <div class="hook-tech">
+              <span class="ht-num">Technique 06</span>
+              <h6>Direct Address</h6>
+              <p>Talking to a specific viewer type.</p>
+            </div>
+            <div class="hook-tech">
+              <span class="ht-num">Technique 07</span>
+              <h6>Stakes Hook</h6>
+              <p>What is at risk. What they will miss.</p>
+            </div>
+          </div>
+          <div class="hook-stack-note">Five stack, seven stack, as many as the piece can carry.</div>
+          <div class="craft-callout">
+            <div class="cc-eyebrow">★ Craft underneath</div>
+            <p>Strong copywriting is the craft underneath every technique. Punchy words, lists, frameworks, metaphors, analogies, expert quotes. These are not an 8th technique. They are how every technique gets executed at high quality.</p>
           </div>
           <div class="es-output">→ Output · Attention earned</div>
         </div>
 
         <div class="flow-arrow signal">→</div>
 
+        <!-- STEP 04 · THE DATA -->
         <div class="engine-step">
           <span class="es-num">Step 04</span>
           <h4>The Data</h4>
-          <p class="es-desc">Test, measure, learn, feed back. 2-week test windows. Winners promote. Losers retire.</p>
-          <div class="checkpoints">
-            <div class="checkpoint">
-              <div class="cp-num">Action 1</div>
-              <h5>Publish</h5>
-              <p>Run multiple formats across a 2-week window.</p>
+          <div class="es-sm-badges" aria-label="Signal Method components active at Step 04">
+            <span class="es-sm-badge">Signal Method · Three-Tier Metric Hierarchy</span>
+            <span class="es-sm-badge">Signal Method · Signal-Driven Adjustment</span>
+          </div>
+          <p class="es-desc">Format Test Log captures every execution. <strong>3 strong runs to promote to CORE. 2 weak months to retire.</strong> Review monthly during performance reporting.</p>
+          <div class="data-actions">
+            <div class="data-action">
+              <div class="da-eyebrow">Action 1 · Publish</div>
+              <p>Every piece logged against its format. The Format Test Log is the system of record.</p>
             </div>
-            <div class="checkpoint">
-              <div class="cp-num">Action 2</div>
-              <h5>Measure</h5>
-              <p>Saves, Shares, CTR, Retention, Profile Conversion.</p>
+            <div class="data-action">
+              <div class="da-eyebrow">Action 2 · Measure</div>
+              <p>Saves, shares, CTR, retention, profile conversion. Weighted per the Three-Tier Metric Hierarchy.</p>
             </div>
-            <div class="checkpoint">
-              <div class="cp-num">Action 3</div>
-              <h5>Identify Winners</h5>
-              <p>Which formats performed best, and why. Diagnose the cause.</p>
+            <div class="data-action">
+              <div class="da-eyebrow">Action 3 · Score</div>
+              <p>Each piece scored. Format-level performance rolls up at month-end.</p>
             </div>
-            <div class="checkpoint">
-              <div class="cp-num">Action 4</div>
-              <h5>Promote or Retire</h5>
-              <p>Winners join CORE rotation. Underperformers retire on the 2-strike rule.</p>
+            <div class="data-action">
+              <div class="da-eyebrow">Action 4 · Promote or retire</div>
+              <p>Locked formats join CORE. Underperformers exit. Promotion and retirement decisions made monthly.</p>
             </div>
           </div>
-          <div class="es-output">↺ Output · More of what worked · feeds Step 01</div>
+          <div class="quarterly-tieback">
+            <div class="qt-eyebrow">↓ Ties to · Quarterly Engagement Phase Strip</div>
+            <p>Goal: 2-3 go-to formats per funnel stage by quarter close. Locked formats get all-in execution the next quarter.</p>
+          </div>
+          <div class="es-output">↺ Output · Validated formats feed Step 01</div>
         </div>
       </div>
 
@@ -1885,7 +3148,7 @@
         <div class="cycle-line">
           Step 01 <span class="arrow">→</span> Step 02 <span class="arrow">→</span> Step 03 <span class="arrow">→</span> Step 04 <span class="return">↺</span> Step 01
         </div>
-        <div class="cycle-note">Data drives the next ideation cycle. The engine never stops.</div>
+        <div class="cycle-note"><strong>Step 04 loops back to Step 01.</strong> Validated formats and signal data feed the next ideation cycle. The engine never stops.</div>
       </div>
     </div>
 
@@ -1932,7 +3195,37 @@
 
       <div class="feedback-note">
         <div class="fn-label">★ Annual Strategic Review · Baked Into Renewal Prep</div>
-        <p>Quarterly reviews are tactical (formats, calendars, format rotation). The Annual Strategic Review is bigger. Three questions: <strong>Is the IVP still right?</strong> <strong>Are the three Goals still accurate?</strong> <strong>Has the positioning evolved?</strong> The answers shape the next 12-month engagement. This conversation happens at Month 11-12, before the contract is re-signed.</p>
+        <p>Quarterly reviews are tactical (formats, calendars, format rotation). The Annual Strategic Review is bigger. Three questions: <strong>Is the IVP still right?</strong> <strong>Are the three Goals still accurate?</strong> <strong>Has the positioning evolved?</strong> The answers shape the next 12-month engagement. Fires at Month 11 trigger inside the M10-12 band, before the contract is re-signed.</p>
+      </div>
+
+      <!-- M12 Annual Strategic Review depth band — Phase 06-equivalent treatment -->
+      <div class="annual-review-detail">
+        <div class="ard-eyebrow">↓ Inside the Annual Strategic Review · Month 11 trigger · M10-12 band</div>
+        <h4>The review that shapes the next 12 months.</h4>
+        <p class="ard-lede">Annual review is renewal-decisive. It carries the same architectural weight as the original strategy sprint, because it sets the terms of Year 2. Findings feed the renewal conversation directly. No surprises at the contract signature line.</p>
+        <div class="ard-grid">
+          <div class="ard-block">
+            <div class="ard-block-label">Input 1</div>
+            <h5>Year-over-year performance synthesis</h5>
+            <p>Full 12 months of scoring, format graduation history, monthly narrative. Trend lines surface what compounded and what stalled.</p>
+          </div>
+          <div class="ard-block">
+            <div class="ard-block-label">Input 2</div>
+            <h5>IVP refresh assessment</h5>
+            <p>Is the Ideal Viewer Profile still the right target? Has the business expanded, narrowed, or repositioned in a way the IVP needs to absorb?</p>
+          </div>
+          <div class="ard-block">
+            <div class="ard-block-label">Input 3</div>
+            <h5>Goals re-evaluation</h5>
+            <p>The 3 Goals from Kickoff get audited against the year. Hit, missed, evolved. New goals get drafted in client's language, locked at renewal.</p>
+          </div>
+          <div class="ard-block">
+            <div class="ard-block-label">Input 4</div>
+            <h5>Positioning evolution check</h5>
+            <p>Has the brand's positioning shifted? Pillars, hook framework, format library all get pressure-tested against the current state.</p>
+          </div>
+        </div>
+        <div class="ard-decision-ref">↑ Decision feeds the gate paths above.</div>
       </div>
 
       <div class="feedback-note">
@@ -2019,8 +3312,8 @@
               <div class="cr-time">60 min</div>
             </div>
             <div class="cadence-row">
-              <div class="cr-when">Month 11</div>
-              <div class="cr-what">Annual review + renewal conversation<small>You + Chase</small></div>
+              <div class="cr-when">Month 11 trigger</div>
+              <div class="cr-what">Annual review + renewal conversation<small>You + Chase · Inside M10-12 band</small></div>
               <div class="cr-time">60 min</div>
             </div>
           </div>
@@ -2070,6 +3363,7 @@
                 <div class="m-phase">Months 1-9</div>
                 <h6>Execution</h6>
                 <p>Testing → Executing → Refining. Pattern Break flagship: local product × universal cultural reference. Bi-weekly check-ins.</p>
+                <div class="cadence-cross-ref">see Signal Method · Pattern Break Format</div>
               </div>
               <div class="flow-arrow">→</div>
               <div class="milestone">
@@ -2291,8 +3585,8 @@
 
     <!-- FOOTER -->
     <footer class="footer">
-      <span>© 2026 Scroll Media · The Scroll Method · Architectural flowchart</span>
-      <span><a href="narrative.html">View narrative version</a> · Updated May 2026</span>
+      <span>© 2026 Scroll Media · The Scroll System · Architectural flowchart</span>
+      <span><a href="index.html">View narrative version</a> · Updated May 2026</span>
     </footer>
 
   </div>
