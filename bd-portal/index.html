@@ -27,12 +27,19 @@
 
     --azure-900: #071d4f;
     --azure-800: #0c3387;
+    --azure-700: #1a44a0;
     --azure-600: #254fb0;
+    --azure-500: #4070cc;
     --azure-400: #7a9ad8;
+    --azure-300: #9cb5e3;
     --azure-200: #b9cdee;
+    --azure-100: #d4e0f5;
 
     --lucid-deep: #9ecee8;
     --lucid-soft: #e4f3ff;
+
+    --shadow-soft: #1c1c1f;
+    --shadow-2: #25262a;
 
     --bg: var(--ghost);
     --bg-alt: #f5f8fb;
@@ -142,62 +149,123 @@
   }
   .meta-strip strong { color: var(--azure); font-weight: 600; }
 
-  .nav {
+  /* ============================================================
+     TOPBAR — v2 slim variant (web_patterns_v2.md §4)
+     Sticky, glass-blurred. Brand-left / nav-center / meta-right.
+     Animated underline hover via ::after scaleX. Three-stage responsive.
+     z-index 100 sits below password gate overlay (z-index 9999).
+     ============================================================ */
+  .topbar {
     position: sticky;
     top: 0;
-    z-index: 50;
-    background: rgba(250, 253, 255, 0.92);
-    backdrop-filter: saturate(140%) blur(8px);
-    -webkit-backdrop-filter: saturate(140%) blur(8px);
+    z-index: 100;
+    background: rgba(250, 253, 255, 0.94);
+    backdrop-filter: saturate(150%) blur(10px);
+    -webkit-backdrop-filter: saturate(150%) blur(10px);
     border-bottom: 1px solid var(--rule);
   }
-  .nav-inner {
+  .topbar-inner {
     max-width: var(--maxw);
     margin: 0 auto;
-    padding: 12px var(--sp-5);
+    padding: 10px var(--sp-5);
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    gap: var(--sp-5);
+  }
+  .topbar .brand {
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    gap: var(--sp-5);
-    min-height: var(--nav-h);
-  }
-  .brand {
-    display: flex;
-    align-items: baseline;
-    gap: 10px;
-    font-weight: 700;
-    font-size: var(--fs-md);
-    letter-spacing: var(--tracking-tight);
-    color: var(--azure);
+    gap: 12px;
+    border-bottom: 0;
+    white-space: nowrap;
+    text-decoration: none;
     flex-shrink: 0;
   }
-  .brand .sep { color: var(--rule-strong); font-weight: 400; }
-  .brand .label { color: var(--fg-muted); font-weight: 500; font-size: var(--fs-sm); letter-spacing: 0; text-transform: none; }
-  .nav-links {
-    display: flex;
-    gap: 2px;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: none;
+  .topbar .brand-logo {
+    height: 26px;
+    width: auto;
+    display: block;
+    flex-shrink: 0;
   }
-  .nav-links::-webkit-scrollbar { display: none; }
-  .nav-links a {
-    flex: 0 0 auto;
-    padding: 6px 10px;
+  .topbar .brand-fallback {
+    font-weight: 700;
+    color: var(--azure);
+    font-size: var(--fs-md);
+    letter-spacing: -0.02em;
+    text-transform: lowercase;
+    display: none;
+    line-height: 1;
+  }
+  .topbar .brand .tag {
     color: var(--fg-muted);
-    font-size: var(--fs-sm);
     font-weight: 500;
-    white-space: nowrap;
-    border-bottom: 0;
-    border-radius: var(--r-sm);
-    transition: color 120ms var(--ease), background 120ms var(--ease);
+    font-size: var(--fs-xs);
+    letter-spacing: var(--tracking-wider);
+    text-transform: uppercase;
+    padding-left: 12px;
+    border-left: 1px solid var(--rule);
   }
-  .nav-links a:hover { color: var(--azure); background: var(--lucid-soft); }
-  .nav-links a.active { color: var(--azure); background: var(--lucid); }
-  @media (max-width: 880px) {
-    .nav-inner { flex-direction: column; align-items: stretch; gap: 8px; padding: 10px var(--sp-4); }
-    .brand { justify-content: flex-start; }
-    .nav-links { padding: 2px 0 4px; }
+  .topbar .nav-links {
+    display: flex;
+    gap: var(--sp-5);
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .topbar .nav-links a {
+    flex: 0 0 auto;
+    color: var(--fg-muted);
+    font-size: var(--fs-xs);
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    border-bottom: 0;
+    padding: 6px 0;
+    position: relative;
+    background: transparent;
+    border-radius: 0;
+    transition: color 150ms var(--ease);
+  }
+  .topbar .nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: var(--azure);
+    transform: scaleX(0);
+    transform-origin: center;
+    transition: transform 200ms var(--ease);
+  }
+  .topbar .nav-links a:hover { color: var(--azure); }
+  .topbar .nav-links a:hover::after { transform: scaleX(1); }
+  .topbar .nav-links a.active { color: var(--azure); }
+  .topbar .nav-links a.active::after { transform: scaleX(1); }
+  .topbar-meta {
+    font-size: var(--fs-xs);
+    color: var(--fg-muted);
+    letter-spacing: var(--tracking-wider);
+    text-transform: uppercase;
+    font-weight: 600;
+    white-space: nowrap;
+  }
+  .topbar-meta strong { color: var(--azure); font-weight: 700; }
+  @media (max-width: 1100px) {
+    .topbar .nav-links { gap: 18px; }
+    .topbar .nav-links a { font-size: 11px; }
+  }
+  @media (max-width: 920px) {
+    .topbar-inner { grid-template-columns: 1fr auto; }
+    .topbar .nav-links { display: none; }
+  }
+  @media (max-width: 767px) {
+    .topbar-inner { padding: 8px 14px; grid-template-columns: 1fr; gap: 4px; }
+    .topbar .brand { gap: 8px; }
+    .topbar .brand-logo { height: 22px; }
+    .topbar .brand-fallback { font-size: 13px; }
+    .topbar .brand .tag { display: none; }
+    .topbar-meta { font-size: 9px; }
   }
 
   .hero { padding: var(--sp-9) 0 var(--sp-8); border-bottom: 1px solid var(--rule); }
@@ -398,7 +466,13 @@
   .voice-card.alt .sample { background: var(--bg); }
   .voice-card .sample-label { font-size: var(--fs-xs); color: var(--fg-muted); text-transform: uppercase; letter-spacing: var(--tracking-wider); margin: var(--sp-4) 0 var(--sp-2); font-weight: 600; }
 
-  /* Accordion */
+  /* Accordion
+     Portal accordion icon variant preserved: ＋ / － fullwidth glyphs with rotate-180 on open.
+     Intentionally not aligned to v2 §3 canonical (+ → × rotate-45) per Q1 May 11, 2026 decision.
+     v2 §3 explicitly permits variants ("variants should be rare and earn their place"); portal is
+     a tools surface where the existing pattern is already in production. Visual variation between
+     portal accordions and future v2 sales/proposal accordions is acceptable — behavioral parity
+     is what matters on a portal. */
   details.acc { border: 1px solid var(--rule); background: var(--bg); padding: 0; margin: 0; border-bottom: 0; }
   details.acc:first-of-type { border-top: 1px solid var(--rule); }
   details.acc:last-of-type { border-bottom: 1px solid var(--rule); }
@@ -446,9 +520,14 @@
   .do-dont ul { margin: 0; padding-left: 18px; font-size: var(--fs-sm); }
   .do-dont li { margin: 4px 0; }
 
-  /* Reveal */
+  /* Reveal
+     Portal scroll-reveal tuning preserved: 240ms / translateY(12px) per v2 §5 surface matrix
+     (portals get minimal scroll-reveal) + Q2 May 11, 2026 decision. v2 canonical is 600ms /
+     translateY(20px) for narrative surfaces. Portals are data-dense — shorter motion keeps
+     information access fast and matches surface job. Class renamed to .in-view per v2 §2
+     for class-name parity across the design system. */
   .reveal { opacity: 0; transform: translateY(12px); transition: opacity 240ms var(--ease), transform 240ms var(--ease); will-change: opacity, transform; }
-  .reveal.in { opacity: 1; transform: translateY(0); }
+  .reveal.in-view { opacity: 1; transform: translateY(0); }
   @media (prefers-reduced-motion: reduce) {
     .reveal { opacity: 1; transform: none; transition: none; }
     details.acc .acc-body, details.faq .faq-body { animation: none; }
@@ -480,11 +559,12 @@
   .pw-error { font-size: var(--fs-sm); color: #b3261e; margin-top: var(--sp-3); display: none; }
 
   @media print {
-    .nav, .meta-strip { display: none; }
+    .topbar, .meta-strip { display: none; }
     body { background: white; color: black; }
     .panel, .callout, .summary { background: white; border-color: #ccc; }
     .reveal { opacity: 1; transform: none; }
     details .acc-body, details .faq-body { display: block !important; }
+    details[open] { page-break-inside: avoid; }
   }
 </style>
 </head>
@@ -529,16 +609,18 @@ function checkPassword() {
 <div class="meta-strip">
   <div class="meta-strip-inner">
     <span><strong>Internal use only.</strong> Do not share with prospects or clients.</span>
-    <span class="nowrap">v1.3 · May 11, 2026</span>
+    <span class="nowrap">v1.5 · May 11, 2026</span>
   </div>
 </div>
 
-<nav class="nav" aria-label="Section navigation">
-  <div class="nav-inner">
-    <div class="brand">
-      Scroll Media <span class="sep">/</span> <span class="label">BD Portal</span>
-    </div>
-    <div class="nav-links" id="navLinks">
+<div class="topbar">
+  <div class="topbar-inner">
+    <a href="https://scrollmedia.co" class="brand" aria-label="Scroll Media · BD Portal">
+      <img src="https://tools.scrollmedia.co/assets/scroll-media-logo.svg" alt="Scroll Media" class="brand-logo" onerror="this.style.display='none';this.nextElementSibling.style.display='inline';" />
+      <span class="brand-fallback">Scroll Media</span>
+      <span class="tag">BD Portal</span>
+    </a>
+    <nav class="nav-links" id="navLinks" aria-label="Section navigation">
       <a href="#welcome">Welcome</a>
       <a href="#channels">Setup</a>
       <a href="#who-you-own">Who you own</a>
@@ -549,9 +631,10 @@ function checkPassword() {
       <a href="#ideation">Ideation</a>
       <a href="#escalation">Escalation</a>
       <a href="#resources">Resources</a>
-    </div>
+    </nav>
+    <span class="topbar-meta"><strong>v1.5</strong> · May 11, 2026</span>
   </div>
-</nav>
+</div>
 
 <!-- ====================================================================
      1. WELCOME + 30-SECOND PITCH (MERGED)
@@ -2565,7 +2648,7 @@ Ready for you when you are.</code></pre>
       <a href="#who-you-own">Who you own</a>
       <a href="#escalation">Escalation</a>
     </div>
-    <div class="meta">Scroll Media · BD Portal · v1.3 · May 11, 2026</div>
+    <div class="meta">Scroll Media · BD Portal · v1.5 · May 11, 2026</div>
   </div>
 </footer>
 
@@ -2614,17 +2697,18 @@ Ready for you when you are.</code></pre>
   })();
 
   // Reveal-on-scroll via IntersectionObserver
+  // Uses .in-view class per v2 §2 (renamed from .in for class-name parity across the design system).
   (function () {
     var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     var els = document.querySelectorAll('.reveal');
     if (reduce || !('IntersectionObserver' in window)) {
-      Array.prototype.forEach.call(els, function (el) { el.classList.add('in'); });
+      Array.prototype.forEach.call(els, function (el) { el.classList.add('in-view'); });
       return;
     }
     var io = new IntersectionObserver(function (entries) {
       entries.forEach(function (entry) {
         if (entry.isIntersecting) {
-          entry.target.classList.add('in');
+          entry.target.classList.add('in-view');
           io.unobserve(entry.target);
         }
       });
