@@ -1,17 +1,23 @@
 /**
  * Netlify Function: subscribe.js
- * Handles email capture for industry guide gate pages.
+ * Handles email capture for industry guide gate pages + simple sequence enrollment.
  *
  * POST /api/subscribe
- * Body: {
- *   first_name, email, guide, niche, utm_source, utm_campaign,
- *   is_existing, current_tags, sequence_id (optional override)
- * }
  *
- * Routing Logic:
- *   - Net new: subscribe + tag + enroll in niche sequence
- *   - Already in niche biz-dev sequence: tag as guide-accessed only
- *   - In other sequence (quiz, different niche): tag + flag for manual review
+ * Two modes:
+ *
+ * 1. mode: "sequence" — direct upsert + sequence enrollment.
+ *    Used by lead-magnet pages and the maturity quiz. No niche-specific
+ *    tagging, no scenario branching. Just subscribe and enroll.
+ *    Body: { mode: "sequence", first_name, email, sequence_id, fields? }
+ *
+ * 2. mode unset / mode: "guide" — medspa guide-gate routing (default).
+ *    Body: { first_name, email, guide, niche, utm_source, utm_campaign,
+ *            is_existing, current_tags, sequence_id (override) }
+ *    Routing:
+ *      - Net new: subscribe + tag + enroll in niche sequence
+ *      - Already in niche biz-dev sequence: tag as guide-accessed only
+ *      - In other sequence (quiz, different niche): tag + flag for manual review
  */
 
 const KIT_BASE = "https://api.kit.com/v4";
@@ -70,7 +76,9 @@ exports.handler = async function(event, context) {
     utm_campaign = "",
     is_existing = false,
     current_tags = [],
-    sequence_id: override_sequence_id
+    sequence_id: override_sequence_id,
+    mode,
+    fields: extra_fields
   } = body;
 
   if (!first_name || !email) {
@@ -92,6 +100,67 @@ exports.handler = async function(event, context) {
     "Content-Type": "application/json",
     "X-Kit-Api-Key": KIT_API_KEY
   };
+
+  // ─── MODE: SEQUENCE (direct enrollment, no niche routing) ───
+  if (mode === "sequence") {
+    if (!override_sequence_id) {
+      return { statusCode: 400, headers, body: JSON.stringify({ error: "sequence_id is required for mode: sequence" }) };
+    }
+
+    try {
+      const subBody = { first_name, email_address: email };
+      if (extra_fields && typeof extra_fields === "object") {
+        subBody.fields = extra_fields;
+      }
+
+      let subRes = await fetch(`${KIT_BASE}/subscribers`, {
+        method: "POST",
+        headers: kitHeaders,
+        body: JSON.stringify(subBody)
+      });
+      let subData = await subRes.json();
+
+      // If custom fields tripped a 4xx, retry without fields so enrollment still lands.
+      if (!subRes.ok && subBody.fields) {
+        console.warn("Sequence-mode subscriber upsert failed with fields; retrying without. Response:", JSON.stringify(subData));
+        subRes = await fetch(`${KIT_BASE}/subscribers`, {
+          method: "POST",
+          headers: kitHeaders,
+          body: JSON.stringify({ first_name, email_address: email })
+        });
+        subData = await subRes.json();
+      }
+
+      const subscriberId = subData && subData.subscriber && subData.subscriber.id;
+      if (!subscriberId) {
+        console.error("Sequence-mode: no subscriber ID from Kit:", JSON.stringify(subData));
+        return { statusCode: 200, headers, body: JSON.stringify({ success: true, routed: false, reason: "no-subscriber-id" }) };
+      }
+
+      const seqRes = await fetch(`${KIT_BASE}/sequences/${override_sequence_id}/subscribers`, {
+        method: "POST",
+        headers: kitHeaders,
+        body: JSON.stringify({ id: subscriberId })
+      });
+      const seqData = await seqRes.json().catch(function() { return null; });
+
+      console.log("Sequence-mode enroll | subscriber " + subscriberId + " | sequence " + override_sequence_id + " | ok=" + seqRes.ok);
+
+      return {
+        statusCode: 200,
+        headers,
+        body: JSON.stringify({
+          success: true,
+          subscriber_id: subscriberId,
+          sequence: { id: override_sequence_id, status: seqRes.ok ? "enrolled" : "failed", data: seqData }
+        })
+      };
+    } catch (error) {
+      console.error("Sequence-mode subscribe error:", error);
+      // Always 200 to client - calling page must not break on Kit errors.
+      return { statusCode: 200, headers, body: JSON.stringify({ success: true, routed: false, reason: "server-error" }) };
+    }
+  }
 
   try {
     // Step 1: Upsert subscriber in Kit

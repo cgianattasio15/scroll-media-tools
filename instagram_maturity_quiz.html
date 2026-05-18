@@ -531,11 +531,14 @@ function submitAndShowResult(){
   for(let i=1;i<=10;i++)document.getElementById('fs-q'+i).value=answerLabels[i]||'';
   const fd=new FormData(document.getElementById('formspree-form'));
   fetch(document.getElementById('formspree-form').action,{method:'POST',body:fd,headers:{'Accept':'application/json'}}).catch(()=>{});
-  const kp=new URLSearchParams();
-  kp.append('api_key','PNXDUxp8mJTSLZTK_LIIOQ');
-  kp.append('email',email);
-  kp.append('first_name',fname);
-  fetch('https://api.convertkit.com/v3/sequences/2670738/subscribe',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:kp.toString()}).catch(()=>{});
+  /* Kit sequence enrollment routes through /api/subscribe Netlify Function.
+     Credential stays in env var KIT_API_KEY, never in client JS.
+     Silent-fail preserved: quiz never breaks on Kit errors. */
+  const quizFields={quiz_stage:data.name,quiz_score:String(score)};
+  if(lname)quizFields.quiz_last_name=lname;
+  if(bizname)quizFields.quiz_business=bizname;
+  for(let i=1;i<=10;i++){if(answerLabels[i])quizFields['quiz_q'+i]=answerLabels[i];}
+  fetch('/api/subscribe',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({mode:'sequence',email:email,first_name:fname,sequence_id:'2670738',fields:quizFields})}).catch(()=>{});
   showResult(data,score,fname);
 }
 
