@@ -1050,11 +1050,14 @@
        EMAIL GATE — PREVIEW BYPASS + KIT INTEGRATION
        External URL (gated):  /scroll-funnel-system/
        Internal URL (bypass): /scroll-funnel-system/?preview=true
+
+       Leads land in Kit form 2670738 via the public subscribe endpoint
+       (app.kit.com/forms/{id}/subscriptions). Tag application (quiz-lead)
+       and Authority Engine sequence trigger are configured on the Kit form
+       itself, not on the client. No API key in JS by design.
     ══════════════════════════════════════════ */
 
     const KIT_FORM_ID = '2670738';
-    const KIT_API_KEY = 'PNXDUxp8mJTSLZTK_LIIOQ';
-    const KIT_TAG = 'quiz-lead';
     const SESSION_KEY = 'sfs_unlocked';
     const EMAIL_PATTERN = /^[A-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[A-Z0-9](?:[A-Z0-9-]{0,61}[A-Z0-9])?(?:\.[A-Z0-9](?:[A-Z0-9-]{0,61}[A-Z0-9])?)+$/i;
     const DISPOSABLE_DOMAINS = new Set([
@@ -1163,21 +1166,26 @@
       btn.textContent = 'Unlocking...';
 
       try {
-        const res = await fetch(`https://api.convertkit.com/v3/forms/${KIT_FORM_ID}/subscribe`, {
+        const body = new URLSearchParams();
+        body.set('email_address', email);
+        body.set('fields[first_name]', fname);
+
+        const res = await fetch(`https://app.kit.com/forms/${KIT_FORM_ID}/subscriptions`, {
           method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            api_key: KIT_API_KEY,
-            email,
-            first_name: fname,
-            tags: [KIT_TAG]
-          })
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/x-www-form-urlencoded'
+          },
+          body: body.toString()
         });
 
         const data = await res.json().catch(() => null);
 
-        if (!res.ok || !data || data.subscription === undefined) {
-          throw new Error('Kit API error');
+        // Kit returns status "success" for clean leads and "quarantined"
+        // for soft-flagged leads. Both mean the email was captured.
+        const accepted = res.ok && data && (data.status === 'success' || data.status === 'quarantined');
+        if (!accepted) {
+          throw new Error('Kit subscribe rejected');
         }
 
         gateFormWrap.style.display = 'none';
