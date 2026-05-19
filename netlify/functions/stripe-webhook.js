@@ -155,6 +155,7 @@ async function addToKit(email, customerName) {
 
 // ─── Main Handler ─────────────────────────────────────────────────────────────
 exports.handler = async (event) => {
+  console.log("KIT_V3_API_SECRET resolved at runtime: " + (process.env.KIT_V3_API_SECRET ? "yes (length " + process.env.KIT_V3_API_SECRET.length + ")" : "no"));
   if (event.httpMethod !== 'POST') {
     return { statusCode: 405, body: 'Method Not Allowed' };
   }
