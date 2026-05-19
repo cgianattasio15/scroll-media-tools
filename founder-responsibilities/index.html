@@ -1,0 +1,955 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<meta name="theme-color" content="#FAFDFF" />
+<title>Founder Responsibilities · Scroll Media</title>
+<meta name="description" content="Lane assignment between Chase and Allison. Internal founder reference. Locked May 19, 2026." />
+
+<link rel="icon" type="image/svg+xml" href="https://tools.scrollmedia.co/assets/scroll-favicon.svg" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+<style>
+  /* =========================================================
+     TOKENS — Web Design v2 (extends brand_system.md §5)
+     Light theme. Ghost default. Lucid for emphasis.
+     Hard corners. No shadows by default.
+     ========================================================= */
+  :root {
+    --ghost: #FAFDFF;
+    --azure: #0C3387;
+    --lucid: #CBE9FF;
+    --highlighter: #E2ED7A;
+    --shadow: #151516;
+
+    --azure-900: #071d4f;
+    --azure-800: #0c3387;
+    --azure-700: #1a44a0;
+    --azure-600: #254fb0;
+    --azure-500: #4070cc;
+    --azure-400: #7a9ad8;
+
+    --lucid-deep: #9ecee8;
+    --lucid-soft: #e4f3ff;
+
+    --bg: var(--ghost);
+    --bg-alt: #f5f8fb;
+    --bg-panel: var(--lucid-soft);
+    --fg: var(--shadow);
+    --fg-muted: #5a6070;
+    --fg-subtle: #9097a6;
+
+    --rule: rgba(12, 51, 135, 0.20);
+    --rule-strong: rgba(12, 51, 135, 0.40);
+    --rule-faint: rgba(12, 51, 135, 0.08);
+
+    --fs-xs: 11px;
+    --fs-sm: 13px;
+    --fs-base: 16px;
+    --fs-md: 18px;
+    --fs-lg: 22px;
+    --fs-xl: 26px;
+    --fs-2xl: 34px;
+    --fs-3xl: 46px;
+    --fs-4xl: 60px;
+
+    --tracking-tight: -0.01em;
+    --tracking-wide: 0.08em;
+    --tracking-wider: 0.14em;
+
+    --lh-tight: 1.08;
+    --lh-snug: 1.22;
+    --lh-normal: 1.5;
+    --lh-relaxed: 1.65;
+
+    --sp-1: 4px;
+    --sp-2: 8px;
+    --sp-3: 12px;
+    --sp-4: 16px;
+    --sp-5: 24px;
+    --sp-6: 32px;
+    --sp-7: 40px;
+    --sp-8: 56px;
+    --sp-9: 80px;
+
+    --r-sm: 4px;
+    --r-md: 8px;
+
+    --maxw: 1080px;
+    --maxw-prose: 720px;
+
+    --sans: 'Source Sans 3', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+    --ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+  }
+
+  /* =========================================================
+     BASE
+     ========================================================= */
+  *, *::before, *::after { box-sizing: border-box; }
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+    font-size: var(--fs-base);
+  }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--fg);
+    font-family: var(--sans);
+    font-size: var(--fs-base);
+    line-height: var(--lh-relaxed);
+    font-feature-settings: 'tnum' 1, 'cv11' 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  :focus-visible {
+    outline: 2px solid var(--azure);
+    outline-offset: 2px;
+  }
+  section { scroll-margin-top: 80px; }
+  h1, h2, h3 { scroll-margin-top: 80px; }
+
+  ::selection { background: var(--highlighter); color: var(--shadow); }
+
+  /* =========================================================
+     LAYOUT
+     ========================================================= */
+  .container {
+    max-width: var(--maxw);
+    margin: 0 auto;
+    padding: 0 var(--sp-5);
+  }
+
+  /* =========================================================
+     META STRIP
+     ========================================================= */
+  .meta-strip {
+    background: var(--bg);
+    border-bottom: 1px solid var(--rule);
+    color: var(--fg-muted);
+    font-size: var(--fs-xs);
+    letter-spacing: var(--tracking-wider);
+    text-transform: uppercase;
+  }
+  .meta-strip-inner {
+    max-width: var(--maxw);
+    margin: 0 auto;
+    padding: 8px var(--sp-5);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--sp-4);
+    flex-wrap: wrap;
+  }
+  .meta-strip strong { color: var(--azure); font-weight: 600; }
+  .meta-strip .right { display: flex; gap: var(--sp-5); }
+
+  /* =========================================================
+     TOPBAR
+     ========================================================= */
+  .topbar {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: rgba(250, 253, 255, 0.94);
+    backdrop-filter: saturate(150%) blur(10px);
+    -webkit-backdrop-filter: saturate(150%) blur(10px);
+    border-bottom: 1px solid var(--rule);
+  }
+  .topbar-inner {
+    max-width: var(--maxw);
+    margin: 0 auto;
+    padding: 10px var(--sp-5);
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    gap: var(--sp-5);
+  }
+  .topbar .brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    white-space: nowrap;
+    text-decoration: none;
+    flex-shrink: 0;
+  }
+  .topbar .brand-logo {
+    height: 26px;
+    width: auto;
+    display: block;
+    flex-shrink: 0;
+  }
+  .topbar .brand-fallback {
+    font-weight: 700;
+    color: var(--azure);
+    font-size: var(--fs-md);
+    letter-spacing: -0.02em;
+    text-transform: lowercase;
+    line-height: 1;
+    display: none;
+  }
+  .topbar .brand .tag {
+    color: var(--fg-muted);
+    font-weight: 500;
+    font-size: var(--fs-xs);
+    letter-spacing: var(--tracking-wider);
+    text-transform: uppercase;
+    padding-left: 12px;
+    border-left: 1px solid var(--rule);
+  }
+  .topbar .nav-links {
+    display: flex;
+    gap: var(--sp-5);
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .topbar .nav-links a {
+    flex: 0 0 auto;
+    color: var(--fg-muted);
+    font-size: var(--fs-xs);
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-decoration: none;
+    padding: 6px 0;
+    position: relative;
+    white-space: nowrap;
+    transition: color 150ms var(--ease);
+  }
+  .topbar .nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: var(--azure);
+    transform: scaleX(0);
+    transform-origin: center;
+    transition: transform 200ms var(--ease);
+  }
+  .topbar .nav-links a:hover { color: var(--azure); }
+  .topbar .nav-links a:hover::after { transform: scaleX(1); }
+
+  .topbar-meta {
+    display: flex;
+    align-items: center;
+    gap: var(--sp-4);
+    flex-shrink: 0;
+  }
+  .topbar-meta .date-stamp {
+    font-size: var(--fs-xs);
+    color: var(--fg-muted);
+    letter-spacing: var(--tracking-wider);
+    text-transform: uppercase;
+    font-weight: 600;
+    white-space: nowrap;
+  }
+  .topbar-meta .date-stamp strong { color: var(--azure); font-weight: 700; }
+
+  @media (max-width: 1100px) {
+    .topbar .nav-links { gap: 18px; }
+    .topbar .nav-links a { font-size: 11px; }
+  }
+  @media (max-width: 920px) {
+    .topbar-inner { grid-template-columns: 1fr auto; gap: var(--sp-4); }
+    .topbar .nav-links { display: none; }
+  }
+  @media (max-width: 767px) {
+    .topbar-inner { padding: 8px var(--sp-4); }
+    .topbar .brand { gap: 8px; }
+    .topbar .brand-logo { height: 22px; }
+    .topbar .brand-fallback { font-size: 13px; }
+    .topbar .brand .tag { display: none; }
+    .topbar-meta .date-stamp { font-size: 10px; }
+  }
+
+  /* =========================================================
+     HERO
+     ========================================================= */
+  .hero {
+    padding: var(--sp-9) 0 var(--sp-8);
+    border-bottom: 1px solid var(--rule);
+  }
+  .hero .label {
+    display: inline-block;
+    font-size: var(--fs-xs);
+    letter-spacing: var(--tracking-wider);
+    text-transform: uppercase;
+    color: var(--fg-muted);
+    margin-bottom: var(--sp-3);
+    font-weight: 600;
+  }
+  h1.title {
+    font-family: var(--sans);
+    font-size: clamp(36px, 5.6vw, 60px);
+    line-height: var(--lh-tight);
+    letter-spacing: var(--tracking-tight);
+    margin: 0 0 var(--sp-4);
+    font-weight: 700;
+    color: var(--azure);
+  }
+  .hero .subtitle {
+    font-size: var(--fs-md);
+    color: var(--fg-muted);
+    margin: 0 0 var(--sp-5);
+    font-weight: 500;
+    max-width: var(--maxw-prose);
+  }
+  .hero-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--sp-5);
+    padding-top: var(--sp-5);
+    border-top: 1px solid var(--rule);
+    margin-top: var(--sp-6);
+    font-size: var(--fs-sm);
+    color: var(--fg-muted);
+  }
+  .hero-meta span strong {
+    color: var(--shadow);
+    font-weight: 600;
+    margin-right: 4px;
+  }
+
+  /* =========================================================
+     CALLOUT — The Shift
+     ========================================================= */
+  .callout {
+    background: var(--lucid-soft);
+    border: 1px solid var(--rule);
+    border-left: 2px solid var(--azure);
+    padding: var(--sp-5) var(--sp-6);
+    margin: var(--sp-8) 0;
+  }
+  .callout .kicker {
+    display: inline-block;
+    font-size: var(--fs-xs);
+    letter-spacing: var(--tracking-wider);
+    text-transform: uppercase;
+    color: var(--azure);
+    font-weight: 700;
+    margin-bottom: var(--sp-2);
+  }
+  .callout p {
+    margin: 0;
+    font-size: var(--fs-md);
+    line-height: var(--lh-normal);
+    color: var(--shadow);
+  }
+  .callout p strong {
+    color: var(--azure);
+    font-weight: 700;
+  }
+
+  /* =========================================================
+     SECTIONS
+     ========================================================= */
+  section.block {
+    padding: var(--sp-9) 0;
+    border-bottom: 1px solid var(--rule);
+  }
+  section.block:last-of-type { border-bottom: 0; }
+
+  .section-num {
+    color: var(--fg-muted);
+    font-size: var(--fs-xs);
+    letter-spacing: var(--tracking-wider);
+    text-transform: uppercase;
+    font-weight: 600;
+    margin-bottom: var(--sp-2);
+    display: block;
+  }
+
+  h2 {
+    font-family: var(--sans);
+    font-size: clamp(28px, 3.4vw, 40px);
+    line-height: var(--lh-snug);
+    margin: 0 0 var(--sp-3);
+    color: var(--azure);
+    font-weight: 700;
+    letter-spacing: var(--tracking-tight);
+  }
+  .section-sub {
+    font-size: var(--fs-md);
+    color: var(--fg-muted);
+    margin-bottom: var(--sp-7);
+    max-width: var(--maxw-prose);
+    line-height: var(--lh-normal);
+  }
+
+  /* =========================================================
+     LANE GRID — two-column on desktop, stacked on mobile
+     ========================================================= */
+  .lanes {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--sp-6);
+    margin-top: var(--sp-6);
+  }
+  @media (max-width: 880px) {
+    .lanes { grid-template-columns: 1fr; gap: var(--sp-5); }
+  }
+
+  .lane {
+    background: var(--bg);
+    border: 1px solid var(--rule);
+    padding: var(--sp-6) var(--sp-6) var(--sp-7);
+    display: flex;
+    flex-direction: column;
+  }
+
+  .lane-tag {
+    display: inline-block;
+    font-size: var(--fs-xs);
+    font-weight: 700;
+    letter-spacing: var(--tracking-wider);
+    text-transform: uppercase;
+    padding: 4px 8px;
+    background: var(--azure);
+    color: var(--ghost);
+    margin-bottom: var(--sp-3);
+    align-self: flex-start;
+  }
+  .lane.allison .lane-tag {
+    background: var(--highlighter);
+    color: var(--shadow);
+  }
+
+  .lane-name {
+    font-size: var(--fs-xl);
+    font-weight: 700;
+    color: var(--shadow);
+    letter-spacing: var(--tracking-tight);
+    margin: 0 0 var(--sp-1);
+    line-height: var(--lh-snug);
+  }
+  .lane-title {
+    font-size: var(--fs-sm);
+    color: var(--fg-muted);
+    font-weight: 500;
+    margin-bottom: var(--sp-3);
+  }
+  .lane-seat {
+    font-size: var(--fs-sm);
+    color: var(--shadow);
+    line-height: var(--lh-normal);
+    padding: var(--sp-3) 0;
+    border-top: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+    margin-bottom: var(--sp-3);
+  }
+  .lane-time {
+    font-size: var(--fs-xs);
+    letter-spacing: var(--tracking-wide);
+    text-transform: uppercase;
+    color: var(--azure);
+    font-weight: 700;
+    margin-bottom: var(--sp-5);
+  }
+
+  /* Sub-section inside lane */
+  .lane-section {
+    margin-bottom: var(--sp-5);
+  }
+  .lane-section:last-child {
+    margin-bottom: 0;
+  }
+  .lane-section h3 {
+    font-family: var(--sans);
+    font-size: var(--fs-base);
+    font-weight: 700;
+    color: var(--shadow);
+    margin: 0 0 var(--sp-2);
+    letter-spacing: var(--tracking-tight);
+    display: flex;
+    align-items: baseline;
+    gap: var(--sp-2);
+  }
+  .lane-section h3 .num {
+    font-size: var(--fs-xs);
+    color: var(--fg-subtle);
+    font-weight: 600;
+    letter-spacing: var(--tracking-wide);
+    flex-shrink: 0;
+  }
+  .lane-section ul {
+    margin: 0;
+    padding-left: 16px;
+    list-style: none;
+  }
+  .lane-section ul li {
+    position: relative;
+    padding-left: 12px;
+    font-size: var(--fs-sm);
+    line-height: var(--lh-normal);
+    color: var(--shadow);
+    margin: 4px 0;
+  }
+  .lane-section ul li::before {
+    content: "·";
+    position: absolute;
+    left: 0;
+    top: -2px;
+    color: var(--azure);
+    font-weight: 700;
+    font-size: 16px;
+  }
+
+  /* Out of scope footer in lane */
+  .out-of-scope {
+    margin-top: var(--sp-5);
+    padding-top: var(--sp-4);
+    border-top: 1px solid var(--rule);
+  }
+  .out-of-scope .label {
+    display: block;
+    font-size: var(--fs-xs);
+    letter-spacing: var(--tracking-wider);
+    text-transform: uppercase;
+    color: var(--fg-muted);
+    font-weight: 700;
+    margin-bottom: var(--sp-2);
+  }
+  .out-of-scope p {
+    margin: 0;
+    font-size: var(--fs-sm);
+    color: var(--fg-muted);
+    line-height: var(--lh-normal);
+  }
+
+  /* =========================================================
+     JOINT BLOCK
+     ========================================================= */
+  .joint-block {
+    background: var(--lucid-soft);
+    border: 1px solid var(--rule);
+    padding: var(--sp-7) var(--sp-6);
+    margin-top: var(--sp-6);
+  }
+  .joint-block .lane-tag {
+    background: var(--shadow);
+    color: var(--ghost);
+  }
+  .joint-block h3.joint-title {
+    font-family: var(--sans);
+    font-size: var(--fs-xl);
+    font-weight: 700;
+    color: var(--azure);
+    margin: 0 0 var(--sp-2);
+    letter-spacing: var(--tracking-tight);
+  }
+  .joint-block .joint-sub {
+    font-size: var(--fs-sm);
+    color: var(--fg-muted);
+    margin-bottom: var(--sp-5);
+    max-width: var(--maxw-prose);
+    line-height: var(--lh-normal);
+  }
+  .joint-bullets {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: var(--sp-3) var(--sp-5);
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .joint-bullets li {
+    position: relative;
+    padding-left: 18px;
+    font-size: var(--fs-sm);
+    line-height: var(--lh-normal);
+    color: var(--shadow);
+  }
+  .joint-bullets li::before {
+    content: "+";
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: var(--azure);
+    font-weight: 700;
+  }
+
+  /* =========================================================
+     CADENCE GRID
+     ========================================================= */
+  .cadence-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: var(--sp-5);
+    margin-top: var(--sp-6);
+  }
+  .cadence-item {
+    border: 1px solid var(--rule);
+    padding: var(--sp-5);
+  }
+  .cadence-item .cad-label {
+    font-size: var(--fs-xs);
+    letter-spacing: var(--tracking-wider);
+    text-transform: uppercase;
+    color: var(--azure);
+    font-weight: 700;
+    margin-bottom: var(--sp-2);
+  }
+  .cadence-item .cad-body {
+    font-size: var(--fs-sm);
+    color: var(--shadow);
+    line-height: var(--lh-normal);
+    margin: 0;
+  }
+
+  /* =========================================================
+     FOOTER
+     ========================================================= */
+  .doc-footer {
+    border-top: 1px solid var(--rule);
+    padding: var(--sp-6) 0 var(--sp-8);
+    margin-top: var(--sp-7);
+    font-size: var(--fs-xs);
+    color: var(--fg-muted);
+    letter-spacing: var(--tracking-wide);
+  }
+  .doc-footer-inner {
+    max-width: var(--maxw);
+    margin: 0 auto;
+    padding: 0 var(--sp-5);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: var(--sp-4);
+  }
+  .doc-footer .brand-mark {
+    font-weight: 700;
+    color: var(--azure);
+    letter-spacing: -0.01em;
+    text-transform: lowercase;
+  }
+
+  /* =========================================================
+     PRINT
+     ========================================================= */
+  @media print {
+    body { background: white; color: black; font-size: 11pt; }
+    .topbar, .meta-strip { display: none; }
+    .hero, section.block { padding: 18px 0; }
+    .lanes { grid-template-columns: 1fr 1fr; gap: 14px; }
+    .lane, .joint-block, .cadence-item, .callout {
+      border: 1px solid #ddd !important;
+      page-break-inside: avoid;
+    }
+    .lane-tag { background: #0c3387 !important; color: white !important; }
+    .lane.allison .lane-tag { background: #e2ed7a !important; color: #151516 !important; }
+    .joint-block { background: #f5f9ff !important; }
+    .callout { background: #f5f9ff !important; border-left: 2px solid #0c3387 !important; }
+  }
+</style>
+</head>
+<body>
+
+  <!-- ============ META STRIP ============ -->
+  <div class="meta-strip">
+    <div class="meta-strip-inner">
+      <span><strong>Scroll Media</strong> · Internal · Founder Reference</span>
+      <div class="right">
+        <span>v1.0</span>
+        <span>May 19, 2026</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ TOPBAR ============ -->
+  <div class="topbar">
+    <div class="topbar-inner">
+      <a href="https://tools.scrollmedia.co/" class="brand" aria-label="Scroll Media · Founder Reference">
+        <img src="https://tools.scrollmedia.co/assets/scroll-media-logo.svg" alt="Scroll Media" class="brand-logo" onerror="this.style.display='none';this.nextElementSibling.style.display='inline';" />
+        <span class="brand-fallback">scroll media</span>
+        <span class="tag">Founder Reference</span>
+      </a>
+      <nav class="nav-links">
+        <a href="#chase">Chase</a>
+        <a href="#allison">Allison</a>
+        <a href="#joint">Joint</a>
+        <a href="#cadence">Cadence</a>
+      </nav>
+      <div class="topbar-meta">
+        <span class="date-stamp">Locked <strong>May 19</strong></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ HERO ============ -->
+  <header class="hero">
+    <div class="container">
+      <span class="label">Founder Lane Assignment</span>
+      <h1 class="title">Founder Responsibilities</h1>
+      <p class="subtitle">Canonical reference for who owns what between Chase and Allison as the business transitions out of stabilization mode and back into growth mode.</p>
+      <div class="hero-meta">
+        <span><strong>Locked:</strong> May 19, 2026</span>
+        <span><strong>Review cadence:</strong> Quarterly</span>
+        <span><strong>Next review:</strong> Aug 31, 2026</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- ============ THE SHIFT CALLOUT ============ -->
+  <div class="container">
+    <aside class="callout">
+      <span class="kicker">The Shift</span>
+      <p>Last 5 months = <strong>stabilization mode</strong>, Chase wearing all hats. Today = handoff back to lanes so we can re-enter <strong>growth mode</strong>.</p>
+    </aside>
+  </div>
+
+  <!-- ============ LANES ============ -->
+  <section class="block" id="lanes">
+    <div class="container">
+      <span class="section-num">01 · Lanes</span>
+      <h2>Who owns what</h2>
+      <p class="section-sub">Each founder runs a clearly scoped lane. Out of scope sections are explicit so handoffs are clean.</p>
+
+      <div class="lanes">
+
+        <!-- ===== CHASE ===== -->
+        <article class="lane chase" id="chase">
+          <span class="lane-tag">Operations · Growth</span>
+          <h3 class="lane-name">Chase Gianattasio</h3>
+          <div class="lane-title">Co-Founder · Chief Operations &amp; Growth Officer</div>
+          <div class="lane-seat">Growth, operations, brand. Everything upstream of delivery, plus reporting production.</div>
+          <div class="lane-time">Full-time</div>
+
+          <div class="lane-section">
+            <h3><span class="num">01</span>Business Development</h3>
+            <ul>
+              <li>Cold outbound across email, LinkedIn, IG@chase.scrolls</li>
+              <li>Warm activation — referrals, past-client re-engagement, network follow-up</li>
+              <li>Discovery calls, qualification, proposal builds, walkthroughs</li>
+              <li>Closes all new client deals</li>
+              <li>Owns BD pipeline end-to-end through Phase 1</li>
+            </ul>
+          </div>
+
+          <div class="lane-section">
+            <h3><span class="num">02</span>New Client Acquisition</h3>
+            <ul>
+              <li>Runs the Customer Acquisition Module (10-component system)</li>
+              <li>Owns active pipeline — Rooted Grounds primary, full Wave 1 list</li>
+              <li>Phase 1 target: 3 net new clients by Aug 31</li>
+            </ul>
+          </div>
+
+          <div class="lane-section">
+            <h3><span class="num">03</span>Client Strategy — Build + Creation</h3>
+            <ul>
+              <li>Owns strategy build process and creation end-to-end</li>
+              <li>Initial Signature strategy — IVPs, content pillars, ideation, decks, Homebases</li>
+              <li>Carl's Deli precedent owner; future Signature builds inherit</li>
+              <li>Per-client retrofit work on the 7 existing clients beyond Carl's</li>
+              <li>Hands off to Allison for ongoing adjustments and refinements post-build</li>
+            </ul>
+          </div>
+
+          <div class="lane-section">
+            <h3><span class="num">04</span>Performance Reporting + Analytics</h3>
+            <ul>
+              <li>Owns the process, methodology, and production of monthly client reports</li>
+              <li>Maintains scoring framework, outlier engine, KPI ranges</li>
+              <li>Generates reports, hands off to AMs to distribute across their accounts</li>
+              <li>Owns analytics infrastructure (Metricool, Meta Graph API)</li>
+            </ul>
+          </div>
+
+          <div class="lane-section">
+            <h3><span class="num">05</span>Productized Layer</h3>
+            <ul>
+              <li>A2A Playbook, Blueprint, Strategy Session — product, pricing, sales pages, launch</li>
+              <li>ManyChat funnel build</li>
+              <li>Distribution and conversion across IG, LinkedIn, email</li>
+            </ul>
+          </div>
+
+          <div class="lane-section">
+            <h3><span class="num">06</span>Web Infrastructure</h3>
+            <ul>
+              <li>tools.scrollmedia.co, decks.scrollmedia.co, reports.scrollmedia.co</li>
+              <li>GitHub repos (scroll-proposals, scroll-media-tools, scroll-reports)</li>
+              <li>All HTML production builds and deploys</li>
+            </ul>
+          </div>
+
+          <div class="lane-section">
+            <h3><span class="num">07</span>Personal Brand</h3>
+            <ul>
+              <li>@chase.scrolls (IG), Chase Gianattasio (LinkedIn), Threads, X</li>
+              <li>Content production, posting cadence, voice</li>
+              <li>Personal brand as BD funnel</li>
+            </ul>
+          </div>
+
+          <div class="lane-section">
+            <h3><span class="num">08</span>Operations + OS</h3>
+            <ul>
+              <li>AI stack governance (Claude Chat / Code / CoWork / Chrome / Design)</li>
+              <li>SKILL building + OS architecture</li>
+              <li>Vendor management + subscription discipline</li>
+              <li>Notion KB rebuild (Phase 2)</li>
+            </ul>
+          </div>
+
+          <div class="lane-section">
+            <h3><span class="num">09</span>Finance</h3>
+            <ul>
+              <li>Cash position, runway, owner-draw timing</li>
+              <li>Pricing decisions</li>
+              <li>Contractor pay + payroll</li>
+              <li>M&amp;A trajectory (long-arc)</li>
+            </ul>
+          </div>
+
+          <div class="out-of-scope">
+            <span class="label">Out of Scope</span>
+            <p>Day-to-day AM management. Delivery oversight on individual accounts. Shoot strategy + execution oversight. Content quality QA. Primary escalation for client/delivery issues. Ongoing strategy adjustments post-build.</p>
+          </div>
+        </article>
+
+        <!-- ===== ALLISON ===== -->
+        <article class="lane allison" id="allison">
+          <span class="lane-tag">Delivery · Strategy</span>
+          <h3 class="lane-name">Allison Gianattasio</h3>
+          <div class="lane-title">Co-Founder · Chief Delivery &amp; Strategy Officer</div>
+          <div class="lane-seat">Delivery, team, creative quality. Everything downstream of close, plus ongoing strategy tuning.</div>
+          <div class="lane-time">3 days/week · Tue · Wed · Thu · ~18 hrs</div>
+
+          <div class="lane-section">
+            <h3><span class="num">01</span>Client Delivery Oversight</h3>
+            <ul>
+              <li>Leads and oversees all client delivery operations</li>
+              <li>Sets quality standards across all accounts — defines "good," AMs execute</li>
+              <li>Primary escalation point for all client and delivery issues</li>
+              <li>Renewal conversation participation (relationship + delivery health)</li>
+            </ul>
+          </div>
+
+          <div class="lane-section">
+            <h3><span class="num">02</span>Client Strategy — Adjustments + Refinements</h3>
+            <ul>
+              <li>Owns ongoing strategy tuning across all accounts post-build</li>
+              <li>Adjusts pillars, formats, hooks based on performance signals</li>
+              <li>Operates the Signal Check Protocol (metrics_to_track.md §4)</li>
+              <li>Reviews monthly performance reports for strategic implications</li>
+              <li>Chase builds; Allison evolves</li>
+            </ul>
+          </div>
+
+          <div class="lane-section">
+            <h3><span class="num">03</span>AM Team Leadership</h3>
+            <ul>
+              <li>Manages, supports, and develops AM team — Emily, Rachel</li>
+              <li>Onboards Emily ramp to 100% / 5 accounts by Aug 31</li>
+              <li>Riley rolls off Aug 8 — clean handoff documentation</li>
+              <li>Weekly AM check-ins, performance feedback, career development</li>
+              <li>Sets team culture + working standards</li>
+            </ul>
+          </div>
+
+          <div class="lane-section">
+            <h3><span class="num">04</span>Content + Creative Direction</h3>
+            <ul>
+              <li>Aids content shoot strategy, direction, and execution oversight</li>
+              <li>Contributes to client content ideation and creative direction</li>
+              <li>Owns agency-level brand and creative direction</li>
+              <li>Final aesthetic eye on Signature deliverables (decks, Homebases, reports)</li>
+            </ul>
+          </div>
+
+          <div class="lane-section">
+            <h3><span class="num">05</span>Retention</h3>
+            <ul>
+              <li>Aids in retention through strong relationships and expectation management</li>
+              <li>Renewal calls — relationship lead (Chase on strategy)</li>
+              <li>Active client referral conversations during renewal context</li>
+            </ul>
+          </div>
+
+          <div class="lane-section">
+            <h3><span class="num">06</span>Networking</h3>
+            <ul>
+              <li>2 hrs/week Chamber + local Cincinnati networking</li>
+              <li>Spot-attendance only — Chase leads, Allison opportunistic</li>
+              <li>Relationship deepening on warm targets when capacity allows</li>
+            </ul>
+          </div>
+
+          <div class="out-of-scope">
+            <span class="label">Out of Scope</span>
+            <p>BD pipeline ownership. New client acquisition. Initial strategy builds (contributes, doesn't own). Performance report production. Productized layer. Web infrastructure. Personal brand. Finance.</p>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ JOINT ============ -->
+  <section class="block" id="joint">
+    <div class="container">
+      <span class="section-num">02 · Joint Ownership</span>
+      <h2>Where we both show up</h2>
+      <p class="section-sub">Decisions and deliverables where both founders are required. Either founder can flag for the other.</p>
+
+      <div class="joint-block">
+        <span class="lane-tag">Joint</span>
+        <h3 class="joint-title">Shared lane</h3>
+        <p class="joint-sub">Strategic decisions and high-stakes deliverables that need both founders before they ship.</p>
+        <ul class="joint-bullets">
+          <li>All strategic decisions: exit timing, pricing, positioning, partnerships, major hires</li>
+          <li>Three-churn diagnosis (Plas / Parachute / Ombré) — due May 31</li>
+          <li>Quarterly OS reviews + phase transitions</li>
+          <li>CLAUDE.md updates</li>
+          <li>Founder-level client conversations when stakes warrant</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CADENCE ============ -->
+  <section class="block" id="cadence">
+    <div class="container">
+      <span class="section-num">03 · Operating Cadence</span>
+      <h2>How we sync</h2>
+      <p class="section-sub">Locked rhythm for staying aligned without over-meeting.</p>
+
+      <div class="cadence-grid">
+        <div class="cadence-item">
+          <div class="cad-label">Weekly 1:1</div>
+          <p class="cad-body">Tuesday morning · 30–45 min · working session</p>
+        </div>
+        <div class="cadence-item">
+          <div class="cad-label">Async daily</div>
+          <p class="cad-body">Slack check-ins · low-friction · no standup</p>
+        </div>
+        <div class="cadence-item">
+          <div class="cad-label">Monthly review</div>
+          <p class="cad-body">Last working day · Phase 1 progress check</p>
+        </div>
+        <div class="cadence-item">
+          <div class="cad-label">Quarterly</div>
+          <p class="cad-body">OS review + lane recalibration</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="doc-footer">
+    <div class="doc-footer-inner">
+      <div><span class="brand-mark">scroll media</span> · Internal founder reference</div>
+      <div>Locked May 19, 2026 · Reviewed quarterly · Next review Aug 31, 2026</div>
+    </div>
+  </footer>
+
+</body>
+</html>
