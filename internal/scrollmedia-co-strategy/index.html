@@ -15,7 +15,6 @@
 <style>
   /* =========================================================
      TOKENS — Scroll Design System v2
-     brand_system.md §5 Layer 1 + web_patterns_v2.md
      ========================================================= */
   :root {
     --ghost: #FAFDFF;
@@ -39,6 +38,11 @@
 
     --shadow-soft: #1c1c1f;
     --shadow-2: #25262a;
+
+    /* Neutral grays for use on dark bands (prevents blue-on-blue) */
+    --on-dark-fg: #ebedf2;
+    --on-dark-fg-soft: rgba(255,255,255,0.85);
+    --on-dark-label: rgba(255,255,255,0.65);
 
     --bg: var(--ghost);
     --bg-alt: #f5f8fb;
@@ -148,7 +152,7 @@
   }
   .meta-strip strong { color: var(--azure); font-weight: 600; }
 
-  /* TOPBAR — sticky, animated, v2 §4 */
+  /* TOPBAR */
   .topbar {
     position: sticky;
     top: 0;
@@ -245,6 +249,18 @@
     white-space: nowrap;
   }
   .topbar-meta strong { color: var(--azure); font-weight: 700; }
+  /* Reading progress bar — pinned to bottom edge of sticky topbar */
+  .progress-bar {
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    height: 3px;
+    background: var(--highlighter);
+    width: 0%;
+    transition: width 80ms linear;
+    pointer-events: none;
+    z-index: 1;
+  }
   @media (max-width: 1100px) {
     .topbar .nav-links { gap: 18px; }
     .topbar .nav-links a { font-size: 11px; }
@@ -312,6 +328,7 @@
     font-variant-numeric: tabular-nums;
     letter-spacing: var(--tracking-tight);
   }
+  .stat-n .num { display: inline-block; min-width: 1ch; }
   .stat-l {
     font-size: var(--fs-xs);
     color: var(--fg-muted);
@@ -376,42 +393,53 @@
   em { font-style: italic; color: var(--shadow); }
   .intro { color: var(--fg-muted); font-size: var(--fs-md); max-width: var(--maxw-prose); margin-bottom: var(--sp-5); }
 
-  /* FOUNDATION — dark Azure → Azure-900 gradient band (web_patterns_v2 §6) */
+  /* FOUNDATION — dark Azure band
+     v3.1-iter2 contrast fix: body text + labels switched to neutral grays
+     (was --azure-200 / --azure-100, which read blue-on-blue at viewport scale
+     even though they passed 4.5:1 numerically). Lime + ghost reserved for emphasis. */
   .foundation {
     background: linear-gradient(180deg, var(--azure) 0%, var(--azure-900) 100%);
-    color: var(--ghost);
+    color: var(--on-dark-fg);
     padding: var(--sp-9) 0;
     border-bottom: 1px solid var(--azure-900);
   }
-  .foundation .section-kicker { color: var(--azure-200); }
+  .foundation .section-kicker { color: var(--highlighter); }
   .foundation h2 { color: var(--ghost); }
   .foundation h3 { color: var(--highlighter); }
-  .foundation h4 { color: var(--azure-200); }
-  .foundation p, .foundation li { color: var(--azure-100); }
+  .foundation h4 { color: var(--on-dark-label); }
+  .foundation p, .foundation li { color: var(--on-dark-fg); }
   .foundation strong { color: var(--ghost); }
-  .foundation em { color: var(--lucid); }
-  .foundation .intro { color: var(--azure-200); }
+  .foundation em { color: var(--ghost); font-style: italic; }
+  .foundation .intro { color: var(--on-dark-fg-soft); }
   .foundation .panel {
-    background: rgba(255,255,255,0.04);
-    border: 1px solid rgba(255,255,255,0.10);
-    color: var(--azure-100);
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.16);
+    color: var(--on-dark-fg);
   }
   .foundation .panel h3, .foundation .panel h4 { color: var(--ghost); }
+  .foundation .panel p { color: var(--on-dark-fg); }
   .foundation .callout {
-    background: rgba(255,255,255,0.04);
-    border: 1px solid rgba(255,255,255,0.10);
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.16);
     border-left: 2px solid var(--highlighter);
+    color: var(--on-dark-fg);
   }
   .foundation .callout strong { color: var(--highlighter); }
-  .foundation .funnel-step { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.14); color: var(--ghost); }
+  .foundation .callout em { color: var(--ghost); }
+  .foundation .funnel-step {
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.18);
+    color: var(--ghost);
+  }
+  .foundation .funnel-step strong { color: var(--highlighter); }
   .foundation .funnel-arrow { color: var(--highlighter); }
-  .foundation a { color: var(--lucid); border-bottom-color: rgba(203,233,255,0.30); }
+  .foundation a { color: var(--lucid); border-bottom-color: rgba(203,233,255,0.35); }
   .foundation a:hover { color: var(--highlighter); border-bottom-color: var(--highlighter); }
 
-  /* ENGINE — dark Shadow band (web_patterns_v2 §7) */
+  /* ENGINE — dark Shadow band */
   .engine {
     background: linear-gradient(180deg, var(--shadow) 0%, var(--shadow-soft) 100%);
-    color: var(--ghost);
+    color: var(--on-dark-fg);
     padding: var(--sp-9) 0;
     border-top: 1px solid var(--shadow-2);
     border-bottom: 1px solid var(--shadow-2);
@@ -419,28 +447,29 @@
   .engine .section-kicker { color: var(--highlighter); }
   .engine h2 { color: var(--ghost); }
   .engine h3 { color: var(--highlighter); }
-  .engine h4 { color: var(--azure-200); }
-  .engine p, .engine li { color: #e4e6eb; }
+  .engine h4 { color: var(--on-dark-label); }
+  .engine p, .engine li { color: var(--on-dark-fg); }
   .engine strong { color: var(--ghost); }
   .engine em { color: var(--highlighter); }
-  .engine .intro { color: #c2c6d0; }
+  .engine .intro { color: var(--on-dark-fg-soft); }
   .engine .panel {
-    background: rgba(255,255,255,0.04);
-    border: 1px solid rgba(255,255,255,0.10);
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.16);
   }
-  .engine .table-wrap { border-color: rgba(255,255,255,0.14); background: rgba(255,255,255,0.02); }
-  .engine table { color: #e4e6eb; }
-  .engine th { background: rgba(255,255,255,0.04); color: var(--highlighter); border-bottom-color: rgba(255,255,255,0.18); }
-  .engine td { border-bottom-color: rgba(255,255,255,0.08); }
-  .engine tbody tr:hover td { background: rgba(226,237,122,0.06); }
-  .engine details.acc { background: rgba(255,255,255,0.02); border-color: rgba(255,255,255,0.12); }
+  .engine .table-wrap { border-color: rgba(255,255,255,0.18); background: rgba(255,255,255,0.02); }
+  .engine table { color: var(--on-dark-fg); }
+  .engine th { background: rgba(255,255,255,0.06); color: var(--highlighter); border-bottom-color: rgba(255,255,255,0.22); }
+  .engine td { border-bottom-color: rgba(255,255,255,0.12); }
+  .engine tbody tr:hover td { background: rgba(226,237,122,0.08); }
+  .engine details.acc { background: rgba(255,255,255,0.03); border-color: rgba(255,255,255,0.16); }
   .engine details.acc summary { color: var(--ghost); }
   .engine details.acc summary::after { color: var(--highlighter); }
-  .engine details.acc summary:hover { background: rgba(255,255,255,0.05); }
-  .engine details.acc .acc-body { border-top-color: rgba(255,255,255,0.10); color: #e4e6eb; }
-  .engine code { background: rgba(255,255,255,0.06); border-color: rgba(255,255,255,0.14); color: var(--highlighter); }
+  .engine details.acc summary:hover { background: rgba(255,255,255,0.06); }
+  .engine details.acc .acc-body { border-top-color: rgba(255,255,255,0.14); color: var(--on-dark-fg); }
+  .engine details.acc .acc-eyebrow { color: var(--highlighter); }
+  .engine code { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.18); color: var(--highlighter); }
 
-  /* CONNECTORS (v2 §6) */
+  /* CONNECTORS */
   .connector { margin: 24px 0; padding: 16px 0; text-align: center; }
   .connector .conn-arrow {
     font-size: 28px; line-height: 1; color: var(--azure);
@@ -452,10 +481,10 @@
   }
   .connector .conn-label strong { color: var(--azure); }
   .connector.on-dark .conn-arrow { color: var(--highlighter); }
-  .connector.on-dark .conn-label { color: var(--azure-200); }
+  .connector.on-dark .conn-label { color: var(--on-dark-label); }
   .connector.on-dark .conn-label strong { color: var(--highlighter); }
 
-  /* PANELS + CARDS */
+  /* PANELS + GRIDS */
   .panel { background: var(--bg); border: 1px solid var(--rule); padding: var(--sp-5); margin: var(--sp-4) 0; }
   .panel.tight { padding: var(--sp-4); }
   .panel.lucid { background: var(--lucid-soft); border-color: var(--rule); }
@@ -526,31 +555,17 @@
   }
   .summary p:last-child { margin-bottom: 0; }
   .summary .summary-rows {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 0;
-    margin: 0;
-    padding: 0;
-    list-style: none;
-    max-width: 100%;
+    display: grid; grid-template-columns: 1fr; gap: 0; margin: 0; padding: 0; list-style: none; max-width: 100%;
   }
   .summary .summary-rows li {
-    display: grid;
-    grid-template-columns: 56px 1fr;
-    gap: var(--sp-3);
-    padding: var(--sp-3) 0;
-    border-bottom: 1px solid var(--rule-faint);
-    margin: 0;
-    align-items: baseline;
+    display: grid; grid-template-columns: 56px 1fr; gap: var(--sp-3); padding: var(--sp-3) 0;
+    border-bottom: 1px solid var(--rule-faint); margin: 0; align-items: baseline;
   }
   .summary .summary-rows li:last-child { border-bottom: 0; padding-bottom: 0; }
   .summary .summary-rows li:first-child { padding-top: 0; }
   .summary .summary-rows .n {
-    font-size: var(--fs-xs);
-    color: var(--azure);
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: var(--tracking-wider);
+    font-size: var(--fs-xs); color: var(--azure); font-weight: 700;
+    text-transform: uppercase; letter-spacing: var(--tracking-wider);
   }
 
   /* TABLES */
@@ -560,61 +575,65 @@
   th { background: var(--bg-alt); color: var(--fg-muted); font-weight: 600; font-size: var(--fs-xs); text-transform: uppercase; letter-spacing: var(--tracking-wide); border-bottom: 1px solid var(--rule-strong); white-space: nowrap; }
   tr:last-child td { border-bottom: 0; }
   tbody tr:hover td { background: var(--lucid-soft); }
-  .engine tbody tr:hover td { background: rgba(226,237,122,0.06); }
 
-  /* CADENCE TABLE — stacks on 414px */
   @media (max-width: 414px) {
     .table-wrap.stacks { border: 0; overflow: visible; }
     .table-wrap.stacks table { display: block; min-width: 0; }
     .table-wrap.stacks thead { display: none; }
     .table-wrap.stacks tbody { display: block; }
     .table-wrap.stacks tr { display: block; border: 1px solid var(--rule); margin-bottom: 12px; padding: 12px; background: var(--bg); }
-    .table-wrap.stacks td { display: block; border-bottom: 0; padding: 4px 0; font-size: 13px; }
+    .table-wrap.stacks td { display: block; border-bottom: 0; padding: 4px 0; font-size: 14px; }
     .table-wrap.stacks td::before {
-      content: attr(data-label);
-      display: block;
-      font-size: 10px;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--fg-muted);
-      font-weight: 600;
-      margin-bottom: 2px;
+      content: attr(data-label); display: block; font-size: 10px; letter-spacing: 0.14em;
+      text-transform: uppercase; color: var(--fg-muted); font-weight: 600; margin-bottom: 2px;
     }
-    .engine .table-wrap.stacks tr { background: rgba(255,255,255,0.04); border-color: rgba(255,255,255,0.14); }
-    .engine .table-wrap.stacks td::before { color: var(--azure-200); }
+    .engine .table-wrap.stacks tr { background: rgba(255,255,255,0.04); border-color: rgba(255,255,255,0.18); }
+    .engine .table-wrap.stacks td { color: var(--on-dark-fg); }
+    .engine .table-wrap.stacks td::before { color: var(--highlighter); }
   }
 
   code { font-family: var(--mono); background: var(--bg-alt); color: var(--azure-900); padding: 1px 6px; font-size: 0.92em; border: 1px solid var(--rule-faint); }
   pre {
-    background: var(--bg-alt);
-    border: 1px solid var(--rule);
-    border-left: 2px solid var(--azure);
-    padding: var(--sp-4) var(--sp-5);
-    overflow-x: auto;
-    font-family: var(--mono);
-    font-size: var(--fs-sm);
-    line-height: var(--lh-normal);
-    color: var(--shadow);
-    margin: var(--sp-3) 0 var(--sp-5);
-    white-space: pre;
+    background: var(--bg-alt); border: 1px solid var(--rule); border-left: 2px solid var(--azure);
+    padding: var(--sp-4) var(--sp-5); overflow-x: auto; font-family: var(--mono);
+    font-size: var(--fs-sm); line-height: var(--lh-normal); color: var(--shadow);
+    margin: var(--sp-3) 0 var(--sp-5); white-space: pre;
   }
   pre code { background: transparent; color: inherit; padding: 0; border: 0; }
 
   .tag { display: inline-block; font-family: var(--sans); font-size: var(--fs-xs); padding: 2px 8px; letter-spacing: var(--tracking-wide); margin: 2px 4px 2px 0; border: 1px solid var(--rule); background: var(--bg); color: var(--fg-muted); text-transform: uppercase; font-weight: 600; line-height: 1.5; }
   .tag.azure { background: var(--lucid-soft); border-color: var(--rule-strong); color: var(--azure); }
   .tag.signal { background: var(--highlighter); border-color: var(--shadow); color: var(--shadow); }
-  .tag.warn { background: var(--bg); border-color: var(--shadow); color: var(--shadow); }
-  .tag.muted { color: var(--fg-subtle); border-color: var(--rule-faint); }
-  .foundation .tag { background: rgba(255,255,255,0.06); border-color: rgba(255,255,255,0.14); color: var(--azure-200); }
+  .foundation .tag { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.18); color: var(--on-dark-fg); }
   .foundation .tag.signal { background: var(--highlighter); border-color: var(--highlighter); color: var(--shadow); }
 
-  /* OPERATOR + ROLE CARDS */
+  /* TEAM (Zone 1) CARDS */
   .op-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: var(--sp-4); margin: var(--sp-5) 0; }
   @media (max-width: 1100px) { .op-grid { grid-template-columns: repeat(3, 1fr); } }
   @media (max-width: 768px) { .op-grid { grid-template-columns: repeat(2, 1fr); } }
   @media (max-width: 414px) { .op-grid { grid-template-columns: 1fr; } }
-  .op-card { background: var(--bg); border: 1px solid var(--rule); padding: var(--sp-5); display: flex; flex-direction: column; gap: var(--sp-3); }
+
+  /* Shared card styles for hover lift + lime accent line */
+  .op-card, .lcard {
+    position: relative; overflow: hidden;
+    background: var(--bg); border: 1px solid var(--rule); padding: var(--sp-5);
+    display: flex; flex-direction: column; gap: var(--sp-3);
+    transition: transform 200ms var(--ease), box-shadow 200ms var(--ease), border-color 200ms var(--ease);
+  }
   .op-card.chase { background: var(--lucid-soft); border-color: var(--rule-strong); }
+  .op-card::before, .lcard::before {
+    content: ''; position: absolute; top: 0; bottom: 0; left: 0;
+    width: 3px; background: var(--highlighter);
+    transform: scaleY(0); transform-origin: top;
+    transition: transform 220ms var(--ease);
+  }
+  .op-card:hover, .lcard:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 18px rgba(12,51,135,0.10);
+    border-color: var(--rule-strong);
+  }
+  .op-card:hover::before, .lcard:hover::before { transform: scaleY(1); }
+
   .op-card .op-name { font-size: var(--fs-md); color: var(--azure); font-weight: 700; letter-spacing: var(--tracking-tight); margin: 0; }
   .op-card.chase .op-name { color: var(--azure-900); }
   .op-card .op-role { font-size: var(--fs-xs); color: var(--fg-muted); text-transform: uppercase; letter-spacing: var(--tracking-wider); font-weight: 600; margin: 0; }
@@ -623,16 +642,15 @@
   .op-card ul { margin: 0; padding-left: 18px; font-size: var(--fs-sm); }
   .op-card li { margin: 3px 0; }
 
-  /* PILLARS / LANE / TEMPLATE CARDS */
-  .layer-grid { display: grid; gap: var(--sp-4); margin: var(--sp-5) 0; }
+  /* LAYER CARDS (used inside tab panels) */
+  .layer-grid { display: grid; gap: var(--sp-4); margin: 0; }
   .layer-grid.l1, .layer-grid.l2 { grid-template-columns: repeat(2, 1fr); }
   .layer-grid.l3 { grid-template-columns: repeat(2, 1fr); }
   .layer-grid.l4 { grid-template-columns: repeat(3, 1fr); }
   @media (max-width: 880px) {
     .layer-grid.l1, .layer-grid.l2, .layer-grid.l3, .layer-grid.l4 { grid-template-columns: 1fr; }
   }
-  .lcard { background: var(--bg); border: 1px solid var(--rule); padding: var(--sp-5); display: flex; flex-direction: column; gap: var(--sp-2); transition: transform 200ms var(--ease), box-shadow 200ms var(--ease); }
-  .lcard:hover { transform: translateY(-2px); box-shadow: 0 4px 0 var(--azure-100); }
+  .lcard { gap: var(--sp-2); }
   .lcard .lcard-eyebrow { font-size: var(--fs-xs); text-transform: uppercase; letter-spacing: var(--tracking-wider); color: var(--azure); font-weight: 700; }
   .lcard h4 { margin: 0; color: var(--shadow); text-transform: none; letter-spacing: var(--tracking-tight); font-size: var(--fs-md); font-weight: 700; }
   .lcard p { margin: 0; font-size: var(--fs-sm); color: var(--fg); }
@@ -640,41 +658,112 @@
   .lcard ul { margin: 4px 0 0; padding-left: 18px; font-size: var(--fs-sm); }
   .lcard li { margin: 2px 0; font-size: var(--fs-sm); }
 
+  /* ZONE 2 TABS */
+  .layer-tabs { margin: var(--sp-5) 0 0; }
+  .tab-list {
+    display: flex; gap: 0; border-bottom: 1px solid var(--rule);
+    margin: 0 0 var(--sp-5); overflow-x: auto; -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .tab-list::-webkit-scrollbar { display: none; }
+  .tab-btn {
+    flex: 0 0 auto; background: transparent; border: 0;
+    padding: var(--sp-4) var(--sp-5);
+    font-family: var(--sans); font-size: var(--fs-sm); font-weight: 600;
+    color: var(--fg-muted); cursor: pointer; position: relative;
+    text-transform: uppercase; letter-spacing: var(--tracking-wide);
+    transition: color 200ms var(--ease);
+    display: inline-flex; align-items: center; gap: 10px;
+    min-height: 44px; white-space: nowrap;
+  }
+  .tab-btn::after {
+    content: ''; position: absolute; bottom: -1px; left: 12px; right: 12px;
+    height: 3px; background: var(--highlighter);
+    transform: scaleX(0); transform-origin: center;
+    transition: transform 220ms var(--ease);
+  }
+  .tab-btn:hover { color: var(--azure); }
+  .tab-btn:focus-visible { color: var(--azure); }
+  .tab-btn[aria-selected="true"] { color: var(--azure); font-weight: 700; }
+  .tab-btn[aria-selected="true"]::after { transform: scaleX(1); }
+  .tab-count {
+    font-size: 10px; background: var(--bg-alt); color: var(--fg-muted);
+    padding: 2px 7px; font-weight: 700; letter-spacing: 0.04em;
+    border: 1px solid var(--rule-faint);
+    transition: background 200ms var(--ease), color 200ms var(--ease), border-color 200ms var(--ease);
+  }
+  .tab-btn[aria-selected="true"] .tab-count {
+    background: var(--azure); color: var(--ghost); border-color: var(--azure);
+  }
+
+  .tab-panels { min-height: 520px; position: relative; }
+  .tab-panel { display: none; animation: tabIn 280ms var(--ease); }
+  .tab-panel.active { display: block; }
+  @keyframes tabIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+  .tab-mobile-header {
+    display: none; width: 100%; background: var(--bg); border: 1px solid var(--rule);
+    padding: var(--sp-4) var(--sp-5); font-family: var(--sans); font-size: var(--fs-sm);
+    font-weight: 700; color: var(--shadow); cursor: pointer; text-align: left;
+    text-transform: uppercase; letter-spacing: var(--tracking-wide);
+    min-height: 44px; align-items: center; justify-content: space-between; gap: 12px;
+    transition: background 150ms var(--ease);
+  }
+  .tab-mobile-header:hover { background: var(--lucid-soft); }
+  .tab-mobile-header::after {
+    content: '＋'; color: var(--azure); font-size: 18px; font-weight: 600; flex-shrink: 0;
+    transition: transform 200ms var(--ease);
+  }
+  .tab-panel.active .tab-mobile-header::after { content: '－'; transform: rotate(180deg); }
+
+  @media (max-width: 414px) {
+    .tab-list { display: none; }
+    .tab-panel { display: block; margin-bottom: -1px; animation: none; }
+    .tab-panel .tab-mobile-header { display: flex; }
+    .tab-panel .tab-panel-content {
+      display: none; padding: var(--sp-4) 0;
+      border-left: 1px solid var(--rule); border-right: 1px solid var(--rule);
+      border-bottom: 1px solid var(--rule); padding: var(--sp-4) var(--sp-4) var(--sp-5);
+      animation: accIn 280ms var(--ease);
+    }
+    .tab-panel.active .tab-panel-content { display: block; }
+    .tab-panels { min-height: 0; }
+  }
+  @media (min-width: 415px) {
+    .tab-panel-content { display: block; }
+  }
+
   /* FUNNEL DIAGRAM */
   .funnel { display: flex; flex-direction: column; gap: 6px; margin: var(--sp-5) 0; }
   .funnel-step {
-    background: var(--bg);
-    border: 1px solid var(--rule);
-    padding: var(--sp-3) var(--sp-4);
-    font-size: var(--fs-sm);
-    text-align: center;
-    color: var(--shadow);
+    background: var(--bg); border: 1px solid var(--rule);
+    padding: var(--sp-3) var(--sp-4); font-size: var(--fs-sm);
+    text-align: center; color: var(--shadow);
   }
   .funnel-step strong { color: var(--azure); }
   .funnel-arrow { text-align: center; color: var(--azure); font-weight: 700; font-size: var(--fs-md); line-height: 1; }
+  /* Sequenced reveal — stagger via inline --i, triggered when parent gets .revealed */
+  .funnel > * {
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 360ms var(--ease), transform 360ms var(--ease);
+    transition-delay: calc(var(--i, 0) * 120ms);
+    will-change: opacity, transform;
+  }
+  .funnel.revealed > * { opacity: 1; transform: translateY(0); }
+  @media (prefers-reduced-motion: reduce) {
+    .funnel > * { opacity: 1; transform: none; transition: none; }
+  }
 
   /* PRODUCTION FLOW */
   .flow {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    gap: var(--sp-2);
-    align-items: stretch;
-    margin: var(--sp-4) 0 var(--sp-5);
+    display: grid; grid-template-columns: repeat(5, 1fr); gap: var(--sp-2);
+    align-items: stretch; margin: var(--sp-4) 0 var(--sp-5);
   }
-  @media (max-width: 880px) {
-    .flow { grid-template-columns: 1fr; }
-  }
+  @media (max-width: 880px) { .flow { grid-template-columns: 1fr; } }
   .flow-node {
-    background: var(--bg);
-    border: 1px solid var(--rule);
-    padding: var(--sp-3);
-    text-align: center;
-    font-size: var(--fs-xs);
-    color: var(--fg);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    gap: 4px;
+    background: var(--bg); border: 1px solid var(--rule); padding: var(--sp-3);
+    text-align: center; font-size: var(--fs-xs); color: var(--fg);
+    display: flex; flex-direction: column; justify-content: center; gap: 4px;
   }
   .flow-node .step-n { font-size: 9px; color: var(--azure); text-transform: uppercase; letter-spacing: 0.14em; font-weight: 700; }
   .flow-node strong { color: var(--shadow); font-weight: 700; font-size: var(--fs-sm); line-height: 1.2; }
@@ -682,61 +771,100 @@
   /* GATE */
   .gate {
     background: linear-gradient(180deg, var(--bg) 0%, #fbf7e2 100%);
-    padding: var(--sp-9) 0;
-    border-bottom: 1px solid var(--rule);
+    padding: var(--sp-9) 0; border-bottom: 1px solid var(--rule);
   }
-  .gate .agenda { background: var(--bg); border: 1px solid var(--rule-strong); padding: var(--sp-5); margin: var(--sp-4) 0; }
-  .gate .agenda h3 { margin-top: 0; }
-  .gate .agenda ol { counter-reset: ag-step; padding-left: 0; list-style: none; }
-  .gate .agenda ol li {
-    counter-increment: ag-step;
-    padding: var(--sp-3) 0 var(--sp-3) 50px;
-    position: relative;
-    border-bottom: 1px solid var(--rule-faint);
+  .gate details.agenda { background: var(--bg); border: 1px solid var(--rule-strong); margin: var(--sp-4) 0; }
+  .gate details.agenda > summary {
+    list-style: none; cursor: pointer; padding: var(--sp-4) var(--sp-5);
+    font-weight: 700; color: var(--azure); display: flex; align-items: center;
+    justify-content: space-between; font-size: var(--fs-md); gap: var(--sp-3);
+    border-left: 3px solid var(--highlighter);
+    min-height: 44px;
   }
-  .gate .agenda ol li:last-child { border-bottom: 0; }
-  .gate .agenda ol li::before {
-    content: counter(ag-step, decimal-leading-zero);
-    position: absolute;
-    left: 0;
-    top: var(--sp-3);
-    font-size: var(--fs-xs);
-    font-weight: 700;
-    color: var(--azure);
-    background: var(--highlighter);
-    padding: 4px 8px;
-    letter-spacing: 0.04em;
-    line-height: 1;
+  .gate details.agenda > summary::-webkit-details-marker { display: none; }
+  .gate details.agenda > summary::after {
+    content: '＋'; color: var(--azure); font-size: 22px; font-weight: 600;
+    margin-left: var(--sp-3); transition: transform 220ms var(--ease); flex-shrink: 0;
   }
+  .gate details.agenda[open] > summary::after { content: '－'; transform: rotate(180deg); }
+  .gate details.agenda > summary:hover { background: var(--lucid-soft); }
+  .gate details.agenda > summary .agenda-meta {
+    font-size: var(--fs-xs); color: var(--fg-muted); text-transform: uppercase;
+    letter-spacing: var(--tracking-wider); font-weight: 600;
+  }
+  .gate details.agenda .agenda-body {
+    padding: 0 var(--sp-5) var(--sp-5); border-top: 1px solid var(--rule);
+    padding-top: var(--sp-4); animation: accIn 280ms var(--ease);
+  }
+  .gate .agenda-body h3:first-child { margin-top: 0; }
+  .gate .agenda-body ol { counter-reset: ag-step; padding-left: 0; list-style: none; }
+  .gate .agenda-body ol li {
+    counter-increment: ag-step; padding: var(--sp-3) 0 var(--sp-3) 50px;
+    position: relative; border-bottom: 1px solid var(--rule-faint);
+  }
+  .gate .agenda-body ol li:last-child { border-bottom: 0; }
+  .gate .agenda-body ol li::before {
+    content: counter(ag-step, decimal-leading-zero); position: absolute;
+    left: 0; top: var(--sp-3); font-size: var(--fs-xs); font-weight: 700;
+    color: var(--azure); background: var(--highlighter);
+    padding: 4px 8px; letter-spacing: 0.04em; line-height: 1;
+  }
+  .gate .agenda-body ul { margin-top: 0; }
   .gate .success {
-    background: var(--highlighter);
-    border: 1px solid var(--shadow);
-    padding: var(--sp-5);
-    margin-top: var(--sp-5);
+    background: var(--highlighter); border: 1px solid var(--shadow);
+    padding: var(--sp-5); margin-top: var(--sp-5);
   }
   .gate .success h3 { margin-top: 0; color: var(--shadow); }
   .gate .success ul { margin: 0; padding-left: 22px; }
   .gate .success li { color: var(--shadow); font-size: var(--fs-sm); }
   .gate .success strong { color: var(--shadow); }
 
-  /* ACCORDION (Supplements) */
+  /* SUPPLEMENTS — categorized accordions */
+  .supp-group { margin: var(--sp-6) 0 var(--sp-4); }
+  .supp-group-label {
+    display: flex; align-items: center; gap: var(--sp-3); margin-bottom: var(--sp-3);
+    font-size: var(--fs-xs); text-transform: uppercase; letter-spacing: var(--tracking-wider);
+    color: var(--azure); font-weight: 700;
+  }
+  .supp-group-label::after {
+    content: ''; flex: 1; height: 1px; background: var(--rule);
+  }
+  .supp-group-label .supp-group-count {
+    background: var(--lucid-soft); color: var(--azure); font-weight: 700;
+    padding: 2px 8px; font-size: 10px; border: 1px solid var(--rule-strong);
+  }
+
+  /* ACCORDION (Supplements + Engine) */
   details.acc { border: 1px solid var(--rule); background: var(--bg); padding: 0; margin: 0; border-bottom: 0; }
   details.acc:first-of-type { border-top: 1px solid var(--rule); }
   details.acc:last-of-type { border-bottom: 1px solid var(--rule); }
-  details.acc summary { list-style: none; cursor: pointer; padding: var(--sp-4) var(--sp-5); font-weight: 600; color: var(--shadow); display: flex; align-items: center; justify-content: space-between; font-size: var(--fs-base); gap: var(--sp-3); }
+  details.acc summary {
+    list-style: none; cursor: pointer; padding: var(--sp-4) var(--sp-5);
+    font-weight: 600; color: var(--shadow); display: flex; align-items: center;
+    justify-content: space-between; font-size: var(--fs-base); gap: var(--sp-3);
+    min-height: 44px;
+  }
   details.acc summary::-webkit-details-marker { display: none; }
-  details.acc summary::after { content: '＋'; font-family: var(--sans); color: var(--azure); font-size: var(--fs-md); font-weight: 600; margin-left: var(--sp-3); transition: transform 200ms var(--ease); flex-shrink: 0; }
+  details.acc summary::after {
+    content: '＋'; font-family: var(--sans); color: var(--azure);
+    font-size: var(--fs-md); font-weight: 600; margin-left: var(--sp-3);
+    transition: transform 200ms var(--ease); flex-shrink: 0;
+  }
   details.acc[open] summary::after { content: '－'; transform: rotate(180deg); }
   details.acc summary:hover { background: var(--lucid-soft); }
-  details.acc .acc-body { padding: 0 var(--sp-5) var(--sp-5); color: var(--fg); border-top: 1px solid var(--rule); padding-top: var(--sp-4); font-size: var(--fs-base); line-height: var(--lh-relaxed); animation: accIn 280ms var(--ease); }
-  details.acc .acc-body p:last-child, details.acc .acc-body ul:last-child, details.acc .acc-body ol:last-child, details.acc .acc-body .table-wrap:last-child { margin-bottom: 0; }
+  details.acc .acc-body {
+    padding: 0 var(--sp-5) var(--sp-5); color: var(--fg);
+    border-top: 1px solid var(--rule); padding-top: var(--sp-4);
+    font-size: var(--fs-base); line-height: var(--lh-relaxed);
+    animation: accIn 280ms var(--ease);
+  }
+  details.acc .acc-body p:last-child,
+  details.acc .acc-body ul:last-child,
+  details.acc .acc-body ol:last-child,
+  details.acc .acc-body .table-wrap:last-child { margin-bottom: 0; }
   details.acc .acc-eyebrow {
-    display: inline-block;
-    font-size: var(--fs-xs);
-    text-transform: uppercase;
-    letter-spacing: var(--tracking-wider);
-    color: var(--azure);
-    font-weight: 700;
+    display: inline-block; font-size: var(--fs-xs); text-transform: uppercase;
+    letter-spacing: var(--tracking-wider); color: var(--azure); font-weight: 700;
     margin-right: 10px;
   }
   @keyframes accIn { from { opacity: 0; transform: translateY(-4px); } to { opacity: 1; transform: translateY(0); } }
@@ -747,19 +875,83 @@
   .pw-kicker { font-size: var(--fs-xs); letter-spacing: var(--tracking-wider); text-transform: uppercase; color: var(--fg-muted); font-weight: 600; margin-bottom: var(--sp-3); }
   .pw-title { font-size: var(--fs-xl); font-weight: 700; color: var(--azure); letter-spacing: var(--tracking-tight); margin: 0 0 var(--sp-3) 0; }
   .pw-subtitle { font-size: var(--fs-sm); color: var(--fg-muted); margin: 0 0 var(--sp-5) 0; line-height: var(--lh-normal); }
-  .pw-input { width: 100%; padding: 12px 14px; border: 1px solid var(--rule-strong); background: var(--bg); color: var(--shadow); font-size: var(--fs-base); font-family: var(--sans); outline: none; margin-bottom: var(--sp-3); transition: border-color 120ms var(--ease); }
+  .pw-input { width: 100%; padding: 12px 14px; border: 1px solid var(--rule-strong); background: var(--bg); color: var(--shadow); font-size: var(--fs-base); font-family: var(--sans); outline: none; margin-bottom: var(--sp-3); transition: border-color 120ms var(--ease); min-height: 44px; }
   .pw-input:focus { border-color: var(--azure); }
   .pw-input::placeholder { color: var(--fg-subtle); }
   .pw-btn { width: 100%; padding: 12px 14px; background: var(--azure); color: var(--ghost); font-size: var(--fs-sm); font-weight: 700; font-family: var(--sans); letter-spacing: var(--tracking-wide); text-transform: uppercase; border: 1px solid var(--azure); cursor: pointer; transition: background 120ms var(--ease); min-height: 44px; }
   .pw-btn:hover { background: var(--azure-900); }
   .pw-error { font-size: var(--fs-sm); color: #b3261e; margin-top: var(--sp-3); display: none; }
 
-  /* REVEAL (v2 §5; portal tuning — fast access) */
-  .reveal { opacity: 0; transform: translateY(12px); transition: opacity 280ms var(--ease), transform 280ms var(--ease); will-change: opacity, transform; }
+  /* REVEAL */
+  .reveal { opacity: 0; transform: translateY(12px); transition: opacity 320ms var(--ease), transform 320ms var(--ease); will-change: opacity, transform; }
   .reveal.in-view { opacity: 1; transform: translateY(0); }
   @media (prefers-reduced-motion: reduce) {
     .reveal { opacity: 1; transform: none; transition: none; }
     details.acc .acc-body { animation: none; }
+    .funnel > * { opacity: 1; transform: none; transition: none; }
+  }
+
+  /* FLOATING SECTION NAV */
+  .fsn {
+    position: fixed; bottom: 24px; right: 24px; z-index: 90;
+    opacity: 0; transform: translateY(8px); pointer-events: none;
+    transition: opacity 280ms var(--ease), transform 280ms var(--ease);
+  }
+  .fsn.show { opacity: 1; transform: translateY(0); pointer-events: auto; }
+  .fsn.dismissed { display: none; }
+  .fsn-toggle {
+    background: var(--shadow); color: var(--ghost); border: 1px solid var(--shadow);
+    padding: 10px 18px; min-height: 44px;
+    font-family: var(--sans); font-size: var(--fs-sm); font-weight: 700;
+    cursor: pointer; display: inline-flex; align-items: center; gap: 10px;
+    letter-spacing: var(--tracking-wide); text-transform: uppercase;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.22);
+    transition: background 200ms var(--ease);
+  }
+  .fsn-toggle:hover { background: var(--azure-900); }
+  .fsn-toggle .fsn-icon {
+    width: 16px; height: 12px; display: inline-flex; flex-direction: column;
+    justify-content: space-between;
+  }
+  .fsn-toggle .fsn-icon span {
+    display: block; height: 2px; background: var(--highlighter);
+  }
+  .fsn-menu {
+    position: absolute; bottom: calc(100% + 10px); right: 0;
+    background: var(--bg); border: 1px solid var(--rule-strong);
+    padding: 6px; min-width: 240px; max-width: 90vw;
+    box-shadow: 0 12px 36px rgba(0,0,0,0.14);
+    display: none; flex-direction: column;
+  }
+  .fsn.open .fsn-menu { display: flex; }
+  .fsn-menu a {
+    padding: 10px 14px; font-size: var(--fs-sm); color: var(--fg);
+    font-weight: 600; border-bottom: 0; position: relative;
+    display: flex; align-items: center; min-height: 44px;
+    transition: background 150ms var(--ease), color 150ms var(--ease);
+  }
+  .fsn-menu a::before {
+    content: ''; display: inline-block; width: 6px; height: 6px;
+    background: var(--fg-subtle); margin-right: 12px;
+    transition: background 150ms var(--ease), transform 150ms var(--ease);
+  }
+  .fsn-menu a.active { color: var(--azure); background: var(--lucid-soft); font-weight: 700; }
+  .fsn-menu a.active::before { background: var(--highlighter); transform: scale(1.4); }
+  .fsn-menu a:hover { background: var(--bg-alt); color: var(--azure); }
+  .fsn-close {
+    position: absolute; top: -6px; right: -6px;
+    width: 24px; height: 24px;
+    background: var(--shadow); color: var(--ghost); border: 0;
+    cursor: pointer; font-size: 14px; line-height: 1; padding: 0;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.18);
+  }
+  .fsn-close:hover { background: var(--azure-900); }
+  @media (max-width: 640px) {
+    .fsn { left: 16px; right: 16px; bottom: 16px; }
+    .fsn-toggle { width: 100%; justify-content: center; }
+    .fsn-menu { left: 0; right: 0; bottom: calc(100% + 8px); }
   }
 
   /* FOOTER */
@@ -774,9 +966,8 @@
   .small { font-size: var(--fs-sm); }
   .xsmall { font-size: var(--fs-xs); }
   .nowrap { white-space: nowrap; }
-  .hairline { border-bottom: 1px solid var(--rule); padding-bottom: var(--sp-2); margin-bottom: var(--sp-3); }
 
-  /* 414px mobile body floor: never under 14px on body text */
+  /* Mobile body floor + tighter spacing */
   @media (max-width: 414px) {
     body { font-size: 15px; }
     .lede { font-size: 15px; }
@@ -786,26 +977,26 @@
     section.block, .foundation, .engine, .gate { padding: var(--sp-7) 0; }
     .hero { padding: var(--sp-7) 0 var(--sp-6); }
     .stat-n { font-size: 22px; }
+    .gate details.agenda > summary { font-size: 14px; padding: 14px 16px; }
   }
 
   @media print {
-    .topbar, .meta-strip, .pw-overlay { display: none; }
+    .topbar, .meta-strip, .pw-overlay, .fsn { display: none; }
     body { background: white; color: black; }
     .panel, .callout, .summary, .lcard, .op-card, .funnel-step { background: white; border-color: #ccc; color: black; }
-    .reveal { opacity: 1; transform: none; }
+    .reveal, .funnel > * { opacity: 1; transform: none; }
     .foundation, .engine, .gate { background: white; color: black; }
-    .foundation h2, .engine h2, .gate .agenda h3 { color: black; }
+    .foundation h2, .engine h2, .gate .agenda-body h3 { color: black; }
     .foundation p, .foundation li, .engine p, .engine li { color: black; }
-    details .acc-body { display: block !important; }
-    details.acc[open] { page-break-inside: avoid; }
+    details .acc-body, details.acc[open] .acc-body, details.agenda[open] .agenda-body { display: block !important; }
+    .tab-panel { display: block !important; }
+    .tab-list { display: none; }
   }
 </style>
 </head>
 <body>
 
-<!-- ====================================================================
-     PASSWORD GATE — sessionStorage 'sm_tools_auth' (shared with bd-portal)
-     ==================================================================== -->
+<!-- PASSWORD GATE — sessionStorage 'sm_tools_auth' (shared with bd-portal) -->
 <div class="pw-overlay" id="pwOverlay">
   <div class="pw-box">
     <div class="pw-kicker">Scroll Media · Internal</div>
@@ -846,11 +1037,11 @@ function checkPassword() {
 <div class="meta-strip">
   <div class="meta-strip-inner">
     <span><strong>Internal use only.</strong> Do not share with prospects or clients.</span>
-    <span class="nowrap">v3.1 · May 19, 2026</span>
+    <span class="nowrap">v3.1 iter 2 · May 19, 2026</span>
   </div>
 </div>
 
-<!-- TOPBAR -->
+<!-- TOPBAR (with reading progress bar) -->
 <div class="topbar">
   <div class="topbar-inner">
     <a href="https://scrollmedia.co" class="brand" aria-label="Scroll Media · @scrollmedia.co IG Strategy">
@@ -868,21 +1059,22 @@ function checkPassword() {
       <a href="#sync">Sync</a>
       <a href="#supplements">Supplements</a>
     </nav>
-    <span class="topbar-meta"><strong>v3.1</strong> · May 19</span>
+    <span class="topbar-meta"><strong>v3.1</strong> · iter 2</span>
   </div>
+  <div class="progress-bar" id="progressBar" aria-hidden="true"></div>
 </div>
 
 <!-- ====================================================================
-     HERO · The Strategic Purpose
+     HERO
      ==================================================================== -->
 <section class="hero" id="purpose">
   <div class="container reveal">
     <span class="label">@scrollmedia.co · Active · v3.1 · May 19, 2026</span>
     <h1 class="title">Cincinnati's customer acquisition engine on Instagram.</h1>
     <p class="lede">This account exists for one reason: new customer acquisition through psychology-driven attention capture. Not awareness. Not engagement metrics. Not a content brand. The funnel ends at the IG Maturity Quiz and the pitch deck page.</p>
-    <div class="stats-strip">
-      <div class="stat"><div class="stat-n">5</div><div class="stat-l">Feed posts / week</div></div>
-      <div class="stat"><div class="stat-n">3 + 2</div><div class="stat-l">Reels + Carousels (ideal)</div></div>
+    <div class="stats-strip" id="statsStrip">
+      <div class="stat"><div class="stat-n"><span class="num" data-count="5">0</span></div><div class="stat-l">Feed posts / week</div></div>
+      <div class="stat"><div class="stat-n"><span class="num" data-count="3">0</span> + <span class="num" data-count="2">0</span></div><div class="stat-l">Reels + Carousels (ideal)</div></div>
       <div class="stat"><div class="stat-n">M–F</div><div class="stat-l">Daily stories minimum</div></div>
       <div class="stat"><div class="stat-n">Phase 1</div><div class="stat-l">Acquisition focus</div></div>
     </div>
@@ -895,7 +1087,7 @@ function checkPassword() {
 </div>
 
 <!-- ====================================================================
-     FOUNDATION · Strategic Purpose + Audience + Funnel
+     FOUNDATION
      ==================================================================== -->
 <section class="foundation" id="foundation">
   <div class="container reveal">
@@ -904,20 +1096,20 @@ function checkPassword() {
     <p class="intro">Every Reel, Carousel, and Story does one of two jobs: gets us in front of the right cold Cincinnati local-brand founder, or converts the one who tapped the profile after a DM. Both jobs run against a single ICP, a single geography, and a single conversion path.</p>
 
     <h3>The conversion funnel</h3>
-    <div class="funnel">
-      <div class="funnel-step"><strong>Cold Cincinnati founder</strong> scrolls Instagram</div>
-      <div class="funnel-arrow">↓</div>
-      <div class="funnel-step">Sees a @scrollmedia.co Reel, Carousel, or Story</div>
-      <div class="funnel-arrow">↓</div>
-      <div class="funnel-step">Recognizes their own pain — or sees the future state we paint</div>
-      <div class="funnel-arrow">↓</div>
-      <div class="funnel-step">Taps the profile · sees authority, proof, Cincinnati relevance, design quality</div>
-      <div class="funnel-arrow">↓</div>
-      <div class="funnel-step"><strong>Pinned posts</strong> answer "who is this" + "how do I work with them"</div>
-      <div class="funnel-arrow">↓</div>
-      <div class="funnel-step">Takes the <strong>IG Maturity Quiz</strong> (primary lead magnet) · OR taps the pitch deck link</div>
-      <div class="funnel-arrow">↓</div>
-      <div class="funnel-step">Lands at <strong>decks.scrollmedia.co/pitch</strong> · books a discovery call</div>
+    <div class="funnel" id="funnel">
+      <div class="funnel-step" style="--i: 0"><strong>Cold Cincinnati founder</strong> scrolls Instagram</div>
+      <div class="funnel-arrow" style="--i: 1">↓</div>
+      <div class="funnel-step" style="--i: 2">Sees a @scrollmedia.co Reel, Carousel, or Story</div>
+      <div class="funnel-arrow" style="--i: 3">↓</div>
+      <div class="funnel-step" style="--i: 4">Recognizes their own pain — or sees the future state we paint</div>
+      <div class="funnel-arrow" style="--i: 5">↓</div>
+      <div class="funnel-step" style="--i: 6">Taps the profile · sees authority, proof, Cincinnati relevance, design quality</div>
+      <div class="funnel-arrow" style="--i: 7">↓</div>
+      <div class="funnel-step" style="--i: 8"><strong>Pinned posts</strong> answer "who is this" + "how do I work with them"</div>
+      <div class="funnel-arrow" style="--i: 9">↓</div>
+      <div class="funnel-step" style="--i: 10">Takes the <strong>IG Maturity Quiz</strong> · OR taps the pitch deck link</div>
+      <div class="funnel-arrow" style="--i: 11">↓</div>
+      <div class="funnel-step" style="--i: 12">Lands at <strong>decks.scrollmedia.co/pitch</strong> · books a discovery call</div>
     </div>
 
     <h3>Audience hierarchy</h3>
@@ -948,7 +1140,7 @@ function checkPassword() {
 </div>
 
 <!-- ====================================================================
-     ZONE 1 · Team Superpower Alignment
+     ZONE 1 · TEAM
      ==================================================================== -->
 <section class="block" id="team">
   <div class="container reveal">
@@ -957,7 +1149,6 @@ function checkPassword() {
     <p class="intro">Roles mapped to where each operator's strengths land. With Allison back, the strategic head is filled, and Rachel's institutional knowledge from the last several months running the account anchors execution. Each operator runs at their superpower instead of fighting weak spots.</p>
 
     <div class="op-grid">
-      <!-- Allison -->
       <div class="op-card">
         <p class="op-role">Strategic Lead</p>
         <h3 class="op-name">Allison</h3>
@@ -972,7 +1163,6 @@ function checkPassword() {
         </ul>
       </div>
 
-      <!-- Rachel -->
       <div class="op-card">
         <p class="op-role">Account Lead</p>
         <h3 class="op-name">Rachel</h3>
@@ -988,7 +1178,6 @@ function checkPassword() {
         </ul>
       </div>
 
-      <!-- Emily -->
       <div class="op-card">
         <p class="op-role">Reel Editing Lead</p>
         <h3 class="op-name">Emily</h3>
@@ -1002,7 +1191,6 @@ function checkPassword() {
         </ul>
       </div>
 
-      <!-- Riley -->
       <div class="op-card">
         <p class="op-role">Production Manager</p>
         <h3 class="op-name">Riley</h3>
@@ -1017,7 +1205,6 @@ function checkPassword() {
         </ul>
       </div>
 
-      <!-- Chase -->
       <div class="op-card chase">
         <p class="op-role">Founder POV + Approval</p>
         <h3 class="op-name">Chase</h3>
@@ -1041,17 +1228,17 @@ function checkPassword() {
 
 <div class="connector reveal" aria-hidden="true">
   <span class="conn-arrow">↓</span>
-  <div class="conn-label"><strong>Architecture</strong> · four layers that filter every post</div>
+  <div class="conn-label"><strong>Architecture</strong> · four layers, one tab at a time</div>
 </div>
 
 <!-- ====================================================================
-     ZONE 2 · Four-Layer Content Architecture
+     ZONE 2 · ARCHITECTURE (horizontal tabs)
      ==================================================================== -->
 <section class="block" id="architecture">
   <div class="container reveal">
     <div class="section-kicker">03 · Zone 2 · Architecture</div>
     <h2>The four-layer content architecture.</h2>
-    <p class="intro">Four layers, each with a different job. When Rachel + Allison plan a week, all four layers get hit: which pillars are covered, which signature series are running, are the pinned posts current and pointed to, which carousel templates are being deployed.</p>
+    <p class="intro">Four layers, each with a different job. When Rachel + Allison plan a week, all four layers get hit: which pillars are covered, which signature series are running, are the pinned posts current, which carousel templates are being deployed. Switch tabs to see each layer's cards.</p>
 
     <div class="summary">
       <ul class="summary-rows">
@@ -1062,113 +1249,139 @@ function checkPassword() {
       </ul>
     </div>
 
-    <!-- Layer 1: Content Pillars -->
-    <h3>Layer 1 · Content Pillars (4)</h3>
-    <p>Every feed post and most stories trace back to one of these four pillars. Posting outside the pillars is allowed but rare — and never as the first 9 grid posts a cold visitor sees.</p>
-    <div class="layer-grid l1">
-      <div class="lcard">
-        <div class="lcard-eyebrow">Pillar 1</div>
-        <h4>Cincinnati local-brand authority</h4>
-        <p>Content that positions @scrollmedia.co as the agency that actually knows Cincinnati. Neighborhoods named. Local patterns surfaced. Local references that prove we live in this market. Always name a real Cincinnati neighborhood — "Cincinnati" alone is generic. "Hyde Park," "OTR," "Oakley," "Northside," "Mt. Lookout" hits harder.</p>
-        <div class="lcard-meta">Mix target · 25–30% of monthly posts.</div>
+    <div class="layer-tabs" id="layerTabs">
+      <div class="tab-list" role="tablist" aria-label="Four-layer content architecture">
+        <button type="button" class="tab-btn" data-tab="pillars" role="tab" aria-selected="true" aria-controls="panel-pillars" id="tab-pillars" tabindex="0">Pillars <span class="tab-count">4</span></button>
+        <button type="button" class="tab-btn" data-tab="lanes" role="tab" aria-selected="false" aria-controls="panel-lanes" id="tab-lanes" tabindex="-1">Lanes <span class="tab-count">4</span></button>
+        <button type="button" class="tab-btn" data-tab="anchors" role="tab" aria-selected="false" aria-controls="panel-anchors" id="tab-anchors" tabindex="-1">Pinned Anchors <span class="tab-count">2</span></button>
+        <button type="button" class="tab-btn" data-tab="templates" role="tab" aria-selected="false" aria-controls="panel-templates" id="tab-templates" tabindex="-1">Templates <span class="tab-count">3</span></button>
       </div>
-      <div class="lcard">
-        <div class="lcard-eyebrow">Pillar 2</div>
-        <h4>Instagram tactical advice for local brands</h4>
-        <p>Specific, applicable tactics. Hook frameworks, content format breakdowns, story structure, DM flow design, bio optimization. Stuff a local founder can run this week. Every tactical post has at least one concrete, runnable action. No theory without application.</p>
-        <div class="lcard-meta">Mix target · 30–35% of monthly posts.</div>
-      </div>
-      <div class="lcard">
-        <div class="lcard-eyebrow">Pillar 3</div>
-        <h4>White-labeled proof + case study spotlights</h4>
-        <p>Real results from real clients, per <code>proof_library.md</code> rules. Zero client names. Niche + neighborhood + result. Visual when possible. Cross-reference Tier 1 + Tier 2 verified claims only.</p>
-        <div class="lcard-meta">Mix target · 20–25% of monthly posts.</div>
-      </div>
-      <div class="lcard">
-        <div class="lcard-eyebrow">Pillar 4</div>
-        <h4>Process + POV (Behind the scenes)</h4>
-        <p>The human texture of the agency. How we work. Who we are. What we believe. Founder voice (Chase or Allison) appears by name in P4. Framing is "Scroll Media's point of view." Voice separation rule applies — agency voice on @scrollmedia.co, Chase voice on @chase.scrolls.</p>
-        <div class="lcard-meta">Mix target · 15–20% of monthly posts.</div>
-      </div>
-    </div>
 
-    <!-- Layer 2: Founder Content Lanes -->
-    <h3>Layer 2 · Founder Content Lanes (4 named signature series)</h3>
-    <p>Named recurring series that give the brand personality and carry founder authority. Each is a series, not a one-off pillar.</p>
-    <div class="layer-grid l2">
-      <div class="lcard">
-        <div class="lcard-eyebrow">Lane 1 · Weekly Reel</div>
-        <h4>Chase Founder POV</h4>
-        <p>1 Reel per week. Recorded on @chase.scrolls as primary, @scrollmedia.co tagged as IG collaborator. Native collab pushes the post to both feeds with one set of comments.</p>
-        <p style="margin-top: 8px;"><strong>Monthly cadence:</strong></p>
-        <ul>
-          <li>W1 · AI in social media marketing</li>
-          <li>W2 · Customer objection / FAQ (from the 10 ICP list)</li>
-          <li>W3 · Customer use case (white-labeled)</li>
-          <li>W4 · Business update / process / framework</li>
-        </ul>
-      </div>
-      <div class="lcard">
-        <div class="lcard-eyebrow">Lane 2 · Bi-weekly</div>
-        <h4>Scroll Crush</h4>
-        <p>Reel or Carousel, every other week. Allison-voiced, agency framing. Highlights niches + business types we'd love to work with — Cincinnati med spas, OTR coffee roasters, Hyde Park boutiques, Northside breweries. Each episode walks through what we'd build for them: content thesis, visual direction, ideation process, brand story.</p>
-        <p style="margin-top: 8px;"><strong>Why it works.</strong> The niche reads it and self-identifies as a candidate. Other Cincinnati brands see the depth of our creative thinking and infer competence. Showcases the design + aesthetic side of Scroll.</p>
-      </div>
-      <div class="lcard">
-        <div class="lcard-eyebrow">Lane 3 · Weekly Reel</div>
-        <h4>Scrolling Cincy</h4>
-        <p>Friday shoot. Chase + Allison go to a Cincinnati prospect or local business, record a positive spotlight piece. Emily edits to a templatized structure (lock by Episode 2 or 3). Raw from Chase + Allison, edited by Emily with Riley support.</p>
-        <p style="margin-top: 8px;"><strong>Templatized beats:</strong> cold open with neighborhood B-roll → founders intro by name + location → what makes them great (90s) → how Scroll would think about their content (60s) → close with neighborhood tag + @scrollmedia.co.</p>
-      </div>
-      <div class="lcard">
-        <div class="lcard-eyebrow">Lane 4 · Pinned Anchor</div>
-        <h4>Founder Story</h4>
-        <p>Single Carousel post. Pinned to profile. Documents why Chase + Allison started Scroll. The motivation. The vision. The husband-wife co-founder reality. Why we picked Instagram-only.</p>
-        <p style="margin-top: 8px;"><strong>Why it's pinned.</strong> First-time profile visitors land on it immediately. They get the "who is this" answer before scrolling the grid. Conversion lift on cold profile visits. Refresh quarterly only when the underlying story materially shifts.</p>
-      </div>
-    </div>
+      <div class="tab-panels">
+        <!-- PILLARS -->
+        <div class="tab-panel active" data-tab="pillars" role="tabpanel" id="panel-pillars" aria-labelledby="tab-pillars">
+          <button type="button" class="tab-mobile-header" data-tab="pillars" aria-expanded="true">Pillars <span class="tab-count">4</span></button>
+          <div class="tab-panel-content">
+            <p class="small muted" style="margin-bottom: 16px;">Layer 1 · Strategic categorization. Every feed post and most stories trace back to one of these four pillars. Posting outside the pillars is allowed but rare — and never as the first 9 grid posts a cold visitor sees.</p>
+            <div class="layer-grid l1">
+              <div class="lcard">
+                <div class="lcard-eyebrow">Pillar 1</div>
+                <h4>Cincinnati local-brand authority</h4>
+                <p>Content that positions @scrollmedia.co as the agency that actually knows Cincinnati. Neighborhoods named. Local patterns surfaced. Local references that prove we live in this market. Always name a real Cincinnati neighborhood — "Cincinnati" alone is generic. "Hyde Park," "OTR," "Oakley," "Northside," "Mt. Lookout" hits harder.</p>
+                <div class="lcard-meta">Mix target · 25–30% of monthly posts.</div>
+              </div>
+              <div class="lcard">
+                <div class="lcard-eyebrow">Pillar 2</div>
+                <h4>Instagram tactical advice for local brands</h4>
+                <p>Specific, applicable tactics. Hook frameworks, content format breakdowns, story structure, DM flow design, bio optimization. Stuff a local founder can run this week. Every tactical post has at least one concrete, runnable action. No theory without application.</p>
+                <div class="lcard-meta">Mix target · 30–35% of monthly posts.</div>
+              </div>
+              <div class="lcard">
+                <div class="lcard-eyebrow">Pillar 3</div>
+                <h4>White-labeled proof + case study spotlights</h4>
+                <p>Real results from real clients, per <code>proof_library.md</code> rules. Zero client names. Niche + neighborhood + result. Visual when possible. Cross-reference Tier 1 + Tier 2 verified claims only.</p>
+                <div class="lcard-meta">Mix target · 20–25% of monthly posts.</div>
+              </div>
+              <div class="lcard">
+                <div class="lcard-eyebrow">Pillar 4</div>
+                <h4>Process + POV (Behind the scenes)</h4>
+                <p>The human texture of the agency. How we work. Who we are. What we believe. Founder voice (Chase or Allison) appears by name in P4. Framing is "Scroll Media's point of view." Voice separation rule applies — agency voice on @scrollmedia.co, Chase voice on @chase.scrolls.</p>
+                <div class="lcard-meta">Mix target · 15–20% of monthly posts.</div>
+              </div>
+            </div>
+          </div>
+        </div>
 
-    <!-- Layer 3: Pinned Profile Anchors -->
-    <h3>Layer 3 · Pinned Profile Anchors (2)</h3>
-    <p>Two foundational pieces of content pinned to the @scrollmedia.co profile. Together they form the first impression for any cold visitor.</p>
-    <div class="layer-grid l3">
-      <div class="lcard">
-        <div class="lcard-eyebrow">Anchor 1 · Pinned</div>
-        <h4>Founder Story</h4>
-        <p>See Lane 4 above. Chase + Allison origin and Scroll's vision. Carousel format. Refresh quarterly only on material shifts.</p>
-      </div>
-      <div class="lcard">
-        <div class="lcard-eyebrow">Anchor 2 · Pinned · NEW v3.1</div>
-        <h4>How to Work with Scroll Media</h4>
-        <p>Carousel. Pinned to profile. Clear walkthrough of Scroll's service engagement options. What we do. What clients can expect. Deliverables. Scope. The 3-week Phase 1 strategy build. Essential vs. Growth tiers. The discovery process.</p>
-        <p style="margin-top: 8px;"><strong>Why a Carousel.</strong> Multi-slide walkthrough is the right format for "here's how engagement works."</p>
-        <p style="margin-top: 8px;"><strong>Production.</strong> Rachel anchors the build, pulling from the service catalog at <code>tools.scrollmedia.co/services-catalog</code>. Chase + Allison are final approval + info source. Pricing, scope, deliverables match the canonical catalog exactly. No drift.</p>
-      </div>
-    </div>
+        <!-- LANES -->
+        <div class="tab-panel" data-tab="lanes" role="tabpanel" id="panel-lanes" aria-labelledby="tab-lanes" hidden>
+          <button type="button" class="tab-mobile-header" data-tab="lanes" aria-expanded="false">Lanes <span class="tab-count">4</span></button>
+          <div class="tab-panel-content">
+            <p class="small muted" style="margin-bottom: 16px;">Layer 2 · Named recurring series that give the brand personality and carry founder authority. Each is a series, not a one-off pillar.</p>
+            <div class="layer-grid l2">
+              <div class="lcard">
+                <div class="lcard-eyebrow">Lane 1 · Weekly Reel</div>
+                <h4>Chase Founder POV</h4>
+                <p>1 Reel per week. Recorded on @chase.scrolls as primary, @scrollmedia.co tagged as IG collaborator. Native collab pushes the post to both feeds with one set of comments.</p>
+                <p style="margin-top: 8px;"><strong>Monthly cadence:</strong></p>
+                <ul>
+                  <li>W1 · AI in social media marketing</li>
+                  <li>W2 · Customer objection / FAQ (from the 10 ICP list)</li>
+                  <li>W3 · Customer use case (white-labeled)</li>
+                  <li>W4 · Business update / process / framework</li>
+                </ul>
+              </div>
+              <div class="lcard">
+                <div class="lcard-eyebrow">Lane 2 · Bi-weekly</div>
+                <h4>Scroll Crush</h4>
+                <p>Reel or Carousel, every other week. Allison-voiced, agency framing. Highlights niches + business types we'd love to work with — Cincinnati med spas, OTR coffee roasters, Hyde Park boutiques, Northside breweries. Each episode walks through what we'd build for them: content thesis, visual direction, ideation process, brand story.</p>
+                <p style="margin-top: 8px;"><strong>Why it works.</strong> The niche reads it and self-identifies as a candidate. Other Cincinnati brands see the depth of our creative thinking and infer competence. Showcases the design + aesthetic side of Scroll.</p>
+              </div>
+              <div class="lcard">
+                <div class="lcard-eyebrow">Lane 3 · Weekly Reel</div>
+                <h4>Scrolling Cincy</h4>
+                <p>Friday shoot. Chase + Allison go to a Cincinnati prospect or local business, record a positive spotlight piece. Emily edits to a templatized structure (lock by Episode 2 or 3). Raw from Chase + Allison, edited by Emily with Riley support.</p>
+                <p style="margin-top: 8px;"><strong>Templatized beats:</strong> cold open with neighborhood B-roll → founders intro by name + location → what makes them great (90s) → how Scroll would think about their content (60s) → close with neighborhood tag + @scrollmedia.co.</p>
+              </div>
+              <div class="lcard">
+                <div class="lcard-eyebrow">Lane 4 · Pinned Anchor</div>
+                <h4>Founder Story</h4>
+                <p>Single Carousel post. Pinned to profile. Documents why Chase + Allison started Scroll. The motivation. The vision. The husband-wife co-founder reality. Why we picked Instagram-only.</p>
+                <p style="margin-top: 8px;"><strong>Why it's pinned.</strong> First-time profile visitors land on it immediately. They get the "who is this" answer before scrolling the grid. Conversion lift on cold profile visits. Refresh quarterly only when the underlying story materially shifts.</p>
+              </div>
+            </div>
+          </div>
+        </div>
 
-    <!-- Layer 4: Repeating Carousel Templates -->
-    <h3>Layer 4 · Repeating Carousel Templates (3+)</h3>
-    <p>Designed asset templates that get reused across pillars to drive production efficiency + visual consistency. Each template is a Canva master file the AM team duplicates and fills with new content per week.</p>
-    <div class="layer-grid l4">
-      <div class="lcard">
-        <div class="lcard-eyebrow">Template 1</div>
-        <h4>Customer Use Case · white-labeled</h4>
-        <p><strong>Pillar:</strong> P3 (Proof). <strong>Cadence:</strong> Bi-weekly. Cover: white-labeled niche + neighborhood + result. Slides 2–5: strategic moves, data points, journey. Final slide: CTA + brand mark. <strong>Rule:</strong> zero client names, always.</p>
-      </div>
-      <div class="lcard">
-        <div class="lcard-eyebrow">Template 2</div>
-        <h4>Monthly Industry Trends + Changes</h4>
-        <p><strong>Pillar:</strong> P2 + P1. <strong>Cadence:</strong> Monthly. Cover: "What changed on Instagram in [month]." 3–5 trends, format shifts, algorithm changes, platform updates. "What it means for Cincinnati local brands" framing on each. Positions Scroll as the agency paying attention.</p>
-      </div>
-      <div class="lcard">
-        <div class="lcard-eyebrow">Template 3</div>
-        <h4>Top Winning Formats (and why)</h4>
-        <p><strong>Pillar:</strong> P2. <strong>Cadence:</strong> Monthly. Each format broken down: what it looks like, why it's working, how to apply it. Emily's trend monitor superpower feeds this directly — she spots what's winning; the template translates that into a content asset.</p>
-      </div>
-    </div>
+        <!-- ANCHORS -->
+        <div class="tab-panel" data-tab="anchors" role="tabpanel" id="panel-anchors" aria-labelledby="tab-anchors" hidden>
+          <button type="button" class="tab-mobile-header" data-tab="anchors" aria-expanded="false">Pinned Anchors <span class="tab-count">2</span></button>
+          <div class="tab-panel-content">
+            <p class="small muted" style="margin-bottom: 16px;">Layer 3 · Two foundational pieces of content pinned to the @scrollmedia.co profile. Together they form the first impression for any cold visitor.</p>
+            <div class="layer-grid l3">
+              <div class="lcard">
+                <div class="lcard-eyebrow">Anchor 1 · Pinned</div>
+                <h4>Founder Story</h4>
+                <p>See Lane 4. Chase + Allison origin and Scroll's vision. Carousel format. Refresh quarterly only on material shifts.</p>
+              </div>
+              <div class="lcard">
+                <div class="lcard-eyebrow">Anchor 2 · Pinned · NEW v3.1</div>
+                <h4>How to Work with Scroll Media</h4>
+                <p>Carousel. Pinned to profile. Clear walkthrough of Scroll's service engagement options. What we do. What clients can expect. Deliverables. Scope. The 3-week Phase 1 strategy build. Essential vs. Growth tiers. The discovery process.</p>
+                <p style="margin-top: 8px;"><strong>Why a Carousel.</strong> Multi-slide walkthrough is the right format for "here's how engagement works."</p>
+                <p style="margin-top: 8px;"><strong>Production.</strong> Rachel anchors the build, pulling from the service catalog at <code>tools.scrollmedia.co/services-catalog</code>. Chase + Allison are final approval + info source. Pricing, scope, deliverables match the canonical catalog exactly. No drift.</p>
+              </div>
+            </div>
+          </div>
+        </div>
 
-    <div class="callout">
-      <strong>Template expansion rule.</strong> New templates only get built when the team has shipped the same content type 2–3 times manually and the pattern is clear. Don't pre-build templates for content we haven't proven. Candidates for future: hook framework breakdowns, local brand spotlight format (P1), process explainer format (P4), common ICP objection response format (built on the 10 ICP Objections list).
+        <!-- TEMPLATES -->
+        <div class="tab-panel" data-tab="templates" role="tabpanel" id="panel-templates" aria-labelledby="tab-templates" hidden>
+          <button type="button" class="tab-mobile-header" data-tab="templates" aria-expanded="false">Templates <span class="tab-count">3</span></button>
+          <div class="tab-panel-content">
+            <p class="small muted" style="margin-bottom: 16px;">Layer 4 · Designed asset templates that get reused across pillars to drive production efficiency + visual consistency. Each template is a Canva master file the AM team duplicates and fills with new content per week.</p>
+            <div class="layer-grid l4">
+              <div class="lcard">
+                <div class="lcard-eyebrow">Template 1</div>
+                <h4>Customer Use Case · white-labeled</h4>
+                <p><strong>Pillar:</strong> P3 (Proof). <strong>Cadence:</strong> Bi-weekly. Cover: white-labeled niche + neighborhood + result. Slides 2–5: strategic moves, data points, journey. Final slide: CTA + brand mark. <strong>Rule:</strong> zero client names, always.</p>
+              </div>
+              <div class="lcard">
+                <div class="lcard-eyebrow">Template 2</div>
+                <h4>Monthly Industry Trends + Changes</h4>
+                <p><strong>Pillar:</strong> P2 + P1. <strong>Cadence:</strong> Monthly. Cover: "What changed on Instagram in [month]." 3–5 trends, format shifts, algorithm changes, platform updates. "What it means for Cincinnati local brands" framing on each. Positions Scroll as the agency paying attention.</p>
+              </div>
+              <div class="lcard">
+                <div class="lcard-eyebrow">Template 3</div>
+                <h4>Top Winning Formats (and why)</h4>
+                <p><strong>Pillar:</strong> P2. <strong>Cadence:</strong> Monthly. Each format broken down: what it looks like, why it's working, how to apply it. Emily's trend monitor superpower feeds this directly — she spots what's winning; the template translates that into a content asset.</p>
+              </div>
+            </div>
+            <div class="callout" style="margin-top: 16px;">
+              <strong>Template expansion rule.</strong> New templates only get built when the team has shipped the same content type 2–3 times manually and the pattern is clear. Don't pre-build templates for content we haven't proven.
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -1179,7 +1392,7 @@ function checkPassword() {
 </div>
 
 <!-- ====================================================================
-     ZONE 3 · Cadence + Production Model
+     ZONE 3 · CADENCE
      ==================================================================== -->
 <section class="block" id="cadence">
   <div class="container reveal">
@@ -1202,23 +1415,6 @@ function checkPassword() {
         </tbody>
       </table>
     </div>
-
-    <h3>Default week layout</h3>
-    <div class="table-wrap stacks">
-      <table>
-        <thead>
-          <tr><th>Day</th><th>Slot</th><th>Owner</th></tr>
-        </thead>
-        <tbody>
-          <tr><td data-label="Day">Mon</td><td data-label="Slot">Reel (Pillar varies)</td><td data-label="Owner">Rotating pillar lead</td></tr>
-          <tr><td data-label="Day">Tue</td><td data-label="Slot">Carousel (Rachel design lead)</td><td data-label="Owner">Rachel</td></tr>
-          <tr><td data-label="Day">Wed</td><td data-label="Slot">Reel · Chase Founder POV (collab)</td><td data-label="Owner">Chase records, Emily edits</td></tr>
-          <tr><td data-label="Day">Thu</td><td data-label="Slot">Carousel · Riley slot</td><td data-label="Owner">Riley</td></tr>
-          <tr><td data-label="Day">Fri</td><td data-label="Slot">Reel · Scrolling Cincy (or alternate)</td><td data-label="Owner">Chase + Allison shoot · Emily + Riley edit</td></tr>
-        </tbody>
-      </table>
-    </div>
-    <p class="small muted">3 Reels + 2 Carousels = 5 feed posts. Cadence holds. Allison's Scroll Crush slots into Wednesday or Friday on its bi-weekly cycle, displacing or augmenting the default.</p>
 
     <h3>Production flow · Carousels</h3>
     <p class="small muted">AM team end-to-end → Chase + Allison final approval (24-hr default).</p>
@@ -1266,19 +1462,19 @@ function checkPassword() {
   </div>
 </section>
 
-<!-- ====================================================================
-     ENGINE · Monthly Content Cadence Map (dark band, the master engine)
-     ==================================================================== -->
 <div class="connector reveal" aria-hidden="true">
   <span class="conn-arrow">↓</span>
   <div class="conn-label"><strong>Engine</strong> · the master cadence Rachel runs against monthly</div>
 </div>
 
+<!-- ====================================================================
+     ENGINE
+     ==================================================================== -->
 <section class="engine" id="engine">
   <div class="container reveal">
     <div class="section-kicker">05 · Engine</div>
     <h2>The monthly content cadence map.</h2>
-    <p class="intro">The specific rhythm Rachel runs against — underneath the 5/week feed floor + daily M–F stories. Every recurring content type, its cadence, its layer assignment, and its owner.</p>
+    <p class="intro">The specific rhythm Rachel runs against — underneath the 5/week feed floor + daily M–F stories. Every recurring content type, its cadence, its layer assignment, and its owner. Expand the rows below the table for the deep-dive references (default week layout, pillar mix targets, weekly math check).</p>
 
     <div class="table-wrap stacks">
       <table>
@@ -1304,10 +1500,31 @@ function checkPassword() {
     </div>
 
     <details class="acc reveal">
-      <summary><span><span class="acc-eyebrow">Coverage</span>Mix targets by pillar</span></summary>
+      <summary><span><span class="acc-eyebrow">Deep-dive</span>Default week layout · Mon–Fri slot assignments</span></summary>
+      <div class="acc-body">
+        <div class="table-wrap stacks">
+          <table>
+            <thead>
+              <tr><th>Day</th><th>Slot</th><th>Owner</th></tr>
+            </thead>
+            <tbody>
+              <tr><td data-label="Day">Mon</td><td data-label="Slot">Reel (Pillar varies)</td><td data-label="Owner">Rotating pillar lead</td></tr>
+              <tr><td data-label="Day">Tue</td><td data-label="Slot">Carousel (Rachel design lead)</td><td data-label="Owner">Rachel</td></tr>
+              <tr><td data-label="Day">Wed</td><td data-label="Slot">Reel · Chase Founder POV (collab)</td><td data-label="Owner">Chase records, Emily edits</td></tr>
+              <tr><td data-label="Day">Thu</td><td data-label="Slot">Carousel · Riley slot</td><td data-label="Owner">Riley</td></tr>
+              <tr><td data-label="Day">Fri</td><td data-label="Slot">Reel · Scrolling Cincy (or alternate)</td><td data-label="Owner">Chase + Allison shoot · Emily + Riley edit</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p style="margin-bottom: 0;">3 Reels + 2 Carousels = 5 feed posts. Cadence holds. Allison's Scroll Crush slots into Wednesday or Friday on its bi-weekly cycle, displacing or augmenting the default.</p>
+      </div>
+    </details>
+
+    <details class="acc reveal">
+      <summary><span><span class="acc-eyebrow">Deep-dive</span>Coverage by pillar · monthly mix targets</span></summary>
       <div class="acc-body">
         <p>If the monthly mix drifts more than ±10% off target on any pillar, flag in Friday review and rebalance the next week.</p>
-        <ul>
+        <ul style="margin-bottom: 0;">
           <li><strong>Pillar 1</strong> · Cincinnati authority · ~25–30%</li>
           <li><strong>Pillar 2</strong> · Tactical advice · ~30–35%</li>
           <li><strong>Pillar 3</strong> · Proof · ~20–25%</li>
@@ -1317,64 +1534,73 @@ function checkPassword() {
     </details>
 
     <details class="acc reveal">
-      <summary><span><span class="acc-eyebrow">Math check</span>Reel-to-Carousel weekly count</span></summary>
+      <summary><span><span class="acc-eyebrow">Deep-dive</span>Reel-to-Carousel weekly math check</span></summary>
       <div class="acc-body">
-        <p>Default week:</p>
+        <p>The cadence math behind the default week:</p>
         <ul>
-          <li><strong>Mon</strong> · Reel (Pillar varies)</li>
-          <li><strong>Tue</strong> · Carousel (Rachel design lead)</li>
-          <li><strong>Wed</strong> · Reel (Chase Founder POV — collab to @scrollmedia.co)</li>
-          <li><strong>Thu</strong> · Carousel (Riley owns this slot)</li>
-          <li><strong>Fri</strong> · Reel (Scrolling Cincy if shoot done; otherwise alternate Reel)</li>
+          <li><strong>3 Reels</strong> + <strong>2 Carousels</strong> = 5 feed posts per week (the locked floor).</li>
+          <li>Reels are the algorithmic reach surface — they put the brand in front of cold Cincinnati founders who don't follow us yet.</li>
+          <li>Carousels are the depth surface — saves + shares + profile taps convert warm viewers into leads.</li>
+          <li>Scroll Crush slots into Wednesday or Friday on its bi-weekly cycle, displacing or augmenting the default Reel.</li>
         </ul>
-        <p>3 Reels + 2 Carousels = 5 feed posts. Cadence holds. Allison's Scroll Crush slots into Wednesday or Friday on its bi-weekly cycle, displacing or augmenting the default.</p>
+        <p style="margin-bottom: 0;">If the team can only ship 4 in a given week, drop a Reel before dropping a Carousel — depth > reach when supply is constrained.</p>
       </div>
     </details>
   </div>
 </section>
 
-<!-- ====================================================================
-     GATE · Allison ↔ Rachel kickoff sync + success criteria
-     ==================================================================== -->
 <div class="connector reveal" aria-hidden="true">
   <span class="conn-arrow">↓</span>
   <div class="conn-label"><strong>Sync</strong> · Allison ↔ Rachel kickoff, then bring in Emily + Riley</div>
 </div>
 
+<!-- ====================================================================
+     GATE · Kickoff syncs (collapsed) + success criteria (visible)
+     ==================================================================== -->
 <section class="gate" id="sync">
   <div class="container reveal">
     <div class="section-kicker">06 · Gate · Sync</div>
     <h2>Kickoff synchronization.</h2>
-    <p class="intro">Two syncs activate the v3.1 strategy. First Allison and Rachel align on direction. Then Emily and Riley get looped in week 2 with clear scope.</p>
+    <p class="intro">Two syncs activate the v3.1 strategy. First Allison and Rachel align on direction. Then Emily and Riley get looped in week 2 with clear scope. Both agendas are collapsed below — expand to see the full agenda.</p>
 
-    <div class="agenda">
-      <h3>Allison ↔ Rachel kickoff sync · 30 min</h3>
-      <p class="small muted">Work the agenda in order.</p>
-      <ol>
-        <li><strong>State of the account · 5 min.</strong> Rachel walks through what's been working, what's flat, current pillar mix in practice vs. on paper. Allison listens.</li>
-        <li><strong>v3.1 deltas · 10 min.</strong> Walk through the 12 changes from v3.0. Confirm or revise each. No execution discussion yet.</li>
-        <li><strong>Pinned anchors · 5 min.</strong> Founder Story + How to Work with Scroll Media. Both need to be built. Decide build order (suggest Founder Story first, How to Work with Scroll Media second). Lock production timeline.</li>
-        <li><strong>Scroll Crush kickoff · 3 min.</strong> Allison commits to first episode date. Pick the first niche (suggest Cincinnati med spas or OTR coffee/retail given client density).</li>
-        <li><strong>Design quality bar · 4 min.</strong> Pull up thecreative.social. Pick 3–5 specific moves to replicate. Decide whether to refresh existing Canva templates or build net-new.</li>
-        <li><strong>Week 1 + Week 2 actions · 3 min.</strong> Lock who's doing what this week. Riley + Emily looped in week 2 with clear scope.</li>
-      </ol>
-    </div>
+    <details class="agenda">
+      <summary>
+        <span>Allison ↔ Rachel kickoff sync</span>
+        <span class="agenda-meta">6 steps · 30 min</span>
+      </summary>
+      <div class="agenda-body">
+        <p class="small muted">Work the agenda in order.</p>
+        <ol>
+          <li><strong>State of the account · 5 min.</strong> Rachel walks through what's been working, what's flat, current pillar mix in practice vs. on paper. Allison listens.</li>
+          <li><strong>v3.1 deltas · 10 min.</strong> Walk through the 12 changes from v3.0. Confirm or revise each. No execution discussion yet.</li>
+          <li><strong>Pinned anchors · 5 min.</strong> Founder Story + How to Work with Scroll Media. Both need to be built. Decide build order (suggest Founder Story first, How to Work with Scroll Media second). Lock production timeline.</li>
+          <li><strong>Scroll Crush kickoff · 3 min.</strong> Allison commits to first episode date. Pick the first niche (suggest Cincinnati med spas or OTR coffee/retail given client density).</li>
+          <li><strong>Design quality bar · 4 min.</strong> Pull up thecreative.social. Pick 3–5 specific moves to replicate. Decide whether to refresh existing Canva templates or build net-new.</li>
+          <li><strong>Week 1 + Week 2 actions · 3 min.</strong> Lock who's doing what this week. Riley + Emily looped in week 2 with clear scope.</li>
+        </ol>
+      </div>
+    </details>
 
-    <div class="agenda">
-      <h3>Then bring in Emily + Riley · week 2 · 30 min</h3>
-      <p class="small muted">Rachel runs the agenda. Coverage:</p>
-      <ul>
-        <li>The four-layer architecture + Monthly Cadence Map</li>
-        <li>Role assignments — Emily = Reel editing lead + trend monitor; Riley = production manager + Carousel #2</li>
-        <li>Pinned anchor production timeline</li>
-        <li>Scroll Crush rollout — first 3 episode niches identified</li>
-        <li>Scrolling Cincy Friday shoot schedule + templatized editing structure</li>
-        <li>Design template refresh — any new Canva files</li>
-        <li>The 10 ICP Objections list as the next month's Pillar 2 content prompt bank</li>
-        <li>Cincinnati B-roll capture protocol</li>
-      </ul>
-      <p class="small muted" style="margin-bottom: 0;">After that, weekly Monday huddle continues (Rachel facilitates). Allison joins biweekly per the strategic sync cadence.</p>
-    </div>
+    <details class="agenda">
+      <summary>
+        <span>Bring in Emily + Riley · week 2</span>
+        <span class="agenda-meta">8 items · 30 min</span>
+      </summary>
+      <div class="agenda-body">
+        <p class="small muted">Rachel runs the agenda. Coverage:</p>
+        <ul>
+          <li>The four-layer architecture + Monthly Cadence Map</li>
+          <li>Role assignments — Emily = Reel editing lead + trend monitor; Riley = production manager + Carousel #2</li>
+          <li>Pinned anchor production timeline</li>
+          <li>Scroll Crush rollout — first 3 episode niches identified</li>
+          <li>Scrolling Cincy Friday shoot schedule + templatized editing structure</li>
+          <li>Design template refresh — any new Canva files</li>
+          <li>The 10 ICP Objections list as the next month's Pillar 2 content prompt bank</li>
+          <li>Cincinnati B-roll capture protocol</li>
+        </ul>
+        <p class="small muted" style="margin-bottom: 0;">After that, weekly Monday huddle continues (Rachel facilitates). Allison joins biweekly per the strategic sync cadence.</p>
+      </div>
+    </details>
 
     <div class="success">
       <h3>Success criteria · what good looks like by August 31</h3>
@@ -1393,345 +1619,365 @@ function checkPassword() {
 </section>
 
 <!-- ====================================================================
-     SUPPLEMENTS · collapsibles for deep reference content
+     SUPPLEMENTS · categorized accordions
      ==================================================================== -->
 <section class="block" id="supplements">
   <div class="container reveal">
     <div class="section-kicker">07 · Supplements</div>
     <h2>Reference content.</h2>
-    <p class="intro">Deep reference material. Collapsed by default; expand the rows you need. Updated alongside the canonical strategy doc at <code>scrollmedia_co_ig_posting_strategy.md</code> v3.1.</p>
+    <p class="intro">Deep reference material grouped into four categories. Collapsed by default; expand the rows you need. Updated alongside the canonical strategy doc at <code>scrollmedia_co_ig_posting_strategy.md</code> v3.1.</p>
 
-    <details class="acc reveal">
-      <summary><span><span class="acc-eyebrow">ICP</span>The 10 tactical objections (content fuel)</span></summary>
-      <div class="acc-body">
-        <p>Specific objections stopping Cincinnati local-brand founders from posting on Instagram themselves OR from hiring an agency. Each gets deployed as a Reel, Carousel, or story sequence at least once by August 31. These feed Chase's Week 2 Founder POV content monthly.</p>
-        <ol>
-          <li><strong>"I don't have time."</strong> Real translation: "The output isn't worth the input." Reframe time as ROI math.</li>
-          <li><strong>"I've tried before and it didn't work."</strong> Diagnose the gap (no strategy, wrong audience, no conversion mechanism, wrong format).</li>
-          <li><strong>"I don't know what to post."</strong> Niche-specific post idea libraries. P2 tactical.</li>
-          <li><strong>"I'm not good on camera / I hate how I sound."</strong> Script without sounding scripted, use B-roll for weight, 2-minute setup beats a 4-hour shoot.</li>
-          <li><strong>"Social media is a waste of time for my business."</strong> Specific niche-level data on where the buyer actually scrolls.</li>
-          <li><strong>"I'll post something embarrassing or get attacked."</strong> Content review process for regulated niches, not avoidance.</li>
-          <li><strong>"I don't have anything new to say — it's all been said."</strong> Saturation is a positioning problem, not a content problem. Re-introduce IVP-driven content.</li>
-          <li><strong>"My clients aren't on Instagram."</strong> Platform data showing buyer presence by niche.</li>
-          <li><strong>"I post and nothing happens — the algorithm hates me."</strong> Diagnostic checklist: algorithm vs. content.</li>
-          <li><strong>"I'm too established for this — it feels beneath me."</strong> Reframe Instagram as authority distribution, not hustle.</li>
-        </ol>
-        <p style="margin-bottom: 0;"><strong>Deployment rule.</strong> Pair an objection with one of the 5 dream outcomes when possible — strongest content combo (name the pain + paint the way out in the same post).</p>
-      </div>
-    </details>
+    <!-- STRATEGIC REFERENCE -->
+    <div class="supp-group">
+      <div class="supp-group-label">Strategic Reference <span class="supp-group-count">4</span></div>
 
-    <details class="acc reveal">
-      <summary><span><span class="acc-eyebrow">Stories</span>The 5 story types (daily rotation)</span></summary>
-      <div class="acc-body">
-        <p>Stories are the heartbeat. Five types rotate through the daily slot. Cadence is daily M–F minimum, weekends opportunistic.</p>
-        <div class="grid-2">
-          <div class="panel">
-            <h4 style="margin-top: 0;">Type 1 · Behind the scenes</h4>
-            <p style="margin-bottom: 0;">What the team is working on today. Client review meeting frame (no identifying info). Content calendar screenshot with names blurred. Loom recording in progress.<br><span class="small muted">Frequency · 1–2 per week. Proves the agency is alive and in the work.</span></p>
+      <details class="acc reveal">
+        <summary><span><span class="acc-eyebrow">ICP</span>The 10 tactical objections (content fuel)</span></summary>
+        <div class="acc-body">
+          <p>Specific objections stopping Cincinnati local-brand founders from posting on Instagram themselves OR from hiring an agency. Each gets deployed as a Reel, Carousel, or story sequence at least once by August 31. These feed Chase's Week 2 Founder POV content monthly.</p>
+          <ol>
+            <li><strong>"I don't have time."</strong> Real translation: "The output isn't worth the input." Reframe time as ROI math.</li>
+            <li><strong>"I've tried before and it didn't work."</strong> Diagnose the gap (no strategy, wrong audience, no conversion mechanism, wrong format).</li>
+            <li><strong>"I don't know what to post."</strong> Niche-specific post idea libraries. P2 tactical.</li>
+            <li><strong>"I'm not good on camera / I hate how I sound."</strong> Script without sounding scripted, use B-roll for weight, 2-minute setup beats a 4-hour shoot.</li>
+            <li><strong>"Social media is a waste of time for my business."</strong> Specific niche-level data on where the buyer actually scrolls.</li>
+            <li><strong>"I'll post something embarrassing or get attacked."</strong> Content review process for regulated niches, not avoidance.</li>
+            <li><strong>"I don't have anything new to say — it's all been said."</strong> Saturation is a positioning problem, not a content problem. Re-introduce IVP-driven content.</li>
+            <li><strong>"My clients aren't on Instagram."</strong> Platform data showing buyer presence by niche.</li>
+            <li><strong>"I post and nothing happens — the algorithm hates me."</strong> Diagnostic checklist: algorithm vs. content.</li>
+            <li><strong>"I'm too established for this — it feels beneath me."</strong> Reframe Instagram as authority distribution, not hustle.</li>
+          </ol>
+          <p style="margin-bottom: 0;"><strong>Deployment rule.</strong> Pair an objection with one of the 5 dream outcomes when possible — strongest content combo (name the pain + paint the way out in the same post).</p>
+        </div>
+      </details>
+
+      <details class="acc reveal">
+        <summary><span><span class="acc-eyebrow">Thesis</span>Problem-Solution content thesis (P2 recurring arc)</span></summary>
+        <div class="acc-body">
+          <p>Sits inside Pillar 2. Solves the most common cluster of ICP frustration: "I'm posting good content but not seeing results." Breaks into 4 root causes; each is a content arc. Rotate through them over a quarter, then loop.</p>
+          <div class="grid-2">
+            <div class="panel">
+              <h4 style="margin-top: 0;">Root cause 1 · Wrong metrics</h4>
+              <p>Most local-brand founders watch likes and followers (vanity). Saves, shares, profile visits, and DMs predict business outcomes.</p>
+              <p style="margin-bottom: 0;"><strong>Angle:</strong> "The 4 metrics that actually predict Instagram driving real business for your local brand." Pull from Scroll's Unified Scoring Framework v1.3 (saves + CTR weighted 2.0×).</p>
+            </div>
+            <div class="panel">
+              <h4 style="margin-top: 0;">Root cause 2 · Ignoring social SEO</h4>
+              <p>Instagram's search has become a real discovery surface in 2026. Keyword-optimized captions, alt text, niche-specific terminology in bio + name field drive non-follower reach.</p>
+              <p style="margin-bottom: 0;"><strong>Angle:</strong> "Social SEO for Cincinnati local brands: how founders are getting found in search without paying for ads."</p>
+            </div>
+            <div class="panel">
+              <h4 style="margin-top: 0;">Root cause 3 · No TAM climb</h4>
+              <p>Most local brands content for their current audience. They never expand to adjacent audiences. The TAM ladder: existing followers → adjacent Cincinnati locals → niche-aligned Cincinnati-area founders → broader Cincinnati.</p>
+              <p style="margin-bottom: 0;"><strong>Angle:</strong> "Your current followers aren't your TAM. Here's how to climb up to where your real buyers are."</p>
+            </div>
+            <div class="panel">
+              <h4 style="margin-top: 0;">Root cause 4 · No IVP discipline</h4>
+              <p>Founders write content for "everyone" without separating core (followers who keep them in the algorithm) from conversion (cold viewers who could become customers). Both matter; they need different content.</p>
+              <p style="margin-bottom: 0;"><strong>Angle:</strong> "Why your most engaged followers won't be your customers — and what to post for both."</p>
+            </div>
           </div>
-          <div class="panel">
-            <h4 style="margin-top: 0;">Type 2 · Client wins (white-labeled)</h4>
-            <p style="margin-bottom: 0;">Composite score improvement chart, name blurred. Save-count milestone, niche named, brand redacted. Client feedback quote attributed to niche only.<br><span class="small muted">Frequency · 1–2 per week. No client names ever.</span></p>
+          <p style="margin-top: 16px; margin-bottom: 0;"><strong>Deployment.</strong> One Problem-Solution arc per month minimum. Run as a 3–5 post mini-series, then move to the next root cause.</p>
+        </div>
+      </details>
+
+      <details class="acc reveal">
+        <summary><span><span class="acc-eyebrow">Series</span>Follower-band growth series (quarterly)</span></summary>
+        <div class="acc-body">
+          <p>Multi-post content series organized by where a founder's account currently sits. Self-qualifying read: the founder sees their band, recognizes their stage, and absorbs the relevant growth advice.</p>
+          <div class="table-wrap stacks">
+            <table>
+              <thead>
+                <tr><th>Band</th><th>Stage</th><th>Focus</th></tr>
+              </thead>
+              <tbody>
+                <tr><td data-label="Band"><strong>500–2K</strong></td><td data-label="Stage">Foundation</td><td data-label="Focus">Bio optimization, content pillar clarity, first 9 grid posts, daily story rhythm</td></tr>
+                <tr><td data-label="Band"><strong>2K–10K</strong></td><td data-label="Stage">Reach expansion</td><td data-label="Focus">Past friends-and-family ceiling. Niche-anchored content, social SEO, Reel formats that travel</td></tr>
+                <tr><td data-label="Band"><strong>10K–50K</strong></td><td data-label="Stage">Authority compounding</td><td data-label="Focus">Real local authority. Conversion content, DM funnel optimization, leveraging existing content for warm leads</td></tr>
+                <tr><td data-label="Band"><strong>50K–100K+</strong></td><td data-label="Stage">Brand stage</td><td data-label="Focus">Don't need more content, need sharper content. POV-driven posting, founder-led storytelling, content as PR</td></tr>
+              </tbody>
+            </table>
           </div>
-          <div class="panel">
-            <h4 style="margin-top: 0;">Type 3 · Cincinnati neighborhood spotlights</h4>
-            <p style="margin-bottom: 0;">A Cincinnati local brand we admire but don't work with. A neighborhood we love. A Cincinnati business pattern we noticed.<br><span class="small muted">Frequency · 1 per week. Reinforces Cincinnati positioning, builds goodwill.</span></p>
-          </div>
-          <div class="panel">
-            <h4 style="margin-top: 0;">Type 4 · Polls + engagement questions</h4>
-            <p style="margin-bottom: 0;">"How often do you post Reels?" with multiple-choice tiles. "What's the hardest part of running your IG?" as question sticker. Replies become DM threads and warm leads.<br><span class="small muted">Frequency · 1–2 per week. Every poll or question gets answered in DM within 24 hours.</span></p>
-          </div>
-          <div class="panel" style="grid-column: 1 / -1;">
-            <h4 style="margin-top: 0;">Type 5 · Founder POV amplification</h4>
-            <p style="margin-bottom: 0;">When Chase posts on @chase.scrolls, @scrollmedia.co reshares to story within 24 hours with a one-line agency frame and a tag. Same for Allison.<br><span class="small muted">Frequency · 3–5 per week per Chase / Allison content drop.</span></p>
+          <h4>Series rules</h4>
+          <ul style="margin-bottom: 0;">
+            <li>Posts in the series link to each other (cover slide names the band, references the others).</li>
+            <li>Saves are the primary KPI for this series.</li>
+            <li>Run the full 4-band series quarterly.</li>
+            <li>Maps roughly to Scroll's Signature client maturity stages (Spark / Lift / Rise / Thrive).</li>
+          </ul>
+        </div>
+      </details>
+
+      <details class="acc reveal">
+        <summary><span><span class="acc-eyebrow">Research</span>Field interview research → content fuel pipeline</span></summary>
+        <div class="acc-body">
+          <p>Direct ICP voice is the cleanest content fuel. Don't assume what Cincinnati local-brand founders are dealing with — ask them.</p>
+          <h4>The motion</h4>
+          <p><strong>Quarterly field interview block.</strong> One 2–3 hour session per quarter. Chase or Allison walks OTR, Oakley, Hyde Park, Northside, or another dense small-business zone. Drops into 5–8 small business owners. Brief intro: "I run Scroll Media, we're Cincinnati's Instagram agency for local brands. I'm doing some quick research to make sure our content is actually solving what founders here are dealing with. Got 3 minutes?"</p>
+          <h4>The 3-minute script</h4>
+          <ol>
+            <li><strong>"What does social media success look like to you?"</strong> Reveals their north star.</li>
+            <li><strong>"What's the biggest challenge with Instagram right now?"</strong> Reveals current obstacle.</li>
+            <li><strong>"What have you tried that didn't work?"</strong> Reveals burned beliefs.</li>
+            <li><strong>"If you had a social media person tomorrow, what would you have them do first?"</strong> Reveals dream outcome + entry-point service.</li>
+          </ol>
+          <h4>What we do with it</h4>
+          <ul>
+            <li><strong>Quote bank.</strong> Anonymized responses become hooks, carousel openers, Reel scripts.</li>
+            <li><strong>Pattern recognition.</strong> After 5–8 interviews, patterns surface. They become content angles for the next month.</li>
+            <li><strong>ICP refinement.</strong> Field interviews refine the 5 macro obstacles + 10 tactical objections + dream outcomes over time.</li>
+            <li><strong>Cincy authenticity.</strong> The fact that we're talking to Cincinnati founders face-to-face is a content angle itself.</li>
+          </ul>
+          <h4>Privacy + consent</h4>
+          <ul>
+            <li>No names without explicit permission. Quotes attributed to niche + neighborhood.</li>
+            <li>Photo or video only with verbal permission. Default to notes.</li>
+            <li>Reciprocity: leave each founder with one piece of useful Instagram tactical advice.</li>
+          </ul>
+          <h4>First field block</h4>
+          <p style="margin-bottom: 0;">Run before end of Q2 (June 2026). Targets: OTR + Oakley. 5 founders minimum per neighborhood. Chase or Allison executes.</p>
+        </div>
+      </details>
+    </div>
+
+    <!-- OPERATIONAL REFERENCE -->
+    <div class="supp-group">
+      <div class="supp-group-label">Operational Reference <span class="supp-group-count">5</span></div>
+
+      <details class="acc reveal">
+        <summary><span><span class="acc-eyebrow">Stories</span>The 5 story types (daily rotation)</span></summary>
+        <div class="acc-body">
+          <p>Stories are the heartbeat. Five types rotate through the daily slot. Cadence is daily M–F minimum, weekends opportunistic.</p>
+          <div class="grid-2">
+            <div class="panel">
+              <h4 style="margin-top: 0;">Type 1 · Behind the scenes</h4>
+              <p style="margin-bottom: 0;">What the team is working on today. Client review meeting frame (no identifying info). Content calendar screenshot with names blurred. Loom recording in progress.<br><span class="small muted">Frequency · 1–2 per week. Proves the agency is alive and in the work.</span></p>
+            </div>
+            <div class="panel">
+              <h4 style="margin-top: 0;">Type 2 · Client wins (white-labeled)</h4>
+              <p style="margin-bottom: 0;">Composite score improvement chart, name blurred. Save-count milestone, niche named, brand redacted. Client feedback quote attributed to niche only.<br><span class="small muted">Frequency · 1–2 per week. No client names ever.</span></p>
+            </div>
+            <div class="panel">
+              <h4 style="margin-top: 0;">Type 3 · Cincinnati neighborhood spotlights</h4>
+              <p style="margin-bottom: 0;">A Cincinnati local brand we admire but don't work with. A neighborhood we love. A Cincinnati business pattern we noticed.<br><span class="small muted">Frequency · 1 per week. Reinforces Cincinnati positioning, builds goodwill.</span></p>
+            </div>
+            <div class="panel">
+              <h4 style="margin-top: 0;">Type 4 · Polls + engagement questions</h4>
+              <p style="margin-bottom: 0;">"How often do you post Reels?" with multiple-choice tiles. "What's the hardest part of running your IG?" as question sticker. Replies become DM threads and warm leads.<br><span class="small muted">Frequency · 1–2 per week. Every poll or question gets answered in DM within 24 hours.</span></p>
+            </div>
+            <div class="panel" style="grid-column: 1 / -1;">
+              <h4 style="margin-top: 0;">Type 5 · Founder POV amplification</h4>
+              <p style="margin-bottom: 0;">When Chase posts on @chase.scrolls, @scrollmedia.co reshares to story within 24 hours with a one-line agency frame and a tag. Same for Allison.<br><span class="small muted">Frequency · 3–5 per week per Chase / Allison content drop.</span></p>
+            </div>
           </div>
         </div>
-      </div>
-    </details>
+      </details>
 
-    <details class="acc reveal">
-      <summary><span><span class="acc-eyebrow">Discovery</span>Hashtag + geo strategy</span></summary>
-      <div class="acc-body">
-        <p>Cincinnati-local discovery is the goal, not national reach.</p>
-        <h4>Standard 8-hashtag stack</h4>
-        <ol>
-          <li><code>#cincinnati</code></li>
-          <li><code>#cincymade</code> OR <code>#cincyliving</code> OR <code>#lovecincy</code> (rotate)</li>
-          <li><code>#cincinnatibusiness</code> OR <code>#cincysmallbusiness</code> (rotate)</li>
-          <li><code>#[neighborhood]</code> — Hyde Park, OTR, Oakley, Northside (when relevant)</li>
-          <li><code>#[niche]</code> — medspa, fitnessstudio, coffeeshop (when relevant)</li>
-          <li><code>#cincinnatimarketing</code> OR <code>#cincinnatistrategy</code> (rotate)</li>
-          <li><code>#instagramforbusiness</code> OR <code>#instagramtips</code> (variation)</li>
-          <li><code>#localbrand</code> OR <code>#localmarketing</code> (variation)</li>
-        </ol>
-        <h4>Don't use</h4>
-        <ul>
-          <li>More than 10 hashtags.</li>
-          <li>Trending hashtags unrelated to niche or geo.</li>
-          <li>Generic high-volume tags (<code>#marketing</code>, <code>#business</code>, <code>#entrepreneur</code>).</li>
-        </ul>
-        <h4>Geo strategy</h4>
-        <p style="margin-bottom: 0;">Tag the post location to a real Cincinnati / NKY location whenever possible. Geo + hashtags compound. Post tagged to OTR + <code>#cincinnati</code> + <code>#otrcincinnati</code> hits the local-discovery surface three different ways.</p>
-      </div>
-    </details>
-
-    <details class="acc reveal">
-      <summary><span><span class="acc-eyebrow">Cross-amp</span>@chase.scrolls ↔ @scrollmedia.co amplification</span></summary>
-      <div class="acc-body">
-        <p>Two accounts run in parallel. Different voices, shared air cover. <strong>NEW in v3.1:</strong> Chase Founder POV Reels post on @chase.scrolls as primary with @scrollmedia.co as Instagram collaborator — native to both feeds.</p>
-        <div class="table-wrap stacks">
-          <table>
-            <thead>
-              <tr><th>Trigger on @chase.scrolls</th><th>Action on @scrollmedia.co</th></tr>
-            </thead>
-            <tbody>
-              <tr><td data-label="Trigger">Chase posts a Founder POV Reel</td><td data-label="Action"><strong>Collab feature</strong> — @scrollmedia.co tagged as IG collaborator. Posts natively to both feeds.</td></tr>
-              <tr><td data-label="Trigger">Chase posts other Reels (non-POV)</td><td data-label="Action">Reshare to @scrollmedia.co story same day or next morning with agency-voice one-line frame.</td></tr>
-              <tr><td data-label="Trigger">Chase posts a Carousel</td><td data-label="Action">Reshare to story same day or next morning. Consider repurposing as a different @scrollmedia.co Carousel 1–2 weeks later (different framing, agency voice).</td></tr>
-              <tr><td data-label="Trigger">Chase posts a hard text post</td><td data-label="Action">Reshare to story within 24 hours if it lands hard.</td></tr>
-              <tr><td data-label="Trigger">Chase goes live or posts a story</td><td data-label="Action">Reshare key story slides only if tactical, not personal.</td></tr>
-            </tbody>
-          </table>
+      <details class="acc reveal">
+        <summary><span><span class="acc-eyebrow">Discovery</span>Hashtag + geo strategy</span></summary>
+        <div class="acc-body">
+          <p>Cincinnati-local discovery is the goal, not national reach.</p>
+          <h4>Standard 8-hashtag stack</h4>
+          <ol>
+            <li><code>#cincinnati</code></li>
+            <li><code>#cincymade</code> OR <code>#cincyliving</code> OR <code>#lovecincy</code> (rotate)</li>
+            <li><code>#cincinnatibusiness</code> OR <code>#cincysmallbusiness</code> (rotate)</li>
+            <li><code>#[neighborhood]</code> — Hyde Park, OTR, Oakley, Northside (when relevant)</li>
+            <li><code>#[niche]</code> — medspa, fitnessstudio, coffeeshop (when relevant)</li>
+            <li><code>#cincinnatimarketing</code> OR <code>#cincinnatistrategy</code> (rotate)</li>
+            <li><code>#instagramforbusiness</code> OR <code>#instagramtips</code> (variation)</li>
+            <li><code>#localbrand</code> OR <code>#localmarketing</code> (variation)</li>
+          </ol>
+          <h4>Don't use</h4>
+          <ul>
+            <li>More than 10 hashtags.</li>
+            <li>Trending hashtags unrelated to niche or geo.</li>
+            <li>Generic high-volume tags (<code>#marketing</code>, <code>#business</code>, <code>#entrepreneur</code>).</li>
+          </ul>
+          <h4>Geo strategy</h4>
+          <p style="margin-bottom: 0;">Tag the post location to a real Cincinnati / NKY location whenever possible. Geo + hashtags compound. Post tagged to OTR + <code>#cincinnati</code> + <code>#otrcincinnati</code> hits the local-discovery surface three different ways.</p>
         </div>
-        <div class="callout signal" style="margin-top: 16px;">
-          @scrollmedia.co never copies @chase.scrolls content verbatim into a feed post (collab feature is the exception). The voices have to differ. If a piece of content could live on both accounts unchanged, it fails. Voice separation is non-negotiable.
+      </details>
+
+      <details class="acc reveal">
+        <summary><span><span class="acc-eyebrow">Daily ops</span>Daily posting checklist</span></summary>
+        <div class="acc-body">
+          <p>Pull this up at the start of every shift on @scrollmedia.co.</p>
+          <h4>Daily</h4>
+          <ol>
+            <li>Post stories daily (Type 1–4 rotation, M–F minimum).</li>
+            <li>Reshare any @chase.scrolls content per the cross-amplification table.</li>
+            <li>Check DMs. Reply to any new replies within 4 hours during business hours.</li>
+            <li>Check story poll / question replies. Move warm DMs into the prospect spreadsheet if relevant.</li>
+            <li>Engage with 5–10 Cincinnati local brand accounts as @scrollmedia.co. Builds reciprocal signal.</li>
+          </ol>
+          <h4>Daily feed-post target (5/wk, 3 Reels + 2 Carousels ideal)</h4>
+          <ol>
+            <li>Pick the pillar for today's post (rotate; don't post the same pillar 3 days in a row).</li>
+            <li>Pull the hook from the working hook library or write fresh.</li>
+            <li>Build the post per ownership model.</li>
+            <li>Write the caption (3-paragraph max, hook + body + soft CTA).</li>
+            <li>Pull the 8-hashtag stack appropriate to the post topic.</li>
+            <li>Tag the geo location.</li>
+            <li>Get Chase + Allison approval (24-hr default turnaround).</li>
+            <li>Schedule via Plann or post live.</li>
+            <li>Within 1 hour of posting: reply to first 3–5 comments to seed engagement.</li>
+          </ol>
+          <h4>Weekly Friday review</h4>
+          <ol style="margin-bottom: 0;">
+            <li>Pull the week's feed posts. Note save count, share count, profile visits per post.</li>
+            <li>Flag the strongest post for repurposing (Carousel → Reel, Reel → story sequence).</li>
+            <li>Note any warm DM threads that came from a feed post. Move into prospect spreadsheet.</li>
+            <li>Plan next week's posts at high level (one from each pillar minimum, 5/wk floor, 3 Reels + 2 Carousels ideal).</li>
+            <li>Track IG Maturity Quiz completions + pitch deck link taps as primary conversion KPIs.</li>
+          </ol>
         </div>
-      </div>
-    </details>
+      </details>
 
-    <details class="acc reveal">
-      <summary><span><span class="acc-eyebrow">B-roll</span>Cincinnati B-roll capture protocol</span></summary>
-      <div class="acc-body">
-        <p>The brand's geographic differentiator is Cincinnati. The grid needs to look like it.</p>
-        <h4>What we record</h4>
-        <ul>
-          <li><strong>Landmarks</strong> · Roebling Bridge, Union Terminal, Findlay Market, Fountain Square, The Banks, Eden Park, Smale Park, Carew Tower, Music Hall, Washington Park.</li>
-          <li><strong>Neighborhood scenes</strong> · OTR alleyways, Hyde Park Square, Northside main strip, Oakley Station, Mt. Lookout Square.</li>
-          <li><strong>Cultural staples</strong> · Skyline Chili, Graeter's, LaRosa's, Findlay Market vendors, Goetta, Reds games, Bengals stadium exterior, Oktoberfest, BLINK, Reds opening day.</li>
-          <li><strong>Daily city texture</strong> · Coffee shops, neighborhood businesses.</li>
-        </ul>
-        <h4>How we use it</h4>
-        <ul>
-          <li><strong>B-roll cuts</strong> layered under Pillar 1 and Pillar 2 content (voiceover delivers tactical advice; visual is the city).</li>
-          <li><strong>Scrolling Cincy Reels</strong> as full features (Lane 3).</li>
-          <li><strong>Cover image variety.</strong> Cincinnati-anchored imagery on carousel covers for P1 content.</li>
-          <li><strong>Story rotations.</strong> Real-time Cincinnati moments (a Reds game, a Findlay Market visit, a Bengals win).</li>
-        </ul>
-        <h4>Bengals + Reds cultural calendar moments</h4>
-        <ul>
-          <li><strong>Reds opening day.</strong> Annual moment. "What Cincinnati local brands should be posting on opening day." Time-sensitive P1.</li>
-          <li><strong>Bengals home games.</strong> Recurring fall. Game-day story rotations, Cincinnati-pride captions, neighborhood spotlights tied to nearby bars / restaurants.</li>
-          <li><strong>Playoff runs.</strong> When either team is hot, plug in with founder-led commentary or Cincinnati-business spotlights.</li>
-          <li><strong>Team milestones.</strong> Bengals to Super Bowl, Reds to playoffs → publish a Cincinnati-business angle within 48 hours.</li>
-        </ul>
-        <h4>Recording cadence</h4>
-        <ul style="margin-bottom: 0;">
-          <li><strong>Friday shoot day</strong> = Scrolling Cincy. Built into the weekly rhythm.</li>
-          <li><strong>Opportunistic captures.</strong> Operators pulling their phone for B-roll when in-market for IG outreach trips or client shoots. Phone footage uploaded to shared Drive for team to pull from.</li>
-        </ul>
-      </div>
-    </details>
+      <details class="acc reveal">
+        <summary><span><span class="acc-eyebrow">B-roll</span>Cincinnati B-roll capture protocol</span></summary>
+        <div class="acc-body">
+          <p>The brand's geographic differentiator is Cincinnati. The grid needs to look like it.</p>
+          <h4>What we record</h4>
+          <ul>
+            <li><strong>Landmarks</strong> · Roebling Bridge, Union Terminal, Findlay Market, Fountain Square, The Banks, Eden Park, Smale Park, Carew Tower, Music Hall, Washington Park.</li>
+            <li><strong>Neighborhood scenes</strong> · OTR alleyways, Hyde Park Square, Northside main strip, Oakley Station, Mt. Lookout Square.</li>
+            <li><strong>Cultural staples</strong> · Skyline Chili, Graeter's, LaRosa's, Findlay Market vendors, Goetta, Reds games, Bengals stadium exterior, Oktoberfest, BLINK, Reds opening day.</li>
+            <li><strong>Daily city texture</strong> · Coffee shops, neighborhood businesses.</li>
+          </ul>
+          <h4>How we use it</h4>
+          <ul>
+            <li><strong>B-roll cuts</strong> layered under Pillar 1 and Pillar 2 content (voiceover delivers tactical advice; visual is the city).</li>
+            <li><strong>Scrolling Cincy Reels</strong> as full features (Lane 3).</li>
+            <li><strong>Cover image variety.</strong> Cincinnati-anchored imagery on carousel covers for P1 content.</li>
+            <li><strong>Story rotations.</strong> Real-time Cincinnati moments (a Reds game, a Findlay Market visit, a Bengals win).</li>
+          </ul>
+          <h4>Bengals + Reds cultural calendar moments</h4>
+          <ul>
+            <li><strong>Reds opening day.</strong> Annual moment. "What Cincinnati local brands should be posting on opening day." Time-sensitive P1.</li>
+            <li><strong>Bengals home games.</strong> Recurring fall. Game-day story rotations, Cincinnati-pride captions, neighborhood spotlights tied to nearby bars / restaurants.</li>
+            <li><strong>Playoff runs.</strong> When either team is hot, plug in with founder-led commentary or Cincinnati-business spotlights.</li>
+            <li><strong>Team milestones.</strong> Bengals to Super Bowl, Reds to playoffs → publish a Cincinnati-business angle within 48 hours.</li>
+          </ul>
+          <h4>Recording cadence</h4>
+          <ul style="margin-bottom: 0;">
+            <li><strong>Friday shoot day</strong> = Scrolling Cincy. Built into the weekly rhythm.</li>
+            <li><strong>Opportunistic captures.</strong> Operators pulling their phone for B-roll when in-market for IG outreach trips or client shoots. Phone footage uploaded to shared Drive for team to pull from.</li>
+          </ul>
+        </div>
+      </details>
 
-    <details class="acc reveal">
-      <summary><span><span class="acc-eyebrow">Daily ops</span>Daily posting checklist</span></summary>
-      <div class="acc-body">
-        <p>Pull this up at the start of every shift on @scrollmedia.co.</p>
-        <h4>Daily</h4>
-        <ol>
-          <li>Post stories daily (Type 1–4 rotation, M–F minimum).</li>
-          <li>Reshare any @chase.scrolls content per the cross-amplification table.</li>
-          <li>Check DMs. Reply to any new replies within 4 hours during business hours.</li>
-          <li>Check story poll / question replies. Move warm DMs into the prospect spreadsheet if relevant.</li>
-          <li>Engage with 5–10 Cincinnati local brand accounts as @scrollmedia.co. Builds reciprocal signal.</li>
-        </ol>
-        <h4>Daily feed-post target (5/wk, 3 Reels + 2 Carousels ideal)</h4>
-        <ol>
-          <li>Pick the pillar for today's post (rotate; don't post the same pillar 3 days in a row).</li>
-          <li>Pull the hook from the working hook library or write fresh.</li>
-          <li>Build the post per ownership model.</li>
-          <li>Write the caption (3-paragraph max, hook + body + soft CTA).</li>
-          <li>Pull the 8-hashtag stack appropriate to the post topic.</li>
-          <li>Tag the geo location.</li>
-          <li>Get Chase + Allison approval (24-hr default turnaround).</li>
-          <li>Schedule via Plann or post live.</li>
-          <li>Within 1 hour of posting: reply to first 3–5 comments to seed engagement.</li>
-        </ol>
-        <h4>Weekly Friday review</h4>
-        <ol style="margin-bottom: 0;">
-          <li>Pull the week's feed posts. Note save count, share count, profile visits per post.</li>
-          <li>Flag the strongest post for repurposing (Carousel → Reel, Reel → story sequence).</li>
-          <li>Note any warm DM threads that came from a feed post. Move into prospect spreadsheet.</li>
-          <li>Plan next week's posts at high level (one from each pillar minimum, 5/wk floor, 3 Reels + 2 Carousels ideal).</li>
-          <li>Track IG Maturity Quiz completions + pitch deck link taps as primary conversion KPIs.</li>
-        </ol>
-      </div>
-    </details>
-
-    <details class="acc reveal">
-      <summary><span><span class="acc-eyebrow">Boundaries</span>What @scrollmedia.co never does</span></summary>
-      <div class="acc-body">
-        <ul style="margin-bottom: 0;">
-          <li>Never names a Scroll Media client by name in any feed post or story.</li>
-          <li>Never uses Chase signature phrases ("Grind season," "Hot take:," "We're building something special").</li>
-          <li>Never closes a caption with "Peace." (Chase video sign-off only).</li>
-          <li>Never runs first-person founder framing in agency-voice posts.</li>
-          <li>Never posts content that would read as Chase's personal hot take unchanged.</li>
-          <li>Never pitches the agency directly in a feed caption. The IG Maturity Quiz and pitch deck page are the soft conversion paths via bio + story link; never "DM us for pricing" inside captions.</li>
-          <li>Never uses em-dashes in caption copy. Periods, commas, parentheses, line breaks only.</li>
-          <li>Never uses hype words: <em>transform, unlock, elevate, synergy, leverage</em> (as a verb).</li>
-          <li>Never positions Scroll as a Dayton or non-Cincinnati agency. Cincinnati-only branding.</li>
-        </ul>
-      </div>
-    </details>
-
-    <details class="acc reveal">
-      <summary><span><span class="acc-eyebrow">Allison</span>Allison Bandwidth Flex Protocol</span></summary>
-      <div class="acc-body">
-        <p>Allison is part-time + a mom + back to CDO oversight + carrying Phase 1 renewal gauntlet load. Her commitments need built-in flex so they don't become brittle.</p>
-        <ul style="margin-bottom: 0;">
-          <li><strong>Scrolling Cincy Friday shoot.</strong> Default = Fridays. If Allison can't make a Friday, the shoot moves to the next available day (preferably the following Friday). Don't skip; move.</li>
-          <li><strong>Scroll Crush bi-weekly series.</strong> Default = every other week. If she misses one cycle, the series becomes monthly that month, no team scramble.</li>
-          <li><strong>Visual QA approval.</strong> Default = 24-hour turnaround. If she's blocked, Chase can approve solo. Allison reviews retroactively next biweekly sync.</li>
-          <li><strong>Biweekly sync.</strong> If she can't make it, push 48 hours, not skip. Continuity matters here.</li>
-        </ul>
-      </div>
-    </details>
-
-    <details class="acc reveal">
-      <summary><span><span class="acc-eyebrow">Research</span>Field interview research → content fuel pipeline</span></summary>
-      <div class="acc-body">
-        <p>Direct ICP voice is the cleanest content fuel. Don't assume what Cincinnati local-brand founders are dealing with — ask them.</p>
-        <h4>The motion</h4>
-        <p><strong>Quarterly field interview block.</strong> One 2–3 hour session per quarter. Chase or Allison walks OTR, Oakley, Hyde Park, Northside, or another dense small-business zone. Drops into 5–8 small business owners. Brief intro: "I run Scroll Media, we're Cincinnati's Instagram agency for local brands. I'm doing some quick research to make sure our content is actually solving what founders here are dealing with. Got 3 minutes?"</p>
-        <h4>The 3-minute script</h4>
-        <ol>
-          <li><strong>"What does social media success look like to you?"</strong> Reveals their north star.</li>
-          <li><strong>"What's the biggest challenge with Instagram right now?"</strong> Reveals current obstacle.</li>
-          <li><strong>"What have you tried that didn't work?"</strong> Reveals burned beliefs.</li>
-          <li><strong>"If you had a social media person tomorrow, what would you have them do first?"</strong> Reveals dream outcome + entry-point service.</li>
-        </ol>
-        <h4>What we do with it</h4>
-        <ul>
-          <li><strong>Quote bank.</strong> Anonymized responses become hooks, carousel openers, Reel scripts.</li>
-          <li><strong>Pattern recognition.</strong> After 5–8 interviews, patterns surface. They become content angles for the next month.</li>
-          <li><strong>ICP refinement.</strong> Field interviews refine the 5 macro obstacles + 10 tactical objections + dream outcomes over time.</li>
-          <li><strong>Cincy authenticity.</strong> The fact that we're talking to Cincinnati founders face-to-face is a content angle itself.</li>
-        </ul>
-        <h4>Privacy + consent</h4>
-        <ul>
-          <li>No names without explicit permission. Quotes attributed to niche + neighborhood.</li>
-          <li>Photo or video only with verbal permission. Default to notes.</li>
-          <li>Reciprocity: leave each founder with one piece of useful Instagram tactical advice.</li>
-        </ul>
-        <h4>First field block</h4>
-        <p style="margin-bottom: 0;">Run before end of Q2 (June 2026). Targets: OTR + Oakley. 5 founders minimum per neighborhood. Chase or Allison executes.</p>
-      </div>
-    </details>
-
-    <details class="acc reveal">
-      <summary><span><span class="acc-eyebrow">Thesis</span>Problem-solution content thesis (P2 recurring arc)</span></summary>
-      <div class="acc-body">
-        <p>Sits inside Pillar 2. Solves the most common cluster of ICP frustration: "I'm posting good content but not seeing results." Breaks into 4 root causes; each is a content arc. Rotate through them over a quarter, then loop.</p>
-        <div class="grid-2">
-          <div class="panel">
-            <h4 style="margin-top: 0;">Root cause 1 · Not optimizing for the right metrics</h4>
-            <p>Most local-brand founders watch likes and followers (vanity). Saves, shares, profile visits, and DMs are the metrics that predict business outcomes.</p>
-            <p style="margin-bottom: 0;"><strong>Angle:</strong> "The 4 metrics that actually predict Instagram driving real business for your local brand." Pull from Scroll's Unified Scoring Framework v1.3 (saves + CTR weighted 2.0×).</p>
+      <details class="acc reveal">
+        <summary><span><span class="acc-eyebrow">Cross-amp</span>@chase.scrolls ↔ @scrollmedia.co amplification</span></summary>
+        <div class="acc-body">
+          <p>Two accounts run in parallel. Different voices, shared air cover. <strong>NEW in v3.1:</strong> Chase Founder POV Reels post on @chase.scrolls as primary with @scrollmedia.co as Instagram collaborator — native to both feeds.</p>
+          <div class="table-wrap stacks">
+            <table>
+              <thead>
+                <tr><th>Trigger on @chase.scrolls</th><th>Action on @scrollmedia.co</th></tr>
+              </thead>
+              <tbody>
+                <tr><td data-label="Trigger">Chase posts a Founder POV Reel</td><td data-label="Action"><strong>Collab feature</strong> — @scrollmedia.co tagged as IG collaborator. Posts natively to both feeds.</td></tr>
+                <tr><td data-label="Trigger">Chase posts other Reels (non-POV)</td><td data-label="Action">Reshare to @scrollmedia.co story same day or next morning with agency-voice one-line frame.</td></tr>
+                <tr><td data-label="Trigger">Chase posts a Carousel</td><td data-label="Action">Reshare to story same day or next morning. Consider repurposing as a different @scrollmedia.co Carousel 1–2 weeks later (different framing, agency voice).</td></tr>
+                <tr><td data-label="Trigger">Chase posts a hard text post</td><td data-label="Action">Reshare to story within 24 hours if it lands hard.</td></tr>
+                <tr><td data-label="Trigger">Chase goes live or posts a story</td><td data-label="Action">Reshare key story slides only if tactical, not personal.</td></tr>
+              </tbody>
+            </table>
           </div>
-          <div class="panel">
-            <h4 style="margin-top: 0;">Root cause 2 · Ignoring social SEO</h4>
-            <p>Instagram's search has become a real discovery surface in 2026. Keyword-optimized captions, alt text, niche-specific terminology in bio + name field drive non-follower reach.</p>
-            <p style="margin-bottom: 0;"><strong>Angle:</strong> "Social SEO for Cincinnati local brands: how founders are getting found in search without paying for ads."</p>
-          </div>
-          <div class="panel">
-            <h4 style="margin-top: 0;">Root cause 3 · Not climbing the TAM ladder</h4>
-            <p>Most local brands content for their current audience (existing customers, friends, family). They never expand to adjacent audiences. The TAM ladder: existing followers → adjacent Cincinnati locals → niche-aligned Cincinnati-area founders → broader Cincinnati.</p>
-            <p style="margin-bottom: 0;"><strong>Angle:</strong> "Your current followers aren't your TAM. Here's how to climb up to where your real buyers are."</p>
-          </div>
-          <div class="panel">
-            <h4 style="margin-top: 0;">Root cause 4 · No IVP discipline (core vs. conversion)</h4>
-            <p>Founders write content for "everyone" without separating core (followers who keep them in the algorithm) from conversion (cold viewers who could become customers). Both matter; they need different content.</p>
-            <p style="margin-bottom: 0;"><strong>Angle:</strong> "Why your most engaged followers won't be your customers — and what to post for both."</p>
+          <div class="callout signal" style="margin-top: 16px;">
+            @scrollmedia.co never copies @chase.scrolls content verbatim into a feed post (collab feature is the exception). The voices have to differ. If a piece of content could live on both accounts unchanged, it fails. Voice separation is non-negotiable.
           </div>
         </div>
-        <p style="margin-top: 16px; margin-bottom: 0;"><strong>Deployment.</strong> One Problem-Solution arc per month minimum. Run as a 3–5 post mini-series, then move to the next root cause.</p>
-      </div>
-    </details>
+      </details>
+    </div>
 
-    <details class="acc reveal">
-      <summary><span><span class="acc-eyebrow">Series</span>Follower-band growth series (quarterly)</span></summary>
-      <div class="acc-body">
-        <p>Multi-post content series organized by where a founder's account currently sits. Self-qualifying read: the founder sees their band, recognizes their stage, and absorbs the relevant growth advice.</p>
-        <div class="table-wrap stacks">
-          <table>
-            <thead>
-              <tr><th>Band</th><th>Stage</th><th>Focus</th></tr>
-            </thead>
-            <tbody>
-              <tr><td data-label="Band"><strong>500–2K</strong></td><td data-label="Stage">Foundation</td><td data-label="Focus">Bio optimization, content pillar clarity, first 9 grid posts, daily story rhythm</td></tr>
-              <tr><td data-label="Band"><strong>2K–10K</strong></td><td data-label="Stage">Reach expansion</td><td data-label="Focus">Past friends-and-family ceiling. Niche-anchored content, social SEO, Reel formats that travel</td></tr>
-              <tr><td data-label="Band"><strong>10K–50K</strong></td><td data-label="Stage">Authority compounding</td><td data-label="Focus">Real local authority. Conversion content, DM funnel optimization, leveraging existing content for warm leads</td></tr>
-              <tr><td data-label="Band"><strong>50K–100K+</strong></td><td data-label="Stage">Brand stage</td><td data-label="Focus">Don't need more content, need sharper content. POV-driven posting, founder-led storytelling, content as PR</td></tr>
-            </tbody>
-          </table>
+    <!-- STANDARDS + GUARDRAILS -->
+    <div class="supp-group">
+      <div class="supp-group-label">Standards + Guardrails <span class="supp-group-count">3</span></div>
+
+      <details class="acc reveal">
+        <summary><span><span class="acc-eyebrow">Boundaries</span>What @scrollmedia.co never does</span></summary>
+        <div class="acc-body">
+          <ul style="margin-bottom: 0;">
+            <li>Never names a Scroll Media client by name in any feed post or story.</li>
+            <li>Never uses Chase signature phrases ("Grind season," "Hot take:," "We're building something special").</li>
+            <li>Never closes a caption with "Peace." (Chase video sign-off only).</li>
+            <li>Never runs first-person founder framing in agency-voice posts.</li>
+            <li>Never posts content that would read as Chase's personal hot take unchanged.</li>
+            <li>Never pitches the agency directly in a feed caption. The IG Maturity Quiz and pitch deck page are the soft conversion paths via bio + story link; never "DM us for pricing" inside captions.</li>
+            <li>Never uses em-dashes in caption copy. Periods, commas, parentheses, line breaks only.</li>
+            <li>Never uses hype words: <em>transform, unlock, elevate, synergy, leverage</em> (as a verb).</li>
+            <li>Never positions Scroll as a Dayton or non-Cincinnati agency. Cincinnati-only branding.</li>
+          </ul>
         </div>
-        <h4>Series rules</h4>
-        <ul style="margin-bottom: 0;">
-          <li>Posts in the series link to each other (cover slide names the band, references the others).</li>
-          <li>Saves are the primary KPI for this series.</li>
-          <li>Run the full 4-band series quarterly.</li>
-          <li>Maps roughly to Scroll's Signature client maturity stages (Spark / Lift / Rise / Thrive).</li>
-        </ul>
-      </div>
-    </details>
+      </details>
 
-    <details class="acc reveal">
-      <summary><span><span class="acc-eyebrow">Quality bar</span>Design quality bar (Carousel benchmark)</span></summary>
-      <div class="acc-body">
-        <p>The grid's visual quality has to match the strategic ambition.</p>
-        <p><strong>Industry-standard reference:</strong> thecreative.social and accounts of similar tier — visual carousel agencies operating at brand-level design discipline.</p>
-        <h4>What "industry standard" means</h4>
-        <ul>
-          <li><strong>Cover image discipline.</strong> First slide is the conversion mechanism. Consistent template, brand-recognizable in 0.5 seconds, headline-driven, contrast strong enough to stop a scroll.</li>
-          <li><strong>Typography hierarchy.</strong> One strong type pairing. Sentence case or all-caps used consistently. Body copy hierarchy clear within each slide.</li>
-          <li><strong>Hook slide weight.</strong> Hook text is the largest element on the cover. Max 7 words. No subhead competing for attention.</li>
-          <li><strong>Visual rhythm.</strong> Slide 2 through slide 5+ have recognizable rhythm. Numbered, framed, or visually anchored.</li>
-          <li><strong>Breathing room.</strong> Negative space respected. The Scroll grid in 2026 should not look like a content marketing agency from 2020.</li>
-          <li><strong>End slide CTA.</strong> Last slide drives action. Save the post, share with a friend, tap the bio link. Specific, single CTA per carousel. Brand mark present but not loud.</li>
-        </ul>
-        <h4>Required rule</h4>
-        <p>Every @scrollmedia.co carousel ends with brand mark on the final slide. Quiet, consistent, not loud. The mark is the credibility anchor for prospects who landed on the carousel before checking the profile.</p>
-        <h4>Action items</h4>
-        <ul style="margin-bottom: 0;">
-          <li>Allison + Rachel review thecreative.social during kickoff sync. Pull up the account, scroll through their last 30 days. Pick 3–5 specific moves to replicate.</li>
-          <li>Audit existing @scrollmedia.co Canva templates. Identify which need refresh.</li>
-          <li>One round of refreshed templates before week 3. Rachel designs lead. Allison final approval.</li>
-          <li>Design QA in weekly huddle. Before any post goes live, Rachel + Allison sign off on the visual. If not at the locked quality bar, it doesn't ship until it is.</li>
-        </ul>
-      </div>
-    </details>
+      <details class="acc reveal">
+        <summary><span><span class="acc-eyebrow">Allison</span>Allison Bandwidth Flex Protocol</span></summary>
+        <div class="acc-body">
+          <p>Allison is part-time + a mom + back to CDO oversight + carrying Phase 1 renewal gauntlet load. Her commitments need built-in flex so they don't become brittle.</p>
+          <ul style="margin-bottom: 0;">
+            <li><strong>Scrolling Cincy Friday shoot.</strong> Default = Fridays. If Allison can't make a Friday, the shoot moves to the next available day (preferably the following Friday). Don't skip; move.</li>
+            <li><strong>Scroll Crush bi-weekly series.</strong> Default = every other week. If she misses one cycle, the series becomes monthly that month, no team scramble.</li>
+            <li><strong>Visual QA approval.</strong> Default = 24-hour turnaround. If she's blocked, Chase can approve solo. Allison reviews retroactively next biweekly sync.</li>
+            <li><strong>Biweekly sync.</strong> If she can't make it, push 48 hours, not skip. Continuity matters here.</li>
+          </ul>
+        </div>
+      </details>
 
-    <details class="acc reveal">
-      <summary><span><span class="acc-eyebrow">Cross-refs</span>Source-of-truth links</span></summary>
-      <div class="acc-body">
-        <ul style="margin-bottom: 0;">
-          <li><strong>Canonical strategy doc</strong> · <code>scrollmedia_co_ig_posting_strategy.md</code> v3.1</li>
-          <li><strong>Implementation memo</strong> · <code>scrollmedia_co_ig_implementation_memo_v3.1.md</code></li>
-          <li><strong>Voice rules (agency voice)</strong> · <code>01_Strategy/frameworks/brand_system.md</code> §3</li>
-          <li><strong>Proof library (white-labeled)</strong> · <code>proof_library.md</code></li>
-          <li><strong>Master positioning + ICP</strong> · <code>customer_acquisition/master_context.md</code> §2 + §3</li>
-          <li><strong>DM templates (team voice)</strong> · <code>templates/03_ig_dm_system/scrollmedia_co_team_voice/02_dm_templates.md</code></li>
-          <li><strong>Team IG outreach playbook</strong> · <code>playbooks/team_ig_outreach_playbook.md</code></li>
-          <li><strong>IG Maturity Quiz</strong> · <a href="https://tools.scrollmedia.co/ig-maturity-quiz/" target="_blank" rel="noopener">tools.scrollmedia.co/ig-maturity-quiz/</a></li>
-          <li><strong>Pitch deck (primary destination)</strong> · <a href="https://decks.scrollmedia.co/pitch/" target="_blank" rel="noopener">decks.scrollmedia.co/pitch/</a></li>
-          <li><strong>Service catalog</strong> · <a href="https://tools.scrollmedia.co/services-catalog" target="_blank" rel="noopener">tools.scrollmedia.co/services-catalog</a></li>
-          <li><strong>Chase personal brand parallel</strong> · <code>08_Personal_Brand/strategy/chase_scrolls_ig_posting_strategy.md</code></li>
-          <li><strong>Unified Scoring Framework</strong> · <code>Scroll_Media_Scoring_Framework.md</code> v1.3 (saves + CTR 2.0× weighted)</li>
-          <li><strong>Phase 1 acquisition focus</strong> · <code>00_Strategic_Plan/phase_1_priorities.md</code></li>
-        </ul>
-      </div>
-    </details>
+      <details class="acc reveal">
+        <summary><span><span class="acc-eyebrow">Quality bar</span>Design quality bar (Carousel benchmark)</span></summary>
+        <div class="acc-body">
+          <p>The grid's visual quality has to match the strategic ambition.</p>
+          <p><strong>Industry-standard reference:</strong> thecreative.social and accounts of similar tier — visual carousel agencies operating at brand-level design discipline.</p>
+          <h4>What "industry standard" means</h4>
+          <ul>
+            <li><strong>Cover image discipline.</strong> First slide is the conversion mechanism. Consistent template, brand-recognizable in 0.5 seconds, headline-driven, contrast strong enough to stop a scroll.</li>
+            <li><strong>Typography hierarchy.</strong> One strong type pairing. Sentence case or all-caps used consistently. Body copy hierarchy clear within each slide.</li>
+            <li><strong>Hook slide weight.</strong> Hook text is the largest element on the cover. Max 7 words. No subhead competing for attention.</li>
+            <li><strong>Visual rhythm.</strong> Slide 2 through slide 5+ have recognizable rhythm. Numbered, framed, or visually anchored.</li>
+            <li><strong>Breathing room.</strong> Negative space respected. The Scroll grid in 2026 should not look like a content marketing agency from 2020.</li>
+            <li><strong>End slide CTA.</strong> Last slide drives action. Save the post, share with a friend, tap the bio link. Specific, single CTA per carousel. Brand mark present but not loud.</li>
+          </ul>
+          <h4>Required rule</h4>
+          <p>Every @scrollmedia.co carousel ends with brand mark on the final slide. Quiet, consistent, not loud. The mark is the credibility anchor for prospects who landed on the carousel before checking the profile.</p>
+          <h4>Action items</h4>
+          <ul style="margin-bottom: 0;">
+            <li>Allison + Rachel review thecreative.social during kickoff sync. Pull up the account, scroll through their last 30 days. Pick 3–5 specific moves to replicate.</li>
+            <li>Audit existing @scrollmedia.co Canva templates. Identify which need refresh.</li>
+            <li>One round of refreshed templates before week 3. Rachel designs lead. Allison final approval.</li>
+            <li>Design QA in weekly huddle. Before any post goes live, Rachel + Allison sign off on the visual. If not at the locked quality bar, it doesn't ship until it is.</li>
+          </ul>
+        </div>
+      </details>
+    </div>
+
+    <!-- CROSS-REFERENCES -->
+    <div class="supp-group">
+      <div class="supp-group-label">Cross-References <span class="supp-group-count">1</span></div>
+
+      <details class="acc reveal">
+        <summary><span><span class="acc-eyebrow">Refs</span>Source-of-truth links</span></summary>
+        <div class="acc-body">
+          <ul style="margin-bottom: 0;">
+            <li><strong>Canonical strategy doc</strong> · <code>scrollmedia_co_ig_posting_strategy.md</code> v3.1</li>
+            <li><strong>Implementation memo</strong> · <code>scrollmedia_co_ig_implementation_memo_v3.1.md</code></li>
+            <li><strong>Voice rules (agency voice)</strong> · <code>01_Strategy/frameworks/brand_system.md</code> §3</li>
+            <li><strong>Proof library (white-labeled)</strong> · <code>proof_library.md</code></li>
+            <li><strong>Master positioning + ICP</strong> · <code>customer_acquisition/master_context.md</code> §2 + §3</li>
+            <li><strong>DM templates (team voice)</strong> · <code>templates/03_ig_dm_system/scrollmedia_co_team_voice/02_dm_templates.md</code></li>
+            <li><strong>Team IG outreach playbook</strong> · <code>playbooks/team_ig_outreach_playbook.md</code></li>
+            <li><strong>IG Maturity Quiz</strong> · <a href="https://tools.scrollmedia.co/ig-maturity-quiz/" target="_blank" rel="noopener">tools.scrollmedia.co/ig-maturity-quiz/</a></li>
+            <li><strong>Pitch deck (primary destination)</strong> · <a href="https://decks.scrollmedia.co/pitch/" target="_blank" rel="noopener">decks.scrollmedia.co/pitch/</a></li>
+            <li><strong>Service catalog</strong> · <a href="https://tools.scrollmedia.co/services-catalog" target="_blank" rel="noopener">tools.scrollmedia.co/services-catalog</a></li>
+            <li><strong>Chase personal brand parallel</strong> · <code>08_Personal_Brand/strategy/chase_scrolls_ig_posting_strategy.md</code></li>
+            <li><strong>Unified Scoring Framework</strong> · <code>Scroll_Media_Scoring_Framework.md</code> v1.3 (saves + CTR 2.0× weighted)</li>
+            <li><strong>Phase 1 acquisition focus</strong> · <code>00_Strategic_Plan/phase_1_priorities.md</code></li>
+          </ul>
+        </div>
+      </details>
+    </div>
   </div>
 </section>
 
@@ -1746,52 +1992,276 @@ function checkPassword() {
       <a href="#sync">Sync</a>
       <a href="#supplements">Supplements</a>
     </div>
-    <div class="meta">Scroll Media · @scrollmedia.co IG Strategy · v3.1 · May 19, 2026</div>
+    <div class="meta">Scroll Media · @scrollmedia.co IG Strategy · v3.1 iter 2 · May 19, 2026</div>
   </div>
 </footer>
 
+<!-- FLOATING SECTION NAV -->
+<div class="fsn" id="fsn" aria-hidden="false">
+  <button type="button" class="fsn-close" id="fsnClose" aria-label="Hide section nav">×</button>
+  <button type="button" class="fsn-toggle" id="fsnToggle" aria-label="Open section navigation" aria-expanded="false">
+    <span class="fsn-icon" aria-hidden="true"><span></span><span></span><span></span></span>
+    <span class="fsn-label">Sections</span>
+  </button>
+  <div class="fsn-menu" id="fsnMenu" role="menu" aria-label="Page sections">
+    <a href="#purpose" data-section="purpose" role="menuitem">Purpose</a>
+    <a href="#foundation" data-section="foundation" role="menuitem">Foundation</a>
+    <a href="#team" data-section="team" role="menuitem">Team</a>
+    <a href="#architecture" data-section="architecture" role="menuitem">Architecture</a>
+    <a href="#cadence" data-section="cadence" role="menuitem">Cadence</a>
+    <a href="#engine" data-section="engine" role="menuitem">Engine</a>
+    <a href="#sync" data-section="sync" role="menuitem">Sync</a>
+    <a href="#supplements" data-section="supplements" role="menuitem">Supplements</a>
+  </div>
+</div>
+
 <script>
-  // Active-section highlight in nav based on scroll
-  (function () {
-    var links = document.querySelectorAll('#navLinks a');
-    var sections = Array.prototype.map.call(links, function (a) {
-      var id = a.getAttribute('href').slice(1);
-      return { id: id, link: a, el: document.getElementById(id) };
-    }).filter(function (s) { return s.el; });
+(function () {
+  'use strict';
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-    function onScroll() {
-      var y = window.scrollY + 120;
-      var current = sections[0];
-      for (var i = 0; i < sections.length; i++) {
-        if (sections[i].el.offsetTop <= y) current = sections[i];
-      }
-      sections.forEach(function (s) { s.link.classList.remove('active'); });
-      if (current) current.link.classList.add('active');
+  // ---- Active-section highlight in topbar + fsn ----
+  var topLinks = document.querySelectorAll('#navLinks a');
+  var fsnLinks = document.querySelectorAll('#fsnMenu a');
+  var sectionIds = ['purpose','foundation','team','architecture','cadence','engine','sync','supplements'];
+  var sectionEls = sectionIds.map(function (id) { return document.getElementById(id); }).filter(Boolean);
+
+  function activeSection() {
+    var y = window.scrollY + 140;
+    var current = sectionEls[0];
+    for (var i = 0; i < sectionEls.length; i++) {
+      if (sectionEls[i].offsetTop <= y) current = sectionEls[i];
     }
+    return current ? current.id : 'purpose';
+  }
+  function syncActiveLinks(id) {
+    topLinks.forEach(function (a) {
+      a.classList.toggle('active', a.getAttribute('href') === '#' + id);
+    });
+    fsnLinks.forEach(function (a) {
+      a.classList.toggle('active', a.dataset.section === id);
+    });
+  }
 
-    window.addEventListener('scroll', onScroll, { passive: true });
-    window.addEventListener('resize', onScroll);
-    onScroll();
-  })();
+  // ---- Reading progress bar ----
+  var bar = document.getElementById('progressBar');
+  function updateProgress() {
+    var max = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
+    var pct = Math.min(100, Math.max(0, (window.scrollY / max) * 100));
+    if (bar) bar.style.width = pct.toFixed(2) + '%';
+  }
 
-  // Reveal-on-scroll via IntersectionObserver
-  (function () {
-    var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    var els = document.querySelectorAll('.reveal');
-    if (reduce || !('IntersectionObserver' in window)) {
-      Array.prototype.forEach.call(els, function (el) { el.classList.add('in-view'); });
-      return;
+  // ---- Floating section nav show/hide based on hero scroll-past ----
+  var fsn = document.getElementById('fsn');
+  var fsnDismissed = false;
+  function fsnUpdateVisibility() {
+    if (!fsn || fsnDismissed) return;
+    var hero = document.getElementById('purpose');
+    var threshold = hero ? hero.offsetTop + hero.offsetHeight - 40 : 200;
+    if (window.scrollY > threshold) fsn.classList.add('show');
+    else fsn.classList.remove('show');
+  }
+
+  // Combined scroll handler
+  var ticking = false;
+  function onScroll() {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(function () {
+      updateProgress();
+      fsnUpdateVisibility();
+      syncActiveLinks(activeSection());
+      ticking = false;
+    });
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('resize', onScroll);
+  onScroll();
+
+  // ---- FSN menu open / close / dismiss ----
+  var fsnToggle = document.getElementById('fsnToggle');
+  var fsnMenu = document.getElementById('fsnMenu');
+  var fsnClose = document.getElementById('fsnClose');
+  if (fsnToggle && fsn) {
+    fsnToggle.addEventListener('click', function (e) {
+      e.stopPropagation();
+      var open = fsn.classList.toggle('open');
+      fsnToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+  }
+  if (fsnMenu) {
+    fsnMenu.addEventListener('click', function () {
+      // close on item tap (smooth-scroll handled by anchor + html scroll-behavior)
+      fsn.classList.remove('open');
+      if (fsnToggle) fsnToggle.setAttribute('aria-expanded', 'false');
+    });
+  }
+  if (fsnClose) {
+    fsnClose.addEventListener('click', function (e) {
+      e.stopPropagation();
+      fsnDismissed = true;
+      fsn.classList.add('dismissed');
+    });
+  }
+  document.addEventListener('click', function (e) {
+    if (!fsn || !fsn.classList.contains('open')) return;
+    if (!fsn.contains(e.target)) {
+      fsn.classList.remove('open');
+      if (fsnToggle) fsnToggle.setAttribute('aria-expanded', 'false');
     }
-    var io = new IntersectionObserver(function (entries) {
+  });
+
+  // ---- Reveal-on-scroll via IntersectionObserver ----
+  var revealEls = document.querySelectorAll('.reveal');
+  if (reduce || !('IntersectionObserver' in window)) {
+    Array.prototype.forEach.call(revealEls, function (el) { el.classList.add('in-view'); });
+  } else {
+    var revealObs = new IntersectionObserver(function (entries) {
       entries.forEach(function (entry) {
         if (entry.isIntersecting) {
           entry.target.classList.add('in-view');
-          io.unobserve(entry.target);
+          revealObs.unobserve(entry.target);
         }
       });
     }, { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
-    Array.prototype.forEach.call(els, function (el) { io.observe(el); });
-  })();
+    Array.prototype.forEach.call(revealEls, function (el) { revealObs.observe(el); });
+  }
+
+  // ---- Funnel staggered reveal ----
+  var funnel = document.getElementById('funnel');
+  if (funnel) {
+    if (reduce || !('IntersectionObserver' in window)) {
+      funnel.classList.add('revealed');
+    } else {
+      var funnelObs = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            funnel.classList.add('revealed');
+            funnelObs.unobserve(funnel);
+          }
+        });
+      }, { rootMargin: '0px 0px -10% 0px', threshold: 0.18 });
+      funnelObs.observe(funnel);
+    }
+  }
+
+  // ---- Hero stat counter animation ----
+  var statsStrip = document.getElementById('statsStrip');
+  function animateCount(el, target, duration) {
+    if (reduce) { el.textContent = String(target); return; }
+    var start = performance.now();
+    function tick(now) {
+      var t = Math.min((now - start) / duration, 1);
+      var eased = 1 - Math.pow(1 - t, 3); // ease-out cubic
+      el.textContent = String(Math.round(eased * target));
+      if (t < 1) requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+  }
+  if (statsStrip && 'IntersectionObserver' in window) {
+    var statObs = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          statsStrip.querySelectorAll('.num[data-count]').forEach(function (el) {
+            animateCount(el, parseInt(el.dataset.count, 10) || 0, 800);
+          });
+          statObs.unobserve(statsStrip);
+        }
+      });
+    }, { threshold: 0.4 });
+    statObs.observe(statsStrip);
+  } else if (statsStrip) {
+    // Fallback: just set final values
+    statsStrip.querySelectorAll('.num[data-count]').forEach(function (el) {
+      el.textContent = el.dataset.count;
+    });
+  }
+
+  // ---- Zone 2 tabs (desktop tabs + mobile accordion via same state machine) ----
+  var layerTabs = document.getElementById('layerTabs');
+  if (layerTabs) {
+    var tabBtns = layerTabs.querySelectorAll('.tab-btn');
+    var mobileHeaders = layerTabs.querySelectorAll('.tab-mobile-header');
+    var panels = layerTabs.querySelectorAll('.tab-panel');
+
+    function activateTab(id, focusBtn) {
+      tabBtns.forEach(function (b) {
+        var isActive = b.dataset.tab === id;
+        b.setAttribute('aria-selected', isActive ? 'true' : 'false');
+        b.setAttribute('tabindex', isActive ? '0' : '-1');
+      });
+      mobileHeaders.forEach(function (h) {
+        h.setAttribute('aria-expanded', h.dataset.tab === id ? 'true' : 'false');
+      });
+      panels.forEach(function (p) {
+        var isActive = p.dataset.tab === id;
+        p.classList.toggle('active', isActive);
+        if (isActive) { p.removeAttribute('hidden'); }
+        else { p.setAttribute('hidden', ''); }
+      });
+      if (focusBtn) {
+        var btn = layerTabs.querySelector('.tab-btn[data-tab="' + id + '"]');
+        if (btn) btn.focus();
+      }
+    }
+
+    // On mobile, all panels visible; activate toggles open state only
+    // Use matchMedia to detect mobile
+    function isMobile() { return window.matchMedia('(max-width: 414px)').matches; }
+
+    tabBtns.forEach(function (btn) {
+      btn.addEventListener('click', function () { activateTab(btn.dataset.tab); });
+    });
+    mobileHeaders.forEach(function (h) {
+      h.addEventListener('click', function () {
+        // Mobile accordion: clicking active header closes it; otherwise activate
+        if (isMobile() && h.getAttribute('aria-expanded') === 'true') {
+          // close all (no active)
+          mobileHeaders.forEach(function (m) { m.setAttribute('aria-expanded', 'false'); });
+          panels.forEach(function (p) { p.classList.remove('active'); });
+          tabBtns.forEach(function (b) { b.setAttribute('aria-selected', 'false'); });
+        } else {
+          activateTab(h.dataset.tab);
+        }
+      });
+    });
+
+    // Keyboard arrow navigation between tabs
+    layerTabs.addEventListener('keydown', function (e) {
+      if (!e.target.classList.contains('tab-btn')) return;
+      var keys = ['ArrowLeft', 'ArrowRight', 'Home', 'End'];
+      if (keys.indexOf(e.key) === -1) return;
+      e.preventDefault();
+      var ids = Array.prototype.map.call(tabBtns, function (b) { return b.dataset.tab; });
+      var cur = ids.indexOf(e.target.dataset.tab);
+      var next = cur;
+      if (e.key === 'ArrowLeft') next = (cur - 1 + ids.length) % ids.length;
+      else if (e.key === 'ArrowRight') next = (cur + 1) % ids.length;
+      else if (e.key === 'Home') next = 0;
+      else if (e.key === 'End') next = ids.length - 1;
+      activateTab(ids[next], true);
+    });
+  }
+
+  // ---- Auto-scroll the topbar nav strip to keep active link visible ----
+  var nav = document.getElementById('navLinks');
+  if (nav) {
+    var navObs = new MutationObserver(function () {
+      var active = nav.querySelector('a.active');
+      if (active && nav.scrollWidth > nav.clientWidth) {
+        var navRect = nav.getBoundingClientRect();
+        var aRect = active.getBoundingClientRect();
+        if (aRect.left < navRect.left || aRect.right > navRect.right) {
+          nav.scrollTo({
+            left: active.offsetLeft - nav.clientWidth / 2 + active.clientWidth / 2,
+            behavior: 'smooth'
+          });
+        }
+      }
+    });
+    navObs.observe(nav, { attributes: true, subtree: true, attributeFilter: ['class'] });
+  }
+})();
 </script>
 
 </body>
