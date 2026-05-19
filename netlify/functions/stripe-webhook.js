@@ -9,7 +9,7 @@ const crypto = require('crypto');
 // ─── Environment Variables ────────────────────────────────────────────────────
 const STRIPE_WEBHOOK_SECRET = process.env.STRIPE_WEBHOOK_SECRET;
 const RESEND_API_KEY         = process.env.RESEND_API_KEY;
-const KIT_API_SECRET         = process.env.KIT_API_KEY; // stored as KIT_API_KEY in Netlify env vars
+const KIT_API_SECRET         = process.env.KIT_V3_API_SECRET;
 const KIT_PLAYBOOK_TAG_ID    = '17400944'; // playbook-buyer tag ID
 const TOKEN_STORE_SECRET     = process.env.TOKEN_STORE_SECRET;
 const SITE_URL               = process.env.SITE_URL || 'https://tools.scrollmedia.co';

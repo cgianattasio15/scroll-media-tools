@@ -90,15 +90,15 @@ exports.handler = async function(event, context) {
     return { statusCode: 400, headers, body: JSON.stringify({ error: "Invalid email address" }) };
   }
 
-  const KIT_API_KEY = process.env.KIT_API_KEY;
-  if (!KIT_API_KEY) {
-    console.error("KIT_API_KEY not set");
+  const KIT_V4_API_KEY = process.env.KIT_V4_API_KEY;
+  if (!KIT_V4_API_KEY) {
+    console.error("KIT_V4_API_KEY not set");
     return { statusCode: 200, headers, body: JSON.stringify({ success: true, routed: false, reason: "config-error" }) };
   }
 
   const kitHeaders = {
     "Content-Type": "application/json",
-    "X-Kit-Api-Key": KIT_API_KEY
+    "X-Kit-Api-Key": KIT_V4_API_KEY
   };
 
   // ─── MODE: SEQUENCE (direct enrollment, no niche routing) ───
@@ -122,7 +122,7 @@ exports.handler = async function(event, context) {
 
       // If custom fields tripped a 4xx, retry without fields so enrollment still lands.
       if (!subRes.ok && subBody.fields) {
-        console.warn("Sequence-mode subscriber upsert failed with fields; retrying without. Response:", JSON.stringify(subData));
+        console.warn("Sequence-mode subscriber upsert failed with fields; retrying without. Status: " + subRes.status + " Response:", JSON.stringify(subData));
         subRes = await fetch(`${KIT_BASE}/subscribers`, {
           method: "POST",
           headers: kitHeaders,
@@ -131,9 +131,14 @@ exports.handler = async function(event, context) {
         subData = await subRes.json();
       }
 
+      if (subRes.status === 401 || subRes.status === 403) {
+        console.error("Sequence-mode: Kit V4 auth failed (status " + subRes.status + "). Response:", JSON.stringify(subData));
+        return { statusCode: 200, headers, body: JSON.stringify({ success: true, routed: false, reason: "auth-failed" }) };
+      }
+
       const subscriberId = subData && subData.subscriber && subData.subscriber.id;
       if (!subscriberId) {
-        console.error("Sequence-mode: no subscriber ID from Kit:", JSON.stringify(subData));
+        console.error("Sequence-mode: no subscriber ID from Kit. Status: " + subRes.status + " Response:", JSON.stringify(subData));
         return { statusCode: 200, headers, body: JSON.stringify({ success: true, routed: false, reason: "no-subscriber-id" }) };
       }
 
@@ -174,10 +179,16 @@ exports.handler = async function(event, context) {
       })
     });
     const subData = await subRes.json();
+
+    if (subRes.status === 401 || subRes.status === 403) {
+      console.error("Default-mode: Kit V4 auth failed (status " + subRes.status + "). Response:", JSON.stringify(subData));
+      return { statusCode: 200, headers, body: JSON.stringify({ success: true, routed: false, reason: "auth-failed" }) };
+    }
+
     const subscriberId = subData && subData.subscriber && subData.subscriber.id;
 
     if (!subscriberId) {
-      console.error("No subscriber ID from Kit:", JSON.stringify(subData));
+      console.error("No subscriber ID from Kit. Status: " + subRes.status + " Response:", JSON.stringify(subData));
       return { statusCode: 200, headers, body: JSON.stringify({ success: true, routed: false, reason: "no-subscriber-id" }) };
     }
 
@@ -226,7 +237,11 @@ exports.handler = async function(event, context) {
     }
 
     // Step 4: Enroll in sequence (net-new only)
+    // The medspa-biz-dev sequence does not exist in Kit. When no sequence is
+    // configured (override_sequence_id absent AND SEQUENCE_IDS["medspa-biz-dev"]
+    // unset), skip enrollment cleanly. Subscriber upsert + tagging still happen.
     let sequenceResult = null;
+    let mode = "subscriber-and-sequence";
     if (scenario === "net-new") {
       const seqId = override_sequence_id || SEQUENCE_IDS["medspa-biz-dev"];
       if (seqId) {
@@ -242,8 +257,9 @@ exports.handler = async function(event, context) {
           sequenceResult = { status: "error", error: e.message };
         }
       } else {
-        console.warn("KIT_SEQ_MEDSPA_BIZ_DEV not set - subscriber tagged but not enrolled");
-        sequenceResult = { status: "skipped-no-sequence-id" };
+        console.log("Default-mode: no sequence configured (override absent, KIT_SEQ_MEDSPA_BIZ_DEV unset) — subscriber upserted and tagged, sequence enrollment intentionally skipped. subscriber=" + subscriberId);
+        sequenceResult = { status: "skipped-no-sequence-configured" };
+        mode = "subscriber-only";
       }
     }
 
@@ -252,6 +268,8 @@ exports.handler = async function(event, context) {
       headers,
       body: JSON.stringify({
         success: true,
+        routed: true,
+        mode,
         subscriber_id: subscriberId,
         scenario,
         tags_applied: tagResults,

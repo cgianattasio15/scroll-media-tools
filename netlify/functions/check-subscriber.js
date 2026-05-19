@@ -45,8 +45,8 @@ exports.handler = async function(event, context) {
     return { statusCode: 400, headers, body: JSON.stringify({ error: "Invalid email address" }) };
   }
 
-  const KIT_API_KEY = process.env.KIT_API_KEY;
-  if (!KIT_API_KEY) {
+  const KIT_V4_API_KEY = process.env.KIT_V4_API_KEY;
+  if (!KIT_V4_API_KEY) {
     // Fail open — if we can't check, treat as new subscriber
     return { statusCode: 200, headers, body: JSON.stringify({ exists: false, reason: "config-error" }) };
   }
@@ -59,12 +59,18 @@ exports.handler = async function(event, context) {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
-          "X-Kit-Api-Key": KIT_API_KEY
+          "X-Kit-Api-Key": KIT_V4_API_KEY
         }
       }
     );
 
     const data = await res.json();
+
+    if (res.status === 401 || res.status === 403) {
+      console.error("check-subscriber: Kit V4 auth failed (status " + res.status + "). Response:", JSON.stringify(data));
+      // Fail open — separates auth failure from genuine not-found in logs
+      return { statusCode: 200, headers, body: JSON.stringify({ exists: false, reason: "auth-failed" }) };
+    }
 
     // Kit returns { subscribers: [...] } — check if any match
     const subscribers = data && data.subscribers;
@@ -86,7 +92,7 @@ exports.handler = async function(event, context) {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
-          "X-Kit-Api-Key": KIT_API_KEY
+          "X-Kit-Api-Key": KIT_V4_API_KEY
         }
       }
     );
