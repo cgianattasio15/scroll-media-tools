@@ -173,17 +173,19 @@ strong { color: var(--shadow); font-weight: 600; }
 .nav-links a.active::after { transform: scaleX(1); }
 
 .topbar-cta {
-  display: inline-block; padding: 8px 16px;
+  display: inline-flex; align-items: center; padding: 10px 16px;
   background: var(--azure); color: var(--ghost);
   font-size: 12px; font-weight: 700; text-decoration: none;
   letter-spacing: 0.02em; white-space: nowrap;
+  min-height: 44px;
   transition: background 200ms var(--ease), transform 180ms var(--ease);
 }
 .topbar-cta:hover { background: var(--azure-700); transform: translateY(-1px); text-decoration: none; }
 
 .nav-hamburger {
-  display: none; flex-direction: column; gap: 5px;
+  display: none; flex-direction: column; gap: 5px; justify-content: center; align-items: center;
   background: none; border: none; cursor: pointer; padding: 4px;
+  min-width: 44px; min-height: 44px;
 }
 .nav-hamburger span {
   display: block; width: 22px; height: 2px; background: var(--shadow);
