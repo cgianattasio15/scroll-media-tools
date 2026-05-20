@@ -1927,16 +1927,10 @@
   // GATE MODAL
   // ============================================================
   (function() {
-    // -------- KIT INTEGRATION PLACEHOLDERS --------
-    // <!-- KIT_FORM_ENDPOINT_TBD -->
-    // <!-- KIT_QUIZ_LEAD_TAG_TBD -->
-    // Replace with actual Kit form ID before deploy.
-    // Expected pattern: const KIT_FORM_ID = 'XXXXXXX';
-    // Submission URL: https://app.kit.com/forms/${KIT_FORM_ID}/subscriptions
-    const KIT_FORM_ID = null; // TBD — pending Chase
-    const KIT_FORM_ENDPOINT = KIT_FORM_ID
-      ? 'https://app.kit.com/forms/' + KIT_FORM_ID + '/subscriptions'
-      : null;
+    // Kit form: Cincinnati IG Audit · Lead Magnet (id 9466021).
+    // Source tagging handled server-side by the "Apply Source Tags" automation (id 1975733).
+    const KIT_FORM_ID = 9466021;
+    const KIT_FORM_ENDPOINT = 'https://app.kit.com/forms/' + KIT_FORM_ID + '/subscriptions';
 
     const gate = document.getElementById('gate');
     const gateTrigger = document.getElementById('gate-trigger');
@@ -2038,11 +2032,6 @@
     }
 
     async function submitToKit(firstName, email) {
-      if (!KIT_FORM_ENDPOINT) {
-        // Placeholder mode — log + simulate success so the gate flow still works for QA.
-        console.warn('[Scroll · Cincinnati Audit] Kit form ID not configured. Skipping POST.');
-        return { ok: true, placeholder: true };
-      }
       const fd = new FormData();
       fd.append('first_name', firstName);
       fd.append('email_address', email);
