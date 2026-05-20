@@ -585,12 +585,12 @@
   }
   .gate-close {
     position: absolute;
-    top: 16px; right: 16px;
-    width: 36px; height: 36px;
+    top: 14px; right: 14px;
+    width: 44px; height: 44px;
     background: var(--ghost);
     border: 1px solid var(--rule);
     color: var(--azure);
-    font-size: 18px; font-weight: 700;
+    font-size: 20px; font-weight: 700;
     cursor: pointer;
     display: flex; align-items: center; justify-content: center;
     transition: background 200ms var(--ease), border-color 200ms var(--ease);
@@ -1047,9 +1047,11 @@
   .footer-brand a {
     font-size: 13px; color: var(--lucid);
     border-bottom: 1px solid rgba(255, 255, 255, 0.18);
-    padding: 8px 0;
-    display: inline-block;
+    padding: 14px 0;
+    display: inline-flex;
+    align-items: center;
     line-height: 1.2;
+    min-height: 44px;
     align-self: flex-start;
   }
   .footer-brand a:hover {
