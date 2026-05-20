@@ -1,0 +1,267 @@
+{
+  "screenshots": [
+    "/Users/chase.gianattasio/Desktop/scroll-media-tools/instagram-audit-cincinnati/screenshots/2026-05-20_refinement1_breakpoint_1440.png",
+    "/Users/chase.gianattasio/Desktop/scroll-media-tools/instagram-audit-cincinnati/screenshots/2026-05-20_refinement1_breakpoint_1100.png",
+    "/Users/chase.gianattasio/Desktop/scroll-media-tools/instagram-audit-cincinnati/screenshots/2026-05-20_refinement1_breakpoint_768.png",
+    "/Users/chase.gianattasio/Desktop/scroll-media-tools/instagram-audit-cincinnati/screenshots/2026-05-20_refinement1_breakpoint_414.png",
+    "/Users/chase.gianattasio/Desktop/scroll-media-tools/instagram-audit-cincinnati/screenshots/2026-05-20_refinement1_breakpoint_375.png",
+    "/Users/chase.gianattasio/Desktop/scroll-media-tools/instagram-audit-cincinnati/screenshots/2026-05-20_refinement1_midflow_414_9checked.png",
+    "/Users/chase.gianattasio/Desktop/scroll-media-tools/instagram-audit-cincinnati/screenshots/2026-05-20_refinement1_midflow_414_gateopen.png",
+    "/Users/chase.gianattasio/Desktop/scroll-media-tools/instagram-audit-cincinnati/screenshots/2026-05-20_refinement1_midflow_414_results.png"
+  ],
+  "mobile_audit": {
+    "1440px": {
+      "scrollWidth": 1440,
+      "clientWidth": 1440,
+      "horizontal_scroll": false,
+      "body_font_sizes_px": {
+        ".hero-sub": 20,
+        ".foundation p": 19,
+        ".zone-intro": 15,
+        ".check-desc": 14,
+        ".diag-body": 17,
+        ".calendly-sub": 15,
+        ".proof p": 15,
+        ".footer-brand .tag": 14
+      },
+      "touch_targets_px": {
+        ".engine-cta": {
+          "label": "Engine CTA (gate trigger)",
+          "width": 226.7,
+          "height": 62
+        },
+        ".cta-button": {
+          "label": "Results CTA button",
+          "width": 0,
+          "height": 0
+        },
+        ".gate-submit": {
+          "label": "Gate submit",
+          "width": 0,
+          "height": 0
+        },
+        ".gate-close": {
+          "label": "Gate close",
+          "width": 0,
+          "height": 0
+        },
+        ".topbar-cta": {
+          "label": "Topbar Book a call",
+          "width": 103.4,
+          "height": 32.5
+        },
+        ".footer-brand a": {
+          "label": "Footer domain link",
+          "width": 79.4,
+          "height": 44.6
+        }
+      }
+    },
+    "1100px": {
+      "scrollWidth": 1100,
+      "clientWidth": 1100,
+      "horizontal_scroll": false,
+      "body_font_sizes_px": {
+        ".hero-sub": 17.6,
+        ".foundation p": 17.6,
+        ".zone-intro": 15,
+        ".check-desc": 14,
+        ".diag-body": 16.5,
+        ".calendly-sub": 15,
+        ".proof p": 15,
+        ".footer-brand .tag": 14
+      },
+      "touch_targets_px": {
+        ".engine-cta": {
+          "label": "Engine CTA (gate trigger)",
+          "width": 211.7,
+          "height": 60
+        },
+        ".cta-button": {
+          "label": "Results CTA button",
+          "width": 0,
+          "height": 0
+        },
+        ".gate-submit": {
+          "label": "Gate submit",
+          "width": 0,
+          "height": 0
+        },
+        ".gate-close": {
+          "label": "Gate close",
+          "width": 0,
+          "height": 0
+        },
+        ".topbar-cta": {
+          "label": "Topbar Book a call",
+          "width": 103.4,
+          "height": 32.5
+        },
+        ".footer-brand a": {
+          "label": "Footer domain link",
+          "width": 79.4,
+          "height": 44.6
+        }
+      }
+    },
+    "768px": {
+      "scrollWidth": 768,
+      "clientWidth": 768,
+      "horizontal_scroll": false,
+      "body_font_sizes_px": {
+        ".hero-sub": 16,
+        ".foundation p": 17,
+        ".zone-intro": 15,
+        ".check-desc": 14,
+        ".diag-body": 15,
+        ".calendly-sub": 15,
+        ".proof p": 15,
+        ".footer-brand .tag": 14
+      },
+      "touch_targets_px": {
+        ".engine-cta": {
+          "label": "Engine CTA (gate trigger)",
+          "width": 207.9,
+          "height": 59
+        },
+        ".cta-button": {
+          "label": "Results CTA button",
+          "width": 0,
+          "height": 0
+        },
+        ".gate-submit": {
+          "label": "Gate submit",
+          "width": 0,
+          "height": 0
+        },
+        ".gate-close": {
+          "label": "Gate close",
+          "width": 0,
+          "height": 0
+        },
+        ".topbar-cta": {
+          "label": "Topbar Book a call",
+          "width": 103.4,
+          "height": 32.5
+        },
+        ".footer-brand a": {
+          "label": "Footer domain link",
+          "width": 79.4,
+          "height": 44.6
+        }
+      }
+    },
+    "414px": {
+      "scrollWidth": 414,
+      "clientWidth": 414,
+      "horizontal_scroll": false,
+      "body_font_sizes_px": {
+        ".hero-sub": 14,
+        ".foundation p": 15,
+        ".zone-intro": 14,
+        ".check-desc": 14,
+        ".diag-body": 15,
+        ".calendly-sub": 14,
+        ".proof p": 14,
+        ".footer-brand .tag": 14
+      },
+      "touch_targets_px": {
+        ".engine-cta": {
+          "label": "Engine CTA (gate trigger)",
+          "width": 170.5,
+          "height": 50
+        },
+        ".cta-button": {
+          "label": "Results CTA button",
+          "width": 0,
+          "height": 0
+        },
+        ".gate-submit": {
+          "label": "Gate submit",
+          "width": 0,
+          "height": 0
+        },
+        ".gate-close": {
+          "label": "Gate close",
+          "width": 0,
+          "height": 0
+        },
+        ".topbar-cta": {
+          "label": "Topbar Book a call",
+          "width": 90.5,
+          "height": 29
+        },
+        ".footer-brand a": {
+          "label": "Footer domain link",
+          "width": 79.4,
+          "height": 44.6
+        }
+      }
+    },
+    "375px": {
+      "scrollWidth": 375,
+      "clientWidth": 375,
+      "horizontal_scroll": false,
+      "body_font_sizes_px": {
+        ".hero-sub": 14,
+        ".foundation p": 15,
+        ".zone-intro": 14,
+        ".check-desc": 14,
+        ".diag-body": 15,
+        ".calendly-sub": 14,
+        ".proof p": 14,
+        ".footer-brand .tag": 14
+      },
+      "touch_targets_px": {
+        ".engine-cta": {
+          "label": "Engine CTA (gate trigger)",
+          "width": 170.5,
+          "height": 50
+        },
+        ".cta-button": {
+          "label": "Results CTA button",
+          "width": 0,
+          "height": 0
+        },
+        ".gate-submit": {
+          "label": "Gate submit",
+          "width": 0,
+          "height": 0
+        },
+        ".gate-close": {
+          "label": "Gate close",
+          "width": 0,
+          "height": 0
+        },
+        ".topbar-cta": {
+          "label": "Topbar Book a call",
+          "width": 90.5,
+          "height": 29
+        },
+        ".footer-brand a": {
+          "label": "Footer domain link",
+          "width": 79.4,
+          "height": 44.6
+        }
+      }
+    },
+    "414px_gate_open": {
+      "gate-submit": {
+        "width": 320,
+        "height": 51
+      },
+      "gate-close": {
+        "width": 44,
+        "height": 44
+      }
+    },
+    "414px_results_state": {
+      "results_visible": true,
+      "active_band": "5-9",
+      "score_marker_left": "38.8889%",
+      "score_subhead": "Solid effort, real leaks.",
+      "score_number": "7"
+    }
+  },
+  "errors": []
+}
