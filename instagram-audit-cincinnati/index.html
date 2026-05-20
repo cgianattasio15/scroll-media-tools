@@ -27,7 +27,7 @@
 
 <style>
   /* ============================================================
-     TOKENS — Scroll Media Web Design v2 (canonical)
+     TOKENS · Scroll Media Web Design v2 (canonical)
      Reference: /04_Web_Build/design_system/web_patterns_v2.md §1
      ============================================================ */
   :root {
@@ -150,7 +150,7 @@
   .topbar-cta:hover { background: var(--azure-900); color: var(--ghost); border-bottom: 0; }
 
   /* ============================================================
-     HERO BAND — Azure-900, full-bleed, mirrors PDF cover
+     HERO BAND · Azure-900, full-bleed, mirrors PDF cover
      ============================================================ */
   .hero {
     background: var(--azure-900);
@@ -265,7 +265,7 @@
   .hero-cosign .signers strong { color: var(--ghost); font-weight: 700; }
 
   /* ============================================================
-     FOUNDATION BAND — Ghost, italic intro framing
+     FOUNDATION BAND · Ghost, italic intro framing
      ============================================================ */
   .foundation {
     background: var(--ghost);
@@ -467,7 +467,7 @@
   }
 
   /* ============================================================
-     ENGINE ACCENT BLOCK — dark, running total + CTA
+     ENGINE ACCENT BLOCK · dark, running total + CTA
      ============================================================ */
   .engine {
     position: relative;
@@ -702,172 +702,241 @@
     max-width: 22ch;
   }
 
-  .score-block {
-    background: var(--azure-900);
-    color: var(--ghost);
-    padding: 28px 32px;
-    margin-bottom: 36px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 22px;
-    position: relative;
-    overflow: hidden;
+  /* Score visualization */
+  .score-viz {
+    margin-bottom: 48px;
+    padding: 32px 32px 28px;
+    background: var(--bg-alt);
+    border: 1px solid var(--rule);
   }
-  .score-block::after {
-    content: "";
-    position: absolute;
-    right: -80px; top: -80px;
-    width: 280px; height: 280px;
-    border-radius: 50%;
-    background: radial-gradient(circle, rgba(226,237,122,0.10) 0%, rgba(226,237,122,0) 70%);
+  .score-headline {
+    font-size: clamp(26px, 3.2vw, 36px);
+    color: var(--azure-900);
+    line-height: 1.12;
+    letter-spacing: -0.02em;
+    margin-bottom: 8px;
+    font-weight: 700;
   }
-  .score-block .lbl {
-    font-size: 11px; text-transform: uppercase;
-    letter-spacing: 0.16em; color: var(--lucid);
-    font-weight: 700; margin-bottom: 6px;
+  .score-headline [data-results-score] {
+    color: var(--azure);
+    font-variant-numeric: tabular-nums;
   }
-  .score-block .ttl {
-    font-size: clamp(22px, 2.6vw, 28px);
-    color: var(--ghost);
-    line-height: 1.1;
+  .score-subheadline {
+    font-size: clamp(17px, 1.8vw, 20px);
+    color: var(--azure-600);
+    line-height: 1.3;
+    margin-bottom: 26px;
+    font-weight: 600;
     letter-spacing: -0.01em;
   }
-  .scorebox {
-    background: var(--highlighter);
-    color: var(--azure-900);
-    padding: 18px 28px;
-    font-size: clamp(36px, 4.6vw, 48px);
-    font-weight: 700;
-    letter-spacing: -0.02em;
-    z-index: 2;
-    line-height: 1;
-    font-feature-settings: 'tnum' 1;
+  .score-bar-wrap { margin-top: 8px; padding: 14px 0 4px; }
+  .score-bar {
+    position: relative;
+    display: flex;
+    height: 32px;
+    width: 100%;
+    border: 1px solid var(--rule);
   }
-  .scorebox .denom { font-size: 0.55em; color: var(--azure-900); font-weight: 600; }
+  .score-band {
+    flex: 1;
+    height: 100%;
+  }
+  .score-band-1 { background: var(--azure-900); }
+  .score-band-2 { background: var(--azure-600); }
+  .score-band-3 { background: var(--lucid-deep); }
+  .score-band-4 { background: var(--highlighter); }
+  .score-marker {
+    position: absolute;
+    top: -12px;
+    bottom: -12px;
+    left: 0%;
+    width: 3px;
+    background: var(--shadow);
+    transform: translateX(-50%);
+    transition: left 600ms var(--ease);
+    z-index: 2;
+    pointer-events: none;
+  }
+  .score-marker::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0; height: 0;
+    border-left: 7px solid transparent;
+    border-right: 7px solid transparent;
+    border-top: 9px solid var(--shadow);
+  }
+  .score-marker::after {
+    content: '';
+    position: absolute;
+    bottom: -6px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 14px; height: 14px;
+    background: var(--shadow);
+    border-radius: 50%;
+    border: 2px solid var(--ghost);
+  }
+  .score-bar-labels {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 18px;
+    padding: 0;
+  }
+  .score-bar-labels span {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--fg-muted);
+    font-variant-numeric: tabular-nums;
+    letter-spacing: 0.04em;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .score-marker { transition: none; }
+  }
 
-  .bands {
-    margin-bottom: 40px;
+  /* Diagnostic block (one band visible at a time) */
+  .diagnostic {
+    margin-bottom: 44px;
+  }
+  .diag-band { display: none; }
+  .diag-band.is-active { display: block; }
+  .diag-headline {
+    font-size: clamp(24px, 2.8vw, 32px);
+    color: var(--azure-900);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    margin-bottom: 16px;
+    font-weight: 700;
+  }
+  .diag-body {
+    font-size: clamp(15px, 1.5vw, 17px);
+    line-height: 1.65;
+    color: var(--fg);
+    max-width: 64ch;
+    margin-bottom: 28px;
+  }
+  .diag-actions {
+    list-style: none;
+    counter-reset: diag-action;
+    padding: 0;
+    margin: 0;
     border-top: 1px solid var(--rule-faint);
   }
-  .band {
-    display: flex;
-    gap: 22px;
-    padding: 18px 0;
+  .diag-actions li {
+    position: relative;
+    counter-increment: diag-action;
+    padding: 20px 0 20px 52px;
     border-bottom: 1px solid var(--rule-faint);
-    align-items: flex-start;
-    transition: background 200ms var(--ease);
+    font-size: 15px;
+    line-height: 1.6;
+    color: var(--fg);
+    max-width: 70ch;
   }
-  .band.is-priority {
-    background: rgba(226, 237, 122, 0.16);
-    border-left: 4px solid var(--highlighter);
-    padding-left: 16px;
-    margin: 0 -16px;
-    padding-right: 16px;
-  }
-  .band-range {
-    flex-shrink: 0;
-    width: 84px;
+  .diag-actions li::before {
+    content: counter(diag-action, decimal-leading-zero);
+    position: absolute;
+    left: 0;
+    top: 22px;
+    font-size: 13px;
     font-weight: 700;
     color: var(--azure-600);
-    font-size: 16px;
-    letter-spacing: -0.005em;
-    padding-top: 2px;
+    letter-spacing: 0.06em;
+    font-variant-numeric: tabular-nums;
   }
-  .band.is-priority .band-range { color: var(--azure-900); }
-  .band-content { flex: 1; min-width: 0; }
-  .band-headline {
-    font-weight: 700;
+  .diag-actions li strong {
     color: var(--azure-900);
-    font-size: 16px;
-    margin-bottom: 4px;
-    letter-spacing: -0.005em;
-  }
-  .band-body {
-    color: var(--fg);
-    font-size: 14px;
-    line-height: 1.55;
-    max-width: 64ch;
+    font-weight: 700;
   }
 
+  /* CTA block */
   .calendly-wrap {
     background: var(--bg-alt);
     border: 1px solid var(--rule);
-    padding: 24px 24px 12px;
-    margin-bottom: 24px;
+    padding: 32px 32px 28px;
+    margin-bottom: 0;
   }
   .calendly-eyebrow {
     font-size: 11px; text-transform: uppercase;
     letter-spacing: 0.18em; color: var(--azure-600);
-    font-weight: 700; margin-bottom: 8px;
+    font-weight: 700; margin-bottom: 10px;
   }
   .calendly-wrap h3 {
-    font-size: clamp(20px, 2vw, 24px);
+    font-size: clamp(22px, 2.2vw, 26px);
     color: var(--azure-900);
-    margin-bottom: 8px;
+    margin-bottom: 12px;
     letter-spacing: -0.01em;
+    line-height: 1.18;
   }
   .calendly-sub {
-    font-size: 14px; color: var(--fg-muted);
-    line-height: 1.55; margin-bottom: 18px;
+    font-size: 15px;
+    color: var(--fg);
+    line-height: 1.6;
+    margin-bottom: 22px;
     max-width: 64ch;
   }
-  .calendly-inline-widget {
-    min-width: 320px;
-    height: 720px;
-    background: var(--ghost);
-    border: 1px solid var(--rule);
-  }
-
-  .results-actions {
-    display: flex; gap: 14px;
-    flex-wrap: wrap;
-    align-items: center;
-    margin-bottom: 32px;
-  }
-  .results-action {
-    display: inline-block;
-    padding: 14px 22px;
-    font-size: 14px; font-weight: 700;
-    letter-spacing: 0.04em;
-    text-transform: uppercase;
-    border-bottom: 0;
-    transition: background 200ms var(--ease), color 200ms var(--ease);
-    min-height: 44px;
+  .cta-button {
     display: inline-flex;
     align-items: center;
-  }
-  .results-action.is-primary {
     background: var(--azure);
     color: var(--ghost);
+    padding: 16px 28px;
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: 0.02em;
     border: 1.5px solid var(--azure);
+    border-bottom: 0;
+    text-decoration: none;
+    transition: background 200ms var(--ease), transform 200ms var(--ease);
+    min-height: 48px;
   }
-  .results-action.is-primary:hover {
+  .cta-button:hover {
     background: var(--azure-900);
     border-color: var(--azure-900);
     color: var(--ghost);
+    transform: translateY(-2px);
   }
-  .results-action.is-secondary {
-    background: var(--ghost);
-    color: var(--azure);
-    border: 1.5px solid var(--azure);
+  .calendly-fine {
+    margin-top: 14px;
+    font-size: 13px;
+    color: var(--fg-muted);
+    letter-spacing: 0.02em;
   }
-  .results-action.is-secondary:hover {
-    background: var(--bg-alt);
+
+  /* Social proof */
+  .proof {
+    margin-top: 48px;
+    padding: 36px 0 8px;
+    border-top: 1px solid var(--rule);
   }
-  .results-close {
-    font-size: 16px;
-    line-height: 1.6;
+  .proof-eyebrow {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--azure-900);
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    margin-bottom: 22px;
+  }
+  .proof p {
+    font-size: 15px;
+    line-height: 1.65;
     color: var(--fg);
     max-width: 64ch;
-    padding: 22px 0 0;
-    border-top: 1px solid var(--rule-faint);
+    margin-bottom: 18px;
   }
-  .results-close strong { color: var(--azure-900); }
+  .proof p:last-of-type { margin-bottom: 0; }
+  .proof-attrib {
+    font-size: 14px;
+    color: var(--fg-muted);
+    font-style: italic;
+    border-left: 2px solid var(--lucid-deep);
+    padding-left: 16px;
+    max-width: 60ch;
+  }
 
   /* ============================================================
-     SUPPLEMENT (collapsible) — v2 native details/summary
+     SUPPLEMENT (collapsible) · v2 native details/summary
      ============================================================ */
   .supplements {
     background: var(--ghost);
@@ -941,42 +1010,65 @@
      FOOTER
      ============================================================ */
   .footer {
-    background: var(--ghost);
-    border-top: 1px solid var(--rule);
-    padding: 36px 24px 40px;
+    background: var(--azure-900);
+    color: var(--lucid-soft);
+    border-top: 1px solid rgba(255, 255, 255, 0.14);
+    padding: 48px 24px 44px;
   }
   .footer-inner {
     max-width: 1100px; margin: 0 auto;
     display: flex; justify-content: space-between;
-    gap: 28px; flex-wrap: wrap;
-    align-items: flex-end;
+    gap: 32px; flex-wrap: wrap;
+    align-items: flex-start;
   }
-  .footer-brand .mark {
-    font-weight: 700; color: var(--azure-800);
-    font-size: 18px; letter-spacing: -0.005em;
-    margin-bottom: 4px;
+  .footer-brand {
+    display: flex; align-items: flex-start; gap: 18px;
+    min-height: 44px;
   }
-  .footer-brand .mark .accent { color: var(--azure-600); }
+  .footer-brand .mark-icon {
+    height: 40px; width: 40px;
+    display: block; flex-shrink: 0;
+  }
+  .footer-brand .mark-fallback {
+    display: none;
+    font-weight: 700; color: var(--ghost);
+    font-size: 22px; letter-spacing: -0.02em;
+    line-height: 1;
+  }
+  .footer-brand-text {
+    display: flex; flex-direction: column; gap: 6px;
+    padding-top: 4px;
+  }
   .footer-brand .tag {
-    color: var(--fg-muted); font-size: 13px;
-    margin-bottom: 4px;
+    color: var(--ghost); font-size: 14px;
+    font-weight: 600; line-height: 1.4;
+    letter-spacing: -0.005em;
   }
   .footer-brand a {
-    font-size: 13px; color: var(--fg-muted); border-bottom: 0;
+    font-size: 13px; color: var(--lucid);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.18);
+    padding: 8px 0;
+    display: inline-block;
+    line-height: 1.2;
+    align-self: flex-start;
   }
-  .footer-brand a:hover { color: var(--azure); }
+  .footer-brand a:hover {
+    color: var(--highlighter);
+    border-bottom-color: var(--highlighter);
+  }
   .footer-signers {
-    text-align: right; font-size: 12px;
-    color: var(--fg-muted); line-height: 1.55;
+    text-align: right; font-size: 13px;
+    color: var(--lucid-soft); line-height: 1.55;
   }
   .footer-signers strong {
-    color: var(--azure-900); display: block;
-    font-weight: 700; font-size: 13px;
+    color: var(--ghost); display: block;
+    font-weight: 700; font-size: 14px;
   }
   .footer-signers .role {
-    color: var(--fg-subtle); font-size: 11px;
+    color: var(--lucid); font-size: 12px;
+    letter-spacing: 0.01em;
   }
-  .footer-signers .sep { margin: 6px 0; }
+  .footer-signers .sep { margin: 10px 0; }
 
   /* ============================================================
      SCROLL-REVEAL
@@ -999,7 +1091,7 @@
   }
 
   /* ============================================================
-     RESPONSIVE — 1100px (small desktop / large tablet)
+     RESPONSIVE · 1100px (small desktop / large tablet)
      ============================================================ */
   @media (max-width: 1100px) {
     .topbar-meta { gap: 12px; }
@@ -1010,14 +1102,14 @@
   }
 
   /* ============================================================
-     RESPONSIVE — 920px (topbar collapses to brand + meta)
+     RESPONSIVE · 920px (topbar collapses to brand + meta)
      ============================================================ */
   @media (max-width: 920px) {
     .topbar-inner { grid-template-columns: 1fr auto; }
   }
 
   /* ============================================================
-     RESPONSIVE — 768px (tablet)
+     RESPONSIVE · 768px (tablet)
      ============================================================ */
   @media (max-width: 767px) {
     .topbar-inner { padding: 8px 14px; grid-template-columns: 1fr auto; gap: 12px; }
@@ -1067,14 +1159,16 @@
     .gate-sub { font-size: 14px; }
 
     .results { padding: 42px 18px 56px; }
-    .score-block { padding: 22px 22px; gap: 16px; }
-    .score-block .ttl { font-size: 20px; }
-    .scorebox { padding: 14px 20px; font-size: 36px; }
-    .band { gap: 14px; padding: 14px 0; }
-    .band-range { width: 74px; font-size: 15px; }
-    .band-headline { font-size: 15px; }
-    .calendly-wrap { padding: 18px 16px 8px; }
-    .calendly-inline-widget { height: 760px; }
+    .score-viz { padding: 24px 22px 22px; }
+    .score-headline { font-size: 24px; }
+    .score-subheadline { font-size: 17px; }
+    .score-bar { height: 26px; }
+    .diag-headline { font-size: 22px; }
+    .diag-body { font-size: 15px; }
+    .diag-actions li { padding-left: 48px; }
+    .calendly-wrap { padding: 24px 22px 22px; }
+    .calendly-wrap h3 { font-size: 21px; }
+    .proof { padding-top: 28px; }
 
     .supplements { padding: 24px 18px 32px; }
     .supplement summary { padding: 18px 20px; gap: 16px; }
@@ -1082,13 +1176,13 @@
     .supplement summary .s-sub { font-size: 13px; }
     .supplement .supplement-body { padding: 0 20px 22px; }
 
-    .footer { padding: 28px 18px 32px; }
-    .footer-inner { gap: 18px; flex-direction: column; align-items: flex-start; }
+    .footer { padding: 36px 18px 32px; }
+    .footer-inner { gap: 22px; flex-direction: column; align-items: flex-start; }
     .footer-signers { text-align: left; }
   }
 
   /* ============================================================
-     RESPONSIVE — 414px (large mobile body-text floor lint)
+     RESPONSIVE · 414px (large mobile body-text floor lint)
      Every selector < 14px on mobile must appear here.
      ============================================================ */
   @media (max-width: 414px) {
@@ -1131,34 +1225,43 @@
 
     .results-eyebrow { font-size: 10px; letter-spacing: 0.16em; }
     .results h2 { font-size: 24px; }
-    .score-block .lbl { font-size: 10px; }
-    .score-block .ttl { font-size: 18px; }
-    .scorebox { font-size: 30px; padding: 12px 16px; }
-    .band-range { font-size: 14px; width: 64px; }
-    .band-headline { font-size: 14px; }
-    .band-body { font-size: 14px; }
+    .score-viz { padding: 22px 18px 20px; }
+    .score-headline { font-size: 22px; }
+    .score-subheadline { font-size: 16px; }
+    .score-bar { height: 22px; }
+    .score-marker { top: -10px; bottom: -10px; }
+    .score-marker::after { width: 12px; height: 12px; bottom: -5px; }
+    .score-bar-labels span { font-size: 11px; }
+    .diag-headline { font-size: 20px; }
+    .diag-body { font-size: 15px; line-height: 1.6; }
+    .diag-actions li { font-size: 14px; padding: 18px 0 18px 42px; }
+    .diag-actions li::before { font-size: 12px; top: 20px; }
     .calendly-eyebrow { font-size: 10px; }
-    .calendly-wrap h3 { font-size: 18px; }
+    .calendly-wrap h3 { font-size: 19px; }
     .calendly-sub { font-size: 14px; }
-    .calendly-inline-widget { height: 800px; }
-    .results-action { font-size: 13px; padding: 12px 18px; }
-    .results-close { font-size: 15px; }
+    .cta-button { font-size: 14px; padding: 14px 22px; }
+    .calendly-fine { font-size: 12px; }
+    .proof-eyebrow { font-size: 11px; }
+    .proof p { font-size: 14px; }
+    .proof-attrib { font-size: 13px; }
 
     .supplement summary .s-eyebrow { font-size: 10px; }
     .supplement summary h2 { font-size: 17px; }
     .supplement summary .s-sub { font-size: 13px; }
     .supplement-body p { font-size: 14px; }
 
-    .footer-brand .mark { font-size: 16px; }
-    .footer-brand .tag { font-size: 12px; }
-    .footer-brand a { font-size: 12px; }
-    .footer-signers { font-size: 11px; }
-    .footer-signers strong { font-size: 12px; }
-    .footer-signers .role { font-size: 10px; }
+    .footer-brand { gap: 14px; }
+    .footer-brand .mark-icon { height: 36px; width: 36px; }
+    .footer-brand .mark-fallback { font-size: 19px; }
+    .footer-brand .tag { font-size: 14px; }
+    .footer-brand a { font-size: 13px; }
+    .footer-signers { font-size: 13px; }
+    .footer-signers strong { font-size: 14px; }
+    .footer-signers .role { font-size: 12px; }
   }
 
   /* ============================================================
-     RESPONSIVE — 375px (standard mobile)
+     RESPONSIVE · 375px (standard mobile)
      ============================================================ */
   @media (max-width: 375px) {
     .hero { padding: 44px 16px 48px; }
@@ -1175,7 +1278,7 @@
      ============================================================ */
   @media print {
     body { background: white; color: black; }
-    .topbar, .engine-cta, .gate-overlay, .calendly-wrap, .results-actions, .results { display: none !important; }
+    .topbar, .engine-cta, .gate-overlay, .results { display: none !important; }
     .hero { background: white; color: black; padding: 24px 0; }
     .hero h1, .hero h1 .accent, .hero-sub, .hero-eyebrow, .hero-tag, .hero-stat .num, .hero-stat .lbl, .hero-howto, .hero-howto .label, .hero-howto ol, .hero-cosign, .hero-cosign .by, .hero-cosign .signers, .hero-cosign .signers strong { color: black; }
     .reveal { opacity: 1; transform: none; }
@@ -1260,7 +1363,7 @@
   </section>
 
   <!-- ==========================================================
-       FOUNDATION BAND — Framing
+       FOUNDATION BAND · Framing
        ========================================================== -->
   <section class="foundation">
     <div class="foundation-inner">
@@ -1692,7 +1795,7 @@
   </section>
 
   <!-- ==========================================================
-       ENGINE ACCENT BLOCK — running total + CTA
+       ENGINE ACCENT BLOCK · running total + CTA
        ========================================================== -->
   <section class="engine" id="engine">
     <div class="engine-inner">
@@ -1705,7 +1808,7 @@
       <span class="sr-only" id="total-readout">0 of 18 items checked.</span>
       <div>
         <button class="engine-cta" id="gate-trigger" type="button" aria-haspopup="dialog" aria-controls="gate">
-          <span data-cta-label>Score what you've checked →</span>
+          <span data-cta-label>See my diagnostic →</span>
         </button>
       </div>
       <p class="engine-note">You'll see your diagnostic and next step on the same page.</p>
@@ -1720,69 +1823,96 @@
 <section class="results" id="results" aria-hidden="true">
   <div class="results-inner">
     <div class="results-eyebrow">Your score</div>
-    <h2>Here's where you land.</h2>
 
-    <div class="score-block">
-      <div>
-        <div class="lbl">Add it up</div>
-        <div class="ttl">Your total score</div>
-      </div>
-      <div class="scorebox">
-        <span data-results-score>0</span><span class="denom"> / 18</span>
-      </div>
-    </div>
-
-    <div class="results-eyebrow" style="margin-top: 8px;">Your diagnostic</div>
-    <h3 style="font-size: clamp(20px, 2.2vw, 26px); color: var(--azure-900); margin-bottom: 18px; letter-spacing: -0.01em;">What this score means.</h3>
-
-    <div class="bands">
-      <div class="band" data-band="15-18">
-        <div class="band-range">15 – 18</div>
-        <div class="band-content">
-          <div class="band-headline">Dialed in.</div>
-          <div class="band-body">You're running a real Instagram operation. The next gains compound on what's working, not on fixing what's broken. The leaks left are subtle, and usually only visible from outside. If you want a second set of eyes on the gaps you can't see from inside the business, talk to us.</div>
+    <!-- Score visualization -->
+    <div class="score-viz" role="region" aria-label="Your audit score">
+      <h2 class="score-headline">You scored <span data-results-score>0</span> out of 18.</h2>
+      <p class="score-subheadline" data-band-subhead>Solid effort, real leaks.</p>
+      <div class="score-bar-wrap">
+        <div class="score-bar" role="img" aria-label="Score bar from 0 to 18">
+          <div class="score-band score-band-1" aria-hidden="true"></div>
+          <div class="score-band score-band-2" aria-hidden="true"></div>
+          <div class="score-band score-band-3" aria-hidden="true"></div>
+          <div class="score-band score-band-4" aria-hidden="true"></div>
+          <div class="score-marker" data-score-marker style="left: 0%;" aria-hidden="true"></div>
         </div>
-      </div>
-      <div class="band" data-band="10-14">
-        <div class="band-range">10 – 14</div>
-        <div class="band-content">
-          <div class="band-headline">Solid foundation, real leaks.</div>
-          <div class="band-body">You're doing the visible stuff right. The leaks are in the systems: audience psychology, content mix, conversion paths, measurement. These are the items that separate "active on Instagram" from "Instagram drives the business." Most of the remaining growth lives here.</div>
-        </div>
-      </div>
-      <div class="band" data-band="5-9">
-        <div class="band-range">5 – 9</div>
-        <div class="band-content">
-          <div class="band-headline">Most growth left on the table.</div>
-          <div class="band-body">You're posting, but you're not running Instagram as a channel. The audit revealed structural gaps across audience, content, conversion, and measurement. This is where most Cincinnati local brands sit. The good news: every fix from here compounds. Pick the highest-leverage gap (usually audience psychology) and start there.</div>
-        </div>
-      </div>
-      <div class="band" data-band="0-4">
-        <div class="band-range">0 – 4</div>
-        <div class="band-content">
-          <div class="band-headline">Rebuild needed.</div>
-          <div class="band-body">Your Instagram is currently a liability, not an asset. That sounds harsh. It's also fixable in 90 days with the right system. The pattern we see most: brands that score this low are usually posting more than the ones who score higher. Volume isn't the fix. Structure is.</div>
+        <div class="score-bar-labels" aria-hidden="true">
+          <span>0</span>
+          <span>4</span>
+          <span>9</span>
+          <span>14</span>
+          <span>18</span>
         </div>
       </div>
     </div>
 
+    <!-- Diagnostic block (one band visible at a time, set by JS) -->
+    <div class="results-eyebrow" style="margin-top: 8px;">What your score means</div>
+    <div class="diagnostic">
+
+      <div class="diag-band" data-diag-band="0-4">
+        <h3 class="diag-headline">Time to rebuild.</h3>
+        <p class="diag-body">Most brands that score here are posting more than the ones who score in the teens. Volume isn't your problem. Structure is. The good news: nothing here is broken in a way that takes six months to fix. The fastest 90-day turnarounds we've seen come from accounts that scored exactly where you did and rebuilt one layer at a time, in order.</p>
+        <ol class="diag-actions">
+          <li><strong>Rebuild your profile in one sitting.</strong> Bio that passes the 3-second test. Name field with your category. Highlights for first-time visitors. This is items 1 through 4 on the audit. Pause everything else until this is done.</li>
+          <li><strong>Define one ideal customer in three layers.</strong> Tangible, emotional, social. You can't write content for someone you can't describe. This is items 5 and 6. Block 90 minutes.</li>
+          <li><strong>Stop posting until 1 and 2 are done.</strong> Volume on top of a bad foundation makes the foundation problem worse, not better. Posting cadence resumes once the floor is in.</li>
+        </ol>
+      </div>
+
+      <div class="diag-band" data-diag-band="5-9">
+        <h3 class="diag-headline">Solid effort, real leaks.</h3>
+        <p class="diag-body">This is where most Cincinnati local brands sit. You're posting. You're showing up. The leaks aren't visible from inside your own account, which is why most brands here stay here for years without realizing they could move. The good news: every fix from this score compounds. Pick the highest-leverage gap and start there.</p>
+        <ol class="diag-actions">
+          <li><strong>Fix audience psychology before anything else.</strong> Most local brands skip this layer entirely. Without it, every piece of content is a guess. Revisit items 5 through 8 and write them out for real.</li>
+          <li><strong>Move to a deliberate 40 / 35 / 25 content mix.</strong> You're likely running 90% conversion content, which is why nothing new is finding you. The algorithm can't distribute conversion content without reach signal upstream. Revisit item 9.</li>
+          <li><strong>Pick one path for every conversion-intent post and kill the rest.</strong> Choice paralysis is murdering your CTR. Revisit items 13 and 14.</li>
+        </ol>
+      </div>
+
+      <div class="diag-band" data-diag-band="10-14">
+        <h3 class="diag-headline">You're closer than you think.</h3>
+        <p class="diag-body">The visible stuff is working. The remaining gaps are upstream of effort. They're in the systems most brands never see: audience psychology, content mix discipline, conversion paths, measurement signal. Most of the growth you haven't captured yet lives in these layers. The fix is sequencing, not more posts.</p>
+        <ol class="diag-actions">
+          <li><strong>Audit your last 12 posts against the 40 / 35 / 25 mix.</strong> Count them. If you're running 60% or more conversion content, your reach problem is a mix problem. Revisit item 9.</li>
+          <li><strong>Name the one format outperforming on your account.</strong> Not the format that's supposed to win. The one that actually wins for you. Then double down. Revisit item 17.</li>
+          <li><strong>Make one deliberate change per month, not five.</strong> Most local brands change everything and learn nothing. One change per month, tracked, beats fifty random changes. Revisit item 18.</li>
+        </ol>
+      </div>
+
+      <div class="diag-band" data-diag-band="15-18">
+        <h3 class="diag-headline">You're dialed in.</h3>
+        <p class="diag-body">You're running a real Instagram operation. The next gains compound on what's already working, not on fixing what's broken. The leaks left are subtle, and usually only visible from outside. The pattern at this score: the gaps left aren't about doing more, they're about doing the last 10% with more precision.</p>
+        <ol class="diag-actions">
+          <li><strong>Pressure-test your hooks against the curiosity-gap standard.</strong> At this score, hook discipline is the most common remaining leak. Revisit item 10.</li>
+          <li><strong>Get a second set of eyes on the measurement layer.</strong> Most accounts at this score over-measure the wrong things and under-measure saves and shares. Revisit items 16 through 18.</li>
+          <li><strong>Audit your DM system.</strong> Strongest accounts lose qualified buyers at the conversion surface, not the content layer. Revisit item 14.</li>
+        </ol>
+      </div>
+
+    </div>
+
+    <!-- CTA -->
     <div class="calendly-wrap">
       <div class="calendly-eyebrow">Want a second set of eyes?</div>
       <h3>Book a 20-minute audit walkthrough.</h3>
       <p class="calendly-sub">We'll run this audit on your actual Instagram account. No pitch. No slides. A screen-share where you see exactly where you score, what's leaking, and what to fix first. If we're a fit, we'll talk about it then. If not, you walk away with a clearer Instagram than you came in with.</p>
-      <div class="calendly-inline-widget" data-url="https://calendly.com/scrollmedia/discovery?hide_event_type_details=0&hide_gdpr_banner=1"></div>
+      <a href="https://calendly.com/scrollmedia/discovery" class="cta-button" target="_blank" rel="noopener">Book your walkthrough →</a>
+      <p class="calendly-fine">Free. Cincinnati local brands only.</p>
     </div>
 
-    <div class="results-actions">
-      <a href="Scroll_Cincinnati_IG_Audit.pdf" class="results-action is-secondary" download>Download your audit PDF</a>
+    <!-- Social proof -->
+    <div class="proof">
+      <p class="proof-eyebrow">Cincinnati local brands across fitness, med spa, retail, and F&amp;B.</p>
+      <p>An Oakley fitness studio we work with hit the highest performance score on our entire roster in April 2026. The breakthrough came from a single Reel that pulled 757K views and 22K shares. The kind of upside that doesn't happen monthly. The system that makes it possible runs every month.</p>
+      <p>A Cincinnati med spa we work with held a steady 5-month upward trajectory through Q1 2026.</p>
+      <p class="proof-attrib">Built on the Signal Method, the framework we run with every paying client. Run by Chase + Allison Gianattasio, Co-Founders of Scroll Media. Instagram is the only thing we do.</p>
     </div>
-
-    <p class="results-close">If you scored below 14, we built this audit for you. Book a 20-minute walkthrough, no pitch, no slides, just a screen-share where you see what's leaking and what to fix first.</p>
   </div>
 </section>
 
 <!-- ==========================================================
-     SUPPLEMENT (collapsible) — What this audit is built from
+     SUPPLEMENT (collapsible) · What this audit is built from
      ========================================================== -->
 <section class="supplements">
   <div class="supplements-inner">
@@ -1798,7 +1928,7 @@
       <div class="supplement-body">
         <div class="supplement-divider"></div>
         <p>This audit is the surface layer of the Scroll System, the operating system we run on every Scroll Media client. The 18 items map to five layers of the Signal Method, the strategic engine inside the Scroll System that turns Instagram from a content channel into a growth channel.</p>
-        <p>You can see the full system at <a href="https://tools.scrollmedia.co/scroll-system/">tools.scrollmedia.co/scroll-system</a>. The audit is the short version.</p>
+        <p>If you want to see how Scroll Media works as an agency, see <a href="https://decks.scrollmedia.co/pitch/">decks.scrollmedia.co/pitch</a>. The audit is the short version of the system.</p>
       </div>
     </details>
   </div>
@@ -1811,8 +1941,8 @@
   <div class="gate-modal">
     <button class="gate-close" id="gate-close" type="button" aria-label="Close">×</button>
     <div class="gate-eyebrow">One step before your results</div>
-    <h2 id="gate-title">We'll email you a PDF of the full audit.</h2>
-    <p class="gate-sub">No spam, no sales blast. You can unsubscribe in one click. Once you submit, your score and diagnostic appear on this page.</p>
+    <h2 id="gate-title">See where you score.</h2>
+    <p class="gate-sub">Your score and what to do next show up right here, on this page. We'll also follow up with a short email series covering the system behind the audit. No spam. Unsubscribe anytime.</p>
 
     <form class="gate-form" id="gate-form" novalidate>
       <div class="field">
@@ -1825,7 +1955,7 @@
       </div>
       <button type="submit" class="gate-submit" id="gate-submit">Show my results</button>
       <p class="gate-fine">By submitting, you agree to receive occasional emails from Scroll Media. Unsubscribe anytime.</p>
-      <div class="gate-error" id="gate-error" role="alert">Something went wrong on our end. Try again in a minute, or email chase@getscrollmedia.com and we'll send your results manually.</div>
+      <div class="gate-error" id="gate-error" role="alert">Something went wrong on our end. Try again in a minute, or email chase@scrollmedia.co and we'll send your results manually.</div>
     </form>
   </div>
 </div>
@@ -1836,9 +1966,15 @@
 <footer class="footer">
   <div class="footer-inner">
     <div class="footer-brand">
-      <div class="mark">Scroll<span class="accent">.</span></div>
-      <div class="tag">Cincinnati's Instagram agency for local brands.</div>
-      <a href="https://scrollmedia.co">scrollmedia.co</a>
+      <img src="https://tools.scrollmedia.co/assets/scroll-favicon.svg"
+           alt="Scroll Media"
+           class="mark-icon"
+           onerror="this.style.display='none';this.nextElementSibling.style.display='inline';" />
+      <span class="mark-fallback">scroll.</span>
+      <div class="footer-brand-text">
+        <div class="tag">Cincinnati's Instagram agency for local brands.</div>
+        <a href="https://scrollmedia.co">scrollmedia.co</a>
+      </div>
     </div>
     <div class="footer-signers">
       <strong>Chase Gianattasio</strong>
@@ -1899,15 +2035,9 @@
       if (totalEl) totalEl.textContent = String(total);
       if (totalReadout) totalReadout.textContent = total + ' of ' + TOTAL_ITEMS + ' items checked.';
 
-      // CTA label — graceful degradation when partial
+      // CTA label · single canonical label regardless of fill state
       if (ctaLabel) {
-        if (total === TOTAL_ITEMS) {
-          ctaLabel.textContent = 'See my diagnostic →';
-        } else if (total > 0) {
-          ctaLabel.textContent = 'Score what you’ve checked →';
-        } else {
-          ctaLabel.textContent = 'Score what you’ve checked →';
-        }
+        ctaLabel.textContent = 'See my diagnostic →';
       }
     }
 
@@ -1943,7 +2073,14 @@
     const results = document.getElementById('results');
 
     let lastFocus = null;
-    let calendlyLoaded = false;
+
+    // Band thresholds → subheadline + data-diag-band key
+    const BANDS = [
+      { min: 15, max: 18, key: '15-18', subhead: "You're dialed in." },
+      { min: 10, max: 14, key: '10-14', subhead: "You're closer than you think." },
+      { min: 5,  max: 9,  key: '5-9',   subhead: 'Solid effort, real leaks.' },
+      { min: 0,  max: 4,  key: '0-4',   subhead: 'Time to rebuild.' }
+    ];
 
     function getFocusableElements(container) {
       return container.querySelectorAll(
@@ -1989,46 +2126,46 @@
       }
     }
 
-    function loadCalendly() {
-      if (calendlyLoaded) return;
-      const s = document.createElement('script');
-      s.src = 'https://assets.calendly.com/assets/external/widget.js';
-      s.async = true;
-      document.head.appendChild(s);
-      const link = document.createElement('link');
-      link.rel = 'stylesheet';
-      link.href = 'https://assets.calendly.com/assets/external/widget.css';
-      document.head.appendChild(link);
-      calendlyLoaded = true;
-    }
-
     function revealResults() {
       results.classList.add('is-visible');
       results.setAttribute('aria-hidden', 'false');
-      loadCalendly();
       // Smooth scroll to results
       setTimeout(() => {
         results.scrollIntoView({ behavior: 'smooth', block: 'start' });
       }, 80);
     }
 
-    function highlightBand(total) {
-      const bands = document.querySelectorAll('.band');
-      bands.forEach(b => b.classList.remove('is-priority'));
-      let match = null;
-      if (total >= 15) match = '15-18';
-      else if (total >= 10) match = '10-14';
-      else if (total >= 5) match = '5-9';
-      else match = '0-4';
-      const target = document.querySelector('.band[data-band="' + match + '"]');
-      if (target) target.classList.add('is-priority');
+    function resolveBand(total) {
+      for (let i = 0; i < BANDS.length; i++) {
+        if (total >= BANDS[i].min && total <= BANDS[i].max) return BANDS[i];
+      }
+      return BANDS[BANDS.length - 1];
     }
 
     function syncResultsScore() {
       const total = document.querySelectorAll('.check-item input[type="checkbox"]:checked').length;
+      const band = resolveBand(total);
+
+      // Update score number
       const scoreEl = document.querySelector('[data-results-score]');
       if (scoreEl) scoreEl.textContent = String(total);
-      highlightBand(total);
+
+      // Update subhead with band headline
+      const subEl = document.querySelector('[data-band-subhead]');
+      if (subEl) subEl.textContent = band.subhead;
+
+      // Position marker on bar (0–18 scale → 0–100%)
+      const marker = document.querySelector('[data-score-marker]');
+      if (marker) marker.style.left = (total / 18 * 100) + '%';
+
+      // Reveal the matching diag band, hide the rest
+      document.querySelectorAll('.diag-band').forEach(el => el.classList.remove('is-active'));
+      const activeBand = document.querySelector('.diag-band[data-diag-band="' + band.key + '"]');
+      if (activeBand) activeBand.classList.add('is-active');
+
+      // Update score-bar aria-label
+      const bar = document.querySelector('.score-bar');
+      if (bar) bar.setAttribute('aria-label', 'Score ' + total + ' of 18');
     }
 
     async function submitToKit(firstName, email) {
@@ -2074,7 +2211,7 @@
           revealResults();
         } catch (err) {
           console.error(err);
-          gateError.textContent = 'Something went wrong on our end. Try again in a minute, or email chase@getscrollmedia.com and we’ll send your results manually.';
+          gateError.textContent = 'Something went wrong on our end. Try again in a minute, or email chase@scrollmedia.co and we’ll send your results manually.';
           gateError.classList.add('is-visible');
         } finally {
           gateSubmit.disabled = false;
