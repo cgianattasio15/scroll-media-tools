@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" preserveAspectRatio="xMidYMid slice" role="img" aria-labelledby="t d">
+  <title id="t">The Cincinnati Local Brand Instagram Audit</title>
+  <desc id="d">Self-scoring Instagram audit from Scroll Media — Cincinnati's Instagram agency for local brands.</desc>
+  <defs>
+    <radialGradient id="glow" cx="100%" cy="100%" r="60%">
+      <stop offset="0%" stop-color="#E2ED7A" stop-opacity="0.18" />
+      <stop offset="70%" stop-color="#E2ED7A" stop-opacity="0" />
+    </radialGradient>
+    <style>
+      .ghost { fill: #FAFDFF; }
+      .lucid { fill: #CBE9FF; }
+      .lucid-soft { fill: #e4f3ff; }
+      .high { fill: #E2ED7A; }
+      .sans { font-family: 'Source Sans 3', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-weight: 700; }
+      .label { font-family: 'Source Sans 3', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; }
+    </style>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="630" fill="#071d4f"/>
+  <!-- Highlighter glow corner -->
+  <circle cx="1100" cy="560" r="380" fill="url(#glow)"/>
+
+  <!-- Top row: brand mark + meta tag -->
+  <text x="72" y="92" class="sans ghost" font-size="32" letter-spacing="-0.005em">Scroll<tspan fill="#E2ED7A">.</tspan></text>
+  <text x="1128" y="92" class="label lucid" font-size="14" text-anchor="end">Cincinnati · Instagram · Local brands</text>
+
+  <!-- Eyebrow -->
+  <text x="72" y="208" class="label high" font-size="16">The Audit · 2026</text>
+
+  <!-- Headline (two lines) -->
+  <text x="72" y="288" class="sans ghost" font-size="76" letter-spacing="-0.025em">The Cincinnati Local Brand</text>
+  <text x="72" y="372" class="sans high" font-size="76" letter-spacing="-0.025em">Instagram Audit.</text>
+
+  <!-- Subhead -->
+  <text x="72" y="438" class="sans lucid-soft" font-size="24" font-weight="400" letter-spacing="-0.005em">18 questions most Cincinnati brands cannot answer about</text>
+  <text x="72" y="472" class="sans lucid-soft" font-size="24" font-weight="400" letter-spacing="-0.005em">their own Instagram. The self-scoring audit.</text>
+
+  <!-- Bottom divider -->
+  <rect x="72" y="528" width="1056" height="1" fill="rgba(255,255,255,0.18)"/>
+
+  <!-- Stat row -->
+  <text x="72" y="572" class="sans high" font-size="40" letter-spacing="-0.02em">18</text>
+  <text x="72" y="598" class="label lucid" font-size="11">Self-scoring items</text>
+
+  <text x="240" y="572" class="sans high" font-size="40" letter-spacing="-0.02em">5</text>
+  <text x="240" y="598" class="label lucid" font-size="11">Strategic layers</text>
+
+  <text x="368" y="572" class="sans high" font-size="40" letter-spacing="-0.02em">4 min</text>
+  <text x="368" y="598" class="label lucid" font-size="11">To complete</text>
+
+  <!-- Cosign -->
+  <text x="1128" y="572" class="label lucid" font-size="11" text-anchor="end">From the founders of Scroll Media</text>
+  <text x="1128" y="598" class="sans ghost" font-size="14" text-anchor="end">Chase Gianattasio · Allison Gianattasio</text>
+</svg>
