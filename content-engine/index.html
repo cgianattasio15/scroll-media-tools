@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Scroll Content Engine — Scroll Media</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    /* Locked brand tokens (brand_system.md §5) */
+    --ghost: #FAFDFF;
+    --azure-900: #071d4f;
+    --azure-800: #0c3387;
+    --azure-600: #254fb0;
+    --azure-400: #7a9ad8;
+    --azure-200: #b9cdee;
+    --lucid: #CBE9FF;
+    --lucid-soft: #e4f3ff;
+    --highlighter: #E2ED7A;
+    --shadow: #151516;
+    --fg-muted: #5a6070;
+    --fg-subtle: #9097a6;
+    --rule: rgba(12,51,135,0.20);
+    --rule-strong: rgba(12,51,135,0.40);
+    --rule-faint: rgba(12,51,135,0.08);
+
+    --fs-xs: 11px; --fs-sm: 13px; --fs-base: 15px; --fs-md: 17px;
+    --fs-lg: 20px; --fs-xl: 24px; --fs-2xl: 32px; --fs-3xl: 44px; --fs-4xl: 64px;
+
+    --tracking-wide: 0.08em; --tracking-wider: 0.14em;
+    --lh-tight: 1.08; --lh-snug: 1.22; --lh-normal: 1.45; --lh-relaxed: 1.6;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Source Sans 3', system-ui, sans-serif;
+    background: var(--ghost);
+    color: var(--shadow);
+    font-size: var(--fs-base);
+    line-height: var(--lh-normal);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .wrap { max-width: 920px; margin: 0 auto; padding: 0 24px; }
+
+  /* Header */
+  header {
+    padding: 56px 0 0;
+  }
+  .eyebrow {
+    font-size: var(--fs-xs);
+    letter-spacing: var(--tracking-wider);
+    text-transform: uppercase;
+    color: var(--azure-600);
+    font-weight: 700;
+    margin-bottom: 16px;
+  }
+  h1 {
+    font-size: var(--fs-3xl);
+    line-height: var(--lh-tight);
+    color: var(--azure-800);
+    font-weight: 800;
+    letter-spacing: -0.01em;
+    margin-bottom: 18px;
+    max-width: 16ch;
+  }
+  .lede {
+    font-size: var(--fs-lg);
+    line-height: var(--lh-snug);
+    color: var(--fg-muted);
+    max-width: 56ch;
+    font-weight: 400;
+  }
+  .lede strong { color: var(--shadow); font-weight: 600; }
+
+  .premise {
+    margin: 40px 0 8px;
+    padding: 28px 32px;
+    background: var(--lucid-soft);
+    border-left: 3px solid var(--azure-800);
+    border-radius: 4px;
+  }
+  .premise p {
+    font-size: var(--fs-xl);
+    line-height: var(--lh-snug);
+    color: var(--azure-900);
+    font-weight: 600;
+    letter-spacing: -0.01em;
+  }
+
+  /* Section intro */
+  .section-intro {
+    margin: 64px 0 32px;
+  }
+  .section-intro .eyebrow { margin-bottom: 12px; }
+  .section-intro h2 {
+    font-size: var(--fs-2xl);
+    line-height: var(--lh-tight);
+    color: var(--azure-800);
+    font-weight: 800;
+    letter-spacing: -0.01em;
+    margin-bottom: 10px;
+  }
+  .section-intro p {
+    font-size: var(--fs-md);
+    color: var(--fg-muted);
+    max-width: 60ch;
+  }
+
+  /* Steps */
+  .steps { display: flex; flex-direction: column; gap: 0; }
+
+  .step {
+    display: grid;
+    grid-template-columns: 64px 1fr;
+    gap: 24px;
+    padding: 28px 0;
+    border-top: 1px solid var(--rule-faint);
+    position: relative;
+  }
+  .step:first-child { border-top: none; }
+
+  .step-num {
+    font-size: var(--fs-2xl);
+    font-weight: 800;
+    color: var(--azure-200);
+    line-height: 1;
+    letter-spacing: -0.02em;
+  }
+
+  .step-body h3 {
+    font-size: var(--fs-lg);
+    color: var(--azure-800);
+    font-weight: 700;
+    margin-bottom: 4px;
+    letter-spacing: -0.01em;
+  }
+  .step-body .step-tag {
+    display: inline-block;
+    font-size: var(--fs-xs);
+    letter-spacing: var(--tracking-wide);
+    text-transform: uppercase;
+    color: var(--azure-600);
+    font-weight: 700;
+    margin-bottom: 12px;
+  }
+  .step-body p {
+    font-size: var(--fs-base);
+    line-height: var(--lh-relaxed);
+    color: var(--shadow);
+    max-width: 62ch;
+  }
+  .step-body p + p { margin-top: 10px; }
+  .step-body .muted { color: var(--fg-muted); }
+
+  /* Flow strip */
+  .flowstrip {
+    margin: 48px 0 8px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+    padding: 24px 28px;
+    background: var(--azure-800);
+    border-radius: 6px;
+  }
+  .flowstrip .chip {
+    font-size: var(--fs-sm);
+    font-weight: 700;
+    color: var(--ghost);
+    letter-spacing: var(--tracking-wide);
+    text-transform: uppercase;
+  }
+  .flowstrip .arrow { color: var(--azure-400); font-weight: 700; }
+  .flowstrip .chip.signal { color: var(--highlighter); }
+
+  /* Payoff */
+  .payoff {
+    margin: 64px 0 0;
+    padding: 40px 0 0;
+    border-top: 2px solid var(--rule);
+  }
+  .payoff h2 {
+    font-size: var(--fs-2xl);
+    color: var(--azure-800);
+    font-weight: 800;
+    letter-spacing: -0.01em;
+    margin-bottom: 16px;
+    max-width: 24ch;
+  }
+  .payoff p {
+    font-size: var(--fs-md);
+    line-height: var(--lh-relaxed);
+    color: var(--shadow);
+    max-width: 64ch;
+  }
+  .payoff p + p { margin-top: 14px; }
+  .payoff strong { color: var(--azure-800); font-weight: 700; }
+
+  /* CTA */
+  .cta {
+    margin: 56px 0;
+    padding: 40px 36px;
+    background: var(--lucid-soft);
+    border-radius: 8px;
+    text-align: center;
+  }
+  .cta h2 {
+    font-size: var(--fs-xl);
+    color: var(--azure-800);
+    font-weight: 800;
+    margin-bottom: 10px;
+    letter-spacing: -0.01em;
+  }
+  .cta p {
+    font-size: var(--fs-base);
+    color: var(--fg-muted);
+    max-width: 48ch;
+    margin: 0 auto 24px;
+  }
+  .btn {
+    display: inline-block;
+    background: var(--azure-800);
+    color: var(--ghost);
+    font-weight: 700;
+    font-size: var(--fs-base);
+    padding: 14px 32px;
+    border-radius: 6px;
+    text-decoration: none;
+    letter-spacing: -0.005em;
+    transition: background 0.15s ease;
+  }
+  .btn:hover { background: var(--azure-900); }
+
+  /* Footer */
+  footer {
+    border-top: 1px solid var(--rule-faint);
+    padding: 32px 0 56px;
+    margin-top: 24px;
+  }
+  .footer-brand {
+    font-size: var(--fs-base);
+    font-weight: 700;
+    color: var(--azure-800);
+    margin-bottom: 6px;
+  }
+  .footer-tag {
+    font-size: var(--fs-sm);
+    color: var(--fg-muted);
+    margin-bottom: 18px;
+  }
+  .footer-links { display: flex; gap: 24px; flex-wrap: wrap; }
+  .footer-links a {
+    font-size: var(--fs-sm);
+    color: var(--azure-600);
+    text-decoration: none;
+    font-weight: 600;
+  }
+  .footer-links a:hover { text-decoration: underline; }
+
+  @media (max-width: 600px) {
+    h1 { font-size: var(--fs-2xl); }
+    .premise p { font-size: var(--fs-lg); }
+    .step { grid-template-columns: 44px 1fr; gap: 16px; }
+    .step-num { font-size: var(--fs-xl); }
+    .flowstrip { flex-direction: column; align-items: flex-start; }
+    .flowstrip .arrow { display: none; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <div class="eyebrow">The Scroll System · Zone 02</div>
+    <h1>The Scroll Content Engine</h1>
+    <p class="lede">Most brands publish content and hope it works. <strong>We run every post through a five-step engine before it goes live</strong>, so nothing gets published on a guess.</p>
+  </header>
+
+  <div class="premise">
+    <p>Instagram is a growth channel, not a content channel. A content channel publishes and hopes. A growth channel engineers signals and reads them back.</p>
+  </div>
+
+  <div class="section-intro">
+    <div class="eyebrow">The five steps</div>
+    <h2>How a piece of content actually gets built</h2>
+    <p>Every post your audience sees has already moved through all five steps. This is the difference between posting and building.</p>
+  </div>
+
+  <div class="steps">
+
+    <div class="step">
+      <div class="step-num">01</div>
+      <div class="step-body">
+        <span class="step-tag">The Idea</span>
+        <h3>Start with an idea worth someone's attention</h3>
+        <p>Every idea traces back to a specific motivation of the audience you actually want: what they care about, what they struggle with, what they're quietly asking. No improvising, no posting for the sake of posting.</p>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-num">02</div>
+      <div class="step-body">
+        <span class="step-tag">The Format</span>
+        <h3>Match the idea to the right format</h3>
+        <p>A great idea in the wrong format dies on arrival. The format decides how far the post reaches and whether the message lands. We pick the one built for the job that post is supposed to do.</p>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-num">03</div>
+      <div class="step-body">
+        <span class="step-tag">The Curiosity</span>
+        <h3>Engineer the curiosity that earns the stop</h3>
+        <p>This is the craft layer. The hook, the open loop, the pattern break, the small tensions that make someone stop scrolling and stay. Most content is ignored not because it's bad, but because nothing made anyone pause.</p>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-num">04</div>
+      <div class="step-body">
+        <span class="step-tag">The Data</span>
+        <h3>Read the signals and let the data decide</h3>
+        <p>Once it's live, we read what the audience tells us. We cut what underperforms and pour fuel on what wins. The strategy compounds because it's built on evidence, not assumptions.</p>
+        <p class="muted">We weight the signals that actually predict revenue, saves and shares, over the vanity numbers like follower count that just make you feel good.</p>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-num">05</div>
+      <div class="step-body">
+        <span class="step-tag">The Audience</span>
+        <h3>Get you in front of the highest-quality audience</h3>
+        <p>This is the whole point. When you reach people who genuinely care about what you offer, conversion gets easy. The Instagram algorithm is built to do exactly this. It wants to put your content in front of the people most likely to care. Our job is to give it the right signals so it does.</p>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="flowstrip">
+    <span class="chip">Idea</span><span class="arrow">→</span>
+    <span class="chip">Format</span><span class="arrow">→</span>
+    <span class="chip">Curiosity</span><span class="arrow">→</span>
+    <span class="chip">Data</span><span class="arrow">→</span>
+    <span class="chip signal">Audience</span>
+  </div>
+
+  <div class="payoff">
+    <h2>Why this changes the math on your Instagram</h2>
+    <p>Reaching more people isn't the goal. Reaching the <strong>right</strong> people is. A thousand views from people who'll never buy is noise. A hundred views from people who care is a pipeline.</p>
+    <p>The engine exists to find that high-quality audience and keep getting in front of them. When the audience is right, you don't have to convince anyone. You just have to show up with the thing they already wanted.</p>
+    <p>That's what we mean by <strong>simplifying social media</strong>. We take something that's been made needlessly complex and turn it into a clear, repeatable system that produces real results for your business.</p>
+  </div>
+
+  <div class="cta">
+    <h2>Want to see what this looks like for your brand?</h2>
+    <p>We build this engine for a small number of Cincinnati brands at a time. If that sounds like the kind of partner you've been looking for, let's talk.</p>
+    <a class="btn" href="https://calendly.com/scrollmedia/discovery">Book a call</a>
+  </div>
+
+  <footer>
+    <div class="footer-brand">Scroll Media</div>
+    <div class="footer-tag">Cincinnati's Instagram agency for local brands.</div>
+    <div class="footer-links">
+      <a href="https://calendly.com/scrollmedia/discovery">Book a Discovery Call</a>
+      <a href="https://decks.scrollmedia.co/pitch/">Learn More About Us</a>
+    </div>
+  </footer>
+
+</div>
+</body>
+</html>
