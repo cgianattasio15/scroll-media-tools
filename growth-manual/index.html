@@ -104,24 +104,21 @@ strong { color: var(--shadow); font-weight: 600; }
 /* PROGRESS BAR */
 #progress-bar {
   position: fixed; top: 0; left: 0; z-index: 200;
-  height: 2px; width: 0%;
-  background: linear-gradient(90deg, var(--azure), var(--azure-500));
+  height: 3px; width: 0%;
+  background: var(--highlighter);
   transition: width 0.08s linear;
   pointer-events: none;
 }
 
-/* TOPBAR */
+/* TOPBAR — solid navy, white nav, lime CTA · always visible (no fade-in) */
 .topbar {
   position: sticky; top: 0; z-index: 100;
-  background: rgba(250, 253, 255, 0.94);
-  backdrop-filter: saturate(150%) blur(10px);
-  -webkit-backdrop-filter: saturate(150%) blur(10px);
-  border-bottom: 1px solid var(--rule);
-  opacity: 0;
-  transform: translateY(-6px);
-  transition: opacity 300ms var(--ease), transform 300ms var(--ease);
+  background: var(--azure-900);
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  opacity: 1;
+  transform: translateY(0);
 }
-.topbar.visible { opacity: 1; transform: translateY(0); }
+.topbar.visible { opacity: 1; transform: translateY(0); } /* kept as no-op for JS compat */
 
 .topbar-inner {
   max-width: 1280px;
@@ -138,16 +135,18 @@ strong { color: var(--shadow); font-weight: 600; }
   border-bottom: 0; white-space: nowrap; text-decoration: none;
 }
 .brand:hover { text-decoration: none; }
-.brand-logo { height: 24px; width: auto; display: block; flex-shrink: 0; }
+.brand-logo {
+  height: 22px; width: auto; display: block; flex-shrink: 0;
+}
 .brand-fallback {
-  font-weight: 700; color: var(--azure); font-size: 18px;
+  font-weight: 700; color: var(--ghost); font-size: 18px;
   letter-spacing: -0.02em; text-transform: lowercase;
   display: none; line-height: 1;
 }
 .brand .tag {
-  color: var(--fg-muted); font-weight: 600; font-size: 11px;
+  color: rgba(250,253,255,0.72); font-weight: 600; font-size: 11px;
   letter-spacing: 0.14em; text-transform: uppercase;
-  padding-left: 12px; border-left: 1px solid var(--rule);
+  padding-left: 12px; border-left: 1px solid rgba(255,255,255,0.18);
 }
 
 .nav-links {
@@ -155,7 +154,7 @@ strong { color: var(--shadow); font-weight: 600; }
   flex-wrap: wrap;
 }
 .nav-links a {
-  color: var(--fg-muted); font-size: 12px; font-weight: 600;
+  color: rgba(250,253,255,0.82); font-size: 12px; font-weight: 600;
   letter-spacing: 0.04em; border-bottom: 0;
   padding: 6px 0; position: relative;
   transition: color 150ms var(--ease);
@@ -163,24 +162,29 @@ strong { color: var(--shadow); font-weight: 600; }
 }
 .nav-links a::after {
   content: ''; position: absolute; bottom: 0; left: 0; right: 0;
-  height: 2px; background: var(--azure); transform: scaleX(0);
+  height: 2px; background: var(--highlighter); transform: scaleX(0);
   transform-origin: center;
   transition: transform 200ms var(--ease);
 }
-.nav-links a:hover { color: var(--azure); text-decoration: none; }
+.nav-links a:hover { color: var(--ghost); text-decoration: none; }
 .nav-links a:hover::after { transform: scaleX(1); }
-.nav-links a.active { color: var(--azure); }
+.nav-links a.active { color: var(--highlighter); }
 .nav-links a.active::after { transform: scaleX(1); }
 
 .topbar-cta {
-  display: inline-flex; align-items: center; padding: 10px 16px;
-  background: var(--azure); color: var(--ghost);
-  font-size: 12px; font-weight: 700; text-decoration: none;
+  display: inline-flex; align-items: center; padding: 10px 18px;
+  background: var(--highlighter); color: var(--azure-900);
+  font-size: 12px; font-weight: 800; text-decoration: none;
   letter-spacing: 0.02em; white-space: nowrap;
   min-height: 44px;
-  transition: background 200ms var(--ease), transform 180ms var(--ease);
+  transition: background 200ms var(--ease), transform 180ms var(--ease), box-shadow 200ms var(--ease);
 }
-.topbar-cta:hover { background: var(--azure-700); transform: translateY(-1px); text-decoration: none; }
+.topbar-cta:hover {
+  background: var(--ghost); color: var(--azure-900);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 0 rgba(226,237,122,0.45);
+  text-decoration: none;
+}
 
 .nav-hamburger {
   display: none; flex-direction: column; gap: 5px; justify-content: center; align-items: center;
@@ -188,7 +192,7 @@ strong { color: var(--shadow); font-weight: 600; }
   min-width: 44px; min-height: 44px;
 }
 .nav-hamburger span {
-  display: block; width: 22px; height: 2px; background: var(--shadow);
+  display: block; width: 22px; height: 2px; background: var(--ghost);
   transition: all 0.25s var(--ease);
 }
 .nav-hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
@@ -197,19 +201,25 @@ strong { color: var(--shadow); font-weight: 600; }
 
 .mobile-menu {
   display: none; position: fixed; top: var(--nav-h); left: 0; right: 0;
-  background: rgba(250,253,255,0.98);
-  backdrop-filter: saturate(150%) blur(12px);
-  -webkit-backdrop-filter: saturate(150%) blur(12px);
-  border-bottom: 1px solid var(--rule); z-index: 99;
+  background: var(--azure-900);
+  border-bottom: 1px solid rgba(255,255,255,0.12); z-index: 99;
   padding: 14px 20px;
   max-height: calc(100vh - var(--nav-h)); overflow-y: auto;
 }
 .mobile-menu.open { display: flex; flex-direction: column; gap: 2px; }
 .mobile-menu a {
-  font-size: 15px; color: var(--shadow); text-decoration: none;
-  padding: 12px 4px; border-bottom: 1px solid var(--rule-faint);
+  font-size: 15px; color: var(--ghost); text-decoration: none;
+  padding: 12px 4px; border-bottom: 1px solid rgba(255,255,255,0.08);
 }
-.mobile-menu a:last-child { border-bottom: none; color: var(--azure); font-weight: 700; }
+.mobile-menu a:last-child {
+  border-bottom: none;
+  color: var(--azure-900); font-weight: 800;
+  background: var(--highlighter);
+  margin-top: 10px;
+  padding: 14px 16px;
+  text-align: center;
+  min-height: 44px;
+}
 
 @media (max-width: 1100px) { .nav-links { gap: 12px; } .nav-links a { font-size: 11px; } }
 @media (max-width: 940px) {
@@ -659,6 +669,51 @@ h4 { font-size: 17px; margin-bottom: 8px; font-weight: 700; }
   color: var(--fg-subtle); font-weight: 600;
 }
 
+/* Mobile fallback: stacked-rectangle tier bars below 768px */
+.pyramid-mobile { display: none; margin: 28px 0 16px; }
+.tier-bar {
+  display: grid;
+  grid-template-columns: 88px 1fr;
+  gap: 16px;
+  padding: 16px 18px;
+  border: 1.5px solid var(--rule);
+  margin-bottom: 8px;
+  align-items: center;
+}
+.tier-bar.tier-1 { background: var(--azure-900); border-color: var(--azure-900); color: var(--ghost); }
+.tier-bar.tier-2 { background: #e4f3ff; border-color: var(--azure); color: var(--shadow); }
+.tier-bar.tier-3 { background: var(--ghost); border-color: var(--azure); color: var(--shadow); }
+.tier-bar .tier-stamp {
+  display: flex; flex-direction: column; gap: 2px;
+  border-right: 1px solid currentColor;
+  padding-right: 16px;
+}
+.tier-bar.tier-1 .tier-stamp { border-right-color: rgba(255,255,255,0.3); }
+.tier-bar.tier-2 .tier-stamp,
+.tier-bar.tier-3 .tier-stamp { border-right-color: var(--rule); }
+.tier-bar .tier-num {
+  font-size: 16px; font-weight: 800; letter-spacing: 0.04em;
+  white-space: nowrap;
+}
+.tier-bar .tier-desc {
+  font-size: 11px; font-weight: 600; letter-spacing: 0.08em;
+  text-transform: uppercase;
+  opacity: 0.9;
+}
+.tier-bar .tier-metrics {
+  font-size: 13px; line-height: 1.4; font-weight: 500;
+}
+@media (max-width: 767px) {
+  .pyramid-frame { display: none; }
+  .pyramid-mobile { display: block; }
+}
+@media (max-width: 414px) {
+  .tier-bar { grid-template-columns: 92px 1fr; gap: 12px; padding: 14px 14px; }
+  .tier-bar .tier-num { font-size: 15px; }
+  .tier-bar .tier-desc { font-size: 10px; }
+  .tier-bar .tier-metrics { font-size: 12px; }
+}
+
 /* 7-DAY TIMELINE */
 .timeline-frame { margin: 24px 0 8px; }
 .timeline-svg-wrap {
@@ -799,6 +854,242 @@ footer.site-foot {
 }
 footer.site-foot p { font-size: 12px; color: var(--fg-subtle); line-height: 1.6; }
 
+/* SECTION TL;DR CARDS */
+.section-tldr {
+  margin: -4px 0 26px;
+  padding: 14px 20px;
+  border: 1px solid var(--highlighter);
+  border-left: 3px solid var(--highlighter);
+  background: var(--bg-alt);
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--fg);
+  max-width: 88%;
+}
+.section-tldr-label {
+  font-style: italic;
+  color: var(--azure);
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  margin-right: 6px;
+}
+
+/* SIDE-BY-SIDE COMPARISON CARDS */
+.compare-card {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  margin: 28px 0 32px;
+}
+.compare-col {
+  padding: 22px 24px;
+  background: var(--ghost);
+  border: 1.5px solid var(--rule);
+  display: flex; flex-direction: column; gap: 8px;
+}
+.compare-col.wrong {
+  background: var(--bg-alt);
+  border-color: var(--rule);
+}
+.compare-col.right {
+  border-color: var(--highlighter);
+  background: var(--ghost);
+  box-shadow: 0 3px 0 rgba(226,237,122,0.32);
+}
+.compare-eyebrow {
+  font-size: 11px; font-weight: 800; letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+.compare-col.wrong .compare-eyebrow { color: var(--fg-subtle); }
+.compare-col.right .compare-eyebrow { color: var(--azure); }
+.compare-col h4 {
+  font-size: 17px; font-weight: 700; line-height: 1.3;
+  color: var(--shadow); margin: 0;
+}
+.compare-col p {
+  font-size: 14px; line-height: 1.6;
+  color: var(--fg-muted); margin: 0;
+}
+
+/* MID-DOCUMENT CTA STRIPS */
+.mid-cta {
+  margin: 40px 0 8px;
+  padding: 26px 32px;
+  background: var(--shadow);
+  border-left: 4px solid var(--highlighter);
+  color: var(--ghost);
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 24px;
+  align-items: center;
+}
+.mid-cta p {
+  margin: 0;
+  font-size: 15px; line-height: 1.55;
+  color: rgba(250,253,255,0.92);
+}
+.mid-cta .btn-lime {
+  display: inline-flex; align-items: center; justify-content: center;
+  padding: 12px 22px;
+  background: var(--highlighter);
+  color: var(--azure-900);
+  font-size: 13px; font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  text-decoration: none;
+  min-height: 44px;
+  white-space: nowrap;
+  transition: background 200ms var(--ease), transform 180ms var(--ease), box-shadow 200ms var(--ease);
+}
+.mid-cta .btn-lime:hover {
+  background: var(--ghost);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 0 rgba(226,237,122,0.4);
+  text-decoration: none;
+}
+
+/* CONTENT ENGINE — circular 4-step diagram */
+.engine-circle-frame {
+  margin: 32px 0 28px;
+  padding: 32px 24px 24px;
+  background: var(--bg-alt);
+  border: 1px solid var(--rule-faint);
+  position: relative;
+}
+.engine-circle-svg {
+  width: 100%;
+  max-width: 480px;
+  height: auto;
+  margin: 0 auto;
+  display: block;
+}
+.engine-node .node-circle {
+  fill: var(--ghost);
+  stroke: var(--azure);
+  stroke-width: 2;
+  transition: fill 350ms var(--ease), stroke 350ms var(--ease);
+  transform-origin: center;
+  transform-box: fill-box;
+}
+.engine-node.pulse .node-circle {
+  fill: var(--highlighter);
+  stroke: var(--azure-900);
+  animation: enginePulse 600ms var(--ease);
+}
+@keyframes enginePulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.18); }
+  100% { transform: scale(1); }
+}
+.engine-circle-caption {
+  margin-top: 16px;
+  text-align: center;
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--fg-subtle);
+  font-weight: 600;
+}
+.engine-steps {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  margin: 24px 0 8px;
+}
+.engine-step {
+  padding: 18px 20px;
+  background: var(--ghost);
+  border: 1.5px solid var(--rule);
+  border-left: 3px solid var(--azure);
+}
+.engine-step .step-eyebrow {
+  font-size: 11px; font-weight: 800; letter-spacing: 0.16em;
+  text-transform: uppercase; color: var(--azure);
+  margin-bottom: 8px;
+}
+.engine-step h4 { font-size: 16px; font-weight: 700; margin-bottom: 6px; }
+.engine-step p { font-size: 14px; color: var(--fg-muted); line-height: 1.6; margin: 0; }
+
+/* PRINCIPLE 4-CARD GRID (Section 05) */
+.principle-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  margin: 28px 0 24px;
+}
+.principle-card {
+  background: var(--ghost);
+  border: 1.5px solid var(--rule);
+  padding: 24px 26px;
+  transition: transform 200ms var(--ease), border-color 200ms var(--ease), box-shadow 200ms var(--ease);
+}
+.principle-card:hover {
+  transform: translateY(-2px);
+  border-color: var(--azure);
+  box-shadow: 0 4px 0 var(--azure-100);
+}
+.principle-card .numeral {
+  font-size: 36px; font-weight: 800;
+  color: var(--azure);
+  letter-spacing: -0.02em;
+  line-height: 1;
+  margin-bottom: 12px;
+}
+.principle-card h3 {
+  font-size: 19px; margin-bottom: 8px; font-weight: 700;
+  line-height: 1.25;
+}
+.principle-card p {
+  font-size: 14px; line-height: 1.6;
+  color: var(--fg-muted); margin: 0;
+}
+
+/* NUMBER TICKER (Section 11) */
+.ticker-stat { font-variant-numeric: tabular-nums; }
+
+/* TIMELINE SCRUB (Section 10) */
+.timeline-svg-wrap .day-node-circle {
+  transition: fill 280ms var(--ease), opacity 280ms var(--ease);
+}
+.timeline-svg-wrap .day-node-numeral {
+  transition: fill 280ms var(--ease);
+}
+.timeline-svg-wrap g.day-node.is-past .day-node-circle { opacity: 0.4; }
+.timeline-svg-wrap g.day-node.is-current .day-node-circle {
+  fill: var(--highlighter);
+  stroke: var(--azure-900);
+  stroke-width: 2;
+}
+.timeline-svg-wrap g.day-node.is-current .day-node-numeral { fill: var(--azure-900); }
+
+/* PERFORMANCE LOOP arrow pulse (Section 02 system diagram) */
+.perf-loop-arrow { transition: stroke-width 600ms var(--ease), opacity 600ms var(--ease); }
+.perf-loop-arrow.pulsed { stroke-width: 2.5; opacity: 1; }
+
+/* SECONDARY CTA BUTTON (Section 13 Path 02 + general) */
+.btn-secondary {
+  display: inline-block; padding: 14px 22px;
+  background: var(--ghost); color: var(--azure-900);
+  border: 1.5px solid var(--highlighter);
+  font-size: 14px; font-weight: 800; letter-spacing: 0.04em;
+  text-decoration: none; text-transform: uppercase;
+  transition: background 200ms var(--ease), transform 180ms var(--ease), box-shadow 200ms var(--ease);
+  min-height: 44px; line-height: 1;
+}
+.btn-secondary:hover {
+  background: var(--highlighter); color: var(--azure-900);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 0 rgba(226,237,122,0.35);
+  text-decoration: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .engine-node.pulse .node-circle { animation: none; }
+  .timeline-svg-wrap .day-node-circle,
+  .timeline-svg-wrap .day-node-numeral { transition: none; }
+  .perf-loop-arrow { transition: none; }
+}
+
 /* MOBILE BREAKPOINT FLOOR — Locked Principle 3.12 */
 @media (max-width: 768px) {
   body { font-size: 16px; }
@@ -806,6 +1097,13 @@ footer.site-foot p { font-size: 12px; color: var(--fg-subtle); line-height: 1.6;
   .hero { padding: 56px 0 36px; }
   section.band { padding: 40px 0; }
   .funnel-bar { padding: 14px 16px; }
+
+  .compare-card { grid-template-columns: 1fr; gap: 10px; }
+  .mid-cta { grid-template-columns: 1fr; padding: 22px 24px; gap: 16px; }
+  .mid-cta .btn-lime { width: fit-content; }
+  .engine-steps { grid-template-columns: 1fr; }
+  .principle-grid { grid-template-columns: 1fr; }
+  .section-tldr { max-width: 100%; }
 }
 @media (max-width: 414px) {
   body { font-size: 15px; }
@@ -817,10 +1115,16 @@ footer.site-foot p { font-size: 12px; color: var(--fg-subtle); line-height: 1.6;
   .cta-path p, .hero p { font-size: 14px; }
   .col-sub, .pb-card p, .diag-card .test, .col-list li, .principle ul li,
   .cta-path ul li, .tldr-list ul li { font-size: 14px; }
+  .compare-col p, .engine-step p, .principle-card p, .mid-cta p,
+  .section-tldr { font-size: 14px; }
   .canvas, .canvas-wide { padding: 0 16px; }
   .gate-card { padding: 28px 20px; }
   .gate-headline { font-size: 19px; }
   .gate-sub { font-size: 14px; }
+  .principle-card h3 { font-size: 17px; }
+  .compare-col h4 { font-size: 16px; }
+  .engine-step h4 { font-size: 15px; }
+  .mid-cta { padding: 20px 22px; }
 }
 @media (max-width: 375px) {
   .hero h1 { font-size: 34px; }
@@ -881,7 +1185,7 @@ footer.site-foot p { font-size: 12px; color: var(--fg-subtle); line-height: 1.6;
 <div class="topbar" id="topbar">
   <div class="topbar-inner">
     <a href="https://scrollmedia.co" class="brand" aria-label="Scroll Media">
-      <img src="/scroll-media-logo.svg" alt="Scroll Media" class="brand-logo" onerror="this.style.display='none';this.nextElementSibling.style.display='inline';" />
+      <img src="/scroll-media-logo-white-transparent.png" alt="Scroll Media" class="brand-logo" onerror="this.style.display='none';this.nextElementSibling.style.display='inline';" />
       <span class="brand-fallback">scroll media</span>
       <span class="tag">The Cincy IG Manual</span>
     </a>
@@ -929,30 +1233,29 @@ footer.site-foot p { font-size: 12px; color: var(--fg-subtle); line-height: 1.6;
   <div class="canvas">
     <p class="hero-eyebrow reveal"><em>A Scroll Media Guide</em></p>
     <h1 class="reveal">The Cincy IG Manual.</h1>
-    <p class="hero-tagline reveal">Built for local brand owners stuck on time, strategy, or creative ceiling.</p>
-    <p class="reveal">Eight years of strategy work, condensed. The architecture every Scroll Media engagement runs on. No theory. No hacks. No "post more and pray" advice. Just the system that actually compounds for local brands in 2026.</p>
-    <p class="reveal">You're not new to this. You already know Instagram matters. You already have an account. You're probably already posting, just not as consistently as you'd like, and not with the kind of return you should be seeing for the hours you're putting in. The point of this manual isn't to convince you Instagram is worth doing. The point is to tell you why most local brands are stuck despite doing everything they're told to do, and what the actual system underneath looks like when it's working.</p>
+    <p class="hero-tagline reveal">Cincinnati's Instagram architecture for local brand owners. The system every Scroll Media engagement runs on.</p>
+    <p class="reveal">Instagram is the highest-leverage marketing channel on the planet right now. Over 70% of consumers are on social media, averaging two and a half hours a day. We've never had this much consumer attention concentrated in a single channel in the history of marketing.</p>
+    <p class="reveal">Run the right strategy on it and the algorithm rewards you with the audience that cares most about your product. Not impressions. Not vanity reach. The actual humans most likely to buy. Add the compounding leverage of AI on top of that, and the playing field has flipped. Small local brands are taking real market share from national competitors. Anyone can compete with anyone now. The bottleneck isn't budget. It's the system underneath the content.</p>
+    <p class="reveal">This manual is the system.</p>
+    <p class="reveal">Built for local brand owners stuck on time, strategy, or creative ceiling. Eight years of Scroll strategy work, condensed. No theory. No hacks. No "post more and pray."</p>
 
     <div class="tldr-list reveal">
       <div class="tldr-label">What's inside</div>
       <ul>
-        <li>The shift that decides whether Instagram works for your brand or doesn't</li>
-        <li>The Scroll System: the three-zone architecture every Scroll engagement runs on</li>
-        <li>A diagnostic for whether your foundation is actually working</li>
-        <li>The funnel mix we run on every Signature client (40/35/25, no exceptions)</li>
-        <li>The metric hierarchy that tells you what's actually growing your business</li>
-        <li>A 7-day kickstart plan, ready to run today</li>
-        <li>Three anonymized wins from real Cincinnati clients</li>
-        <li>What working with a partner who runs this for you actually looks like</li>
+        <li>Why most local brands are stuck despite doing everything they're told to do</li>
+        <li>The Scroll System architecture every Scroll engagement runs on (Foundation, Execution Loop, Performance Loop)</li>
+        <li>The Scroll Content Engine. The 4-step loop that turns every post into compounding signal</li>
+        <li>A foundation diagnostic, the funnel mix, the metric hierarchy, and a 7-day kickstart plan ready to run today</li>
+        <li>Three anonymized Cincinnati wins, and what done-with-you looks like when Scroll runs it for you</li>
       </ul>
     </div>
 
-    <p class="tldr-footer reveal">Used internally by Scroll Media on every Cincinnati client engagement. Read time: 15 to 20 minutes.</p>
+    <p class="tldr-footer reveal">Read time: 10 to 12 minutes.</p>
 
     <div class="hero-meta reveal">
       <div class="hero-meta-item"><div class="hero-meta-dot"></div>Built by Scroll Media</div>
       <div class="hero-meta-item"><div class="hero-meta-dot"></div>Free resource</div>
-      <div class="hero-meta-item"><div class="hero-meta-dot"></div>~15 min read</div>
+      <div class="hero-meta-item"><div class="hero-meta-dot"></div>~10 min read</div>
       <div class="hero-meta-item"><div class="hero-meta-dot"></div>Updated May 2026</div>
     </div>
   </div>
@@ -963,6 +1266,7 @@ footer.site-foot p { font-size: 12px; color: var(--fg-subtle); line-height: 1.6;
   <div class="canvas">
     <p class="eyebrow reveal">Section 01</p>
     <h2 class="reveal">The shift.</h2>
+    <div class="section-tldr reveal"><span class="section-tldr-label">Section TL;DR ·</span>Most agencies treat Instagram like a content channel. We treat it like a growth channel. That single shift decides whether your account compounds or stays stuck.</div>
     <p class="lede reveal">Most agencies treat Instagram like a content channel. We treat it like a growth channel.</p>
     <p class="reveal">That sentence is the whole manual.</p>
     <p class="reveal">A content channel publishes content and hopes it works. A growth channel publishes content engineered to produce specific signals, and reads those signals to decide what to publish next. One is creative output. The other is creative output structured by a system.</p>
@@ -987,13 +1291,14 @@ footer.site-foot p { font-size: 12px; color: var(--fg-subtle); line-height: 1.6;
   <div class="canvas">
     <p class="eyebrow reveal">Section 02</p>
     <h2 class="reveal">The Scroll System.</h2>
+    <div class="section-tldr reveal"><span class="section-tldr-label">Section TL;DR ·</span>The Scroll System is the operating architecture under every engagement. Three zones (Foundation, Execution Loop, Performance Loop) with the Scroll Content Engine at the center. Every output becomes the next input.</div>
     <p class="lede reveal">Every Scroll Media engagement runs on the same architecture. Three zones. One engine. Every output feeds the next input. The system is what makes the work compound across months instead of evaporating after a single post.</p>
     <p class="reveal">If the shift is the worldview, this is the operating diagram.</p>
 
     <div class="diagram-frame reveal" role="figure" aria-labelledby="diagram-caption">
       <svg viewBox="0 0 720 240" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="ssys-title ssys-desc" style="width:100%;height:auto;display:block;">
         <title id="ssys-title">Scroll System architecture</title>
-        <desc id="ssys-desc">Three zones connected by arrows: Foundation Zone 01, Execution Loop Zone 02 with embedded Signal Method engine, Performance Loop Zone 03. Performance Loop feeds back into Foundation and Execution.</desc>
+        <desc id="ssys-desc">Three zones connected by arrows: Foundation Zone 01, Execution Loop Zone 02 with embedded Scroll Content Engine, Performance Loop Zone 03. Performance Loop feeds back into Foundation and Execution.</desc>
         <rect x="20" y="60" width="180" height="130" fill="#FAFDFF" stroke="#0C3387" stroke-width="2"/>
         <text x="110" y="92" text-anchor="middle" font-family="Source Sans 3, sans-serif" font-size="10" font-weight="800" letter-spacing="2" fill="#0C3387">ZONE 01</text>
         <text x="110" y="120" text-anchor="middle" font-family="Source Sans 3, sans-serif" font-size="20" font-weight="800" fill="#151516">Foundation</text>
@@ -1003,7 +1308,7 @@ footer.site-foot p { font-size: 12px; color: var(--fg-subtle); line-height: 1.6;
         <text x="360" y="72" text-anchor="middle" font-family="Source Sans 3, sans-serif" font-size="10" font-weight="800" letter-spacing="2" fill="#0C3387">ZONE 02</text>
         <text x="360" y="100" text-anchor="middle" font-family="Source Sans 3, sans-serif" font-size="20" font-weight="800" fill="#151516">Execution Loop</text>
         <rect x="270" y="120" width="180" height="74" fill="#151516"/>
-        <text x="360" y="142" text-anchor="middle" font-family="Source Sans 3, sans-serif" font-size="9" font-weight="800" letter-spacing="2" fill="#E2ED7A">SIGNAL METHOD ENGINE</text>
+        <text x="360" y="142" text-anchor="middle" font-family="Source Sans 3, sans-serif" font-size="9" font-weight="800" letter-spacing="2" fill="#E2ED7A">CONTENT ENGINE</text>
         <text x="360" y="164" text-anchor="middle" font-family="Source Sans 3, sans-serif" font-size="12" fill="#FAFDFF">Idea · Format</text>
         <text x="360" y="180" text-anchor="middle" font-family="Source Sans 3, sans-serif" font-size="12" fill="#FAFDFF">Hook · Data</text>
         <rect x="520" y="60" width="180" height="130" fill="#FAFDFF" stroke="#0C3387" stroke-width="2"/>
@@ -1015,28 +1320,87 @@ footer.site-foot p { font-size: 12px; color: var(--fg-subtle); line-height: 1.6;
         <polygon points="240,125 232,121 232,129" fill="#0C3387"/>
         <line x1="480" y1="125" x2="520" y2="125" stroke="#0C3387" stroke-width="2"/>
         <polygon points="520,125 512,121 512,129" fill="#0C3387"/>
-        <path d="M 610 190 Q 610 225 360 225 Q 110 225 110 190" fill="none" stroke="#0C3387" stroke-width="1.5" stroke-dasharray="4 4"/>
+        <path id="perf-loop-arrow" class="perf-loop-arrow" d="M 610 190 Q 610 225 360 225 Q 110 225 110 190" fill="none" stroke="#0C3387" stroke-width="1.5" stroke-dasharray="4 4" opacity="0.7"/>
         <polygon points="110,190 106,200 114,200" fill="#0C3387"/>
         <text x="360" y="220" text-anchor="middle" font-family="Source Sans 3, sans-serif" font-size="10" letter-spacing="2" font-weight="700" fill="#5a6070">SIGNAL FEEDS BACK</text>
       </svg>
       <div class="caption" id="diagram-caption">Every output becomes the next input.</div>
     </div>
 
-    <h3 class="reveal">Zone 01 · Foundation</h3>
-    <p class="reveal">Before any content gets created, the foundation locks. Ideal Viewer Profile (IVP), positioning, content pillars derived from the IVP, brand voice. The foundation is the strategic bedrock. When it's right, every downstream decision gets faster and sharper. When it's wrong, you spend the year producing content nobody wanted to read.</p>
-    <p class="reveal">Most stuck local brands skipped Foundation work. They jumped straight to publishing. The result: a feed that looks active but isn't engineered for any specific viewer in any specific way.</p>
+    <p class="reveal">Three zones, one operating logic. Foundation locks the strategic bedrock. The Execution Loop runs the production engine. The Performance Loop reads the signal and feeds it back. The system compounds across cycles.</p>
+    <p class="reveal">The Foundation Zone holds the Ideal Viewer Profile, positioning, content pillars, and brand voice. Most stuck local brands skipped this work and jumped straight to publishing. The result is a feed that looks active but isn't engineered for any specific viewer in any specific way. We rebuild Foundation in Week 1 of every engagement.</p>
+    <p class="reveal">The Performance Loop reads every signal a post produces (saves, shares, retention, CTR, profile conversion rate) and feeds the findings back into Foundation and the Execution Loop. Strategy adjusts on signal, never on schedule.</p>
+    <p class="reveal">The center of the system, and the focal point of this manual, is what runs inside the Execution Loop.</p>
 
-    <h3 class="reveal" style="margin-top:28px;">Zone 02 · Execution Loop</h3>
-    <p class="reveal">This is where the Signal Method lives. Scroll's strategic engine. Inside the Execution Loop, every piece of content runs through a four-step Content Engine: Idea, Format, Hook, Data. The Idea ties back to a specific IVP motivator or pain point. The Format is selected from Scroll's signature format library (seven formats, Pattern Break among them). The Hook is engineered to land in 2 seconds. The Data publishes the punchy version.</p>
-    <p class="reveal">The Execution Loop is the production engine running on continuous rotation. Every cycle, the same architecture. Every piece, the same four steps. No improvising. No "let's see what happens this week."</p>
+    <h3 class="reveal" style="margin-top:36px;">The Scroll Content Engine.</h3>
+    <p class="reveal">Inside the Execution Loop, every post runs through a four-step production engine. The Scroll Content Engine. Same four steps. Every piece. No exceptions.</p>
 
-    <h3 class="reveal" style="margin-top:28px;">Zone 03 · Performance Loop</h3>
-    <p class="reveal">Every published piece produces signal. Saves, shares, retention %, CTR, profile conversion rate. These are the Tier 1 metrics in our hierarchy. The Performance Loop reads those signals, identifies what's working, and feeds the findings back into Zone 01 (IVP refinements) and Zone 02 (format promotion, signal-driven adjustment).</p>
-    <p class="reveal">Strategy adjusts on signal, never on schedule. That's how an account stops running on intuition and starts running on data.</p>
+    <div class="engine-circle-frame reveal" role="figure" aria-labelledby="engine-circle-caption">
+      <svg id="engine-circle-svg" class="engine-circle-svg" viewBox="0 0 480 480" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="ec-title ec-desc">
+        <title id="ec-title">Scroll Content Engine</title>
+        <desc id="ec-desc">Circular four-step production loop. Idea, Format, Hook, Data, connected in a clockwise cycle that returns to Idea.</desc>
+        <circle cx="240" cy="240" r="160" fill="none" stroke="#0C3387" stroke-width="1.5" stroke-dasharray="4 6" opacity="0.4"/>
+        <g font-family="Source Sans 3, sans-serif" text-anchor="middle">
+          <text x="240" y="232" font-size="11" font-weight="800" letter-spacing="2.6" fill="#0C3387">SCROLL</text>
+          <text x="240" y="252" font-size="14" font-weight="800" fill="#151516">Content Engine</text>
+        </g>
+        <g class="engine-node" data-node="1">
+          <circle class="node-circle" cx="240" cy="80" r="48"/>
+          <text x="240" y="76" text-anchor="middle" font-family="Source Sans 3, sans-serif" font-size="11" font-weight="800" letter-spacing="2" fill="#0C3387">01</text>
+          <text x="240" y="98" text-anchor="middle" font-family="Source Sans 3, sans-serif" font-size="16" font-weight="800" fill="#151516">Idea</text>
+        </g>
+        <g class="engine-node" data-node="2">
+          <circle class="node-circle" cx="400" cy="240" r="48"/>
+          <text x="400" y="236" text-anchor="middle" font-family="Source Sans 3, sans-serif" font-size="11" font-weight="800" letter-spacing="2" fill="#0C3387">02</text>
+          <text x="400" y="258" text-anchor="middle" font-family="Source Sans 3, sans-serif" font-size="16" font-weight="800" fill="#151516">Format</text>
+        </g>
+        <g class="engine-node" data-node="3">
+          <circle class="node-circle" cx="240" cy="400" r="48"/>
+          <text x="240" y="396" text-anchor="middle" font-family="Source Sans 3, sans-serif" font-size="11" font-weight="800" letter-spacing="2" fill="#0C3387">03</text>
+          <text x="240" y="418" text-anchor="middle" font-family="Source Sans 3, sans-serif" font-size="16" font-weight="800" fill="#151516">Hook</text>
+        </g>
+        <g class="engine-node" data-node="4">
+          <circle class="node-circle" cx="80" cy="240" r="48"/>
+          <text x="80" y="236" text-anchor="middle" font-family="Source Sans 3, sans-serif" font-size="11" font-weight="800" letter-spacing="2" fill="#0C3387">04</text>
+          <text x="80" y="258" text-anchor="middle" font-family="Source Sans 3, sans-serif" font-size="16" font-weight="800" fill="#151516">Data</text>
+        </g>
+        <g fill="#0C3387">
+          <polygon points="345,128 332,128 339,118" transform="rotate(45 339 123)"/>
+          <polygon points="345,352 332,352 339,362" transform="rotate(135 339 357)"/>
+          <polygon points="135,352 148,352 141,362" transform="rotate(-135 141 357)"/>
+          <polygon points="135,128 148,128 141,118" transform="rotate(-45 141 123)"/>
+        </g>
+      </svg>
+      <div class="engine-circle-caption" id="engine-circle-caption">Every cycle feeds the next cycle.</div>
+    </div>
 
-    <p class="reveal" style="margin-top:24px;">The whole point of the three-zone architecture: every output becomes the next input. A single post isn't a single post. It's a signal feeding next month's strategy. The system gets smarter every cycle.</p>
-    <p class="reveal">Most stuck local brands don't have this loop. They publish, they wait, they hope. The Scroll System replaces hope with feedback.</p>
-    <p class="reveal">The rest of this manual breaks down the three zones in detail. Foundation is next. The Execution Loop's funnel mix, formats, and metric reads come in Sections 06 through 09. The Performance Loop runs underneath all of it.</p>
+    <div class="engine-steps reveal">
+      <div class="engine-step">
+        <div class="step-eyebrow">01 · Idea</div>
+        <p>Every idea ties back to a specific IVP motivator, pain point, or dream outcome. Not "what should we post this week." What does this specific viewer carry around in their head that this brand can speak to.</p>
+      </div>
+      <div class="engine-step">
+        <div class="step-eyebrow">02 · Format</div>
+        <p>Selected from Scroll's signature format library. Seven formats. Pattern Break, Process Reel, Talking-head, and the rest. Each one engineered for a specific job. Stop the scroll, build trust, demonstrate process, drive a save.</p>
+      </div>
+      <div class="engine-step">
+        <div class="step-eyebrow">03 · Hook</div>
+        <p>The first two seconds. Engineered to land before the viewer's thumb has decided whether to keep watching. Text overlay plus opening line plus visual interest, sequenced so the brain doesn't choose to scroll away.</p>
+      </div>
+      <div class="engine-step">
+        <div class="step-eyebrow">04 · Data</div>
+        <p>Publish, then read the signal. Saves, shares, retention, CTR, profile conversion rate. Tier 1 metrics. The data from this cycle is the input for the next Idea.</p>
+      </div>
+    </div>
+
+    <p class="reveal">The loop never breaks. Every cycle feeds the next cycle. This is the difference between an account that runs on intuition and an account that runs on a system that compounds across months.</p>
+
+    <div class="engine reveal" role="img" aria-label="The Engine. Every output becomes the next input. The system gets smarter every cycle.">
+      <div class="engine-eyebrow">The Engine</div>
+      <div class="engine-quote">Every output becomes the next input. The system gets smarter every cycle.</div>
+    </div>
+
+    <p class="reveal">The rest of this manual breaks down what feeds the engine. Foundation is next. The Execution Loop's funnel mix, formats, and metric reads come in Sections 06 through 09. The Performance Loop runs underneath all of it.</p>
     <p class="reveal">Before any of that, one more thing. Where are you actually stuck?</p>
   </div>
 </section>
@@ -1046,6 +1410,7 @@ footer.site-foot p { font-size: 12px; color: var(--fg-subtle); line-height: 1.6;
   <div class="canvas">
     <p class="eyebrow reveal">Section 03</p>
     <h2 class="reveal">Where are you actually stuck?</h2>
+    <div class="section-tldr reveal"><span class="section-tldr-label">Section TL;DR ·</span>Most local brands are stuck on one of three patterns: Time, Strategy, or Creative. Pick the one that sounds most like you. That's your leverage point.</div>
     <p class="lede reveal">Most local brands trying to grow Instagram cluster into one of three stuck patterns. Read each one. Pick the one that sounds most like you. The pattern you pick is your leverage point.</p>
 
     <div class="reveal" style="margin-top:8px;">
@@ -1117,6 +1482,7 @@ footer.site-foot p { font-size: 12px; color: var(--fg-subtle); line-height: 1.6;
   <div class="canvas">
     <p class="eyebrow reveal">Section 04</p>
     <h2 class="reveal">Is your foundation actually working?</h2>
+    <div class="section-tldr reveal"><span class="section-tldr-label">Section TL;DR ·</span>Most local brands have a foundation in place. The question is whether it's working. Four diagnostic tests: bio, grid, pillars, link strategy. Score yourself honestly.</div>
     <p class="lede reveal">Most local brands we audit already have a bio. They have a grid. They have content pillars, or at least something they call pillars. The foundation exists. The question is whether it's working.</p>
     <p class="reveal">Foundation work isn't about having pieces in place. It's about having the right pieces engineered to convert. A bio that lists what you do isn't the same as a bio that converts profile visitors into followers. A grid that looks busy isn't the same as a grid that earns the third tap. Pillars based on what you feel like posting aren't the same as pillars derived from your IVP's actual pain points and dream outcomes.</p>
     <p class="reveal">This section is a diagnostic, not a tutorial. Read each element. Score yourself honestly. The Scroll System fixes the gaps in Zone 01.</p>
@@ -1224,6 +1590,13 @@ footer.site-foot p { font-size: 12px; color: var(--fg-subtle); line-height: 1.6;
     <p class="reveal">The Scroll System builds Foundation Zone in Week 1 of every engagement. IVP locked. Pillars derived. Bio and grid optimized against IVP. Link strategy mapped. Then production starts.</p>
     <p class="reveal">Next: what works inside the Execution Loop. The patterns that earn saves, shares, and conversions.</p>
   </div>
+
+  <div class="canvas">
+    <div class="mid-cta reveal" role="complementary" aria-label="Mid-document call to action: book a discovery call">
+      <p>Foundation work is what we build in Week 1 of every engagement. If your diagnostic surfaced gaps, the fastest path is a 30-minute call.</p>
+      <a href="https://calendly.com/scrollmedia/discovery" class="btn-lime">Book a discovery call</a>
+    </div>
+  </div>
 </section>
 
 <!-- SECTION 05 · WHAT ACTUALLY WORKS -->
@@ -1231,42 +1604,50 @@ footer.site-foot p { font-size: 12px; color: var(--fg-subtle); line-height: 1.6;
   <div class="canvas">
     <p class="eyebrow reveal">Section 05</p>
     <h2 class="reveal">What actually works.</h2>
+    <div class="section-tldr reveal"><span class="section-tldr-label">Section TL;DR ·</span>Four principles separate accounts that work from accounts that don't. Saves beat likes. Silent worries beat polish. Specificity beats generic. The hack stack is dead.</div>
     <p class="lede reveal">Most "Instagram growth" advice is written for accounts trying to go viral. Local brands don't need to go viral. Local brands need to be the obvious answer when someone in their zip code searches their category. Different goal. Different game.</p>
+
+    <div class="engine reveal" role="img" aria-label="The Metric. Likes are vanity. Saves and sends are intent.">
+      <div class="engine-eyebrow">The Metric</div>
+      <div class="engine-quote">Likes are vanity. Saves and sends are intent.</div>
+    </div>
+
+    <div class="compare-card reveal" role="group" aria-label="Likes vs Saves and Sends comparison">
+      <div class="compare-col wrong">
+        <div class="compare-eyebrow">Likes</div>
+        <h4>Vanity metric.</h4>
+        <p>Feels like progress. Doesn't predict conversion. Doesn't compound algorithmically.</p>
+      </div>
+      <div class="compare-col right">
+        <div class="compare-eyebrow">Saves + Sends</div>
+        <h4>Intent signal.</h4>
+        <p>Predicts conversion across local brand niches. Instagram's algorithm weights both heavily for organic distribution.</p>
+      </div>
+    </div>
+
     <p class="reveal">Four principles separate accounts that work from accounts that don't.</p>
 
-    <div class="principle reveal">
-      <h3>Saves and sends beat likes.</h3>
-      <p>Likes are vanity. Saves and sends are intent. When someone saves your post, they're saying "I might come back to this." When they send it, they're saying "this is relevant to someone I know." Both behaviors correlate to conversion. Likes don't.</p>
-      <p>Build content that earns saves and sends. The lazy way to test it: before you ship a post, ask "would the right viewer save this for later or send it to a friend?" If neither, redesign or kill the post.</p>
-    </div>
-
-    <div class="principle reveal">
-      <h3>Silent worries beat polish.</h3>
-      <p>Polish wins likes. Silent worries win saves.</p>
-      <p>A polished before-and-after of a med spa treatment gets likes from existing clients. A post that names the silent worry someone has before booking ("If you've been thinking about Botox for 2 years and keep canceling on yourself, here's what I'd want you to know") gets saves from people who haven't booked yet.</p>
-      <p>Your audience has questions they haven't asked you out loud. They're doing the research alone, on their phone, at 11pm on a Tuesday. The brand that names those silent questions in content earns the save, the follow, and eventually the booking.</p>
-    </div>
-
-    <div class="principle reveal">
-      <h3>Specificity beats generic.</h3>
-      <p>"5 tips for a healthier skin routine" is generic. "What we tell every Cincinnati client about pre-procedure skincare" is specific. The second one feels like it was written by an operator, because it was. The first feels like it was written by a content mill, because it was.</p>
-      <p>Specificity is your moat as a local brand. National content has to be generic to scale. Yours doesn't. Lean in.</p>
-    </div>
-
-    <div class="principle reveal">
-      <h3>Reject the hack stack.</h3>
-      <p>What doesn't work, and what gets your account penalized:</p>
-      <ul>
-        <li>Follow / unfollow</li>
-        <li>Mass commenting bots</li>
-        <li>Engagement pods</li>
-        <li>Like-for-like</li>
-        <li>DM bots</li>
-        <li>Buying followers</li>
-        <li>AI carousel sweatshops with no point of view</li>
-      </ul>
-      <p style="margin-top:14px;">Instagram has spent years building algorithms specifically to detect and demote these signals. They worked in 2017. They actively hurt you in 2026. Real engagement is the only sustainable signal.</p>
-      <p>The Scroll System runs on the opposite premise. Every signal we generate is real. Every save, every share, every DM is earned by content engineered to deserve it. The compound returns over 12 months are what the hack stack can never produce.</p>
+    <div class="principle-grid reveal" role="list">
+      <div class="principle-card" role="listitem">
+        <div class="numeral">01</div>
+        <h3>Saves and sends beat likes.</h3>
+        <p>Likes are vanity. Saves and sends are intent. When someone saves your post, they're saying "I might come back to this." When they send it, they're saying "this is relevant to someone I know." Both behaviors correlate to conversion. Likes don't.</p>
+      </div>
+      <div class="principle-card" role="listitem">
+        <div class="numeral">02</div>
+        <h3>Silent worries beat polish.</h3>
+        <p>Polish wins likes. Silent worries win saves. Your audience has questions they haven't asked you out loud. The brand that names those silent questions in content earns the save, the follow, and eventually the booking.</p>
+      </div>
+      <div class="principle-card" role="listitem">
+        <div class="numeral">03</div>
+        <h3>Specificity beats generic.</h3>
+        <p>"5 tips for a healthier skin routine" is generic. "What we tell every Cincinnati client about pre-procedure skincare" is specific. The second one feels like it was written by an operator, because it was. Specificity is your moat as a local brand. Lean in.</p>
+      </div>
+      <div class="principle-card" role="listitem">
+        <div class="numeral">04</div>
+        <h3>Reject the hack stack.</h3>
+        <p>Follow/unfollow, mass commenting bots, engagement pods, like-for-like, DM bots, buying followers, AI carousel sweatshops. Instagram has spent years building algorithms to detect and demote these signals. They worked in 2017. They actively hurt you in 2026. Real engagement is the only sustainable signal.</p>
+      </div>
     </div>
   </div>
 </section>
@@ -1276,6 +1657,7 @@ footer.site-foot p { font-size: 12px; color: var(--fg-subtle); line-height: 1.6;
   <div class="canvas">
     <p class="eyebrow reveal">Section 06</p>
     <h2 class="reveal">The funnel mix.</h2>
+    <div class="section-tldr reveal"><span class="section-tldr-label">Section TL;DR ·</span>Every Signature client publishes against 40% top-of-funnel, 35% middle-of-funnel, 25% bottom-of-funnel. Universal mix, regardless of follower count or niche.</div>
     <p class="lede reveal">Every Signature client publishes against the same content mix: 40 percent top-of-funnel, 35 percent middle-of-funnel, 25 percent bottom-of-funnel. Regardless of follower count. Regardless of maturity stage. Regardless of niche.</p>
     <p class="reveal">This is the mix the Scroll System runs on every account.</p>
 
@@ -1313,6 +1695,24 @@ footer.site-foot p { font-size: 12px; color: var(--fg-subtle); line-height: 1.6;
     </div>
     <p class="funnel-caption reveal">Universal across every Signature client. Same mix, different volumes.</p>
 
+    <div class="engine reveal" role="img" aria-label="The Mix. 75 percent of the work is audience-building and trust-building. Then BOFU earns the right to ask.">
+      <div class="engine-eyebrow">The Mix</div>
+      <div class="engine-quote">75% of the work is audience-building and trust-building. Then BOFU earns the right to ask.</div>
+    </div>
+
+    <div class="compare-card reveal" role="group" aria-label="Stuck brand mix vs Scroll System mix comparison">
+      <div class="compare-col wrong">
+        <div class="compare-eyebrow">Stuck brand mix</div>
+        <h4>60 / 30 / 10. Heavy BOFU.</h4>
+        <p>Heavy "book now" graphics, light audience-building. Result: audience never grows.</p>
+      </div>
+      <div class="compare-col right">
+        <div class="compare-eyebrow">Scroll System mix</div>
+        <h4>40 / 35 / 25. Audience first.</h4>
+        <p>Audience-building and trust-building earn the right for conversion content to land. Result: compounding growth.</p>
+      </div>
+    </div>
+
     <p class="reveal"><strong>Top of funnel · 40 percent · Audience-building.</strong> Content that reaches people who don't know your brand yet. Pattern Break formats, Cincinnati moments, cultural hooks, founder POV, broad educational content. The job: stop the scroll for the right viewer, earn the follow. TOFU is where new audience comes from. Underweight it and your account stops growing.</p>
     <p class="reveal"><strong>Middle of funnel · 35 percent · Trust-building.</strong> Content for the audience that's followed you but hasn't bought yet. Behind-the-scenes process, customer stories, founder voice, "how we think about this" content. The job: build the trust that converts a follower into a customer. MOFU is where the long sale gets made. Underweight it and you have followers who never buy.</p>
     <p class="reveal"><strong>Bottom of funnel · 25 percent · Conversion.</strong> Content for the audience ready to buy. Direct offers, product spotlights, booking prompts, time-bound campaigns, testimonial-backed claims. The job: close. BOFU earns its 25 percent. It doesn't earn more.</p>
@@ -1336,6 +1736,7 @@ footer.site-foot p { font-size: 12px; color: var(--fg-subtle); line-height: 1.6;
   <div class="canvas">
     <p class="eyebrow reveal">Section 07</p>
     <h2 class="reveal">The format library.</h2>
+    <div class="section-tldr reveal"><span class="section-tldr-label">Section TL;DR ·</span>Three formats handle 80% of what works for a local brand: Process Reels, Talking-head Reels, Pattern Break. Plus a low-friction production lane Cincinnati local brands can beat national competitors on.</div>
     <p class="lede reveal">Reels are the highest-leverage format on Instagram for most local brands in 2026. Not because Instagram is forcing them on you, although they are. Because Reels do something static posts can't: they create an emotional or visual hit in the first 2 seconds that pulls a stranger into your account.</p>
     <p class="reveal">For local brands, the Reels that work aren't viral attempts. They're operator content that happens to be shot vertical.</p>
     <p class="reveal">Three formats handle roughly 80 percent of what works for a local brand. The Scroll format library handles the other 20.</p>
@@ -1442,50 +1843,38 @@ footer.site-foot p { font-size: 12px; color: var(--fg-subtle); line-height: 1.6;
   <div class="canvas">
     <p class="eyebrow reveal">Section 08</p>
     <h2 class="reveal">DMs and comments.</h2>
+    <div class="section-tldr reveal"><span class="section-tldr-label">Section TL;DR ·</span>DMs and comments are conversion channels, not customer service. Story interactives feed the DM funnel. Daily commenting is the outbound habit that compounds.</div>
     <p class="lede reveal">Most local brands treat DMs as customer service and comments as a courtesy. Operators treat both as conversion channels.</p>
     <p class="reveal">The math: most local brand prospects DM you with a question before they book, buy, or visit. How fast and how well you respond determines whether that DM becomes a customer or a tab they close and forget.</p>
 
     <div class="principle reveal">
-      <h3>DM as conversion channel.</h3>
-      <p>Every inbound DM about hours, services, pricing, or availability is a high-intent signal. Treat it that way.</p>
-      <p>Build a DM response playbook:</p>
+      <h3>DMs and comments as conversion channels.</h3>
+      <p>Every inbound DM about hours, services, pricing, or availability is a high-intent signal. Every public comment on your own post is a conversation other prospects are reading.</p>
+      <p>Build a DM + comment playbook:</p>
       <ul>
-        <li><strong>Top 5 inbound questions.</strong> What do prospects DM you about most? Write them down.</li>
-        <li><strong>Pre-written response templates.</strong> Not robotic. Just structured. Saves time, ensures consistency, lets a teammate cover.</li>
-        <li><strong>Response time SLA.</strong> Target under 4 business hours. The drop-off in conversion between a 4-hour response and a 24-hour response is large.</li>
-        <li><strong>Soft path to booking.</strong> Every response includes a low-friction next step. The booking link. The Calendly. The "want me to send you our menu / pricing / availability."</li>
+        <li><strong>Top 5 inbound questions.</strong> What do prospects DM you about most? Write them down. Build response templates around each one. Not robotic. Just structured.</li>
+        <li><strong>Response time SLA · under 4 business hours.</strong> The drop-off in conversion between a 4-hour response and a 24-hour response is large.</li>
+        <li><strong>Soft path to booking in every response.</strong> The booking link. The Calendly. The "want me to send you our menu / pricing / availability."</li>
+        <li><strong>Reply to every comment personally.</strong> Use the commenter's first name. Answer their actual point. "Thanks!" with an emoji is a signal you don't care.</li>
       </ul>
-      <p style="margin-top:14px;">Inside Signature, AMs handle DM coverage on the 4-hour SLA. The system runs whether you have time or not.</p>
+      <p style="margin-top:14px;">Inside Signature, AMs handle DM + comment coverage on the 4-hour SLA. The system runs whether you have time or not.</p>
     </div>
 
     <div class="principle reveal">
-      <h3>Comments are public DMs.</h3>
-      <p>Every comment on your own post is a public conversation other prospects are reading. Reply to every comment within 4 business hours. Replies are personal, not rote. "Thanks!" and an emoji is a reply that shows you don't care. A real reply that uses the commenter's first name and answers their actual point is a signal that you're paying attention.</p>
-      <p>The compounding effect: a viewer scrolls your account, sees you reply thoughtfully to comments, and that signals "this brand is run by humans who care." That signal converts.</p>
-    </div>
-
-    <div class="principle reveal">
-      <h3>Story interactives feed the DM funnel.</h3>
-      <p>Polls, sliders, question stickers, this-or-that. These aren't gimmicks. They're qualification mechanics. Every reply to a poll or question sticker is a person hand-raising. They've told you something about themselves.</p>
-      <p>Use the data:</p>
+      <h3>Story interactives + daily commenting block.</h3>
+      <p>Story polls, sliders, and question stickers aren't gimmicks. They're qualification mechanics. Every reply is a person hand-raising. Use the data:</p>
       <ul>
         <li>Slider asking "how curious are you about X?" Highest sliders get a personalized DM follow-up within 24 hours.</li>
         <li>Question sticker "what's stopping you from booking?" Every reply is a sales conversation handed to you for free.</li>
-        <li>Poll "this week or next?" Respondents who pick "this week" get a soft outreach the next morning.</li>
+        <li>Poll "this week or next?" "This week" respondents get a soft outreach the next morning.</li>
       </ul>
-      <p style="margin-top:14px;">This is where Instagram becomes a real conversion channel for local brands. Most brands skip it because it requires actually reading the inbound and responding.</p>
-    </div>
-
-    <div class="principle reveal">
-      <h3>Daily commenting block.</h3>
-      <p>15 minutes per day. 5 to 10 thoughtful comments on local accounts in adjacent niches. The goal is to be useful and visible, not to promote.</p>
-      <p>Comment on:</p>
+      <p style="margin-top:14px;">Pair the inbound mechanics with an outbound habit. 15 minutes per day. 5 to 10 thoughtful comments on:</p>
       <ul>
         <li>Local accounts in adjacent niches (a med spa comments on local skincare brands, gyms, wellness accounts)</li>
-        <li>Local accounts your audience already follows (the local food bloggers, neighborhood accounts, local businesses you respect)</li>
-        <li>Accounts you want to be discovered by (the local press, local creators, local connectors)</li>
+        <li>Local accounts your audience already follows</li>
+        <li>Accounts you want to be discovered by (local press, creators, connectors)</li>
       </ul>
-      <p style="margin-top:14px;">Real comments. Specific to the post. No emoji-only replies. No "love this!" The compound effect over 90 days is significant. The brands that do this consistently end up in the comment sections of every account their target customer follows.</p>
+      <p style="margin-top:14px;">Real comments. Specific to the post. No emoji-only replies. The compound effect over 90 days is significant.</p>
     </div>
   </div>
 </section>
@@ -1495,6 +1884,7 @@ footer.site-foot p { font-size: 12px; color: var(--fg-subtle); line-height: 1.6;
   <div class="canvas">
     <p class="eyebrow reveal">Section 09</p>
     <h2 class="reveal">Metrics and the soft-ROI delivery model.</h2>
+    <div class="section-tldr reveal"><span class="section-tldr-label">Section TL;DR ·</span>The Three-Tier Metric Hierarchy weights signals by what actually predicts revenue. Tier 1 (saves, shares, retention, CTR, PCR) carries 1.5× weight. We track signal first. Attribution-grade second.</div>
     <p class="lede reveal">The metrics you track determine the decisions you make. The decisions you make determine the content you ship next month. Most local brands track the wrong metrics, which means they're optimizing toward the wrong outcomes. Then they wonder why Instagram isn't working.</p>
     <p class="reveal">The Scroll System runs on a Three-Tier Metric Hierarchy. Not every signal carries the same weight.</p>
 
@@ -1502,18 +1892,67 @@ footer.site-foot p { font-size: 12px; color: var(--fg-subtle); line-height: 1.6;
       <svg viewBox="0 0 480 240" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="pyr-t pyr-d" style="width:100%;height:auto;display:block;">
         <title id="pyr-t">Three-Tier Metric Hierarchy</title>
         <desc id="pyr-d">Pyramid with three tiers. Top tier T1 quality and conversion at 1.5x weight, middle tier T2 volume and distribution at 1.0x weight, bottom tier T3 context and community at 0.75x weight.</desc>
+        <!-- T3 base tier -->
         <polygon points="40,210 440,210 380,160 100,160" fill="#FAFDFF" stroke="#0C3387" stroke-width="1.5"/>
-        <text x="240" y="186" text-anchor="middle" font-family="Source Sans 3, sans-serif" font-size="11" font-weight="800" letter-spacing="2" fill="#0C3387">T3 · CONTEXT + COMMUNITY · 0.75×</text>
-        <text x="240" y="202" text-anchor="middle" font-family="Source Sans 3, sans-serif" font-size="10" fill="#5a6070">Comments · Avg watch time</text>
+        <text x="240" y="178" text-anchor="middle" font-family="Source Sans 3, sans-serif" font-size="13" font-weight="800" letter-spacing="1.2" fill="#0C3387">T3 · 0.75×</text>
+        <text x="240" y="192" text-anchor="middle" font-family="Source Sans 3, sans-serif" font-size="9" font-weight="600" letter-spacing="1.8" fill="#0C3387">CONTEXT + COMMUNITY</text>
+        <text x="240" y="206" text-anchor="middle" font-family="Source Sans 3, sans-serif" font-size="10" font-weight="500" fill="#5a6070">Comments · Avg watch time</text>
+        <!-- T2 middle tier -->
         <polygon points="100,160 380,160 332,110 148,110" fill="#e4f3ff" stroke="#0C3387" stroke-width="1.5"/>
-        <text x="240" y="134" text-anchor="middle" font-family="Source Sans 3, sans-serif" font-size="11" font-weight="800" letter-spacing="2" fill="#0C3387">T2 · VOLUME + DISTRIBUTION · 1.0×</text>
-        <text x="240" y="150" text-anchor="middle" font-family="Source Sans 3, sans-serif" font-size="10" fill="#5a6070">Reach · New followers · Views · Visits · Link taps</text>
+        <text x="240" y="128" text-anchor="middle" font-family="Source Sans 3, sans-serif" font-size="13" font-weight="800" letter-spacing="1.2" fill="#0C3387">T2 · 1.0×</text>
+        <text x="240" y="142" text-anchor="middle" font-family="Source Sans 3, sans-serif" font-size="9" font-weight="600" letter-spacing="1.8" fill="#0C3387">VOLUME + DISTRIBUTION</text>
+        <text x="240" y="156" text-anchor="middle" font-family="Source Sans 3, sans-serif" font-size="9" font-weight="500" fill="#5a6070">Reach · New followers · Views · Visits · Link taps</text>
+        <!-- T1 apex -->
         <polygon points="148,110 332,110 240,30" fill="#0C3387" stroke="#0C3387" stroke-width="1.5"/>
-        <text x="240" y="66" text-anchor="middle" font-family="Source Sans 3, sans-serif" font-size="11" font-weight="800" letter-spacing="2" fill="#FAFDFF">T1 · QUALITY + CONVERSION · 1.5×</text>
-        <text x="240" y="84" text-anchor="middle" font-family="Source Sans 3, sans-serif" font-size="10" fill="#FAFDFF">Saves · Shares · Retention</text>
-        <text x="240" y="98" text-anchor="middle" font-family="Source Sans 3, sans-serif" font-size="10" fill="#FAFDFF">CTR · Profile conversion rate</text>
+        <text x="240" y="66" text-anchor="middle" font-family="Source Sans 3, sans-serif" font-size="11" font-weight="800" letter-spacing="1" fill="#FAFDFF">T1 · 1.5×</text>
+        <text x="240" y="80" text-anchor="middle" font-family="Source Sans 3, sans-serif" font-size="7" font-weight="600" letter-spacing="0.4" fill="#FAFDFF">QUALITY + CONVERSION</text>
+        <text x="240" y="94" text-anchor="middle" font-family="Source Sans 3, sans-serif" font-size="9" font-weight="500" fill="#FAFDFF">Saves · Shares · Retention</text>
+        <text x="240" y="106" text-anchor="middle" font-family="Source Sans 3, sans-serif" font-size="9" font-weight="500" fill="#FAFDFF">CTR · Profile conversion rate</text>
       </svg>
       <div class="caption" id="pyramid-cap">Weighted because not every signal predicts revenue equally.</div>
+    </div>
+
+    <div class="pyramid-mobile reveal" role="figure" aria-label="Three-Tier Metric Hierarchy (mobile layout)">
+      <div class="tier-bar tier-1">
+        <div class="tier-stamp">
+          <div class="tier-num">T1 · 1.5×</div>
+          <div class="tier-desc">Quality + Conversion</div>
+        </div>
+        <div class="tier-metrics">Saves · Shares · Retention<br/>CTR · Profile conversion rate</div>
+      </div>
+      <div class="tier-bar tier-2">
+        <div class="tier-stamp">
+          <div class="tier-num">T2 · 1.0×</div>
+          <div class="tier-desc">Volume + Distribution</div>
+        </div>
+        <div class="tier-metrics">Reach · New followers · Views · Visits · Link taps</div>
+      </div>
+      <div class="tier-bar tier-3">
+        <div class="tier-stamp">
+          <div class="tier-num">T3 · 0.75×</div>
+          <div class="tier-desc">Context + Community</div>
+        </div>
+        <div class="tier-metrics">Comments · Avg watch time</div>
+      </div>
+      <div class="caption" style="margin-top:14px;text-align:center;font-size:12px;letter-spacing:0.12em;text-transform:uppercase;color:var(--fg-subtle);font-weight:600;">Weighted because not every signal predicts revenue equally.</div>
+    </div>
+
+    <div class="engine reveal" role="img" aria-label="The Delivery. We track signal first. Attribution-grade second.">
+      <div class="engine-eyebrow">The Delivery</div>
+      <div class="engine-quote">We track signal first. Attribution-grade second.</div>
+    </div>
+
+    <div class="compare-card reveal" role="group" aria-label="Hard-attribution agencies vs Scroll soft-ROI comparison">
+      <div class="compare-col wrong">
+        <div class="compare-eyebrow">Most agencies sell</div>
+        <h4>Hard-attribution revenue numbers.</h4>
+        <p>Multi-stage funnel ROI claims. Numbers stitched together with assumptions and gift-wrapped for the deck.</p>
+      </div>
+      <div class="compare-col right">
+        <div class="compare-eyebrow">Scroll delivers</div>
+        <h4>Soft-ROI signal-first measurement.</h4>
+        <p>Saves, shares, link taps, profile conversion, DM volume. Right audience, clear path, right metrics. Qualified leads follow.</p>
+      </div>
     </div>
 
     <div class="principle reveal">
@@ -1573,6 +2012,13 @@ footer.site-foot p { font-size: 12px; color: var(--fg-subtle); line-height: 1.6;
       <p>We track signal first. Attribution-grade second.</p>
     </div>
   </div>
+
+  <div class="canvas">
+    <div class="mid-cta reveal" role="complementary" aria-label="Mid-document call to action: see the Scroll pitch">
+      <p>This is the model we run on every Cincinnati Signature client. See use cases, results, and what's included in each tier.</p>
+      <a href="https://decks.scrollmedia.co/pitch/" class="btn-lime">See the Scroll pitch</a>
+    </div>
+  </div>
 </section>
 
 <!-- SECTION 10 · 7-DAY KICKSTART -->
@@ -1580,6 +2026,7 @@ footer.site-foot p { font-size: 12px; color: var(--fg-subtle); line-height: 1.6;
   <div class="canvas">
     <p class="eyebrow reveal">Section 10</p>
     <h2 class="reveal">The 7-day kickstart plan.</h2>
+    <div class="section-tldr reveal"><span class="section-tldr-label">Section TL;DR ·</span>A structured 7-day plan, 30 to 90 minutes a day. By Sunday night, your foundation is rebuilt, content is shipping against the funnel mix, and your monthly review is in place.</div>
     <p class="lede reveal">If you want a structured starting point, run this 7-day plan. Each day takes 30 to 90 minutes. By the end of the week you'll have rebuilt the foundation, shipped real content, and started the systems that compound.</p>
 
     <div class="timeline-frame reveal" role="figure" aria-label="7-day kickstart timeline">
@@ -1589,20 +2036,20 @@ footer.site-foot p { font-size: 12px; color: var(--fg-subtle); line-height: 1.6;
           <desc id="tl-d">Seven days connected in sequence. Mon audit and bio, Tue pillars, Wed plan 14 days, Thu shoot batch 1, Fri DM playbook, Sat story interactives, Sun monthly review setup.</desc>
           <line x1="40" y1="50" x2="680" y2="50" stroke="#0C3387" stroke-width="1.5"/>
           <g font-family="Source Sans 3, sans-serif" fill="#0C3387">
-            <circle cx="60" cy="50" r="14" fill="#0C3387"/><text x="60" y="54" text-anchor="middle" font-size="11" font-weight="800" fill="#FAFDFF">1</text><text x="60" y="80" text-anchor="middle" font-size="9" font-weight="700" letter-spacing="1" fill="#0C3387">MON</text><text x="60" y="92" text-anchor="middle" font-size="8" fill="#5a6070">Audit · Bio</text>
-            <circle cx="160" cy="50" r="14" fill="#0C3387"/><text x="160" y="54" text-anchor="middle" font-size="11" font-weight="800" fill="#FAFDFF">2</text><text x="160" y="80" text-anchor="middle" font-size="9" font-weight="700" letter-spacing="1" fill="#0C3387">TUE</text><text x="160" y="92" text-anchor="middle" font-size="8" fill="#5a6070">Pillars</text>
-            <circle cx="260" cy="50" r="14" fill="#0C3387"/><text x="260" y="54" text-anchor="middle" font-size="11" font-weight="800" fill="#FAFDFF">3</text><text x="260" y="80" text-anchor="middle" font-size="9" font-weight="700" letter-spacing="1" fill="#0C3387">WED</text><text x="260" y="92" text-anchor="middle" font-size="8" fill="#5a6070">Plan 14</text>
-            <circle cx="360" cy="50" r="14" fill="#0C3387"/><text x="360" y="54" text-anchor="middle" font-size="11" font-weight="800" fill="#FAFDFF">4</text><text x="360" y="80" text-anchor="middle" font-size="9" font-weight="700" letter-spacing="1" fill="#0C3387">THU</text><text x="360" y="92" text-anchor="middle" font-size="8" fill="#5a6070">Shoot</text>
-            <circle cx="460" cy="50" r="14" fill="#0C3387"/><text x="460" y="54" text-anchor="middle" font-size="11" font-weight="800" fill="#FAFDFF">5</text><text x="460" y="80" text-anchor="middle" font-size="9" font-weight="700" letter-spacing="1" fill="#0C3387">FRI</text><text x="460" y="92" text-anchor="middle" font-size="8" fill="#5a6070">DM book</text>
-            <circle cx="560" cy="50" r="14" fill="#0C3387"/><text x="560" y="54" text-anchor="middle" font-size="11" font-weight="800" fill="#FAFDFF">6</text><text x="560" y="80" text-anchor="middle" font-size="9" font-weight="700" letter-spacing="1" fill="#0C3387">SAT</text><text x="560" y="92" text-anchor="middle" font-size="8" fill="#5a6070">Stories</text>
-            <circle cx="660" cy="50" r="14" fill="#0C3387"/><text x="660" y="54" text-anchor="middle" font-size="11" font-weight="800" fill="#FAFDFF">7</text><text x="660" y="80" text-anchor="middle" font-size="9" font-weight="700" letter-spacing="1" fill="#0C3387">SUN</text><text x="660" y="92" text-anchor="middle" font-size="8" fill="#5a6070">Monthly review</text>
+            <g class="day-node" data-day-anchor="kickstart-day-1"><circle class="day-node-circle" cx="60" cy="50" r="14" fill="#0C3387"/><text class="day-node-numeral" x="60" y="54" text-anchor="middle" font-size="11" font-weight="800" fill="#FAFDFF">1</text><text x="60" y="80" text-anchor="middle" font-size="9" font-weight="700" letter-spacing="1" fill="#0C3387">MON</text><text x="60" y="92" text-anchor="middle" font-size="8" fill="#5a6070">Audit · Bio</text></g>
+            <g class="day-node" data-day-anchor="kickstart-day-2"><circle class="day-node-circle" cx="160" cy="50" r="14" fill="#0C3387"/><text class="day-node-numeral" x="160" y="54" text-anchor="middle" font-size="11" font-weight="800" fill="#FAFDFF">2</text><text x="160" y="80" text-anchor="middle" font-size="9" font-weight="700" letter-spacing="1" fill="#0C3387">TUE</text><text x="160" y="92" text-anchor="middle" font-size="8" fill="#5a6070">Pillars</text></g>
+            <g class="day-node" data-day-anchor="kickstart-day-3"><circle class="day-node-circle" cx="260" cy="50" r="14" fill="#0C3387"/><text class="day-node-numeral" x="260" y="54" text-anchor="middle" font-size="11" font-weight="800" fill="#FAFDFF">3</text><text x="260" y="80" text-anchor="middle" font-size="9" font-weight="700" letter-spacing="1" fill="#0C3387">WED</text><text x="260" y="92" text-anchor="middle" font-size="8" fill="#5a6070">Plan 14</text></g>
+            <g class="day-node" data-day-anchor="kickstart-day-4"><circle class="day-node-circle" cx="360" cy="50" r="14" fill="#0C3387"/><text class="day-node-numeral" x="360" y="54" text-anchor="middle" font-size="11" font-weight="800" fill="#FAFDFF">4</text><text x="360" y="80" text-anchor="middle" font-size="9" font-weight="700" letter-spacing="1" fill="#0C3387">THU</text><text x="360" y="92" text-anchor="middle" font-size="8" fill="#5a6070">Shoot</text></g>
+            <g class="day-node" data-day-anchor="kickstart-day-5"><circle class="day-node-circle" cx="460" cy="50" r="14" fill="#0C3387"/><text class="day-node-numeral" x="460" y="54" text-anchor="middle" font-size="11" font-weight="800" fill="#FAFDFF">5</text><text x="460" y="80" text-anchor="middle" font-size="9" font-weight="700" letter-spacing="1" fill="#0C3387">FRI</text><text x="460" y="92" text-anchor="middle" font-size="8" fill="#5a6070">DM book</text></g>
+            <g class="day-node" data-day-anchor="kickstart-day-6"><circle class="day-node-circle" cx="560" cy="50" r="14" fill="#0C3387"/><text class="day-node-numeral" x="560" y="54" text-anchor="middle" font-size="11" font-weight="800" fill="#FAFDFF">6</text><text x="560" y="80" text-anchor="middle" font-size="9" font-weight="700" letter-spacing="1" fill="#0C3387">SAT</text><text x="560" y="92" text-anchor="middle" font-size="8" fill="#5a6070">Stories</text></g>
+            <g class="day-node" data-day-anchor="kickstart-day-7"><circle class="day-node-circle" cx="660" cy="50" r="14" fill="#0C3387"/><text class="day-node-numeral" x="660" y="54" text-anchor="middle" font-size="11" font-weight="800" fill="#FAFDFF">7</text><text x="660" y="80" text-anchor="middle" font-size="9" font-weight="700" letter-spacing="1" fill="#0C3387">SUN</text><text x="660" y="92" text-anchor="middle" font-size="8" fill="#5a6070">Monthly review</text></g>
           </g>
         </svg>
       </div>
     </div>
 
     <div class="reveal">
-      <details class="collapsible">
+      <details class="collapsible" id="kickstart-day-1">
         <summary>
           <span class="col-glyph" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="16" rx="2"/><line x1="3" y1="10" x2="21" y2="10"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="16" y1="2" x2="16" y2="6"/></svg></span>
           <span class="col-head">
@@ -1623,7 +2070,7 @@ footer.site-foot p { font-size: 12px; color: var(--fg-subtle); line-height: 1.6;
         </div>
       </details>
 
-      <details class="collapsible">
+      <details class="collapsible" id="kickstart-day-2">
         <summary>
           <span class="col-glyph" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="6" y1="3" x2="6" y2="21"/><line x1="12" y1="3" x2="12" y2="21"/><line x1="18" y1="3" x2="18" y2="21"/></svg></span>
           <span class="col-head">
@@ -1643,7 +2090,7 @@ footer.site-foot p { font-size: 12px; color: var(--fg-subtle); line-height: 1.6;
         </div>
       </details>
 
-      <details class="collapsible">
+      <details class="collapsible" id="kickstart-day-3">
         <summary>
           <span class="col-glyph" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14"/><line x1="3" y1="10" x2="21" y2="10"/></svg></span>
           <span class="col-head">
@@ -1663,7 +2110,7 @@ footer.site-foot p { font-size: 12px; color: var(--fg-subtle); line-height: 1.6;
         </div>
       </details>
 
-      <details class="collapsible">
+      <details class="collapsible" id="kickstart-day-4">
         <summary>
           <span class="col-glyph" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="6" width="14" height="12"/><polygon points="17 9 21 7 21 17 17 15"/></svg></span>
           <span class="col-head">
@@ -1682,7 +2129,7 @@ footer.site-foot p { font-size: 12px; color: var(--fg-subtle); line-height: 1.6;
         </div>
       </details>
 
-      <details class="collapsible">
+      <details class="collapsible" id="kickstart-day-5">
         <summary>
           <span class="col-glyph" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg></span>
           <span class="col-head">
@@ -1703,7 +2150,7 @@ footer.site-foot p { font-size: 12px; color: var(--fg-subtle); line-height: 1.6;
         </div>
       </details>
 
-      <details class="collapsible">
+      <details class="collapsible" id="kickstart-day-6">
         <summary>
           <span class="col-glyph" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="12" y1="3" x2="12" y2="21"/></svg></span>
           <span class="col-head">
@@ -1722,7 +2169,7 @@ footer.site-foot p { font-size: 12px; color: var(--fg-subtle); line-height: 1.6;
         </div>
       </details>
 
-      <details class="collapsible">
+      <details class="collapsible" id="kickstart-day-7">
         <summary>
           <span class="col-glyph" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 12V8H6a2 2 0 1 1 0-4h12v4"/><path d="M4 6v12a2 2 0 0 0 2 2h14v-4"/><path d="M18 12a2 2 0 0 0 0 4h4v-4z"/></svg></span>
           <span class="col-head">
@@ -1753,7 +2200,8 @@ footer.site-foot p { font-size: 12px; color: var(--fg-subtle); line-height: 1.6;
   <div class="canvas">
     <p class="eyebrow reveal">Section 11</p>
     <h2 class="reveal">What this looks like when it's working.</h2>
-    <p class="lede reveal">Three anonymized wins from real Cincinnati Scroll clients. Each one is mapped to a specific Signal Method mechanism. Different lever, different result, same architecture underneath.</p>
+    <div class="section-tldr reveal"><span class="section-tldr-label">Section TL;DR ·</span>Three anonymized Cincinnati wins. Different lever each time. Same operating architecture underneath.</div>
+    <p class="lede reveal">Three anonymized wins from real Cincinnati Scroll clients. Each one is mapped to a specific Scroll System mechanism. Different lever, different result, same architecture underneath.</p>
 
     <div class="proof-grid reveal" role="list">
       <div class="proof-card" role="listitem">
@@ -1765,7 +2213,7 @@ footer.site-foot p { font-size: 12px; color: var(--fg-subtle); line-height: 1.6;
           <line x1="92" y1="76" x2="108" y2="76" stroke="#0C3387" stroke-width="2"/>
           <polygon points="108,76 100,72 100,80" fill="#0C3387"/>
           <rect x="110" y="36" width="40" height="56" fill="#0C3387"/>
-          <text x="130" y="68" text-anchor="middle" font-family="Source Sans 3, sans-serif" font-size="13" font-weight="800" fill="#FAFDFF">+78%</text>
+          <text class="ticker-stat" data-ticker-final="+78%" data-ticker-prefix="+" data-ticker-suffix="%" data-ticker-target="78" x="130" y="68" text-anchor="middle" font-family="Source Sans 3, sans-serif" font-size="13" font-weight="800" fill="#FAFDFF">+78%</text>
           <text x="130" y="102" text-anchor="middle" font-family="Source Sans 3, sans-serif" font-size="8" fill="#5a6070">AFTER</text>
         </svg>
         <div class="proof-mech">Funnel-Mapped Content Mix</div>
@@ -1781,7 +2229,7 @@ footer.site-foot p { font-size: 12px; color: var(--fg-subtle); line-height: 1.6;
           <line x1="92" y1="76" x2="108" y2="76" stroke="#0C3387" stroke-width="2"/>
           <polygon points="108,76 100,72 100,80" fill="#0C3387"/>
           <rect x="110" y="36" width="40" height="56" fill="#0C3387"/>
-          <text x="130" y="68" text-anchor="middle" font-family="Source Sans 3, sans-serif" font-size="13" font-weight="800" fill="#FAFDFF">3.4×</text>
+          <text class="ticker-stat" data-ticker-final="3.4×" data-ticker-decimal="1" data-ticker-suffix="×" data-ticker-target="3.4" x="130" y="68" text-anchor="middle" font-family="Source Sans 3, sans-serif" font-size="13" font-weight="800" fill="#FAFDFF">3.4×</text>
           <text x="130" y="102" text-anchor="middle" font-family="Source Sans 3, sans-serif" font-size="8" fill="#5a6070">HOUSE TOUR REEL</text>
         </svg>
         <div class="proof-mech">IVP-First Architecture</div>
@@ -1797,7 +2245,7 @@ footer.site-foot p { font-size: 12px; color: var(--fg-subtle); line-height: 1.6;
           <line x1="92" y1="76" x2="108" y2="76" stroke="#0C3387" stroke-width="2"/>
           <polygon points="108,76 100,72 100,80" fill="#0C3387"/>
           <rect x="110" y="36" width="40" height="56" fill="#0C3387"/>
-          <text x="130" y="68" text-anchor="middle" font-family="Source Sans 3, sans-serif" font-size="13" font-weight="800" fill="#FAFDFF">3×</text>
+          <text class="ticker-stat" data-ticker-final="3×" data-ticker-suffix="×" data-ticker-target="3" x="130" y="68" text-anchor="middle" font-family="Source Sans 3, sans-serif" font-size="13" font-weight="800" fill="#FAFDFF">3×</text>
           <text x="130" y="102" text-anchor="middle" font-family="Source Sans 3, sans-serif" font-size="8" fill="#5a6070">2ND MONTH</text>
         </svg>
         <div class="proof-mech">Three-Tier Metric Hierarchy</div>
@@ -1805,7 +2253,14 @@ footer.site-foot p { font-size: 12px; color: var(--fg-subtle); line-height: 1.6;
         <p>Two years of tracking total followers and likes. We rebuilt measurement around the Three-Tier Hierarchy. T1 metrics (saves, shares, CTR, PCR) became the leading indicators. April: shares +40% above Q2 commit, PCR converting at 2× Rise ceiling rate, CTR 3× above Rise ceiling for the second consecutive month.</p>
       </div>
     </div>
-    <p class="proof-foot reveal">Real clients. Real results. Identifiers anonymized.</p>
+    <p class="reveal" style="margin-top:8px;">Three accounts. Three different mechanisms inside the Scroll System. Same operating architecture underneath. The numbers compound when the system is in place. Real Cincinnati clients, identifiers anonymized.</p>
+  </div>
+
+  <div class="canvas">
+    <div class="mid-cta reveal" role="complementary" aria-label="Mid-document call to action: book a discovery call">
+      <p>Wins like these compound across 12 months of disciplined execution. If you're ready to see what your account could do, book the diagnostic call.</p>
+      <a href="https://calendly.com/scrollmedia/discovery" class="btn-lime">Book a discovery call</a>
+    </div>
   </div>
 </section>
 
@@ -1814,6 +2269,7 @@ footer.site-foot p { font-size: 12px; color: var(--fg-subtle); line-height: 1.6;
   <div class="canvas">
     <p class="eyebrow reveal">Section 12</p>
     <h2 class="reveal">What done-with-you actually looks like.</h2>
+    <div class="section-tldr reveal"><span class="section-tldr-label">Section TL;DR ·</span>Four pillars. Voice work, AM ownership, weekly cadence, soft-ROI delivery. A partnership model where the founder gets their time back without losing creative control.</div>
     <p class="lede reveal">You've read 11 sections. You know the system. The question now: do you run it yourself, or do you bring in a partner who runs it for you?</p>
     <p class="reveal">Most local brands who want this kind of work done already tried two things first. They tried doing it themselves (ran out of time). They tried hiring an in-house person (ran out of creative ceiling or strategic discipline). The third path is what Scroll Media is built for.</p>
     <p class="reveal">Done-with-you isn't an agency that takes your account and disappears for a month. It's a partnership built on four pillars.</p>
@@ -1841,79 +2297,13 @@ footer.site-foot p { font-size: 12px; color: var(--fg-subtle); line-height: 1.6;
       </div>
     </div>
 
-    <div class="reveal">
-      <details class="collapsible">
-        <summary>
-          <span class="col-glyph" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 11a9 9 0 0 1 18 0v3a2 2 0 0 1-2 2h-1v-5h3"/><path d="M3 11v3a2 2 0 0 0 2 2h1v-5H3"/></svg></span>
-          <span class="col-head">
-            <span class="col-eyebrow">Pillar 01</span>
-            <span class="col-title">Voice work · We become an extension of your brand</span>
-            <span class="col-sub">Captured Week 1. Every caption, script, story runs against the voice library.</span>
-          </span>
-          <span class="col-chevron" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="9 6 15 12 9 18"/></svg></span>
-        </summary>
-        <div class="col-body">
-          <div class="col-body-divider"></div>
-          <p>In Week 1 of every Signature engagement, we capture your voice. Not your tone. Your voice. The way you actually talk about your business. The phrases you use. The cultural references your IVP shares with you. The proof points you lean on when a stranger asks what you do.</p>
-          <p>We absorb the voice before we publish a word. Then every caption, every Reel script, every story, every DM template runs against that voice library. The account doesn't sound like Scroll wrote it. It sounds like you wrote it on your best day.</p>
-        </div>
-      </details>
-
-      <details class="collapsible">
-        <summary>
-          <span class="col-glyph" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 21v-2a6 6 0 0 1 6-6h4a6 6 0 0 1 6 6v2"/></svg></span>
-          <span class="col-head">
-            <span class="col-eyebrow">Pillar 02</span>
-            <span class="col-title">AM ownership · You have a person, not a portal</span>
-            <span class="col-sub">Strategic operator who runs your account. Single point of contact.</span>
-          </span>
-          <span class="col-chevron" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="9 6 15 12 9 18"/></svg></span>
-        </summary>
-        <div class="col-body">
-          <div class="col-body-divider"></div>
-          <p>You get assigned an Account Manager who knows your business, your IVP, and your strategy at the same depth you do. Not a project manager pinging you for approvals. A strategic operator who runs your account.</p>
-          <p>The AM is your single point of contact. They're in your DMs. They're on the bi-weekly check-in. They run the content engine. They surface the wins. They flag the gaps. When something needs your attention, they get it to you in one message.</p>
-          <p>You don't have a portal. You have a person.</p>
-        </div>
-      </details>
-
-      <details class="collapsible">
-        <summary>
-          <span class="col-glyph" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 14"/></svg></span>
-          <span class="col-head">
-            <span class="col-eyebrow">Pillar 03</span>
-            <span class="col-title">Weekly cadence · Approvals batched, decisions made</span>
-            <span class="col-sub">5-business-day approval cadence. Max 2 rounds. Biweekly 30-min check-in.</span>
-          </span>
-          <span class="col-chevron" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="9 6 15 12 9 18"/></svg></span>
-        </summary>
-        <div class="col-body">
-          <div class="col-body-divider"></div>
-          <p>Content approvals run on a 5-business-day cadence before publish date. Maximum 2 rounds of edits per cycle. All approvals batched in biweekly 30-minute check-ins.</p>
-          <p>The cadence is structured to give you control without making you a bottleneck. You see everything before it ships. You approve in batches, not one-off pings. The check-in is for decisions, not status updates. You walk away from every meeting having moved the strategy forward.</p>
-        </div>
-      </details>
-
-      <details class="collapsible">
-        <summary>
-          <span class="col-glyph" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="20" x2="21" y2="20"/><rect x="5" y="12" width="3" height="8"/><rect x="10.5" y="6" width="3" height="14"/><rect x="16" y="9" width="3" height="11"/></svg></span>
-          <span class="col-head">
-            <span class="col-eyebrow">Pillar 04</span>
-            <span class="col-title">Soft-ROI delivery · Signal first, attribution-grade second</span>
-            <span class="col-sub">Three-Tier Metric Hierarchy. We measure what organic social can actually measure well.</span>
-          </span>
-          <span class="col-chevron" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="9 6 15 12 9 18"/></svg></span>
-        </summary>
-        <div class="col-body">
-          <div class="col-body-divider"></div>
-          <p>Monthly performance reports run against the Three-Tier Metric Hierarchy. We measure what organic social can actually measure well. We don't promise multi-stage revenue attribution we can't deliver cleanly.</p>
-          <p>We track signal first, attribution-grade second. The honesty matters. Agencies that sell you on revenue attribution are usually selling you something they can't actually prove.</p>
-        </div>
-      </details>
-    </div>
-
     <p class="reveal" style="margin-top:22px;">Done-with-you isn't a service tier. It's a partnership model built so the founder gets their time back without losing creative control or strategic visibility. Voice locked. AM in the seat. Weekly cadence holding. Reports telling the truth about what's working.</p>
     <p class="reveal">If that's the model that fits your business, the next step is a 30-minute discovery call.</p>
+
+    <div class="engine reveal" role="img" aria-label="The Partnership. Voice locked. AM in the seat. Weekly cadence holding. Reports telling the truth about what's working.">
+      <div class="engine-eyebrow">The Partnership</div>
+      <div class="engine-quote">Voice locked. AM in the seat. Weekly cadence holding. Reports telling the truth about what's working.</div>
+    </div>
   </div>
 </section>
 
@@ -1922,31 +2312,31 @@ footer.site-foot p { font-size: 12px; color: var(--fg-subtle); line-height: 1.6;
   <div class="canvas">
     <p class="eyebrow reveal">Section 13</p>
     <h2 class="reveal">What happens from here.</h2>
-    <p class="lede reveal">You have two ways to take the next step.</p>
+    <p class="lede reveal">You've read the system. The architecture is clear. The 7-day plan is yours to run today. The question now is whether you run it yourself, or bring in a partner who runs it for you.</p>
+    <p class="reveal">Two ways to take the next step.</p>
 
     <div class="cta-paths reveal">
       <div class="cta-path">
         <p class="eyebrow">Path 01</p>
-        <h3>Reply to the email.</h3>
-        <p>If you got this from one of our emails, the fastest path is to reply directly. Tell us what landed and what didn't. Tell us which of the three stuck patterns sounded the most like you. Tell us anything about your business that the manual didn't cover.</p>
-        <p>We read everything that comes back. The replies often go places a discovery call can't.</p>
-        <p>You can also just say "yes, let's talk" and we'll get a call on the calendar from there.</p>
-      </div>
-      <div class="cta-path">
-        <p class="eyebrow">Path 02</p>
         <h3>Book a discovery call.</h3>
         <p>A 30-minute structured call. We walk through your Instagram together. We tell you what stage your account is in (Spark, Lift, Rise, or Thrive), what the foundational gaps are, and whether Signature is the right move for your brand. If it's a fit, we talk next steps. If it's not, you walk away with the diagnostic anyway.</p>
+        <p style="font-size:13px;color:var(--fg-muted);margin-bottom:6px;font-weight:700;">What you get on the call:</p>
         <ul>
-          <li>Live audit against the foundation diagnostic in Section 04</li>
-          <li>Stage assignment and benchmark targets specific to your follower band</li>
-          <li>Direct answer on whether Signature, the A2A Playbook, or "run the manual yourself" is the right move</li>
-          <li>No hard sell. If we're not the fit, we say so.</li>
+          <li><strong>Live audit</strong> of your account against the foundation diagnostic in Section 04</li>
+          <li><strong>Stage assignment</strong> and benchmark targets specific to your follower band</li>
+          <li><strong>Direct answer</strong> on whether Signature, the A2A Playbook, or "run the manual yourself" is the right move for your brand</li>
+          <li><strong>No hard sell.</strong> If we're not the fit, we say so.</li>
         </ul>
         <a href="https://calendly.com/scrollmedia/discovery" class="btn-primary">Book a discovery call</a>
       </div>
+      <div class="cta-path">
+        <p class="eyebrow">Path 02</p>
+        <h3>See how we'd run this for you.</h3>
+        <p>If you want to see use cases, results, package offerings, and what a Scroll engagement actually looks like before you book a call, head to the Scroll pitch page. The full story is there.</p>
+        <p>Real client wins. Tiered engagement options. The Signature, A2A Playbook, and Blueprint paths laid out side by side. Everything you need to decide whether Scroll is the partner you want before you spend 30 minutes on a call.</p>
+        <a href="https://decks.scrollmedia.co/pitch/" class="btn-secondary">See the Scroll pitch</a>
+      </div>
     </div>
-
-    <p class="cross-link reveal">If you want to see the full system: <a href="https://tools.scrollmedia.co/scroll-system/">See the full Scroll System architecture →</a></p>
   </div>
 </section>
 
@@ -1959,13 +2349,12 @@ footer.site-foot p { font-size: 12px; color: var(--fg-subtle); line-height: 1.6;
         <strong>By Chase Gianattasio</strong>
         Co-Founder &amp; Chief Operations &amp; Growth Officer · Scroll Media
         <div class="links">
-          <a href="https://instagram.com/chase.scrolls" rel="noopener" target="_blank">Instagram</a>
-          <a href="https://linkedin.com/in/chasegianattasio" rel="noopener" target="_blank">LinkedIn</a>
+          <a href="https://www.instagram.com/scrollmedia.co/" rel="noopener" target="_blank">Instagram</a>
+          <a href="https://www.linkedin.com/company/scrollmediabrands/" rel="noopener" target="_blank">LinkedIn</a>
         </div>
       </div>
     </div>
     <p class="reveal">Scroll Media is Cincinnati's Instagram agency for local brands. We run a small roster of boutique founder-led brands across the Tri-State on long-term Instagram strategy and execution. No paid ads. No hacks. Compounding organic growth built around the patterns that actually move the needle for local brands.</p>
-    <p class="reveal">We publish work, frameworks, and free resources at <a href="https://tools.scrollmedia.co">tools.scrollmedia.co</a>.</p>
     <p class="closer reveal">Built for Cincinnati. Sharpened for local brands. The system runs.</p>
   </div>
 </section>
@@ -2193,6 +2582,145 @@ function closeMenu() {
   b.classList.remove('open');
   b.setAttribute('aria-expanded', 'false');
 }
+
+/* ============================================================
+   ANIMATION LAYER — §4.14
+   All animations single-trigger on viewport entry.
+   prefers-reduced-motion: reduce snaps to final state, no transitions.
+   ============================================================ */
+const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+/* NUMBER TICKER (Section 11 vignettes) */
+function runNumberTickers() {
+  const tickers = document.querySelectorAll('.ticker-stat');
+  if (!tickers.length) return;
+
+  tickers.forEach(el => {
+    const finalText = el.getAttribute('data-ticker-final') || el.textContent;
+    if (prefersReducedMotion || !('IntersectionObserver' in window)) {
+      el.textContent = finalText;
+      return;
+    }
+    el.textContent = ' ';
+  });
+
+  if (prefersReducedMotion || !('IntersectionObserver' in window)) return;
+
+  const tickerObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      const el = entry.target;
+      tickerObserver.unobserve(el);
+
+      const finalText = el.getAttribute('data-ticker-final');
+      const target = parseFloat(el.getAttribute('data-ticker-target') || '0');
+      const prefix = el.getAttribute('data-ticker-prefix') || '';
+      const suffix = el.getAttribute('data-ticker-suffix') || '';
+      const decimals = parseInt(el.getAttribute('data-ticker-decimal') || '0', 10);
+      const duration = 600;
+      const start = performance.now();
+
+      function step(now) {
+        const progress = Math.min((now - start) / duration, 1);
+        const eased = 1 - Math.pow(1 - progress, 3);
+        const value = target * eased;
+        const display = decimals > 0 ? value.toFixed(decimals) : Math.round(value).toString();
+        el.textContent = prefix + display + suffix;
+        if (progress < 1) {
+          requestAnimationFrame(step);
+        } else {
+          el.textContent = finalText;
+        }
+      }
+      requestAnimationFrame(step);
+    });
+  }, { threshold: 0.4 });
+
+  tickers.forEach(el => tickerObserver.observe(el));
+}
+runNumberTickers();
+
+/* CONTENT ENGINE node pulse (Section 02) */
+function runEngineNodePulse() {
+  const svg = document.getElementById('engine-circle-svg');
+  if (!svg || prefersReducedMotion || !('IntersectionObserver' in window)) return;
+  const nodes = svg.querySelectorAll('.engine-node');
+  if (!nodes.length) return;
+
+  const engineObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      engineObserver.unobserve(entry.target);
+      nodes.forEach((node, i) => {
+        setTimeout(() => {
+          node.classList.add('pulse');
+          setTimeout(() => node.classList.remove('pulse'), 600);
+        }, i * 400);
+      });
+    });
+  }, { threshold: 0.35 });
+
+  engineObserver.observe(svg);
+}
+runEngineNodePulse();
+
+/* PERFORMANCE LOOP arrow pulse (Section 02 system diagram) */
+function runPerfLoopArrowPulse() {
+  const arrow = document.getElementById('perf-loop-arrow');
+  if (!arrow || prefersReducedMotion || !('IntersectionObserver' in window)) return;
+
+  const arrowObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      arrowObserver.unobserve(entry.target);
+      arrow.classList.add('pulsed');
+      setTimeout(() => arrow.classList.remove('pulsed'), 800);
+    });
+  }, { threshold: 0.4 });
+
+  arrowObserver.observe(arrow);
+}
+runPerfLoopArrowPulse();
+
+/* TIMELINE SCRUB (Section 10) — highlight the day node as its content scrolls into view */
+function runTimelineScrub() {
+  const dayNodes = document.querySelectorAll('.timeline-svg-wrap g.day-node');
+  if (!dayNodes.length) return;
+
+  if (prefersReducedMotion || !('IntersectionObserver' in window)) return;
+
+  const anchors = Array.from(dayNodes).map(node => {
+    const anchorId = node.getAttribute('data-day-anchor');
+    const target = anchorId ? document.getElementById(anchorId) : null;
+    return { node, target };
+  }).filter(item => item.target);
+
+  if (!anchors.length) return;
+
+  const dayObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      const match = anchors.find(a => a.target === entry.target);
+      if (!match) return;
+      if (entry.isIntersecting) {
+        anchors.forEach(a => {
+          if (a === match) {
+            a.node.classList.add('is-current');
+            a.node.classList.remove('is-past');
+          } else if (anchors.indexOf(a) < anchors.indexOf(match)) {
+            a.node.classList.add('is-past');
+            a.node.classList.remove('is-current');
+          } else {
+            a.node.classList.remove('is-past');
+            a.node.classList.remove('is-current');
+          }
+        });
+      }
+    });
+  }, { threshold: 0.3, rootMargin: '-30% 0px -30% 0px' });
+
+  anchors.forEach(a => dayObserver.observe(a.target));
+}
+runTimelineScrub();
 </script>
 
 </body>
