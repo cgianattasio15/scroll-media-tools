@@ -414,20 +414,6 @@ body{font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
   <p style="margin-top:16px;font-size:11px;color:rgba(255,255,255,0.2);">© 2026 Scroll Media. All rights reserved.</p>
 </footer>
 
-<form id="formspree-form" action="https://formspree.io/f/xreavjlr" method="POST" style="display:none;">
-  <input type="hidden" name="first_name" id="fs-fname" />
-  <input type="hidden" name="last_name" id="fs-lname" />
-  <input type="hidden" name="business_name" id="fs-bizname" />
-  <input type="email" name="email" id="fs-email" />
-  <input type="hidden" name="stage" id="fs-stage" />
-  <input type="hidden" name="score" id="fs-score" />
-  <input type="hidden" name="q1" id="fs-q1" /><input type="hidden" name="q2" id="fs-q2" />
-  <input type="hidden" name="q3" id="fs-q3" /><input type="hidden" name="q4" id="fs-q4" />
-  <input type="hidden" name="q5" id="fs-q5" /><input type="hidden" name="q6" id="fs-q6" />
-  <input type="hidden" name="q7" id="fs-q7" /><input type="hidden" name="q8" id="fs-q8" />
-  <input type="hidden" name="q9" id="fs-q9" /><input type="hidden" name="q10" id="fs-q10" />
-</form>
-
 <script>
 const TOTAL_Q=10;
 const answers={};
@@ -513,32 +499,39 @@ const stageData={
     ]}
 };
 
-function submitAndShowResult(){
+async function submitAndShowResult(){
   const fname=document.getElementById('fname').value.trim();
-  const lname=document.getElementById('lname').value.trim();
-  const bizname=document.getElementById('bizname').value.trim();
   const email=document.getElementById('email').value.trim();
   if(!fname||!email){alert('Please enter your first name and email to see your results.');return;}
   const score=calcScore();
   const stage=getStage(score);
   const data=stageData[stage];
-  document.getElementById('fs-fname').value=fname;
-  document.getElementById('fs-lname').value=lname;
-  document.getElementById('fs-bizname').value=bizname;
-  document.getElementById('fs-email').value=email;
-  document.getElementById('fs-stage').value=data.name;
-  document.getElementById('fs-score').value=score;
-  for(let i=1;i<=10;i++)document.getElementById('fs-q'+i).value=answerLabels[i]||'';
-  const fd=new FormData(document.getElementById('formspree-form'));
-  fetch(document.getElementById('formspree-form').action,{method:'POST',body:fd,headers:{'Accept':'application/json'}}).catch(()=>{});
-  /* Kit sequence enrollment routes through /api/subscribe Netlify Function.
-     Credential stays in env var KIT_V4_API_KEY, never in client JS.
-     Silent-fail preserved: quiz never breaks on Kit errors. */
-  const quizFields={quiz_stage:data.name,quiz_score:String(score)};
-  if(lname)quizFields.quiz_last_name=lname;
-  if(bizname)quizFields.quiz_business=bizname;
-  for(let i=1;i<=10;i++){if(answerLabels[i])quizFields['quiz_q'+i]=answerLabels[i];}
-  fetch('/api/subscribe',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({mode:'sequence',email:email,first_name:fname,sequence_id:'2670738',fields:quizFields})}).catch(()=>{});
+  /* POSTs to Kit form 9156357 ("Quiz Submissions"). The Master Nurture Router
+     automation listens on this form trigger and handles all downstream actions:
+     applies `lead-source-ig-maturity-quiz` + `quiz-lead` tags, sets the
+     `[System] In Sequence` flag, and enrolls the subscriber in the Master
+     Nurture (IG Lead Magnets) sequence, id 2670738.
+
+     Dropped quiz fields (captured client-side, not sent to Kit):
+     last_name, business_name, stage, score, q1-q10. Preserving these
+     requires creating a matching Kit Custom Field per field. If `stage`
+     and `score` become useful for segmentation, create the Custom Fields
+     in Kit and add them to the FormData payload below. */
+  const submitBtn=document.querySelector('.btn-submit');
+  const originalBtnText=submitBtn?submitBtn.textContent:null;
+  if(submitBtn){submitBtn.disabled=true;submitBtn.textContent='Submitting…';}
+  const fd=new FormData();
+  fd.append('email_address',email);
+  fd.append('first_name',fname);
+  try{
+    const res=await fetch('https://app.kit.com/forms/9156357/subscriptions',{method:'POST',body:fd});
+    if(!res.ok)throw new Error('Kit responded with status '+res.status);
+  }catch(err){
+    console.error('Kit form submission failed:',err);
+    if(submitBtn){submitBtn.disabled=false;submitBtn.textContent=originalBtnText;}
+    alert("We couldn't save your details right now. Please try again in a moment.");
+    return;
+  }
   showResult(data,score,fname);
 }
 
