@@ -137,17 +137,21 @@
   }
   .topbar-meta a { color: var(--fg-muted); border-bottom: 0; }
   .topbar-meta a:hover { color: var(--azure); }
-  .topbar-cta {
+  .topbar-cta,
+  .topbar-cta:link,
+  .topbar-cta:visited {
     display: inline-block;
     background: var(--azure);
-    color: var(--ghost);
+    color: #FFFFFF;
     padding: 8px 14px;
     font-size: 11px; font-weight: 700;
     letter-spacing: 0.10em; text-transform: uppercase;
     border-bottom: 0;
     transition: background 200ms var(--ease);
   }
-  .topbar-cta:hover { background: var(--azure-900); color: var(--ghost); border-bottom: 0; }
+  .topbar-cta:hover,
+  .topbar-cta:focus,
+  .topbar-cta:active { background: var(--azure-900); color: #FFFFFF; border-bottom: 0; }
 
   /* ============================================================
      HERO BAND · Azure-900, full-bleed, mirrors PDF cover
@@ -491,6 +495,74 @@
     max-width: 70ch;
   }
   .try-this strong {
+    font-style: italic;
+    font-weight: 700;
+    color: var(--azure-900);
+  }
+
+  /* v4 · "Example" callout, mirrors .try-this lime accent, distinct position (before .try-this) */
+  .example-callout {
+    font-style: italic;
+    font-size: 14px;
+    line-height: 1.55;
+    color: var(--fg);
+    margin-top: 12px;
+    padding: 8px 0 8px 14px;
+    border-left: 3px solid var(--highlighter);
+    max-width: 70ch;
+  }
+  .example-callout strong {
+    font-style: italic;
+    font-weight: 700;
+    color: var(--azure-900);
+  }
+  .example-callout ul {
+    margin: 6px 0;
+    padding-left: 22px;
+    list-style: disc;
+    font-style: normal;
+    font-size: 14px;
+    line-height: 1.6;
+  }
+  .example-callout ul li { margin-bottom: 5px; font-style: normal; }
+  .example-callout ul li:last-child { margin-bottom: 0; }
+  .example-callout ul li strong { font-style: normal; font-weight: 700; color: var(--azure-900); }
+  .example-callout ul li em { font-style: italic; }
+  .example-callout code {
+    font-family: 'SF Mono', Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
+    font-style: normal;
+    font-size: 14px;
+    background: var(--rule-faint);
+    padding: 1px 6px;
+    border-radius: 2px;
+    color: var(--azure-900);
+    white-space: pre-wrap;
+  }
+  .example-callout pre {
+    font-family: 'SF Mono', Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
+    font-style: normal;
+    font-size: 14px;
+    line-height: 1.6;
+    background: var(--rule-faint);
+    color: var(--azure-900);
+    padding: 10px 12px;
+    border-radius: 3px;
+    margin: 8px 0;
+    max-width: 65ch;
+    white-space: pre-wrap;
+    overflow-x: auto;
+  }
+
+  /* v4 · "Suggested tool" small tool-recommendation callout, single italic line, de-emphasized */
+  .suggested-tool {
+    font-style: italic;
+    font-size: 14px;
+    line-height: 1.55;
+    color: var(--fg-muted);
+    margin-top: 10px;
+    max-width: 70ch;
+  }
+  .suggested-tool strong {
     font-style: italic;
     font-weight: 700;
     color: var(--azure-900);
@@ -1469,7 +1541,15 @@
                 <li><strong>Geo qualifier</strong> (Cincinnati, neighborhood, or anchor location)</li>
                 <li><strong>Specialty</strong> (the unique angle that closes the search)</li>
               </ul>
-              <p class="check-illustration"><em>"Carl's Deli · Sandwiches + Catering · Hyde Park"</em> beats <em>"Carl's Deli"</em> every single time.</p>
+              <div class="example-callout">
+                <p><strong>Example:</strong> What good looks like, three formats:</p>
+                <ul>
+                  <li><strong>Realtor:</strong> <code>[Realtor Name] · Cincinnati Realtor · Hyde Park</code></li>
+                  <li><strong>Coffee shop:</strong> <code>[Shop Name] · Specialty Coffee · OTR + Findlay</code></li>
+                  <li><strong>Esthetician:</strong> <code>[Brand Name] · Microneedling Specialist · Cincinnati</code></li>
+                </ul>
+                <p>Each one stacks brand, category, geo. A prospect searching "Cincinnati realtor" or "OTR coffee" sees these accounts. A prospect searching for the brand name still sees them. You're discoverable both ways.</p>
+              </div>
               <p class="try-this"><strong>Try this:</strong> Open Instagram search, type the keywords your ideal customer would use. Does your account appear in the top results? If not, your name field needs reworking.</p>
               </div>
             </label>
@@ -1495,6 +1575,13 @@
                 <li><strong>Line 3. CTA.</strong> Clear next action with a down arrow (<em>"👇 Order catering online"</em>)</li>
               </ul>
               <p class="check-desc">Most local brands run bios that are all vibe, no information. <strong>Vibe doesn't survive the scan.</strong></p>
+              <div class="example-callout">
+                <p><strong>Example:</strong> A bio that works:</p>
+                <pre>Line 1: We help Cincinnati restaurants fill more catering orders.
+Line 2: 200+ catering events booked in 2025 across 40 local restaurants.
+Line 3: 👇 Order catering online</pre>
+                <p>Mission (who + outcome), proof (specific number), CTA (one action with arrow). 138 characters total. Reads in 4 seconds.</p>
+              </div>
               <p class="try-this"><strong>Try this:</strong> Read your bio aloud. If a stranger can't tell who you serve, why you're credible, and what to do next in 5 seconds, it needs a rewrite.</p>
               </div>
             </label>
@@ -1521,6 +1608,16 @@
                 <li>Get the guide</li>
               </ul>
               <p class="check-desc"><strong>One link, one action, one outcome.</strong></p>
+              <div class="example-callout">
+                <p><strong>Example:</strong> Single-link CTAs that convert:</p>
+                <ul>
+                  <li><strong>Catering season:</strong> "Book your holiday catering by Nov 15"</li>
+                  <li><strong>Product drop:</strong> "Shop the May collection (open through 5/31)"</li>
+                  <li><strong>Service business:</strong> "Book a 20-min discovery call"</li>
+                  <li><strong>Local hospitality:</strong> "View this week's menu and order online"</li>
+                </ul>
+                <p>Each one is specific, time-bound, and tied to a current goal. Generic "shop our website" links convert at half the rate.</p>
+              </div>
               <p class="try-this"><strong>Try this:</strong> If your bio link currently routes to a page with four or more destinations, kill three of them today. Run with one for 30 days, watch what happens to your click-through rate.</p>
               </div>
             </label>
@@ -1567,6 +1664,16 @@
                 <li><strong>Response-time floor:</strong> 24 hours max, 2 hours ideal</li>
                 <li><strong>Owner-escalation rule:</strong> which DMs get pulled up to the founder</li>
               </ul>
+              <div class="example-callout">
+                <p><strong>Example:</strong> A working DM system, three pieces:</p>
+                <ul>
+                  <li><strong>Saved replies (top 5):</strong> "Hours," "Catering inquiry," "Booking request," "Wholesale inquiry," "Press / collab"</li>
+                  <li><strong>Response-time SLA:</strong> All DMs answered within 24 hours. High-intent DMs (catering, booking, pricing) within 2 hours during business days.</li>
+                  <li><strong>Owner-escalation trigger:</strong> Any DM mentioning catering over $500, press, or an unhappy customer routes to the founder.</li>
+                </ul>
+                <p>When a DM comes in at 9pm Friday, the customer gets an auto-acknowledgment within 1 minute and a full reply by Saturday morning. Nobody waits until Tuesday.</p>
+              </div>
+              <p class="suggested-tool"><strong>Suggested tool: ManyChat.</strong> Set up keyword triggers, automated welcome flows, and saved-reply menus for common questions. The free tier covers 1,000 contacts per month, enough for most local brands.</p>
               <p class="try-this"><strong>Try this:</strong> Audit your last 20 DMs. How many took longer than 24 hours? Each one was a potential customer slipping away.</p>
               </div>
             </label>
@@ -1592,6 +1699,16 @@
                 <li>A small gesture (a discount code, a heads-up about a new menu item, an invite to a private event)</li>
               </ul>
               <p class="check-desc"><strong>Costs zero. Pays in referrals and loyalty for years.</strong></p>
+              <div class="example-callout">
+                <p><strong>Example:</strong> A 30-second acknowledgment that compounds:</p>
+                <ul>
+                  <li>A customer tags <code>[Restaurant Name]</code> in their dinner photo at 7pm Saturday.</li>
+                  <li><code>[Restaurant Name]</code> reposts to their own story by 8pm with: "Thanks for stopping in, see you again soon."</li>
+                  <li>The customer's network (~200 followers) sees the brand show up in their friend's story AND the brand's story.</li>
+                  <li>The customer brings two friends back the following week.</li>
+                </ul>
+                <p>That's $80 in revenue from a 30-second action. Repeat 4 times a week, and that's $1,600 a month from acknowledgment alone.</p>
+              </div>
               <p class="try-this"><strong>Try this:</strong> Set a daily 10-minute window at the same time every day to clear story-share acknowledgments. Recurring discipline beats heroic catch-up.</p>
               </div>
             </label>
@@ -1616,6 +1733,17 @@
                 <li><strong>Broken paths:</strong> pointing to a URL that 404s or a DM keyword you never set up</li>
               </ul>
               <p class="check-desc">Pointing to something that doesn't work <strong>burns the trust you just earned</strong>, faster than anything else on the platform.</p>
+              <div class="example-callout">
+                <p><strong>Example:</strong> A clean conversion path that works:</p>
+                <ul>
+                  <li><strong>Reel CTA:</strong> "Tap the link in our bio to order catering for your next event."</li>
+                  <li><strong>Bio link routes to:</strong> a smart-link with ONE destination, the catering inquiry form.</li>
+                  <li><strong>Form:</strong> mobile-optimized, loads in under 2 seconds, no broken fields.</li>
+                  <li><strong>Submission triggers:</strong> an immediate email confirmation and a DM acknowledgment.</li>
+                </ul>
+                <p>Every step works on mobile. No 404s. No detours. The viewer who taps "order catering" gets to "submitted my catering request" in under 60 seconds.</p>
+              </div>
+              <p class="suggested-tool"><strong>Suggested tool: Metricool smart-links.</strong> Turns your bio link into a routing page with click attribution per source story or post. The free tier covers it. Bonus: tells you which post drove each click, so you can double down on what works.</p>
               <p class="try-this"><strong>Try this:</strong> Pick your top 3 conversion-intent posts from the last 90 days. Click every CTA in each. Does the path actually go where it says? Fix the dead ones first.</p>
               </div>
             </label>
@@ -1663,6 +1791,15 @@
                 <li><strong>Pin 3. Proof.</strong> A named customer outcome with real numbers. Evidence, not claims.</li>
               </ul>
               <p class="check-desc">Together they answer the three questions every cold visitor asks in 30 seconds: <em>what is this, who's behind it, does it actually work?</em></p>
+              <div class="example-callout">
+                <p><strong>Example:</strong> A pinned set that converts cold visitors, for a <code>[Pilates Studio]</code>:</p>
+                <ul>
+                  <li><strong>Pin 1 (Work):</strong> A 6-slide carousel titled "Here's how we work with new clients." Tier 1 = intro pack ($79), Tier 2 = 4-week starter ($299), Tier 3 = monthly unlimited ($199/month). Ends with bio link CTA.</li>
+                  <li><strong>Pin 2 (Founder):</strong> A 60-second Reel of the founder walking through the studio, telling the story of why she opened it after burnout from her corporate fitness job. Specific moment: "I almost shut down in month 6 when I couldn't make payroll."</li>
+                  <li><strong>Pin 3 (Proof):</strong> A testimonial Reel from a 6-month client showing her transformation. 3 inches off her waist, off her anxiety medication, two new friends from class. Named, on camera, real numbers.</li>
+                </ul>
+                <p>A cold visitor lands on the profile, taps Pin 1, knows what's offered. Taps Pin 2, connects with the founder. Taps Pin 3, sees it actually works. Books a class.</p>
+              </div>
               <p class="try-this"><strong>Try this:</strong> Right now, open your profile and tap your three pinned slots. If they're random recent posts, you're leaking conversions every day they stay there.</p>
               </div>
             </label>
@@ -1682,6 +1819,15 @@
               </div>
               <p class="check-desc" id="desc-08">The reason most local brands plateau. <strong>40%</strong> discovery content (reach new audiences). <strong>35%</strong> trust-building (depth for both new and existing). <strong>25%</strong> conversion (the ask). The algorithm needs upstream reach signal to distribute downstream conversion content.</p>
               <p class="check-desc"><strong>The most common failure mode:</strong> 90% of posts are conversion content: <em>"book now," "order today," "buy this."</em> Conversion content without discovery upstream gets buried by the algorithm. The brand wonders why nobody new is finding them. <strong>The algorithm is the answer.</strong></p>
+              <div class="example-callout">
+                <p><strong>Example:</strong> A working 12-post mix for a <code>[Cincinnati Cafe]</code>:</p>
+                <ul>
+                  <li><strong>5 discovery posts (40%):</strong> trending Reel format, behind-the-scenes barista process, neighborhood pride collab, viral hook Reel, Cincinnati-specific event content</li>
+                  <li><strong>4 trust posts (35%):</strong> customer story repost, founder-on-camera "why we source local," product-quality carousel, FAQ answer post</li>
+                  <li><strong>3 conversion posts (25%):</strong> this-week's specials post, catering CTA carousel, holiday-hours announcement</li>
+                </ul>
+                <p>The trust and discovery posts work upstream of the 3 conversion posts. Those 3 conversion posts now perform 5x better because the algorithm distributes them. Same 12 posts as before, different distribution.</p>
+              </div>
               <p class="try-this"><strong>Try this:</strong> Open your grid. Look at your last 12 posts. Tag each one as discovery, trust, or conversion. Count them. If conversion is above 35%, you have a mix problem the algorithm is punishing.</p>
               </div>
             </label>
@@ -1699,15 +1845,24 @@
                 <span class="check-num">09</span>
                 <span class="check-title">You track saves and shares above everything else.</span>
               </div>
-              <p class="check-desc" id="desc-09"><em>Likes are dopamine. Follower count is vanity.</em> <strong>Saves</strong> are intent ("I want to come back to this"). <strong>Shares</strong> are referral ("I want my friend to see this"). These are the two signals that drive algorithmic distribution AND signal <em>"this matters."</em></p>
+              <p class="check-desc" id="desc-09"><em>Likes are dopamine. Follower count is vanity.</em> <strong>Saves</strong> are intent ("I want to come back to this"). <strong>Shares</strong> are referral ("I want my friend to see this"). For Reels specifically, <strong>retention percentage</strong> (how much of your video the average viewer watches) is the single biggest signal Instagram uses to decide who else sees the Reel. A 30-second Reel that holds 70% retention gets pushed to 10x the audience of a Reel that holds 30%. These are the signals that drive algorithmic distribution AND signal <em>"this matters."</em></p>
               <p class="check-sublist-label">Metric hierarchy, in priority order:</p>
               <ul class="check-sublist">
-                <li><strong>Shares</strong> · referral signal, strongest growth driver</li>
-                <li><strong>Saves</strong> · intent signal, strongest conversion predictor</li>
+                <li><strong>Shares</strong> · referral signal, strongest growth driver across all formats</li>
+                <li><strong>Saves</strong> · intent signal, strongest conversion predictor across all formats</li>
+                <li><strong>Retention %</strong> · video signal, the dial that controls Reel distribution</li>
                 <li><strong>Profile visits</strong> · buying intent</li>
                 <li><strong>Link taps</strong> · direct conversion</li>
                 <li><strong>Likes and followers</strong> · surface signal only</li>
               </ul>
+              <div class="example-callout">
+                <p><strong>Example:</strong> A <code>[Cincinnati Pilates Studio]</code> posts two Reels in the same week:</p>
+                <ul>
+                  <li><strong>Reel A:</strong> 5,000 views, 80 likes, 8 saves, 2 shares, 28% retention</li>
+                  <li><strong>Reel B:</strong> 15,000 views, 220 likes, 145 saves, 41 shares, 67% retention</li>
+                </ul>
+                <p>Reel A is the dopamine post. Punchline at the start, watcher scrolls. Reel B opens a curiosity loop, holds viewers for 25 seconds, drives saves and shares. Same studio, same week, 3x the reach because retention and saves were 5x higher. The algorithm rewarded the right signal.</p>
+              </div>
               <p class="try-this"><strong>Try this:</strong> Name your top 3 most-saved posts from the last 30 days. If you can't, you're measuring the wrong metrics, and you're missing the signal of what's actually working.</p>
               </div>
             </label>
@@ -1755,6 +1910,15 @@
                 <li><strong>Mutual shoutouts</strong> (story exchanges, post tags, mutual mentions)</li>
               </ul>
               <p class="check-desc">Most local brands stay siloed in their category and wonder why reach plateaus. <strong>Adjacent collabs are the fastest way to compound audience locally,</strong> without paid ads.</p>
+              <div class="example-callout">
+                <p><strong>Example:</strong> A <code>[Cincinnati Skincare Brand]</code> runs three collabs in one quarter:</p>
+                <ul>
+                  <li><strong>Joint Reel</strong> with a <code>[Local Pilates Studio]</code>: "Morning routine, skincare plus 30-minute workout." Both accounts post. Skincare brand gets in front of the studio's 12k followers; studio gets in front of skincare brand's 8k. Net: 4k new follower exchanges.</li>
+                  <li><strong>Pop-up event</strong> with a <code>[Neighborhood Florist]</code>: "Spring glow + bouquet" launch. Both businesses promote on stories for a week. Floor traffic at the pop-up: 80 attendees.</li>
+                  <li><strong>Mutual shoutout</strong> with a <code>[Brow Studio]</code>: Story exchange every Friday for a month. Story tap-throughs up 40% for both accounts.</li>
+                </ul>
+                <p>Three collabs, zero ad spend, audience compounded.</p>
+              </div>
               <p class="try-this"><strong>Try this:</strong> Write down the 5 adjacent-category Cincinnati brands whose audience you want access to. Start with one. Send the DM this week.</p>
               </div>
             </label>
@@ -1780,6 +1944,16 @@
                 <li>Plug in deliberately. A themed reel. A moment-tied product drop. A culturally-anchored carousel.</li>
               </ul>
               <p class="check-desc"><strong>Reach lives where attention lives.</strong> The algorithm rewards content tied to high-attention moments. The city rewards brands that show up as part of the city.</p>
+              <div class="example-callout">
+                <p><strong>Example:</strong> A <code>[Cincinnati Hospitality Brand]</code> runs Oktoberfest Zinzinnati content:</p>
+                <ul>
+                  <li><strong>Week before:</strong> A 30-second Reel, "Our top 3 Oktoberfest moves," tied to the festival, featuring branded German-themed menu items.</li>
+                  <li><strong>Day of:</strong> Story takeover, live coverage of the brand's booth, customer interactions, special menu items.</li>
+                  <li><strong>Week after:</strong> Carousel, "What we learned at our 50th Oktoberfest Zinzinnati booth this weekend."</li>
+                </ul>
+                <p>Reach during the Oktoberfest weekend: 5x the brand's normal reach. The algorithm distributes content tied to high-attention moments. The city rewards brands that show up as part of the city.</p>
+              </div>
+              <p class="suggested-tool"><strong>Suggested tool: VisitCincy.com, Cincinnati Magazine's events calendar, and Eventbrite Cincinnati.</strong> Three free sources for surfacing the city's annual cultural moments. Build your 8 to 12 list once a year, plug into your content calendar.</p>
               <p class="try-this"><strong>Try this:</strong> Write down the next Cincinnati cultural moment in the next 30 days. Plan one piece of content around it before this Friday.</p>
               </div>
             </label>
@@ -1795,17 +1969,24 @@
               <div class="check-body">
               <div class="check-head">
                 <span class="check-num">12</span>
-                <span class="check-title">You can name 5 Cincinnati brands whose audience you want access to.</span>
+                <span class="check-title">Your content leans into your edge, not the safe expected play.</span>
               </div>
-              <p class="check-desc" id="desc-12">Beyond your immediate competitors, <em>who in the city already has the audience you're building toward?</em> A 25k wellness account. A 40k food account. A 60k lifestyle account. They have the attention you need.</p>
-              <p class="check-sublist-label">Two failure modes:</p>
+              <p class="check-desc" id="desc-12">The biggest move in 2026 isn't posting more or louder. It's standing out. Most Cincinnati local brands run the safe expected playbook for their category and wonder why they blend in. <strong>The brands that compound</strong> understand the safe expected moves in their niche, then deliberately push past them and build content around what makes them different.</p>
+              <p class="check-sublist-label">The two-part audit:</p>
               <ul class="check-sublist">
-                <li><strong>Never reach out.</strong> Assume the bigger account won't engage. (Wrong. Local-brand ecosystems reward relationships.)</li>
-                <li><strong>Reach out lazily.</strong> Cold DM, generic ask, no value offered back. (Gets ignored every time.)</li>
+                <li><strong>What's the safe play in your category?</strong> The thing every [coffee shop / med spa / studio / shop / agency] in town is doing on Instagram right now. The expected content. The category baseline.</li>
+                <li><strong>What's YOUR edge?</strong> The thing only you can say, do, or show. The angle no one else in your Cincinnati category is taking. Your unique POV, your owner's personality, your specific approach, your unconventional take.</li>
               </ul>
-              <p class="check-desc"><strong>The play:</strong> identify the 5 accounts whose audience you want, find the angle that gives them content value back, propose the collab.</p>
-              <p class="check-desc">Cincinnati's local-brand ecosystem rewards relationships. The brands that compound fastest do it by partnering with established audiences, not by trying to build everything from scratch.</p>
-              <p class="try-this"><strong>Try this:</strong> Name your top 5 right now. If you can't, that's your assignment for the week. Write the list, find the angles, send the first DM.</p>
+              <p class="check-desc">If your content reads like every other [category] in town, you're blending in. <strong>The algorithm doesn't reward sameness. It rewards distinctness.</strong> Lean into the edge.</p>
+              <div class="example-callout">
+                <p><strong>Example:</strong> Two <code>[Cincinnati Coffee Shops]</code> with similar products:</p>
+                <ul>
+                  <li><strong>Shop A</strong> posts the safe content: drink shots on a marble counter, latte art, "Monday vibes" captions, behind-the-scenes barista footage. Same content as every other coffee shop in town.</li>
+                  <li><strong>Shop B</strong> leans into the founder's quirky personality and the shop's history. The owner is a former librarian who only opened the shop after a divorce in her 50s. She narrates her drink launches with deadpan one-liners and references obscure books. The content is unmistakably HER.</li>
+                </ul>
+                <p>Six months later: Shop A has 4k followers, average reach 800 per post. Shop B has 18k followers, average reach 6k per post. Same product, same neighborhood, same coffee. Different content lane. Different outcome.</p>
+              </div>
+              <p class="try-this"><strong>Try this:</strong> Write down the 3 most common content patterns every account in your category posts. Then write down the 3 things that make YOU different from those accounts. Build your next month of content around the second list, not the first.</p>
               </div>
             </label>
           </li>
