@@ -5,20 +5,20 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
 <meta name="theme-color" content="#071d4f" />
 <title>Cincinnati Local Brand Instagram Audit · Scroll Media</title>
-<meta name="description" content="23 things most Cincinnati local brands are getting wrong on Instagram. Self-scoring audit from Cincinnati's Instagram agency for local brands." />
+<meta name="description" content="12 things most Cincinnati local brands are getting wrong on Instagram. Self-scoring audit from Cincinnati's Instagram agency for local brands." />
 <link rel="canonical" href="https://tools.scrollmedia.co/instagram-audit-cincinnati/" />
 <link rel="icon" type="image/svg+xml" href="https://tools.scrollmedia.co/assets/scroll-favicon.svg" />
 
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://tools.scrollmedia.co/instagram-audit-cincinnati/" />
 <meta property="og:title" content="The Cincinnati Local Brand Instagram Audit" />
-<meta property="og:description" content="23 things most Cincinnati local brands are getting wrong on Instagram. Self-scoring audit from Cincinnati's Instagram agency for local brands." />
+<meta property="og:description" content="12 things most Cincinnati local brands are getting wrong on Instagram. Self-scoring audit from Cincinnati's Instagram agency for local brands." />
 <meta property="og:image" content="https://tools.scrollmedia.co/instagram-audit-cincinnati/og-image.png" />
 <meta property="og:image:width" content="1200" />
 <meta property="og:image:height" content="630" />
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content="The Cincinnati Local Brand Instagram Audit" />
-<meta name="twitter:description" content="23 things most Cincinnati local brands are getting wrong on Instagram. Self-scoring audit from Cincinnati's Instagram agency for local brands." />
+<meta name="twitter:description" content="12 things most Cincinnati local brands are getting wrong on Instagram. Self-scoring audit from Cincinnati's Instagram agency for local brands." />
 <meta name="twitter:image" content="https://tools.scrollmedia.co/instagram-audit-cincinnati/og-image.png" />
 
 <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -443,6 +443,58 @@
     margin-top: 6px;
     max-width: 70ch;
   }
+  .check-desc strong { color: var(--azure-900); font-weight: 700; }
+  .check-desc em { font-style: italic; }
+
+  /* v3 · structured sub-list inside item body */
+  .check-sublist-label {
+    font-weight: 700;
+    color: var(--azure-900);
+    font-size: 14px;
+    line-height: 1.55;
+    margin-top: 10px;
+    max-width: 70ch;
+  }
+  .check-sublist {
+    margin: 6px 0 8px 0;
+    padding-left: 22px;
+    list-style: disc;
+    color: var(--fg);
+    font-size: 14px;
+    line-height: 1.6;
+    max-width: 70ch;
+  }
+  .check-sublist li { margin-bottom: 6px; }
+  .check-sublist li:last-child { margin-bottom: 0; }
+  .check-sublist li strong { color: var(--azure-900); font-weight: 700; }
+  .check-sublist li em { font-style: italic; }
+
+  /* v3 · italic illustration line */
+  .check-illustration {
+    font-style: italic;
+    font-size: 14px;
+    line-height: 1.55;
+    color: var(--fg);
+    margin-top: 10px;
+    max-width: 70ch;
+  }
+
+  /* v3 · "Try this" callout with lime accent */
+  .try-this {
+    font-style: italic;
+    font-size: 14px;
+    line-height: 1.55;
+    color: var(--fg);
+    margin-top: 12px;
+    padding: 8px 0 8px 14px;
+    border-left: 3px solid var(--highlighter);
+    max-width: 70ch;
+  }
+  .try-this strong {
+    font-style: italic;
+    font-weight: 700;
+    color: var(--azure-900);
+  }
 
   .zone-tally {
     margin-top: 24px;
@@ -738,13 +790,13 @@
     border: 1px solid var(--rule);
   }
   .score-band {
-    flex: 1;
     height: 100%;
   }
-  .score-band-1 { background: var(--azure-900); }
-  .score-band-2 { background: var(--azure-600); }
-  .score-band-3 { background: var(--lucid-deep); }
-  .score-band-4 { background: var(--highlighter); }
+  /* v3 · proportional widths matching value ranges (3/4/3/2 of 12) */
+  .score-band-1 { flex: 3 0 0; background: var(--azure-900); }
+  .score-band-2 { flex: 4 0 0; background: var(--azure-600); }
+  .score-band-3 { flex: 3 0 0; background: var(--lucid-deep); }
+  .score-band-4 { flex: 2 0 0; background: var(--highlighter); }
   .score-marker {
     position: absolute;
     top: -12px;
@@ -779,19 +831,24 @@
     border-radius: 50%;
     border: 2px solid var(--ghost);
   }
+  /* v3 · labels positioned at exact value-percent of /12 scale */
   .score-bar-labels {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 18px;
+    position: relative;
+    margin-top: 14px;
+    height: 16px;
     padding: 0;
   }
   .score-bar-labels span {
+    position: absolute;
+    transform: translateX(-50%);
     font-size: 12px;
     font-weight: 700;
     color: var(--fg-muted);
     font-variant-numeric: tabular-nums;
     letter-spacing: 0.04em;
   }
+  .score-bar-labels span:first-child { transform: none; }
+  .score-bar-labels span:last-child { transform: translateX(-100%); }
   @media (prefers-reduced-motion: reduce) {
     .score-marker { transition: none; }
   }
@@ -1327,19 +1384,19 @@
 
       <div class="hero-eyebrow">Free self-scoring audit</div>
       <h1>The Cincinnati Local Brand <span class="accent">Instagram Audit.</span></h1>
-      <p class="hero-sub">23 questions most Cincinnati brands cannot answer about their own Instagram. The ones that can outperform the ones that cannot, every time.</p>
+      <p class="hero-sub">12 questions most Cincinnati brands cannot answer about their own Instagram. The ones that can outperform the ones that cannot, every time.</p>
 
       <div class="hero-stats">
         <div class="hero-stat">
-          <div class="num">23</div>
+          <div class="num">12</div>
           <div class="lbl">Self-scoring items</div>
         </div>
         <div class="hero-stat">
-          <div class="num">6</div>
+          <div class="num">4</div>
           <div class="lbl">Strategic layers</div>
         </div>
         <div class="hero-stat">
-          <div class="num">5 min</div>
+          <div class="num">3 min</div>
           <div class="lbl">To complete</div>
         </div>
       </div>
@@ -1369,13 +1426,13 @@
        ========================================================== -->
   <section class="foundation">
     <div class="foundation-inner">
-      <p>Most Cincinnati local brands run Instagram on instinct. Post when there's time. Post what feels right. Hope something works. The brands that pull ahead are not posting more or trying harder. They're running a system. This audit walks the six layers of that system: profile, audience psychology, content architecture, conversion, Cincinnati integration, and measurement. Run it on your own account. Be honest. Score yourself.</p>
+      <p>Most Cincinnati local brands run Instagram on instinct. Post when there's time. Post what feels right. Hope something works. The brands that pull ahead are not posting more or trying harder. They're running a system. This audit covers the 12 highest-leverage moves: profile fundamentals, conversion plumbing, the content discipline that compounds, and the Cincinnati layer most local brands skip entirely. Run it on your own account. Be honest. Score yourself.</p>
       <p class="lead-in"><strong>The audit starts below.</strong></p>
     </div>
   </section>
 
   <!-- ==========================================================
-       ZONE 01 · PROFILE & POSITIONING
+       ZONE 01 · TABLE STAKES · PROFILE
        ========================================================== -->
   <section class="zones">
     <div class="zones-inner">
@@ -1384,11 +1441,11 @@
         <div class="zone-header">
           <div class="zone-num">01</div>
           <div class="zone-head-text">
-            <div class="zone-eyebrow">Foundation</div>
-            <h2 class="zone-title">Profile &amp; Positioning</h2>
+            <div class="zone-eyebrow">Table stakes</div>
+            <h2 class="zone-title">Profile</h2>
           </div>
         </div>
-        <p class="zone-intro">The first three seconds. Six profile levers decide whether a stranger stays or scrolls. If any one leaks, nothing downstream matters.</p>
+        <p class="zone-intro">The first three seconds. Three profile levers decide whether a stranger stays or scrolls. If any one leaks, nothing downstream matters.</p>
 
         <ul class="checklist" data-zone="01">
           <li class="check-item" data-item="01">
@@ -1402,9 +1459,18 @@
               <div class="check-body">
               <div class="check-head">
                 <span class="check-num">01</span>
-                <span class="check-title">Your profile photo reads at 110 pixels.</span>
+                <span class="check-title">Your name field is keyword-loaded for Instagram search.</span>
               </div>
-              <p class="check-desc" id="desc-01">90% of the time someone sees your photo, they see it at avatar scale in feed comments, story replies, and DM previews. Most local brands design for the profile page and forget the avatar size where the photo actually lives. Screenshot yours at avatar size. If a stranger can't tell what kind of business you are in one second, the photo is leaking 90% of the impressions it earns.</p>
+              <p class="check-desc" id="desc-01">The handle is who you are. <strong>The name field</strong> (the bold line above it) is what Instagram uses for search ranking. Most local brands leave it set to the brand name only and waste the highest-converting search surface on the platform.</p>
+              <p class="check-sublist-label">The pattern that wins:</p>
+              <ul class="check-sublist">
+                <li><strong>Brand name</strong> first</li>
+                <li><strong>Category</strong> in the searchable language your customer uses</li>
+                <li><strong>Geo qualifier</strong> (Cincinnati, neighborhood, or anchor location)</li>
+                <li><strong>Specialty</strong> (the unique angle that closes the search)</li>
+              </ul>
+              <p class="check-illustration"><em>"Carl's Deli · Sandwiches + Catering · Hyde Park"</em> beats <em>"Carl's Deli"</em> every single time.</p>
+              <p class="try-this"><strong>Try this:</strong> Open Instagram search, type the keywords your ideal customer would use. Does your account appear in the top results? If not, your name field needs reworking.</p>
               </div>
             </label>
           </li>
@@ -1419,9 +1485,17 @@
               <div class="check-body">
               <div class="check-head">
                 <span class="check-num">02</span>
-                <span class="check-title">Your handle passes the verbal test.</span>
+                <span class="check-title">Your bio runs three lines: mission, proof, next step.</span>
               </div>
-              <p class="check-desc" id="desc-02">Customers say handles to each other. "Just DM @___." If yours requires spelling clarification, explaining the numbers at the end, or pausing on the periods, it's losing every conversation that happens off-platform. Short. Easy to say. Easy to find. No "official" suffix, no numerical filler, no misspellings as workarounds.</p>
+              <p class="check-desc" id="desc-02">You have 150 characters and 5 seconds. Most local brands burn both on vibe and forget the job.</p>
+              <p class="check-sublist-label">Three lines, three jobs:</p>
+              <ul class="check-sublist">
+                <li><strong>Line 1. Mission.</strong> WHO you help and WHAT outcome (<em>"We help Cincinnati restaurants fill more catering orders"</em>)</li>
+                <li><strong>Line 2. Proof.</strong> One specific number, award, or stat (<em>"Best Deli 2026, Cincinnati Magazine"</em>)</li>
+                <li><strong>Line 3. CTA.</strong> Clear next action with a down arrow (<em>"👇 Order catering online"</em>)</li>
+              </ul>
+              <p class="check-desc">Most local brands run bios that are all vibe, no information. <strong>Vibe doesn't survive the scan.</strong></p>
+              <p class="try-this"><strong>Try this:</strong> Read your bio aloud. If a stranger can't tell who you serve, why you're credible, and what to do next in 5 seconds, it needs a rewrite.</p>
               </div>
             </label>
           </li>
@@ -1436,12 +1510,43 @@
               <div class="check-body">
               <div class="check-head">
                 <span class="check-num">03</span>
-                <span class="check-title">Your name field is keyword-loaded for Instagram search.</span>
+                <span class="check-title">Your link in bio routes to ONE current action.</span>
               </div>
-              <p class="check-desc" id="desc-03">The handle is who you are. The name field (the bold line above it) is the most undervalued search surface on Instagram. The algorithm indexes it for keyword search. When a prospect types "Cincinnati realtor" or "Hyde Park deli," Instagram surfaces accounts whose name field contains those words, not handles strangers don't recognize. Pattern that wins: Brand Name · Category · Geo · Specialty. "Carl's Deli · Sandwiches + Catering · Hyde Park" beats "Carl's Deli" alone every time.</p>
+              <p class="check-desc" id="desc-03">Not a Linktree maze with eight options. Not a vague <em>"shop our website."</em> One clear, current next action, tied to what you actually want this month.</p>
+              <p class="check-sublist-label">What "one current action" looks like:</p>
+              <ul class="check-sublist">
+                <li>Order catering (this season)</li>
+                <li>Book a table (this weekend)</li>
+                <li>See this week's drop</li>
+                <li>Get the guide</li>
+              </ul>
+              <p class="check-desc"><strong>One link, one action, one outcome.</strong></p>
+              <p class="try-this"><strong>Try this:</strong> If your bio link currently routes to a page with four or more destinations, kill three of them today. Run with one for 30 days, watch what happens to your click-through rate.</p>
               </div>
             </label>
           </li>
+        </ul>
+
+        <div class="zone-tally">
+          <div class="label">Section 01 score</div>
+          <div class="score"><span data-zone-score="01">0</span> / 3</div>
+        </div>
+      </div>
+
+      <!-- ==========================================================
+           ZONE 02 · QUICK WINS · CONVERSION
+           ========================================================== -->
+      <div class="zone reveal" id="zone-02">
+        <div class="zone-header">
+          <div class="zone-num">02</div>
+          <div class="zone-head-text">
+            <div class="zone-eyebrow">Quick wins</div>
+            <h2 class="zone-title">Conversion</h2>
+          </div>
+        </div>
+        <p class="zone-intro">Followers do not convert by accident. Three plumbing fixes most local brands miss. Each one captures customers you're already losing.</p>
+
+        <ul class="checklist" data-zone="02">
           <li class="check-item" data-item="04">
             <label class="check-row">
               <span class="check-box-wrap">
@@ -1453,9 +1558,16 @@
               <div class="check-body">
               <div class="check-head">
                 <span class="check-num">04</span>
-                <span class="check-title">Your bio runs three lines: mission, proof, next step.</span>
+                <span class="check-title">You have a DM system, not DM chaos.</span>
               </div>
-              <p class="check-desc" id="desc-04">You have 150 characters and 5 seconds. Line 1 names WHO you help and WHAT outcome ("we help X do Y"). Line 2 carries one specific proof point (an award, a number, a customer count). Line 3 is the call to action with a down arrow routing to the bio link. Most local brands run bios that are all vibe, no information. Vibe doesn't survive the scan.</p>
+              <p class="check-desc" id="desc-04">The DM is the conversion surface for every local brand. Most local brands lose qualified buyers because <em>someone DMed at 9pm Friday and got a reply Tuesday morning.</em> That buyer found someone else over the weekend.</p>
+              <p class="check-sublist-label">The system, three parts:</p>
+              <ul class="check-sublist">
+                <li><strong>Saved replies</strong> for the five questions you get most (drag-and-drop them in under 30 seconds)</li>
+                <li><strong>Response-time floor:</strong> 24 hours max, 2 hours ideal</li>
+                <li><strong>Owner-escalation rule:</strong> which DMs get pulled up to the founder</li>
+              </ul>
+              <p class="try-this"><strong>Try this:</strong> Audit your last 20 DMs. How many took longer than 24 hours? Each one was a potential customer slipping away.</p>
               </div>
             </label>
           </li>
@@ -1470,9 +1582,17 @@
               <div class="check-body">
               <div class="check-head">
                 <span class="check-num">05</span>
-                <span class="check-title">Your link in bio routes to ONE current action.</span>
+                <span class="check-title">You acknowledge every customer story-share within 24 hours.</span>
               </div>
-              <p class="check-desc" id="desc-05">Not a Linktree maze with eight options. Not a vague "shop our website." One clear, current next action tied to what you actually want this month: order catering, book a table, see this week's drop, get the guide. One link, one action, one outcome.</p>
+              <p class="check-desc" id="desc-05">The single highest-ROI community move local brands miss. Customers who tag you and get <strong>crickets</strong> quietly stop. Customers who feel seen tell their friends.</p>
+              <p class="check-sublist-label">Three ways to acknowledge:</p>
+              <ul class="check-sublist">
+                <li>A short DM (<em>"Thanks for stopping in, Sarah!"</em>)</li>
+                <li>A repost to your story with a comment</li>
+                <li>A small gesture (a discount code, a heads-up about a new menu item, an invite to a private event)</li>
+              </ul>
+              <p class="check-desc"><strong>Costs zero. Pays in referrals and loyalty for years.</strong></p>
+              <p class="try-this"><strong>Try this:</strong> Set a daily 10-minute window at the same time every day to clear story-share acknowledgments. Recurring discipline beats heroic catch-up.</p>
               </div>
             </label>
           </li>
@@ -1487,34 +1607,41 @@
               <div class="check-body">
               <div class="check-head">
                 <span class="check-num">06</span>
-                <span class="check-title">Your 3 pinned posts run Work, Founder, Proof.</span>
+                <span class="check-title">Every conversion-intent post drives ONE path that's actually live.</span>
               </div>
-              <p class="check-desc" id="desc-06">Three pinned slots, three jobs. Pin 1 (How to Work With Us): exactly what you offer and how to engage. Pin 2 (Founder Journey): the human behind the business, a real moment, a specific story. Pin 3 (Proof): a named customer outcome with real numbers. Together they answer the three questions every cold visitor has within 30 seconds. Most local brands either don't use the pinned slots or pin their three most recent posts. Both waste the highest-leverage surface on the entire profile.</p>
+              <p class="check-desc" id="desc-06">Not <em>"DM us OR check our link OR comment OR call."</em> One. And whatever path you pick (DM trigger, link, phone) has to exist and work today.</p>
+              <p class="check-sublist-label">The two failure modes:</p>
+              <ul class="check-sublist">
+                <li><strong>Choice paralysis:</strong> giving the viewer too many ways to act, they pick none</li>
+                <li><strong>Broken paths:</strong> pointing to a URL that 404s or a DM keyword you never set up</li>
+              </ul>
+              <p class="check-desc">Pointing to something that doesn't work <strong>burns the trust you just earned</strong>, faster than anything else on the platform.</p>
+              <p class="try-this"><strong>Try this:</strong> Pick your top 3 conversion-intent posts from the last 90 days. Click every CTA in each. Does the path actually go where it says? Fix the dead ones first.</p>
               </div>
             </label>
           </li>
         </ul>
 
         <div class="zone-tally">
-          <div class="label">Section 01 score</div>
-          <div class="score"><span data-zone-score="01">0</span> / 6</div>
+          <div class="label">Section 02 score</div>
+          <div class="score"><span data-zone-score="02">0</span> / 3</div>
         </div>
       </div>
 
       <!-- ==========================================================
-           ZONE 02 · AUDIENCE PSYCHOLOGY
+           ZONE 03 · GROWTH ENGINE · CONTENT
            ========================================================== -->
-      <div class="zone reveal" id="zone-02">
+      <div class="zone reveal" id="zone-03">
         <div class="zone-header">
-          <div class="zone-num">02</div>
+          <div class="zone-num">03</div>
           <div class="zone-head-text">
-            <div class="zone-eyebrow">The differentiator</div>
-            <h2 class="zone-title">Audience Psychology</h2>
+            <div class="zone-eyebrow">Growth engine</div>
+            <h2 class="zone-title">Content</h2>
           </div>
         </div>
-        <p class="zone-intro">Most local brands target by demographics. Demographics tell you who. Psychology tells you why. Why is what makes content work. This is the layer almost no one runs.</p>
+        <p class="zone-intro">Most local brands plateau here. The content discipline that compounds. No paid ads, no posting more, no burnout.</p>
 
-        <ul class="checklist" data-zone="02">
+        <ul class="checklist" data-zone="03">
           <li class="check-item" data-item="07">
             <label class="check-row">
               <span class="check-box-wrap">
@@ -1526,9 +1653,17 @@
               <div class="check-body">
               <div class="check-head">
                 <span class="check-num">07</span>
-                <span class="check-title">Your dream outcome is named at three layers, not one.</span>
+                <span class="check-title">Your 3 pinned posts run Work, Founder, Proof.</span>
               </div>
-              <p class="check-desc" id="desc-07">Tangible (what they walk away with). Emotional (how they feel). Social (how others perceive them when they have it). "More customers" is not a dream outcome. "I want our catering operation to be the one every Cincinnati office defaults to without thinking, so I stop competing on price" is. If you cannot articulate it in three layers, you cannot write content that earns it.</p>
+              <p class="check-desc" id="desc-07">Pinned posts are the most strategically valuable real estate on your profile, ahead of the bio, ahead of every other post. Most local brands either don't use them or pin their three most recent posts. Both <strong>waste the highest-leverage surface on the entire account.</strong></p>
+              <p class="check-sublist-label">Three pinned slots, three jobs:</p>
+              <ul class="check-sublist">
+                <li><strong>Pin 1. How to Work With [Brand].</strong> Exactly what you offer and how to engage. A cold visitor leaves knowing what you do.</li>
+                <li><strong>Pin 2. Founder Journey.</strong> The human behind the business. A real moment, a specific story, the <em>why</em>.</li>
+                <li><strong>Pin 3. Proof.</strong> A named customer outcome with real numbers. Evidence, not claims.</li>
+              </ul>
+              <p class="check-desc">Together they answer the three questions every cold visitor asks in 30 seconds: <em>what is this, who's behind it, does it actually work?</em></p>
+              <p class="try-this"><strong>Try this:</strong> Right now, open your profile and tap your three pinned slots. If they're random recent posts, you're leaking conversions every day they stay there.</p>
               </div>
             </label>
           </li>
@@ -1543,9 +1678,11 @@
               <div class="check-body">
               <div class="check-head">
                 <span class="check-num">08</span>
-                <span class="check-title">You know the three real objections, and the fear underneath each.</span>
+                <span class="check-title">Your last 12 posts hit a deliberate 40 / 35 / 25 mix.</span>
               </div>
-              <p class="check-desc" id="desc-08">Not the surface objection. The fear, doubt, or uncertainty underneath it. "Too expensive" is the surface. Underneath: "I'll get judged for spending this." "Not sure I'll use it" is the surface. Underneath: "I've been burned by something that looked great on Instagram and was average in person." Content that addresses the surface objection loses. Content that addresses the fear underneath converts.</p>
+              <p class="check-desc" id="desc-08">The reason most local brands plateau. <strong>40%</strong> discovery content (reach new audiences). <strong>35%</strong> trust-building (depth for both new and existing). <strong>25%</strong> conversion (the ask). The algorithm needs upstream reach signal to distribute downstream conversion content.</p>
+              <p class="check-desc"><strong>The most common failure mode:</strong> 90% of posts are conversion content: <em>"book now," "order today," "buy this."</em> Conversion content without discovery upstream gets buried by the algorithm. The brand wonders why nobody new is finding them. <strong>The algorithm is the answer.</strong></p>
+              <p class="try-this"><strong>Try this:</strong> Open your grid. Look at your last 12 posts. Tag each one as discovery, trust, or conversion. Count them. If conversion is above 35%, you have a mix problem the algorithm is punishing.</p>
               </div>
             </label>
           </li>
@@ -1560,12 +1697,43 @@
               <div class="check-body">
               <div class="check-head">
                 <span class="check-num">09</span>
-                <span class="check-title">You can name the dominant psychological driver behind the buy.</span>
+                <span class="check-title">You track saves and shares above everything else.</span>
               </div>
-              <p class="check-desc" id="desc-09">Status, social approval, fear of loss, certainty, identity, social proof, or simple enjoyment. Buyers don't choose your brand because they're "34-year-old professionals." They choose it because of which of those drivers your offer activates. Most local brands skip this step entirely. The ones that don't get content that actually moves people.</p>
+              <p class="check-desc" id="desc-09"><em>Likes are dopamine. Follower count is vanity.</em> <strong>Saves</strong> are intent ("I want to come back to this"). <strong>Shares</strong> are referral ("I want my friend to see this"). These are the two signals that drive algorithmic distribution AND signal <em>"this matters."</em></p>
+              <p class="check-sublist-label">Metric hierarchy, in priority order:</p>
+              <ul class="check-sublist">
+                <li><strong>Shares</strong> · referral signal, strongest growth driver</li>
+                <li><strong>Saves</strong> · intent signal, strongest conversion predictor</li>
+                <li><strong>Profile visits</strong> · buying intent</li>
+                <li><strong>Link taps</strong> · direct conversion</li>
+                <li><strong>Likes and followers</strong> · surface signal only</li>
+              </ul>
+              <p class="try-this"><strong>Try this:</strong> Name your top 3 most-saved posts from the last 30 days. If you can't, you're measuring the wrong metrics, and you're missing the signal of what's actually working.</p>
               </div>
             </label>
           </li>
+        </ul>
+
+        <div class="zone-tally">
+          <div class="label">Section 03 score</div>
+          <div class="score"><span data-zone-score="03">0</span> / 3</div>
+        </div>
+      </div>
+
+      <!-- ==========================================================
+           ZONE 04 · THE CINCINNATI EDGE · DIFFERENTIATOR
+           ========================================================== -->
+      <div class="zone reveal" id="zone-04">
+        <div class="zone-header">
+          <div class="zone-num">04</div>
+          <div class="zone-head-text">
+            <div class="zone-eyebrow">The Cincinnati edge</div>
+            <h2 class="zone-title">Differentiator</h2>
+          </div>
+        </div>
+        <p class="zone-intro">The layer most local brands skip entirely. The accounts that pull ahead in Cincinnati do it on the back of this layer, not on generic content. This is where "Cincinnati local brand" stops being a tagline.</p>
+
+        <ul class="checklist" data-zone="04">
           <li class="check-item" data-item="10">
             <label class="check-row">
               <span class="check-box-wrap">
@@ -1577,34 +1745,20 @@
               <div class="check-body">
               <div class="check-head">
                 <span class="check-num">10</span>
-                <span class="check-title">You speak differently to inside-the-house and outside-the-house audiences.</span>
+                <span class="check-title">You have at least 3 adjacent-industry collaborations in motion.</span>
               </div>
-              <p class="check-desc" id="desc-10">Inside-the-house = current customers who already love you. Outside-the-house = strangers who don't know you exist. Two different audiences, two different jobs. Inside-the-house content builds loyalty, drives referrals, upsells. Outside-the-house content has to make sense without context, can't use insider language, and isn't built to reward existing customers. If you only post inside-the-house, you wonder why you don't grow. If you only post outside-the-house, your existing customers feel like strangers.</p>
+              <p class="check-desc" id="desc-10">Your ideal customer doesn't only care about your category. <em>A skincare customer also cares about wellness, fitness, brow and lash, nails. A coffee shop customer also cares about local bakeries, roasters, neighborhood retail. A med spa customer cares about dermatology, massage, fitness.</em></p>
+              <p class="check-desc"><strong>The play:</strong> identify 5 Cincinnati brands in adjacent categories whose audience overlaps yours, then build cross-pollination plays:</p>
+              <ul class="check-sublist">
+                <li><strong>Joint content</strong> (a reel together, a shared carousel)</li>
+                <li><strong>Joint events</strong> (a popup, a launch night, a takeover)</li>
+                <li><strong>Mutual shoutouts</strong> (story exchanges, post tags, mutual mentions)</li>
+              </ul>
+              <p class="check-desc">Most local brands stay siloed in their category and wonder why reach plateaus. <strong>Adjacent collabs are the fastest way to compound audience locally,</strong> without paid ads.</p>
+              <p class="try-this"><strong>Try this:</strong> Write down the 5 adjacent-category Cincinnati brands whose audience you want access to. Start with one. Send the DM this week.</p>
               </div>
             </label>
           </li>
-        </ul>
-
-        <div class="zone-tally">
-          <div class="label">Section 02 score</div>
-          <div class="score"><span data-zone-score="02">0</span> / 4</div>
-        </div>
-      </div>
-
-      <!-- ==========================================================
-           ZONE 03 · CONTENT ARCHITECTURE
-           ========================================================== -->
-      <div class="zone reveal" id="zone-03">
-        <div class="zone-header">
-          <div class="zone-num">03</div>
-          <div class="zone-head-text">
-            <div class="zone-eyebrow">The engine</div>
-            <h2 class="zone-title">Content Architecture</h2>
-          </div>
-        </div>
-        <p class="zone-intro">What you post and the mix of what you post decides whether the algorithm distributes you and whether the right people stick around.</p>
-
-        <ul class="checklist" data-zone="03">
           <li class="check-item" data-item="11">
             <label class="check-row">
               <span class="check-box-wrap">
@@ -1616,9 +1770,17 @@
               <div class="check-body">
               <div class="check-head">
                 <span class="check-num">11</span>
-                <span class="check-title">Your last 12 posts hit a deliberate 40 / 35 / 25 mix.</span>
+                <span class="check-title">Your content calendar plugs into Cincinnati's cultural calendar.</span>
               </div>
-              <p class="check-desc" id="desc-11">40% discovery (reach new audiences, outside-the-house). 35% trust-building (depth for both audiences). 25% conversion (move toward the action, primarily inside-the-house). The mix is intentional across the rolling 12. Most local brands run 90% conversion content and wonder why nobody new finds them. The algorithm needs reach signal to distribute conversion content. You can't skip the top of the funnel.</p>
+              <p class="check-desc" id="desc-11">The Queen City runs on a calendar of moments the entire city pays attention to. <em>Oktoberfest Zinzinnati. Findlay Market opening day. BLINK. Bockfest. Taste of Cincinnati. Maifest. Flying Pig. May Festival. The Reds, the Bengals, FC Cincinnati.</em> Most local brands post evergreen content through those windows while every other active account in town plugs into the moment.</p>
+              <p class="check-sublist-label">The shift:</p>
+              <ul class="check-sublist">
+                <li>Build a list of the <strong>8 to 12 Cincinnati moments</strong> your audience cares about each year</li>
+                <li>Map them to your content calendar</li>
+                <li>Plug in deliberately. A themed reel. A moment-tied product drop. A culturally-anchored carousel.</li>
+              </ul>
+              <p class="check-desc"><strong>Reach lives where attention lives.</strong> The algorithm rewards content tied to high-attention moments. The city rewards brands that show up as part of the city.</p>
+              <p class="try-this"><strong>Try this:</strong> Write down the next Cincinnati cultural moment in the next 30 days. Plan one piece of content around it before this Friday.</p>
               </div>
             </label>
           </li>
@@ -1633,116 +1795,17 @@
               <div class="check-body">
               <div class="check-head">
                 <span class="check-num">12</span>
-                <span class="check-title">Your hooks create curiosity gaps, not punchlines.</span>
+                <span class="check-title">You can name 5 Cincinnati brands whose audience you want access to.</span>
               </div>
-              <p class="check-desc" id="desc-12">The first two seconds open a loop the viewer needs to close. "We tried all 32 and ranked them. The winner surprised us" earns the next eight seconds because the brain has to know the answer. "Here are our top 3 sandwiches" gives the punchline away and the viewer keeps scrolling. The hook isn't where you reveal. It's where you create the need to.</p>
-              </div>
-            </label>
-          </li>
-          <li class="check-item" data-item="13">
-            <label class="check-row">
-              <span class="check-box-wrap">
-              <input type="checkbox" data-item-input="13" aria-describedby="desc-13">
-              <span class="check-box-visual" aria-hidden="true">
-                <svg viewBox="0 0 24 24"><polyline points="5,12 10,17 19,7"></polyline></svg>
-              </span>
-              </span>
-              <div class="check-body">
-              <div class="check-head">
-                <span class="check-num">13</span>
-                <span class="check-title">You have 3 to 5 pillars, and every pillar maps to a customer trigger.</span>
-              </div>
-              <p class="check-desc" id="desc-13">Pillars are not "lifestyle" or "fun." Pillars are categories your audience expects from you, each tied to a specific motivator, pain point, or FAQ from your ideal customer. "Behind the line in the kitchen" maps to the dream of insider access. "How catering actually works on event day" maps to a real FAQ from real buyers. If a pillar doesn't connect to a real customer trigger, it gets cut.</p>
-              </div>
-            </label>
-          </li>
-          <li class="check-item" data-item="14">
-            <label class="check-row">
-              <span class="check-box-wrap">
-              <input type="checkbox" data-item-input="14" aria-describedby="desc-14">
-              <span class="check-box-visual" aria-hidden="true">
-                <svg viewBox="0 0 24 24"><polyline points="5,12 10,17 19,7"></polyline></svg>
-              </span>
-              </span>
-              <div class="check-body">
-              <div class="check-head">
-                <span class="check-num">14</span>
-                <span class="check-title">Every idea passes the three-question test before it gets made.</span>
-              </div>
-              <p class="check-desc" id="desc-14">Why would someone stop scrolling? Why would they keep watching? Why would they save, share, or act? Three questions. Every idea answers all three, or it gets cut. Most local brands skip this and post whatever they thought of that morning. The discipline of cutting your own ideas before you make them is what separates an account that posts from an account that performs.</p>
-              </div>
-            </label>
-          </li>
-        </ul>
-
-        <div class="zone-tally">
-          <div class="label">Section 03 score</div>
-          <div class="score"><span data-zone-score="03">0</span> / 4</div>
-        </div>
-      </div>
-
-      <!-- ==========================================================
-           ZONE 04 · CONVERSION + COMMUNITY
-           ========================================================== -->
-      <div class="zone reveal" id="zone-04">
-        <div class="zone-header">
-          <div class="zone-num">04</div>
-          <div class="zone-head-text">
-            <div class="zone-eyebrow">The conversion layer</div>
-            <h2 class="zone-title">Conversion &amp; Community</h2>
-          </div>
-        </div>
-        <p class="zone-intro">Followers do not convert by accident. The path from "saw a post" to "took the action" has to be designed. The community layer is where it compounds.</p>
-
-        <ul class="checklist" data-zone="04">
-          <li class="check-item" data-item="15">
-            <label class="check-row">
-              <span class="check-box-wrap">
-              <input type="checkbox" data-item-input="15" aria-describedby="desc-15">
-              <span class="check-box-visual" aria-hidden="true">
-                <svg viewBox="0 0 24 24"><polyline points="5,12 10,17 19,7"></polyline></svg>
-              </span>
-              </span>
-              <div class="check-body">
-              <div class="check-head">
-                <span class="check-num">15</span>
-                <span class="check-title">Every conversion-intent post drives to ONE path that's actually live.</span>
-              </div>
-              <p class="check-desc" id="desc-15">Not "DM us OR check our link OR comment OR call." One. Choice paralysis kills conversion. And whatever path you pick (DM trigger, link, phone) has to exist and work today. Pointing to a URL that 404s or a DM trigger you haven't set up is the fastest way to burn the trust you just earned.</p>
-              </div>
-            </label>
-          </li>
-          <li class="check-item" data-item="16">
-            <label class="check-row">
-              <span class="check-box-wrap">
-              <input type="checkbox" data-item-input="16" aria-describedby="desc-16">
-              <span class="check-box-visual" aria-hidden="true">
-                <svg viewBox="0 0 24 24"><polyline points="5,12 10,17 19,7"></polyline></svg>
-              </span>
-              </span>
-              <div class="check-body">
-              <div class="check-head">
-                <span class="check-num">16</span>
-                <span class="check-title">You have a DM system, not DM chaos.</span>
-              </div>
-              <p class="check-desc" id="desc-16">Saved replies for the five questions you get most. A response-time target (24 hours floor, 2 hours ideal). A rule for which DMs the owner gets pulled into. Most local brands lose qualified buyers because someone DMed at 9pm Friday and got a reply Tuesday morning. The DM is the conversion surface. It deserves a system.</p>
-              </div>
-            </label>
-          </li>
-          <li class="check-item" data-item="17">
-            <label class="check-row">
-              <span class="check-box-wrap">
-              <input type="checkbox" data-item-input="17" aria-describedby="desc-17">
-              <span class="check-box-visual" aria-hidden="true">
-                <svg viewBox="0 0 24 24"><polyline points="5,12 10,17 19,7"></polyline></svg>
-              </span>
-              </span>
-              <div class="check-body">
-              <div class="check-head">
-                <span class="check-num">17</span>
-                <span class="check-title">You acknowledge every customer story-share within 24 hours.</span>
-              </div>
-              <p class="check-desc" id="desc-17">A DM. A repost with a comment. A small gesture. The highest-ROI community move local brands miss, and it compounds. Customers who feel seen tell their friends. Customers who tag you and get crickets quietly stop. Costs zero. Pays in referrals and loyalty for years.</p>
+              <p class="check-desc" id="desc-12">Beyond your immediate competitors, <em>who in the city already has the audience you're building toward?</em> A 25k wellness account. A 40k food account. A 60k lifestyle account. They have the attention you need.</p>
+              <p class="check-sublist-label">Two failure modes:</p>
+              <ul class="check-sublist">
+                <li><strong>Never reach out.</strong> Assume the bigger account won't engage. (Wrong. Local-brand ecosystems reward relationships.)</li>
+                <li><strong>Reach out lazily.</strong> Cold DM, generic ask, no value offered back. (Gets ignored every time.)</li>
+              </ul>
+              <p class="check-desc"><strong>The play:</strong> identify the 5 accounts whose audience you want, find the angle that gives them content value back, propose the collab.</p>
+              <p class="check-desc">Cincinnati's local-brand ecosystem rewards relationships. The brands that compound fastest do it by partnering with established audiences, not by trying to build everything from scratch.</p>
+              <p class="try-this"><strong>Try this:</strong> Name your top 5 right now. If you can't, that's your assignment for the week. Write the list, find the angles, send the first DM.</p>
               </div>
             </label>
           </li>
@@ -1751,152 +1814,6 @@
         <div class="zone-tally">
           <div class="label">Section 04 score</div>
           <div class="score"><span data-zone-score="04">0</span> / 3</div>
-        </div>
-      </div>
-
-      <!-- ==========================================================
-           ZONE 05 · CINCINNATI INTEGRATION
-           ========================================================== -->
-      <div class="zone reveal" id="zone-05">
-        <div class="zone-header">
-          <div class="zone-num">05</div>
-          <div class="zone-head-text">
-            <div class="zone-eyebrow">The city layer</div>
-            <h2 class="zone-title">Cincinnati Integration</h2>
-          </div>
-        </div>
-        <p class="zone-intro">Cincinnati is a community-driven city with deep local identity. Brands that tap into it get amplified. Brands that ignore it get treated as generic. This layer is where "Cincinnati local brand" stops being a tagline and starts being a strategy.</p>
-
-        <ul class="checklist" data-zone="05">
-          <li class="check-item" data-item="18">
-            <label class="check-row">
-              <span class="check-box-wrap">
-              <input type="checkbox" data-item-input="18" aria-describedby="desc-18">
-              <span class="check-box-visual" aria-hidden="true">
-                <svg viewBox="0 0 24 24"><polyline points="5,12 10,17 19,7"></polyline></svg>
-              </span>
-              </span>
-              <div class="check-body">
-              <div class="check-head">
-                <span class="check-num">18</span>
-                <span class="check-title">You have at least 3 adjacent-industry collaborations in motion.</span>
-              </div>
-              <p class="check-desc" id="desc-18">Your ideal customer doesn't only care about your category. A skincare customer also cares about wellness, fitness, brow and lash, nails. A coffee shop customer also cares about local bakeries, roasters, neighborhood retail. A med spa customer cares about dermatology, massage, fitness. Identify 5 Cincinnati brands in adjacent categories whose audience overlaps with yours and build cross-pollination plays: joint content, joint events, mutual shoutouts. Most local brands stay siloed in their category and wonder why reach plateaus. Adjacent collabs are the fastest way to compound audience locally.</p>
-              </div>
-            </label>
-          </li>
-          <li class="check-item" data-item="19">
-            <label class="check-row">
-              <span class="check-box-wrap">
-              <input type="checkbox" data-item-input="19" aria-describedby="desc-19">
-              <span class="check-box-visual" aria-hidden="true">
-                <svg viewBox="0 0 24 24"><polyline points="5,12 10,17 19,7"></polyline></svg>
-              </span>
-              </span>
-              <div class="check-body">
-              <div class="check-head">
-                <span class="check-num">19</span>
-                <span class="check-title">Your content calendar plugs into Cincinnati's cultural calendar.</span>
-              </div>
-              <p class="check-desc" id="desc-19">Oktoberfest Zinzinnati. Findlay Market opening day. BLINK. Bockfest. Taste of Cincinnati. Maifest. Flying Pig. May Festival. The Reds, the Bengals, FC Cincinnati. The Queen City runs on a calendar of moments the entire city pays attention to. Most local brands post evergreen content through those windows while every active account in town plugs into the moment. Build a list of the 8 to 12 Cincinnati moments your audience cares about and plan content into each one deliberately. Reach lives where attention lives.</p>
-              </div>
-            </label>
-          </li>
-          <li class="check-item" data-item="20">
-            <label class="check-row">
-              <span class="check-box-wrap">
-              <input type="checkbox" data-item-input="20" aria-describedby="desc-20">
-              <span class="check-box-visual" aria-hidden="true">
-                <svg viewBox="0 0 24 24"><polyline points="5,12 10,17 19,7"></polyline></svg>
-              </span>
-              </span>
-              <div class="check-body">
-              <div class="check-head">
-                <span class="check-num">20</span>
-                <span class="check-title">You can name 5 Cincinnati brands whose audience you want access to.</span>
-              </div>
-              <p class="check-desc" id="desc-20">Beyond your immediate competitors, who in the city already has the audience you're building toward? A 25k wellness account, a 40k food account, a 60k lifestyle account. They have the attention. You have a product or service that audience would care about. Most local brands either never reach out (assume the bigger account won't engage) or reach out lazily (cold DM, no value). Find the 5 accounts whose audience you want, identify the angle that gives them content value back, build the collab. Cincinnati's local-brand ecosystem rewards relationships.</p>
-              </div>
-            </label>
-          </li>
-        </ul>
-
-        <div class="zone-tally">
-          <div class="label">Section 05 score</div>
-          <div class="score"><span data-zone-score="05">0</span> / 3</div>
-        </div>
-      </div>
-
-      <!-- ==========================================================
-           ZONE 06 · MEASUREMENT & ITERATION
-           ========================================================== -->
-      <div class="zone reveal" id="zone-06">
-        <div class="zone-header">
-          <div class="zone-num">06</div>
-          <div class="zone-head-text">
-            <div class="zone-eyebrow">The learning loop</div>
-            <h2 class="zone-title">Measurement &amp; Iteration</h2>
-          </div>
-        </div>
-        <p class="zone-intro">What you measure, you optimize. Most local brands measure the wrong things and adjust based on noise instead of signal. The fix is two metrics and one discipline.</p>
-
-        <ul class="checklist" data-zone="06">
-          <li class="check-item" data-item="21">
-            <label class="check-row">
-              <span class="check-box-wrap">
-              <input type="checkbox" data-item-input="21" aria-describedby="desc-21">
-              <span class="check-box-visual" aria-hidden="true">
-                <svg viewBox="0 0 24 24"><polyline points="5,12 10,17 19,7"></polyline></svg>
-              </span>
-              </span>
-              <div class="check-body">
-              <div class="check-head">
-                <span class="check-num">21</span>
-                <span class="check-title">You track saves and shares above everything else.</span>
-              </div>
-              <p class="check-desc" id="desc-21">Saves are intent. Shares are referral. Profile visits are buying signal. Link taps are direct conversion. Likes are dopamine. Follower count is vanity. If you can't name your top three saved posts from the last 30 days, you're measuring the wrong metrics. Saves and shares are the two signals that drive algorithmic distribution AND signal "this matters." Everything else is noise.</p>
-              </div>
-            </label>
-          </li>
-          <li class="check-item" data-item="22">
-            <label class="check-row">
-              <span class="check-box-wrap">
-              <input type="checkbox" data-item-input="22" aria-describedby="desc-22">
-              <span class="check-box-visual" aria-hidden="true">
-                <svg viewBox="0 0 24 24"><polyline points="5,12 10,17 19,7"></polyline></svg>
-              </span>
-              </span>
-              <div class="check-body">
-              <div class="check-head">
-                <span class="check-num">22</span>
-                <span class="check-title">You can name the ONE content format outperforming on YOUR account.</span>
-              </div>
-              <p class="check-desc" id="desc-22">Not the format that's supposed to win. The format that actually wins for you. Owner on camera vs not. Carousel vs Reel vs single image. Talking-head vs B-roll. Most brands assume Reels beat everything. Sometimes they don't. Your account has its own truth. Find it before you commit to a strategy.</p>
-              </div>
-            </label>
-          </li>
-          <li class="check-item" data-item="23">
-            <label class="check-row">
-              <span class="check-box-wrap">
-              <input type="checkbox" data-item-input="23" aria-describedby="desc-23">
-              <span class="check-box-visual" aria-hidden="true">
-                <svg viewBox="0 0 24 24"><polyline points="5,12 10,17 19,7"></polyline></svg>
-              </span>
-              </span>
-              <div class="check-body">
-              <div class="check-head">
-                <span class="check-num">23</span>
-                <span class="check-title">You make exactly ONE deliberate adjustment per month, based on last month's data.</span>
-              </div>
-              <p class="check-desc" id="desc-23">Not zero (no learning loop). Not five (no signal, you can't tell what worked). One. Most local brands either change nothing and stay stuck, or change everything and learn nothing. The discipline of one deliberate change per month is the discipline that compounds. Twelve compounding changes a year beats fifty random ones every time.</p>
-              </div>
-            </label>
-          </li>
-        </ul>
-
-        <div class="zone-tally">
-          <div class="label">Section 06 score</div>
-          <div class="score"><span data-zone-score="06">0</span> / 3</div>
         </div>
       </div>
 
@@ -1912,9 +1829,9 @@
       <h2>When you're ready, see what your score means.</h2>
       <div class="engine-total" role="status" aria-live="polite" aria-atomic="true">
         <span class="num" data-total-score>0</span>
-        <span class="denom">/ 23</span>
+        <span class="denom">/ 12</span>
       </div>
-      <span class="sr-only" id="total-readout">0 of 23 items checked.</span>
+      <span class="sr-only" id="total-readout">0 of 12 items checked.</span>
       <div>
         <button class="engine-cta" id="gate-trigger" type="button" aria-haspopup="dialog" aria-controls="gate">
           <span data-cta-label>See my diagnostic →</span>
@@ -1935,10 +1852,10 @@
 
     <!-- Score visualization -->
     <div class="score-viz" role="region" aria-label="Your audit score">
-      <h2 class="score-headline">You scored <span data-results-score>0</span> out of 23.</h2>
+      <h2 class="score-headline">You scored <span data-results-score>0</span> out of 12.</h2>
       <p class="score-subheadline" data-band-subhead>Solid effort, real leaks.</p>
       <div class="score-bar-wrap">
-        <div class="score-bar" role="img" aria-label="Score bar from 0 to 23">
+        <div class="score-bar" role="img" aria-label="Score bar from 0 to 12">
           <div class="score-band score-band-1" aria-hidden="true"></div>
           <div class="score-band score-band-2" aria-hidden="true"></div>
           <div class="score-band score-band-3" aria-hidden="true"></div>
@@ -1946,11 +1863,11 @@
           <div class="score-marker" data-score-marker style="left: 0%;" aria-hidden="true"></div>
         </div>
         <div class="score-bar-labels" aria-hidden="true">
-          <span>0</span>
-          <span>6</span>
-          <span>12</span>
-          <span>18</span>
-          <span>23</span>
+          <span style="left: 0%;">0</span>
+          <span style="left: 25%;">3</span>
+          <span style="left: 58.333%;">7</span>
+          <span style="left: 83.333%;">10</span>
+          <span style="left: 100%;">12</span>
         </div>
       </div>
     </div>
@@ -1959,43 +1876,43 @@
     <div class="results-eyebrow" style="margin-top: 8px;">What your score means</div>
     <div class="diagnostic">
 
-      <div class="diag-band" data-diag-band="0-5">
+      <div class="diag-band" data-diag-band="0-3">
         <h3 class="diag-headline">Time to rebuild.</h3>
-        <p class="diag-body">Most brands that score here are posting more than the ones who score in the teens. Volume isn't your problem. Structure is. Nothing here is broken in a way that takes six months to fix. The fastest 90-day turnarounds we've seen come from accounts that scored exactly where you did and rebuilt one layer at a time, in order.</p>
+        <p class="diag-body">Most brands that score here are posting more than the ones who score at the top. <em>Volume isn't your problem. Structure is.</em> Nothing here takes six months to fix. The fastest 90-day turnarounds we've seen come from accounts that scored exactly where you did and rebuilt one layer at a time, in order.</p>
         <ol class="diag-actions">
-          <li><strong>Rebuild your profile in one sitting.</strong> Profile photo readable at 110 pixels. Name field keyword-loaded. Bio in three lines. Three pinned posts running Work, Founder, Proof. This is items 1 through 6 on the audit. Pause everything else until this is done.</li>
-          <li><strong>Define one ideal customer in three layers.</strong> Tangible, emotional, social. You can't write content for someone you can't describe. This is items 7 and 8. Block 90 minutes.</li>
-          <li><strong>Stop posting until 1 and 2 are done.</strong> Volume on top of a bad foundation makes the foundation problem worse, not better. Posting cadence resumes once the floor is in.</li>
+          <li><strong>Rebuild your profile in one sitting.</strong> Name field, bio, link in bio. Three table-stakes fixes. This is items 1, 2, and 3. Pause everything else until this is done.</li>
+          <li><strong>Set up your DM system.</strong> Saved replies, response-time floor, escalation rule. This is item 4. The DM is the conversion surface. It deserves a system.</li>
+          <li><strong>Stop posting until 1 and 2 are done.</strong> Volume on top of a bad foundation makes the foundation problem worse. Posting resumes once the floor is in.</li>
         </ol>
       </div>
 
-      <div class="diag-band" data-diag-band="6-11">
+      <div class="diag-band" data-diag-band="4-7">
         <h3 class="diag-headline">Solid effort, real leaks.</h3>
-        <p class="diag-body">This is where most Cincinnati local brands sit. You're posting. You're showing up. The leaks aren't visible from inside your own account, which is why most brands here stay here for years without realizing they could move. Every fix from this score compounds. Pick the highest-leverage gap and start there.</p>
+        <p class="diag-body">This is where most Cincinnati local brands sit. <em>You're posting. You're showing up.</em> The leaks aren't visible from inside your own account, which is why most brands here stay here for years without realizing they could move. Every fix from this score compounds.</p>
         <ol class="diag-actions">
-          <li><strong>Fix audience psychology before anything else.</strong> Most local brands skip this layer entirely. Without it, every piece of content is a guess. Revisit items 7 through 10 and write them out for real.</li>
-          <li><strong>Move to a deliberate 40 / 35 / 25 content mix.</strong> You're likely running 90% conversion content, which is why nothing new is finding you. The algorithm can't distribute conversion content without reach signal upstream. Revisit item 11.</li>
-          <li><strong>Pick one path for every conversion-intent post and kill the rest.</strong> Choice paralysis is murdering your CTR. Revisit items 15 and 16.</li>
+          <li><strong>Pin the right three posts.</strong> Work, Founder, Proof. Revisit item 7. Most local brands waste pinned slots. This is a single afternoon's work that compounds for years.</li>
+          <li><strong>Audit your conversion paths.</strong> One path per post, every path actually live. Revisit item 6. Choice paralysis and broken links are the most common silent killers.</li>
+          <li><strong>Move to a deliberate 40 / 35 / 25 content mix.</strong> You're probably running 90% conversion content, which is why nothing new is finding you. Revisit item 8. The algorithm needs upstream reach signal to distribute everything else.</li>
         </ol>
       </div>
 
-      <div class="diag-band" data-diag-band="12-17">
+      <div class="diag-band" data-diag-band="8-10">
         <h3 class="diag-headline">You're closer than you think.</h3>
-        <p class="diag-body">The visible stuff is working. The remaining gaps are upstream of effort. They're in the systems most brands never see: content mix discipline, Cincinnati integration, measurement signal. Most of the growth you haven't captured yet lives in these layers. The fix is sequencing, not more posts.</p>
+        <p class="diag-body">The visible stuff is working. The remaining gaps are upstream of effort. They live in the systems most brands never see. Most of the growth you haven't captured yet lives in the <strong>Cincinnati layer</strong> and the <strong>measurement layer</strong>.</p>
         <ol class="diag-actions">
-          <li><strong>Audit your last 12 posts against the 40 / 35 / 25 mix.</strong> Count them. If you're running 60% or more conversion content, your reach problem is a mix problem. Revisit item 11.</li>
-          <li><strong>Open the Cincinnati layer.</strong> Adjacent collabs, cultural moments, established-audience partnerships. The accounts that pull ahead from your score do it on the back of local amplification, not generic content. Revisit items 18 through 20.</li>
-          <li><strong>Make one deliberate change per month, not five.</strong> Most local brands change everything and learn nothing. One change per month, tracked, beats fifty random changes. Revisit item 23.</li>
+          <li><strong>Open the Cincinnati layer.</strong> Adjacent collabs, cultural moments, established-audience partnerships. Revisit items 10, 11, and 12. The accounts that pull ahead from your score do it on the back of local amplification, not generic content.</li>
+          <li><strong>Sharpen your metric hierarchy.</strong> Saves and shares above everything. Revisit item 9. Most accounts at your score still over-weight likes and follower count. The wins live in the signal layer.</li>
+          <li><strong>Sequence, don't pile on.</strong> Pick one layer and go deep before adding another. Most local brands at your score try to fix three things at once and learn nothing.</li>
         </ol>
       </div>
 
-      <div class="diag-band" data-diag-band="18-23">
+      <div class="diag-band" data-diag-band="11-12">
         <h3 class="diag-headline">You're dialed in.</h3>
-        <p class="diag-body">You're running a real Instagram operation. The next gains compound on what's already working, not on fixing what's broken. The leaks left are subtle, usually only visible from outside. The pattern at this score: the gaps left aren't about doing more, they're about doing the last 10% with more precision.</p>
+        <p class="diag-body">You're running a real Instagram operation. The next gains compound on what's already working. The leaks left at this score are subtle, usually only visible from outside. <strong>The remaining 10% lives in patterns an outsider can spot that you can't.</strong></p>
         <ol class="diag-actions">
-          <li><strong>Pressure-test your hooks against the curiosity-gap standard.</strong> At this score, hook discipline is the most common remaining leak. Revisit item 12.</li>
-          <li><strong>Audit your DM system.</strong> Strongest accounts lose qualified buyers at the conversion surface, not the content layer. Revisit item 16.</li>
-          <li><strong>Name the one format outperforming on your account.</strong> Not the format that's supposed to win. The one that actually wins for you. Double down. Revisit items 21 through 23.</li>
+          <li><strong>Pressure-test your Cincinnati layer.</strong> Are your collabs actually generating audience overlap? Are your cultural-moment posts the strongest of the month? Revisit items 10, 11, and 12. This is where top-tier accounts widen the gap.</li>
+          <li><strong>Audit your DM system end-to-end.</strong> The strongest accounts lose qualified buyers at the conversion surface, not the content layer. Revisit items 4 and 6.</li>
+          <li><strong>Find a second set of eyes.</strong> At this score, gaps are subtle and rarely self-visible. The remaining 10% lives in patterns an outsider can spot that you can't.</li>
         </ol>
       </div>
 
@@ -2036,7 +1953,7 @@
       </summary>
       <div class="supplement-body">
         <div class="supplement-divider"></div>
-        <p>This audit is the surface layer of the Scroll System, the operating system we run on every Scroll Media client. The 23 items cover the five universal layers of the Signal Method plus a Cincinnati Integration layer that defines what "Cincinnati's Instagram agency for local brands" actually means in practice.</p>
+        <p>This audit is the surface layer of the Scroll System, the operating system we run on every Scroll Media client. The 12 items are the highest-leverage moves we install for Cincinnati local brands. The full strategic depth (audience psychology, content pillar design, measurement discipline) lives behind the curtain at the agency level.</p>
         <p>If you want to see how Scroll Media works as an agency, see <a href="https://decks.scrollmedia.co/pitch/">decks.scrollmedia.co/pitch</a>. The audit is the short version of the system.</p>
       </div>
     </details>
@@ -2122,7 +2039,7 @@
   // INTERACTIVE SCORING
   // ============================================================
   (function() {
-    const TOTAL_ITEMS = 23;
+    const TOTAL_ITEMS = 12;
     const ctaLabel = document.querySelector('[data-cta-label]');
     const totalEl = document.querySelector('[data-total-score]');
     const totalReadout = document.getElementById('total-readout');
@@ -2185,10 +2102,10 @@
 
     // Band thresholds → subheadline + data-diag-band key
     const BANDS = [
-      { min: 18, max: 23, key: '18-23', subhead: "You're dialed in." },
-      { min: 12, max: 17, key: '12-17', subhead: "You're closer than you think." },
-      { min: 6,  max: 11, key: '6-11',  subhead: 'Solid effort, real leaks.' },
-      { min: 0,  max: 5,  key: '0-5',   subhead: 'Time to rebuild.' }
+      { min: 11, max: 12, key: '11-12', subhead: "You're dialed in." },
+      { min: 8,  max: 10, key: '8-10',  subhead: "You're closer than you think." },
+      { min: 4,  max: 7,  key: '4-7',   subhead: 'Solid effort, real leaks.' },
+      { min: 0,  max: 3,  key: '0-3',   subhead: 'Time to rebuild.' }
     ];
 
     function getFocusableElements(container) {
@@ -2263,9 +2180,9 @@
       const subEl = document.querySelector('[data-band-subhead]');
       if (subEl) subEl.textContent = band.subhead;
 
-      // Position marker on bar (0–23 scale → 0–100%)
+      // Position marker on bar (0–12 scale → 0–100%)
       const marker = document.querySelector('[data-score-marker]');
-      if (marker) marker.style.left = (total / 23 * 100) + '%';
+      if (marker) marker.style.left = (total / 12 * 100) + '%';
 
       // Reveal the matching diag band, hide the rest
       document.querySelectorAll('.diag-band').forEach(el => el.classList.remove('is-active'));
@@ -2274,7 +2191,7 @@
 
       // Update score-bar aria-label
       const bar = document.querySelector('.score-bar');
-      if (bar) bar.setAttribute('aria-label', 'Score ' + total + ' of 23');
+      if (bar) bar.setAttribute('aria-label', 'Score ' + total + ' of 12');
     }
 
     async function submitToKit(firstName, email) {
