@@ -682,125 +682,8 @@
     letter-spacing: 0.06em;
   }
 
-  /* ============================================================
-     GATE MODAL
-     ============================================================ */
-  .gate-overlay {
-    position: fixed;
-    inset: 0;
-    background: rgba(7, 29, 79, 0.80);
-    display: none;
-    align-items: center;
-    justify-content: center;
-    z-index: 200;
-    padding: 24px;
-  }
-  .gate-overlay[aria-hidden="false"] { display: flex; }
-
-  .gate-modal {
-    background: var(--ghost);
-    width: 100%;
-    max-width: 520px;
-    padding: 36px 36px 32px;
-    position: relative;
-    border: 1px solid var(--rule);
-    max-height: calc(100vh - 48px);
-    overflow-y: auto;
-  }
-  .gate-close {
-    position: absolute;
-    top: 14px; right: 14px;
-    width: 44px; height: 44px;
-    background: var(--ghost);
-    border: 1px solid var(--rule);
-    color: var(--azure);
-    font-size: 20px; font-weight: 700;
-    cursor: pointer;
-    display: flex; align-items: center; justify-content: center;
-    transition: background 200ms var(--ease), border-color 200ms var(--ease);
-  }
-  .gate-close:hover {
-    background: var(--bg-alt);
-    border-color: var(--azure);
-  }
-  .gate-eyebrow {
-    font-size: 11px; text-transform: uppercase;
-    letter-spacing: 0.18em; color: var(--azure-600);
-    font-weight: 700; margin-bottom: 12px;
-  }
-  .gate-modal h2 {
-    font-size: clamp(22px, 2.4vw, 26px);
-    color: var(--azure-900);
-    line-height: 1.18;
-    letter-spacing: -0.015em;
-    margin-bottom: 12px;
-  }
-  .gate-sub {
-    font-size: 14px;
-    color: var(--fg-muted);
-    line-height: 1.55;
-    margin-bottom: 24px;
-  }
-  .gate-form .field { margin-bottom: 16px; }
-  .gate-form label {
-    display: block;
-    font-size: 12px; font-weight: 600;
-    color: var(--azure-900);
-    letter-spacing: 0.04em;
-    text-transform: uppercase;
-    margin-bottom: 6px;
-  }
-  .gate-form input {
-    width: 100%;
-    padding: 12px 14px;
-    border: 1.5px solid var(--rule);
-    background: var(--ghost);
-    color: var(--fg);
-    font-family: var(--sans);
-    font-size: 15px;
-    transition: border-color 200ms var(--ease);
-    min-height: 44px;
-  }
-  .gate-form input:focus {
-    outline: none;
-    border-color: var(--azure);
-  }
-  .gate-submit {
-    display: block;
-    width: 100%;
-    background: var(--azure);
-    color: var(--ghost);
-    padding: 14px 18px;
-    font-size: 15px; font-weight: 700;
-    letter-spacing: 0.02em;
-    border: 1.5px solid var(--azure);
-    cursor: pointer;
-    transition: background 200ms var(--ease);
-    margin-top: 8px;
-    min-height: 44px;
-  }
-  .gate-submit:hover { background: var(--azure-900); }
-  .gate-submit:disabled {
-    background: var(--fg-subtle);
-    border-color: var(--fg-subtle);
-    cursor: wait;
-  }
-  .gate-fine {
-    margin-top: 14px;
-    font-size: 12px;
-    color: var(--fg-muted);
-    line-height: 1.5;
-  }
-  .gate-error {
-    background: rgba(226, 237, 122, 0.18);
-    border-left: 3px solid var(--gold-600, #8a7000);
-    padding: 10px 14px;
-    font-size: 13px;
-    color: var(--shadow);
-    margin-top: 14px;
-    display: none;
-  }
-  .gate-error.is-visible { display: block; }
+  /* Prior modal-style gate retired May 28, 2026.
+     Replaced by inline front-gate pattern (see "FRONT-GATE PATTERN · v2" below). */
 
   /* ============================================================
      RESULTS SECTION
@@ -1222,6 +1105,261 @@
   }
 
   /* ============================================================
+     FRONT-GATE PATTERN · v2 (locked May 28, 2026)
+     Preview cards → inline gate form → unlocked asset reveal.
+     Replaces the prior back-gate modal pattern.
+     ============================================================ */
+  .preview-section {
+    background: var(--bg-alt);
+    padding: 64px 24px 56px;
+    border-top: 1px solid var(--rule);
+  }
+  .preview-inner { max-width: 1100px; margin: 0 auto; }
+  .preview-eyebrow {
+    font-size: 11px; text-transform: uppercase;
+    letter-spacing: 0.22em; color: var(--azure-600);
+    font-weight: 700; margin-bottom: 16px;
+  }
+  .preview-headline {
+    font-size: clamp(28px, 3vw, 36px);
+    color: var(--azure-900); line-height: 1.12;
+    letter-spacing: -0.02em; margin-bottom: 36px;
+    max-width: 22ch; font-weight: 700;
+  }
+  .preview-cards {
+    display: grid; gap: 16px;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    margin-bottom: 36px;
+  }
+  .preview-card {
+    background: var(--ghost);
+    border: 1.5px solid var(--azure);
+    padding: 22px 22px 22px;
+    transition: transform 200ms var(--ease), box-shadow 200ms var(--ease);
+  }
+  .preview-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 0 var(--azure-100);
+  }
+  .preview-card-num {
+    font-size: 11px; font-weight: 700;
+    color: var(--azure-600);
+    letter-spacing: 0.16em; text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+  .preview-card-title {
+    font-size: 18px; font-weight: 700;
+    color: var(--azure-900);
+    line-height: 1.22; letter-spacing: -0.01em;
+    margin-bottom: 8px;
+  }
+  .preview-card-desc {
+    font-size: 14px; color: var(--fg);
+    line-height: 1.55;
+  }
+  .preview-stat {
+    margin: 0; padding: 20px 24px;
+    background: var(--ghost);
+    border-left: 3px solid var(--highlighter);
+    font-size: 15px; line-height: 1.55;
+    color: var(--fg);
+    max-width: 64ch;
+  }
+  .preview-stat strong { color: var(--azure-900); font-weight: 700; }
+
+  /* INLINE GATE FORM */
+  .gate-section {
+    background: var(--ghost);
+    padding: 48px 24px 64px;
+    border-top: 1px solid var(--rule);
+  }
+  .gate-inner { max-width: 540px; margin: 0 auto; }
+  .gate-eyebrow-inline {
+    font-size: 11px; text-transform: uppercase;
+    letter-spacing: 0.22em; color: var(--azure-600);
+    font-weight: 700; margin-bottom: 12px;
+    text-align: center;
+  }
+  .gate-h2 {
+    font-size: clamp(22px, 2.4vw, 28px);
+    color: var(--azure-900); line-height: 1.18;
+    letter-spacing: -0.02em; margin-bottom: 12px;
+    text-align: center; font-weight: 700;
+  }
+  .gate-lede {
+    font-size: 15px; color: var(--fg-muted);
+    line-height: 1.55; text-align: center;
+    margin: 0 auto 28px;
+    max-width: 44ch;
+  }
+  .gate-form-inline { display: flex; flex-direction: column; gap: 14px; }
+  .gate-form-inline .field { display: flex; flex-direction: column; gap: 6px; }
+  .gate-form-inline label {
+    font-size: 11px; font-weight: 700;
+    color: var(--azure-900);
+    letter-spacing: 0.10em; text-transform: uppercase;
+  }
+  .gate-form-inline input {
+    width: 100%;
+    padding: 14px 16px;
+    border: 1.5px solid var(--rule);
+    background: var(--ghost);
+    color: var(--fg);
+    font-family: var(--sans);
+    font-size: 16px;
+    transition: border-color 200ms var(--ease);
+    min-height: 48px;
+  }
+  .gate-form-inline input:focus {
+    outline: none; border-color: var(--azure);
+  }
+  .gate-submit-inline {
+    display: block; width: 100%;
+    background: var(--azure);
+    color: var(--ghost);
+    padding: 16px 22px;
+    font-size: 15px; font-weight: 700;
+    letter-spacing: 0.02em;
+    border: 1.5px solid var(--azure);
+    cursor: pointer;
+    transition: background 200ms var(--ease), transform 200ms var(--ease);
+    margin-top: 4px;
+    min-height: 48px;
+  }
+  .gate-submit-inline:hover {
+    background: var(--azure-900);
+    transform: translateY(-2px);
+  }
+  .gate-submit-inline:disabled {
+    background: var(--fg-subtle);
+    border-color: var(--fg-subtle);
+    cursor: wait; transform: none;
+  }
+  .gate-microcopy {
+    margin-top: 16px;
+    font-size: 13px; color: var(--fg-muted);
+    line-height: 1.55; text-align: center;
+  }
+  .gate-error-inline {
+    background: rgba(226, 237, 122, 0.18);
+    border-left: 3px solid var(--azure);
+    padding: 10px 14px;
+    font-size: 13px;
+    color: var(--shadow);
+    margin-top: 14px;
+    display: none;
+  }
+  .gate-error-inline.is-visible { display: block; }
+
+  /* LOCKED ASSET REVEAL */
+  .locked-asset { display: none; }
+  .locked-asset.is-unlocked { display: block; }
+  .unlocked-banner {
+    background: var(--lucid-soft);
+    border-top: 1px solid var(--azure);
+    border-bottom: 1px solid var(--rule);
+    padding: 28px 24px 26px;
+  }
+  .unlocked-banner-inner {
+    max-width: 1100px; margin: 0 auto;
+    display: flex; flex-wrap: wrap; gap: 18px;
+    align-items: center; justify-content: space-between;
+  }
+  .unlocked-banner-text {
+    font-size: 14px; color: var(--azure-900);
+    line-height: 1.5;
+  }
+  .unlocked-banner-text strong {
+    display: block; font-size: 17px;
+    margin-bottom: 4px; font-weight: 700;
+  }
+  .pdf-download {
+    display: inline-flex; align-items: center; gap: 10px;
+    background: var(--azure);
+    color: var(--ghost);
+    padding: 12px 20px;
+    font-size: 14px; font-weight: 700;
+    letter-spacing: 0.02em;
+    border: 1.5px solid var(--azure);
+    border-bottom: 0;
+    text-decoration: none;
+    min-height: 44px;
+    transition: background 200ms var(--ease), transform 200ms var(--ease);
+  }
+  .pdf-download:hover {
+    background: var(--azure-900);
+    border-color: var(--azure-900);
+    color: var(--ghost);
+    transform: translateY(-2px);
+  }
+
+  /* HOWTO inside unlocked area */
+  .post-unlock-howto {
+    background: var(--ghost);
+    border-left: 3px solid var(--highlighter);
+    padding: 18px 22px 16px;
+    margin: 32px auto 0;
+    max-width: 1052px;
+  }
+  .post-unlock-howto .label {
+    font-size: 11px; text-transform: uppercase;
+    letter-spacing: 0.18em; color: var(--azure-600);
+    font-weight: 700; margin-bottom: 10px;
+  }
+  .post-unlock-howto ol {
+    margin: 0; padding-left: 18px;
+    color: var(--fg);
+    font-size: 14px; line-height: 1.6;
+  }
+  .post-unlock-howto li { margin-bottom: 4px; }
+  .post-unlock-howto li:last-child { margin-bottom: 0; }
+
+  /* SOFT CTA (bottom of unlocked asset) */
+  .soft-cta {
+    background: var(--azure-900);
+    color: var(--ghost);
+    padding: 56px 24px;
+  }
+  .soft-cta-inner {
+    max-width: 900px; margin: 0 auto;
+    text-align: center;
+  }
+  .soft-cta-eyebrow {
+    font-size: 11px; text-transform: uppercase;
+    letter-spacing: 0.22em; color: var(--highlighter);
+    font-weight: 700; margin-bottom: 14px;
+  }
+  .soft-cta-headline {
+    font-size: clamp(26px, 3vw, 36px);
+    color: var(--ghost); line-height: 1.15;
+    letter-spacing: -0.02em; margin: 0 auto 14px;
+    font-weight: 700; max-width: 22ch;
+  }
+  .soft-cta-sub {
+    font-size: 15px; color: var(--lucid-soft);
+    line-height: 1.6; margin: 0 auto 28px;
+    max-width: 50ch;
+  }
+  .soft-cta-button {
+    display: inline-flex; align-items: center;
+    background: var(--highlighter);
+    color: var(--shadow);
+    padding: 18px 30px;
+    font-size: 15px; font-weight: 700;
+    letter-spacing: 0.02em;
+    border: 1.5px solid var(--highlighter);
+    border-bottom: 0;
+    text-decoration: none;
+    min-height: 48px;
+    transition: transform 200ms var(--ease), background 200ms var(--ease);
+  }
+  .soft-cta-button:hover {
+    background: var(--ghost);
+    border-color: var(--ghost);
+    transform: translateY(-2px);
+  }
+
+  /* ============================================================
      RESPONSIVE · 1100px (small desktop / large tablet)
      ============================================================ */
   @media (max-width: 1100px) {
@@ -1285,9 +1423,27 @@
     .engine-total .denom { font-size: 22px; }
     .engine-cta { padding: 16px 22px; font-size: 15px; }
 
-    .gate-modal { padding: 28px 22px 24px; }
-    .gate-modal h2 { font-size: 21px; }
-    .gate-sub { font-size: 14px; }
+    .preview-section { padding: 48px 18px 44px; }
+    .preview-headline { font-size: 24px; margin-bottom: 28px; }
+    .preview-card { padding: 20px 20px 18px; }
+    .preview-card-title { font-size: 17px; }
+    .preview-card-desc { font-size: 14px; }
+    .preview-stat { padding: 16px 18px; font-size: 14px; }
+
+    .gate-section { padding: 40px 18px 52px; }
+    .gate-h2 { font-size: 22px; }
+    .gate-lede { font-size: 14px; }
+    .gate-form-inline input { font-size: 16px; padding: 12px 14px; }
+    .gate-submit-inline { font-size: 15px; padding: 14px 20px; }
+
+    .unlocked-banner { padding: 22px 18px 20px; }
+    .unlocked-banner-text strong { font-size: 16px; }
+    .post-unlock-howto { padding: 14px 16px 12px; margin-top: 24px; }
+    .post-unlock-howto ol { font-size: 13px; }
+
+    .soft-cta { padding: 44px 18px; }
+    .soft-cta-headline { font-size: 24px; }
+    .soft-cta-sub { font-size: 14px; }
 
     .results { padding: 42px 18px 56px; }
     .score-viz { padding: 24px 22px 22px; }
@@ -1349,10 +1505,6 @@
     .engine-cta { font-size: 14px; padding: 14px 18px; }
     .engine-note { font-size: 12px; }
 
-    .gate-eyebrow { font-size: 10px; }
-    .gate-modal h2 { font-size: 19px; }
-    .gate-form label { font-size: 11px; }
-    .gate-fine { font-size: 11px; }
 
     .results-eyebrow { font-size: 10px; letter-spacing: 0.16em; }
     .results h2 { font-size: 24px; }
@@ -1389,6 +1541,31 @@
     .footer-signers { font-size: 13px; }
     .footer-signers strong { font-size: 14px; }
     .footer-signers .role { font-size: 12px; }
+
+    .preview-eyebrow { font-size: 10px; letter-spacing: 0.18em; }
+    .preview-headline { font-size: 22px; }
+    .preview-card-num { font-size: 10px; }
+    .preview-card-title { font-size: 16px; }
+    .preview-card-desc { font-size: 14px; }
+    .preview-stat { font-size: 14px; }
+
+    .gate-eyebrow-inline { font-size: 10px; letter-spacing: 0.18em; }
+    .gate-h2 { font-size: 20px; }
+    .gate-lede { font-size: 14px; }
+    .gate-form-inline label { font-size: 11px; }
+    .gate-microcopy { font-size: 12px; }
+    .gate-error-inline { font-size: 13px; }
+
+    .unlocked-banner-text { font-size: 13px; }
+    .unlocked-banner-text strong { font-size: 15px; }
+    .pdf-download { font-size: 13px; padding: 10px 16px; }
+    .post-unlock-howto .label { font-size: 10px; letter-spacing: 0.14em; }
+    .post-unlock-howto ol { font-size: 13px; }
+
+    .soft-cta-eyebrow { font-size: 10px; letter-spacing: 0.16em; }
+    .soft-cta-headline { font-size: 22px; }
+    .soft-cta-sub { font-size: 14px; }
+    .soft-cta-button { font-size: 14px; padding: 16px 24px; }
   }
 
   /* ============================================================
@@ -1401,7 +1578,14 @@
     .engine { padding: 40px 16px 44px; }
     .engine-total .num { font-size: 38px; }
     .results { padding: 38px 16px 48px; }
-    .gate-overlay { padding: 14px; }
+    .preview-section { padding: 40px 16px 36px; }
+    .preview-headline { font-size: 21px; }
+    .gate-section { padding: 36px 16px 44px; }
+    .gate-h2 { font-size: 19px; }
+    .unlocked-banner { padding: 20px 16px 18px; }
+    .post-unlock-howto { padding: 14px 14px 12px; }
+    .soft-cta { padding: 40px 16px; }
+    .soft-cta-headline { font-size: 21px; }
   }
 
   /* ============================================================
@@ -1409,9 +1593,10 @@
      ============================================================ */
   @media print {
     body { background: white; color: black; }
-    .topbar, .engine-cta, .gate-overlay, .results { display: none !important; }
+    .topbar, .engine-cta, .gate-section, .preview-section, .soft-cta { display: none !important; }
+    .locked-asset { display: block !important; }
     .hero { background: white; color: black; padding: 24px 0; }
-    .hero h1, .hero h1 .accent, .hero-sub, .hero-eyebrow, .hero-tag, .hero-stat .num, .hero-stat .lbl, .hero-howto, .hero-howto .label, .hero-howto ol, .hero-cosign, .hero-cosign .by, .hero-cosign .signers, .hero-cosign .signers strong { color: black; }
+    .hero h1, .hero h1 .accent, .hero-sub, .hero-eyebrow, .hero-tag, .hero-cosign, .hero-cosign .by, .hero-cosign .signers, .hero-cosign .signers strong { color: black; }
     .reveal { opacity: 1; transform: none; }
     .supplement[open] { page-break-inside: avoid; }
   }
@@ -1427,9 +1612,10 @@
 <div class="topbar">
   <div class="topbar-inner">
     <a href="https://scrollmedia.co" class="brand" aria-label="Scroll Media">
-      <img src="https://tools.scrollmedia.co/assets/scroll-media-logo.svg"
+      <img src="/scroll-media-logo-navy.png"
            alt="Scroll Media"
            class="brand-logo"
+           width="65" height="30"
            onerror="this.style.display='none';this.nextElementSibling.style.display='inline';" />
       <span class="brand-fallback">scroll.</span>
       <span class="tag">Cincinnati Audit</span>
@@ -1458,31 +1644,6 @@
       <h1>The Cincinnati Local Brand <span class="accent">Instagram Audit.</span></h1>
       <p class="hero-sub">12 questions most Cincinnati brands cannot answer about their own Instagram. The ones that can outperform the ones that cannot, every time.</p>
 
-      <div class="hero-stats">
-        <div class="hero-stat">
-          <div class="num">12</div>
-          <div class="lbl">Self-scoring items</div>
-        </div>
-        <div class="hero-stat">
-          <div class="num">4</div>
-          <div class="lbl">Strategic layers</div>
-        </div>
-        <div class="hero-stat">
-          <div class="num">3 min</div>
-          <div class="lbl">To complete</div>
-        </div>
-      </div>
-
-      <div class="hero-howto">
-        <div class="label">How to use this</div>
-        <ol>
-          <li>Open your Instagram side-by-side with the audit below.</li>
-          <li>Check the box if your account meets the bar. Be honest with yourself.</li>
-          <li>Watch your score tally as you go.</li>
-          <li>When you're done, see what your score means and what to fix first.</li>
-        </ol>
-      </div>
-
       <div class="hero-cosign">
         <div class="by">From the founders of Scroll Media</div>
         <div class="signers">
@@ -1494,12 +1655,99 @@
   </section>
 
   <!-- ==========================================================
+       PREVIEW SECTION · "What's inside" (4 layer cards)
+       ========================================================== -->
+  <section class="preview-section">
+    <div class="preview-inner">
+      <div class="preview-eyebrow">What's inside</div>
+      <h2 class="preview-headline">Four layers. Twelve items. The exact framework.</h2>
+
+      <div class="preview-cards">
+        <div class="preview-card">
+          <div class="preview-card-num">Layer 01 · Table stakes</div>
+          <div class="preview-card-title">Profile</div>
+          <p class="preview-card-desc">Name field, bio, profile photo. The first three seconds. Three levers decide whether a stranger stays or scrolls.</p>
+        </div>
+        <div class="preview-card">
+          <div class="preview-card-num">Layer 02 · Quick wins</div>
+          <div class="preview-card-title">Conversion</div>
+          <p class="preview-card-desc">Link in bio routing, story highlights, the plumbing fixes most local brands miss. Each one captures customers you're already losing.</p>
+        </div>
+        <div class="preview-card">
+          <div class="preview-card-num">Layer 03 · Growth engine</div>
+          <div class="preview-card-title">Content</div>
+          <p class="preview-card-desc">Pinned posts, the funnel mix, format diversity. The content discipline that compounds. No paid ads, no posting more.</p>
+        </div>
+        <div class="preview-card">
+          <div class="preview-card-num">Layer 04 · The Cincinnati edge</div>
+          <div class="preview-card-title">Differentiator</div>
+          <p class="preview-card-desc">The layer most local brands skip entirely. The accounts that pull ahead in Cincinnati do it on the back of this layer.</p>
+        </div>
+      </div>
+
+      <p class="preview-stat"><strong>Inside: 12 items. 3 minutes to complete.</strong> The exact framework we use with 30+ Cincinnati brands.</p>
+    </div>
+  </section>
+
+  <!-- ==========================================================
+       INLINE GATE FORM
+       ========================================================== -->
+  <section class="gate-section" id="gate-section">
+    <div class="gate-inner">
+      <div class="gate-eyebrow-inline">Get the audit</div>
+      <h2 class="gate-h2">Score your account in 3 minutes.</h2>
+      <p class="gate-lede">Drop your name and email. The full audit unlocks below, and a copy lands in your inbox.</p>
+
+      <form class="gate-form-inline" id="gate-form" novalidate>
+        <div class="field">
+          <label for="gate-first">First name</label>
+          <input type="text" id="gate-first" name="first_name" autocomplete="given-name" required>
+        </div>
+        <div class="field">
+          <label for="gate-email">Email</label>
+          <input type="email" id="gate-email" name="email" autocomplete="email" required>
+        </div>
+        <button type="submit" class="gate-submit-inline" id="gate-submit">Unlock the audit</button>
+        <p class="gate-microcopy">Free. No spam. Sent to your inbox in 30 seconds.</p>
+        <div class="gate-error-inline" id="gate-error" role="alert">Something went wrong on our end. Try again in a minute, or email chase@scrollmedia.co.</div>
+      </form>
+    </div>
+  </section>
+
+  <!-- ==========================================================
+       LOCKED ASSET (hidden until gate submit; persisted via sessionStorage)
+       ========================================================== -->
+  <div class="locked-asset" id="locked-asset" aria-hidden="true">
+
+  <div class="unlocked-banner">
+    <div class="unlocked-banner-inner">
+      <div class="unlocked-banner-text">
+        <strong>Audit unlocked. Score yourself below.</strong>
+        We also sent a copy to your inbox.
+      </div>
+      <a href="/instagram-audit-cincinnati/Scroll_Cincinnati_IG_Audit.pdf" class="pdf-download" download>
+        Download PDF
+      </a>
+    </div>
+  </div>
+
+  <!-- ==========================================================
        FOUNDATION BAND · Framing
        ========================================================== -->
   <section class="foundation">
     <div class="foundation-inner">
       <p>Most Cincinnati local brands run Instagram on instinct. Post when there's time. Post what feels right. Hope something works. The brands that pull ahead are not posting more or trying harder. They're running a system. This audit covers the 12 highest-leverage moves: profile fundamentals, conversion plumbing, the content discipline that compounds, and the Cincinnati layer most local brands skip entirely. Run it on your own account. Be honest. Score yourself.</p>
       <p class="lead-in"><strong>The audit starts below.</strong></p>
+
+      <div class="post-unlock-howto">
+        <div class="label">How to use this</div>
+        <ol>
+          <li>Open your Instagram side-by-side with the audit below.</li>
+          <li>Check the box if your account meets the bar. Be honest with yourself.</li>
+          <li>Watch your score tally as you go.</li>
+          <li>When you're done, see what your score means and what to fix first.</li>
+        </ol>
+      </div>
     </div>
   </section>
 
@@ -2014,18 +2262,16 @@ Line 3: 👇 Order catering online</pre>
       </div>
       <span class="sr-only" id="total-readout">0 of 12 items checked.</span>
       <div>
-        <button class="engine-cta" id="gate-trigger" type="button" aria-haspopup="dialog" aria-controls="gate">
+        <button class="engine-cta" id="score-trigger" type="button" aria-controls="results">
           <span data-cta-label>See my diagnostic →</span>
         </button>
       </div>
-      <p class="engine-note">You'll see your diagnostic and next step on the same page.</p>
+      <p class="engine-note">Your diagnostic and next step show up right below.</p>
     </div>
   </section>
 
-</main>
-
 <!-- ==========================================================
-     RESULTS SECTION (revealed after gate submit)
+     RESULTS SECTION (revealed after gate-submit scoring)
      ========================================================== -->
 <section class="results" id="results" aria-hidden="true">
   <div class="results-inner">
@@ -2141,31 +2387,22 @@ Line 3: 👇 Order catering online</pre>
   </div>
 </section>
 
-<!-- ==========================================================
-     GATE MODAL
-     ========================================================== -->
-<div class="gate-overlay" id="gate" role="dialog" aria-modal="true" aria-labelledby="gate-title" aria-hidden="true">
-  <div class="gate-modal">
-    <button class="gate-close" id="gate-close" type="button" aria-label="Close">×</button>
-    <div class="gate-eyebrow">One step before your results</div>
-    <h2 id="gate-title">See where you score.</h2>
-    <p class="gate-sub">Your score and what to do next show up right here, on this page. We'll also follow up with a short email series covering the system behind the audit. No spam. Unsubscribe anytime.</p>
-
-    <form class="gate-form" id="gate-form" novalidate>
-      <div class="field">
-        <label for="gate-first">First name</label>
-        <input type="text" id="gate-first" name="first_name" autocomplete="given-name" required>
-      </div>
-      <div class="field">
-        <label for="gate-email">Email</label>
-        <input type="email" id="gate-email" name="email" autocomplete="email" required>
-      </div>
-      <button type="submit" class="gate-submit" id="gate-submit">Show my results</button>
-      <p class="gate-fine">By submitting, you agree to receive occasional emails from Scroll Media. Unsubscribe anytime.</p>
-      <div class="gate-error" id="gate-error" role="alert">Something went wrong on our end. Try again in a minute, or email chase@scrollmedia.co and we'll send your results manually.</div>
-    </form>
   </div>
-</div>
+  <!-- /.locked-asset -->
+
+  <!-- ==========================================================
+       SOFT CTA · Calendly (bottom of unlocked asset)
+       ========================================================== -->
+  <section class="soft-cta">
+    <div class="soft-cta-inner">
+      <div class="soft-cta-eyebrow">Want help implementing?</div>
+      <h2 class="soft-cta-headline">Run the audit with us.</h2>
+      <p class="soft-cta-sub">30 minutes. We walk your account against the framework live. No pitch. No pressure. You leave with the priority list.</p>
+      <a href="https://calendly.com/scrollmedia/discovery" class="soft-cta-button" target="_blank" rel="noopener">Book a discovery call</a>
+    </div>
+  </section>
+
+</main>
 
 <!-- ==========================================================
      FOOTER
@@ -2261,25 +2498,27 @@ Line 3: 👇 Order catering online</pre>
   })();
 
   // ============================================================
-  // GATE MODAL
+  // FRONT-GATE (v2 · locked May 28, 2026)
+  // Hero → preview cards → inline gate form → unlocked asset reveal.
+  // Persisted via sessionStorage. Bypass with ?preview=true.
   // ============================================================
   (function() {
     // Kit form: Cincinnati IG Audit · Lead Magnet (id 9466021).
-    // Source tagging handled server-side by the "Apply Source Tags" automation (id 1975733).
+    // Source tagging handled server-side by the "Apply Source Tags" automation.
+    // Form fires lead-source-ig-audit + quiz-lead tags.
     const KIT_FORM_ID = 9466021;
     const KIT_FORM_ENDPOINT = 'https://app.kit.com/forms/' + KIT_FORM_ID + '/subscriptions';
+    const SESSION_KEY = 'cia_unlocked';
 
-    const gate = document.getElementById('gate');
-    const gateTrigger = document.getElementById('gate-trigger');
-    const gateClose = document.getElementById('gate-close');
+    const gateSection = document.getElementById('gate-section');
+    const lockedAsset = document.getElementById('locked-asset');
     const gateForm = document.getElementById('gate-form');
     const gateSubmit = document.getElementById('gate-submit');
     const gateError = document.getElementById('gate-error');
     const firstNameInput = document.getElementById('gate-first');
     const emailInput = document.getElementById('gate-email');
+    const scoreTrigger = document.getElementById('score-trigger');
     const results = document.getElementById('results');
-
-    let lastFocus = null;
 
     // Band thresholds → subheadline + data-diag-band key
     const BANDS = [
@@ -2288,59 +2527,6 @@ Line 3: 👇 Order catering online</pre>
       { min: 4,  max: 7,  key: '4-7',   subhead: 'Solid effort, real leaks.' },
       { min: 0,  max: 3,  key: '0-3',   subhead: 'Time to rebuild.' }
     ];
-
-    function getFocusableElements(container) {
-      return container.querySelectorAll(
-        'a[href], button:not([disabled]), input:not([disabled]), [tabindex]:not([tabindex="-1"])'
-      );
-    }
-
-    function openGate() {
-      lastFocus = document.activeElement;
-      gate.setAttribute('aria-hidden', 'false');
-      gateError.classList.remove('is-visible');
-      document.body.style.overflow = 'hidden';
-      setTimeout(() => { firstNameInput.focus(); }, 0);
-      document.addEventListener('keydown', onKeydown);
-    }
-
-    function closeGate() {
-      gate.setAttribute('aria-hidden', 'true');
-      document.body.style.overflow = '';
-      document.removeEventListener('keydown', onKeydown);
-      if (lastFocus && typeof lastFocus.focus === 'function') {
-        lastFocus.focus();
-      }
-    }
-
-    function onKeydown(e) {
-      if (e.key === 'Escape') {
-        closeGate();
-        return;
-      }
-      if (e.key === 'Tab') {
-        const focusables = getFocusableElements(gate);
-        if (focusables.length === 0) return;
-        const first = focusables[0];
-        const last = focusables[focusables.length - 1];
-        if (e.shiftKey && document.activeElement === first) {
-          last.focus();
-          e.preventDefault();
-        } else if (!e.shiftKey && document.activeElement === last) {
-          first.focus();
-          e.preventDefault();
-        }
-      }
-    }
-
-    function revealResults() {
-      results.classList.add('is-visible');
-      results.setAttribute('aria-hidden', 'false');
-      // Smooth scroll to results
-      setTimeout(() => {
-        results.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }, 80);
-    }
 
     function resolveBand(total) {
       for (let i = 0; i < BANDS.length; i++) {
@@ -2353,26 +2539,40 @@ Line 3: 👇 Order catering online</pre>
       const total = document.querySelectorAll('.check-item input[type="checkbox"]:checked').length;
       const band = resolveBand(total);
 
-      // Update score number
       const scoreEl = document.querySelector('[data-results-score]');
       if (scoreEl) scoreEl.textContent = String(total);
 
-      // Update subhead with band headline
       const subEl = document.querySelector('[data-band-subhead]');
       if (subEl) subEl.textContent = band.subhead;
 
-      // Position marker on bar (0–12 scale → 0–100%)
       const marker = document.querySelector('[data-score-marker]');
       if (marker) marker.style.left = (total / 12 * 100) + '%';
 
-      // Reveal the matching diag band, hide the rest
       document.querySelectorAll('.diag-band').forEach(el => el.classList.remove('is-active'));
       const activeBand = document.querySelector('.diag-band[data-diag-band="' + band.key + '"]');
       if (activeBand) activeBand.classList.add('is-active');
 
-      // Update score-bar aria-label
       const bar = document.querySelector('.score-bar');
       if (bar) bar.setAttribute('aria-label', 'Score ' + total + ' of 12');
+    }
+
+    function revealResults() {
+      results.classList.add('is-visible');
+      results.setAttribute('aria-hidden', 'false');
+      setTimeout(() => {
+        results.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 80);
+    }
+
+    function unlockAsset(scrollIntoView) {
+      lockedAsset.classList.add('is-unlocked');
+      lockedAsset.setAttribute('aria-hidden', 'false');
+      if (gateSection) gateSection.style.display = 'none';
+      if (scrollIntoView) {
+        setTimeout(() => {
+          lockedAsset.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }, 100);
+      }
     }
 
     async function submitToKit(firstName, email) {
@@ -2387,12 +2587,16 @@ Line 3: 👇 Order catering online</pre>
       return { ok: res.ok };
     }
 
-    if (gateTrigger) gateTrigger.addEventListener('click', openGate);
-    if (gateClose) gateClose.addEventListener('click', closeGate);
-    gate.addEventListener('click', function(e) {
-      if (e.target === gate) closeGate();
-    });
+    // Auto-unlock on preview bypass
+    const params = new URLSearchParams(window.location.search);
+    if (params.get('preview') === 'true') {
+      unlockAsset(false);
+    } else if (sessionStorage.getItem(SESSION_KEY) === '1') {
+      // Persist across same-session reloads
+      unlockAsset(false);
+    }
 
+    // Gate form submission
     if (gateForm) {
       gateForm.addEventListener('submit', async function(e) {
         e.preventDefault();
@@ -2408,22 +2612,29 @@ Line 3: 👇 Order catering online</pre>
         }
 
         gateSubmit.disabled = true;
-        gateSubmit.textContent = 'Loading…';
+        gateSubmit.textContent = 'Unlocking…';
 
         try {
           const result = await submitToKit(firstName, email);
           if (!result.ok) throw new Error('Kit submission failed.');
-          syncResultsScore();
-          closeGate();
-          revealResults();
+          sessionStorage.setItem(SESSION_KEY, '1');
+          unlockAsset(true);
         } catch (err) {
           console.error(err);
-          gateError.textContent = 'Something went wrong on our end. Try again in a minute, or email chase@scrollmedia.co and we’ll send your results manually.';
+          gateError.textContent = 'Something went wrong on our end. Try again in a minute, or email chase@scrollmedia.co and we will send the audit manually.';
           gateError.classList.add('is-visible');
         } finally {
           gateSubmit.disabled = false;
-          gateSubmit.textContent = 'Show my results';
+          gateSubmit.textContent = 'Unlock the audit';
         }
+      });
+    }
+
+    // "See my diagnostic" button — computes score, reveals results band, scrolls
+    if (scoreTrigger) {
+      scoreTrigger.addEventListener('click', function() {
+        syncResultsScore();
+        revealResults();
       });
     }
   })();
