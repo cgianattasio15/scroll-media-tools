@@ -590,361 +590,255 @@
     letter-spacing: -0.01em;
   }
 
+  /* Prior modal-style gate retired May 28, 2026 (front-gate pattern below). */
+  /* Engine, results, score-viz, diagnostic bands, calendly-wrap, proof
+     all retired May 28, 2026 — Audit shifted to pure checklist style. */
+
   /* ============================================================
-     ENGINE ACCENT BLOCK · dark, running total + CTA
+     PROGRESS COUNTER · "X of 12 checked" lightweight tracker
      ============================================================ */
-  .engine {
-    position: relative;
-    background: linear-gradient(180deg, var(--shadow) 0%, var(--shadow-soft) 100%);
-    color: var(--ghost);
-    padding: 64px 24px 72px;
-    margin: 0;
-    border-top: 1px solid var(--shadow-2);
-    border-bottom: 1px solid var(--shadow-2);
-  }
-  .engine::before {
-    content: '';
-    position: absolute; top: 0; left: 0; right: 0; height: 1px;
-    background: linear-gradient(90deg, transparent 0%, var(--highlighter) 50%, transparent 100%);
-    opacity: 0.6;
-  }
-  .engine::after {
-    content: '';
-    position: absolute; bottom: 0; left: 0; right: 0; height: 1px;
-    background: linear-gradient(90deg, transparent 0%, var(--highlighter) 50%, transparent 100%);
-    opacity: 0.3;
-  }
-  .engine-inner {
-    max-width: 900px; margin: 0 auto;
-    text-align: center;
-  }
-  .engine-eyebrow {
-    font-size: 11px; text-transform: uppercase;
-    letter-spacing: 0.22em; color: var(--highlighter);
-    font-weight: 700; margin-bottom: 18px;
-  }
-  .engine h2 {
-    font-size: clamp(28px, 3.6vw, 40px);
-    color: var(--ghost);
-    line-height: 1.1;
-    letter-spacing: -0.02em;
-    margin-bottom: 36px;
-    max-width: 22ch;
-    margin-left: auto; margin-right: auto;
-  }
-  .engine-total {
-    display: inline-flex;
-    align-items: baseline;
+  .progress-bar {
+    background: var(--ghost);
+    border: 1px solid var(--rule);
+    padding: 18px 22px;
+    margin: 0 auto 28px;
+    max-width: 1052px;
+    display: flex; flex-wrap: wrap;
+    align-items: center; justify-content: space-between;
     gap: 12px;
-    margin-bottom: 32px;
-    padding: 24px 36px;
-    border: 1px solid rgba(255, 255, 255, 0.10);
-    background: rgba(255, 255, 255, 0.03);
   }
-  .engine-total .num {
-    font-size: clamp(56px, 7vw, 88px);
-    font-weight: 700;
-    color: var(--highlighter);
-    line-height: 1;
-    letter-spacing: -0.03em;
-    font-feature-settings: 'tnum' 1;
-  }
-  .engine-total .denom {
-    font-size: clamp(24px, 2.6vw, 32px);
-    color: var(--azure-200);
-    font-weight: 600;
-    letter-spacing: -0.01em;
-  }
-  .engine-cta {
-    display: inline-block;
-    background: var(--highlighter);
-    color: var(--shadow);
-    padding: 18px 32px;
-    font-size: clamp(15px, 1.4vw, 17px);
-    font-weight: 700;
-    letter-spacing: 0.02em;
-    text-decoration: none;
-    border-bottom: 0;
-    border: 1.5px solid var(--highlighter);
-    cursor: pointer;
-    transition: transform 200ms var(--ease), background 200ms var(--ease);
-    min-height: 44px;
-  }
-  .engine-cta:hover {
-    transform: translateY(-2px);
-    background: var(--ghost);
-    border-color: var(--ghost);
-  }
-  .engine-note {
-    margin-top: 22px;
-    font-size: 13px;
-    color: var(--azure-200);
-    letter-spacing: 0.06em;
-  }
-
-  /* Prior modal-style gate retired May 28, 2026.
-     Replaced by inline front-gate pattern (see "FRONT-GATE PATTERN · v2" below). */
-
-  /* ============================================================
-     RESULTS SECTION
-     ============================================================ */
-  .results {
-    background: var(--ghost);
-    padding: 64px 24px 80px;
-    display: none;
-  }
-  .results.is-visible { display: block; }
-  .results-inner { max-width: 900px; margin: 0 auto; }
-  .results-eyebrow {
-    font-size: 11px; text-transform: uppercase;
-    letter-spacing: 0.22em; color: var(--azure-600);
-    font-weight: 700; margin-bottom: 18px;
-  }
-  .results h2 {
-    font-size: clamp(28px, 3.4vw, 38px);
-    color: var(--azure-900);
-    line-height: 1.1;
-    letter-spacing: -0.02em;
-    margin-bottom: 28px;
-    max-width: 22ch;
-  }
-
-  /* Score visualization */
-  .score-viz {
-    margin-bottom: 48px;
-    padding: 32px 32px 28px;
-    background: var(--bg-alt);
-    border: 1px solid var(--rule);
-  }
-  .score-headline {
-    font-size: clamp(26px, 3.2vw, 36px);
-    color: var(--azure-900);
-    line-height: 1.12;
-    letter-spacing: -0.02em;
-    margin-bottom: 8px;
-    font-weight: 700;
-  }
-  .score-headline [data-results-score] {
-    color: var(--azure);
-    font-variant-numeric: tabular-nums;
-  }
-  .score-subheadline {
-    font-size: clamp(17px, 1.8vw, 20px);
-    color: var(--azure-600);
-    line-height: 1.3;
-    margin-bottom: 26px;
-    font-weight: 600;
-    letter-spacing: -0.01em;
-  }
-  .score-bar-wrap { margin-top: 8px; padding: 14px 0 4px; }
-  .score-bar {
-    position: relative;
-    display: flex;
-    height: 32px;
-    width: 100%;
-    border: 1px solid var(--rule);
-  }
-  .score-band {
-    height: 100%;
-  }
-  /* v3 · proportional widths matching value ranges (3/4/3/2 of 12) */
-  .score-band-1 { flex: 3 0 0; background: var(--azure-900); }
-  .score-band-2 { flex: 4 0 0; background: var(--azure-600); }
-  .score-band-3 { flex: 3 0 0; background: var(--lucid-deep); }
-  .score-band-4 { flex: 2 0 0; background: var(--highlighter); }
-  .score-marker {
-    position: absolute;
-    top: -12px;
-    bottom: -12px;
-    left: 0%;
-    width: 3px;
-    background: var(--shadow);
-    transform: translateX(-50%);
-    transition: left 600ms var(--ease);
-    z-index: 2;
-    pointer-events: none;
-  }
-  .score-marker::before {
-    content: '';
-    position: absolute;
-    top: -2px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 0; height: 0;
-    border-left: 7px solid transparent;
-    border-right: 7px solid transparent;
-    border-top: 9px solid var(--shadow);
-  }
-  .score-marker::after {
-    content: '';
-    position: absolute;
-    bottom: -6px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 14px; height: 14px;
-    background: var(--shadow);
-    border-radius: 50%;
-    border: 2px solid var(--ghost);
-  }
-  /* v3 · labels positioned at exact value-percent of /12 scale */
-  .score-bar-labels {
-    position: relative;
-    margin-top: 14px;
-    height: 16px;
-    padding: 0;
-  }
-  .score-bar-labels span {
-    position: absolute;
-    transform: translateX(-50%);
-    font-size: 12px;
-    font-weight: 700;
-    color: var(--fg-muted);
-    font-variant-numeric: tabular-nums;
-    letter-spacing: 0.04em;
-  }
-  .score-bar-labels span:first-child { transform: none; }
-  .score-bar-labels span:last-child { transform: translateX(-100%); }
-  @media (prefers-reduced-motion: reduce) {
-    .score-marker { transition: none; }
-  }
-
-  /* Diagnostic block (one band visible at a time) */
-  .diagnostic {
-    margin-bottom: 44px;
-  }
-  .diag-band { display: none; }
-  .diag-band.is-active { display: block; }
-  .diag-headline {
-    font-size: clamp(24px, 2.8vw, 32px);
-    color: var(--azure-900);
-    line-height: 1.1;
-    letter-spacing: -0.02em;
-    margin-bottom: 16px;
-    font-weight: 700;
-  }
-  .diag-body {
-    font-size: clamp(15px, 1.5vw, 17px);
-    line-height: 1.65;
-    color: var(--fg);
-    max-width: 64ch;
-    margin-bottom: 28px;
-  }
-  .diag-actions {
-    list-style: none;
-    counter-reset: diag-action;
-    padding: 0;
-    margin: 0;
-    border-top: 1px solid var(--rule-faint);
-  }
-  .diag-actions li {
-    position: relative;
-    counter-increment: diag-action;
-    padding: 20px 0 20px 52px;
-    border-bottom: 1px solid var(--rule-faint);
-    font-size: 15px;
-    line-height: 1.6;
-    color: var(--fg);
-    max-width: 70ch;
-  }
-  .diag-actions li::before {
-    content: counter(diag-action, decimal-leading-zero);
-    position: absolute;
-    left: 0;
-    top: 22px;
-    font-size: 13px;
-    font-weight: 700;
-    color: var(--azure-600);
-    letter-spacing: 0.06em;
-    font-variant-numeric: tabular-nums;
-  }
-  .diag-actions li strong {
-    color: var(--azure-900);
-    font-weight: 700;
-  }
-
-  /* CTA block */
-  .calendly-wrap {
-    background: var(--bg-alt);
-    border: 1px solid var(--rule);
-    padding: 32px 32px 28px;
-    margin-bottom: 0;
-  }
-  .calendly-eyebrow {
+  .progress-bar .label {
     font-size: 11px; text-transform: uppercase;
     letter-spacing: 0.18em; color: var(--azure-600);
-    font-weight: 700; margin-bottom: 10px;
+    font-weight: 700;
   }
-  .calendly-wrap h3 {
-    font-size: clamp(22px, 2.2vw, 26px);
+  .progress-bar .count {
+    font-size: 15px; font-weight: 700;
     color: var(--azure-900);
-    margin-bottom: 12px;
     letter-spacing: -0.01em;
-    line-height: 1.18;
+    font-variant-numeric: tabular-nums;
   }
-  .calendly-sub {
+  .progress-bar .count [data-progress-count] {
+    color: var(--azure);
+  }
+
+  /* ============================================================
+     AUDIT ACCORDION · details/summary pattern (v2 May 28, 2026)
+     Each of the 12 items collapses by default. Summary stays
+     scannable, expand-to-read for the full educational content.
+     ============================================================ */
+  .audit-item {
+    background: var(--ghost);
+    border-top: 1px solid var(--rule-faint);
+    position: relative;
+  }
+  .audit-item:first-child { border-top: 0; }
+  .audit-item summary {
+    list-style: none;
+    cursor: pointer;
+    padding: 18px 0;
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    transition: background 150ms var(--ease);
+    user-select: none;
+    min-height: 44px;
+  }
+  .audit-item summary::-webkit-details-marker { display: none; }
+  .audit-item summary:hover { background: rgba(228, 243, 255, 0.20); }
+  .audit-item.is-checked .item-title { color: var(--azure); }
+  .audit-item.is-checked .check-num {
+    background: var(--azure);
+    color: var(--ghost);
+  }
+
+  .audit-item .check-box-wrap {
+    flex-shrink: 0;
+    position: relative;
+    width: 24px; height: 24px;
+    margin-top: 2px;
+  }
+  .audit-item .item-head {
+    flex: 1; min-width: 0;
+    display: flex; flex-direction: column;
+    gap: 6px;
+  }
+  .audit-item .item-head .check-num {
+    display: inline-block;
+    background: var(--lucid);
+    color: var(--azure-900);
+    font-weight: 700;
+    font-size: 11px;
+    padding: 2px 8px;
+    letter-spacing: 0.04em;
+    transition: background 200ms var(--ease), color 200ms var(--ease);
+    align-self: flex-start;
+  }
+  .audit-item .item-title {
+    font-weight: 700;
+    font-size: clamp(15px, 1.4vw, 16px);
+    color: var(--azure-900);
+    line-height: 1.4;
+    transition: color 150ms var(--ease);
+  }
+  .audit-item .expand-arrow {
+    flex-shrink: 0;
+    color: var(--azure-600);
+    font-size: 12px;
+    transition: transform 250ms var(--ease);
+    margin-top: 6px;
+    width: 18px; text-align: center;
+  }
+  .audit-item[open] .expand-arrow {
+    transform: rotate(180deg);
+  }
+  .audit-item .item-details {
+    padding: 0 0 22px 38px;
+    animation: revealDown 400ms var(--ease);
+  }
+  .audit-item .item-details .check-desc {
+    color: var(--fg);
+    font-size: 14px;
+    line-height: 1.6;
+    margin-top: 0;
+    max-width: 70ch;
+  }
+  .audit-item .item-details .check-desc + .check-desc { margin-top: 10px; }
+  .audit-item .item-details .check-desc strong { color: var(--azure-900); font-weight: 700; }
+  .audit-item .item-details .check-desc em { font-style: italic; }
+  @media (prefers-reduced-motion: reduce) {
+    .audit-item .item-details { animation: none; }
+    .audit-item .expand-arrow { transition: none; }
+  }
+
+  /* ============================================================
+     RECOMMENDED FORMATS · content mix + Reels + Carousels
+     (added May 28, 2026 — tactical playbook after the checklist)
+     ============================================================ */
+  .formats {
+    background: var(--bg-alt);
+    padding: 64px 24px 72px;
+    border-top: 1px solid var(--rule);
+  }
+  .formats-inner { max-width: 1100px; margin: 0 auto; }
+  .formats-intro { margin-bottom: 40px; max-width: 720px; }
+  .formats-eyebrow {
+    font-size: 11px; text-transform: uppercase;
+    letter-spacing: 0.22em; color: var(--azure-600);
+    font-weight: 700; margin-bottom: 16px;
+  }
+  .formats-headline {
+    font-size: clamp(28px, 3.4vw, 38px);
+    color: var(--azure-900); line-height: 1.12;
+    letter-spacing: -0.02em; margin-bottom: 16px;
+    max-width: 22ch; font-weight: 700;
+  }
+  .formats-lede {
+    font-size: 16px; color: var(--fg);
+    line-height: 1.6; max-width: 60ch;
+  }
+
+  .formats-subhead {
+    display: flex; align-items: baseline; gap: 14px;
+    margin: 36px 0 22px;
+    padding-bottom: 12px;
+    border-bottom: 1.5px solid var(--azure-800);
+  }
+  .formats-subhead .formats-section-num {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--azure);
+    letter-spacing: 0.10em;
+    text-transform: uppercase;
+    background: var(--lucid);
+    padding: 3px 10px;
+    border-radius: 2px;
+  }
+  .formats-subhead h3 {
+    font-size: clamp(20px, 2.2vw, 26px);
+    color: var(--azure-900);
+    line-height: 1.18;
+    letter-spacing: -0.015em;
+    margin: 0;
+  }
+
+  /* Section A · mix cards */
+  .format-cards {
+    display: grid; gap: 16px;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  }
+  .format-card {
+    background: var(--ghost);
+    border: 1.5px solid var(--azure);
+    padding: 22px 22px 22px;
+    transition: transform 200ms var(--ease), box-shadow 200ms var(--ease);
+  }
+  .format-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 0 var(--azure-100);
+  }
+  .format-card-num {
+    font-size: 11px; font-weight: 700;
+    color: var(--azure-600);
+    letter-spacing: 0.16em; text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+  .format-card-title {
+    font-size: 18px; font-weight: 700;
+    color: var(--azure-900);
+    line-height: 1.22; letter-spacing: -0.01em;
+    margin-bottom: 8px;
+  }
+  .format-card-desc {
+    font-size: 14px; color: var(--fg);
+    line-height: 1.6;
+  }
+
+  /* Sections B + C · numbered format list */
+  .format-list {
+    list-style: none;
+    padding: 0; margin: 0;
+    background: var(--ghost);
+    border: 1px solid var(--rule);
+  }
+  .format-list-item {
+    display: flex; align-items: flex-start;
+    gap: 16px;
+    padding: 18px 22px;
+    border-top: 1px solid var(--rule-faint);
+  }
+  .format-list-item:first-child { border-top: 0; }
+  .format-list-num {
+    flex-shrink: 0;
+    font-size: 12px; font-weight: 700;
+    color: var(--azure);
+    letter-spacing: 0.06em;
+    font-variant-numeric: tabular-nums;
+    background: var(--lucid);
+    padding: 4px 10px;
+    margin-top: 1px;
+  }
+  .format-list-body {
+    font-size: 15px; line-height: 1.55;
+    color: var(--fg);
+    max-width: 75ch;
+  }
+  .format-list-body strong {
+    color: var(--azure-900);
+    font-weight: 700;
+    margin-right: 6px;
+  }
+  .format-list-body span { color: var(--fg); }
+
+  .formats-closer {
+    margin-top: 36px;
     font-size: 15px;
     color: var(--fg);
     line-height: 1.6;
-    margin-bottom: 22px;
-    max-width: 64ch;
-  }
-  .cta-button {
-    display: inline-flex;
-    align-items: center;
-    background: var(--azure);
-    color: var(--ghost);
-    padding: 16px 28px;
-    font-size: 15px;
-    font-weight: 700;
-    letter-spacing: 0.02em;
-    border: 1.5px solid var(--azure);
-    border-bottom: 0;
-    text-decoration: none;
-    transition: background 200ms var(--ease), transform 200ms var(--ease);
-    min-height: 48px;
-  }
-  .cta-button:hover {
-    background: var(--azure-900);
-    border-color: var(--azure-900);
-    color: var(--ghost);
-    transform: translateY(-2px);
-  }
-  .calendly-fine {
-    margin-top: 14px;
-    font-size: 13px;
-    color: var(--fg-muted);
-    letter-spacing: 0.02em;
-  }
-
-  /* Social proof */
-  .proof {
-    margin-top: 48px;
-    padding: 36px 0 8px;
-    border-top: 1px solid var(--rule);
-  }
-  .proof-eyebrow {
-    font-size: 12px;
-    font-weight: 700;
-    color: var(--azure-900);
-    text-transform: uppercase;
-    letter-spacing: 0.18em;
-    margin-bottom: 22px;
-  }
-  .proof p {
-    font-size: 15px;
-    line-height: 1.65;
-    color: var(--fg);
-    max-width: 64ch;
-    margin-bottom: 18px;
-  }
-  .proof p:last-of-type { margin-bottom: 0; }
-  .proof-attrib {
-    font-size: 14px;
-    color: var(--fg-muted);
+    max-width: 56ch;
     font-style: italic;
+    padding-left: 14px;
     border-left: 2px solid var(--lucid-deep);
-    padding-left: 16px;
-    max-width: 60ch;
   }
 
   /* ============================================================
@@ -1366,8 +1260,6 @@
     .topbar-meta { gap: 12px; }
     .hero { padding: 64px 22px 72px; }
     .zone { padding: 30px 26px 28px; }
-    .engine { padding: 52px 22px 60px; }
-    .results { padding: 52px 22px 64px; }
   }
 
   /* ============================================================
@@ -1416,12 +1308,23 @@
     .check-title { font-size: 15px; }
     .check-desc { font-size: 14px; }
 
-    .engine { padding: 44px 18px 48px; }
-    .engine-eyebrow { letter-spacing: 0.18em; }
-    .engine-total { padding: 18px 24px; gap: 8px; margin-bottom: 24px; }
-    .engine-total .num { font-size: 52px; }
-    .engine-total .denom { font-size: 22px; }
-    .engine-cta { padding: 16px 22px; font-size: 15px; }
+    .progress-bar { padding: 14px 18px; margin-bottom: 22px; }
+    .audit-item summary { gap: 12px; padding: 16px 0; }
+    .audit-item .item-title { font-size: 15px; }
+    .audit-item .item-details { padding: 0 0 18px 36px; }
+    .audit-item .item-details .check-desc { font-size: 14px; }
+
+    .formats { padding: 48px 18px 56px; }
+    .formats-intro { margin-bottom: 32px; }
+    .formats-headline { font-size: 26px; margin-bottom: 14px; }
+    .formats-lede { font-size: 15px; }
+    .formats-subhead { margin: 28px 0 18px; gap: 12px; }
+    .formats-subhead h3 { font-size: 19px; }
+    .format-card { padding: 20px 20px 18px; }
+    .format-card-title { font-size: 17px; }
+    .format-list-item { padding: 16px 18px; gap: 14px; }
+    .format-list-body { font-size: 14px; }
+    .formats-closer { font-size: 14px; padding-left: 12px; }
 
     .preview-section { padding: 48px 18px 44px; }
     .preview-headline { font-size: 24px; margin-bottom: 28px; }
@@ -1444,18 +1347,6 @@
     .soft-cta { padding: 44px 18px; }
     .soft-cta-headline { font-size: 24px; }
     .soft-cta-sub { font-size: 14px; }
-
-    .results { padding: 42px 18px 56px; }
-    .score-viz { padding: 24px 22px 22px; }
-    .score-headline { font-size: 24px; }
-    .score-subheadline { font-size: 17px; }
-    .score-bar { height: 26px; }
-    .diag-headline { font-size: 22px; }
-    .diag-body { font-size: 15px; }
-    .diag-actions li { padding-left: 48px; }
-    .calendly-wrap { padding: 24px 22px 22px; }
-    .calendly-wrap h3 { font-size: 21px; }
-    .proof { padding-top: 28px; }
 
     .supplements { padding: 24px 18px 32px; }
     .supplement summary { padding: 18px 20px; gap: 16px; }
@@ -1497,36 +1388,25 @@
     .check-desc { font-size: 14px; line-height: 1.6; }
     .zone-tally .label { font-size: 10px; letter-spacing: 0.10em; }
     .zone-tally .score { font-size: 15px; }
+    .progress-bar { padding: 12px 16px; }
+    .progress-bar .label { font-size: 10px; letter-spacing: 0.14em; }
+    .progress-bar .count { font-size: 14px; }
+    .audit-item summary { padding: 14px 0; gap: 10px; }
+    .audit-item .item-title { font-size: 14px; }
+    .audit-item .item-head .check-num { font-size: 10px; }
+    .audit-item .item-details { padding: 0 0 16px 34px; }
 
-    .engine-eyebrow { font-size: 10px; letter-spacing: 0.14em; }
-    .engine h2 { font-size: 24px; line-height: 1.15; }
-    .engine-total .num { font-size: 44px; }
-    .engine-total .denom { font-size: 20px; }
-    .engine-cta { font-size: 14px; padding: 14px 18px; }
-    .engine-note { font-size: 12px; }
-
-
-    .results-eyebrow { font-size: 10px; letter-spacing: 0.16em; }
-    .results h2 { font-size: 24px; }
-    .score-viz { padding: 22px 18px 20px; }
-    .score-headline { font-size: 22px; }
-    .score-subheadline { font-size: 16px; }
-    .score-bar { height: 22px; }
-    .score-marker { top: -10px; bottom: -10px; }
-    .score-marker::after { width: 12px; height: 12px; bottom: -5px; }
-    .score-bar-labels span { font-size: 11px; }
-    .diag-headline { font-size: 20px; }
-    .diag-body { font-size: 15px; line-height: 1.6; }
-    .diag-actions li { font-size: 14px; padding: 18px 0 18px 42px; }
-    .diag-actions li::before { font-size: 12px; top: 20px; }
-    .calendly-eyebrow { font-size: 10px; }
-    .calendly-wrap h3 { font-size: 19px; }
-    .calendly-sub { font-size: 14px; }
-    .cta-button { font-size: 14px; padding: 14px 22px; }
-    .calendly-fine { font-size: 12px; }
-    .proof-eyebrow { font-size: 11px; }
-    .proof p { font-size: 14px; }
-    .proof-attrib { font-size: 13px; }
+    .formats-eyebrow { font-size: 10px; letter-spacing: 0.18em; }
+    .formats-headline { font-size: 23px; }
+    .formats-lede { font-size: 14px; }
+    .formats-subhead h3 { font-size: 18px; }
+    .formats-subhead .formats-section-num { font-size: 11px; }
+    .format-card-num { font-size: 10px; }
+    .format-card-title { font-size: 16px; }
+    .format-card-desc { font-size: 14px; }
+    .format-list-num { font-size: 11px; }
+    .format-list-body { font-size: 14px; }
+    .formats-closer { font-size: 14px; }
 
     .supplement summary .s-eyebrow { font-size: 10px; }
     .supplement summary h2 { font-size: 17px; }
@@ -1575,15 +1455,15 @@
     .hero { padding: 44px 16px 48px; }
     .hero h1 { font-size: 27px; }
     .zone { padding: 22px 16px 20px; }
-    .engine { padding: 40px 16px 44px; }
-    .engine-total .num { font-size: 38px; }
-    .results { padding: 38px 16px 48px; }
     .preview-section { padding: 40px 16px 36px; }
     .preview-headline { font-size: 21px; }
     .gate-section { padding: 36px 16px 44px; }
     .gate-h2 { font-size: 19px; }
     .unlocked-banner { padding: 20px 16px 18px; }
     .post-unlock-howto { padding: 14px 14px 12px; }
+    .formats { padding: 40px 16px 48px; }
+    .formats-headline { font-size: 21px; }
+    .format-list-item { padding: 14px 16px; }
     .soft-cta { padding: 40px 16px; }
     .soft-cta-headline { font-size: 21px; }
   }
@@ -1593,7 +1473,7 @@
      ============================================================ */
   @media print {
     body { background: white; color: black; }
-    .topbar, .engine-cta, .gate-section, .preview-section, .soft-cta { display: none !important; }
+    .topbar, .gate-section, .preview-section, .soft-cta { display: none !important; }
     .locked-asset { display: block !important; }
     .hero { background: white; color: black; padding: 24px 0; }
     .hero h1, .hero h1 .accent, .hero-sub, .hero-eyebrow, .hero-tag, .hero-cosign, .hero-cosign .by, .hero-cosign .signers, .hero-cosign .signers strong { color: black; }
@@ -1640,7 +1520,7 @@
         <div class="hero-tag">The Audit · 2026</div>
       </div>
 
-      <div class="hero-eyebrow">Free self-scoring audit</div>
+      <div class="hero-eyebrow">Free Cincinnati IG audit</div>
       <h1>The Cincinnati Local Brand <span class="accent">Instagram Audit.</span></h1>
       <p class="hero-sub">12 questions most Cincinnati brands cannot answer about their own Instagram. The ones that can outperform the ones that cannot, every time.</p>
 
@@ -1660,7 +1540,7 @@
   <section class="preview-section">
     <div class="preview-inner">
       <div class="preview-eyebrow">What's inside</div>
-      <h2 class="preview-headline">Four layers. Twelve items. The exact framework.</h2>
+      <h2 class="preview-headline">Four layers. Twelve items. A formats playbook.</h2>
 
       <div class="preview-cards">
         <div class="preview-card">
@@ -1685,7 +1565,7 @@
         </div>
       </div>
 
-      <p class="preview-stat"><strong>Inside: 12 items. 3 minutes to complete.</strong> The exact framework we use with 30+ Cincinnati brands.</p>
+      <p class="preview-stat"><strong>Inside: 12-item audit checklist plus a recommended formats playbook.</strong> 5 minutes to scan, then save it for later.</p>
     </div>
   </section>
 
@@ -1695,8 +1575,8 @@
   <section class="gate-section" id="gate-section">
     <div class="gate-inner">
       <div class="gate-eyebrow-inline">Get the audit</div>
-      <h2 class="gate-h2">Score your account in 3 minutes.</h2>
-      <p class="gate-lede">Drop your name and email. The full audit unlocks below, and a copy lands in your inbox.</p>
+      <h2 class="gate-h2">Run the audit in a few minutes.</h2>
+      <p class="gate-lede">Drop your name and email. The checklist and the formats playbook unlock below, and a copy lands in your inbox.</p>
 
       <form class="gate-form-inline" id="gate-form" novalidate>
         <div class="field">
@@ -1722,7 +1602,7 @@
   <div class="unlocked-banner">
     <div class="unlocked-banner-inner">
       <div class="unlocked-banner-text">
-        <strong>Audit unlocked. Score yourself below.</strong>
+        <strong>Audit unlocked. Work through it below.</strong>
         We also sent a copy to your inbox.
       </div>
       <a href="/instagram-audit-cincinnati/Scroll_Cincinnati_IG_Audit.pdf" class="pdf-download" download>
@@ -1736,16 +1616,16 @@
        ========================================================== -->
   <section class="foundation">
     <div class="foundation-inner">
-      <p>Most Cincinnati local brands run Instagram on instinct. Post when there's time. Post what feels right. Hope something works. The brands that pull ahead are not posting more or trying harder. They're running a system. This audit covers the 12 highest-leverage moves: profile fundamentals, conversion plumbing, the content discipline that compounds, and the Cincinnati layer most local brands skip entirely. Run it on your own account. Be honest. Score yourself.</p>
+      <p>Most Cincinnati local brands run Instagram on instinct. Post when there's time. Post what feels right. Hope something works. The brands that pull ahead are not posting more or trying harder. They're running a system. This audit covers the 12 highest-leverage moves: profile fundamentals, conversion plumbing, the content discipline that compounds, and the Cincinnati layer most local brands skip entirely. Run it on your own account. Be honest.</p>
       <p class="lead-in"><strong>The audit starts below.</strong></p>
 
       <div class="post-unlock-howto">
         <div class="label">How to use this</div>
         <ol>
           <li>Open your Instagram side-by-side with the audit below.</li>
-          <li>Check the box if your account meets the bar. Be honest with yourself.</li>
-          <li>Watch your score tally as you go.</li>
-          <li>When you're done, see what your score means and what to fix first.</li>
+          <li>Tap each item to read what good looks like.</li>
+          <li>Check the items where your account meets the bar. Be honest.</li>
+          <li>The ones you cannot check are your priority list. Fix from the top.</li>
         </ol>
       </div>
     </div>
@@ -1757,6 +1637,12 @@
   <section class="zones">
     <div class="zones-inner">
 
+      <div class="progress-bar" role="status" aria-live="polite">
+        <span class="label">Your progress</span>
+        <span class="count"><span data-progress-count>0</span> of 12 checked</span>
+        <span class="sr-only" id="progress-readout">0 of 12 items checked.</span>
+      </div>
+
       <div class="zone reveal" id="zone-01">
         <div class="zone-header">
           <div class="zone-num">01</div>
@@ -1767,20 +1653,22 @@
         </div>
         <p class="zone-intro">The first three seconds. Three profile levers decide whether a stranger stays or scrolls. If any one leaks, nothing downstream matters.</p>
 
-        <ul class="checklist" data-zone="01">
-          <li class="check-item" data-item="01">
-            <label class="check-row">
+        <div class="checklist" data-zone="01">
+          <details class="audit-item" data-item="01">
+            <summary>
               <span class="check-box-wrap">
-              <input type="checkbox" data-item-input="01" aria-describedby="desc-01">
+              <input type="checkbox" data-item-input="01" aria-describedby="desc-01" onclick="event.stopPropagation()">
               <span class="check-box-visual" aria-hidden="true">
                 <svg viewBox="0 0 24 24"><polyline points="5,12 10,17 19,7"></polyline></svg>
               </span>
               </span>
-              <div class="check-body">
-              <div class="check-head">
+              <div class="item-head">
                 <span class="check-num">01</span>
-                <span class="check-title">Your name field is keyword-loaded for Instagram search.</span>
+                <span class="item-title">Your name field is keyword-loaded for Instagram search.</span>
               </div>
+              <span class="expand-arrow" aria-hidden="true">▼</span>
+            </summary>
+            <div class="item-details">
               <p class="check-desc" id="desc-01">The handle is who you are. <strong>The name field</strong> (the bold line above it) is what Instagram uses for search ranking. Most local brands leave it set to the brand name only and waste the highest-converting search surface on the platform.</p>
               <p class="check-sublist-label">The pattern that wins:</p>
               <ul class="check-sublist">
@@ -1800,21 +1688,22 @@
               </div>
               <p class="try-this"><strong>Try this:</strong> Open Instagram search, type the keywords your ideal customer would use. Does your account appear in the top results? If not, your name field needs reworking.</p>
               </div>
-            </label>
-          </li>
-          <li class="check-item" data-item="02">
-            <label class="check-row">
+          </details>
+          <details class="audit-item" data-item="02">
+            <summary>
               <span class="check-box-wrap">
-              <input type="checkbox" data-item-input="02" aria-describedby="desc-02">
+              <input type="checkbox" data-item-input="02" aria-describedby="desc-02" onclick="event.stopPropagation()">
               <span class="check-box-visual" aria-hidden="true">
                 <svg viewBox="0 0 24 24"><polyline points="5,12 10,17 19,7"></polyline></svg>
               </span>
               </span>
-              <div class="check-body">
-              <div class="check-head">
+              <div class="item-head">
                 <span class="check-num">02</span>
-                <span class="check-title">Your bio runs three lines: mission, proof, next step.</span>
+                <span class="item-title">Your bio runs three lines: mission, proof, next step.</span>
               </div>
+              <span class="expand-arrow" aria-hidden="true">▼</span>
+            </summary>
+            <div class="item-details">
               <p class="check-desc" id="desc-02">You have 150 characters and 5 seconds. Most local brands burn both on vibe and forget the job.</p>
               <p class="check-sublist-label">Three lines, three jobs:</p>
               <ul class="check-sublist">
@@ -1832,21 +1721,22 @@ Line 3: 👇 Order catering online</pre>
               </div>
               <p class="try-this"><strong>Try this:</strong> Read your bio aloud. If a stranger can't tell who you serve, why you're credible, and what to do next in 5 seconds, it needs a rewrite.</p>
               </div>
-            </label>
-          </li>
-          <li class="check-item" data-item="03">
-            <label class="check-row">
+          </details>
+          <details class="audit-item" data-item="03">
+            <summary>
               <span class="check-box-wrap">
-              <input type="checkbox" data-item-input="03" aria-describedby="desc-03">
+              <input type="checkbox" data-item-input="03" aria-describedby="desc-03" onclick="event.stopPropagation()">
               <span class="check-box-visual" aria-hidden="true">
                 <svg viewBox="0 0 24 24"><polyline points="5,12 10,17 19,7"></polyline></svg>
               </span>
               </span>
-              <div class="check-body">
-              <div class="check-head">
+              <div class="item-head">
                 <span class="check-num">03</span>
-                <span class="check-title">Your link in bio routes to ONE current action.</span>
+                <span class="item-title">Your link in bio routes to ONE current action.</span>
               </div>
+              <span class="expand-arrow" aria-hidden="true">▼</span>
+            </summary>
+            <div class="item-details">
               <p class="check-desc" id="desc-03">Not a Linktree maze with eight options. Not a vague <em>"shop our website."</em> One clear, current next action, tied to what you actually want this month.</p>
               <p class="check-sublist-label">What "one current action" looks like:</p>
               <ul class="check-sublist">
@@ -1868,12 +1758,11 @@ Line 3: 👇 Order catering online</pre>
               </div>
               <p class="try-this"><strong>Try this:</strong> If your bio link currently routes to a page with four or more destinations, kill three of them today. Run with one for 30 days, watch what happens to your click-through rate.</p>
               </div>
-            </label>
-          </li>
-        </ul>
+          </details>
+        </div>
 
         <div class="zone-tally">
-          <div class="label">Section 01 score</div>
+          <div class="label">Section 01 · checked</div>
           <div class="score"><span data-zone-score="01">0</span> / 3</div>
         </div>
       </div>
@@ -1891,20 +1780,22 @@ Line 3: 👇 Order catering online</pre>
         </div>
         <p class="zone-intro">Followers do not convert by accident. Three plumbing fixes most local brands miss. Each one captures customers you're already losing.</p>
 
-        <ul class="checklist" data-zone="02">
-          <li class="check-item" data-item="04">
-            <label class="check-row">
+        <div class="checklist" data-zone="02">
+          <details class="audit-item" data-item="04">
+            <summary>
               <span class="check-box-wrap">
-              <input type="checkbox" data-item-input="04" aria-describedby="desc-04">
+              <input type="checkbox" data-item-input="04" aria-describedby="desc-04" onclick="event.stopPropagation()">
               <span class="check-box-visual" aria-hidden="true">
                 <svg viewBox="0 0 24 24"><polyline points="5,12 10,17 19,7"></polyline></svg>
               </span>
               </span>
-              <div class="check-body">
-              <div class="check-head">
+              <div class="item-head">
                 <span class="check-num">04</span>
-                <span class="check-title">You have a DM system, not DM chaos.</span>
+                <span class="item-title">You have a DM system, not DM chaos.</span>
               </div>
+              <span class="expand-arrow" aria-hidden="true">▼</span>
+            </summary>
+            <div class="item-details">
               <p class="check-desc" id="desc-04">The DM is the conversion surface for every local brand. Most local brands lose qualified buyers because <em>someone DMed at 9pm Friday and got a reply Tuesday morning.</em> That buyer found someone else over the weekend.</p>
               <p class="check-sublist-label">The system, three parts:</p>
               <ul class="check-sublist">
@@ -1924,21 +1815,22 @@ Line 3: 👇 Order catering online</pre>
               <p class="suggested-tool"><strong>Suggested tool: ManyChat.</strong> Set up keyword triggers, automated welcome flows, and saved-reply menus for common questions. The free tier covers 1,000 contacts per month, enough for most local brands.</p>
               <p class="try-this"><strong>Try this:</strong> Audit your last 20 DMs. How many took longer than 24 hours? Each one was a potential customer slipping away.</p>
               </div>
-            </label>
-          </li>
-          <li class="check-item" data-item="05">
-            <label class="check-row">
+          </details>
+          <details class="audit-item" data-item="05">
+            <summary>
               <span class="check-box-wrap">
-              <input type="checkbox" data-item-input="05" aria-describedby="desc-05">
+              <input type="checkbox" data-item-input="05" aria-describedby="desc-05" onclick="event.stopPropagation()">
               <span class="check-box-visual" aria-hidden="true">
                 <svg viewBox="0 0 24 24"><polyline points="5,12 10,17 19,7"></polyline></svg>
               </span>
               </span>
-              <div class="check-body">
-              <div class="check-head">
+              <div class="item-head">
                 <span class="check-num">05</span>
-                <span class="check-title">You acknowledge every customer story-share within 24 hours.</span>
+                <span class="item-title">You acknowledge every customer story-share within 24 hours.</span>
               </div>
+              <span class="expand-arrow" aria-hidden="true">▼</span>
+            </summary>
+            <div class="item-details">
               <p class="check-desc" id="desc-05">The single highest-ROI community move local brands miss. Customers who tag you and get <strong>crickets</strong> quietly stop. Customers who feel seen tell their friends.</p>
               <p class="check-sublist-label">Three ways to acknowledge:</p>
               <ul class="check-sublist">
@@ -1959,21 +1851,22 @@ Line 3: 👇 Order catering online</pre>
               </div>
               <p class="try-this"><strong>Try this:</strong> Set a daily 10-minute window at the same time every day to clear story-share acknowledgments. Recurring discipline beats heroic catch-up.</p>
               </div>
-            </label>
-          </li>
-          <li class="check-item" data-item="06">
-            <label class="check-row">
+          </details>
+          <details class="audit-item" data-item="06">
+            <summary>
               <span class="check-box-wrap">
-              <input type="checkbox" data-item-input="06" aria-describedby="desc-06">
+              <input type="checkbox" data-item-input="06" aria-describedby="desc-06" onclick="event.stopPropagation()">
               <span class="check-box-visual" aria-hidden="true">
                 <svg viewBox="0 0 24 24"><polyline points="5,12 10,17 19,7"></polyline></svg>
               </span>
               </span>
-              <div class="check-body">
-              <div class="check-head">
+              <div class="item-head">
                 <span class="check-num">06</span>
-                <span class="check-title">Every conversion-intent post drives ONE path that's actually live.</span>
+                <span class="item-title">Every conversion-intent post drives ONE path that's actually live.</span>
               </div>
+              <span class="expand-arrow" aria-hidden="true">▼</span>
+            </summary>
+            <div class="item-details">
               <p class="check-desc" id="desc-06">Not <em>"DM us OR check our link OR comment OR call."</em> One. And whatever path you pick (DM trigger, link, phone) has to exist and work today.</p>
               <p class="check-sublist-label">The two failure modes:</p>
               <ul class="check-sublist">
@@ -1994,12 +1887,11 @@ Line 3: 👇 Order catering online</pre>
               <p class="suggested-tool"><strong>Suggested tool: Metricool smart-links.</strong> Turns your bio link into a routing page with click attribution per source story or post. The free tier covers it. Bonus: tells you which post drove each click, so you can double down on what works.</p>
               <p class="try-this"><strong>Try this:</strong> Pick your top 3 conversion-intent posts from the last 90 days. Click every CTA in each. Does the path actually go where it says? Fix the dead ones first.</p>
               </div>
-            </label>
-          </li>
-        </ul>
+          </details>
+        </div>
 
         <div class="zone-tally">
-          <div class="label">Section 02 score</div>
+          <div class="label">Section 02 · checked</div>
           <div class="score"><span data-zone-score="02">0</span> / 3</div>
         </div>
       </div>
@@ -2017,20 +1909,22 @@ Line 3: 👇 Order catering online</pre>
         </div>
         <p class="zone-intro">Most local brands plateau here. The content discipline that compounds. No paid ads, no posting more, no burnout.</p>
 
-        <ul class="checklist" data-zone="03">
-          <li class="check-item" data-item="07">
-            <label class="check-row">
+        <div class="checklist" data-zone="03">
+          <details class="audit-item" data-item="07">
+            <summary>
               <span class="check-box-wrap">
-              <input type="checkbox" data-item-input="07" aria-describedby="desc-07">
+              <input type="checkbox" data-item-input="07" aria-describedby="desc-07" onclick="event.stopPropagation()">
               <span class="check-box-visual" aria-hidden="true">
                 <svg viewBox="0 0 24 24"><polyline points="5,12 10,17 19,7"></polyline></svg>
               </span>
               </span>
-              <div class="check-body">
-              <div class="check-head">
+              <div class="item-head">
                 <span class="check-num">07</span>
-                <span class="check-title">Your 3 pinned posts run Work, Founder, Proof.</span>
+                <span class="item-title">Your 3 pinned posts run Work, Founder, Proof.</span>
               </div>
+              <span class="expand-arrow" aria-hidden="true">▼</span>
+            </summary>
+            <div class="item-details">
               <p class="check-desc" id="desc-07">Pinned posts are the most strategically valuable real estate on your profile, ahead of the bio, ahead of every other post. Most local brands either don't use them or pin their three most recent posts. Both <strong>waste the highest-leverage surface on the entire account.</strong></p>
               <p class="check-sublist-label">Three pinned slots, three jobs:</p>
               <ul class="check-sublist">
@@ -2050,21 +1944,22 @@ Line 3: 👇 Order catering online</pre>
               </div>
               <p class="try-this"><strong>Try this:</strong> Right now, open your profile and tap your three pinned slots. If they're random recent posts, you're leaking conversions every day they stay there.</p>
               </div>
-            </label>
-          </li>
-          <li class="check-item" data-item="08">
-            <label class="check-row">
+          </details>
+          <details class="audit-item" data-item="08">
+            <summary>
               <span class="check-box-wrap">
-              <input type="checkbox" data-item-input="08" aria-describedby="desc-08">
+              <input type="checkbox" data-item-input="08" aria-describedby="desc-08" onclick="event.stopPropagation()">
               <span class="check-box-visual" aria-hidden="true">
                 <svg viewBox="0 0 24 24"><polyline points="5,12 10,17 19,7"></polyline></svg>
               </span>
               </span>
-              <div class="check-body">
-              <div class="check-head">
+              <div class="item-head">
                 <span class="check-num">08</span>
-                <span class="check-title">Your last 12 posts hit a deliberate 40 / 35 / 25 mix.</span>
+                <span class="item-title">Your last 12 posts hit a deliberate 40 / 35 / 25 mix.</span>
               </div>
+              <span class="expand-arrow" aria-hidden="true">▼</span>
+            </summary>
+            <div class="item-details">
               <p class="check-desc" id="desc-08">The reason most local brands plateau. <strong>40%</strong> discovery content (reach new audiences). <strong>35%</strong> trust-building (depth for both new and existing). <strong>25%</strong> conversion (the ask). The algorithm needs upstream reach signal to distribute downstream conversion content.</p>
               <p class="check-desc"><strong>The most common failure mode:</strong> 90% of posts are conversion content: <em>"book now," "order today," "buy this."</em> Conversion content without discovery upstream gets buried by the algorithm. The brand wonders why nobody new is finding them. <strong>The algorithm is the answer.</strong></p>
               <div class="example-callout">
@@ -2078,21 +1973,22 @@ Line 3: 👇 Order catering online</pre>
               </div>
               <p class="try-this"><strong>Try this:</strong> Open your grid. Look at your last 12 posts. Tag each one as discovery, trust, or conversion. Count them. If conversion is above 35%, you have a mix problem the algorithm is punishing.</p>
               </div>
-            </label>
-          </li>
-          <li class="check-item" data-item="09">
-            <label class="check-row">
+          </details>
+          <details class="audit-item" data-item="09">
+            <summary>
               <span class="check-box-wrap">
-              <input type="checkbox" data-item-input="09" aria-describedby="desc-09">
+              <input type="checkbox" data-item-input="09" aria-describedby="desc-09" onclick="event.stopPropagation()">
               <span class="check-box-visual" aria-hidden="true">
                 <svg viewBox="0 0 24 24"><polyline points="5,12 10,17 19,7"></polyline></svg>
               </span>
               </span>
-              <div class="check-body">
-              <div class="check-head">
+              <div class="item-head">
                 <span class="check-num">09</span>
-                <span class="check-title">You track saves and shares above everything else.</span>
+                <span class="item-title">You track saves and shares above everything else.</span>
               </div>
+              <span class="expand-arrow" aria-hidden="true">▼</span>
+            </summary>
+            <div class="item-details">
               <p class="check-desc" id="desc-09"><em>Likes are dopamine. Follower count is vanity.</em> <strong>Saves</strong> are intent ("I want to come back to this"). <strong>Shares</strong> are referral ("I want my friend to see this"). For Reels specifically, <strong>retention percentage</strong> (how much of your video the average viewer watches) is the single biggest signal Instagram uses to decide who else sees the Reel. A 30-second Reel that holds 70% retention gets pushed to 10x the audience of a Reel that holds 30%. These are the signals that drive algorithmic distribution AND signal <em>"this matters."</em></p>
               <p class="check-sublist-label">Metric hierarchy, in priority order:</p>
               <ul class="check-sublist">
@@ -2113,12 +2009,11 @@ Line 3: 👇 Order catering online</pre>
               </div>
               <p class="try-this"><strong>Try this:</strong> Name your top 3 most-saved posts from the last 30 days. If you can't, you're measuring the wrong metrics, and you're missing the signal of what's actually working.</p>
               </div>
-            </label>
-          </li>
-        </ul>
+          </details>
+        </div>
 
         <div class="zone-tally">
-          <div class="label">Section 03 score</div>
+          <div class="label">Section 03 · checked</div>
           <div class="score"><span data-zone-score="03">0</span> / 3</div>
         </div>
       </div>
@@ -2136,20 +2031,22 @@ Line 3: 👇 Order catering online</pre>
         </div>
         <p class="zone-intro">The layer most local brands skip entirely. The accounts that pull ahead in Cincinnati do it on the back of this layer, not on generic content. This is where "Cincinnati local brand" stops being a tagline.</p>
 
-        <ul class="checklist" data-zone="04">
-          <li class="check-item" data-item="10">
-            <label class="check-row">
+        <div class="checklist" data-zone="04">
+          <details class="audit-item" data-item="10">
+            <summary>
               <span class="check-box-wrap">
-              <input type="checkbox" data-item-input="10" aria-describedby="desc-10">
+              <input type="checkbox" data-item-input="10" aria-describedby="desc-10" onclick="event.stopPropagation()">
               <span class="check-box-visual" aria-hidden="true">
                 <svg viewBox="0 0 24 24"><polyline points="5,12 10,17 19,7"></polyline></svg>
               </span>
               </span>
-              <div class="check-body">
-              <div class="check-head">
+              <div class="item-head">
                 <span class="check-num">10</span>
-                <span class="check-title">You have at least 3 adjacent-industry collaborations in motion.</span>
+                <span class="item-title">You have at least 3 adjacent-industry collaborations in motion.</span>
               </div>
+              <span class="expand-arrow" aria-hidden="true">▼</span>
+            </summary>
+            <div class="item-details">
               <p class="check-desc" id="desc-10">Your ideal customer doesn't only care about your category. <em>A skincare customer also cares about wellness, fitness, brow and lash, nails. A coffee shop customer also cares about local bakeries, roasters, neighborhood retail. A med spa customer cares about dermatology, massage, fitness.</em></p>
               <p class="check-desc"><strong>The play:</strong> identify 5 Cincinnati brands in adjacent categories whose audience overlaps yours, then build cross-pollination plays:</p>
               <ul class="check-sublist">
@@ -2169,21 +2066,22 @@ Line 3: 👇 Order catering online</pre>
               </div>
               <p class="try-this"><strong>Try this:</strong> Write down the 5 adjacent-category Cincinnati brands whose audience you want access to. Start with one. Send the DM this week.</p>
               </div>
-            </label>
-          </li>
-          <li class="check-item" data-item="11">
-            <label class="check-row">
+          </details>
+          <details class="audit-item" data-item="11">
+            <summary>
               <span class="check-box-wrap">
-              <input type="checkbox" data-item-input="11" aria-describedby="desc-11">
+              <input type="checkbox" data-item-input="11" aria-describedby="desc-11" onclick="event.stopPropagation()">
               <span class="check-box-visual" aria-hidden="true">
                 <svg viewBox="0 0 24 24"><polyline points="5,12 10,17 19,7"></polyline></svg>
               </span>
               </span>
-              <div class="check-body">
-              <div class="check-head">
+              <div class="item-head">
                 <span class="check-num">11</span>
-                <span class="check-title">Your content calendar plugs into Cincinnati's cultural calendar.</span>
+                <span class="item-title">Your content calendar plugs into Cincinnati's cultural calendar.</span>
               </div>
+              <span class="expand-arrow" aria-hidden="true">▼</span>
+            </summary>
+            <div class="item-details">
               <p class="check-desc" id="desc-11">The Queen City runs on a calendar of moments the entire city pays attention to. <em>Oktoberfest Zinzinnati. Findlay Market opening day. BLINK. Bockfest. Taste of Cincinnati. Maifest. Flying Pig. May Festival. The Reds, the Bengals, FC Cincinnati.</em> Most local brands post evergreen content through those windows while every other active account in town plugs into the moment.</p>
               <p class="check-sublist-label">The shift:</p>
               <ul class="check-sublist">
@@ -2204,21 +2102,22 @@ Line 3: 👇 Order catering online</pre>
               <p class="suggested-tool"><strong>Suggested tool: VisitCincy.com, Cincinnati Magazine's events calendar, and Eventbrite Cincinnati.</strong> Three free sources for surfacing the city's annual cultural moments. Build your 8 to 12 list once a year, plug into your content calendar.</p>
               <p class="try-this"><strong>Try this:</strong> Write down the next Cincinnati cultural moment in the next 30 days. Plan one piece of content around it before this Friday.</p>
               </div>
-            </label>
-          </li>
-          <li class="check-item" data-item="12">
-            <label class="check-row">
+          </details>
+          <details class="audit-item" data-item="12">
+            <summary>
               <span class="check-box-wrap">
-              <input type="checkbox" data-item-input="12" aria-describedby="desc-12">
+              <input type="checkbox" data-item-input="12" aria-describedby="desc-12" onclick="event.stopPropagation()">
               <span class="check-box-visual" aria-hidden="true">
                 <svg viewBox="0 0 24 24"><polyline points="5,12 10,17 19,7"></polyline></svg>
               </span>
               </span>
-              <div class="check-body">
-              <div class="check-head">
+              <div class="item-head">
                 <span class="check-num">12</span>
-                <span class="check-title">Your content leans into your edge, not the safe expected play.</span>
+                <span class="item-title">Your content leans into your edge, not the safe expected play.</span>
               </div>
+              <span class="expand-arrow" aria-hidden="true">▼</span>
+            </summary>
+            <div class="item-details">
               <p class="check-desc" id="desc-12">The biggest move in 2026 isn't posting more or louder. It's standing out. Most Cincinnati local brands run the safe expected playbook for their category and wonder why they blend in. <strong>The brands that compound</strong> understand the safe expected moves in their niche, then deliberately push past them and build content around what makes them different.</p>
               <p class="check-sublist-label">The two-part audit:</p>
               <ul class="check-sublist">
@@ -2236,12 +2135,11 @@ Line 3: 👇 Order catering online</pre>
               </div>
               <p class="try-this"><strong>Try this:</strong> Write down the 3 most common content patterns every account in your category posts. Then write down the 3 things that make YOU different from those accounts. Build your next month of content around the second list, not the first.</p>
               </div>
-            </label>
-          </li>
-        </ul>
+          </details>
+        </div>
 
         <div class="zone-tally">
-          <div class="label">Section 04 score</div>
+          <div class="label">Section 04 · checked</div>
           <div class="score"><span data-zone-score="04">0</span> / 3</div>
         </div>
       </div>
@@ -2249,118 +2147,158 @@ Line 3: 👇 Order catering online</pre>
     </div>
   </section>
 
-  <!-- ==========================================================
-       ENGINE ACCENT BLOCK · running total + CTA
-       ========================================================== -->
-  <section class="engine" id="engine">
-    <div class="engine-inner">
-      <div class="engine-eyebrow">See your score</div>
-      <h2>When you're ready, see what your score means.</h2>
-      <div class="engine-total" role="status" aria-live="polite" aria-atomic="true">
-        <span class="num" data-total-score>0</span>
-        <span class="denom">/ 12</span>
-      </div>
-      <span class="sr-only" id="total-readout">0 of 12 items checked.</span>
-      <div>
-        <button class="engine-cta" id="score-trigger" type="button" aria-controls="results">
-          <span data-cta-label>See my diagnostic →</span>
-        </button>
-      </div>
-      <p class="engine-note">Your diagnostic and next step show up right below.</p>
-    </div>
-  </section>
-
 <!-- ==========================================================
-     RESULTS SECTION (revealed after gate-submit scoring)
+     RECOMMENDED FORMATS · content mix + Reels + Carousels
+     (added May 28, 2026 — pure tactical playbook after the audit)
      ========================================================== -->
-<section class="results" id="results" aria-hidden="true">
-  <div class="results-inner">
-    <div class="results-eyebrow">Your score</div>
+<section class="formats">
+  <div class="formats-inner">
 
-    <!-- Score visualization -->
-    <div class="score-viz" role="region" aria-label="Your audit score">
-      <h2 class="score-headline">You scored <span data-results-score>0</span> out of 12.</h2>
-      <p class="score-subheadline" data-band-subhead>Solid effort, real leaks.</p>
-      <div class="score-bar-wrap">
-        <div class="score-bar" role="img" aria-label="Score bar from 0 to 12">
-          <div class="score-band score-band-1" aria-hidden="true"></div>
-          <div class="score-band score-band-2" aria-hidden="true"></div>
-          <div class="score-band score-band-3" aria-hidden="true"></div>
-          <div class="score-band score-band-4" aria-hidden="true"></div>
-          <div class="score-marker" data-score-marker style="left: 0%;" aria-hidden="true"></div>
+    <div class="formats-intro">
+      <div class="formats-eyebrow">Recommended formats</div>
+      <h2 class="formats-headline">Once the profile is right, here's what to post.</h2>
+      <p class="formats-lede">The audit fixes the foundation. This is the tactical layer. The content mix, the Reel formats, and the carousel formats Scroll runs on the roster right now.</p>
+    </div>
+
+    <!-- Section A · Content mix -->
+    <div class="formats-subhead">
+      <span class="formats-section-num">A</span>
+      <h3>The 40 / 35 / 25 content mix</h3>
+    </div>
+    <div class="format-cards mix-cards">
+      <div class="format-card">
+        <div class="format-card-num">40% · Discovery</div>
+        <div class="format-card-title">Reach new viewers.</div>
+        <p class="format-card-desc">Posts designed to land in front of people who do not follow you yet. Reels usually do this best.</p>
+      </div>
+      <div class="format-card">
+        <div class="format-card-num">35% · Engagement</div>
+        <div class="format-card-title">Build with the audience you have.</div>
+        <p class="format-card-desc">Content for your existing followers. Builds trust, deepens relationship, keeps you top of mind.</p>
+      </div>
+      <div class="format-card">
+        <div class="format-card-num">25% · Conversion</div>
+        <div class="format-card-title">Turn followers into customers.</div>
+        <p class="format-card-desc">Direct asks. Offers, testimonials, behind-the-scenes proof. The content that closes the loop.</p>
+      </div>
+    </div>
+
+    <!-- Section B · Reel formats -->
+    <div class="formats-subhead">
+      <span class="formats-section-num">B</span>
+      <h3>Reel formats that are working right now</h3>
+    </div>
+    <ul class="format-list">
+      <li class="format-list-item">
+        <div class="format-list-num">01</div>
+        <div class="format-list-body">
+          <strong>Green screen.</strong>
+          <span>Talk to camera with a screenshot or photo behind you. Quick reaction takes, news commentary, contrast against bad advice. Works for almost any niche.</span>
         </div>
-        <div class="score-bar-labels" aria-hidden="true">
-          <span style="left: 0%;">0</span>
-          <span style="left: 25%;">3</span>
-          <span style="left: 58.333%;">7</span>
-          <span style="left: 83.333%;">10</span>
-          <span style="left: 100%;">12</span>
+      </li>
+      <li class="format-list-item">
+        <div class="format-list-num">02</div>
+        <div class="format-list-body">
+          <strong>Founder POV.</strong>
+          <span>You on camera, talking head. Owner energy reads as trust on Instagram in a way no brand-account post can match. Use it for anything you want people to actually believe.</span>
         </div>
-      </div>
+      </li>
+      <li class="format-list-item">
+        <div class="format-list-num">03</div>
+        <div class="format-list-body">
+          <strong>Yap style.</strong>
+          <span>No script, no edit. You talking through something you actually care about. Best for community building and showing the human behind the brand.</span>
+        </div>
+      </li>
+      <li class="format-list-item">
+        <div class="format-list-num">04</div>
+        <div class="format-list-body">
+          <strong>Split screen.</strong>
+          <span>Two videos stacked or side by side. Compare before and after, contrast the wrong way with the right way, react to someone else's content while it plays.</span>
+        </div>
+      </li>
+      <li class="format-list-item">
+        <div class="format-list-num">05</div>
+        <div class="format-list-body">
+          <strong>Live demonstration.</strong>
+          <span>Showing the work, the product, the process. Hands in frame doing the thing. Bakers, stylists, builders, repair, fitness. Anyone whose craft is the proof.</span>
+        </div>
+      </li>
+      <li class="format-list-item">
+        <div class="format-list-num">06</div>
+        <div class="format-list-body">
+          <strong>B-roll with text overlay.</strong>
+          <span>Cinematic shots of your space or product with one strong line of text on top. Lower friction to produce than talking head, still moves the algorithm.</span>
+        </div>
+      </li>
+      <li class="format-list-item">
+        <div class="format-list-num">07</div>
+        <div class="format-list-body">
+          <strong>Long caption.</strong>
+          <span>Reel is the hook, caption is the substance. Carry your favorite tips, lessons, or framework in the caption. People who stop and read are the people who buy.</span>
+        </div>
+      </li>
+    </ul>
+
+    <!-- Section C · Carousel formats -->
+    <div class="formats-subhead">
+      <span class="formats-section-num">C</span>
+      <h3>Carousel formats that are working right now</h3>
     </div>
+    <ul class="format-list">
+      <li class="format-list-item">
+        <div class="format-list-num">01</div>
+        <div class="format-list-body">
+          <strong>Proud failure list.</strong>
+          <span>Everything you have messed up and why you would do it the same way again. Honest, specific, no false modesty. Saves stay high on this format.</span>
+        </div>
+      </li>
+      <li class="format-list-item">
+        <div class="format-list-num">02</div>
+        <div class="format-list-body">
+          <strong>Then vs. now mindset shift.</strong>
+          <span>Where your thinking used to be vs. where it is now. Frame the lesson, not the win.</span>
+        </div>
+      </li>
+      <li class="format-list-item">
+        <div class="format-list-num">03</div>
+        <div class="format-list-body">
+          <strong>Then vs. now split-screen image.</strong>
+          <span>Photo of the before on one half, photo of the after on the other half. Each slide a new shift. Works hard if your transformation is visual.</span>
+        </div>
+      </li>
+      <li class="format-list-item">
+        <div class="format-list-num">04</div>
+        <div class="format-list-body">
+          <strong>Step-by-step guide.</strong>
+          <span>Numbered slides walking through how to do a specific thing. Title slide names the outcome, last slide tells the reader what to do next.</span>
+        </div>
+      </li>
+      <li class="format-list-item">
+        <div class="format-list-num">05</div>
+        <div class="format-list-body">
+          <strong>Process or framework walkthrough.</strong>
+          <span>Your actual operating system, broken into slides. The thing you do every week, drawn out. Establishes you as the person who has already figured it out.</span>
+        </div>
+      </li>
+      <li class="format-list-item">
+        <div class="format-list-num">06</div>
+        <div class="format-list-body">
+          <strong>Photo collection.</strong>
+          <span>Nine moments from your week. Behind-the-scenes, raw, unedited. Photo dumps are an underrated retention play.</span>
+        </div>
+      </li>
+      <li class="format-list-item">
+        <div class="format-list-num">07</div>
+        <div class="format-list-body">
+          <strong>Work documentation.</strong>
+          <span>You actually doing the work. Less explainer, more come watch. Process shots, on-site moments, build photos.</span>
+        </div>
+      </li>
+    </ul>
 
-    <!-- Diagnostic block (one band visible at a time, set by JS) -->
-    <div class="results-eyebrow" style="margin-top: 8px;">What your score means</div>
-    <div class="diagnostic">
+    <p class="formats-closer">Use the ones that fit your brand. Do not force every one. The Calendly below if you want a second pair of eyes.</p>
 
-      <div class="diag-band" data-diag-band="0-3">
-        <h3 class="diag-headline">Time to rebuild.</h3>
-        <p class="diag-body">Most brands that score here are posting more than the ones who score at the top. <em>Volume isn't your problem. Structure is.</em> Nothing here takes six months to fix. The fastest 90-day turnarounds we've seen come from accounts that scored exactly where you did and rebuilt one layer at a time, in order.</p>
-        <ol class="diag-actions">
-          <li><strong>Rebuild your profile in one sitting.</strong> Name field, bio, link in bio. Three table-stakes fixes. This is items 1, 2, and 3. Pause everything else until this is done.</li>
-          <li><strong>Set up your DM system.</strong> Saved replies, response-time floor, escalation rule. This is item 4. The DM is the conversion surface. It deserves a system.</li>
-          <li><strong>Stop posting until 1 and 2 are done.</strong> Volume on top of a bad foundation makes the foundation problem worse. Posting resumes once the floor is in.</li>
-        </ol>
-      </div>
-
-      <div class="diag-band" data-diag-band="4-7">
-        <h3 class="diag-headline">Solid effort, real leaks.</h3>
-        <p class="diag-body">This is where most Cincinnati local brands sit. <em>You're posting. You're showing up.</em> The leaks aren't visible from inside your own account, which is why most brands here stay here for years without realizing they could move. Every fix from this score compounds.</p>
-        <ol class="diag-actions">
-          <li><strong>Pin the right three posts.</strong> Work, Founder, Proof. Revisit item 7. Most local brands waste pinned slots. This is a single afternoon's work that compounds for years.</li>
-          <li><strong>Audit your conversion paths.</strong> One path per post, every path actually live. Revisit item 6. Choice paralysis and broken links are the most common silent killers.</li>
-          <li><strong>Move to a deliberate 40 / 35 / 25 content mix.</strong> You're probably running 90% conversion content, which is why nothing new is finding you. Revisit item 8. The algorithm needs upstream reach signal to distribute everything else.</li>
-        </ol>
-      </div>
-
-      <div class="diag-band" data-diag-band="8-10">
-        <h3 class="diag-headline">You're closer than you think.</h3>
-        <p class="diag-body">The visible stuff is working. The remaining gaps are upstream of effort. They live in the systems most brands never see. Most of the growth you haven't captured yet lives in the <strong>Cincinnati layer</strong> and the <strong>measurement layer</strong>.</p>
-        <ol class="diag-actions">
-          <li><strong>Open the Cincinnati layer.</strong> Adjacent collabs, cultural moments, established-audience partnerships. Revisit items 10, 11, and 12. The accounts that pull ahead from your score do it on the back of local amplification, not generic content.</li>
-          <li><strong>Sharpen your metric hierarchy.</strong> Saves and shares above everything. Revisit item 9. Most accounts at your score still over-weight likes and follower count. The wins live in the signal layer.</li>
-          <li><strong>Sequence, don't pile on.</strong> Pick one layer and go deep before adding another. Most local brands at your score try to fix three things at once and learn nothing.</li>
-        </ol>
-      </div>
-
-      <div class="diag-band" data-diag-band="11-12">
-        <h3 class="diag-headline">You're dialed in.</h3>
-        <p class="diag-body">You're running a real Instagram operation. The next gains compound on what's already working. The leaks left at this score are subtle, usually only visible from outside. <strong>The remaining 10% lives in patterns an outsider can spot that you can't.</strong></p>
-        <ol class="diag-actions">
-          <li><strong>Pressure-test your Cincinnati layer.</strong> Are your collabs actually generating audience overlap? Are your cultural-moment posts the strongest of the month? Revisit items 10, 11, and 12. This is where top-tier accounts widen the gap.</li>
-          <li><strong>Audit your DM system end-to-end.</strong> The strongest accounts lose qualified buyers at the conversion surface, not the content layer. Revisit items 4 and 6.</li>
-          <li><strong>Find a second set of eyes.</strong> At this score, gaps are subtle and rarely self-visible.</li>
-        </ol>
-      </div>
-
-    </div>
-
-    <!-- CTA -->
-    <div class="calendly-wrap">
-      <div class="calendly-eyebrow">Want a second set of eyes?</div>
-      <h3>Book a 20-minute audit walkthrough.</h3>
-      <p class="calendly-sub">We'll run this audit on your actual Instagram account. No pitch. No slides. A screen-share where you see exactly where you score, what's leaking, and what to fix first. If we're a fit, we'll talk about it then. If not, you walk away with a clearer Instagram than you came in with.</p>
-      <a href="https://calendly.com/scrollmedia/discovery" class="cta-button" target="_blank" rel="noopener">Book your walkthrough →</a>
-      <p class="calendly-fine">Free. Cincinnati local brands only.</p>
-    </div>
-
-    <!-- Social proof -->
-    <div class="proof">
-      <p class="proof-eyebrow">Cincinnati local brands across fitness, med spa, retail, and F&amp;B.</p>
-      <p>A Cincinnati fitness studio we work with hit the highest performance score on our entire roster in April 2026. The breakthrough came from a single Reel that pulled 757K views and 22K shares. The kind of upside that doesn't happen monthly. The system that makes it possible runs every month.</p>
-      <p>A Cincinnati med spa we work with held a steady 5-month upward trajectory through Q1 2026.</p>
-      <p class="proof-attrib">Built on the Signal Method, the framework we run with every paying client. Run by Chase + Allison Gianattasio, Co-Founders of Scroll Media. Instagram is the only thing we do.</p>
-    </div>
   </div>
 </section>
 
@@ -2454,47 +2392,42 @@ Line 3: 👇 Order catering online</pre>
   })();
 
   // ============================================================
-  // INTERACTIVE SCORING
+  // PROGRESS COUNTER (v2 May 28, 2026)
+  // Lightweight "X of 12 checked" tracker. No scoring, no diagnostic,
+  // no gamification. Just lets users see their checked count.
   // ============================================================
   (function() {
     const TOTAL_ITEMS = 12;
-    const ctaLabel = document.querySelector('[data-cta-label]');
-    const totalEl = document.querySelector('[data-total-score]');
-    const totalReadout = document.getElementById('total-readout');
-    const zoneScoreEls = document.querySelectorAll('[data-zone-score]');
+    const counterEl = document.querySelector('[data-progress-count]');
+    const counterReadout = document.getElementById('progress-readout');
 
-    function updateScores() {
-      const checkedInputs = document.querySelectorAll('.check-item input[type="checkbox"]:checked');
+    function updateProgress() {
+      const checkedInputs = document.querySelectorAll('.audit-item input[type="checkbox"]:checked');
       const total = checkedInputs.length;
 
-      // Per-zone tallies
+      if (counterEl) counterEl.textContent = String(total);
+      if (counterReadout) counterReadout.textContent = total + ' of ' + TOTAL_ITEMS + ' items checked.';
+
       document.querySelectorAll('.checklist').forEach(list => {
         const zone = list.getAttribute('data-zone');
         const checkedInZone = list.querySelectorAll('input[type="checkbox"]:checked').length;
         const scoreEl = document.querySelector('[data-zone-score="' + zone + '"]');
         if (scoreEl) scoreEl.textContent = String(checkedInZone);
       });
-
-      // Global total
-      if (totalEl) totalEl.textContent = String(total);
-      if (totalReadout) totalReadout.textContent = total + ' of ' + TOTAL_ITEMS + ' items checked.';
-
-      // CTA label · single canonical label regardless of fill state
-      if (ctaLabel) {
-        ctaLabel.textContent = 'See my diagnostic →';
-      }
     }
 
-    document.querySelectorAll('.check-item input[type="checkbox"]').forEach(input => {
+    document.querySelectorAll('.audit-item input[type="checkbox"]').forEach(input => {
       input.addEventListener('change', function() {
-        const item = input.closest('.check-item');
+        const item = input.closest('.audit-item');
         if (item) item.classList.toggle('is-checked', input.checked);
-        updateScores();
+        updateProgress();
       });
+      // Don't let checkbox clicks toggle the parent <details>
+      input.addEventListener('click', function(e) { e.stopPropagation(); });
     });
 
-    // Initialize (in case any inputs default-checked)
-    updateScores();
+    // Initialize
+    updateProgress();
   })();
 
   // ============================================================
@@ -2517,52 +2450,6 @@ Line 3: 👇 Order catering online</pre>
     const gateError = document.getElementById('gate-error');
     const firstNameInput = document.getElementById('gate-first');
     const emailInput = document.getElementById('gate-email');
-    const scoreTrigger = document.getElementById('score-trigger');
-    const results = document.getElementById('results');
-
-    // Band thresholds → subheadline + data-diag-band key
-    const BANDS = [
-      { min: 11, max: 12, key: '11-12', subhead: "You're dialed in." },
-      { min: 8,  max: 10, key: '8-10',  subhead: "You're closer than you think." },
-      { min: 4,  max: 7,  key: '4-7',   subhead: 'Solid effort, real leaks.' },
-      { min: 0,  max: 3,  key: '0-3',   subhead: 'Time to rebuild.' }
-    ];
-
-    function resolveBand(total) {
-      for (let i = 0; i < BANDS.length; i++) {
-        if (total >= BANDS[i].min && total <= BANDS[i].max) return BANDS[i];
-      }
-      return BANDS[BANDS.length - 1];
-    }
-
-    function syncResultsScore() {
-      const total = document.querySelectorAll('.check-item input[type="checkbox"]:checked').length;
-      const band = resolveBand(total);
-
-      const scoreEl = document.querySelector('[data-results-score]');
-      if (scoreEl) scoreEl.textContent = String(total);
-
-      const subEl = document.querySelector('[data-band-subhead]');
-      if (subEl) subEl.textContent = band.subhead;
-
-      const marker = document.querySelector('[data-score-marker]');
-      if (marker) marker.style.left = (total / 12 * 100) + '%';
-
-      document.querySelectorAll('.diag-band').forEach(el => el.classList.remove('is-active'));
-      const activeBand = document.querySelector('.diag-band[data-diag-band="' + band.key + '"]');
-      if (activeBand) activeBand.classList.add('is-active');
-
-      const bar = document.querySelector('.score-bar');
-      if (bar) bar.setAttribute('aria-label', 'Score ' + total + ' of 12');
-    }
-
-    function revealResults() {
-      results.classList.add('is-visible');
-      results.setAttribute('aria-hidden', 'false');
-      setTimeout(() => {
-        results.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }, 80);
-    }
 
     function unlockAsset(scrollIntoView) {
       lockedAsset.classList.add('is-unlocked');
@@ -2630,13 +2517,6 @@ Line 3: 👇 Order catering online</pre>
       });
     }
 
-    // "See my diagnostic" button — computes score, reveals results band, scrolls
-    if (scoreTrigger) {
-      scoreTrigger.addEventListener('click', function() {
-        syncResultsScore();
-        revealResults();
-      });
-    }
   })();
 </script>
 
