@@ -934,6 +934,7 @@
   .footer-brand .mark-icon {
     height: 40px; width: 40px;
     display: block; flex-shrink: 0;
+    image-rendering: auto;
   }
   .footer-brand .mark-fallback {
     display: none;
@@ -1166,25 +1167,6 @@
   .unlocked-banner-text strong {
     display: block; font-size: 17px;
     margin-bottom: 4px; font-weight: 700;
-  }
-  .pdf-download {
-    display: inline-flex; align-items: center; gap: 10px;
-    background: var(--azure);
-    color: var(--ghost);
-    padding: 12px 20px;
-    font-size: 14px; font-weight: 700;
-    letter-spacing: 0.02em;
-    border: 1.5px solid var(--azure);
-    border-bottom: 0;
-    text-decoration: none;
-    min-height: 44px;
-    transition: background 200ms var(--ease), transform 200ms var(--ease);
-  }
-  .pdf-download:hover {
-    background: var(--azure-900);
-    border-color: var(--azure-900);
-    color: var(--ghost);
-    transform: translateY(-2px);
   }
 
   /* HOWTO inside unlocked area */
@@ -1438,7 +1420,6 @@
 
     .unlocked-banner-text { font-size: 13px; }
     .unlocked-banner-text strong { font-size: 15px; }
-    .pdf-download { font-size: 13px; padding: 10px 16px; }
     .post-unlock-howto .label { font-size: 10px; letter-spacing: 0.14em; }
     .post-unlock-howto ol { font-size: 13px; }
 
@@ -1605,9 +1586,6 @@
         <strong>Audit unlocked. Work through it below.</strong>
         We also sent a copy to your inbox.
       </div>
-      <a href="/instagram-audit-cincinnati/Scroll_Cincinnati_IG_Audit.pdf" class="pdf-download" download>
-        Download PDF
-      </a>
     </div>
   </div>
 
@@ -2348,9 +2326,10 @@ Line 3: 👇 Order catering online</pre>
 <footer class="footer">
   <div class="footer-inner">
     <div class="footer-brand">
-      <img src="https://tools.scrollmedia.co/assets/scroll-favicon.svg"
+      <img src="/scroll-sm-white.png"
            alt="Scroll Media"
            class="mark-icon"
+           width="40" height="40"
            onerror="this.style.display='none';this.nextElementSibling.style.display='inline';" />
       <span class="mark-fallback">scroll.</span>
       <div class="footer-brand-text">
