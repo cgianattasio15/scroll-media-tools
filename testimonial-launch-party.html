@@ -3,391 +3,85 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Shoot Packet: Launch Party — Scroll Media</title>
+  <title>Launch Party Shoot Packet (Archived) — Scroll Media</title>
+  <meta name="robots" content="noindex, nofollow" />
   <link rel="icon" type="image/svg+xml" href="scroll-favicon.svg" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
   <style>
     :root {
-      --shadow: #151516; --ghost: #fafdff; --porcelain: #f2f3f4; --lucid: #cbe9ff;
-      --azure: #0c3387; --azure-dark: #092a6e; --azure-mid: #1a4db3; --azure-light: #e8eef8;
-      --highlight: #e2ed7a; --white: #ffffff;
-      --text-secondary: rgba(21,21,22,0.65); --border: rgba(21,21,22,0.1);
-      --radius: 12px; --radius-lg: 20px;
+      --shadow:      #151516;
+      --ghost:       #fafdff;
+      --porcelain:   #f2f3f4;
+      --lucid:       #cbe9ff;
+      --azure:       #0c3387;
+      --azure-light: #e8eef8;
+      --highlight:   #e2ed7a;
+      --white:       #ffffff;
+      --text-secondary: rgba(21,21,22,0.65);
+      --border:      rgba(21,21,22,0.1);
+      --radius:      12px;
+      --radius-lg:   20px;
     }
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; overflow-x: hidden; }
-    body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: var(--ghost); color: var(--shadow); line-height: 1.6; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
-    #progress-bar-wrap { position: fixed; top: 0; left: 0; right: 0; height: 3px; z-index: 9999; }
-    #progress-bar { height: 100%; width: 0%; background: linear-gradient(90deg, var(--azure) 0%, var(--highlight) 100%); transition: width 0.1s linear; }
-    nav { position: sticky; top: 0; z-index: 100; background: rgba(250,253,255,0.96); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); padding: 0 32px; height: 64px; display: flex; align-items: center; justify-content: space-between; }
-    .nav-logo img { height: 28px; display: block; width: auto; }
-    .nav-links { display: flex; align-items: center; gap: 8px; list-style: none; }
-    .nav-links a { font-size: 13px; font-weight: 600; color: var(--shadow); text-decoration: none; padding: 6px 12px; border-radius: 8px; transition: color 0.2s, background 0.2s; }
-    .nav-links a:hover { color: var(--azure); background: var(--azure-light); }
-    .nav-badge { background: var(--azure); color: var(--white); padding: 5px 12px; border-radius: 100px; font-size: 11px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; }
-    .hero { background: var(--shadow); color: var(--white); padding: 72px 24px 64px; text-align: center; position: relative; overflow: hidden; }
-    .hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(12,51,135,0.6) 0%, transparent 70%); pointer-events: none; }
-    .hero-badge { display: inline-flex; align-items: center; gap: 6px; background: var(--highlight); color: var(--shadow); padding: 6px 14px; border-radius: 100px; font-size: 12px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 24px; position: relative; z-index: 1; }
-    .hero h1 { font-size: clamp(28px, 5vw, 52px); font-weight: 900; letter-spacing: -0.03em; line-height: 1.1; margin-bottom: 16px; position: relative; z-index: 1; }
-    .hero h1 .accent { background: linear-gradient(135deg, var(--lucid) 0%, var(--highlight) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
-    .hero-sub { font-size: 16px; color: rgba(255,255,255,0.72); max-width: 560px; margin: 0 auto 36px; line-height: 1.7; position: relative; z-index: 1; }
-    .hero-stats { display: flex; justify-content: center; gap: 40px; flex-wrap: wrap; padding-top: 32px; border-top: 1px solid rgba(255,255,255,0.1); position: relative; z-index: 1; }
-    .stat-num { font-size: 28px; font-weight: 900; color: var(--highlight); letter-spacing: -0.03em; line-height: 1; }
-    .stat-label { font-size: 12px; color: rgba(255,255,255,0.55); margin-top: 4px; }
-    section { padding: 72px 24px; }
-    section[id] { scroll-margin-top: 80px; }
-    .container { max-width: 860px; margin: 0 auto; }
-    .section-label { font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--azure); margin-bottom: 10px; }
-    h2 { font-size: clamp(22px, 3.5vw, 36px); font-weight: 800; line-height: 1.15; letter-spacing: -0.025em; margin-bottom: 14px; }
-    .section-sub { font-size: 16px; color: var(--text-secondary); max-width: 620px; line-height: 1.7; margin-bottom: 40px; }
-    .table-wrap { overflow-x: auto; border-radius: var(--radius); border: 1px solid var(--border); margin-bottom: 28px; }
-    table { width: 100%; border-collapse: collapse; }
-    thead { background: var(--azure-light); }
-    th { font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--azure); padding: 12px 16px; text-align: left; }
-    td { font-size: 13px; color: var(--text-secondary); padding: 14px 16px; border-top: 1px solid var(--border); vertical-align: top; line-height: 1.65; }
-    td strong { color: var(--shadow); }
-    .setup-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 16px; margin-bottom: 24px; }
-    .setup-card { background: var(--white); border: 1px solid var(--border); border-radius: var(--radius); padding: 20px 22px; }
-    .setup-card-label { font-size: 10px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--azure); margin-bottom: 6px; }
-    .setup-card-value { font-size: 14px; font-weight: 700; margin-bottom: 4px; }
-    .setup-card-note { font-size: 12px; color: var(--text-secondary); line-height: 1.55; }
-    .prompt-block { background: var(--white); border: 1px solid var(--border); border-radius: var(--radius-lg); margin-bottom: 14px; overflow: hidden; transition: box-shadow 0.2s; }
-    .prompt-block:hover { box-shadow: 0 8px 24px rgba(12,51,135,0.08); }
-    .prompt-header { display: flex; align-items: center; gap: 16px; padding: 18px 22px; border-bottom: 1px solid var(--border); background: var(--azure-light); }
-    .prompt-num { width: 32px; height: 32px; border-radius: 50%; background: var(--azure); color: var(--white); font-size: 13px; font-weight: 900; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
-    .prompt-num.hook { background: var(--highlight); color: var(--shadow); }
-    .prompt-arc { font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--azure); }
-    .prompt-title { font-size: 14px; font-weight: 700; }
-    .prompt-body { padding: 18px 22px; }
-    .prompt-goal { font-size: 12px; color: var(--text-secondary); margin-bottom: 12px; font-style: italic; }
-    .prompt-q { background: var(--azure-light); border-left: 3px solid var(--azure); border-radius: 0 8px 8px 0; padding: 14px 18px; font-size: 14px; color: var(--shadow); line-height: 1.65; margin-bottom: 10px; }
-    .prompt-note { font-size: 12px; color: var(--text-secondary); line-height: 1.55; }
-    .shot-list { display: flex; flex-direction: column; gap: 8px; }
-    .shot-item { display: flex; align-items: flex-start; gap: 12px; padding: 14px 18px; background: var(--white); border: 1px solid var(--border); border-radius: var(--radius); }
-    .shot-num { width: 26px; height: 26px; border-radius: 6px; background: var(--azure-light); color: var(--azure); font-size: 12px; font-weight: 800; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
-    .shot-check { width: 20px; height: 20px; border-radius: 5px; border: 2px solid rgba(12,51,135,0.25); flex-shrink: 0; margin-top: 2px; }
-    .shot-text { font-size: 13px; color: var(--text-secondary); line-height: 1.55; }
-    .shot-text strong { color: var(--shadow); }
-    .highlight-box { background: var(--azure-light); border: 1px solid rgba(12,51,135,0.2); border-radius: var(--radius); padding: 18px 22px; margin-bottom: 20px; }
-    .highlight-box p { font-size: 14px; color: var(--shadow); line-height: 1.7; }
-    .highlight-box strong { color: var(--azure); }
-    .warning-box { background: #fff5f5; border: 1px solid rgba(220,38,38,0.2); border-radius: var(--radius); padding: 14px 18px; margin-bottom: 18px; }
-    .warning-box p { font-size: 13px; color: #b91c1c; line-height: 1.6; }
-    .caption-box { background: var(--shadow); border-radius: var(--radius-lg); padding: 28px 32px; position: relative; overflow: hidden; }
-    .caption-box::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(12,51,135,0.5) 0%, transparent 70%); pointer-events: none; }
-    .caption-text { font-size: 14px; color: rgba(255,255,255,0.8); line-height: 1.85; white-space: pre-line; position: relative; z-index: 1; }
-    .caption-hook { font-size: 17px; font-weight: 800; color: var(--white); display: block; margin-bottom: 4px; }
-    .divider { border: none; border-top: 1px solid var(--border); margin: 0; }
-    .bg-porcelain { background: var(--porcelain); }
-    .bg-white { background: var(--white); }
+    html { overflow-x: hidden; }
+    body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: var(--ghost); color: var(--shadow); line-height: 1.6; -webkit-font-smoothing: antialiased; overflow-x: hidden; min-height: 100vh; display: flex; flex-direction: column; }
+
+    /* ── Nav ── */
+    nav { background: var(--ghost); border-bottom: 1px solid var(--border); padding: 0 32px; height: 64px; display: flex; align-items: center; justify-content: space-between; }
+    .nav-logo img { height: 26px; display: block; width: auto; }
+    .nav-badge { background: var(--text-secondary); color: var(--white); padding: 5px 12px; border-radius: 100px; font-size: 11px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; }
+
+    /* ── Notice ── */
+    main { flex: 1; display: flex; align-items: center; justify-content: center; padding: 64px 24px; }
+    .notice { max-width: 560px; width: 100%; background: var(--white); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 48px 40px; text-align: center; box-shadow: 0 12px 40px rgba(12,51,135,0.06); }
+    .notice-eyebrow { display: inline-block; background: var(--porcelain); color: var(--text-secondary); font-size: 12px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 6px 14px; border-radius: 100px; margin-bottom: 24px; }
+    .notice h1 { font-size: clamp(24px, 4vw, 34px); font-weight: 800; letter-spacing: -0.02em; line-height: 1.2; margin-bottom: 18px; }
+    .notice p { font-size: 16px; color: var(--text-secondary); line-height: 1.7; max-width: 440px; margin: 0 auto 12px; }
+    .notice-cta { display: inline-flex; align-items: center; justify-content: center; min-height: 48px; background: var(--azure); color: var(--white); font-size: 15px; font-weight: 700; text-decoration: none; padding: 14px 28px; border-radius: 100px; margin-top: 28px; transition: background 0.2s, transform 0.2s; }
+    .notice-cta:hover { background: #092a6e; transform: translateY(-2px); }
+
+    /* ── Footer ── */
     footer { background: #ffffff; color: #555e6e; padding: 36px 24px; text-align: center; border-top: 1px solid #e5e7eb; }
-    footer p { font-size: 12px; line-height: 1.8; color: #555e6e; }
+    footer img { height: 22px; display: block; margin: 0 auto 12px; opacity: 0.85; }
+    footer p { font-size: 13px; line-height: 1.8; color: #555e6e; }
     footer a { color: #0c3387; text-decoration: none; }
     footer a:hover { color: #1B2B6B; text-decoration: underline; }
-    @media (max-width: 768px) { nav { padding: 0 16px; } .hero { padding: 52px 16px 44px; } section { padding: 52px 16px; } .setup-grid { grid-template-columns: 1fr; } .hero-stats { gap: 24px; } }
+
+    @media (max-width: 768px) {
+      nav { padding: 0 16px; }
+      main { padding: 48px 16px; }
+      .notice { padding: 36px 24px; }
+    }
   </style>
 </head>
 <body>
 
-<div id="progress-bar-wrap"><div id="progress-bar"></div></div>
-
 <nav>
   <a href="https://decks.scrollmedia.co/pitch/" class="nav-logo" target="_blank">
-    <img src="scroll-media-logo.svg" alt="Scroll Media" />
+    <img src="scroll-media-logo-navy.png" alt="Scroll Media" />
   </a>
-  <ul class="nav-links">
-    <li><a href="#context">Context</a></li>
-    <li><a href="#setup">Setup</a></li>
-    <li><a href="#prompts">Prompts</a></li>
-    <li><a href="#broll">B-Roll</a></li>
-    <li><a href="#edit">Edit Arc</a></li>
-    <li><a href="#caption">Caption</a></li>
-    <li><a href="testimonial-standard.html" class="nav-badge">← Master Standard</a></li>
-  </ul>
+  <span class="nav-badge">Internal</span>
 </nav>
 
-<div class="hero">
-  <div class="hero-badge">Shoot Packet · Launch Party</div>
-  <h1>Launch Party<br /><span class="accent">Testimonial Script</span></h1>
-  <p class="hero-sub">The coachability story. A founder who trusted the process, tested new formats, and built a full-funnel social system that actually converts.</p>
-  <div class="hero-stats">
-    <div><div class="stat-num">52%</div><div class="stat-label">Increase in Views</div></div>
-    <div><div class="stat-num">9.0</div><div class="stat-label">Content Score (December)</div></div>
-    <div><div class="stat-num">Full-Funnel</div><div class="stat-label">Top, Mid & Bottom</div></div>
+<main>
+  <div class="notice">
+    <span class="notice-eyebrow">Archived · v3.0</span>
+    <h1>The Launch Party shoot packet has moved</h1>
+    <p>This standard has been superseded by v2.0.</p>
+    <p>The current process lives in the team Notion KB.</p>
+    <a class="notice-cta" href="https://www.notion.so/scrollmedia/testimonial-process-v2-PLACEHOLDER" target="_blank">View the current v2.0 standard</a>
   </div>
-</div>
-
-<!-- CLIENT CONTEXT -->
-<section id="context" class="bg-white">
-  <div class="container">
-    <p class="section-label">Section 01 — Client Context</p>
-    <h2>Who Is Launch Party & What's the Story?</h2>
-    <p class="section-sub">Internalize this before the shoot. Do not read it aloud. Understanding the full story lets you direct the interview naturally and follow up on the right threads.</p>
-    <div class="table-wrap">
-      <table>
-        <thead><tr><th>Attribute</th><th>Detail</th></tr></thead>
-        <tbody>
-          <tr><td><strong>Business</strong></td><td>Launch Party — Curated Indie Beauty & Clean Makeup, OTR Cincinnati</td></tr>
-          <tr><td><strong>Instagram</strong></td><td>@shoplaunchparty</td></tr>
-          <tr><td><strong>Niche</strong></td><td>Boutique Retail / E-commerce (Indie Beauty)</td></tr>
-          <tr><td><strong>Account Manager</strong></td><td>Riley Walker</td></tr>
-          <tr><td><strong>Goals (Tab 3)</strong></td><td>
-  <div style="margin-bottom:10px;"><strong>TOFU — Drive Discovery</strong><br><span style="color:var(--text-secondary);font-size:13px;">Build awareness among Cincinnati's indie beauty audience. Position LP as the go-to for curated brands you won't find at Sephora or Ulta.</span></div>
-  <div style="margin-bottom:10px;"><strong>MOFU — Build Trust</strong><br><span style="color:var(--text-secondary);font-size:13px;">Deepen community through beauty education and self-care content. Drive saves, shares, and ongoing engagement.</span></div>
-  <div><strong>BOFU — Drive Sales</strong><br><span style="color:var(--text-secondary);font-size:13px;">Convert followers into buyers. Drive traffic to shoplaunchparty.com through product content, social proof, and founder-backed CTAs.</span></div>
-</td></tr>
-          <tr><td><strong>Key Challenges</strong></td><td>Had a strong brand aesthetic and a functioning e-commerce setup, but social content wasn’t converting. No clear system for turning posts into purchases. Content mix was not aligned to funnel stages — no intentional TOFU/MOFU/BOFU split. Needed a strategy that matched the caliber of the brand and drove measurable outcomes across the full funnel.</td></tr>
-          <tr><td><strong>Why She Succeeded</strong></td><td>Coachable founder who trusted the process, willing to test new formats, already had a strong brand identity and functioning e-comm. Scroll amplified what was already there.</td></tr>
-          <tr><td><strong>The Story Arc</strong></td><td>Great brand + great products + no social system → Scroll builds the strategy → Full-funnel success across awareness, engagement, and conversion</td></tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-</section>
-
-<hr class="divider" />
-
-<!-- ON-SET SETUP -->
-<section id="setup" class="bg-porcelain">
-  <div class="container">
-    <p class="section-label">Section 02 — On-Set Setup</p>
-    <h2>How to Set Up the Shot</h2>
-    <p class="section-sub">The interview setup determines whether the footage feels authentic or staged. Get this right before asking a single question.</p>
-    <div class="setup-grid">
-      <div class="setup-card">
-        <p class="setup-card-label">Location</p>
-        <p class="setup-card-value">Inside the Launch Party store</p>
-        <p class="setup-card-note">Products visible in the background. The space is the proof. Avoid blank walls — the store IS the brand.</p>
-      </div>
-      <div class="setup-card">
-        <p class="setup-card-label">Camera Angle</p>
-        <p class="setup-card-value">Eye-level, slightly off-axis</p>
-        <p class="setup-card-note">The founder looks slightly toward Riley, NOT directly into the camera. Feels like a conversation, not a deposition.</p>
-      </div>
-      <div class="setup-card">
-        <p class="setup-card-label">Framing</p>
-        <p class="setup-card-value">Medium close-up (chest to top of head)</p>
-        <p class="setup-card-note">Subject fills the center 60% of the frame. Leave headroom. Safe zone: no critical content in bottom 20% or top 15%.</p>
-      </div>
-      <div class="setup-card">
-        <p class="setup-card-label">Lighting</p>
-        <p class="setup-card-value">Natural or soft fill light</p>
-        <p class="setup-card-note">Avoid harsh overhead lighting. If the store has warm retail lighting, use it — it fits the brand. Bring a small ring light as backup only.</p>
-      </div>
-      <div class="setup-card">
-        <p class="setup-card-label">Audio</p>
-        <p class="setup-card-value">Lav mic or directional mic</p>
-        <p class="setup-card-note">Do not rely on phone audio. The founder's voice must be clean and clear. Test audio before the first take.</p>
-      </div>
-      <div class="setup-card">
-        <p class="setup-card-label">Vibe</p>
-        <p class="setup-card-value">Casual conversation, not interview</p>
-        <p class="setup-card-note">Tell the founder: "We're just going to have a conversation. There's no wrong answer. If you want to start over, just say so."</p>
-      </div>
-    </div>
-    <div class="warning-box">
-      <p><strong>Do NOT pre-send the questions.</strong> The moment a founder rehearses their answers, the authenticity disappears. Brief her on the general topic ("we'll talk about your journey with Scroll") but never share the specific prompts in advance.</p>
-    </div>
-  </div>
-</section>
-
-<hr class="divider" />
-
-<!-- INTERVIEW PROMPTS -->
-<section id="prompts" class="bg-white">
-  <div class="container">
-    <p class="section-label">Section 03 — Interview Prompts</p>
-    <h2>Interview Prompts</h2>
-    <p class="section-sub">Ask prompts 2 through 5 in order, then ask prompt 1 last as a rapid-fire closer. Each prompt has a specific goal — read it before you ask. Follow up naturally on strong answers. The best soundbites come from follow-up, not the initial question. Do not rush.</p>
-
-    <div class="prompt-block">
-      <div class="prompt-header">
-        <div class="prompt-num">2</div>
-        <div><p class="prompt-arc">Arc: Context — Ask First</p><p class="prompt-title">Set the Stakes — Who Was She Before Scroll?</p></div>
-      </div>
-      <div class="prompt-body">
-        <p class="prompt-goal">Goal: Establish that she had a strong brand and business, but social wasn't matching the caliber of what she'd built. Sets up the conflict.</p>
-        <p class="prompt-q">"Take me back to before we started working together. You already had the store, the brand, the e-commerce — you'd built something real. What was the relationship with social media like at that point? Was it working for the business the way you wanted it to?"</p>
-        <p class="prompt-note">Follow-up if needed: "Was there a gap between how good the brand was and how it looked online?"</p>
-      </div>
-    </div>
-
-    <div class="prompt-block">
-      <div class="prompt-header">
-        <div class="prompt-num">3</div>
-        <div><p class="prompt-arc">Arc: Conflict — Ask Second</p><p class="prompt-title">The Specific Moment of Friction</p></div>
-      </div>
-      <div class="prompt-body">
-        <p class="prompt-goal">Goal: Extract a specific, emotionally honest moment — not a general statement about "social being hard." The conflict must feel real and relatable to other founders watching.</p>
-        <p class="prompt-q">"Was there a specific moment — maybe a post that didn't land, or a month where you looked at the numbers and thought 'this isn't doing what I need it to do' — where you felt like something had to change?"</p>
-        <p class="prompt-note">Follow-up if needed: "What was the feeling? Was it frustration? Confusion? Like you were doing everything right but it wasn't translating?"</p>
-      </div>
-    </div>
-
-    <div class="prompt-block">
-      <div class="prompt-header">
-        <div class="prompt-num">4</div>
-        <div><p class="prompt-arc">Arc: Turning Point — Ask Third</p><p class="prompt-title">The Moment the Strategy Clicked</p></div>
-      </div>
-      <div class="prompt-body">
-        <p class="prompt-goal">Goal: A specific memory — a specific post, a specific conversation, a specific number she saw for the first time. "I remember when..." is the target response.</p>
-        <p class="prompt-q">"Was there a specific piece of content — or a specific conversation with our team — where you thought, 'Okay, this is actually working'? Like a moment where you saw the strategy click?"</p>
-        <p class="prompt-note">Follow-up if needed: "What was it about that moment that made it feel different from before?"</p>
-      </div>
-    </div>
-
-    <div class="prompt-block">
-      <div class="prompt-header">
-        <div class="prompt-num">5</div>
-        <div><p class="prompt-arc">Arc: Resolution — Ask Fourth</p><p class="prompt-title">The Tangible Outcome + Emotional Shift</p></div>
-      </div>
-      <div class="prompt-body">
-        <p class="prompt-goal">Goal: Two layers — the hard metric (52% views increase, 9.0 content score) and the emotional transformation. End on forward-looking, not backward-looking.</p>
-        <p class="prompt-q">"What does Launch Party's social presence look like now compared to when we started? And beyond the numbers — how has having a real strategy changed the way you think about the business going forward?"</p>
-        <p class="prompt-note">Follow-up if needed: "If you were talking to another founder who was in the same position you were in before — what would you tell them?"</p>
-      </div>
-    </div>
-
-    <div class="prompt-block">
-      <div class="prompt-header">
-        <div class="prompt-num hook">1</div>
-        <div><p class="prompt-arc">Arc: Hook — Ask LAST (Rapid-Fire) · Placed First in Edit</p><p class="prompt-title">The Attention Grabber</p></div>
-      </div>
-      <div class="prompt-body">
-        <p class="prompt-goal">Goal: The most natural, unguarded soundbite of the entire shoot. The founder is warmed up and not overthinking. This becomes the first line of the edit.</p>
-        <p class="prompt-q">"Last thing — I'm going to give you a sentence starter and I just want you to finish it without overthinking it. Ready? 'Before Scroll Media, my social media was...'"</p>
-        <p class="prompt-note">Alternatives: "The thing that surprised me most about working with Scroll was..." / "If I had to describe what changed in one word, it would be..."</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<hr class="divider" />
-
-<!-- B-ROLL -->
-<section id="broll" class="bg-porcelain">
-  <div class="container">
-    <p class="section-label">Section 04 — B-Roll Shot List</p>
-    <h2>What to Capture on Set</h2>
-    <p class="section-sub">Capture every shot on this list before wrapping. Each shot is mapped to the arc section it supports in the edit. Clips must be 1–2 seconds each — not longer.</p>
-    <div class="shot-list">
-      <div class="shot-item"><div class="shot-check"></div><div class="shot-num">1</div><p class="shot-text"><strong>[Context]</strong> Wide shot of the store interior — products on shelves, the full retail environment. Slow pan. Establishes the brand world.</p></div>
-      <div class="shot-item"><div class="shot-check"></div><div class="shot-num">2</div><p class="shot-text"><strong>[Context]</strong> Close-up of hero products — indie beauty items, clean makeup. Tight focus, beautiful lighting.</p></div>
-      <div class="shot-item"><div class="shot-check"></div><div class="shot-num">3</div><p class="shot-text"><strong>[Context]</strong> Founder moving through the store naturally — restocking, arranging, in her element. Candid, not posed.</p></div>
-      <div class="shot-item"><div class="shot-check"></div><div class="shot-num">4</div><p class="shot-text"><strong>[Conflict]</strong> Founder looking at her phone or laptop — scrolling through Instagram or analytics. Thoughtful expression. The "before" visual.</p></div>
-      <div class="shot-item"><div class="shot-check"></div><div class="shot-num">5</div><p class="shot-text"><strong>[Turning Point]</strong> Founder filming content — holding a product up, setting up a shot, in creation mode. The "working with Scroll" visual.</p></div>
-      <div class="shot-item"><div class="shot-check"></div><div class="shot-num">6</div><p class="shot-text"><strong>[Turning Point]</strong> Screen recording or screenshot of a top-performing post — high view count, strong engagement. Ask the founder to pull it up on her phone.</p></div>
-      <div class="shot-item"><div class="shot-check"></div><div class="shot-num">7</div><p class="shot-text"><strong>[Resolution]</strong> Founder smiling, confident, in her store — the "after" energy. Natural, not forced. The emotional payoff shot.</p></div>
-      <div class="shot-item"><div class="shot-check"></div><div class="shot-num">8</div><p class="shot-text"><strong>[Resolution]</strong> Customer in the store — browsing, engaging with products. Social proof that the business is alive and thriving.</p></div>
-      <div class="shot-item"><div class="shot-check"></div><div class="shot-num">9</div><p class="shot-text"><strong>[CTA]</strong> Close-up of the @shoplaunchparty Instagram profile on a phone screen. Used at the end to visually anchor the brand handle.</p></div>
-    </div>
-  </div>
-</section>
-
-<hr class="divider" />
-
-<!-- EDIT ARC -->
-<section id="edit" class="bg-white">
-  <div class="container">
-    <p class="section-label">Section 05 — Edit Direction</p>
-    <h2>How to Structure the Final Edit</h2>
-    <p class="section-sub">The A-roll interview footage is the spine. B-roll cuts are the visual proof. On-screen text carries the story for silent viewers.</p>
-    <div class="table-wrap">
-      <table>
-        <thead><tr><th>Phase</th><th>Timing</th><th>A-Roll</th><th>B-Roll</th><th>On-Screen Text</th><th>Audio</th></tr></thead>
-        <tbody>
-          <tr><td><strong>Hook</strong></td><td>0:00–0:03</td><td>Rapid-fire soundbite: "Before Scroll, my social was [her answer]"</td><td>Store wide shot or product close-up</td><td>Large bold text: her exact words. High contrast. Zero dead air.</td><td>Music at full volume — upbeat, trending instrumental. No voice-over. Let the music carry the energy into the hook.</td></tr>
-          <tr><td><strong>Context</strong></td><td>0:03–0:18</td><td>Founder describes the brand she'd built and where social stood</td><td>Store interior, products, founder in her element</td><td>Pop-up: "Launch Party — Indie Beauty, OTR" / "A brand that was ready. A strategy that wasn't."</td><td>Duck music to 15–20% when founder starts speaking. Keep it present but not competing. Soft, warm instrumental works well here.</td></tr>
-          <tr><td><strong>Conflict</strong></td><td>0:18–0:32</td><td>The specific moment she realized social wasn't working</td><td>Founder on phone/laptop — the "before" visual</td><td>Pop-up: "The brand was there. The reach wasn't." or her exact conflict words.</td><td>Music stays ducked. Consider dropping to near-silence (5–8%) during the most emotionally honest moment — let the silence add weight.</td></tr>
-          <tr><td><strong>Turning Point</strong></td><td>0:32–0:50</td><td>The specific post or moment the strategy clicked</td><td>Founder filming content, screen recording of top post</td><td>Pop-up: "Then something changed." / Show the top-performing post screenshot on screen.</td><td>Bring music back up slightly (25–30%) on the turning point beat. The energy lift should feel intentional — signals the shift to the viewer.</td></tr>
-          <tr><td><strong>Resolution</strong></td><td>0:50–1:10</td><td>What the business looks like now + forward-looking statement</td><td>Founder smiling in store, customer browsing</td><td><strong>Bold metric overlay: "52% Increase in Views" / "9.0 Content Score"</strong> — timed to the moment she mentions results.</td><td>Music swells back to 40–50% under the resolution. When the metric overlay hits the screen, let the music land on a beat. Sync the text drop to the beat if possible.</td></tr>
-          <tr><td><strong>CTA</strong></td><td>1:10–1:20</td><td>Fade to black or freeze frame on founder</td><td>@shoplaunchparty profile on phone screen</td><td>"Comment 'BLUEPRINT' below to see the strategy we used." + Scroll Media logo.</td><td>Music fades out cleanly over 2–3 seconds. End on silence or a single soft note. Do not cut the audio abruptly — the fade signals the end of the story.</td></tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-</section>
-
-<hr class="divider" />
-<!-- STORIES PROMOTION -->
-<section id="stories" class="bg-white">
-  <div class="container">
-    <p class="section-label">Section 05b — Stories Promotion</p>
-    <h2>How to Promote This Post to Stories</h2>
-    <p class="section-sub">Post the Stories sequence the same day the Reel goes live. Stories extend the reach of the post and drive warm followers to the CTA. Two frames, in order.</p>
-    <div class="table-wrap"><table>
-      <thead><tr><th>Frame</th><th>Format</th><th>Visual</th><th>Text Overlay</th><th>Sticker / CTA</th></tr></thead>
-      <tbody>
-        <tr>
-          <td><strong>Frame 1</strong><br><span style="font-size:11px;color:var(--text-secondary);">Post immediately after Reel goes live</span></td>
-          <td>Reel Repost to Story</td>
-          <td>Repost the Reel directly to Stories using the share button. Do not screenshot — use the native repost so the play button is visible and tappable.</td>
-          <td>Add a text sticker in Highlighter yellow: <strong>"This is what working with Scroll looks like 👇"</strong><br><span style="font-size:11px;color:var(--text-secondary);">Place text in the upper third. Keep it short. Let the video thumbnail do the work.</span></td>
-          <td>Add a Poll sticker: <strong>"Is your social doing this?"</strong> → Yes / Not yet<br><span style="font-size:11px;color:var(--text-secondary);">Drives engagement and surfaces warm leads. Check responses within 24 hours.</span></td>
-        </tr>
-        <tr>
-          <td><strong>Frame 2</strong><br><span style="font-size:11px;color:var(--text-secondary);">Post 2–4 hours after Frame 1</span></td>
-          <td>Standalone Link Story</td>
-          <td>Dark background (navy or black). Scroll Media logo centered. Clean, minimal — this is a direct response frame, not a content frame.</td>
-          <td><strong>"Want results like this for your brand?"</strong><br>Line 2: <strong>"Start with our free Growth Blueprint →"</strong><br><span style="font-size:11px;color:var(--text-secondary);">Font: bold, white on dark. No clutter. One message only.</span></td>
-          <td>Link sticker pointing to: <strong>tools.scrollmedia.co/instagram-growth-blueprint</strong><br>Label the sticker: <strong>"Get the Blueprint"</strong><br><span style="font-size:11px;color:var(--text-secondary);">Place the link sticker in the lower third. Tap-friendly size. Test the link before posting.</span></td>
-        </tr>
-      </tbody>
-    </table></div>
-    <div class="highlight-box" style="margin-top:16px;">
-      <p><strong>Audio on Stories:</strong> Frame 1 (Reel repost) will carry the original audio automatically — no changes needed. Frame 2 is silent by design. Do not add music to Frame 2. The silence keeps the focus on the CTA.</p>
-    </div>
-  </div>
-</section>
-<hr class="divider" />
-<!-- CAPTION -->
-<section id="caption" class="bg-porcelain">
-  <div class="container">
-    <p class="section-label">Section 06 — Caption & Posting</p>
-    <h2>Ready-to-Use Caption</h2>
-    <p class="section-sub">Copy this caption exactly. The hook line is the first thing the viewer sees — do not change it. Tag @shoplaunchparty in the post and in the caption.</p>
-    <div class="caption-box">
-      <p class="caption-text"><span class="caption-hook">She had the brand. She had the products. She just needed a strategy that matched.</span>
-
-@shoplaunchparty is one of Cincinnati's best indie beauty destinations — and when founder [Name] came to us, she already had everything a brand needs to win online. A strong aesthetic. A functioning e-commerce store. A loyal in-person following.
-
-What she didn't have was a social system that converted.
-
-So we built one.
-
-Over the past year, we've helped Launch Party grow views by 52%, hit a 9.0 content score in December, and create some of the strongest-performing content we've ever produced — across every stage of the funnel.
-
-But the real reason it worked? She trusted the process. She showed up to every shoot. She tested new formats when we asked. She let the strategy do its job.
-
-That's what great partnerships look like.
-
-If your brand is ready for a social strategy that actually converts — Comment "BLUEPRINT" below and we'll show you exactly how we do it.
-
-📍 @shoplaunchparty — Cincinnati, OTR</p>
-    </div>
-    <div class="highlight-box" style="margin-top:16px;">
-      <p><strong>Posting Instructions:</strong> Tag @shoplaunchparty in the post. Pin a first-comment CTA: "Comment BLUEPRINT for the strategy behind this → tools.scrollmedia.co/instagram-growth-blueprint". Post the two-frame Stories sequence (Repost + Link Story) the same day. See the <a href="testimonial-standard.html" style="color:var(--azure);">Master Standard</a> for the full Stories protocol.</p>
-    </div>
-  </div>
-</section>
+</main>
 
 <footer>
+  <a href="https://decks.scrollmedia.co/pitch/" target="_blank"><img src="scroll-media-logo-navy.png" alt="Scroll Media" /></a>
   <p>
-    <a href="https://decks.scrollmedia.co/pitch/" target="_blank"><img src="scroll-media-logo.svg" alt="Scroll Media" style="height:22px;display:block;margin:0 auto 12px;opacity:0.85;" /></a>
-    Scroll Media &nbsp;·&nbsp; Shoot Packet: Launch Party &nbsp;·&nbsp; v3.0 March 2026 &nbsp;·&nbsp; Internal Use Only<br />
-    <a href="testimonial-standard.html">← Master Standard</a> &nbsp;·&nbsp; <a href="index.html">Dashboard</a>
+    Scroll Media &nbsp;·&nbsp; Launch Party Shoot Packet &nbsp;·&nbsp; Archived v3.0 &nbsp;·&nbsp; Internal Use Only<br />
+    <a href="index.html">← Back to Dashboard</a>
   </p>
 </footer>
 
-<script>
-  window.addEventListener('scroll', () => {
-    const scrollTop = window.scrollY;
-    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-    const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
-    document.getElementById('progress-bar').style.width = progress + '%';
-  });
-</script>
 </body>
 </html>

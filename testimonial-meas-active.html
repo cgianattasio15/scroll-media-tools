@@ -3,311 +3,85 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Shoot Packet: MEAS Active — Scroll Media</title>
+  <title>MEAS Active Shoot Packet (Archived) — Scroll Media</title>
+  <meta name="robots" content="noindex, nofollow" />
   <link rel="icon" type="image/svg+xml" href="scroll-favicon.svg" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
   <style>
-    :root { --shadow:#151516;--ghost:#fafdff;--porcelain:#f2f3f4;--lucid:#cbe9ff;--azure:#0c3387;--azure-dark:#092a6e;--azure-mid:#1a4db3;--azure-light:#e8eef8;--highlight:#e2ed7a;--white:#ffffff;--text-secondary:rgba(21,21,22,0.65);--border:rgba(21,21,22,0.1);--radius:12px;--radius-lg:20px; }
-    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
-    html{scroll-behavior:smooth;overflow-x:hidden;}
-    body{font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--ghost);color:var(--shadow);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden;}
-    #progress-bar-wrap{position:fixed;top:0;left:0;right:0;height:3px;z-index:9999;}
-    #progress-bar{height:100%;width:0%;background:linear-gradient(90deg,var(--azure) 0%,var(--highlight) 100%);transition:width 0.1s linear;}
-    nav{position:sticky;top:0;z-index:100;background:rgba(250,253,255,0.96);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:0 32px;height:64px;display:flex;align-items:center;justify-content:space-between;}
-    .nav-logo img{height:28px;display:block;width:auto;}
-    .nav-links{display:flex;align-items:center;gap:8px;list-style:none;}
-    .nav-links a{font-size:13px;font-weight:600;color:var(--shadow);text-decoration:none;padding:6px 12px;border-radius:8px;transition:color 0.2s,background 0.2s;}
-    .nav-links a:hover{color:var(--azure);background:var(--azure-light);}
-    .nav-badge{background:var(--azure);color:var(--white);padding:5px 12px;border-radius:100px;font-size:11px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;text-decoration:none;}
-    .hero{background:var(--shadow);color:var(--white);padding:72px 24px 64px;text-align:center;position:relative;overflow:hidden;}
-    .hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% 0%,rgba(12,51,135,0.6) 0%,transparent 70%);pointer-events:none;}
-    .hero-badge{display:inline-flex;align-items:center;gap:6px;background:var(--highlight);color:var(--shadow);padding:6px 14px;border-radius:100px;font-size:12px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;margin-bottom:24px;position:relative;z-index:1;}
-    .hero h1{font-size:clamp(28px,5vw,52px);font-weight:900;letter-spacing:-0.03em;line-height:1.1;margin-bottom:16px;position:relative;z-index:1;}
-    .hero h1 .accent{background:linear-gradient(135deg,var(--lucid) 0%,var(--highlight) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
-    .hero-sub{font-size:16px;color:rgba(255,255,255,0.72);max-width:560px;margin:0 auto 36px;line-height:1.7;position:relative;z-index:1;}
-    .hero-stats{display:flex;justify-content:center;gap:40px;flex-wrap:wrap;padding-top:32px;border-top:1px solid rgba(255,255,255,0.1);position:relative;z-index:1;}
-    .stat-num{font-size:28px;font-weight:900;color:var(--highlight);letter-spacing:-0.03em;line-height:1;}
-    .stat-label{font-size:12px;color:rgba(255,255,255,0.55);margin-top:4px;}
-    section{padding:72px 24px;}
-    section[id]{scroll-margin-top:80px;}
-    .container{max-width:860px;margin:0 auto;}
-    .section-label{font-size:11px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--azure);margin-bottom:10px;}
-    h2{font-size:clamp(22px,3.5vw,36px);font-weight:800;line-height:1.15;letter-spacing:-0.025em;margin-bottom:14px;}
-    .section-sub{font-size:16px;color:var(--text-secondary);max-width:620px;line-height:1.7;margin-bottom:40px;}
-    .table-wrap{overflow-x:auto;border-radius:var(--radius);border:1px solid var(--border);margin-bottom:28px;}
-    table{width:100%;border-collapse:collapse;}
-    thead{background:var(--azure-light);}
-    th{font-size:11px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--azure);padding:12px 16px;text-align:left;}
-    td{font-size:13px;color:var(--text-secondary);padding:14px 16px;border-top:1px solid var(--border);vertical-align:top;line-height:1.65;}
-    td strong{color:var(--shadow);}
-    .setup-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:16px;margin-bottom:24px;}
-    .setup-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:20px 22px;}
-    .setup-card-label{font-size:10px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--azure);margin-bottom:6px;}
-    .setup-card-value{font-size:14px;font-weight:700;margin-bottom:4px;}
-    .setup-card-note{font-size:12px;color:var(--text-secondary);line-height:1.55;}
-    .prompt-block{background:var(--white);border:1px solid var(--border);border-radius:var(--radius-lg);margin-bottom:14px;overflow:hidden;transition:box-shadow 0.2s;}
-    .prompt-block:hover{box-shadow:0 8px 24px rgba(12,51,135,0.08);}
-    .prompt-header{display:flex;align-items:center;gap:16px;padding:18px 22px;border-bottom:1px solid var(--border);background:var(--azure-light);}
-    .prompt-num{width:32px;height:32px;border-radius:50%;background:var(--azure);color:var(--white);font-size:13px;font-weight:900;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
-    .prompt-num.hook{background:var(--highlight);color:var(--shadow);}
-    .prompt-arc{font-size:10px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--azure);}
-    .prompt-title{font-size:14px;font-weight:700;}
-    .prompt-body{padding:18px 22px;}
-    .prompt-goal{font-size:12px;color:var(--text-secondary);margin-bottom:12px;font-style:italic;}
-    .prompt-q{background:var(--azure-light);border-left:3px solid var(--azure);border-radius:0 8px 8px 0;padding:14px 18px;font-size:14px;color:var(--shadow);line-height:1.65;margin-bottom:10px;}
-    .prompt-note{font-size:12px;color:var(--text-secondary);line-height:1.55;}
-    .shot-list{display:flex;flex-direction:column;gap:8px;}
-    .shot-item{display:flex;align-items:flex-start;gap:12px;padding:14px 18px;background:var(--white);border:1px solid var(--border);border-radius:var(--radius);}
-    .shot-num{width:26px;height:26px;border-radius:6px;background:var(--azure-light);color:var(--azure);font-size:12px;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
-    .shot-check{width:20px;height:20px;border-radius:5px;border:2px solid rgba(12,51,135,0.25);flex-shrink:0;margin-top:2px;}
-    .shot-text{font-size:13px;color:var(--text-secondary);line-height:1.55;}
-    .shot-text strong{color:var(--shadow);}
-    .highlight-box{background:var(--azure-light);border:1px solid rgba(12,51,135,0.2);border-radius:var(--radius);padding:18px 22px;margin-bottom:20px;}
-    .highlight-box p{font-size:14px;color:var(--shadow);line-height:1.7;}
-    .highlight-box strong{color:var(--azure);}
-    .warning-box{background:#fff5f5;border:1px solid rgba(220,38,38,0.2);border-radius:var(--radius);padding:14px 18px;margin-bottom:18px;}
-    .warning-box p{font-size:13px;color:#b91c1c;line-height:1.6;}
-    .caption-box{background:var(--shadow);border-radius:var(--radius-lg);padding:28px 32px;position:relative;overflow:hidden;}
-    .caption-box::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% 0%,rgba(12,51,135,0.5) 0%,transparent 70%);pointer-events:none;}
-    .caption-text{font-size:14px;color:rgba(255,255,255,0.8);line-height:1.85;white-space:pre-line;position:relative;z-index:1;}
-    .caption-hook{font-size:17px;font-weight:800;color:var(--white);display:block;margin-bottom:4px;}
-    .divider{border:none;border-top:1px solid var(--border);margin:0;}
-    .bg-porcelain{background:var(--porcelain);}
-    .bg-white{background:var(--white);}
-    footer{background:#ffffff;color:#555e6e;padding:36px 24px;text-align:center;border-top:1px solid #e5e7eb;}
-    footer p{font-size:12px;line-height:1.8;color:#555e6e;}
-    footer a{color:#0c3387;text-decoration:none;}
-    footer a:hover{color:#1B2B6B;text-decoration:underline;}
-    @media(max-width:768px){nav{padding:0 16px;}.hero{padding:52px 16px 44px;}section{padding:52px 16px;}.setup-grid{grid-template-columns:1fr;}.hero-stats{gap:24px;}}
+    :root {
+      --shadow:      #151516;
+      --ghost:       #fafdff;
+      --porcelain:   #f2f3f4;
+      --lucid:       #cbe9ff;
+      --azure:       #0c3387;
+      --azure-light: #e8eef8;
+      --highlight:   #e2ed7a;
+      --white:       #ffffff;
+      --text-secondary: rgba(21,21,22,0.65);
+      --border:      rgba(21,21,22,0.1);
+      --radius:      12px;
+      --radius-lg:   20px;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { overflow-x: hidden; }
+    body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: var(--ghost); color: var(--shadow); line-height: 1.6; -webkit-font-smoothing: antialiased; overflow-x: hidden; min-height: 100vh; display: flex; flex-direction: column; }
+
+    /* ── Nav ── */
+    nav { background: var(--ghost); border-bottom: 1px solid var(--border); padding: 0 32px; height: 64px; display: flex; align-items: center; justify-content: space-between; }
+    .nav-logo img { height: 26px; display: block; width: auto; }
+    .nav-badge { background: var(--text-secondary); color: var(--white); padding: 5px 12px; border-radius: 100px; font-size: 11px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; }
+
+    /* ── Notice ── */
+    main { flex: 1; display: flex; align-items: center; justify-content: center; padding: 64px 24px; }
+    .notice { max-width: 560px; width: 100%; background: var(--white); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 48px 40px; text-align: center; box-shadow: 0 12px 40px rgba(12,51,135,0.06); }
+    .notice-eyebrow { display: inline-block; background: var(--porcelain); color: var(--text-secondary); font-size: 12px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 6px 14px; border-radius: 100px; margin-bottom: 24px; }
+    .notice h1 { font-size: clamp(24px, 4vw, 34px); font-weight: 800; letter-spacing: -0.02em; line-height: 1.2; margin-bottom: 18px; }
+    .notice p { font-size: 16px; color: var(--text-secondary); line-height: 1.7; max-width: 440px; margin: 0 auto 12px; }
+    .notice-cta { display: inline-flex; align-items: center; justify-content: center; min-height: 48px; background: var(--azure); color: var(--white); font-size: 15px; font-weight: 700; text-decoration: none; padding: 14px 28px; border-radius: 100px; margin-top: 28px; transition: background 0.2s, transform 0.2s; }
+    .notice-cta:hover { background: #092a6e; transform: translateY(-2px); }
+
+    /* ── Footer ── */
+    footer { background: #ffffff; color: #555e6e; padding: 36px 24px; text-align: center; border-top: 1px solid #e5e7eb; }
+    footer img { height: 22px; display: block; margin: 0 auto 12px; opacity: 0.85; }
+    footer p { font-size: 13px; line-height: 1.8; color: #555e6e; }
+    footer a { color: #0c3387; text-decoration: none; }
+    footer a:hover { color: #1B2B6B; text-decoration: underline; }
+
+    @media (max-width: 768px) {
+      nav { padding: 0 16px; }
+      main { padding: 48px 16px; }
+      .notice { padding: 36px 24px; }
+    }
   </style>
 </head>
 <body>
-<div id="progress-bar-wrap"><div id="progress-bar"></div></div>
+
 <nav>
-  <a href="https://decks.scrollmedia.co/pitch/" class="nav-logo" target="_blank"><img src="scroll-media-logo.svg" alt="Scroll Media" /></a>
-  <ul class="nav-links">
-    <li><a href="#context">Context</a></li>
-    <li><a href="#setup">Setup</a></li>
-    <li><a href="#prompts">Prompts</a></li>
-    <li><a href="#broll">B-Roll</a></li>
-    <li><a href="#edit">Edit Arc</a></li>
-    <li><a href="#caption">Caption</a></li>
-    <li><a href="testimonial-standard.html" class="nav-badge">Master Standard</a></li>
-  </ul>
+  <a href="https://decks.scrollmedia.co/pitch/" class="nav-logo" target="_blank">
+    <img src="scroll-media-logo-navy.png" alt="Scroll Media" />
+  </a>
+  <span class="nav-badge">Internal</span>
 </nav>
-<div class="hero">
-  <div class="hero-badge">Shoot Packet · MEAS Active</div>
-  <h1>MEAS Active<br /><span class="accent">Testimonial Script</span></h1>
-  <p class="hero-sub">The foundation-to-amplification story. A founder with a powerful offline community — collabs, ambassadors, local presence — who needed a digital strategy to match what she'd already built.</p>
-  <div class="hero-stats">
-    <div><div class="stat-num">118%</div><div class="stat-label">Increase in Interactions</div></div>
-    <div><div class="stat-num">70%</div><div class="stat-label">Awareness Growth in 90 Days</div></div>
-    <div><div class="stat-num">90</div><div class="stat-label">Days to Results</div></div>
-  </div>
-</div>
-<section id="context" class="bg-white">
-  <div class="container">
-    <p class="section-label">Section 01 — Client Context</p>
-    <h2>Who Is MEAS Active &amp; What's the Story?</h2>
-    <p class="section-sub">Internalize this before the shoot. Do not read it aloud. The MEAS story is about taking a strong offline foundation and building a digital strategy to match it.</p>
-    <div class="table-wrap"><table>
-      <thead><tr><th>Attribute</th><th>Detail</th></tr></thead>
-      <tbody>
-        <tr><td><strong>Business</strong></td><td>MEAS Active — Fashion-Forward Performance Activewear, Cincinnati</td></tr>
-        <tr><td><strong>Instagram</strong></td><td>@meas_active</td></tr>
-        <tr><td><strong>Niche</strong></td><td>Performance Activewear / Lifestyle Brand</td></tr>
-        <tr><td><strong>Account Manager</strong></td><td>Riley Walker</td></tr>
-        <tr><td><strong>Goals (Tab 3)</strong></td><td>
-  <div style="margin-bottom:10px;"><strong>TOFU — Build Awareness</strong><br><span style="color:var(--text-secondary);font-size:13px;">Reach active lifestyle consumers who don’t know MEAS yet. Drive discovery through community moments, ambassador content, and collab recaps.</span></div>
-  <div style="margin-bottom:10px;"><strong>MOFU — Build Trust</strong><br><span style="color:var(--text-secondary);font-size:13px;">Deepen brand relationships through product education, ambassador social proof, and BTS content. Drive saves and profile visits.</span></div>
-  <div style="margin-bottom:10px;"><strong>BOFU — Drive Purchases</strong><br><span style="color:var(--text-secondary);font-size:13px;">Convert warm followers into buyers. Product features, curated collections, and direct CTAs to the shop.</span></div>
-  <div><em style="color:#b91c1c;font-size:12px;">&#9888; Tab 3 file may be mislinked — confirm goals against correct homebase before shoot.</em></div>
-</td></tr>
-        <tr><td><strong>Key Challenges</strong></td><td>Had a strong imprint in the community — collabs with aligned businesses, an ambassador program, local presence — but social wasn’t capturing or amplifying that energy. The digital presence didn’t match the offline reputation. No clear content system to translate community momentum into consistent reach and conversion online.</td></tr>
-        <tr><td><strong>Why She Succeeded</strong></td><td>She came in with a strong foundation. Scroll didn't have to build community — it was already there. We built the digital strategy to amplify what existed: the collabs, the ambassadors, the brand story. The foundation made the strategy work faster.</td></tr>
-        <tr><td><strong>The Story Arc</strong></td><td>Strong offline community + weak digital amplification → Scroll builds the social strategy to match → 118% interaction increase, 70% awareness growth in 90 days</td></tr>
-      </tbody>
-    </table></div>
-  </div>
-</section>
-<hr class="divider" />
-<section id="setup" class="bg-porcelain">
-  <div class="container">
-    <p class="section-label">Section 02 — On-Set Setup</p>
-    <h2>How to Set Up the Shot</h2>
-    <p class="section-sub">The interview setup determines whether the footage feels authentic or staged. Get this right before asking a single question.</p>
-    <div class="setup-grid">
-      <div class="setup-card"><p class="setup-card-label">Location</p><p class="setup-card-value">Brand-aligned environment</p><p class="setup-card-note">A gym, studio, or outdoor athletic space that fits the MEAS Active brand. The background should communicate performance and lifestyle — not a blank wall.</p></div>
-      <div class="setup-card"><p class="setup-card-label">Camera Angle</p><p class="setup-card-value">Eye-level, slightly off-axis</p><p class="setup-card-note">Founder looks slightly toward Riley — NOT directly into the camera. Feels like a conversation, not a deposition.</p></div>
-      <div class="setup-card"><p class="setup-card-label">Framing</p><p class="setup-card-value">Medium close-up (chest to top of head)</p><p class="setup-card-note">Subject fills center 60% of frame. Leave headroom. Safe zone: no critical content in bottom 20% or top 15%.</p></div>
-      <div class="setup-card"><p class="setup-card-label">Wardrobe</p><p class="setup-card-value">Founder wears MEAS Active product</p><p class="setup-card-note">The founder should be wearing the product during the interview. It's the most natural product placement possible — and it's authentic.</p></div>
-      <div class="setup-card"><p class="setup-card-label">Audio</p><p class="setup-card-value">Lav mic or directional mic</p><p class="setup-card-note">If shooting outdoors or in a gym, wind and ambient noise are a risk. A lav mic is essential. Test audio before the first take.</p></div>
-      <div class="setup-card"><p class="setup-card-label">Vibe</p><p class="setup-card-value">Casual conversation, not interview</p><p class="setup-card-note">Tell the founder: "We're just going to have a conversation. There's no wrong answer. If you want to start over, just say so."</p></div>
-    </div>
-    <div class="warning-box"><p><strong>Do NOT pre-send the questions.</strong> The moment a founder rehearses their answers, the authenticity disappears. Brief her on the general topic only — never share the specific prompts in advance.</p></div>
-  </div>
-</section>
-<hr class="divider" />
-<section id="prompts" class="bg-white">
-  <div class="container">
-    <p class="section-label">Section 03 — Interview Prompts</p>
-    <h2>Interview Prompts</h2>
-    <p class="section-sub">Ask prompts 2 through 5 in order, then ask prompt 1 last as a rapid-fire closer. Each prompt has a specific goal — read it before you ask. Follow up naturally on strong answers. The best soundbites come from follow-up, not the initial question. Do not rush.</p>
-    <div class="prompt-block">
-      <div class="prompt-header"><div class="prompt-num">2</div><div><p class="prompt-arc">Arc: Context — Ask First</p><p class="prompt-title">Set the Stakes — The Community She'd Built</p></div></div>
-      <div class="prompt-body">
-        <p class="prompt-goal">Goal: Establish that she had already built something real — the collabs, the ambassador program, the local presence. This makes the conflict (digital not matching offline) meaningful.</p>
-        <p class="prompt-q">"Tell me about MEAS Active before we started working together. You had already built a real presence in the community — the ambassador program, the collabs with other brands, the local following. What did the brand look like at that point, and where did social fit into it?"</p>
-        <p class="prompt-note">Follow-up: "Was there a gap between how strong the brand felt in person and how it looked online to someone who didn't already know you?"</p>
-      </div>
-    </div>
-    <div class="prompt-block">
-      <div class="prompt-header"><div class="prompt-num">3</div><div><p class="prompt-arc">Arc: Conflict — Ask Second</p><p class="prompt-title">The Specific Moment of Friction</p></div></div>
-      <div class="prompt-body">
-        <p class="prompt-goal">Goal: A specific, emotionally honest moment — the realization that the offline reputation wasn't translating digitally. Push for a memory, not a summary.</p>
-        <p class="prompt-q">"Was there a specific moment where you realized that what you'd built in the community wasn't showing up on social the way it should? Like — the brand was real, the community was real, but the digital presence wasn't capturing it?"</p>
-        <p class="prompt-note">Follow-up: "What was the feeling? Like you had this incredible thing and social wasn't doing it justice?"</p>
-      </div>
-    </div>
-    <div class="prompt-block">
-      <div class="prompt-header"><div class="prompt-num">4</div><div><p class="prompt-arc">Arc: Turning Point — Ask Third</p><p class="prompt-title">When the Strategy Started to Amplify What Was Already There</p></div></div>
-      <div class="prompt-body">
-        <p class="prompt-goal">Goal: A specific memory — a specific collab that performed, a specific post that captured the brand's energy, a specific moment where the digital strategy started to match the offline reality.</p>
-        <p class="prompt-q">"Was there a specific piece of content — or a specific campaign, maybe around one of your ambassador collabs — where you saw the strategy start to work? Where the social presence finally started to feel like it matched what you'd built?"</p>
-        <p class="prompt-note">Follow-up: "What was it about that moment that felt different? Was it the numbers, or was it more about how the brand felt online?"</p>
-      </div>
-    </div>
-    <div class="prompt-block">
-      <div class="prompt-header"><div class="prompt-num">5</div><div><p class="prompt-arc">Arc: Resolution — Ask Fourth</p><p class="prompt-title">The Tangible Outcome + Emotional Shift</p></div></div>
-      <div class="prompt-body">
-        <p class="prompt-goal">Goal: Two layers — the hard metrics (118% interactions, 70% awareness growth) and the emotional transformation. End on forward-looking, not backward-looking.</p>
-        <p class="prompt-q">"What does MEAS Active's social presence look like now compared to when we started? And beyond the numbers — does the brand online feel like it matches what you've built in person? Has it changed how you think about growing MEAS going forward?"</p>
-        <p class="prompt-note">Follow-up: "If another founder with a strong community but a weak digital presence was watching this — what would you tell them?"</p>
-      </div>
-    </div>
-    <div class="prompt-block">
-      <div class="prompt-header"><div class="prompt-num hook">1</div><div><p class="prompt-arc">Arc: Hook — Ask LAST (Rapid-Fire) · Placed First in Edit</p><p class="prompt-title">The Attention Grabber</p></div></div>
-      <div class="prompt-body">
-        <p class="prompt-goal">Goal: The most natural, unguarded soundbite of the entire shoot. The founder is warmed up. This becomes the first line of the edit.</p>
-        <p class="prompt-q">"Last thing — finish this sentence without overthinking it. Ready? 'I had built something real in this city — but online, nobody knew it yet. Until...'"</p>
-        <p class="prompt-note">Alternatives: "Before Scroll, my social was..." / "The thing that changed everything was..." / "The moment I knew this was working was..."</p>
-      </div>
-    </div>
-  </div>
-</section>
-<hr class="divider" />
-<section id="broll" class="bg-porcelain">
-  <div class="container">
-    <p class="section-label">Section 04 — B-Roll Shot List</p>
-    <h2>What to Capture on Set</h2>
-    <p class="section-sub">Capture every shot on this list before wrapping. Each shot is mapped to the arc section it supports in the edit. Clips must be 1–2 seconds each — not longer.</p>
-    <div class="shot-list">
-      <div class="shot-item"><div class="shot-check"></div><div class="shot-num">1</div><p class="shot-text"><strong>[Context]</strong> Founder wearing MEAS Active product — moving, active, in her element. The brand is the person. This is the hero shot.</p></div>
-      <div class="shot-item"><div class="shot-check"></div><div class="shot-num">2</div><p class="shot-text"><strong>[Context]</strong> Product close-ups — the activewear itself, details, quality. Tight focus, clean background. Communicates product quality.</p></div>
-      <div class="shot-item"><div class="shot-check"></div><div class="shot-num">3</div><p class="shot-text"><strong>[Context]</strong> Founder with ambassadors or collab partners — the community in action. The offline foundation visual.</p></div>
-      <div class="shot-item"><div class="shot-check"></div><div class="shot-num">4</div><p class="shot-text"><strong>[Conflict]</strong> Founder on her phone — scrolling Instagram, looking at analytics. Thoughtful expression. The "before" visual.</p></div>
-      <div class="shot-item"><div class="shot-check"></div><div class="shot-num">5</div><p class="shot-text"><strong>[Turning Point]</strong> Screen recording or screenshot of a top-performing post — high interaction count visible. Ask the founder to pull it up on her phone.</p></div>
-      <div class="shot-item"><div class="shot-check"></div><div class="shot-num">6</div><p class="shot-text"><strong>[Turning Point]</strong> Founder filming content — creating, in the process of building the digital presence. The "working with Scroll" visual.</p></div>
-      <div class="shot-item"><div class="shot-check"></div><div class="shot-num">7</div><p class="shot-text"><strong>[Resolution]</strong> Founder confident, energized, in her brand — the "after" energy. Natural, not posed. The emotional payoff shot.</p></div>
-      <div class="shot-item"><div class="shot-check"></div><div class="shot-num">8</div><p class="shot-text"><strong>[Resolution]</strong> Community moment — ambassador wearing the product, collab partner, or customer interaction. Social proof that the community is real.</p></div>
-      <div class="shot-item"><div class="shot-check"></div><div class="shot-num">9</div><p class="shot-text"><strong>[CTA]</strong> Close-up of the @meas_active Instagram profile on a phone screen. Used at the end to visually anchor the brand handle.</p></div>
-    </div>
-  </div>
-</section>
-<hr class="divider" />
-<section id="edit" class="bg-white">
-  <div class="container">
-    <p class="section-label">Section 05 — Edit Direction</p>
-    <h2>How to Structure the Final Edit</h2>
-    <p class="section-sub">The A-roll interview footage is the spine. B-roll cuts are the visual proof. On-screen text carries the story for silent viewers.</p>
-    <div class="table-wrap"><table>
-      <thead><tr><th>Phase</th><th>Timing</th><th>A-Roll</th><th>B-Roll</th><th>On-Screen Text</th><th>Audio</th></tr></thead>
-      <tbody>
-        <tr><td><strong>Hook</strong></td><td>0:00–0:03</td><td>Rapid-fire soundbite: "I had built something real in this city — but online, nobody knew it yet. Until [her answer]"</td><td>Founder in MEAS Active product, moving</td><td>Large bold text: her exact words. High contrast. Zero dead air.</td><td>Music at full volume — energetic, community-driven instrumental. Active lifestyle feel. Let the beat carry the hook before the founder speaks.</td></tr>
-        <tr><td><strong>Context</strong></td><td>0:03–0:18</td><td>Founder describes the community she'd built — ambassadors, collabs, local presence</td><td>Founder with ambassadors, product close-ups</td><td>Pop-up: "MEAS Active — Performance Activewear, Cincinnati" / "The community was real. The digital presence wasn't."</td><td>Duck music to 15–20% when founder starts speaking. Warm, community-feel instrumental works well here. Keep it present but not competing.</td></tr>
-        <tr><td><strong>Conflict</strong></td><td>0:18–0:32</td><td>The specific moment she realized digital wasn't matching offline</td><td>Founder on phone — the "before" visual</td><td>Pop-up: "Built in the community. Invisible online." or her exact conflict words.</td><td>Music stays ducked. Drop to near-silence (5–8%) during the most honest moment. Let the silence underscore the gap between offline reality and digital presence.</td></tr>
-        <tr><td><strong>Turning Point</strong></td><td>0:32–0:50</td><td>The specific post or campaign where the strategy clicked</td><td>Founder filming content, screen recording of top post</td><td>Pop-up: "Then the strategy caught up to the brand." / Show the top-performing post screenshot on screen.</td><td>Bring music back up to 25–30% on the turning point. The energy lift signals the shift — the beat should feel like momentum building.</td></tr>
-        <tr><td><strong>Resolution</strong></td><td>0:50–1:10</td><td>What the brand looks like now + forward-looking statement</td><td>Founder confident in brand, community moment</td><td><strong>Bold metric overlay: "118% Increase in Interactions" / "70% Awareness Growth in 90 Days"</strong> — timed to the moment she mentions results.</td><td>Music swells to 40–50% under the resolution. Sync the metric overlay to a beat hit. The 118% number landing on a beat makes it feel like a payoff, not just a stat.</td></tr>
-        <tr><td><strong>CTA</strong></td><td>1:10–1:20</td><td>Fade to black or freeze frame on founder</td><td>@meas_active profile on phone screen</td><td>"Comment 'BLUEPRINT' below to see the strategy we used." + Scroll Media logo.</td><td>Music fades out cleanly over 2–3 seconds. End on silence. Do not cut abruptly — the clean fade closes the story with intention.</td></tr>
-      </tbody>
-    </table></div>
-  </div>
-</section>
-<hr class="divider" />
-<!-- STORIES PROMOTION -->
-<section id="stories" class="bg-white">
-  <div class="container">
-    <p class="section-label">Section 05b — Stories Promotion</p>
-    <h2>How to Promote This Post to Stories</h2>
-    <p class="section-sub">Post the Stories sequence the same day the Reel goes live. Stories extend the reach of the post and drive warm followers to the CTA. Two frames, in order.</p>
-    <div class="table-wrap"><table>
-      <thead><tr><th>Frame</th><th>Format</th><th>Visual</th><th>Text Overlay</th><th>Sticker / CTA</th></tr></thead>
-      <tbody>
-        <tr>
-          <td><strong>Frame 1</strong><br><span style="font-size:11px;color:var(--text-secondary);">Post immediately after Reel goes live</span></td>
-          <td>Reel Repost to Story</td>
-          <td>Repost the Reel directly to Stories using the share button. Do not screenshot — use the native repost so the play button is visible and tappable.</td>
-          <td>Add a text sticker in Highlighter yellow: <strong>"This is what working with Scroll looks like 👇"</strong><br><span style="font-size:11px;color:var(--text-secondary);">Place text in the upper third. Keep it short. Let the video thumbnail do the work.</span></td>
-          <td>Add a Poll sticker: <strong>"Is your social doing this?"</strong> → Yes / Not yet<br><span style="font-size:11px;color:var(--text-secondary);">Drives engagement and surfaces warm leads. Check responses within 24 hours.</span></td>
-        </tr>
-        <tr>
-          <td><strong>Frame 2</strong><br><span style="font-size:11px;color:var(--text-secondary);">Post 2–4 hours after Frame 1</span></td>
-          <td>Standalone Link Story</td>
-          <td>Dark background (navy or black). Scroll Media logo centered. Clean, minimal — this is a direct response frame, not a content frame.</td>
-          <td><strong>"Want results like this for your brand?"</strong><br>Line 2: <strong>"Start with our free Growth Blueprint →"</strong><br><span style="font-size:11px;color:var(--text-secondary);">Font: bold, white on dark. No clutter. One message only.</span></td>
-          <td>Link sticker pointing to: <strong>tools.scrollmedia.co/instagram-growth-blueprint</strong><br>Label the sticker: <strong>"Get the Blueprint"</strong><br><span style="font-size:11px;color:var(--text-secondary);">Place the link sticker in the lower third. Tap-friendly size. Test the link before posting.</span></td>
-        </tr>
-      </tbody>
-    </table></div>
-    <div class="highlight-box" style="margin-top:16px;">
-      <p><strong>Audio on Stories:</strong> Frame 1 (Reel repost) will carry the original audio automatically — no changes needed. Frame 2 is silent by design. Do not add music to Frame 2. The silence keeps the focus on the CTA.</p>
-    </div>
-  </div>
-</section>
-<hr class="divider" />
-<section id="caption" class="bg-porcelain">
-  <div class="container">
-    <p class="section-label">Section 06 — Caption &amp; Posting</p>
-    <h2>Ready-to-Use Caption</h2>
-    <p class="section-sub">Copy this caption exactly. The hook line is the first thing the viewer sees — do not change it. Tag @meas_active in the post and in the caption.</p>
-    <div class="caption-box">
-      <p class="caption-text"><span class="caption-hook">She had already built something real. She just needed the digital strategy to match it.</span>
 
-@meas_active founder [Name] came to us with something most brands spend years trying to build: a genuine community. Ambassadors. Collabs with aligned businesses across Cincinnati. Real people who believed in the brand.
-
-What she didn't have was a social strategy that captured and amplified all of it.
-
-So we built one.
-
-We took the foundation she'd already created — the community, the collabs, the brand story — and built a digital system around it.
-
-In 90 days: interactions up 118%. Awareness up 70%. A social presence that finally matched the brand she'd built in person.
-
-That's what happens when a strong foundation meets the right strategy.
-
-If you've built something real and your social isn't reflecting it — Comment "BLUEPRINT" below and we'll show you how we do it.
-
-📍 @meas_active — Performance Activewear, Cincinnati</p>
-    </div>
-    <div class="highlight-box" style="margin-top:16px;">
-      <p><strong>Posting Instructions:</strong> Tag @meas_active in the post. Pin a first-comment CTA: "Comment BLUEPRINT for the strategy behind this → tools.scrollmedia.co/instagram-growth-blueprint". Post the two-frame Stories sequence (Repost + Link Story) the same day. See the <a href="testimonial-standard.html" style="color:var(--azure);">Master Standard</a> for the full Stories protocol.</p>
-    </div>
+<main>
+  <div class="notice">
+    <span class="notice-eyebrow">Archived · v3.0</span>
+    <h1>The MEAS Active shoot packet has moved</h1>
+    <p>This standard has been superseded by v2.0.</p>
+    <p>The current process lives in the team Notion KB.</p>
+    <a class="notice-cta" href="https://www.notion.so/scrollmedia/testimonial-process-v2-PLACEHOLDER" target="_blank">View the current v2.0 standard</a>
   </div>
-</section>
+</main>
+
 <footer>
+  <a href="https://decks.scrollmedia.co/pitch/" target="_blank"><img src="scroll-media-logo-navy.png" alt="Scroll Media" /></a>
   <p>
-    <a href="https://decks.scrollmedia.co/pitch/" target="_blank"><img src="scroll-media-logo.svg" alt="Scroll Media" style="height:22px;display:block;margin:0 auto 12px;opacity:0.85;" /></a>
-    Scroll Media &nbsp;·&nbsp; Shoot Packet: MEAS Active &nbsp;·&nbsp; v3.0 March 2026 &nbsp;·&nbsp; Internal Use Only<br />
-    <a href="testimonial-standard.html">Master Standard</a> &nbsp;·&nbsp; <a href="index.html">Dashboard</a>
+    Scroll Media &nbsp;·&nbsp; MEAS Active Shoot Packet &nbsp;·&nbsp; Archived v3.0 &nbsp;·&nbsp; Internal Use Only<br />
+    <a href="index.html">← Back to Dashboard</a>
   </p>
 </footer>
-<script>
-  window.addEventListener('scroll',()=>{
-    const p=document.documentElement.scrollHeight-window.innerHeight;
-    document.getElementById('progress-bar').style.width=(p>0?(window.scrollY/p)*100:0)+'%';
-  });
-</script>
+
 </body>
 </html>
