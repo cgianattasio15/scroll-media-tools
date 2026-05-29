@@ -233,79 +233,272 @@ strong { color: var(--shadow); font-weight: 600; }
   .topbar-cta { padding: 7px 12px; font-size: 11px; }
 }
 
-/* GATE OVERLAY — lifted from Scroll Funnel System */
-#gate-overlay {
-  position: fixed; inset: 0; z-index: 500;
-  background: rgba(21, 21, 22, 0.72);
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
-  display: flex; align-items: center; justify-content: center;
-  padding: 24px;
-  opacity: 1; transition: opacity 0.45s var(--ease);
+/* Prior overlay-blur gate retired May 28, 2026.
+   Replaced by inline front-gate pattern (see "FRONT-GATE PATTERN · v2" below). */
+
+/* ============================================================
+   FRONT-GATE PATTERN · v2 (locked May 28, 2026)
+   Preview cards → inline gate form → unlocked asset reveal.
+   Replaces the prior full-screen overlay-blur pattern.
+   ============================================================ */
+.preview-section {
+  background: var(--bg-alt);
+  padding: 64px 0;
+  border-bottom: 1px solid var(--rule);
 }
-#gate-overlay.hiding { opacity: 0; pointer-events: none; }
-#gate-overlay.hidden { display: none; }
-
-body.gated main { filter: blur(3px); pointer-events: none; user-select: none; }
-
-.gate-card {
+.preview-eyebrow {
+  font-size: 11px; text-transform: uppercase;
+  letter-spacing: 0.22em; color: var(--azure);
+  font-weight: 800; margin-bottom: 14px;
+}
+.preview-headline {
+  font-size: clamp(28px, 4vw, 38px);
+  color: var(--shadow); line-height: 1.15;
+  letter-spacing: -0.02em; margin-bottom: 36px;
+  max-width: 24ch; font-weight: 800;
+}
+.preview-cards {
+  display: grid; gap: 16px;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  margin-bottom: 36px;
+}
+.preview-card {
   background: var(--ghost);
-  padding: 44px 40px; max-width: 480px; width: 100%;
-  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.3);
-  border: 1px solid var(--rule);
+  border: 1.5px solid var(--azure);
+  padding: 22px 22px 22px;
+  transition: transform 200ms var(--ease), box-shadow 200ms var(--ease);
+}
+.preview-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 0 var(--azure-100);
+}
+.preview-card-num {
+  font-size: 11px; font-weight: 700;
+  color: var(--azure);
+  letter-spacing: 0.16em; text-transform: uppercase;
+  margin-bottom: 10px;
+}
+.preview-card-title {
+  font-size: 18px; font-weight: 800;
+  color: var(--shadow);
+  line-height: 1.22; letter-spacing: -0.01em;
+  margin-bottom: 8px;
+}
+.preview-card-desc {
+  font-size: 14px; color: var(--fg-muted);
+  line-height: 1.6;
+}
+.preview-stat {
+  margin: 0; padding: 20px 24px;
+  background: var(--ghost);
+  border-left: 3px solid var(--highlighter);
+  font-size: 15px; line-height: 1.6;
+  color: var(--fg);
+  max-width: 64ch;
+}
+.preview-stat strong { color: var(--shadow); font-weight: 700; }
+
+/* INLINE GATE FORM */
+.gate-section {
+  background: var(--ghost);
+  padding: 56px 0 72px;
+  border-bottom: 1px solid var(--rule);
+}
+.gate-inner { max-width: 540px; margin: 0 auto; padding: 0 24px; }
+.gate-eyebrow-inline {
+  font-size: 11px; text-transform: uppercase;
+  letter-spacing: 0.22em; color: var(--azure);
+  font-weight: 800; margin-bottom: 12px;
   text-align: center;
 }
-.gate-logo { height: 22px; width: auto; margin: 0 auto 24px; display: block; }
-.gate-badge {
-  display: inline-block; padding: 4px 12px;
-  background: var(--lucid); color: var(--azure);
-  font-size: 11px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase;
-  margin-bottom: 18px;
+.gate-h2 {
+  font-size: clamp(24px, 3vw, 30px);
+  color: var(--shadow); line-height: 1.18;
+  letter-spacing: -0.02em; margin-bottom: 12px;
+  text-align: center; font-weight: 800;
 }
-.gate-headline {
-  font-size: 24px; font-weight: 800; line-height: 1.2;
-  letter-spacing: -0.02em; color: var(--shadow); margin-bottom: 12px;
+.gate-lede {
+  font-size: 15px; color: var(--fg-muted);
+  line-height: 1.6; text-align: center;
+  margin: 0 auto 28px;
+  max-width: 44ch;
 }
-.gate-sub {
-  font-size: 15px; color: var(--fg-muted); line-height: 1.6;
-  margin-bottom: 28px;
+.gate-form-inline { display: flex; flex-direction: column; gap: 14px; }
+.gate-form-inline .field { display: flex; flex-direction: column; gap: 6px; }
+.gate-form-inline label {
+  font-size: 11px; font-weight: 800;
+  color: var(--shadow);
+  letter-spacing: 0.10em; text-transform: uppercase;
 }
-.gate-form { display: flex; flex-direction: column; gap: 12px; }
-.gate-input {
-  width: 100%; padding: 13px 16px;
-  border: 1.5px solid var(--rule); background: var(--ghost);
-  font-size: 15px; color: var(--shadow);
-  font-family: inherit;
-  outline: none; transition: border-color 0.2s var(--ease), background 0.2s var(--ease);
+.gate-form-inline input {
+  width: 100%;
+  padding: 14px 16px;
+  border: 1.5px solid var(--rule);
+  background: var(--ghost);
+  color: var(--shadow);
+  font-family: var(--sans);
+  font-size: 16px;
+  transition: border-color 200ms var(--ease);
+  min-height: 48px;
+  outline: none;
 }
-.gate-input:focus { border-color: var(--azure); background: var(--bg-alt); }
-.gate-input::placeholder { color: var(--fg-subtle); }
-.gate-btn {
-  width: 100%; padding: 14px;
-  background: var(--azure); color: var(--ghost);
-  font-size: 15px; font-weight: 700; border: none;
-  cursor: pointer; font-family: inherit;
+.gate-form-inline input:focus {
+  border-color: var(--azure);
+}
+.gate-submit-inline {
+  display: block; width: 100%;
+  background: var(--azure);
+  color: var(--ghost);
+  padding: 16px 22px;
+  font-size: 15px; font-weight: 800;
   letter-spacing: 0.02em;
-  transition: background 0.2s var(--ease), transform 0.15s var(--ease), box-shadow 0.2s var(--ease);
+  border: 1.5px solid var(--azure);
+  cursor: pointer;
+  font-family: var(--sans);
+  transition: background 200ms var(--ease), transform 200ms var(--ease);
+  margin-top: 4px;
+  min-height: 48px;
 }
-.gate-btn:hover:not(:disabled) {
-  background: var(--azure-700);
-  transform: translateY(-1px);
-  box-shadow: 0 6px 0 var(--azure-100);
+.gate-submit-inline:hover:not(:disabled) {
+  background: var(--azure-900);
+  transform: translateY(-2px);
 }
-.gate-btn:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
-.gate-privacy { font-size: 12px; color: var(--fg-subtle); margin-top: 6px; line-height: 1.5; }
-.gate-error { font-size: 13px; color: #dc2626; text-align: left; display: none; margin-top: -4px; }
-.gate-error.visible { display: block; }
-.gate-form-wrap { display: block; }
-.gate-success { display: none; text-align: center; padding: 8px 0; }
-.gate-success.visible { display: block; }
-.gate-success-icon { font-size: 40px; margin-bottom: 16px; color: var(--azure); font-weight: 800; }
-.gate-success h3 { font-size: 20px; font-weight: 800; color: var(--shadow); margin-bottom: 8px; }
-.gate-success p { font-size: 15px; color: var(--fg-muted); line-height: 1.6; }
-@media (max-width: 480px) {
-  .gate-card { padding: 32px 22px; }
-  .gate-headline { font-size: 20px; }
+.gate-submit-inline:disabled {
+  background: var(--fg-subtle);
+  border-color: var(--fg-subtle);
+  cursor: wait; transform: none;
+}
+.gate-microcopy {
+  margin-top: 16px;
+  font-size: 13px; color: var(--fg-muted);
+  line-height: 1.55; text-align: center;
+}
+.gate-error-inline {
+  background: rgba(226, 237, 122, 0.18);
+  border-left: 3px solid var(--azure);
+  padding: 10px 14px;
+  font-size: 13px;
+  color: var(--shadow);
+  margin-top: 14px;
+  display: none;
+}
+.gate-error-inline.is-visible { display: block; }
+
+/* LOCKED ASSET REVEAL */
+.locked-asset { display: none; }
+.locked-asset.is-unlocked { display: block; }
+.unlocked-banner {
+  background: var(--lucid-soft);
+  border-top: 1px solid var(--azure);
+  border-bottom: 1px solid var(--rule);
+  padding: 28px 24px 26px;
+}
+.unlocked-banner-inner {
+  max-width: 1080px; margin: 0 auto;
+  display: flex; flex-wrap: wrap; gap: 18px;
+  align-items: center; justify-content: space-between;
+}
+.unlocked-banner-text {
+  font-size: 14px; color: var(--shadow);
+  line-height: 1.5;
+}
+.unlocked-banner-text strong {
+  display: block; font-size: 17px;
+  margin-bottom: 4px; font-weight: 800;
+  color: var(--shadow);
+}
+
+/* SOFT CTA (bottom of unlocked asset) */
+.soft-cta {
+  background: var(--azure-900);
+  color: var(--ghost);
+  padding: 56px 24px;
+}
+.soft-cta-inner {
+  max-width: 900px; margin: 0 auto;
+  text-align: center;
+}
+.soft-cta-eyebrow {
+  font-size: 11px; text-transform: uppercase;
+  letter-spacing: 0.22em; color: var(--highlighter);
+  font-weight: 800; margin-bottom: 14px;
+}
+.soft-cta-headline {
+  font-size: clamp(26px, 3vw, 36px);
+  color: var(--ghost); line-height: 1.15;
+  letter-spacing: -0.02em; margin: 0 auto 14px;
+  font-weight: 800; max-width: 24ch;
+}
+.soft-cta-sub {
+  font-size: 15px;
+  color: rgba(250, 253, 255, 0.82);
+  line-height: 1.6; margin: 0 auto 28px;
+  max-width: 50ch;
+}
+.soft-cta-button {
+  display: inline-flex; align-items: center;
+  background: var(--highlighter);
+  color: var(--azure-900);
+  padding: 18px 30px;
+  font-size: 15px; font-weight: 800;
+  letter-spacing: 0.02em;
+  border: 1.5px solid var(--highlighter);
+  text-decoration: none;
+  min-height: 48px;
+  transition: transform 200ms var(--ease), background 200ms var(--ease);
+}
+.soft-cta-button:hover {
+  background: var(--ghost);
+  border-color: var(--ghost);
+  transform: translateY(-2px);
+  text-decoration: none;
+}
+
+@media (max-width: 767px) {
+  .preview-section { padding: 48px 0; }
+  .preview-headline { font-size: 26px; margin-bottom: 28px; }
+  .preview-card { padding: 20px 20px 18px; }
+  .preview-card-title { font-size: 17px; }
+  .preview-stat { padding: 16px 18px; font-size: 14px; }
+  .gate-section { padding: 44px 0 56px; }
+  .gate-h2 { font-size: 23px; }
+  .gate-lede { font-size: 14px; }
+  .unlocked-banner { padding: 22px 18px 20px; }
+  .unlocked-banner-text strong { font-size: 16px; }
+  .soft-cta { padding: 44px 18px; }
+  .soft-cta-headline { font-size: 24px; }
+  .soft-cta-sub { font-size: 14px; }
+}
+
+@media (max-width: 414px) {
+  .preview-eyebrow { font-size: 10px; letter-spacing: 0.18em; }
+  .preview-headline { font-size: 23px; }
+  .preview-card-num { font-size: 10px; }
+  .preview-card-title { font-size: 16px; }
+  .preview-card-desc { font-size: 14px; }
+  .preview-stat { font-size: 14px; }
+  .gate-eyebrow-inline { font-size: 10px; letter-spacing: 0.18em; }
+  .gate-h2 { font-size: 21px; }
+  .gate-lede { font-size: 14px; }
+  .gate-form-inline label { font-size: 11px; }
+  .gate-microcopy { font-size: 12px; }
+  .gate-error-inline { font-size: 13px; }
+  .unlocked-banner-text { font-size: 13px; }
+  .unlocked-banner-text strong { font-size: 15px; }
+  .soft-cta-eyebrow { font-size: 10px; letter-spacing: 0.16em; }
+  .soft-cta-headline { font-size: 22px; }
+  .soft-cta-sub { font-size: 14px; }
+  .soft-cta-button { font-size: 14px; padding: 16px 24px; }
+}
+
+@media (max-width: 375px) {
+  .preview-section { padding: 40px 0; }
+  .preview-headline { font-size: 21px; }
+  .gate-section { padding: 38px 0 44px; }
+  .gate-h2 { font-size: 20px; }
+  .unlocked-banner { padding: 20px 16px 18px; }
+  .soft-cta { padding: 40px 16px; }
+  .soft-cta-headline { font-size: 21px; }
 }
 
 /* SCROLL-REVEAL */
@@ -1118,9 +1311,6 @@ footer.site-foot p { font-size: 12px; color: var(--fg-subtle); line-height: 1.6;
   .compare-col p, .engine-step p, .principle-card p, .mid-cta p,
   .section-tldr { font-size: 14px; }
   .canvas, .canvas-wide { padding: 0 16px; }
-  .gate-card { padding: 28px 20px; }
-  .gate-headline { font-size: 19px; }
-  .gate-sub { font-size: 14px; }
   .principle-card h3 { font-size: 17px; }
   .compare-col h4 { font-size: 16px; }
   .engine-step h4 { font-size: 15px; }
@@ -1134,8 +1324,8 @@ footer.site-foot p { font-size: 12px; color: var(--fg-subtle); line-height: 1.6;
 
 @media print {
   body { background: white; color: black; }
-  .topbar, #progress-bar, .nav-hamburger, .mobile-menu, #gate-overlay { display: none !important; }
-  body.gated main { filter: none; }
+  .topbar, #progress-bar, .nav-hamburger, .mobile-menu, .preview-section, .gate-section, .soft-cta { display: none !important; }
+  .locked-asset { display: block !important; }
   .reveal { opacity: 1 !important; transform: none !important; }
   .collapsible, .collapsible[open] { page-break-inside: avoid; }
   details { open: true; }
@@ -1146,37 +1336,6 @@ footer.site-foot p { font-size: 12px; color: var(--fg-subtle); line-height: 1.6;
 </head>
 <body>
 
-<!-- EMAIL GATE OVERLAY
-     Hidden automatically when ?preview=true is in URL.
-     External URL (gated):  tools.scrollmedia.co/growth-manual/
-     Internal URL (bypass): tools.scrollmedia.co/growth-manual/?preview=true
--->
-<div id="gate-overlay" role="dialog" aria-modal="true" aria-labelledby="gate-title">
-  <div class="gate-card">
-    <img src="/scroll-media-logo.svg" alt="Scroll Media" class="gate-logo" />
-    <div class="gate-badge">A Scroll Media Guide · v2 · May 2026</div>
-    <h2 class="gate-headline" id="gate-title">The Cincy IG Manual.</h2>
-    <p class="gate-sub">Built for local brand owners stuck on time, strategy, or creative ceiling. The Instagram architecture every Scroll Media engagement runs on. Drop your name and email to read.</p>
-
-    <div class="gate-form-wrap">
-      <form class="gate-form" id="gate-form" novalidate>
-        <input type="text" class="gate-input" id="gate-fname" name="first_name" placeholder="First name" autocomplete="given-name" required />
-        <p class="gate-error" id="fname-error">Please enter your first name.</p>
-        <input type="email" class="gate-input" id="gate-email" name="email" placeholder="Work email" autocomplete="email" required />
-        <p class="gate-error" id="email-error">Please enter a valid work email.</p>
-        <button type="submit" class="gate-btn" id="gate-submit">Get the manual</button>
-        <p class="gate-privacy">No spam. Unsubscribe anytime. By submitting you agree to receive emails from Scroll Media.</p>
-      </form>
-    </div>
-
-    <div class="gate-success" id="gate-success">
-      <div class="gate-success-icon">✓</div>
-      <h3>Access unlocked.</h3>
-      <p>The manual is yours. We also sent the link to your inbox.</p>
-    </div>
-  </div>
-</div>
-
 <main id="page-main">
 
 <div id="progress-bar"></div>
@@ -1185,7 +1344,7 @@ footer.site-foot p { font-size: 12px; color: var(--fg-subtle); line-height: 1.6;
 <div class="topbar" id="topbar">
   <div class="topbar-inner">
     <a href="https://scrollmedia.co" class="brand" aria-label="Scroll Media">
-      <img src="/scroll-media-logo-white-transparent.png" alt="Scroll Media" class="brand-logo" onerror="this.style.display='none';this.nextElementSibling.style.display='inline';" />
+      <img src="/scroll-media-logo-white-transparent.png" alt="Scroll Media" class="brand-logo" width="48" height="22" onerror="this.style.display='none';this.nextElementSibling.style.display='inline';" />
       <span class="brand-fallback">scroll media</span>
       <span class="tag">The Cincy IG Manual</span>
     </a>
@@ -1228,29 +1387,14 @@ footer.site-foot p { font-size: 12px; color: var(--fg-subtle); line-height: 1.6;
   <a href="https://calendly.com/scrollmedia/discovery" onclick="closeMenu()">Book a discovery call →</a>
 </div>
 
-<!-- HERO + TL;DR -->
+<!-- HERO -->
 <header class="hero">
   <div class="canvas">
     <p class="hero-eyebrow reveal"><em>A Scroll Media Guide</em></p>
     <h1 class="reveal">The Cincy IG Manual.</h1>
     <p class="hero-tagline reveal">Cincinnati's Instagram architecture for local brand owners. The system every Scroll Media engagement runs on.</p>
-    <p class="reveal">Instagram is the highest-leverage marketing channel on the planet right now. Over 70% of consumers are on social media, averaging two and a half hours a day. We've never had this much consumer attention concentrated in a single channel in the history of marketing.</p>
-    <p class="reveal">Run the right strategy on it and the algorithm rewards you with the audience that cares most about your product. Not impressions. Not vanity reach. The actual humans most likely to buy. Add the compounding leverage of AI on top of that, and the playing field has flipped. Small local brands are taking real market share from national competitors. Anyone can compete with anyone now. The bottleneck isn't budget. It's the system underneath the content.</p>
-    <p class="reveal">This manual is the system.</p>
-    <p class="reveal">Built for local brand owners stuck on time, strategy, or creative ceiling. Eight years of Scroll strategy work, condensed. No theory. No hacks. No "post more and pray."</p>
-
-    <div class="tldr-list reveal">
-      <div class="tldr-label">What's inside</div>
-      <ul>
-        <li>Why most local brands are stuck despite doing everything they're told to do</li>
-        <li>The Scroll System architecture every Scroll engagement runs on (Foundation, Execution Loop, Performance Loop)</li>
-        <li>The Scroll Content Engine. The 4-step loop that turns every post into compounding signal</li>
-        <li>A foundation diagnostic, the funnel mix, the metric hierarchy, and a 7-day kickstart plan ready to run today</li>
-        <li>Three anonymized Cincinnati wins, and what done-with-you looks like when Scroll runs it for you</li>
-      </ul>
-    </div>
-
-    <p class="tldr-footer reveal">Read time: 10 to 12 minutes.</p>
+    <p class="reveal">Instagram is the highest-leverage marketing channel on the planet right now. Over 70% of consumers are on social media, averaging two and a half hours a day. The bottleneck isn't budget. It's the system underneath the content.</p>
+    <p class="reveal">This manual is the system. Built for local brand owners stuck on time, strategy, or creative ceiling. Eight years of Scroll strategy work, condensed. No theory. No hacks.</p>
 
     <div class="hero-meta reveal">
       <div class="hero-meta-item"><div class="hero-meta-dot"></div>Built by Scroll Media</div>
@@ -1260,6 +1404,79 @@ footer.site-foot p { font-size: 12px; color: var(--fg-subtle); line-height: 1.6;
     </div>
   </div>
 </header>
+
+<!-- PREVIEW SECTION · "What's inside" (5 thematic cards) -->
+<section class="preview-section">
+  <div class="canvas">
+    <div class="preview-eyebrow">What's inside</div>
+    <h2 class="preview-headline">Five chapters. One operating architecture.</h2>
+
+    <div class="preview-cards">
+      <div class="preview-card">
+        <div class="preview-card-num">01 · The shift</div>
+        <div class="preview-card-title">Content channel vs. growth channel</div>
+        <p class="preview-card-desc">The single shift that decides whether your account compounds or stays stuck. Worldview before tactics.</p>
+      </div>
+      <div class="preview-card">
+        <div class="preview-card-num">02 · The architecture</div>
+        <div class="preview-card-title">The Scroll System</div>
+        <p class="preview-card-desc">Three zones. Foundation, Execution Loop, Performance Loop. The Scroll Content Engine at the center. Every output feeds the next input.</p>
+      </div>
+      <div class="preview-card">
+        <div class="preview-card-num">03 · The diagnostic</div>
+        <div class="preview-card-title">Where are you stuck</div>
+        <p class="preview-card-desc">Time, strategy, or creative ceiling. The pattern that sounds most like you. A foundation check on bio, grid, pillars, and link strategy.</p>
+      </div>
+      <div class="preview-card">
+        <div class="preview-card-num">04 · The mechanics</div>
+        <div class="preview-card-title">Funnel mix, formats, DMs, metrics</div>
+        <p class="preview-card-desc">The 40/35/25 publishing rhythm. Three formats that handle 80% of what works. DMs and comments as a conversion channel. The metric hierarchy.</p>
+      </div>
+      <div class="preview-card">
+        <div class="preview-card-num">05 · The execution</div>
+        <div class="preview-card-title">7-day kickstart plan + proof</div>
+        <p class="preview-card-desc">Thirty to ninety minutes a day. By Sunday night, the foundation is rebuilt. Three Cincinnati wins. What done-with-you partnership looks like.</p>
+      </div>
+    </div>
+
+    <p class="preview-stat"><strong>Inside: 13 chapters. 10 to 12 minute read.</strong> The architecture every Scroll Media engagement runs on.</p>
+  </div>
+</section>
+
+<!-- INLINE GATE FORM -->
+<section class="gate-section" id="gate-section">
+  <div class="gate-inner">
+    <div class="gate-eyebrow-inline">Get the manual</div>
+    <h2 class="gate-h2">Read the full architecture below.</h2>
+    <p class="gate-lede">Drop your name and email. The manual unlocks below, and a copy lands in your inbox.</p>
+
+    <form class="gate-form-inline" id="gate-form" novalidate>
+      <div class="field">
+        <label for="gate-first">First name</label>
+        <input type="text" id="gate-first" name="first_name" autocomplete="given-name" required>
+      </div>
+      <div class="field">
+        <label for="gate-email">Email</label>
+        <input type="email" id="gate-email" name="email" autocomplete="email" required>
+      </div>
+      <button type="submit" class="gate-submit-inline" id="gate-submit">Unlock the manual</button>
+      <p class="gate-microcopy">Free. No spam. Sent to your inbox in 30 seconds.</p>
+      <div class="gate-error-inline" id="gate-error" role="alert">Something went wrong on our end. Try again in a minute, or email chase@scrollmedia.co.</div>
+    </form>
+  </div>
+</section>
+
+<!-- LOCKED ASSET (hidden until gate submit; persisted via sessionStorage) -->
+<div class="locked-asset" id="locked-asset" aria-hidden="true">
+
+<div class="unlocked-banner">
+  <div class="unlocked-banner-inner">
+    <div class="unlocked-banner-text">
+      <strong>Manual unlocked. Read on.</strong>
+      We also sent a copy to your inbox.
+    </div>
+  </div>
+</div>
 
 <!-- SECTION 01 · THE SHIFT -->
 <section class="band" id="shift">
@@ -2359,6 +2576,19 @@ footer.site-foot p { font-size: 12px; color: var(--fg-subtle); line-height: 1.6;
   </div>
 </section>
 
+</div>
+<!-- /.locked-asset -->
+
+<!-- SOFT CTA · Calendly (bottom of unlocked asset) -->
+<section class="soft-cta">
+  <div class="soft-cta-inner">
+    <div class="soft-cta-eyebrow">Want help implementing?</div>
+    <h2 class="soft-cta-headline">Run the architecture with us.</h2>
+    <p class="soft-cta-sub">30 minutes. We walk your account against the system live. No pitch. No pressure. You leave with the priority list.</p>
+    <a href="https://calendly.com/scrollmedia/discovery" class="soft-cta-button" target="_blank" rel="noopener">Book a discovery call</a>
+  </div>
+</section>
+
 <footer class="site-foot">
   <div class="canvas">
     <p>© 2026 Scroll Media · Cincinnati's Instagram agency for local brands.</p>
@@ -2368,16 +2598,16 @@ footer.site-foot p { font-size: 12px; color: var(--fg-subtle); line-height: 1.6;
 </main>
 
 <script>
-/* EMAIL GATE — PREVIEW BYPASS + KIT INTEGRATION
-   External URL (gated):  /growth-manual/
-   Internal URL (bypass): /growth-manual/?preview=true
+/* FRONT-GATE (v2 · locked May 28, 2026)
+   Hero → preview cards → inline gate form → unlocked asset reveal.
+   Persisted via sessionStorage. Bypass with ?preview=true.
 
-   Leads land in Kit form KIT_FORM_ID via the public subscribe
-   endpoint (app.kit.com/forms/{id}/subscriptions). Tag application
-   (quiz-lead + lead-source-cincy-ig-manual) is configured on the
-   Kit form, not on the client. No API key in JS by design. */
+   Kit form 9466461 fires lead-source-growth-manual + quiz-lead tags
+   via the "Apply Source Tags" server-side automation. quiz-lead
+   triggers the Master Nurture Router (sequence 2670738). */
 
 const KIT_FORM_ID = 9466461;
+const KIT_FORM_ENDPOINT = `https://app.kit.com/forms/${KIT_FORM_ID}/subscriptions`;
 const SESSION_KEY = 'gm_unlocked';
 const EMAIL_PATTERN = /^[A-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[A-Z0-9](?:[A-Z0-9-]{0,61}[A-Z0-9])?(?:\.[A-Z0-9](?:[A-Z0-9-]{0,61}[A-Z0-9])?)+$/i;
 const DISPOSABLE_DOMAINS = new Set([
@@ -2396,39 +2626,21 @@ const DISPOSABLE_DOMAINS = new Set([
   'yopmail.com'
 ]);
 
-const overlay = document.getElementById('gate-overlay');
+const gateSection = document.getElementById('gate-section');
+const lockedAsset = document.getElementById('locked-asset');
 const gateForm = document.getElementById('gate-form');
-const gateFormWrap = document.querySelector('.gate-form-wrap');
-const gateSuccess = document.getElementById('gate-success');
-const fnameInput = document.getElementById('gate-fname');
+const gateSubmit = document.getElementById('gate-submit');
+const gateError = document.getElementById('gate-error');
+const fnameInput = document.getElementById('gate-first');
 const emailInput = document.getElementById('gate-email');
-const fnErr = document.getElementById('fname-error');
-const emErr = document.getElementById('email-error');
-const btn = document.getElementById('gate-submit');
-const params = new URLSearchParams(window.location.search);
-const isPreview = params.get('preview') === 'true';
 
-function showGateError(element, message) {
-  element.textContent = message;
-  element.classList.add('visible');
+function showGateError(message) {
+  gateError.textContent = message;
+  gateError.classList.add('is-visible');
 }
 
-function clearGateErrors() {
-  fnErr.classList.remove('visible');
-  emErr.classList.remove('visible');
-}
-
-function lockPage() {
-  document.body.classList.add('gated');
-  document.documentElement.style.overflow = 'hidden';
-}
-
-function unlockPage() {
-  sessionStorage.setItem(SESSION_KEY, '1');
-  overlay.classList.add('hiding');
-  document.body.classList.remove('gated');
-  document.documentElement.style.overflow = '';
-  setTimeout(() => overlay.classList.add('hidden'), 460);
+function clearGateError() {
+  gateError.classList.remove('is-visible');
 }
 
 function normalizeEmail(value) {
@@ -2436,90 +2648,88 @@ function normalizeEmail(value) {
 }
 
 function validateGateForm(firstName, email) {
-  let valid = true;
-
   if (!firstName) {
-    showGateError(fnErr, 'Please enter your first name.');
-    valid = false;
+    showGateError('Please enter your first name.');
+    return false;
   }
-
   if (!email || !EMAIL_PATTERN.test(email) || email.includes('..')) {
-    showGateError(emErr, 'Please enter a valid email address.');
-    valid = false;
-    return valid;
+    showGateError('Please enter a valid email address.');
+    return false;
   }
-
   const [, domain = ''] = email.split('@');
   if (!domain || DISPOSABLE_DOMAINS.has(domain)) {
-    showGateError(emErr, 'Please use your real email so we can send your access and follow-up resources.');
-    valid = false;
+    showGateError('Please use your real email so we can send your access and follow-up resources.');
+    return false;
   }
-
-  return valid;
+  return true;
 }
 
-/* PREVIEW BYPASS */
-if (isPreview) {
-  overlay.classList.add('hidden');
+function unlockAsset(scrollIntoView) {
+  lockedAsset.classList.add('is-unlocked');
+  lockedAsset.setAttribute('aria-hidden', 'false');
+  if (gateSection) gateSection.style.display = 'none';
+  if (scrollIntoView) {
+    setTimeout(() => {
+      lockedAsset.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 100);
+  }
+}
+
+/* PREVIEW BYPASS + session persistence */
+const params = new URLSearchParams(window.location.search);
+if (params.get('preview') === 'true') {
+  unlockAsset(false);
 } else if (sessionStorage.getItem(SESSION_KEY) === '1') {
-  overlay.classList.add('hidden');
-} else {
-  lockPage();
+  unlockAsset(false);
 }
 
 /* FORM SUBMISSION → KIT */
-gateForm.addEventListener('submit', async function(e) {
-  e.preventDefault();
+if (gateForm) {
+  gateForm.addEventListener('submit', async function(e) {
+    e.preventDefault();
+    clearGateError();
 
-  const fname = fnameInput.value.trim();
-  const email = normalizeEmail(emailInput.value);
-  emailInput.value = email;
+    const fname = fnameInput.value.trim();
+    const email = normalizeEmail(emailInput.value);
+    emailInput.value = email;
 
-  clearGateErrors();
-
-  if (!validateGateForm(fname, email)) {
-    return;
-  }
-
-  if (!KIT_FORM_ID) {
-    showGateError(emErr, 'Form not yet configured. Please try again later.');
-    return;
-  }
-
-  btn.disabled = true;
-  btn.textContent = 'Unlocking...';
-
-  try {
-    const body = new URLSearchParams();
-    body.set('email_address', email);
-    body.set('fields[first_name]', fname);
-
-    const res = await fetch(`https://app.kit.com/forms/${KIT_FORM_ID}/subscriptions`, {
-      method: 'POST',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/x-www-form-urlencoded'
-      },
-      body: body.toString()
-    });
-
-    const data = await res.json().catch(() => null);
-    const accepted = res.ok && data && (data.status === 'success' || data.status === 'quarantined');
-    if (!accepted) {
-      throw new Error('Kit subscribe rejected');
+    if (!validateGateForm(fname, email)) {
+      return;
     }
 
-    gateFormWrap.style.display = 'none';
-    gateSuccess.classList.add('visible');
+    gateSubmit.disabled = true;
+    gateSubmit.textContent = 'Unlocking…';
 
-    setTimeout(() => { unlockPage(); }, 700);
-  } catch (err) {
-    console.error('Kit subscription error:', err);
-    showGateError(emErr, 'Something went wrong submitting your access request. Please try again in a moment.');
-    btn.disabled = false;
-    btn.textContent = 'Get the manual';
-  }
-});
+    try {
+      const body = new URLSearchParams();
+      body.set('email_address', email);
+      body.set('first_name', fname);
+
+      const res = await fetch(KIT_FORM_ENDPOINT, {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        body: body.toString()
+      });
+
+      const data = await res.json().catch(() => null);
+      const accepted = res.ok && data && (data.status === 'success' || data.status === 'quarantined');
+      if (!accepted) {
+        throw new Error('Kit subscribe rejected');
+      }
+
+      sessionStorage.setItem(SESSION_KEY, '1');
+      unlockAsset(true);
+    } catch (err) {
+      console.error('Kit subscription error:', err);
+      showGateError('Something went wrong on our end. Try again in a minute, or email chase@scrollmedia.co.');
+      gateSubmit.disabled = false;
+      gateSubmit.textContent = 'Unlock the manual';
+    }
+  });
+}
 
 /* PROGRESS BAR */
 const progressBar = document.getElementById('progress-bar');
