@@ -1146,6 +1146,120 @@
   }
   .gate-error-inline.is-visible { display: block; }
 
+  /* ============================================================
+     INSTANT-ACCESS MODAL GATE · v3 (added Jun 2026)
+     Hard gate: fires on load, no dismiss. Higher capture on paid traffic.
+     ============================================================ */
+  .modal-gate-overlay {
+    position: fixed; inset: 0; z-index: 1000;
+    display: none;
+    align-items: center; justify-content: center;
+    padding: 24px;
+    background: rgba(7, 29, 79, 0.72);
+    -webkit-backdrop-filter: blur(7px);
+    backdrop-filter: blur(7px);
+    overflow-y: auto;
+  }
+  .modal-gate-overlay.is-open { display: flex; }
+  body.modal-gate-open { overflow: hidden; }
+
+  .modal-gate-card {
+    position: relative;
+    width: 100%; max-width: 460px;
+    background: var(--ghost);
+    border: 1.5px solid var(--azure);
+    box-shadow: 0 24px 70px rgba(7, 29, 79, 0.45);
+    padding: 40px 34px 34px;
+    margin: auto;
+    animation: modalGateIn 320ms var(--ease);
+  }
+  @keyframes modalGateIn {
+    from { opacity: 0; transform: translateY(16px) scale(0.98); }
+    to   { opacity: 1; transform: translateY(0) scale(1); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .modal-gate-card { animation: none; }
+  }
+  .modal-gate-lock {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-size: 11px; text-transform: uppercase;
+    letter-spacing: 0.22em; color: var(--azure-600);
+    font-weight: 700; margin-bottom: 14px;
+  }
+  .modal-gate-lock svg { width: 14px; height: 14px; display: block; }
+  .modal-gate-h2 {
+    font-size: clamp(23px, 5vw, 29px);
+    color: var(--azure-900); line-height: 1.14;
+    letter-spacing: -0.02em; margin-bottom: 12px;
+    font-weight: 700;
+  }
+  .modal-gate-lede {
+    font-size: 15px; color: var(--fg-muted);
+    line-height: 1.55; margin-bottom: 24px;
+  }
+  .modal-gate-form { display: flex; flex-direction: column; gap: 13px; }
+  .modal-gate-form .field { display: flex; flex-direction: column; gap: 6px; }
+  .modal-gate-form label {
+    font-size: 11px; font-weight: 700;
+    color: var(--azure-900);
+    letter-spacing: 0.10em; text-transform: uppercase;
+  }
+  .modal-gate-form input {
+    width: 100%;
+    padding: 14px 16px;
+    border: 1.5px solid var(--rule);
+    background: #fff;
+    color: var(--fg);
+    font-family: var(--sans);
+    font-size: 16px;
+    transition: border-color 200ms var(--ease);
+    min-height: 50px;
+  }
+  .modal-gate-form input:focus {
+    outline: none; border-color: var(--azure);
+  }
+  .modal-gate-submit {
+    display: block; width: 100%;
+    background: var(--azure);
+    color: var(--ghost);
+    padding: 17px 22px;
+    font-size: 16px; font-weight: 700;
+    letter-spacing: 0.01em;
+    border: 1.5px solid var(--azure);
+    cursor: pointer;
+    transition: background 200ms var(--ease), transform 200ms var(--ease);
+    margin-top: 6px;
+    min-height: 52px;
+  }
+  .modal-gate-submit:hover {
+    background: var(--azure-900);
+    transform: translateY(-2px);
+  }
+  .modal-gate-submit:disabled {
+    background: var(--fg-subtle);
+    border-color: var(--fg-subtle);
+    cursor: wait; transform: none;
+  }
+  .modal-gate-microcopy {
+    margin-top: 14px;
+    font-size: 13px; color: var(--fg-muted);
+    line-height: 1.5; text-align: center;
+  }
+  .modal-gate-error {
+    background: rgba(226, 237, 122, 0.18);
+    border-left: 3px solid var(--azure);
+    padding: 10px 14px;
+    font-size: 13px;
+    color: var(--shadow);
+    margin-top: 14px;
+    display: none;
+  }
+  .modal-gate-error.is-visible { display: block; }
+  @media (max-width: 600px) {
+    .modal-gate-overlay { padding: 16px; }
+    .modal-gate-card { padding: 32px 22px 26px; }
+  }
+
   /* LOCKED ASSET REVEAL */
   .locked-asset { display: none; }
   .locked-asset.is-unlocked { display: block; }
@@ -1466,6 +1580,37 @@
 <body>
 
 <a class="skip-link" href="#main">Skip to main content</a>
+
+<!-- ==========================================================
+     INSTANT-ACCESS MODAL GATE (fires on load · hard gate)
+     ========================================================== -->
+<div class="modal-gate-overlay" id="modal-gate" role="dialog" aria-modal="true" aria-labelledby="modal-gate-h2">
+  <div class="modal-gate-card">
+    <span class="modal-gate-lock">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <rect x="3" y="11" width="18" height="11" rx="2"></rect>
+        <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+      </svg>
+      Free instant access
+    </span>
+    <h2 class="modal-gate-h2" id="modal-gate-h2">Unlock the Cincinnati IG Audit &mdash; free.</h2>
+    <p class="modal-gate-lede">Enter your name and email and the full 12-item audit plus the formats playbook open instantly. A copy also lands in your inbox.</p>
+
+    <form class="modal-gate-form" id="modal-gate-form" novalidate>
+      <div class="field">
+        <label for="modal-gate-first">First name</label>
+        <input type="text" id="modal-gate-first" name="first_name" autocomplete="given-name" required>
+      </div>
+      <div class="field">
+        <label for="modal-gate-email">Email</label>
+        <input type="email" id="modal-gate-email" name="email" autocomplete="email" required>
+      </div>
+      <button type="submit" class="modal-gate-submit" id="modal-gate-submit">Get instant access &rarr;</button>
+      <p class="modal-gate-microcopy">Free. No spam. Unlocks the second you submit.</p>
+      <div class="modal-gate-error" id="modal-gate-error" role="alert">Something went wrong on our end. Try again in a minute, or email chase@scrollmedia.co.</div>
+    </form>
+  </div>
+</div>
 
 <!-- ==========================================================
      TOPBAR
@@ -2430,7 +2575,29 @@ Line 3: 👇 Order catering online</pre>
     const firstNameInput = document.getElementById('gate-first');
     const emailInput = document.getElementById('gate-email');
 
+    // Instant-access modal gate (hard gate · fires on load)
+    const modalGate = document.getElementById('modal-gate');
+    const modalForm = document.getElementById('modal-gate-form');
+    const modalSubmit = document.getElementById('modal-gate-submit');
+    const modalError = document.getElementById('modal-gate-error');
+    const modalFirst = document.getElementById('modal-gate-first');
+    const modalEmail = document.getElementById('modal-gate-email');
+
+    function openModal() {
+      if (!modalGate) return;
+      modalGate.classList.add('is-open');
+      document.body.classList.add('modal-gate-open');
+      // Pull focus into the form so they can start typing immediately.
+      setTimeout(() => { if (modalFirst) modalFirst.focus(); }, 120);
+    }
+    function closeModal() {
+      if (!modalGate) return;
+      modalGate.classList.remove('is-open');
+      document.body.classList.remove('modal-gate-open');
+    }
+
     function unlockAsset(scrollIntoView) {
+      closeModal();
       lockedAsset.classList.add('is-unlocked');
       lockedAsset.setAttribute('aria-hidden', 'false');
       if (gateSection) gateSection.style.display = 'none';
@@ -2453,13 +2620,50 @@ Line 3: 👇 Order catering online</pre>
       return { ok: res.ok };
     }
 
-    // Auto-unlock on preview bypass
+    // On load: bypass for preview / already-unlocked sessions,
+    // otherwise fire the hard gate modal immediately.
     const params = new URLSearchParams(window.location.search);
     if (params.get('preview') === 'true') {
       unlockAsset(false);
     } else if (sessionStorage.getItem(SESSION_KEY) === '1') {
       // Persist across same-session reloads
       unlockAsset(false);
+    } else {
+      openModal();
+    }
+
+    // Modal gate submission (shares the Kit endpoint + unlock logic)
+    if (modalForm) {
+      modalForm.addEventListener('submit', async function(e) {
+        e.preventDefault();
+        modalError.classList.remove('is-visible');
+
+        const firstName = modalFirst.value.trim();
+        const email = modalEmail.value.trim();
+
+        if (!firstName || !email || !email.includes('@')) {
+          modalError.textContent = 'Please enter a first name and a valid email.';
+          modalError.classList.add('is-visible');
+          return;
+        }
+
+        modalSubmit.disabled = true;
+        modalSubmit.textContent = 'Unlocking…';
+
+        try {
+          const result = await submitToKit(firstName, email);
+          if (!result.ok) throw new Error('Kit submission failed.');
+          sessionStorage.setItem(SESSION_KEY, '1');
+          unlockAsset(true);
+        } catch (err) {
+          console.error(err);
+          modalError.textContent = 'Something went wrong on our end. Try again in a minute, or email chase@scrollmedia.co and we will send the audit manually.';
+          modalError.classList.add('is-visible');
+        } finally {
+          modalSubmit.disabled = false;
+          modalSubmit.innerHTML = 'Get instant access &rarr;';
+        }
+      });
     }
 
     // Gate form submission
