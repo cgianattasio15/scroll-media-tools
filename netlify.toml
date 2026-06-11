@@ -11,6 +11,11 @@
   to = "/thanks.html"
   status = 200
 
+[[redirects]]
+  from = "/newsletter-thanks"
+  to = "/newsletter-thanks.html"
+  status = 200
+
 # Retired narrative companion (May 12, 2026) — single-surface flowchart going forward
 [[redirects]]
   from = "/scroll-system/narrative.html"

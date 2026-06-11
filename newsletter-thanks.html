@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>You're in — Scroll Media</title>
+  <meta name="robots" content="noindex">
+  <link rel="icon" href="/favicon.png" type="image/png">
+  <link rel="icon" href="/scroll-favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --shadow: #151516;
+      --navy-mid: #1a2332;
+      --navy-card: #0f1923;
+      --azure: #0c3387;
+      --highlighter: #e2ed7a;
+      --text-primary: #f0f4ff;
+      --text-secondary: #8899bb;
+      --border: rgba(255,255,255,0.08);
+    }
+
+    html, body {
+      height: 100%;
+      background: var(--shadow);
+      font-family: 'Source Sans 3', sans-serif;
+      color: var(--text-primary);
+    }
+
+    body {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      background: rgba(21,21,22,0.95);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 32px;
+      height: 64px;
+      display: flex;
+      align-items: center;
+    }
+
+    .nav-logo img {
+      height: 28px;
+      width: auto;
+      display: block;
+    }
+
+    /* MAIN */
+    main {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 100px 24px 60px;
+    }
+
+    .card {
+      background: var(--navy-card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 56px 48px;
+      max-width: 560px;
+      width: 100%;
+      text-align: center;
+    }
+
+    .check-icon {
+      width: 64px;
+      height: 64px;
+      background: rgba(226,237,122,0.12);
+      border: 2px solid var(--highlighter);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 28px;
+    }
+
+    .check-icon svg {
+      width: 28px;
+      height: 28px;
+    }
+
+    h1 {
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      line-height: 1.2;
+      margin-bottom: 16px;
+      letter-spacing: -0.02em;
+    }
+
+    h1 span {
+      color: var(--highlighter);
+    }
+
+    .subtitle {
+      font-size: 1.05rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+      margin-bottom: 36px;
+      font-weight: 400;
+    }
+
+    .divider {
+      width: 48px;
+      height: 2px;
+      background: var(--highlighter);
+      margin: 0 auto 32px;
+      border-radius: 2px;
+      opacity: 0.6;
+    }
+
+    .cta-label {
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-secondary);
+      margin-bottom: 16px;
+    }
+
+    .cta-btn {
+      display: inline-block;
+      background: var(--highlighter);
+      color: var(--shadow);
+      font-family: 'Source Sans 3', sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      padding: 16px 36px;
+      border-radius: 50px;
+      text-decoration: none;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      letter-spacing: 0.01em;
+    }
+
+    .cta-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 28px rgba(226,237,122,0.25);
+    }
+
+    .no-pressure {
+      margin-top: 20px;
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      opacity: 0.7;
+    }
+
+    /* FOOTER */
+    footer {
+      background: var(--navy-mid);
+      border-top: 1px solid var(--border);
+      padding: 24px 32px;
+      text-align: center;
+    }
+
+    .footer-logo img {
+      height: 22px;
+      width: auto;
+      opacity: 0.7;
+      margin-bottom: 8px;
+    }
+
+    .footer-text {
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+      opacity: 0.6;
+    }
+
+    @media (max-width: 600px) {
+      .card {
+        padding: 40px 28px;
+      }
+      h1 {
+        font-size: 1.6rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <a href="https://scrollmedia.co" class="nav-logo">
+      <img src="/scroll-media-logo-white.png" alt="Scroll Media">
+    </a>
+  </nav>
+
+  <main>
+    <div class="card">
+      <div class="check-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#e2ed7a" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="20 6 9 17 4 12"></polyline>
+        </svg>
+      </div>
+      <h1>You're in. <span>Welcome to the playbook.</span></h1>
+      <p class="subtitle">
+        Every month I send out what's actually working on socials for Cincy brands right now — the trends, the tactics, and the stuff we're testing live with our clients. Your first issue lands in your inbox the first week of the month. Keep an eye out.
+      </p>
+      <div class="divider"></div>
+      <p class="cta-label">Don't want to wait?</p>
+      <a href="https://calendly.com/scrollmedia/discovery" class="cta-btn" target="_blank" rel="noopener">
+        Book a Free 15-Min Call
+      </a>
+      <p class="no-pressure">No pressure — just talking shop.</p>
+    </div>
+  </main>
+
+  <footer>
+    <div class="footer-logo">
+      <img src="/scroll-media-logo-white.png" alt="Scroll Media">
+    </div>
+    <p class="footer-text">© 2025 Scroll Media · Cincinnati, OH</p>
+  </footer>
+</body>
+</html>
