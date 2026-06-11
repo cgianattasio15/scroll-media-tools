@@ -37,6 +37,55 @@ const SEQUENCE_IDS = {
   "medspa-biz-dev": process.env.KIT_SEQ_MEDSPA_BIZ_DEV || null,
 };
 
+/**
+ * Apply existing Kit tags to a subscriber by tag NAME.
+ * Kit's V4 tag endpoint keys on tag ID, so we page through GET /tags to build
+ * a name->id map (case-insensitive), then POST each match. Tags that don't
+ * exist are reported as "not-found" rather than failing the whole request —
+ * the subscriber upsert + sequence enrollment must stand regardless.
+ */
+async function applyTagsByName(tagNames, subscriberId, kitHeaders) {
+  const results = [];
+  const nameToId = {};
+  try {
+    let url = `${KIT_BASE}/tags?per_page=100`;
+    while (url) {
+      const res = await fetch(url, { headers: kitHeaders });
+      const data = await res.json();
+      (data && data.tags ? data.tags : []).forEach(function(t) {
+        if (t && t.name) nameToId[String(t.name).toLowerCase()] = t.id;
+      });
+      const p = data && data.pagination;
+      url = (p && p.has_next_page && p.end_cursor)
+        ? `${KIT_BASE}/tags?per_page=100&after=${encodeURIComponent(p.end_cursor)}`
+        : null;
+    }
+  } catch (e) {
+    console.error("applyTagsByName: failed to list tags:", e);
+    return tagNames.map(function(n) { return { tag: n, status: "lookup-error" }; });
+  }
+
+  for (const name of tagNames) {
+    const tagId = nameToId[String(name).toLowerCase()];
+    if (!tagId) {
+      console.warn('applyTagsByName: tag not found in Kit: "' + name + '"');
+      results.push({ tag: name, status: "not-found" });
+      continue;
+    }
+    try {
+      const tagRes = await fetch(`${KIT_BASE}/tags/${tagId}/subscribers`, {
+        method: "POST",
+        headers: kitHeaders,
+        body: JSON.stringify({ id: subscriberId })
+      });
+      results.push({ tag: name, status: tagRes.ok ? "applied" : "failed" });
+    } catch (e) {
+      results.push({ tag: name, status: "error", error: e.message });
+    }
+  }
+  return results;
+}
+
 exports.handler = async function(event, context) {
   if (event.httpMethod === "OPTIONS") {
     return {
@@ -78,7 +127,8 @@ exports.handler = async function(event, context) {
     current_tags = [],
     sequence_id: override_sequence_id,
     mode,
-    fields: extra_fields
+    fields: extra_fields,
+    tags: tag_names
   } = body;
 
   if (!first_name || !email) {
@@ -151,13 +201,22 @@ exports.handler = async function(event, context) {
 
       console.log("Sequence-mode enroll | subscriber " + subscriberId + " | sequence " + override_sequence_id + " | ok=" + seqRes.ok);
 
+      // Apply any source/funnel tags by name (e.g. lead-source-ig-maturity-quiz,
+      // quiz-lead). Optional — absence or failure never blocks enrollment.
+      let tagResults = null;
+      if (Array.isArray(tag_names) && tag_names.length) {
+        tagResults = await applyTagsByName(tag_names, subscriberId, kitHeaders);
+        console.log("Sequence-mode tags | subscriber " + subscriberId + " | " + JSON.stringify(tagResults));
+      }
+
       return {
         statusCode: 200,
         headers,
         body: JSON.stringify({
           success: true,
           subscriber_id: subscriberId,
-          sequence: { id: override_sequence_id, status: seqRes.ok ? "enrolled" : "failed", data: seqData }
+          sequence: { id: override_sequence_id, status: seqRes.ok ? "enrolled" : "failed", data: seqData },
+          tags_applied: tagResults
         })
       };
     } catch (error) {

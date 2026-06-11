@@ -506,28 +506,39 @@ async function submitAndShowResult(){
   const score=calcScore();
   const stage=getStage(score);
   const data=stageData[stage];
-  /* POSTs to Kit form 9156357 ("Quiz Submissions"). The Master Nurture Router
-     automation listens on this form trigger and handles all downstream actions:
-     applies `lead-source-ig-maturity-quiz` + `quiz-lead` tags, sets the
-     `[System] In Sequence` flag, and enrolls the subscriber in the Master
-     Nurture (IG Lead Magnets) sequence, id 2670738.
+  /* Enrolls via the /api/subscribe Netlify Function (mode: "sequence"), which
+     upserts the subscriber through Kit's V4 API — creating an ACTIVE subscriber
+     immediately (no double-opt-in confirmation step) — enrolls them in the
+     Master Nurture (IG Lead Magnets) sequence id 2670738, and applies the
+     `lead-source-ig-maturity-quiz` + `quiz-lead` source tags.
+
+     This replaces the earlier direct POST to Kit form 9156357, whose form-level
+     opt-in setting was leaving new quiz leads unconfirmed (never activated,
+     never enrolled, no notification). Routing through the V4 API is the same
+     mechanism the IG Audit magnet uses for reliable activation.
 
      Dropped quiz fields (captured client-side, not sent to Kit):
-     last_name, business_name, stage, score, q1-q10. Preserving these
-     requires creating a matching Kit Custom Field per field. If `stage`
-     and `score` become useful for segmentation, create the Custom Fields
-     in Kit and add them to the FormData payload below. */
+     last_name, business_name, stage, score, q1-q10. Preserving these requires
+     creating a matching Kit Custom Field per field, then adding them to the
+     `fields` object in the payload below. */
   const submitBtn=document.querySelector('.btn-submit');
   const originalBtnText=submitBtn?submitBtn.textContent:null;
   if(submitBtn){submitBtn.disabled=true;submitBtn.textContent='Submitting…';}
-  const fd=new FormData();
-  fd.append('email_address',email);
-  fd.append('first_name',fname);
   try{
-    const res=await fetch('https://app.kit.com/forms/9156357/subscriptions',{method:'POST',body:fd});
-    if(!res.ok)throw new Error('Kit responded with status '+res.status);
+    const res=await fetch('/api/subscribe',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({
+        mode:'sequence',
+        first_name:fname,
+        email:email,
+        sequence_id:'2670738',
+        tags:['lead-source-ig-maturity-quiz','quiz-lead']
+      })
+    });
+    if(!res.ok)throw new Error('Subscribe API responded with status '+res.status);
   }catch(err){
-    console.error('Kit form submission failed:',err);
+    console.error('Quiz subscribe failed:',err);
     if(submitBtn){submitBtn.disabled=false;submitBtn.textContent=originalBtnText;}
     alert("We couldn't save your details right now. Please try again in a moment.");
     return;
