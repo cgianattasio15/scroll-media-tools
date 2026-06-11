@@ -37,6 +37,83 @@ const SEQUENCE_IDS = {
   "medspa-biz-dev": process.env.KIT_SEQ_MEDSPA_BIZ_DEV || null,
 };
 
+// ─── New-lead inbox alert (via Resend) ───────────────────────────────────────
+// Kit's built-in "You gained a new subscriber!" email only fires for FORM
+// signups, not the V4 API path used by mode:"sequence". To keep an inbox alert
+// for API-captured leads (e.g. the IG Maturity Quiz), we send our own via
+// Resend — the same provider/keys already used by stripe-webhook.js. Entirely
+// best-effort: a missing key or a send failure must never break lead capture.
+const RESEND_API_KEY = process.env.RESEND_API_KEY || null;
+const ALERT_FROM_EMAIL = "Scroll Leads <hello@scrollmedia.co>";
+const ALERT_TO_EMAIL = process.env.LEAD_ALERT_EMAIL || "chase@scrollmedia.co";
+
+/**
+ * Send a "new lead" notification email to the team via Resend.
+ * Best-effort: returns a status string, never throws into the caller.
+ */
+async function sendLeadAlert(lead) {
+  if (!RESEND_API_KEY) {
+    console.warn("sendLeadAlert: RESEND_API_KEY not set — skipping inbox alert.");
+    return "skipped-no-key";
+  }
+
+  const firstName = lead.first_name || "(no name)";
+  const tagsLine = Array.isArray(lead.tags) && lead.tags.length ? lead.tags.join(", ") : "—";
+  const sourceLabel = lead.source || "New lead";
+  const esc = function(s) {
+    return String(s == null ? "" : s).replace(/[&<>]/g, function(c) {
+      return c === "&" ? "&amp;" : c === "<" ? "&lt;" : "&gt;";
+    });
+  };
+
+  const html = `<!DOCTYPE html>
+<html><head><meta charset="utf-8"></head>
+<body style="margin:0;padding:0;background:#f4f4f4;font-family:Inter,Arial,sans-serif;">
+  <table width="100%" cellpadding="0" cellspacing="0" style="background:#f4f4f4;padding:32px 20px;"><tr><td>
+    <table width="560" align="center" cellpadding="0" cellspacing="0" style="background:#fff;border-radius:12px;overflow:hidden;max-width:560px;width:100%;">
+      <tr><td style="background:#0c3387;padding:24px 32px;">
+        <p style="margin:0;color:#c8f135;font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;">Scroll Media · New Lead</p>
+        <h1 style="margin:6px 0 0;color:#fff;font-size:22px;font-weight:800;">${esc(sourceLabel)}</h1>
+      </td></tr>
+      <tr><td style="padding:28px 32px;">
+        <table width="100%" cellpadding="0" cellspacing="0" style="font-size:15px;color:#1a1a2e;">
+          <tr><td style="padding:6px 0;color:#666;width:110px;">Name</td><td style="padding:6px 0;font-weight:700;">${esc(firstName)}</td></tr>
+          <tr><td style="padding:6px 0;color:#666;">Email</td><td style="padding:6px 0;font-weight:700;">${esc(lead.email)}</td></tr>
+          <tr><td style="padding:6px 0;color:#666;">Tags</td><td style="padding:6px 0;">${esc(tagsLine)}</td></tr>
+          <tr><td style="padding:6px 0;color:#666;">Kit ID</td><td style="padding:6px 0;">${esc(lead.subscriber_id)}</td></tr>
+        </table>
+        <p style="margin:24px 0 0;color:#999;font-size:12px;line-height:1.6;">Auto-sent when a lead enters a Kit sequence via the site API. Subscriber is already active and enrolled.</p>
+      </td></tr>
+    </table>
+  </td></tr></table>
+</body></html>`;
+
+  try {
+    const res = await fetch("https://api.resend.com/emails", {
+      method: "POST",
+      headers: {
+        "Authorization": `Bearer ${RESEND_API_KEY}`,
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        from: ALERT_FROM_EMAIL,
+        to: [ALERT_TO_EMAIL],
+        subject: `🎯 New lead: ${firstName} — ${sourceLabel}`,
+        html
+      })
+    });
+    if (!res.ok) {
+      const err = await res.text().catch(function() { return ""; });
+      console.error("sendLeadAlert: Resend error " + res.status + ": " + err);
+      return "send-failed";
+    }
+    return "sent";
+  } catch (e) {
+    console.error("sendLeadAlert: exception:", e);
+    return "send-error";
+  }
+}
+
 /**
  * Apply existing Kit tags to a subscriber by tag NAME.
  * Kit's V4 tag endpoint keys on tag ID, so we page through GET /tags to build
@@ -209,6 +286,18 @@ exports.handler = async function(event, context) {
         console.log("Sequence-mode tags | subscriber " + subscriberId + " | " + JSON.stringify(tagResults));
       }
 
+      // Fire a best-effort inbox alert (Kit's native one doesn't fire for the
+      // V4 API path). Derive a human label from the source tag when present.
+      let sourceLabel = "New quiz / lead-magnet signup";
+      if (Array.isArray(tag_names)) {
+        const src = tag_names.find(function(t) { return String(t).indexOf("lead-source-") === 0; });
+        if (src) sourceLabel = String(src).replace(/^lead-source-/, "").replace(/-/g, " ");
+      }
+      const alertStatus = await sendLeadAlert({
+        first_name, email, subscriber_id: subscriberId, tags: tag_names, source: sourceLabel
+      });
+      console.log("Sequence-mode lead alert | subscriber " + subscriberId + " | " + alertStatus);
+
       return {
         statusCode: 200,
         headers,
@@ -216,7 +305,8 @@ exports.handler = async function(event, context) {
           success: true,
           subscriber_id: subscriberId,
           sequence: { id: override_sequence_id, status: seqRes.ok ? "enrolled" : "failed", data: seqData },
-          tags_applied: tagResults
+          tags_applied: tagResults,
+          alert: alertStatus
         })
       };
     } catch (error) {
