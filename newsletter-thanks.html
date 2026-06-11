@@ -9,202 +9,210 @@
   <link rel="icon" href="/scroll-favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
     :root {
+      --ghost: #FAFDFF;
+      --azure: #0C3387;
+      --azure-900: #071d4f;
+      --lucid: #CBE9FF;
+      --lucid-soft: #e4f3ff;
+      --highlighter: #E2ED7A;
       --shadow: #151516;
-      --navy-mid: #1a2332;
-      --navy-card: #0f1923;
-      --azure: #0c3387;
-      --highlighter: #e2ed7a;
-      --text-primary: #f0f4ff;
-      --text-secondary: #8899bb;
-      --border: rgba(255,255,255,0.08);
+
+      --bg: var(--ghost);
+      --bg-alt: #f5f8fb;
+      --fg: var(--shadow);
+      --fg-muted: #5a6070;
+      --fg-subtle: #9097a6;
+      --rule: rgba(12, 51, 135, 0.20);
+      --rule-faint: rgba(12, 51, 135, 0.08);
+
+      --sans: 'Source Sans 3', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+      --ease: cubic-bezier(0.22, 0.61, 0.36, 1);
     }
 
-    html, body {
-      height: 100%;
-      background: var(--shadow);
-      font-family: 'Source Sans 3', sans-serif;
-      color: var(--text-primary);
-    }
+    *, *::before, *::after { box-sizing: border-box; }
+
+    html, body { height: 100%; }
 
     body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--fg);
+      font-family: var(--sans);
+      line-height: 1.5;
+      font-feature-settings: 'tnum' 1, 'cv11' 1;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
       display: flex;
       flex-direction: column;
       min-height: 100vh;
     }
+    :focus-visible { outline: 2px solid var(--azure); outline-offset: 2px; }
+    ::selection { background: var(--highlighter); color: var(--shadow); }
+    h1, h2, h3 { margin: 0; font-weight: 700; letter-spacing: -0.01em; color: var(--azure); }
+    p { margin: 0; }
+    a { color: var(--azure); text-decoration: none; }
 
-    /* NAV */
-    nav {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      z-index: 100;
-      background: rgba(21,21,22,0.95);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--border);
-      padding: 0 32px;
-      height: 64px;
-      display: flex;
-      align-items: center;
+    /* ── TOPBAR ───────────────────────────────────────────────── */
+    .topbar {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(250, 253, 255, 0.94);
+      backdrop-filter: saturate(150%) blur(10px);
+      -webkit-backdrop-filter: saturate(150%) blur(10px);
+      border-bottom: 1px solid var(--rule);
     }
-
-    .nav-logo img {
-      height: 28px;
-      width: auto;
-      display: block;
+    .topbar-inner {
+      max-width: 1100px; margin: 0 auto; padding: 10px 24px;
+      display: flex; align-items: center; justify-content: space-between; gap: 24px;
     }
+    .brand {
+      display: flex; align-items: center; gap: 12px; white-space: nowrap;
+    }
+    .brand-logo { height: 30px; width: auto; display: block; flex-shrink: 0; }
+    .brand-fallback {
+      font-weight: 700; color: var(--azure); font-size: 20px;
+      letter-spacing: -0.02em; text-transform: lowercase; display: none; line-height: 1;
+    }
+    .brand .tag {
+      color: var(--fg-muted); font-weight: 500; font-size: 11px;
+      letter-spacing: 0.14em; text-transform: uppercase;
+      padding-left: 12px; border-left: 1px solid var(--rule);
+    }
+    .topbar-meta {
+      display: flex; align-items: center; gap: 18px;
+      font-size: 11px; color: var(--fg-muted);
+      letter-spacing: 0.14em; text-transform: uppercase; font-weight: 600; white-space: nowrap;
+    }
+    .topbar-meta a { color: var(--fg-muted); }
+    .topbar-meta a:hover { color: var(--azure); }
+    .topbar-meta .link-text { display: inline; }
 
-    /* MAIN */
+    /* ── MAIN ─────────────────────────────────────────────────── */
     main {
       flex: 1;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 100px 24px 60px;
+      display: flex; align-items: center; justify-content: center;
+      padding: 72px 24px 80px;
     }
-
-    .card {
-      background: var(--navy-card);
-      border: 1px solid var(--border);
-      border-radius: 20px;
-      padding: 56px 48px;
-      max-width: 560px;
-      width: 100%;
-      text-align: center;
+    .confirm {
+      max-width: 620px; width: 100%; text-align: center;
     }
-
-    .check-icon {
-      width: 64px;
-      height: 64px;
-      background: rgba(226,237,122,0.12);
-      border: 2px solid var(--highlighter);
+    .check-badge {
+      width: 72px; height: 72px; margin: 0 auto 28px;
       border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin: 0 auto 28px;
+      background: var(--azure);
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 0 0 8px rgba(226, 237, 122, 0.28);
     }
-
-    .check-icon svg {
-      width: 28px;
-      height: 28px;
+    .check-badge svg { width: 32px; height: 32px; }
+    .eyebrow {
+      display: inline-block;
+      font-size: 12px; text-transform: uppercase; letter-spacing: 0.18em;
+      color: var(--azure); font-weight: 700; margin-bottom: 18px;
     }
-
     h1 {
-      font-size: 2rem;
-      font-weight: 700;
-      color: var(--text-primary);
-      line-height: 1.2;
-      margin-bottom: 16px;
-      letter-spacing: -0.02em;
+      font-size: clamp(32px, 5vw, 50px);
+      line-height: 1.05; letter-spacing: -0.025em;
+      margin-bottom: 20px;
     }
-
-    h1 span {
-      color: var(--highlighter);
+    h1 .mark {
+      background: linear-gradient(180deg, transparent 58%, var(--highlighter) 58%);
+      padding: 0 2px;
     }
-
-    .subtitle {
-      font-size: 1.05rem;
-      color: var(--text-secondary);
-      line-height: 1.6;
-      margin-bottom: 36px;
-      font-weight: 400;
+    .sub {
+      font-size: clamp(16px, 1.6vw, 19px);
+      color: var(--fg-muted); line-height: 1.55;
+      max-width: 52ch; margin: 0 auto 36px;
     }
-
     .divider {
-      width: 48px;
-      height: 2px;
-      background: var(--highlighter);
-      margin: 0 auto 32px;
-      border-radius: 2px;
-      opacity: 0.6;
+      width: 48px; height: 3px; background: var(--highlighter);
+      margin: 0 auto 32px; border-radius: 2px;
     }
-
     .cta-label {
-      font-size: 0.8rem;
-      font-weight: 600;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--text-secondary);
-      margin-bottom: 16px;
+      font-size: 11px; font-weight: 700; letter-spacing: 0.14em;
+      text-transform: uppercase; color: var(--fg-subtle); margin-bottom: 16px;
     }
-
     .cta-btn {
       display: inline-block;
-      background: var(--highlighter);
-      color: var(--shadow);
-      font-family: 'Source Sans 3', sans-serif;
-      font-size: 1rem;
-      font-weight: 700;
-      padding: 16px 36px;
-      border-radius: 50px;
-      text-decoration: none;
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
-      letter-spacing: 0.01em;
+      background: var(--azure); color: #FFFFFF;
+      font-family: var(--sans); font-size: 13px; font-weight: 700;
+      letter-spacing: 0.10em; text-transform: uppercase;
+      padding: 15px 34px;
+      transition: background 200ms var(--ease);
     }
-
-    .cta-btn:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 28px rgba(226,237,122,0.25);
-    }
-
+    .cta-btn:hover, .cta-btn:focus { background: var(--azure-900); color: #FFFFFF; }
     .no-pressure {
-      margin-top: 20px;
-      font-size: 0.85rem;
-      color: var(--text-secondary);
-      opacity: 0.7;
+      margin-top: 18px; font-size: 13px; color: var(--fg-subtle);
     }
 
-    /* FOOTER */
-    footer {
-      background: var(--navy-mid);
-      border-top: 1px solid var(--border);
-      padding: 24px 32px;
-      text-align: center;
+    /* ── FOOTER ───────────────────────────────────────────────── */
+    .footer {
+      background: var(--azure-900);
+      color: var(--lucid-soft);
+      border-top: 1px solid rgba(255, 255, 255, 0.14);
+      padding: 48px 24px 44px;
     }
-
-    .footer-logo img {
-      height: 22px;
-      width: auto;
-      opacity: 0.7;
-      margin-bottom: 8px;
+    .footer-inner {
+      max-width: 1100px; margin: 0 auto;
+      display: flex; justify-content: space-between; gap: 32px;
+      flex-wrap: wrap; align-items: flex-start;
     }
-
-    .footer-text {
-      font-size: 0.8rem;
-      color: var(--text-secondary);
-      opacity: 0.6;
+    .footer-brand { display: flex; align-items: flex-start; gap: 18px; }
+    .footer-brand .mark-icon { height: 40px; width: 40px; display: block; flex-shrink: 0; }
+    .footer-brand .mark-fallback {
+      display: none; font-weight: 700; color: var(--ghost);
+      font-size: 22px; letter-spacing: -0.02em; line-height: 1;
     }
+    .footer-brand-text { display: flex; flex-direction: column; gap: 6px; padding-top: 4px; }
+    .footer-brand .tag {
+      color: var(--ghost); font-size: 14px; font-weight: 600; line-height: 1.4;
+    }
+    .footer-brand a {
+      font-size: 13px; color: var(--lucid);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.18);
+      padding-bottom: 2px; display: inline-flex; align-self: flex-start;
+    }
+    .footer-brand a:hover { color: var(--highlighter); border-bottom-color: var(--highlighter); }
+    .footer-signers { text-align: right; font-size: 13px; color: var(--lucid-soft); line-height: 1.55; }
+    .footer-signers strong { color: var(--ghost); display: block; font-weight: 700; font-size: 14px; }
+    .footer-signers .role { color: var(--lucid); font-size: 12px; }
+    .footer-signers .sep { margin: 10px 0; }
 
     @media (max-width: 600px) {
-      .card {
-        padding: 40px 28px;
-      }
-      h1 {
-        font-size: 1.6rem;
-      }
+      .topbar-meta .link-text { display: none; }
+      .footer-inner { flex-direction: column; gap: 28px; }
+      .footer-signers { text-align: left; }
     }
   </style>
 </head>
 <body>
-  <nav>
-    <a href="https://scrollmedia.co" class="nav-logo">
-      <img src="/scroll-media-logo-white.png" alt="Scroll Media">
-    </a>
-  </nav>
+  <div class="topbar">
+    <div class="topbar-inner">
+      <a href="https://scrollmedia.co" class="brand" aria-label="Scroll Media">
+        <img src="/scroll-media-logo-navy.png" alt="Scroll Media" class="brand-logo"
+             width="65" height="30"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='inline';" />
+        <span class="brand-fallback">scroll.</span>
+        <span class="tag">Newsletter</span>
+      </a>
+      <div class="topbar-meta">
+        <a href="https://scrollmedia.co" class="link-text">scrollmedia.co</a>
+        <a href="https://calendly.com/scrollmedia/discovery" target="_blank" rel="noopener">Book a call</a>
+      </div>
+    </div>
+  </div>
 
-  <main>
-    <div class="card">
-      <div class="check-icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke="#e2ed7a" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+  <main id="main">
+    <div class="confirm">
+      <div class="check-badge">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#FAFDFF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
           <polyline points="20 6 9 17 4 12"></polyline>
         </svg>
       </div>
-      <h1>You're in. <span>Welcome to the playbook.</span></h1>
-      <p class="subtitle">
+      <span class="eyebrow">You're subscribed</span>
+      <h1>You're <span class="mark">in.</span> Welcome to the playbook.</h1>
+      <p class="sub">
         Every month I send out what's actually working on socials for Cincy brands right now — the trends, the tactics, and the stuff we're testing live with our clients. Your first issue lands in your inbox the first week of the month. Keep an eye out.
       </p>
       <div class="divider"></div>
@@ -216,11 +224,26 @@
     </div>
   </main>
 
-  <footer>
-    <div class="footer-logo">
-      <img src="/scroll-media-logo-white.png" alt="Scroll Media">
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <img src="/scroll-sm-white.png" alt="Scroll Media" class="mark-icon"
+             width="40" height="40"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='inline';" />
+        <span class="mark-fallback">scroll.</span>
+        <div class="footer-brand-text">
+          <div class="tag">Cincinnati's Instagram agency for local brands.</div>
+          <a href="https://scrollmedia.co">scrollmedia.co</a>
+        </div>
+      </div>
+      <div class="footer-signers">
+        <strong>Chase Gianattasio</strong>
+        <span class="role">Co-Founder · Chief Operations &amp; Growth Officer</span>
+        <div class="sep"></div>
+        <strong>Allison Gianattasio</strong>
+        <span class="role">Co-Founder · Chief Delivery &amp; Strategy Officer</span>
+      </div>
     </div>
-    <p class="footer-text">© 2025 Scroll Media · Cincinnati, OH</p>
   </footer>
 </body>
 </html>
