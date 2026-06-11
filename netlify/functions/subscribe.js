@@ -105,7 +105,7 @@ async function sendLeadAlert(lead) {
     if (!res.ok) {
       const err = await res.text().catch(function() { return ""; });
       console.error("sendLeadAlert: Resend error " + res.status + ": " + err);
-      return "send-failed:" + res.status + ":" + String(err).slice(0, 200);
+      return "send-failed";
     }
     return "sent";
   } catch (e) {
