@@ -158,16 +158,18 @@ async function upsertEmail(seqId, def, existing) {
     content: mdToHtml(def.body),
     delay_value: def.delay_value,
     delay_unit: "days",
+    // Email-level send_days actually gates each send; without it Kit defaults to
+    // all 7 days and the sequence-level Friday window is ignored. Pin it here.
+    send_days: SCHEDULE.send_days,
     position: def.position,
     published: true,
   };
   if (existing) {
-    const r = await kit("PUT", `/sequence-emails/${existing.id}`, payload);
+    const r = await kit("PUT", `/sequences/${seqId}/emails/${existing.id}`, payload);
     if (!r.ok) fail(`update email pos ${def.position} failed`, r.json || r.text);
     return { action: "updated", id: existing.id };
   }
-  let r = await kit("POST", `/sequences/${seqId}/emails`, payload);
-  if (r.status === 404) r = await kit("POST", `/sequence-emails`, Object.assign({ sequence_id: seqId }, payload));
+  const r = await kit("POST", `/sequences/${seqId}/emails`, payload);
   if (!r.ok) fail(`create email pos ${def.position} failed`, r.json || r.text);
   const created = r.json && (r.json.sequence_email || r.json.email);
   return { action: "created", id: created && created.id };
@@ -209,7 +211,8 @@ async function upsertEmail(seqId, def, existing) {
     console.log(`  ${after.length} emails on sequence ${seq.id}`);
     for (const e of after) {
       const d = e.delay_unit ? `${e.delay_value} ${e.delay_unit}` : `${e.delay_value}`;
-      console.log(`   #${e.position}  delay=${d}  pub=${e.published}  "${e.subject}"  | preview="${e.preview_text}"`);
+      const days = Array.isArray(e.send_days) ? e.send_days.join("/") : e.send_days;
+      console.log(`   #${e.position}  delay=${d}  days=${days}  pub=${e.published}  "${e.subject}"  | preview="${e.preview_text}"`);
     }
   }
 
